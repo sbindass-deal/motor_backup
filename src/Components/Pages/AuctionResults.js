@@ -21,7 +21,8 @@ function AuctionResults() {
                 <div className="row">
                     <div className="col-12 col-lg-8 offset-lg-2">
                         <div className="heroText">
-                            <h2 className="title_combo title_Center">Auction Results <span>View 89,646 Completed Auctions</span></h2>
+                            <h2 className="title_combo title_Center">Auction Results <span>View 
+                             { " " +auctions.filter(data=>data.done === 1 ).map(data=>data).length} Completed Auctions</span></h2>
                         </div>
                     </div>
                 </div>

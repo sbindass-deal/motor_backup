@@ -19,7 +19,7 @@ function Auctionlive() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-center pb_30">
-                        <h2 className="title_combo title_Center">Live Now <span>{data.length} AUCTIONS NOW LIVE</span></h2>
+                        <h2 className="title_combo title_Center">Live Now <span>{data.filter(data=>data.done === 1 && data.premium === 1 ).map(data=>data).length} AUCTIONS NOW LIVE</span></h2>
                     </div>
                     <div className="col-12">
                         <ul className="postTopOption">
@@ -48,7 +48,7 @@ function Auctionlive() {
 
                 <div className="row pt-4 row_gridList">
                     {
-                        data.map((curElem) => {
+                        data.filter(data=>data.done === 1 && data.premium === 1 ).map((curElem) => {
                             return(
                                 <div key={curElem.id} className="col-12 col-md-6 pb-3">
                                 <div className="card_post">

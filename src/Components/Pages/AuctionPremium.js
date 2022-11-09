@@ -21,7 +21,7 @@ function AuctionPremium() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-center pb_30">
-                        <h2 className="title_combo title_Center">Premium Listings <span>20 AUCTIONS NOW LIVE</span></h2>
+                        <h2 className="title_combo title_Center">Premium Listings <span>{auctions.filter(data=>data.premium === 0).map(data=>data).length} AUCTIONS NOW LIVE</span></h2>
                     </div>
                 </div>
 

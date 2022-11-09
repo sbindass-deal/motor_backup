@@ -203,7 +203,7 @@ const VechilesRegistraion = () => {
       })
     );
     axios
-      .post(`${url}/plans`, {
+      .post(`${url}vehicles`, {
         ...namefield,
         ...basicfact,
         ...detailstab,
@@ -940,7 +940,9 @@ const VechilesRegistraion = () => {
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#BasicFacts_Pill"
-                            onClick={()=> dispatch(step_one(true))}
+                            onClick={()=> { 
+                              dispatch(step_one(true))
+                            }}
                           >
                             NEXT
                           </a>
@@ -948,6 +950,7 @@ const VechilesRegistraion = () => {
                           {/* </button> */}
                           {/* </button> */}
                         </div>
+                        
                       </div>
                     </form>
                   </div>
