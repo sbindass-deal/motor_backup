@@ -4,8 +4,15 @@ import icGrid from '../../Assets/images/icGrid.svg'
 import img_01 from '../../Assets/images/img_01.jpg'
 import axios from 'axios'
 function Auctionlive() {
-    const data = useSelector(state => state.submitvechilesReducer.contactinfo)
-    console.log(data)
+    const [data ,setauctions ] = React.useState([])
+
+    React.useEffect(()=>{
+    
+        axios.get( process.env.REACT_APP_URL +  '/vehicles')
+        .then((response)=>{
+            setauctions(response.data.data)
+        })
+    },[])
   return (
     <div>
         <section className="ptb_80 pt_sm_50">

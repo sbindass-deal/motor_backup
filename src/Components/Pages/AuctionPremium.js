@@ -8,7 +8,7 @@ function AuctionPremium() {
 
     React.useEffect(()=>{
     
-        axios.get('https://ccea-103-156-237-142.in.ngrok.io/vehicles')
+        axios.get(process.env.REACT_APP_URL + 'vehicles')
         .then((response)=>{
             setauctions(response.data.data)
         })

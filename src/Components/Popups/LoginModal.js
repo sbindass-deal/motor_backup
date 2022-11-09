@@ -5,7 +5,7 @@ import { auth } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 
 function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
-  const url = process.env.REACT_APP_URL;
+  
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,8 +20,13 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   };
 
   const handleApi = () => {
+
+    const url = process.env.REACT_APP_URL;
+
+console.log(111,url)
+
     axios
-      .post(`${url}/login`, {
+      .post(`${url}login`, {
         email: email,
         password: password,
       })

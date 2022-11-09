@@ -10,7 +10,7 @@ function SubmitaVehicle() {
 
 React.useEffect(()=>{
 
-    axios.get('https://ccea-103-156-237-142.in.ngrok.io/plans')
+    axios.get(process.env.REACT_APP_URL + 'plans')
     .then((response)=>{
         setp1(response.data.data[0].price)
         setp2(response.data.data[1].price)

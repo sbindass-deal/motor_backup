@@ -1,31 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState={
-    // makemode:[],
-    // basicfact:[],
-    // details:[],
-    contactinfo:[]
-}
+const initialState = {
+  step_one: false,
+  step_two: false,
+  step_three: false,
+  step_four: false,
+  contactinfo: [],
+};
 
-export const submitdetails=createSlice({
-    name:"vechilesDetails",
-    initialState,
-    reducers:{
-      makemodesave:(state, action)=>{
-        // state.makemode.push(action.payload)
-      },
-      basicfactsave:(state,action)=>{
-        // state.basicfact.push(action.payload)
-      },
-      detailssave:(state, action)=>{
-        // state.details.push(action.payload)
-      },
-      contactinfosave:(state,action)=>{
-        state.contactinfo.push(action.payload)
-      }  
-    }
-})
+export const submitdetails = createSlice({
+  name: "vechilesDetails",
+  initialState,
+  reducers: {
+    step_one: (state, action) => {
+       state.step_one = action.payload
+    },
+    step_two: (state, action) => {
+      state.step_two = action.payload
+    },
+    step_three: (state, action) => {
+      state.step_three = action.payload
+    },
+    contactinfosave: (state, action) => {
+      state.contactinfo.push(action.payload);
+    },
+  },
+});
 
-export const {makemodesave, basicfactsave, detailssave, contactinfosave} = submitdetails.actions
+export const { step_one, step_two, step_three, contactinfosave } =
+  submitdetails.actions;
 
-export default submitdetails.reducer
+export default submitdetails.reducer;

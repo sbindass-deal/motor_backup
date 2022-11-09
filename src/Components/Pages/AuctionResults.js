@@ -9,7 +9,7 @@ function AuctionResults() {
 
     React.useEffect(()=>{
     
-        axios.get('https://ccea-103-156-237-142.in.ngrok.io/vehicles')
+        axios.get(process.env.REACT_APP_URL + 'vehicles')
         .then((response)=>{
             setauctions(response.data.data)
         })
@@ -58,7 +58,7 @@ function AuctionResults() {
                 <div className="row pt-4 row_gridList">
                     
                     {
-                        auctions.filter(data=> data.done === 1).map(data=>(<div className="col-12 col-md-6 col-lg-4 pb-3">
+                        auctions.filter(data=> data.done === 0).map(data=>(<div className="col-12 col-md-6 col-lg-4 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <div className="card_postImg_labe">Popular</div>

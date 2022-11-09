@@ -90,8 +90,9 @@ function SellYourVehicle() {
                             <li className="nav-item">
                                 <a className="nav-link active" data-toggle="pill" href="#MakeModel_Pill">Make & Model</a>
                             </li>
+                            {/* href="#BasicFacts_Pill" */}
                             <li className="nav-item">
-                                <a className="nav-link" data-toggle="pill" href="#BasicFacts_Pill">Basic Facts</a>
+                                <p className="nav-link" data-toggle="pill" onClick={()=>alert('dasdasd')} >Basic Facts</p>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" data-toggle="pill" href="#Details_Pill">Details</a>
