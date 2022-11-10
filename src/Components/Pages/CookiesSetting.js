@@ -7,30 +7,66 @@ function CookiesSetting() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-12 col-lg-12">
-                      <h2 className="title_combo title_Center">Cookies Setting</h2>
+                      <h2 className="title_combo title_Center">AML Policy</h2>
                       <div className="post-excerpt">
-                        <p><strong>Cookies Setting</strong></p>
-                    <p>Last revised on: 6/25/2020</p>
+                        <p><strong>AML Policy</strong></p>
+                    <p>Last revised on: 11/09/2022</p>
                     <p>Terms of Use</p>
-                    <p>BY ACCESSING OR USING THE DIGITAL SERVICES, YOU ACCEPT AND AGREE TO BE LEGALLY BOUND BY AND COMPLY WITH THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT ACCESS OR USE THE DIGITAL SERVICES. SPECIFICALLY, PLEASE TAKE NOTICE THAT WITH LIMITED EXCEPTIONS, ALL DISPUTES BETWEEN YOU AND US REGARDING THIS AGREEMENT ARE SUBJECT TO BINDING ARBITRATION ON AN INDIVIDUAL BASIS RATHER THAN JURY TRIALS, INCLUDING className ACTION LAWSUITS, IN COURTS AND ONLY SPECIFIC REMEDIES ARE AVAILABLE TO YOU. Read more in <a href="#dispute-resolution">section 24. Dispute Resolution (Arbitration Clause and className Action Waiver)</a>.</p>
-                    <p>In the Highlights section, we provide an overview of the terms and conditions that apply to your access to or use of a U.S. website, mobile app or other digital service (each a “Digital Service”) operated by Bring a Trailer Media, LLC or one of its affiliates (“we”, “us”, “our” or “shibnobiMedia”).</p>
-                    <p>The Digital Services include a platform for vehicle listings and information services. shibnobiMEDIA IS NOT AN AUTOMOBILE BROKER, DEALER OR TRADITIONAL AUCTIONEER AND WE DO NOT SELL, EXCHANGE, BUY, OR OFFER FOR SALE, NEGOTIATE OR ATTEMPT TO NEGOTIATE, A SALE OR EXCHANGE OF AN INTEREST IN ANY VEHICLE LISTED ON THE DIGITAL SERVICES. shibnobiMEDIA HAS NEVER: (I) HELD TITLE FOR ANY VEHICLE LISTED ON THE DIGITAL SERVICES, (2) INSPECTED ANY VEHICLE LISTED ON THE DIGITAL SERVICES OR (3) HAD ANY VEHICLE LISTED ON THE DIGITAL SERVICES IN ITS LEGAL POSSESSION.</p>
-                    <p>Please review the full <a href="#terms">Terms of Use</a> below for a detailed explanation of applicable terms and conditions. Any reference to the Terms of Use, including its sections, in the Highlights section is intended to refer to the full Terms of Use below.</p>
-                    <p><strong>Highlights</strong></p>
-                    <p>Application and Acceptance of the Terms of Use</p>
-                    <ul>
-                    <li>Each time you access or use the Digital Services, you agree to be bound by the Terms of Use (including the binding arbitration provision located in the section entitled “<a href="#dispute-resolution">Dispute Resolution (Arbitration Clause and className Action Waiver)</a>”) along with our Privacy Notice, any FAQs, and any additional guidelines, terms, procedures or rules that may apply to a specific feature of the Digital Services (collectively, the “Agreement”) that are owned or operated by Bring a Trailer Media, LLC. or its affiliates (“we”, “us”, “our” or “shibnobiMedia”).</li>
-                    <li>You acknowledge that we will use information we obtain about you in connection with your access to and use of the Digital Services in accordance with our <a href="https://bringatrailer.com/privacy-notice/" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.</li>
-                    <li>We may provide services that are not described in these Terms of Use, or customized services; unless we have entered into a separate, signed agreement that expressly supersedes these Terms of Use, these Terms of Use will apply to those services as well.</li>
-                    <li>You acknowledge and agree that the Agreement is solely a contract between you and shibnobiMedia and it expressly does not govern any sale, transaction, or other relationship between you and any other User, any third party or between any other Buyers and Sellers.</li>
+                    <p>Shibnobi, Inc. (individually and collectively, the “Company”), incorporated under the laws of the State of Texas offers services through an internet-enabled peer-to-peer (“P2P”) marketplace for the purchase and sale of digital assets.</p>
+                    <p>The Company is registered as a Software Development Business Focused on Blockchain Initiatives with the United States Treasury Department’s Financial Crimes Enforcement Network (“FinCEN”). Shibnobi’s Anti-Money Laundering (“AML”) policies and procedures are designed to deter illicit activities on the platform, protect the users, the business, and the digital currencies and financial services communities from exploitation by criminals. The Company is compliant with the requirements of the Bank Secrecy Act and related FinCEN regulations and guidance.</p>
+
+                    <p>As part of Shibnobi’s Compliance policies, Know Your Customer (“KYC”) policies and procedures for individual and institutional customers have been designed to enable the Company to form a reasonable belief that it knows the true identity of those of its customers for which such review has been performed. The policy applies to all users on the platform and is followed by all of the Company’s employees, consultants, officers, owners and directors.</p>
+
+                    <p>Using a risk based approach as part of KYC & AML Compliance, Shibnobi has taken the following measures:</p>
+
+                    {/* <p><strong>Highlights</strong></p>
+                    <p>Application and Acceptance of the Terms of Use</p> */}
+
+                    <ul style={{}}>
+                    <li>Appointment of a Chief Compliance Officer who has the sufficient level of expertise and independence, has responsibility for the oversight of compliance with the relevant legislation, regulations, rules and industry guidance;</li>
+<p></p>
+                    <li>Establishing and maintaining risk-based KYC, Customer Due Diligence (CDD), and Enhanced Due Diligence (EDD) Policy;
+                    </li>
+                    
+                    <p></p>
+                    <li>Cooperation with law enforcement requests and local regulatory requirements;</li>
+                    <p></p>
+                    <li>Filing of Suspicious Activity Reports (“SARs”);</li>
+                    <p></p>
+                    <li>Company-wide BSA/AML/OFAC training;</li>
+                    <p></p>
+                    <li>Use of various anti-fraud systems;</li>
+                    <p></p>
+                    <li>Ongoing rule based transaction monitoring;</li>
+                    <p></p>
+                    <li>Investigations using blockchain analytics;</li>
                     </ul>
-                    <p>Your Responsibilities</p>
+
+                    <p></p>
                     <ul>
-                    <li>You are responsible for maintaining the accuracy of any information you submit to us in relation to your access to and use of the Digital Services.</li>
-                    <li>You are solely responsible for any information (including any information used in any listing) you provide to us.</li>
-                    <li>You are responsible for your conduct in relation to the Digital Services, and your access to or use of the Digital Services and Content (as such term is defined in the full Terms of Use) is subject to the rules described in the section entitled “Your Conduct and Responsible Use of the Digital Services” of the Terms of Use below, as well as any additional terms and conditions that may be provided by us as part of the Agreement and applicable to you.</li>
+                    <li>We file SARs if we know, suspect or have reason to suspect suspicious activities have occurred on our platform. A suspicious transaction is often one that is inconsistent with a user’s known and legitimate business, personal activities or personal means. Our Chief Compliance Officer reviews and investigates suspicious activity to determine if sufficient information has been collected to justify the filing of a SAR. Our Chief Compliance Officer maintains records and supporting documentation of all SARs that have been filed.</li>
                     </ul>
-                    <p>Intellectual and Other Proprietary Rights</p>
+                    <p></p>
+                   
+
+<ul>
+  <li>The Company has also adopted ongoing OFAC sanctions policies and procedures designed to protect the platform from being used for prohibited transactions, by sanctioned individuals or for the purposes of evading, avoiding or otherwise circumventing U.S. and global sanctions.
+  </li>
+</ul>
+<p></p>
+
+<ui>
+  <li>Shibnobi fully cooperates with all OFAC, Specially Designated Nationals (SDN) and Blocked persons sanctions lists.</li>
+  </ui>  
+
+  <p></p>                 
+
+  <ul>
+    <li>
+    Where Shibnobi has provided you with a translation of the English language version of this policy, then you agree that the translation is provided for your convenience only and that the English language versions of the policy will govern your relationship with Shibnobi. If there is any contradiction between what the English language version of the policy says and what a translation says, then the English language version shall control.
+    </li>
+  </ul>
+                    {/* <p>Intellectual and Other Proprietary Rights</p>
                     <ul>
                     <li>As between shibnobiMedia and you, shibnobiMedia owns all right, title and interest in and to the copyrights, trademarks, service marks, trade names, patents and all other intellectual and proprietary rights throughout the world associated with the Digital Services and Content except, if applicable, with respect to your User Content.</li>
                     <li>You may not build a business, in whole or in part, resell, redistribute, recirculate or make any other commercial use of, or create derivative works or materials utilizing any portion of the Digital Services (including any code used in any software) or Content, whether or not for profit.</li>
@@ -88,7 +124,7 @@ function CookiesSetting() {
                     <p>(a) You may set up an account to access or use the Digital Services. You are responsible for maintaining the confidentiality of your username, password and other credentials (your “Credentials”) that you may be asked to create to access the Digital Services or certain features or portions thereof. We are not responsible for any misuse of your Credentials by any third party, whether authorized by you or not. You agree to immediately notify shibnobiMedia of any actual or suspected unauthorized use of your Credentials or any other breach of security. We are not responsible or liable for any loss or damage resulting from unauthorized use of your Credentials or for your failure to follow the requirements set out in this Agreement.</p>
                     <p>(b) shibnobiMedia may in its sole discretion maintain different types of accounts for different types of Users. If you open an account to use or Access the Digital Services on behalf of a company, organization or other entity, then (i) “you” includes you and that entity, and (ii) you represent and warrant that you are an authorized representative of the entity with the authority to bind the entity to the Agreement and that you agree to the Agreement on the entity’s behalf.</p>
                     <p>7. Intellectual and Other Proprietary Rights</p>
-                    <p>The rights granted to you in this Agreement are subject to the following restrictions:</p>
+                    <p>The rights granted to you in this Agreement are subject to the following restrictions:</p> */}
 
                     </div>
                 </div>

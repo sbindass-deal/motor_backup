@@ -55,7 +55,7 @@ function Layout() {
                 <Route path="termsandconditions" element={<TermsOfUse/>} />
                 <Route path="feautres" element={<Features/>} />
                 <Route path="showroom" element={<PhotoGallery/>} />
-                <Route path="cookies" element={<CookiesSetting/>} />
+                <Route path="amlpolicy" element={<CookiesSetting/>} />
                 <Route path="shipping" element={<Shipping/>} />
                 <Route path="accountinfo" element={<AccountInfo/>} />
                 <Route path="notifications" element={<Notifications/>} />
@@ -71,8 +71,6 @@ function Layout() {
                 <Route path="vechiles" element={<VechilesRegistraion/>} />
                 <Route path="getalerts" element={<GetAlerts/>} />
                 <Route path="charity" element={<Charity/>} />
-
-                
 
                 
                 
