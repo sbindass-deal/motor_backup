@@ -1,7 +1,9 @@
 import React from 'react'
 import MyAccountLeftNav from './MyAccountLeftNav'
+import { useSelector } from 'react-redux';
 
 function AccountInfo() {
+    const reduxValue = useSelector((data) => data);
   return (
     <div>
         <section className="ptb_80 pt_sm_50">
@@ -21,7 +23,7 @@ function AccountInfo() {
                         <ul className="labelList_">
                             <li>
                                 <div className="labelList_label">Email Address</div>
-                                <div className="labelList_text">miss.aditirai@gmail.com <br/><a href="#">Resend Verification Email</a></div>
+                                <div className="labelList_text">{reduxValue.login.user.id} <br/><a href="#">Resend Verification Email</a></div>
                             </li>
                             <li>
                                 <div className="labelList_label">Username</div>
