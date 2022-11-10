@@ -69,10 +69,11 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a
+                      onClick={handleShow} 
                         className="nav-link"
                         href="javascript:void(0)"
-                        data-toggle="modal"
-                        data-target="#loginModal"
+                        // data-toggle="modal"
+                        // data-target="#loginModal"
                       >
                         Log In
                       </a>

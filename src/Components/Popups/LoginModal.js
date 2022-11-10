@@ -32,6 +32,7 @@ console.log(111,url)
       })
       .then((result) => {
         if (result.data.message === "Login Successful") {
+           
           dispatch(auth(result.data.user));
           handleClose();
         } else {
