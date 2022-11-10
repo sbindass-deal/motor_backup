@@ -320,15 +320,15 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, username, password, iname, phone } = information;
     e.preventDefault();
-    dispatch(
-      contactinfosave({
-        ...namefield,
-        ...basicfact,
-        ...detailstab,
-        ...information,
-        id: Math.random(),
-      })
-    );
+    // dispatch(
+    //   contactinfosave({
+    //     ...namefield,
+    //     ...basicfact,
+    //     ...detailstab,
+    //     ...information,
+    //     id: Math.random(),
+    //   })
+    // );
     axios
       .post(`${url}vehicles`, {
         ...namefield,
