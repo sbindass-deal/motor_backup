@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Img_01 from '../../Assets/images/img_01.jpg'
 import Img_02 from '../../Assets/images/img_02.jpg'
 import ic_scrollDown from '../../Assets/images/ic_scrollDown.svg'
@@ -16,9 +16,27 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
+import axios from 'axios'
 
 
 function Home() {
+    const [banner, setBanner] = useState([])
+
+    const getBanner = async() => {
+        try {
+          const response = await axios.get(`http://ec2-34-207-128-251.compute-1.amazonaws.com:8081/`);
+          console.log(response.data);
+          setBanner(response.data)
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      useEffect(() => {
+        getBanner()
+      
+      }, [])
+      
 
     const slide=useRef(null)
     const slide1=useRef(null)
