@@ -15,17 +15,22 @@ import {
 } from "../../redux/reducers/submitvechilesReducer";
 
 const VechilesRegistraion = () => {
+  const [nameFieldValid, setNameFieldValid] = useState(false);
+  const [basicFactValid, setBasicFactValid] = useState(false);
+  const [detailsTabValid, setDetailsTabValid] = useState(false);
+  const [userNameValid, setUserNameValid] = useState(true);
+  const [userPassWordValid, setUserPassWordValid] = useState(true);
+  const [userPhone, setUserPhone] = useState(true);
+
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
 
-
-  useEffect(()=>{
-    dispatch(step_one(false))
-    dispatch(step_two(false))
-    dispatch(step_three(false))
-
-  },[])
+  useEffect(() => {
+    dispatch(step_one(false));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+  }, []);
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -97,9 +102,49 @@ const VechilesRegistraion = () => {
     phone: "",
   });
   const handleNameField = (e) => {
+    const {
+      name,
+      email,
+      year,
+      vechile,
+      vechilemodel,
+      vechilelocation,
+      citylocation,
+      sale,
+      includelinks,
+      vehiclepast,
+      providelink,
+      changedvechiles,
+      dealer,
+      dealership,
+      soldvechiles,
+      videolink,
+    } = namefield;
     const Value = e.target.value;
     const Name = e.target.name;
     setNamefield({ ...namefield, [Name]: Value });
+    if (
+      name.trim().length !== 0 &&
+      email.trim().length !== 0 &&
+      year.trim().length !== 0 &&
+      vechile.trim().length !== 0 &&
+      vechilemodel.trim().length !== 0 &&
+      citylocation.trim().length !== 0 &&
+      sale.trim().length !== 0 &&
+      vechilelocation.trim().length !== 0 &&
+      includelinks.trim().length !== 0 &&
+      vehiclepast.trim().length !== 0 &&
+      providelink.trim().length !== 0 &&
+      changedvechiles.trim().length !== 0 &&
+      dealer.trim().length !== 0 &&
+      dealership.trim().length !== 0 &&
+      soldvechiles.trim().length !== 0 &&
+      videolink.trim().length !== 0
+    ) {
+      setNameFieldValid(true);
+    } else {
+      setNameFieldValid(false);
+    }
   };
 
   const handleNextSubmit = (e) => {
@@ -108,9 +153,43 @@ const VechilesRegistraion = () => {
     // dispatch(makemodesave(namefield))
   };
   const basicFactOnChange = (e) => {
+    const {
+      vin,
+      vechilesrace,
+      ultiumdrive,
+      Interstellar,
+      interior,
+      brandandmodel,
+      sizetires,
+      trucktitled,
+      status,
+      currentodometer,
+      numberaccurate,
+      odometer,
+      accurateField,
+    } = basicfact;
     const Value = e.target.value;
     const Name = e.target.name;
     setbasicfact({ ...basicfact, [Name]: Value });
+    if (
+      vin.trim().length !== 0 &&
+      vechilesrace.trim().length &&
+      ultiumdrive.trim().length !== 0 &&
+      Interstellar.trim().length !== 0 &&
+      interior.trim().length !== 0 &&
+      brandandmodel.trim().length &&
+      // sizetires.trim().length !== 0 &&
+      // trucktitled.trim().length !== 0 &&
+      status.trim().length !== 0 &&
+      currentodometer.trim().length &&
+      // numberaccurate.trim().length !== 0 &&
+      odometer.trim().length !== 0 &&
+      accurateField.trim().length !== 0
+    ) {
+      setBasicFactValid(true);
+    } else {
+      setBasicFactValid(false);
+    }
   };
   const basicFactSubmitHandler = (e) => {
     e.preventDefault();
@@ -118,10 +197,58 @@ const VechilesRegistraion = () => {
     //    dispatch(basicfactsave(basicfact))
   };
   const detailsOnChange = (e) => {
+    const {
+      detailvin,
+      bodywork,
+      rustpresent,
+      modificationstock,
+      truckfromnew,
+      servicesperformed,
+      issuesorproblems,
+      anythingelse,
+      reserve,
+      shibnobiabout,
+      amountdocument,
+      rtmember,
+      shibnobi,
+      documentFee,
+      memberShip,
+      accept,
+      understand,
+    } = detailstab;
     const Value = e.target.value;
     const Name = e.target.name;
     setDetailstab({ ...detailstab, [Name]: Value });
+    if (
+      detailvin.trim().length !== 0 &&
+      bodywork.trim().length &&
+      rustpresent.trim().length !== 0 &&
+      modificationstock.trim().length !== 0 &&
+      // truckfromnew.trim().length !== 0 &&
+      // servicesperformed.trim().length &&
+      // issuesorproblems.trim().length !== 0 &&
+      // anythingelse.trim().length !== 0 &&
+      // reserve.trim().length !== 0 &&
+      shibnobiabout.trim().length &&
+      amountdocument.trim().length !== 0 &&
+      rtmember.trim().length !== 0 &&
+      shibnobi.trim().length !== 0 &&
+      documentFee.trim().length &&
+      memberShip.trim().length !== 0
+      // accept.trim().length !== 0 &&
+      // understand.trim().length !== 0
+    ) {
+      setDetailsTabValid(true);
+    } else {
+      setDetailsTabValid(false);
+    }
   };
+  if (
+    information.username.trim().length < 5 &&
+    information.username.trim().length > 10
+  ) {
+    setUserNameValid(false);
+  }
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
@@ -233,7 +360,11 @@ const VechilesRegistraion = () => {
                 <ul className="nav nav-pills sideBar__">
                   <li className="nav-item">
                     <a
-                      className={reduxValue.submitvechilesReducer.step_one === false ? "nav-link active" : "nav-link"}
+                      className={
+                        reduxValue.submitvechilesReducer.step_one === false
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
                       // data-toggle="pill"
                       // href="#MakeModel_Pill"
                     >
@@ -242,34 +373,42 @@ const VechilesRegistraion = () => {
                   </li>
                   <li className="nav-item">
                     <a
-                      
-                     className= {reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false  ? "nav-link active" : "nav-link"}
+                      className={
+                        reduxValue.submitvechilesReducer.step_one === true &&
+                        reduxValue.submitvechilesReducer.step_two === false
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
                       // data-toggle="pill"
                       // href="#BasicFacts_Pill"
-                      
                     >
                       Basic Facts
                     </a>
                   </li>
                   <li className="nav-item">
                     <a
-                       className= {reduxValue.submitvechilesReducer.step_one === true &&
+                      className={
+                        reduxValue.submitvechilesReducer.step_one === true &&
                         reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false  ? "nav-link active" : "nav-link"}
+                        reduxValue.submitvechilesReducer.step_three === false
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
                       // data-toggle="pill"
-                      
                     >
                       Details
                     </a>
                   </li>
                   <li className="nav-item">
                     <a
-                      className= {reduxValue.submitvechilesReducer.step_one === true &&
+                      className={
+                        reduxValue.submitvechilesReducer.step_one === true &&
                         reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true  ? "nav-link active" : "nav-link"}
+                        reduxValue.submitvechilesReducer.step_three === true
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
                       // data-toggle="pill"
-                      
                     >
                       Contact Info
                     </a>
@@ -297,8 +436,7 @@ const VechilesRegistraion = () => {
                       </a>{" "}
                       to submit it.
                     </p>
-
-                    <form className="">
+                    <form className="" onSubmit={handleNextSubmit}>
                       <div className="row">
                         <div className="col-12 pb-3">
                           <h5>What vehicle would you like to sell?</h5>
@@ -936,21 +1074,38 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           {/* <button type="submit" className="gry_btn"> */}
                           {/* <button type="button" onClick={handleNextSubmit} > */}
-                          <a
+                          {nameFieldValid &&
+                          namefield.file.trim().length !== 0 ? (
+                            <a
+                              className="nav-link gry_btn"
+                              data-toggle="pill"
+                              href="#BasicFacts_Pill"
+                              onClick={() => {
+                                dispatch(step_one(true));
+                                handleNextSubmit();
+                              }}
+                            >
+                              NEXT
+                            </a>
+                          ) : (
+                            <button type="submit" className="gry_btn">
+                              NEXT
+                            </button>
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#BasicFacts_Pill"
-                            onClick={()=> { 
-                              dispatch(step_one(true))
+                            onClick={() => {
+                              dispatch(step_one(true));
+                              handleNextSubmit();
                             }}
                           >
                             NEXT
-                          </a>
-
+                          </a> */}
                           {/* </button> */}
                           {/* </button> */}
                         </div>
-                        
                       </div>
                     </form>
                   </div>
@@ -1126,7 +1281,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group form-check">
                                 <label className="form-check-label">
                                   <input
-                                    value={basicfact.sizetires}
+                                    value={basicfact.trucktitled}
                                     onChange={basicFactOnChange}
                                     name="trucktitled"
                                     className="form-check-input"
@@ -1297,14 +1452,29 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          <a
-                            className="nav-link gry_btn"
-                            data-toggle="pill"
-                            href="#Details_Pill"
-                            onClick={()=> dispatch(step_two(true))}
-                          >
-                            NEXT
-                          </a>
+                          {basicFactValid &&
+                          basicfact.files.trim().length !== 0 ? (
+                            <a
+                              className="nav-link gry_btn"
+                              data-toggle="pill"
+                              href="#Details_Pill"
+                              onClick={() => dispatch(step_two(true))}
+                            >
+                              NEXT
+                            </a>
+                          ) : (
+                            <button type="submit" className="gry_btn">
+                              NEXT
+                            </button>
+                          )}
+                          {/* <a
+                              className="nav-link gry_btn"
+                              data-toggle="pill"
+                              href="#Details_Pill"
+                              onClick={() => dispatch(step_two(true))}
+                            >
+                              NEXT
+                            </a> */}
                         </div>
                       </div>
                     </form>
@@ -1751,14 +1921,28 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          <a
-                            className="nav-link gry_btn"
-                            data-toggle="pill"
-                            href="#ContactInfo_Pill"
-                            onClick={()=> dispatch(step_three(true))}
-                          >
-                            NEXT
-                          </a>
+                          {detailsTabValid ? (
+                            <a
+                              className="nav-link gry_btn"
+                              data-toggle="pill"
+                              href="#ContactInfo_Pill"
+                              onClick={() => dispatch(step_three(true))}
+                            >
+                              NEXT
+                            </a>
+                          ) : (
+                            <button type="submit" className="gry_btn">
+                              NEXT
+                            </button>
+                          )}
+                          {/* <a
+                              className="nav-link gry_btn"
+                              data-toggle="pill"
+                              href="#ContactInfo_Pill"
+                              onClick={() => dispatch(step_three(true))}
+                            >
+                              NEXT
+                            </a> */}
                         </div>
                       </div>
                     </form>
@@ -1824,8 +2008,18 @@ const VechilesRegistraion = () => {
                               type="text"
                               name="username"
                               className="field"
+                              autocomplete="off"
                               required
                             />
+                            {!userNameValid && (
+                              <p
+                                className={`${
+                                  !userNameValid ? "" : "text-danger"
+                                }`}
+                              >
+                                User name between 5 to 10 character
+                              </p>
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -1837,6 +2031,7 @@ const VechilesRegistraion = () => {
                               type="password"
                               name="password"
                               className="field"
+                              autocomplete="off"
                               required
                             />
                           </div>

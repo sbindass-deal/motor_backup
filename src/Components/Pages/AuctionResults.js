@@ -64,7 +64,7 @@ function AuctionResults() {
                             <div className="card_postImg">
                                 <div className="card_postImg_labe">Popular</div>
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_01} alt=""/>
+                               <a href='detail'> <img src={img_01} alt=""/></a>
                             </div>
                             <div className="card_postInfo">
                                 <h4><a href="detail.html">{data.name}</a></h4>

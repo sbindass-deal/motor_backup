@@ -54,7 +54,7 @@ function Auctionlive() {
                                 <div className="card_post">
                                     <div className="card_postImg">
                                         <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                        <img src={img_01}/>
+                                        <a href='detail'><img src={img_01}/></a>
                                     </div>
                                     <div className="card_postInfo">
                                         <h4><a href="detail.html">{curElem.name} {curElem.year}</a></h4>
