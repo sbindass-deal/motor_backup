@@ -8,7 +8,7 @@ import SearchModal from "./Popups/SearchModal";
 import {Modal, Button} from 'react-bootstrap'
 
 function Header() {
-  // const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(true);
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
@@ -67,7 +67,7 @@ function Header() {
                         How Shibnobi Works
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li onClick={handleShow} className="nav-item">
                       <a
                       onClick={handleShow} 
                         className="nav-link"

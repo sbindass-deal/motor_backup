@@ -1,76 +1,159 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import icGrid from '../../Assets/images/icGrid.svg'
-import img_01 from '../../Assets/images/img_01.jpg'
-import axios from 'axios'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import icGrid from "../../Assets/images/icGrid.svg";
+import img_01 from "../../Assets/images/img_01.jpg";
+import axios from "axios";
 function Auctionlive() {
-    const [data ,setauctions ] = React.useState([])
+  const [data, setauctions] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
-    React.useEffect(()=>{
-    
-        axios.get( process.env.REACT_APP_URL +  '/vehicles')
-        .then((response)=>{
-            setauctions(response.data.data)
-        })
-    },[])
+  React.useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + "/vehicles").then((response) => {
+      setauctions(response.data.data);
+      setFilteredUsers(response.data.data);
+    });
+  }, []);
+
+  console.log(78, filteredUsers);
+
+  // const handleSearchFilter=(e)=>{
+  //     setSearchValue(22,e.target.value)
+  // }
+
   return (
     <div>
-        <section className="ptb_80 pt_sm_50">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 text-center pb_30">
-                        <h2 className="title_combo title_Center">Live Now <span>{data.filter(data=>data.done === 1 && data.premium === 1 ).map(data=>data).length} AUCTIONS NOW LIVE</span></h2>
-                    </div>
-                    <div className="col-12">
-                        <ul className="postTopOption">
-                            <li className="post_search">
-                                <input type="text" name="" placeholder="Filter auctions for make, model, category…"/>
-                            </li>
-                            <li className="">
-                                <button type="button" className="gry_btn"><i className="fa-solid fa-star mr-2"></i> Watched</button>
-                            </li>
-                            <li className="d-flex">
-                                <button type="button" className="gry_btn gridView active"><img src={icGrid}/></button>
-                                <button type="button" className="gry_btn listView"><i className="fa-sharp fa-solid fa-list"></i></button>
-                            </li>
-                            <li className="">
-                                <select className="post_select">
-                                    <option>Ending Soonest</option>
-                                    <option>Bid: Low to High</option>
-                                    <option>Bid: High to Low</option>
-                                    <option>Ending Latest</option>
-                                    <option>Closest to postal code...</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      <section className="ptb_80 pt_sm_50">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center pb_30">
+              <h2 className="title_combo title_Center">
+                Live Now{" "}
+                <span>
+                  {
+                    data
+                      .filter((data) => data.done === 1 && data.premium === 1)
+                      .map((data) => data).length
+                  }{" "}
+                  AUCTIONS NOW LIVE
+                </span>
+              </h2>
+            </div>
+            <div className="col-12">
+              <ul className="postTopOption">
+                <li className="post_search">
+                  <input
+                    value={searchValue}
+                    onChange={(e) => {
+                      setSearchValue(e.target.value);
+                      console.log(e.target.value);
+                      setauctions(
+                        filteredUsers
+                          .filter((data) => data.name.includes(e.target.value))
+                          .map((data) => data)
+                      );
+                    }}
+                    type="text"
+                    name=""
+                    placeholder="Filter auctions for make, model, category…"
+                  />
+                </li>
+                <li className="">
+                  <button type="button" className="gry_btn">
+                    <i className="fa-solid fa-star mr-2"></i> Watched
+                  </button>
+                </li>
+                <li className="d-flex">
+                  <button type="button" className="gry_btn gridView active">
+                    <img src={icGrid} />
+                  </button>
+                  <button type="button" className="gry_btn listView">
+                    <i className="fa-sharp fa-solid fa-list"></i>
+                  </button>
+                </li>
+                <li className="">
+                  <select className="post_select">
+                    <option>Ending Soonest</option>
+                    <option>Bid: Low to High</option>
+                    <option>Bid: High to Low</option>
+                    <option>Ending Latest</option>
+                    <option>Closest to postal code...</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                <div className="row pt-4 row_gridList">
-                    {
-                        data.filter(data=>data.done === 1 && data.premium === 1 ).map((curElem) => {
-                            return(
-                                <div key={curElem.id} className="col-12 col-md-6 pb-3">
-                                <div className="card_post">
-                                    <div className="card_postImg">
-                                        <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                        <a href='detail'><img src={img_01}/></a>
-                                    </div>
-                                    <div className="card_postInfo">
-                                        <h4><a href="detail.html">{curElem.name} {curElem.year}</a></h4>
-                                        <p>{curElem.anythingelse}</p>
-                                        <ul className="labelList">
-                                            <li><label>Current Bid:</label> <span>${curElem.documentFee}</span></li>
-                                            <li><label>Ends In:</label> <span>5 days</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            )
-                        })
-                    }
-                    {/* <div className="col-12 col-md-6 pb-3">
+          <div className="row pt-4 row_gridList">
+            {/* {filteredUsers.map((curElem) => {
+              return (
+                <div key={curElem.id} className="col-12 col-md-6 pb-3">
+                  <div className="card_post">
+                    <div className="card_postImg">
+                      <button type="button" className="watchedIc">
+                        <i className="fa-solid fa-star"></i>
+                      </button>
+                      <a href="detail">
+                        <img src={img_01} />
+                      </a>
+                    </div>
+                    <div className="card_postInfo">
+                      <h4>
+                        <a href="detail.html">
+                          {curElem.name} {curElem.year}
+                        </a>
+                      </h4>
+                      <p>{curElem.anythingelse}</p>
+                      <ul className="labelList">
+                        <li>
+                          <label>Current Bid:</label>{" "}
+                          <span>${curElem.documentFee}</span>
+                        </li>
+                        <li>
+                          <label>Ends In:</label> <span>5 days</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            })} */}
+            {data
+              .filter((data) => data.done === 1 && data.premium === 1)
+              .map((curElem) => {
+                return (
+                  <div key={curElem.id} className="col-12 col-md-6 pb-3">
+                    <div className="card_post">
+                      <div className="card_postImg">
+                        <button type="button" className="watchedIc">
+                          <i className="fa-solid fa-star"></i>
+                        </button>
+                        <a href="detail">
+                          <img src={img_01} />
+                        </a>
+                      </div>
+                      <div className="card_postInfo">
+                        <h4>
+                          <a href="detail.html">
+                            {curElem.name} {curElem.year}
+                          </a>
+                        </h4>
+                        <p>{curElem.anythingelse}</p>
+                        <ul className="labelList">
+                          <li>
+                            <label>Current Bid:</label>{" "}
+                            <span>${curElem.documentFee}</span>
+                          </li>
+                          <li>
+                            <label>Ends In:</label> <span>5 days</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            {/* <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
@@ -86,7 +169,7 @@ function Auctionlive() {
                             </div>
                         </div>
                     </div> */}
-                    {/* <div className="col-12 col-md-6 pb-3">
+            {/* <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
@@ -102,7 +185,7 @@ function Auctionlive() {
                             </div>
                         </div>
                     </div> */}
-                    {/* <div className="col-12 col-md-6 pb-3">
+            {/* <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
@@ -118,7 +201,7 @@ function Auctionlive() {
                             </div>
                         </div>
                     </div> */}
-                    {/* <div className="col-12 col-md-6 pb-3">
+            {/* <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
@@ -134,7 +217,7 @@ function Auctionlive() {
                             </div>
                         </div>
                     </div> */}
-                    {/* <div className="col-12 col-md-6 pb-3">
+            {/* <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
@@ -150,11 +233,11 @@ function Auctionlive() {
                             </div>
                         </div>
                     </div> */}
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }
 
-export default Auctionlive
+export default Auctionlive;
