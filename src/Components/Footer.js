@@ -47,7 +47,7 @@ function Footer() {
                         <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
                             <a href="/privacy">PRIVACY POLICY</a>
                             <a href="/termsandconditions">TERMS AND CONDITIONS</a>
-                            <a href="cookies">COOKIES SETTINGS</a>
+                            <a href="amlpolicy">AML Policy</a>
                         </div>
                         <div className="col-12 col-md-6 text-center text-md-left order-md-0">
                             <p>©2022 SHIBNOBI Motors  |  All Rights Reserved.</p>

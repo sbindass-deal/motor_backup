@@ -49,12 +49,12 @@ function Header() {
                         Auctions
                       </a> */}
                       <div class="dropdown">
-                          <a class="nav-link " href="#h">Auctions</a>
-                          <div class="dropdown-content">
-                            <a className="nav-link" href="auctionlive">Live now</a>
-                            <a className="nav-link" href="auctionpremium">Premium</a>
-                            <a className="nav-link" href="auctionresults">Resullt</a>
-                          </div>
+                        <a class="nav-link " href="#h">Auctions</a>
+                        <div class="dropdown-content">
+                          <a className="nav-link" href="auctionlive">Live now</a>
+                          <a className="nav-link" href="auctionpremium">Premium</a>
+                          <a className="nav-link" href="auctionresults">Resullt</a>
+                        </div>
                       </div>
                     </li>
                     <li className="nav-item">
@@ -67,12 +67,12 @@ function Header() {
                         How Shibnobi Works
                       </a>
                     </li>
-                    <li onClick={handleShow} className="nav-item">
+                    <li className="nav-item">
                       <a
                         className="nav-link"
                         href="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#loginModal"
+                        data-toggle="modal"
+                        data-target="#loginModal"
                       >
                         Log In
                       </a>
@@ -98,8 +98,8 @@ function Header() {
                       <a className="nav-link" href="#">
                         Shipping
                       </a>
-                     
-                   
+
+
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#">
@@ -159,41 +159,30 @@ function Header() {
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
-                        {/* <a className="nav-link" href="#">
-                          Shipping
-                        </a> */}
+
+
                         <div class="dropdown">
-                          <a class="nav-link " href="#shipping">Shipping</a>
-                          <div class="dropdown-content">
-                            <a className="nav-link" href="shipping">Get a quote</a>
-                            <a className="nav-link" href="myshipments">My Shipment</a>
-                          </div>
-                      </div>
+                          <a class="nav-link " href="makeamodel">Makes and Models</a>
+
+                        </div>
 
                       </li>
                       <li className="nav-item">
-                       
-                        <div class="dropdown">
-                          <a class="nav-link " href="makeamodel">Makes and Models</a>
-                          {/* <div class="dropdown-content">
-                            <a className="nav-link" href="detail">Company</a>
-                            <a className="nav-link" href="showroom">Showroom</a>
-                          </div> */}
-                      </div>
+
+
+
+                        <li className="nav-item">
+                          <a className="nav-link" href="showroom">
+                            Show Room
+                          </a>
+                        </li>
+
                       </li>
+
+
                       <li className="nav-item">
-                        <a className="nav-link" href="showroom">
-                          Show Room
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="getalerts">
-                          Get Alerts
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="charity">
-                          Charity Auctions
+                        <a className="nav-link" href="carraffle">
+                          Car Raffle
                         </a>
                       </li>
                       <li className="nav-item">
@@ -201,16 +190,29 @@ function Header() {
                           Shibnobi Features
                         </a>
                       </li>
-                      {/* <li className="nav-item">
-                        <a className="nav-link" href="#">
-                          Event Calendar
-                        </a>
-                      </li> */}
+
                       <li className="nav-item">
-                        <a className="nav-link" href="carraffle">
-                          Car Raffle
+                        <a className="nav-link" href="charity">
+                          Charity Auctions
                         </a>
                       </li>
+
+
+                      <li className="nav-item">
+                        <a className="nav-link" href="getalerts">
+                          Get Alerts
+                        </a>
+                      </li>
+
+                      <div class="dropdown">
+                        <a class="nav-link " href="#shipping">Shipping</a>
+                        <div class="dropdown-content">
+                          <a className="nav-link" href="shipping">Get a quote</a>
+                          <a className="nav-link" href="myshipments">My Shipment</a>
+                        </div>
+                      </div>
+
+
                       <li className="nav-item">
                         <a className="nav-link" href="aboutshibnobi">
                           About Shibnobi
@@ -218,7 +220,7 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <a className="nav-link" href="https://store.shibnobi.com/" target={"_blank"}>
-                         Shibnobi Store
+                          Shibnobi Store
                         </a>
                       </li>
 

@@ -9,7 +9,7 @@ function PhotoGallery() {
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center pb_30">
-                        <h2 class="title_combo title_Center">PHOTO GALLERY</h2>
+                        <h2 class="title_combo title_Center">Show Room</h2>
                     </div>
                 </div>
 
