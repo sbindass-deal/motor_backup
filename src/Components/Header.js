@@ -8,7 +8,8 @@ import SearchModal from "./Popups/SearchModal";
 import { Modal, Button } from "react-bootstrap";
 
 // icons
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+// import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Header() {
   
@@ -98,7 +99,7 @@ function Header() {
                     <li className="nav-item">
                       <a className="nav-link" href="accountinfo">
                         <i>
-                          <PermContactCalendarIcon />
+                          <AccountCircleIcon />
                         </i>
                       </a>
                     </li>

@@ -69,6 +69,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
   const handleApi = () => {
     console.log(12, email, username, password, cpassword);
+    
 
     axios
       .post(`${url}/users`, {
@@ -123,7 +124,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
           {/* <!-- Modal body --> */}
           <div className="modal-body">
-            <form>
+            <form onSubmit={handleApi}>
               <div className="row">
                 <div className="col-12 col-md-6">
                   <div className="form-group">
@@ -134,6 +135,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       name=""
                       className="field"
                       placeholder="Email"
+                      required
                     />
                   </div>
                 </div>
@@ -146,6 +148,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       name=""
                       className="field"
                       placeholder="Username"
+                      required
                     />
                   </div>
                 </div>
@@ -158,6 +161,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       name=""
                       className="field"
                       placeholder="Password"
+                      required
                     />
                   </div>
                 </div>
@@ -170,6 +174,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       name=""
                       className="field"
                       placeholder="Confirm Password"
+                      required
                     />
                   </div>
                 </div>
@@ -203,6 +208,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Name (as it appears on your card)"
+                              // required
                             />
                           </div>
                         </div>
@@ -215,6 +221,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Phone"
+                              // required
                             />
                           </div>
                         </div>
@@ -227,6 +234,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Address"
+                              // required
                             />
                           </div>
                         </div>
@@ -239,6 +247,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Zip / Postal Code"
+                              // required
                             />
                           </div>
                         </div>
@@ -251,6 +260,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Country"
+                              // required
                             />
                           </div>
                         </div>
@@ -263,6 +273,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Credit Card Number"
+                              // required
                             />
                           </div>
                         </div>
@@ -275,6 +286,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={month}
                                   onChange={handleMonth}
+                                  // required
                                 >
                                   <option>1</option>
                                   <option>2</option>
@@ -295,6 +307,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={year}
                                   onChange={handleYear}
+                                  // required
                                 >
                                   <option>2022</option>
                                   <option>2023</option>
@@ -320,6 +333,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="CVC"
+                              // required
                             />
                           </div>
                         </div>
@@ -330,6 +344,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               className="field"
                               value={selectone}
                               onChange={handleSelectone}
+                              // required
                             >
                               <option>Select one</option>
                               <option>Facebook</option>
@@ -347,7 +362,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" /> I
+                      <input className="form-check-input" type="checkbox"  required/> I
                       accept the Terms of Use and Privacy Notice
                     </label>
                   </div>
@@ -355,7 +370,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" />{" "}
+                      <input className="form-check-input" type="checkbox"  required/>{" "}
                       Sign me up for the Shibnobi Daily Mail
                     </label>
                   </div>
@@ -371,7 +386,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="button" onClick={handleApi} className="btn">
+                    <button type="submit"  className="btn">
                       Register
                     </button>
                   </div>

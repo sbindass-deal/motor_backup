@@ -17,6 +17,7 @@ function Detail() {
   const { id } = useParams();
   const [vehicle,setVehicle] = React.useState({})
   const [vehicleImage,setVehicleImage] = React.useState([])
+  
   const addBiding = () => {
     axios
       .post(process.env.REACT_APP_URL + "/biding", {

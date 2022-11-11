@@ -128,13 +128,13 @@ function Auctionlive() {
                         <button type="button" className="watchedIc">
                           <i className="fa-solid fa-star"></i>
                         </button>
-                        <a href="detail">
+                        <a href={`detail/${curElem.id}`}>
                           <img src={img_01} />
                         </a>
                       </div>
                       <div className="card_postInfo">
                         <h4>
-                          <a href="detail.html">
+                          <a href="#">
                             {curElem.name} {curElem.year}
                           </a>
                         </h4>
@@ -148,7 +148,7 @@ function Auctionlive() {
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
                           <button type="button" className="btn">
-                            <a href="detail">Bid Now</a>
+                            <a href={`detail/${curElem.id}`}>Bid Now</a>
                           </button>
                         </ul>
                       </div>

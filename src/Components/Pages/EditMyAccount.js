@@ -11,11 +11,11 @@ function EditMyAccount() {
                             <h5>My Account</h5>
                             <hr/>
                             <ul className="sideBar__">
-                                <li><a href="my-account.html" className="active">Account Info</a></li>
-                                <li><a href="notifications.html">Notifications</a></li>
-                                <li><a href="my-listings.html">My Listings</a></li>
-                                <li><a href="my-bids-wins.html">My Bids & Wins</a></li>
-                                <li><a href="my-shipments.html">My Shipments</a></li>
+                                <li><a href="accountinfo" className="active">Account Info</a></li>
+                                <li><a href="notifications">Notifications</a></li>
+                                <li><a href="listings">My Listings</a></li>
+                                <li><a href="bidswins">My Bids & Wins</a></li>
+                                <li><a href="myshipments">My Shipments</a></li>
                             </ul>
                         </div>
                     </div>

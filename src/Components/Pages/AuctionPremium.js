@@ -30,7 +30,7 @@ function AuctionPremium() {
                         <div className="card_post">
                             <div className="card_postImg">
                                 <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                               <a href='detail'><img src={img_01} alt=""/></a>
+                               <a href={`detail/${data.id}`}><img src={img_01} alt=""/></a>
                             </div>
                             <div className="card_postInfo">
                                 <h4><a href="detail.html">{data.name}</a></h4>

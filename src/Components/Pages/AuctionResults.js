@@ -132,7 +132,7 @@ function AuctionResults() {
                       <button type="button" className="watchedIc">
                         <i className="fa-solid fa-star"></i>
                       </button>
-                      <a href="detail">
+                      <a href={`detail/${data.id}`}>
                         {" "}
                         <img src={img_01} alt="" />
                       </a>

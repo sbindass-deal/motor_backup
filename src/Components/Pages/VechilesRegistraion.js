@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import img_001 from "../../Assets/images/img_001.webp";
 import {
   basicfactsave,
@@ -16,6 +17,7 @@ import {
 } from "../../redux/reducers/submitvechilesReducer";
 
 const VechilesRegistraion = () => {
+  const { id } = useParams();
   const [nameFieldValid, setNameFieldValid] = useState(false);
   const [basicFactValid, setBasicFactValid] = useState(false);
   const [detailsTabValid, setDetailsTabValid] = useState(false);
@@ -23,6 +25,7 @@ const VechilesRegistraion = () => {
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
   const [file, setFile] = useState()
+  const [files, setFiles] = useState()
 
   const [errorCont, setErrorCont] = useState(false);
   const [signinAggri, setSigninAggri] = useState();
@@ -84,6 +87,26 @@ const VechilesRegistraion = () => {
     });
 
   }
+
+
+  function uploadFileTwo() {   
+    const url = process.env.REACT_APP_URL + 'vehicle-image-detail';
+    const formData = new FormData();
+    formData.append('files', files);
+    formData.append('vehicleId', 1);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
+    });
+
+  }
+
+
+  
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -102,6 +125,7 @@ const VechilesRegistraion = () => {
     soldvechiles: "",
     videolink: "",
     file: "",
+  
   });
 
   // basic facts
@@ -390,8 +414,8 @@ const VechilesRegistraion = () => {
         ...information, 
       })
       .then((result) => { 
-    // uploadFileOne(id)
-    //uploadFileTwo(id)
+    uploadFileOne(id)
+    uploadFileTwo(id)
 
       })
       .catch((error) => {

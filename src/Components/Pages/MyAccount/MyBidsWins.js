@@ -63,7 +63,7 @@ function MyBidsWins() {
                             </p>
                           </div>
                           <div className="pl-md-3">
-                            <a href="detail" className="gry_btn">
+                            <a href={`detail/${curElem.id}`} className="gry_btn">
                               <i className="fa-solid fa-eye mr-2"></i> View
                             </a>
                           </div>
