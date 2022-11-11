@@ -40,7 +40,7 @@ function Detail() {
   const getVehicleImages = () => {
     axios
       .get(process.env.REACT_APP_URL + "/vehicle-image/" + id)
-      .then((res) => {console.log(res.data.data); setVehicleImage(res.data.data)});
+      .then((res) => {  setVehicleImage(res.data.data)});
   };
 
   React.useEffect(() => {

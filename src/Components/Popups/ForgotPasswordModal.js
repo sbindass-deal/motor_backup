@@ -17,8 +17,7 @@ function ForgotPasswordModal({showForgPass, handleCloseForgPass}) {
 		axios.post(`${url}/users`, {
 			email : email,
 	    })
-		.then(result=>{
-			console.log(99,result)
+		.then(result=>{ 
       handleCloseForgPass()
 		})
 		.catch(error=>{

@@ -5,8 +5,6 @@ import { auth } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 
 function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
-  
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -20,10 +18,9 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   };
 
   const handleApi = () => {
-
     const url = process.env.REACT_APP_URL;
 
-console.log(111,url)
+     
 
     axios
       .post(`${url}login`, {
@@ -32,7 +29,6 @@ console.log(111,url)
       })
       .then((result) => {
         if (result.data.message === "Login Successful") {
-           
           dispatch(auth(result.data.user));
           handleClose();
         } else {
@@ -50,8 +46,7 @@ console.log(111,url)
   };
   const handlePasswordBtn = () => {
     handleClose();
-    handleShowForgPass();
-    console.log("Hello");
+    handleShowForgPass(); 
   };
 
   return (

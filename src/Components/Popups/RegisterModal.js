@@ -67,8 +67,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     setSelectone(e.target.value);
   };
 
-  const handleApi = () => {
-    console.log(12, email, username, password, cpassword);
+  const handleApi = () => { 
     
 
     axios
@@ -89,8 +88,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
         cvc: cvc,
         selectone: selectone,
       })
-      .then((result) => {
-        console.log(99, result);
+      .then((result) => { 
         handleCloseReg();
       })
       .catch((error) => {

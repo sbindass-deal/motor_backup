@@ -16,8 +16,7 @@ import { logoutUser } from "../redux/reducers/login";
 
 function Header() {
   const dispatch = useDispatch();
-  const logingUser = useSelector((state) => state.login);
-  console.log("mishra", logingUser.reg);
+  const logingUser = useSelector((state) => state.login); 
 
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);

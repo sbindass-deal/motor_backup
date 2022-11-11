@@ -13,7 +13,7 @@ function MyBidsWins() {
       setData(response.data.data);
     });
   }, []);
-  console.log("roshan", data)
+  
 
   return (
     <div>

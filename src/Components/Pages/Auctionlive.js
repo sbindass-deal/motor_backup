@@ -18,7 +18,7 @@ function Auctionlive() {
     });
   }, []);
 
-  console.log(78, filteredUsers);
+  
 
   // const handleSearchFilter=(e)=>{
   //     setSearchValue(22,e.target.value)
@@ -49,7 +49,7 @@ function Auctionlive() {
                     value={searchValue}
                     onChange={(e) => {
                       setSearchValue(e.target.value);
-                      console.log(e.target.value);
+                       
                       setauctions(
                         filteredUsers
                           .filter((data) => data.name.includes(e.target.value))

@@ -37,7 +37,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
-  console.log(acceptDetails);
+   
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -46,7 +46,7 @@ const VechilesRegistraion = () => {
       setAccessories(accessories.filter((e) => e !== value));
     }
   };
-  console.log(accessories);
+   
   const handleDetailsInfoOnChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -59,7 +59,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setSigninAggri(checked);
   };
-  console.log(errorCont);
+   
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
@@ -83,7 +83,7 @@ const VechilesRegistraion = () => {
       },
     };
     axios.post(url, formData, config).then((response) => {
-      console.log(response.data);
+       
     });
 
   }
@@ -100,7 +100,7 @@ const VechilesRegistraion = () => {
       },
     };
     axios.post(url, formData, config).then((response) => {
-      console.log(response.data);
+       
     });
 
   }
@@ -329,7 +329,7 @@ const VechilesRegistraion = () => {
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
-    console.log(detailstab);
+     
     // dispatch(detailssave(detailstab))
   };
   const informationOnChange = (e) => {

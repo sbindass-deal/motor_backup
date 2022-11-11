@@ -25,7 +25,7 @@ function Home() {
     const getBanner = async() => {
         try {
           const response = await axios.get(`http://ec2-34-207-128-251.compute-1.amazonaws.com:8081/`);
-          console.log(response.data);
+           
           setBanner(response.data)
         } catch (error) {
           console.error(error);
