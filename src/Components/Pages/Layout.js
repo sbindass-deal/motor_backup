@@ -63,7 +63,7 @@ function Layout() {
                 <Route path="bidswins" element={<MyBidsWins/>} />
                 <Route path="myshipments" element={<MyShipments/>} />
                 <Route path="carraffle" element={<CarRaffle/>} />
-                <Route path="detail" element={<Detail/>} />
+                <Route path="detail/:id" element={<Detail/>} />
                 <Route path="auctionresults" element={<AuctionResults/>} />
                 <Route path="auctionlive" element={<Auctionlive/>} />
                 <Route path="auctionpremium" element={<AuctionPremium/>} />

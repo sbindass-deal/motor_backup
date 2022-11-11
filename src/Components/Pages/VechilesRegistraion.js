@@ -21,6 +21,7 @@ const VechilesRegistraion = () => {
   const [userNameValid, setUserNameValid] = useState(true);
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
+  const [file, setFile] = useState()
 
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
@@ -31,6 +32,24 @@ const VechilesRegistraion = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
+
+
+
+  function uploadFileOne() {   
+    const url = process.env.REACT_APP_URL + 'vehicle-image';
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('vehicleId', 1);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
+    });
+
+  }
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -142,6 +161,7 @@ const VechilesRegistraion = () => {
       videolink.trim().length !== 0
     ) {
       setNameFieldValid(true);
+      
     } else {
       setNameFieldValid(false);
     }
@@ -150,7 +170,6 @@ const VechilesRegistraion = () => {
   const handleNextSubmit = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
-    // dispatch(makemodesave(namefield))
   };
   const basicFactOnChange = (e) => {
     const {
@@ -334,12 +353,11 @@ const VechilesRegistraion = () => {
         ...namefield,
         ...basicfact,
         ...detailstab,
-        ...information,
-        id: Math.random(),
+        ...information, 
       })
-      .then((result) => {
-        alert("Form filled successfully");
-        console.log(result);
+      .then((result) => { 
+    // uploadFileOne(id)
+
       })
       .catch((error) => {
         console.log(error);
