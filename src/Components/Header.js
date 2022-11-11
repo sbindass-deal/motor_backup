@@ -5,7 +5,10 @@ import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
 // import {Link} from 'react-router-dom'
-import {Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from "react-bootstrap";
+
+// icons
+import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 
 function Header() {
   const [login, setLogin] = useState(true);
@@ -21,7 +24,6 @@ function Header() {
 
   const handleCloseForgPass = () => setShowForgPass(false);
   const handleShowForgPass = () => setShowForgPass(true);
-
 
   return (
     <div>
@@ -49,11 +51,19 @@ function Header() {
                         Auctions
                       </a> */}
                       <div class="dropdown">
-                        <a class="nav-link " href="#h">Auctions</a>
+                        <a class="nav-link " href="#h">
+                          Auctions
+                        </a>
                         <div class="dropdown-content">
-                          <a className="nav-link" href="auctionlive">Live now</a>
-                          <a className="nav-link" href="auctionpremium">Premium</a>
-                          <a className="nav-link" href="auctionresults">Resullt</a>
+                          <a className="nav-link" href="auctionlive">
+                            Live now
+                          </a>
+                          <a className="nav-link" href="auctionpremium">
+                            Premium
+                          </a>
+                          <a className="nav-link" href="auctionresults">
+                            Resullt
+                          </a>
                         </div>
                       </div>
                     </li>
@@ -79,10 +89,19 @@ function Header() {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="accountinfo">
+                      <a className="nav-link" href="/#">
                         <i className="fa-solid fa-star"></i>
                       </a>
                     </li>
+
+                    <li className="nav-item">
+                      <a className="nav-link" href="accountinfo">
+                        <i>
+                          <PermContactCalendarIcon />
+                        </i>
+                      </a>
+                    </li>
+
                     <li className="nav-item">
                       <a
                         className="nav-link"
@@ -99,8 +118,6 @@ function Header() {
                       <a className="nav-link" href="#">
                         Shipping
                       </a>
-
-
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#">
@@ -160,26 +177,19 @@ function Header() {
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
-
-
                         <div class="dropdown">
-                          <a class="nav-link " href="makeamodel">Makes and Models</a>
-
+                          <a class="nav-link " href="makeamodel">
+                            Makes and Models
+                          </a>
                         </div>
-
                       </li>
                       <li className="nav-item">
-
-
-
                         <li className="nav-item">
                           <a className="nav-link" href="showroom">
                             Show Room
                           </a>
                         </li>
-
                       </li>
-
 
                       <li className="nav-item">
                         <a className="nav-link" href="carraffle">
@@ -198,7 +208,6 @@ function Header() {
                         </a>
                       </li>
 
-
                       <li className="nav-item">
                         <a className="nav-link" href="getalerts">
                           Get Alerts
@@ -206,13 +215,18 @@ function Header() {
                       </li>
 
                       <div class="dropdown">
-                        <a class="nav-link " href="#shipping">Shipping</a>
+                        <a class="nav-link " href="#shipping">
+                          Shipping
+                        </a>
                         <div class="dropdown-content">
-                          <a className="nav-link" href="shipping">Get a quote</a>
-                          <a className="nav-link" href="myshipments">My Shipment</a>
+                          <a className="nav-link" href="shipping">
+                            Get a quote
+                          </a>
+                          <a className="nav-link" href="myshipments">
+                            My Shipment
+                          </a>
                         </div>
                       </div>
-
 
                       <li className="nav-item">
                         <a className="nav-link" href="aboutshibnobi">
@@ -220,7 +234,11 @@ function Header() {
                         </a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="https://store.shibnobi.com/" target={"_blank"}>
+                        <a
+                          className="nav-link"
+                          href="https://store.shibnobi.com/"
+                          target={"_blank"}
+                        >
                           Shibnobi Store
                         </a>
                       </li>
@@ -251,10 +269,18 @@ function Header() {
         </div>
       </header>
 
-       <LoginModal show={show} handleClose={handleClose} handleShowReg={handleShowReg} handleShowForgPass={handleShowForgPass} /> 
-       <RegisterModal showReg={showReg} handleCloseReg={handleCloseReg} />  
-       <SearchModal />
-       <ForgotPasswordModal showForgPass={showForgPass} handleCloseForgPass={handleCloseForgPass} />
+      <LoginModal
+        show={show}
+        handleClose={handleClose}
+        handleShowReg={handleShowReg}
+        handleShowForgPass={handleShowForgPass}
+      />
+      <RegisterModal showReg={showReg} handleCloseReg={handleCloseReg} />
+      <SearchModal />
+      <ForgotPasswordModal
+        showForgPass={showForgPass}
+        handleCloseForgPass={handleCloseForgPass}
+      />
     </div>
   );
 }

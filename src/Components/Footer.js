@@ -33,10 +33,10 @@ function Footer() {
                     <div className="col-12 col-md-3 col-lg-2 pb-3">
                         <h6>Social Links</h6>
                         <ul className="fLinks">
-                            <li><a href="#"><i className="fa-brands fa-facebook"></i> Facebook</a></li>
-                            <li><a href="#"><i className="fa-brands fa-instagram"></i> Instagram</a></li>
-                            <li><a href="#"><i className="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
-                            <li><a href="#"><i className="fa-brands fa-twitter"></i> Twitter</a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/GasGuzzlrs/"><i className="fa-brands fa-facebook"></i> Facebook</a></li>
+                            <li><a target="_blank" href="https://www.instagram.com/gasguzzlrs/"><i className="fa-brands fa-instagram"></i> Instagram</a></li>
+                            <li><a target="_blank" href="https://www.tiktok.com/@gasguzzlrs"><i className="fa-brands fa-linkedin-in"></i> Tiktok</a></li>
+                            <li><a target="_blank" href="https://twitter.com/GasGuzzlrs"><i className="fa-brands fa-twitter"></i> Twitter</a></li>
                         </ul>
                     </div>
                 </div>
