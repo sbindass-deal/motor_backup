@@ -1,3 +1,4 @@
+import { SingleBed } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -21,7 +22,39 @@ const VechilesRegistraion = () => {
   const [userNameValid, setUserNameValid] = useState(true);
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
-
+  const [errorCont, setErrorCont] = useState(false);
+  const [signinAggri, setSigninAggri] = useState();
+  const [signinAggriSubmit, setSigninAggriSubmit] = useState(true);
+  const [detailsInfo, setDetailsInfo] = useState([]);
+  const [accessories, setAccessories] = useState([]);
+  const [acceptDetails, setAcceptDetails] = useState()
+  const acceptDteailsPageOnChange = (e) =>{
+    const{ checked} = e.target
+    setAcceptDetails(checked)
+  }
+  console.log(acceptDetails)
+  const handleAccessoriesChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setAccessories([...accessories, value]);
+    } else {
+      setAccessories(accessories.filter((e) => e !== value));
+    }
+  };
+  console.log(accessories);
+  const handleDetailsInfoOnChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setDetailsInfo([...detailsInfo, value]);
+    } else {
+      setDetailsInfo(detailsInfo.filter((e) => e !== value));
+    }
+  };
+  const signInChange = (e) => {
+    const { checked } = e.target;
+    setSigninAggri(checked);
+  };
+  console.log(errorCont);
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
@@ -329,21 +362,31 @@ const VechilesRegistraion = () => {
     //     id: Math.random(),
     //   })
     // );
-    axios
-      .post(`${url}vehicles`, {
-        ...namefield,
-        ...basicfact,
-        ...detailstab,
-        ...information,
-        id: Math.random(),
-      })
-      .then((result) => {
-        alert("Form filled successfully");
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (uemail.length === 0 || username.length === 0) {
+      setErrorCont(true);
+    }
+
+    if (signinAggri) {
+      axios
+        .post(`${url}vehicles`, {
+          ...namefield,
+          ...basicfact,
+          ...detailstab,
+          ...information,
+          accessoriesDetails: accessories,
+          truckEquipped: detailsInfo,
+          id: Math.random(),
+        })
+        .then((result) => {
+          alert("Form filled successfully");
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setSigninAggriSubmit(false);
+    }
   };
 
   return (
@@ -1074,7 +1117,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           {/* <button type="submit" className="gry_btn"> */}
                           {/* <button type="button" onClick={handleNextSubmit} > */}
-                          {nameFieldValid &&
+                          {/* {nameFieldValid &&
                           namefield.file.trim().length !== 0 ? (
                             <a
                               className="nav-link gry_btn"
@@ -1091,8 +1134,8 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )}
-                          {/* <a
+                          )} */}
+                          <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#BasicFacts_Pill"
@@ -1102,7 +1145,7 @@ const VechilesRegistraion = () => {
                             }}
                           >
                             NEXT
-                          </a> */}
+                          </a>
                           {/* </button> */}
                           {/* </button> */}
                         </div>
@@ -1452,7 +1495,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {basicFactValid &&
+                          {/* {basicFactValid &&
                           basicfact.files.trim().length !== 0 ? (
                             <a
                               className="nav-link gry_btn"
@@ -1466,15 +1509,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )}
-                          {/* <a
-                              className="nav-link gry_btn"
-                              data-toggle="pill"
-                              href="#Details_Pill"
-                              onClick={() => dispatch(step_two(true))}
-                            >
-                              NEXT
-                            </a> */}
+                          )} */}
+                          <a
+                            className="nav-link gry_btn"
+                            data-toggle="pill"
+                            href="#Details_Pill"
+                            onClick={() => dispatch(step_two(true))}
+                          >
+                            NEXT
+                          </a>
                         </div>
                       </div>
                     </form>
@@ -1594,9 +1637,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
-                                      value={detailstab.servicesperformed}
-                                      onChange={detailsOnChange}
-                                      name="servicesperformed"
+                                      value="Illumination"
+                                      onChange={handleDetailsInfoOnChange}
+                                      name="Illumination"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1608,7 +1651,10 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Power-retractable tonneau cover"
+                                      onChange={handleDetailsInfoOnChange}
                                       className="form-check-input"
+                                      name="Power-retractable"
                                       type="checkbox"
                                     />{" "}
                                     Power-retractable tonneau cover
@@ -1619,6 +1665,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Soft tonneau cover"
+                                      name="soft"
+                                      onChange={handleDetailsInfoOnChange}
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1630,6 +1679,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Kicker audio system with MultiPro tailgate"
+                                      name="kicker"
+                                      onChange={handleDetailsInfoOnChange}
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1641,6 +1693,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Other"
+                                      name="other"
+                                      onChange={handleDetailsInfoOnChange}
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1696,8 +1751,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
-                                      value={detailstab.reserve}
-                                      onChange={detailsOnChange}
+                                      value="window sticky"
+                                      onChange={handleAccessoriesChange}
+                                      name="window"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1709,6 +1765,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Owner's Manual"
+                                      onChange={handleAccessoriesChange}
+                                      name="owner"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1720,6 +1779,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Service Records"
+                                      onChange={handleAccessoriesChange}
+                                      name="Service"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1731,6 +1793,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Spare Parts"
+                                      onChange={handleAccessoriesChange}
+                                      name="spare"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1742,6 +1807,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="car cover"
+                                      onChange={handleAccessoriesChange}
+                                      name="car-cover"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1753,6 +1821,9 @@ const VechilesRegistraion = () => {
                                 <div className="form-check">
                                   <label className="form-check-label">
                                     <input
+                                      value="Other"
+                                      onChange={handleAccessoriesChange}
+                                      name="owner-other"
                                       className="form-check-input"
                                       type="checkbox"
                                     />{" "}
@@ -1879,8 +1950,8 @@ const VechilesRegistraion = () => {
                           <div className="form-group form-check">
                             <label className="form-check-label">
                               <input
-                                value={detailstab.accept}
-                                onChange={detailsOnChange}
+                                value="I accept"
+                                onChange={acceptDteailsPageOnChange}
                                 name="accept"
                                 className="form-check-input"
                                 type="checkbox"
@@ -1921,7 +1992,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {detailsTabValid ? (
+                          {/* {detailsTabValid ? (
                             <a
                               className="nav-link gry_btn"
                               data-toggle="pill"
@@ -1934,15 +2005,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )}
-                          {/* <a
-                              className="nav-link gry_btn"
-                              data-toggle="pill"
-                              href="#ContactInfo_Pill"
-                              onClick={() => dispatch(step_three(true))}
-                            >
-                              NEXT
-                            </a> */}
+                          )} */}
+                          <a
+                            className="nav-link gry_btn"
+                            data-toggle="pill"
+                            href="#ContactInfo_Pill"
+                            onClick={() => dispatch(step_three(true))}
+                          >
+                            NEXT
+                          </a>
                         </div>
                       </div>
                     </form>
@@ -1995,8 +2066,12 @@ const VechilesRegistraion = () => {
                               name="uemail"
                               placeholder="Email"
                               className="field"
-                              required
                             />
+                            {errorCont && information.uemail.length <= 0 ? (
+                              <p className="text-danger">Please enter email</p>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -2008,17 +2083,14 @@ const VechilesRegistraion = () => {
                               type="text"
                               name="username"
                               className="field"
-                              autocomplete="off"
-                              required
+                              autoComplete="off"
                             />
-                            {!userNameValid && (
-                              <p
-                                className={`${
-                                  !userNameValid ? "" : "text-danger"
-                                }`}
-                              >
-                                User name between 5 to 10 character
+                            {errorCont && information.username.length <= 0 ? (
+                              <p className="text-danger">
+                                Please enter user name
                               </p>
+                            ) : (
+                              ""
                             )}
                           </div>
                         </div>
@@ -2031,9 +2103,15 @@ const VechilesRegistraion = () => {
                               type="password"
                               name="password"
                               className="field"
-                              autocomplete="off"
-                              required
+                              autoComplete="off"
                             />
+                            {errorCont && information.password.length <= 0 ? (
+                              <p className="text-danger">
+                                Please enter password
+                              </p>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -2046,8 +2124,12 @@ const VechilesRegistraion = () => {
                               name="iname"
                               placeholder="Name"
                               className="field"
-                              required
                             />
+                            {errorCont && information.iname.length <= 0 ? (
+                              <p className="text-danger">Please enter name</p>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -2060,8 +2142,14 @@ const VechilesRegistraion = () => {
                               name="phone"
                               placeholder="Phone"
                               className="field"
-                              required
                             />
+                            {errorCont && information.phone.length <= 0 ? (
+                              <p className="text-danger">
+                                Please enter phone number
+                              </p>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -2069,11 +2157,19 @@ const VechilesRegistraion = () => {
                             <label className="form-check-label">
                               <input
                                 name="checkbox"
+                                value="aggri"
+                                onChange={signInChange}
                                 className="form-check-input"
                                 type="checkbox"
                               />{" "}
                               Sign me up for the shibnobi Daily Mail
                             </label>
+                            {signinAggri || signinAggriSubmit ? (
+                              ""
+                            ) : (
+                              <p className="text-danger">Please select</p>
+                            )}
+                            {/* {errorCont && information.username <= 0 ? <p>Please enter user name</p> : ""} */}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">

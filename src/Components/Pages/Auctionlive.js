@@ -147,6 +147,9 @@ function Auctionlive() {
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
+                          <button type="button" className="btn">
+                            <a href="detail">Bid Now</a>
+                          </button>
                         </ul>
                       </div>
                     </div>
