@@ -391,6 +391,7 @@ const VechilesRegistraion = () => {
       })
       .then((result) => { 
     // uploadFileOne(id)
+    //uploadFileTwo(id)
 
       })
       .catch((error) => {

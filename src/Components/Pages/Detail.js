@@ -23,7 +23,7 @@ function Detail() {
         auctionId: 0,
         user_id: 0,
         auctionAmmount: 0,
-        vehicle_id: 0,
+        vehicle_id: id,
       })
       .then((res) => console.log(res));
   };
