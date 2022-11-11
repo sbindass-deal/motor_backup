@@ -29,12 +29,12 @@ const VechilesRegistraion = () => {
   const [signinAggriSubmit, setSigninAggriSubmit] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
-  const [acceptDetails, setAcceptDetails] = useState()
-  const acceptDteailsPageOnChange = (e) =>{
-    const{ checked} = e.target
-    setAcceptDetails(checked)
-  }
-  console.log(acceptDetails)
+  const [acceptDetails, setAcceptDetails] = useState();
+  const acceptDteailsPageOnChange = (e) => {
+    const { checked } = e.target;
+    setAcceptDetails(checked);
+  };
+  console.log(acceptDetails);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -1126,7 +1126,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           {/* <button type="submit" className="gry_btn"> */}
                           {/* <button type="button" onClick={handleNextSubmit} > */}
-                          {/* {nameFieldValid &&
+                          {nameFieldValid &&
                           namefield.file.trim().length !== 0 ? (
                             <a
                               className="nav-link gry_btn"
@@ -1143,8 +1143,8 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#BasicFacts_Pill"
@@ -1154,7 +1154,7 @@ const VechilesRegistraion = () => {
                             }}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                           {/* </button> */}
                           {/* </button> */}
                         </div>
@@ -1504,7 +1504,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {/* {basicFactValid &&
+                          {basicFactValid &&
                           basicfact.files.trim().length !== 0 ? (
                             <a
                               className="nav-link gry_btn"
@@ -1518,15 +1518,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#Details_Pill"
                             onClick={() => dispatch(step_two(true))}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </form>
@@ -2001,7 +2001,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {/* {detailsTabValid ? (
+                          {detailsTabValid ? (
                             <a
                               className="nav-link gry_btn"
                               data-toggle="pill"
@@ -2014,15 +2014,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#ContactInfo_Pill"
                             onClick={() => dispatch(step_three(true))}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </form>
