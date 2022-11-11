@@ -1,6 +1,6 @@
 import React from 'react'
 // import shibnobiMotors from '../Assets/images/shibnobiMotors.png'
-import shibnobiMotors from "../Assets/images/SibnobiMotors-logo.png";
+import shibnobiMotors from "../Assets/images/moters-logo.png";
 function Footer() {
   return (
     <div>
