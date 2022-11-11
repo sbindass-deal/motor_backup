@@ -150,11 +150,6 @@ function Auctionlive() {
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
-<<<<<<< Updated upstream
-                          <button type="button" className="btn">
-                            <a href={`detail/${curElem.id}`}>Bid Now</a>
-                          </button>
-=======
                           {logingUser ? (
                             <button type="button" className="btn">
                               <a href={`detail/${curElem.id}`}>Bid Now</a>
@@ -164,7 +159,6 @@ function Auctionlive() {
                               Register Now
                             </button>
                           )}
->>>>>>> Stashed changes
                         </ul>
                       </div>
                     </div>

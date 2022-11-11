@@ -8,14 +8,11 @@ import SearchModal from "./Popups/SearchModal";
 import { Modal, Button } from "react-bootstrap";
 
 // icons
-<<<<<<< Updated upstream
 // import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-=======
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/reducers/login";
->>>>>>> Stashed changes
 
 function Header() {
   const dispatch = useDispatch();
