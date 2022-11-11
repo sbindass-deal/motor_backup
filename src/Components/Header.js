@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import shibnobiMotors from "../Assets/images/SibnobiMotors-logo.png";
+import shibnobiMotors from "../Assets/images/moters-logo.png";
 import ForgotPasswordModal from "./Popups/ForgotPasswordModal";
 import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
