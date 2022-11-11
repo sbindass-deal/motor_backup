@@ -9,7 +9,7 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 function MyBidsWins() {
   const [data, setData] = useState([]);
   React.useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + "/vehicles").then((response) => {
+    axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
       setData(response.data.data);
     });
   }, []);

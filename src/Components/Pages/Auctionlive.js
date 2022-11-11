@@ -12,7 +12,7 @@ function Auctionlive() {
   const logingUser = useSelector((state) => state.login.login);
 
   React.useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + "/vehicles").then((response) => {
+    axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
       setauctions(response.data.data);
       setFilteredUsers(response.data.data);
     });
