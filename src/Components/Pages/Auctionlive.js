@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import icGrid from "../../Assets/images/icGrid.svg";
 import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { regBtn } from "../../redux/reducers/login";
 function Auctionlive() {
+  const dispatch = useDispatch();
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const logingUser = useSelector((state) => state.login.login);
 
   React.useEffect(() => {
     axios.get(process.env.REACT_APP_URL + "/vehicles").then((response) => {
@@ -147,9 +150,21 @@ function Auctionlive() {
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
+<<<<<<< Updated upstream
                           <button type="button" className="btn">
                             <a href={`detail/${curElem.id}`}>Bid Now</a>
                           </button>
+=======
+                          {logingUser ? (
+                            <button type="button" className="btn">
+                              <a href={`detail/${curElem.id}`}>Bid Now</a>
+                            </button>
+                          ) : (
+                            <button type="button" className="btn">
+                              Register Now
+                            </button>
+                          )}
+>>>>>>> Stashed changes
                         </ul>
                       </div>
                     </div>

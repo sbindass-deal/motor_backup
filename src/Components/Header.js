@@ -8,12 +8,20 @@ import SearchModal from "./Popups/SearchModal";
 import { Modal, Button } from "react-bootstrap";
 
 // icons
+<<<<<<< Updated upstream
 // import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+=======
+import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../redux/reducers/login";
+>>>>>>> Stashed changes
 
 function Header() {
-  
-  const [login, setLogin] = useState(true);
+  const dispatch = useDispatch();
+  const logingUser = useSelector((state) => state.login);
+  console.log("mishra", logingUser.reg);
+
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
@@ -26,7 +34,9 @@ function Header() {
 
   const handleCloseForgPass = () => setShowForgPass(false);
   const handleShowForgPass = () => setShowForgPass(true);
-
+  const logout = () => {
+    dispatch(logoutUser());
+  };
   return (
     <div>
       <header>
@@ -79,17 +89,27 @@ function Header() {
                         How Shibnobi Works
                       </a>
                     </li>
-                    <li onClick={handleShow} className="nav-item">
-                      <a
-                      onClick={handleShow} 
-                        className="nav-link"
-                        href="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#loginModal"
+                    {!logingUser.login ? (
+                      <li onClick={handleShow} className="nav-item">
+                        <a
+                          onClick={handleShow}
+                          className="nav-link"
+                          href="javascript:void(0)"
+                          // data-toggle="modal"
+                          // data-target="#loginModal"
+                        >
+                          Log In
+                        </a>
+                      </li>
+                    ) : (
+                      <li
+                        onClick={logout}
+                        style={{ cursor: "pointer" }}
+                        className="nav-item"
                       >
-                        Log In
-                      </a>
-                    </li>
+                        <span className="nav-link">Logou</span>
+                      </li>
+                    )}
                     <li className="nav-item">
                       <a className="nav-link" href="/#">
                         <i className="fa-solid fa-star"></i>
