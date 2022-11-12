@@ -52,12 +52,21 @@ function Header() {
                   <span className="navbarToggler"></span>
                 </button>
 
+                
+
                 <div className="collapse navbar-collapse" id="navb">
                   <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                      <a className="nav-link" href="/submit">
+                        Submit a Vehicle
+                      </a>
+                    </li>
                     <li className="nav-item">
                       {/* <a className="nav-link" to="/auction">
                         Auctions
                       </a> */}
+
+                      
                       <div class="dropdown">
                         <a class="nav-link " href="#h">
                           Auctions
@@ -75,11 +84,11 @@ function Header() {
                         </div>
                       </div>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                       <a className="nav-link" href="/submit">
                         Submit a Vehicle
                       </a>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                       <a className="nav-link" href="/works">
                         How Gas Guzzlrs Works

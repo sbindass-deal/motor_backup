@@ -22,6 +22,13 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [cvc, setCvc] = useState("");
   const [selectone, setSelectone] = useState("");
 
+// const[checkdata,setCheckdata]=useState(false)
+
+// const toggle=()=>{
+//   setCheckdata(!che)
+// }
+  
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -183,7 +190,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       data-toggle="collapse"
                       data-target="#wantBid"
                     >
-                      <input className="form-check-input" type="checkbox" /> I
+                      <input className="form-check-input" type="checkbox"  required/> I
                       want the ability to bid on auctions (optional)
                     </label>
                     <div id="wantBid" className="collapse pt-3">
@@ -206,7 +213,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Name (as it appears on your card)"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -219,7 +226,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Phone"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -232,7 +239,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Address"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -245,7 +252,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Zip / Postal Code"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -258,7 +265,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Country"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -271,7 +278,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Credit Card Number"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -284,7 +291,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={month}
                                   onChange={handleMonth}
-                                  // required
+                                  required
                                 >
                                   <option>1</option>
                                   <option>2</option>
@@ -305,7 +312,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={year}
                                   onChange={handleYear}
-                                  // required
+                                  required
                                 >
                                   <option>2022</option>
                                   <option>2023</option>
@@ -331,7 +338,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="CVC"
-                              // required
+                              required
                             />
                           </div>
                         </div>
@@ -342,7 +349,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               className="field"
                               value={selectone}
                               onChange={handleSelectone}
-                              // required
+                              required
                             >
                               <option>Select one</option>
                               <option>Facebook</option>
@@ -368,7 +375,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox"  required/>{" "}
+                      <input className="form-check-input" type="checkbox"  />{" "}
                       Sign me up for the Shibnobi Daily Mail
                     </label>
                   </div>
