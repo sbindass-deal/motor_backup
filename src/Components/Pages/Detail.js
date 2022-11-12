@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import mclaren_senna_reshoot from "../../Assets/images/2019_mclaren_senna_reshoot.webp";
 import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_screen-shot-2.webp";
 import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
@@ -14,25 +14,41 @@ import car_04 from "../../Assets/images/car_04.jpg";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
+import { Modal } from "react-bootstrap";
 
 function Detail() {
   const { id } = useParams();
-  const [vehicle,setVehicle] = React.useState({})
-  const [vehicleImage,setVehicleImage] = React.useState([])
+  const [vehicle, setVehicle] = React.useState({});
+  const [vehicleImage, setVehicleImage] = React.useState([]);
   const logingUser = useSelector((state) => state.login);
-  const [comments,setcomments] = React.useState([])
-  const [biding,setBiding] = React.useState([])
+  const [comments, setcomments] = React.useState([]);
+  const [biding, setBiding] = React.useState([]);
+  const [show, setShow] = useState(false);
   //setInputComment
-  const [inputcomment,setInputComment] = React.useState("")
-  const addBiding = () => {
+  const [inputcomment, setInputComment] = React.useState("");
+  const [bidValue, setBidValue] = useState();
+  const handleBidInput = (e) => {
+    setBidValue(e.target.value);
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
+  const addBiding = (e) => {
+    e.preventDefault();
     axios
       .post(process.env.REACT_APP_URL + "biddings", {
         auctionId: id,
         userId: logingUser.user.id,
-        auctionAmmount: 0,
+        auctionAmmount: bidValue,
         vehicle_id: id,
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log(res);
+        handleClose();
+      });
   };
   const getComments = () => {
     axios
@@ -40,50 +56,45 @@ function Detail() {
       .then((res) => setcomments(res.data.data.reverse()));
   };
   const getVehicle = () => {
-    axios
-      .get(process.env.REACT_APP_URL + "vehicle/" + id)
-      .then((res) => {
-        console.log(res.data.data)
-        setVehicle(res.data.data)
-      });
+    axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
+      console.log(res.data.data);
+      setVehicle(res.data.data);
+    });
   };
-  //get images 
+  //get images
   const getVehicleImages = () => {
-    axios
-      .get(process.env.REACT_APP_URL + "vehicle-image/" + id)
-      .then((res) => {  setVehicleImage(res.data.data)});
+    axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
+      setVehicleImage(res.data.data);
+    });
   };
-
 
   const getBidingDetails = () => {
-    axios
-      .get(process.env.REACT_APP_URL + "bidding/" + id)
-      .then((res) => {  setBiding(res.data.data)});
+    axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
+      setBiding(res.data.data);
+    });
   };
 
   React.useEffect(() => {
     getVehicle();
     getVehicleImages();
-    getComments()
-    getBidingDetails()
+    getComments();
+    getBidingDetails();
   }, []);
-
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center pb_30">
-              <h2 className="title_combo title_Center">
-                {vehicle.name}
-              </h2>
+              <h2 className="title_combo title_Center">{vehicle.name}</h2>
             </div>
             <div className="col-12">
               <div className="detailPostOption">
                 <div className="">
                   <ul className="labelList">
                     <li>
-                      <label>Current Bid:</label> <span>{vehicle.documentFee}</span>
+                      <label>Current Bid:</label>{" "}
+                      <span>{vehicle.documentFee}</span>
                     </li>
                     <li>
                       <label>Ends In:</label> <span>5 days</span>
@@ -105,7 +116,8 @@ function Detail() {
                   <button
                     type="button"
                     className="gry_btn active"
-onClick={()=>addBiding()}
+                    onClick={handleShow}
+                    // onClick={() => addBiding()}
                     // onclick="smoothScroll(document.getElementById('placeBid_col'))"
                   >
                     Place Bid
@@ -118,9 +130,18 @@ onClick={()=>addBiding()}
           <div className="row pt-4">
             <div className="col-12 pb-3">
               <div className="postHero">
-              {vehicleImage.length> 0 ? 
-                    <img src={process.env.REACT_APP_URL + "/" + vehicleImage[0].imagePath + "/" +vehicleImage[0].imageName   }alt="" />  : null
+                {vehicleImage.length > 0 ? (
+                  <img
+                    src={
+                      process.env.REACT_APP_URL +
+                      "/" +
+                      vehicleImage[0].imagePath +
+                      "/" +
+                      vehicleImage[0].imageName
                     }
+                    alt=""
+                  />
+                ) : null}
               </div>
             </div>
             <div className="col-12 dropdownCol">
@@ -212,14 +233,21 @@ onClick={()=>addBiding()}
             </div>
 
             <div className="col-12 col-lg-9 pt-4">
-              <p>
-              {vehicle.moreDescription}
-              </p>
+              <p>{vehicle.moreDescription}</p>
 
               <div className="mb-3">
-              {vehicleImage.length> 1 ? 
-                    <img src={process.env.REACT_APP_URL + "/" + vehicleImage[1].imagePath + "/" +vehicleImage[1].imageName   }alt="" />  : null
+                {vehicleImage.length > 1 ? (
+                  <img
+                    src={
+                      process.env.REACT_APP_URL +
+                      "/" +
+                      vehicleImage[1].imagePath +
+                      "/" +
+                      vehicleImage[1].imageName
                     }
+                    alt=""
+                  />
+                ) : null}
               </div>
 
               <p>
@@ -302,11 +330,18 @@ onClick={()=>addBiding()}
                 <div className="col-12 col-sm-6 pt-4">
                   <h5>PHOTO GALLERY</h5>
                   <div className="fancyCol">
-                    {vehicleImage.length> 0 ? 
-                    <img src={process.env.REACT_APP_URL + "/" + vehicleImage[0].imagePath + "/" +vehicleImage[0].imageName   }alt="" />  : null
-                    }
-                    
-                    
+                    {vehicleImage.length > 0 ? (
+                      <img
+                        src={
+                          process.env.REACT_APP_URL +
+                          "/" +
+                          vehicleImage[0].imagePath +
+                          "/" +
+                          vehicleImage[0].imageName
+                        }
+                        alt=""
+                      />
+                    ) : null}
                   </div>
                   <a href="photo-gallery.html" className="gry_btn mt-3">
                     More Photos
@@ -315,13 +350,19 @@ onClick={()=>addBiding()}
                 <div className="col-12 col-sm-6 pt-4">
                   <h5>&nbsp;</h5>
                   <div className="fancyCol">
-                    {vehicleImage.length> 0 ? 
-                    <img src={process.env.REACT_APP_URL + "/" + vehicleImage[1].imagePath + "/" +vehicleImage[1].imageName   }alt="" />  : null
-                    }
-                    
-                    
+                    {vehicleImage.length > 0 ? (
+                      <img
+                        src={
+                          process.env.REACT_APP_URL +
+                          "/" +
+                          vehicleImage[1].imagePath +
+                          "/" +
+                          vehicleImage[1].imageName
+                        }
+                        alt=""
+                      />
+                    ) : null}
                   </div>
-                   
                 </div>
               </div>
 
@@ -357,12 +398,10 @@ onClick={()=>addBiding()}
                           href="javascript:void(0)"
                           className="gry_btn"
                           onClick={addBiding}
-                          data-toggle="modal"
-                          data-target="#RegisterModal"
+                          // data-toggle="modal"
+                          // data-target="#RegisterModal"
                         >
-                          {
-                            logingUser.user.id ? "BID" : "REGISTER TO BID"
-                          }
+                          {logingUser.user.id ? "BID" : "REGISTER TO BID"}
                         </a>
                       </div>
                     </li>
@@ -395,8 +434,8 @@ onClick={()=>addBiding()}
                         placeholder="add comment here"
                         className="field"
                         value={inputcomment}
-                        onChange={(e)=>{
-setInputComment(e.target.value)
+                        onChange={(e) => {
+                          setInputComment(e.target.value);
                         }}
                       ></textarea>
                     </div>
@@ -423,6 +462,31 @@ setInputComment(e.target.value)
                   </form>
                 </div>
                 <div className="col-12 pt-3">
+                  {comments.map((data) => (
+                    <div className="commentRow">
+                      <div className="commentHead">
+                        <div className="com_byPic">
+                          <img src={men_face} alt="" />
+                        </div>
+                        <div className="com_by">Z32kerber</div>
+                        <div className="com_date">
+                          <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
+                          7:31 PM
+                        </div>
+                      </div>
+                      <div className="commentBody">
+                        <p>{data.description}</p>
+                      </div>
+                      <div className="commentFooter">
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-up"></i> 349
+                        </a>
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-down"></i> 20
+                        </a>
+                      </div>
+                    </div>
+                  ))}
 
 
 {
@@ -545,8 +609,8 @@ setInputComment(e.target.value)
                       <img src={car_01} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                      Dallas
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                      in Dallas
                     </div>
                   </a>
                 </div>
@@ -556,8 +620,8 @@ setInputComment(e.target.value)
                       <img src={car_02} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                      Dallas
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                      in Dallas
                     </div>
                   </a>
                 </div>
@@ -567,8 +631,8 @@ setInputComment(e.target.value)
                       <img src={car_03} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                      Dallas
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                      in Dallas
                     </div>
                   </a>
                 </div>
@@ -578,8 +642,8 @@ setInputComment(e.target.value)
                       <img src={car_04} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                      Dallas
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                      in Dallas
                     </div>
                   </a>
                 </div>
@@ -596,9 +660,9 @@ setInputComment(e.target.value)
                 <ul className="sidebar_Event">
                   <li>
                     <a href="#">
-                      Gas Guzzlrs Alumni Gathering: October 1 in conjunction with
-                      the Audrain Newport Concours & Motor Week – REGISTRATION
-                      IS OPEN{" "}
+                      Gas Guzzlrs Alumni Gathering: October 1 in conjunction
+                      with the Audrain Newport Concours & Motor Week –
+                      REGISTRATION IS OPEN{" "}
                     </a>
                     <div className="event_date">
                       <i className="fa-solid fa-clock"></i> October 1, 2022
@@ -717,6 +781,49 @@ setInputComment(e.target.value)
           </div>
         </div>
       </section>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            {/* <!-- Modal Header --> */}
+            <div className="modal-header border-0">
+              <h4 className="modal-title">Place Bid</h4>
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            {/* <!-- Modal body --> */}
+            <div className="modal-body">
+              <form onSubmit={addBiding}>
+                <div className="form-group">
+                  <input
+                    value={bidValue}
+                    onChange={handleBidInput}
+                    type="number"
+                    className="form-control"
+                    placeholder="Please enter bid amount"
+                    required
+                  />
+                </div>
+                <button className="btn" type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
