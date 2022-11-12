@@ -195,19 +195,19 @@ const VechilesRegistraion = () => {
       name.trim().length !== 0 &&
       email.trim().length !== 0 &&
       year.trim().length !== 0 &&
-      make.trim().length !== 0 &&
-      model.trim().length !== 0 &&
-      city.trim().length !== 0 &&
-      sale.trim().length !== 0 &&
-      vechilelocation.trim().length !== 0 &&
-      link.trim().length !== 0 &&
-      vehiclepast.trim().length !== 0 &&
+      // make.trim().length !== 0 &&
+      // model.trim().length !== 0 &&
+      // city.trim().length !== 0 &&
+      // sale.trim().length !== 0 &&
+      // vechilelocation.trim().length !== 0 &&
+      // link.trim().length !== 0 &&
+      // vehiclepast.trim().length !== 0 &&
       providelink.trim().length !== 0 &&
       changedvechiles.trim().length !== 0 &&
       dealer.trim().length !== 0 &&
       dealership.trim().length !== 0 &&
-      soldvechiles.trim().length !== 0 &&
-      videolink.trim().length !== 0
+      soldvechiles.trim().length !== 0
+      // videolink.trim().length !== 0
     ) {
       setNameFieldValid(true);
     } else {
@@ -217,7 +217,6 @@ const VechilesRegistraion = () => {
 
   const handleNextSubmit = (e) => {
     e.preventDefault();
-    alert("Form filled successfully");
   };
   const basicFactOnChange = (e) => {
     const {
@@ -239,19 +238,19 @@ const VechilesRegistraion = () => {
     const Name = e.target.name;
     setbasicfact({ ...basicfact, [Name]: Value });
     if (
-      vin.trim().length !== 0 &&
-      vechilesrace.trim().length &&
-      ultiumdrive.trim().length !== 0 &&
+      // vin.trim().length !== 0 &&
+      // vechilesrace.trim().length &&
+      // ultiumdrive.trim().length !== 0 &&
       Interstellar.trim().length !== 0 &&
       interior.trim().length !== 0 &&
-      brandandmodel.trim().length &&
+      brandandmodel.trim().length
       // sizetires.trim().length !== 0 &&
       // trucktitled.trim().length !== 0 &&
-      status.trim().length !== 0 &&
-      km.trim().length &&
+      // status.trim().length !== 0 &&
+      // km.trim().length &&
       // kmacc.trim().length !== 0 &&
-      odometer.trim().length !== 0 &&
-      accurateField.trim().length !== 0
+      // odometer.trim().length !== 0 &&
+      // accurateField.trim().length !== 0
     ) {
       setBasicFactValid(true);
     } else {
@@ -260,7 +259,6 @@ const VechilesRegistraion = () => {
   };
   const basicFactSubmitHandler = (e) => {
     e.preventDefault();
-    alert("Form filled successfully");
     //    dispatch(basicfactsave(basicfact))
   };
   const detailsOnChange = (e) => {
@@ -450,7 +448,6 @@ const VechilesRegistraion = () => {
           iname: "",
           phone: "",
         });
-        alert("Submit successfully!");
       })
       .catch((error) => {
         console.log(error);

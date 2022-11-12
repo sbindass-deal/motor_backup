@@ -22,12 +22,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [cvc, setCvc] = useState("");
   const [selectone, setSelectone] = useState("");
 
-// const[checkdata,setCheckdata]=useState(false)
+  // const[checkdata,setCheckdata]=useState(false)
 
-// const toggle=()=>{
-//   setCheckdata(!che)
-// }
-  
+  // const toggle=()=>{
+  //   setCheckdata(!che)
+  // }
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -74,9 +73,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     setSelectone(e.target.value);
   };
 
-  const handleApi = () => { 
-    
-
+  const handleApi = () => {
     axios
       .post(`${url}/users`, {
         email: email,
@@ -95,7 +92,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
         cvc: cvc,
         selectone: selectone,
       })
-      .then((result) => { 
+      .then((result) => {
         handleCloseReg();
       })
       .catch((error) => {
@@ -190,7 +187,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       data-toggle="collapse"
                       data-target="#wantBid"
                     >
-                      <input className="form-check-input" type="checkbox"  required/> I
+                      <input className="form-check-input" type="checkbox" /> I
                       want the ability to bid on auctions (optional)
                     </label>
                     <div id="wantBid" className="collapse pt-3">
@@ -367,15 +364,19 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox"  required/> I
-                      accept the Terms of Use and Privacy Notice
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        required
+                      />{" "}
+                      I accept the Terms of Use and Privacy Notice
                     </label>
                   </div>
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox"  />{" "}
+                      <input className="form-check-input" type="checkbox" />{" "}
                       Sign me up for the Shibnobi Daily Mail
                     </label>
                   </div>
@@ -391,7 +392,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="submit"  className="btn">
+                    <button type="submit" className="btn">
                       Register
                     </button>
                   </div>
