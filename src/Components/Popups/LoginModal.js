@@ -118,7 +118,7 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
                 <p>
                   Not registered with Shibnobi?
                   <span onClick={handleRegister}>
-                    <a
+                    <a className="signup" style={{marginLeft:"10px"}}
                       href="javascript:void(0)"
                       // data-dismiss="modal"
                       // data-toggle="modal"

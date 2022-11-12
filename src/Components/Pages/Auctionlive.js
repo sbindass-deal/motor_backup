@@ -60,7 +60,7 @@ function Auctionlive() {
                     value={searchValue}
                     onChange={(e) => {
                       setSearchValue(e.target.value);
-                       
+
                       setauctions(
                         filteredUsers
                           .filter((data) => data.name.includes(e.target.value))
@@ -161,13 +161,13 @@ function Auctionlive() {
                           <li>
                             <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
                           </li>
-                          {logingUser ? (
+                          {!logingUser ? (
                             <button type="button" className="btn">
-                              <a href={`detail/${curElem.id}`}>Bid Now</a>
+                              Register for bid
                             </button>
                           ) : (
                             <button type="button" className="btn">
-                              Register Now
+                              <a href={`detail/${curElem.id}`}>Bid Now</a>
                             </button>
                           )}
                         </ul>

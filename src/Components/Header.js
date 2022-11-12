@@ -9,14 +9,14 @@ import { Modal, Button } from "react-bootstrap";
 
 // icons
 // import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/reducers/login";
 
 function Header() {
   const dispatch = useDispatch();
-  const logingUser = useSelector((state) => state.login); 
+  const logingUser = useSelector((state) => state.login);
 
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
@@ -52,12 +52,21 @@ function Header() {
                   <span className="navbarToggler"></span>
                 </button>
 
+                
+
                 <div className="collapse navbar-collapse" id="navb">
                   <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                      <a className="nav-link" href="/submit">
+                        Submit a Vehicle
+                      </a>
+                    </li>
                     <li className="nav-item">
                       {/* <a className="nav-link" to="/auction">
                         Auctions
                       </a> */}
+
+                      
                       <div class="dropdown">
                         <a class="nav-link " href="#h">
                           Auctions
@@ -75,11 +84,24 @@ function Header() {
                         </div>
                       </div>
                     </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/submit">
-                        Submit a Vehicle
-                      </a>
-                    </li>
+                    {!logingUser.login ? (
+                      <li onClick={handleShow} className="nav-item">
+                        <a
+                          onClick={handleShow}
+                          className="nav-link"
+                          href="javascript:void(0)"
+                        >
+                          Submit a Vehicle
+                        </a>
+                      </li>
+                    ) : (
+                      <li className="nav-item">
+                        <a className="nav-link" href="/submit">
+                          Submit a Vehicle
+                        </a>
+                      </li>
+                    )}
+
                     <li className="nav-item">
                       <a className="nav-link" href="/works">
                         How Gas Guzzlrs Works

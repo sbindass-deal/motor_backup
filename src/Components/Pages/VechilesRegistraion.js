@@ -35,6 +35,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
+
   console.log(acceptDetails);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
@@ -44,6 +45,7 @@ const VechilesRegistraion = () => {
       setAccessories(accessories.filter((e) => e !== value));
     }
   };
+
   console.log(accessories);
   const handleDetailsInfoOnChange = (e) => {
     const { value, checked } = e.target;
@@ -57,6 +59,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setSigninAggri(checked);
   };
+
   console.log(errorCont);
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
@@ -211,7 +214,6 @@ const VechilesRegistraion = () => {
       videolink.trim().length !== 0
     ) {
       setNameFieldValid(true);
-      
     } else {
       setNameFieldValid(false);
     }
@@ -321,6 +323,7 @@ const VechilesRegistraion = () => {
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
+
     console.log(detailstab);
     // dispatch(detailssave(detailstab))
   };
@@ -332,6 +335,7 @@ const VechilesRegistraion = () => {
   //  const informationSubmitHandler = () => {
   // dispatch(contactinfosave({...namefield,...basicfact,...detailstab,...information, id:Math.random()}))
   //  }
+
   const informationSubmitHandler = (e) => {
     const {
       name,
@@ -350,7 +354,6 @@ const VechilesRegistraion = () => {
       dealership,
       soldvechiles,
       videolink,
-      file,
     } = namefield;
     const {
       vin,
@@ -392,10 +395,42 @@ const VechilesRegistraion = () => {
    
     axios
       .post(`${url}vehicles`, {
-        ...namefield,
-        ...basicfact,
-        ...detailstab,
-        ...information, 
+        name: name,
+        email: email,
+        userId: 123, //redux user id lena h.
+        year: year,
+        make: make,
+        description: videolink,
+        model: model,
+        owned: sale,
+        country: vechilelocation,
+        state: "",
+        city: city,
+        consignment:soldvechiles,
+        bat: "",
+        batDescription: "",
+        dealerName: "",
+        dealerId: dealer,
+        dealerDescription: dealership,
+        ownerDetail: "",
+        km: "",
+        kmacc: "",
+        ogEngine: "",
+        transmission: "",
+        title: "",
+        titleStatus: "",
+        engineSize: "",
+        stepOneImage: "",
+        stepTwoImage: "",
+        ste: "",
+        link: link,
+        accessories: "",
+        moreDescription: "",
+        reserve: "",
+        hereFrom: "",
+        ammountOnDocument: "",
+        membership: "",
+        documentFee: "",
       })
       .then((result) => { 
     uploadFileOne(result.data.id)
