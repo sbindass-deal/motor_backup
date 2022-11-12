@@ -130,7 +130,7 @@ function Auctionlive() {
                           <i className="fa-solid fa-star"></i>
                         </button>
                         <a href={`detail/${curElem.id}`}>
-                          <img src={img_01} />
+                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt=""/>
                         </a>
                       </div>
                       <div className="card_postInfo">
