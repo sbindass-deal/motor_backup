@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import img_001 from "../../Assets/images/img_001.webp";
 import {
   basicfactsave,
@@ -17,7 +16,6 @@ import {
 } from "../../redux/reducers/submitvechilesReducer";
 
 const VechilesRegistraion = () => {
-  const { id } = useParams();
   const [nameFieldValid, setNameFieldValid] = useState(false);
   const [basicFactValid, setBasicFactValid] = useState(false);
   const [detailsTabValid, setDetailsTabValid] = useState(false);
@@ -25,7 +23,7 @@ const VechilesRegistraion = () => {
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
   const [file, setFile] = useState()
-  const [files, setFiles] = useState()
+  const [file1, setFile1] = useState()
 
   const [errorCont, setErrorCont] = useState(false);
   const [signinAggri, setSigninAggri] = useState();
@@ -37,7 +35,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
-   
+  console.log(acceptDetails);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -46,7 +44,7 @@ const VechilesRegistraion = () => {
       setAccessories(accessories.filter((e) => e !== value));
     }
   };
-   
+  console.log(accessories);
   const handleDetailsInfoOnChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -59,7 +57,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setSigninAggri(checked);
   };
-   
+  console.log(errorCont);
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
@@ -72,51 +70,46 @@ const VechilesRegistraion = () => {
 
 
 
-  function uploadFileOne() {   
+  const  uploadFileOne =async  (vehicleId) => {   
     const url = process.env.REACT_APP_URL + 'vehicle-image';
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('vehicleId', 1);
+    formData.append('image', file);
+    formData.append('vehicleId', vehicleId);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     };
-    axios.post(url, formData, config).then((response) => {
-       
+   await  axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
     });
 
   }
-
-
-  function uploadFileTwo() {   
-    const url = process.env.REACT_APP_URL + 'vehicle-image-detail';
+  const  uploadFileTwo=async(vehicleId)=> {   
+    const url = process.env.REACT_APP_URL + 'vehicle-image';
     const formData = new FormData();
-    formData.append('files', files);
-    formData.append('vehicleId', 1);
+    formData.append('image', file1);
+    formData.append('vehicleId', vehicleId);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     };
-    axios.post(url, formData, config).then((response) => {
-       
+   await axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
     });
 
   }
-
-
-  
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
     year: "",
-    vechile: "",
-    vechilemodel: "",
+    make: "",
+    model: "",
     vechilelocation: "",
-    citylocation: "",
+    city: "",
     sale: "",
-    includelinks: "",
+    link: "",
     vehiclepast: "",
     providelink: "",
     changedvechiles: "",
@@ -125,7 +118,6 @@ const VechilesRegistraion = () => {
     soldvechiles: "",
     videolink: "",
     file: "",
-  
   });
 
   // basic facts
@@ -140,8 +132,8 @@ const VechilesRegistraion = () => {
     sizetires: "",
     trucktitled: "",
     status: "",
-    currentodometer: "",
-    numberaccurate: "",
+    km: "",
+    kmacc: "",
     odometer: "",
     accurateField: "",
     files: "",
@@ -157,10 +149,10 @@ const VechilesRegistraion = () => {
     truckfromnew: "",
     servicesperformed: "",
     issuesorproblems: "",
-    anythingelse: "",
+    moreDescription: "",
     reserve: "",
     shibnobiabout: "",
-    amountdocument: "",
+    ammountOnDocument: "",
     rtmember: "",
     shibnobi: "",
     documentFee: "",
@@ -183,12 +175,12 @@ const VechilesRegistraion = () => {
       name,
       email,
       year,
-      vechile,
-      vechilemodel,
+      make,
+      model,
       vechilelocation,
-      citylocation,
+      city,
       sale,
-      includelinks,
+      link,
       vehiclepast,
       providelink,
       changedvechiles,
@@ -204,12 +196,12 @@ const VechilesRegistraion = () => {
       name.trim().length !== 0 &&
       email.trim().length !== 0 &&
       year.trim().length !== 0 &&
-      vechile.trim().length !== 0 &&
-      vechilemodel.trim().length !== 0 &&
-      citylocation.trim().length !== 0 &&
+      make.trim().length !== 0 &&
+      model.trim().length !== 0 &&
+      city.trim().length !== 0 &&
       sale.trim().length !== 0 &&
       vechilelocation.trim().length !== 0 &&
-      includelinks.trim().length !== 0 &&
+      link.trim().length !== 0 &&
       vehiclepast.trim().length !== 0 &&
       providelink.trim().length !== 0 &&
       changedvechiles.trim().length !== 0 &&
@@ -240,8 +232,8 @@ const VechilesRegistraion = () => {
       sizetires,
       trucktitled,
       status,
-      currentodometer,
-      numberaccurate,
+      km,
+      kmacc,
       odometer,
       accurateField,
     } = basicfact;
@@ -258,8 +250,8 @@ const VechilesRegistraion = () => {
       // sizetires.trim().length !== 0 &&
       // trucktitled.trim().length !== 0 &&
       status.trim().length !== 0 &&
-      currentodometer.trim().length &&
-      // numberaccurate.trim().length !== 0 &&
+      km.trim().length &&
+      // kmacc.trim().length !== 0 &&
       odometer.trim().length !== 0 &&
       accurateField.trim().length !== 0
     ) {
@@ -282,10 +274,10 @@ const VechilesRegistraion = () => {
       truckfromnew,
       servicesperformed,
       issuesorproblems,
-      anythingelse,
+      moreDescription,
       reserve,
       shibnobiabout,
-      amountdocument,
+      ammountOnDocument,
       rtmember,
       shibnobi,
       documentFee,
@@ -304,10 +296,10 @@ const VechilesRegistraion = () => {
       // truckfromnew.trim().length !== 0 &&
       // servicesperformed.trim().length &&
       // issuesorproblems.trim().length !== 0 &&
-      // anythingelse.trim().length !== 0 &&
+      // moreDescription.trim().length !== 0 &&
       // reserve.trim().length !== 0 &&
       shibnobiabout.trim().length &&
-      amountdocument.trim().length !== 0 &&
+      ammountOnDocument.trim().length !== 0 &&
       rtmember.trim().length !== 0 &&
       shibnobi.trim().length !== 0 &&
       documentFee.trim().length &&
@@ -329,7 +321,7 @@ const VechilesRegistraion = () => {
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
-     
+    console.log(detailstab);
     // dispatch(detailssave(detailstab))
   };
   const informationOnChange = (e) => {
@@ -345,12 +337,12 @@ const VechilesRegistraion = () => {
       name,
       email,
       year,
-      vechile,
-      vechilemodel,
+      make,
+      model,
       vechilelocation,
-      citylocation,
+      city,
       sale,
-      includelinks,
+      link,
       vehiclepast,
       providelink,
       changedvechiles,
@@ -370,8 +362,8 @@ const VechilesRegistraion = () => {
       sizetires,
       trucktitled,
       status,
-      currentodometer,
-      numberaccurate,
+      km,
+      kmacc,
       odometer,
       accurateField,
       files,
@@ -384,10 +376,10 @@ const VechilesRegistraion = () => {
       truckfromnew,
       servicesperformed,
       issuesorproblems,
-      anythingelse,
+      moreDescription,
       reserve,
       shibnobiabout,
-      amountdocument,
+      ammountOnDocument,
       rtmember,
       shibnobi,
       documentFee,
@@ -397,15 +389,7 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, username, password, iname, phone } = information;
     e.preventDefault();
-    // dispatch(
-    //   contactinfosave({
-    //     ...namefield,
-    //     ...basicfact,
-    //     ...detailstab,
-    //     ...information,
-    //     id: Math.random(),
-    //   })
-    // );
+   
     axios
       .post(`${url}vehicles`, {
         ...namefield,
@@ -414,9 +398,8 @@ const VechilesRegistraion = () => {
         ...information, 
       })
       .then((result) => { 
-    uploadFileOne(id)
-    uploadFileTwo(id)
-    
+    uploadFileOne(result.data.id)
+    uploadFileTwo(result.data.id)
 
       })
       .catch((error) => {
@@ -577,7 +560,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>What make is this vehicle?</label>
                             <select
-                              value={namefield.vechile}
+                              value={namefield.make}
                               onChange={handleNameField}
                               name="vechile"
                               className="field"
@@ -632,7 +615,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>What model is this vehicle?</label>
                             <select
-                              value={namefield.vechilemodel}
+                              value={namefield.model}
                               onChange={handleNameField}
                               name="vechilemodel"
                               className="field"
@@ -942,7 +925,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>What city is the vehicle located in?</label>
                             <input
-                              value={namefield.citylocation}
+                              value={namefield.city}
                               onChange={handleNameField}
                               type="text"
                               name="citylocation"
@@ -977,7 +960,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>Where and when? Please include links.</label>
                             <textarea
-                              value={namefield.includelinks}
+                              value={namefield.link}
                               onChange={handleNameField}
                               name="includelinks"
                               className="field"
@@ -1134,7 +1117,10 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                 }}
                                 value={namefield.file}
-                                onChange={handleNameField}
+                                onChange={(e)=>{
+                                  handleNameField(e)
+                                  setFile(e.target.files[0])
+                                }}
                                 name="file"
                                 type="file"
                                 required
@@ -1392,7 +1378,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>How is the truck titled?</label>
                             <select
-                              value={basicfact.currentodometer}
+                              value={basicfact.km}
                               onChange={basicFactOnChange}
                               name="currentodometer"
                               className="field"
@@ -1508,7 +1494,11 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                 }}
                                 value={basicfact.files}
-                                onChange={basicFactOnChange}
+                                // onChange={basicFactOnChange}
+                                onChange={(e)=>{
+                                  basicFactOnChange(e)
+                                  setFile1(e.target.files[0])
+                                }}
                                 name="files"
                                 type="file"
                                 required
@@ -1766,7 +1756,7 @@ const VechilesRegistraion = () => {
                           </p>
                           <div className="form-group">
                             <textarea
-                              value={detailstab.anythingelse}
+                              value={detailstab.moreDescription}
                               onChange={detailsOnChange}
                               name="anythingelse"
                               className="field"
@@ -1893,7 +1883,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>Anything else we should know?</label>
                             <textarea
-                              value={detailstab.amountdocument}
+                              value={detailstab.ammountOnDocument}
                               onChange={detailsOnChange}
                               name="amountdocument"
                               className="field"

@@ -82,7 +82,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/works">
-                        How Shibnobi Works
+                        How Gas Guzzlrs Works
                       </a>
                     </li>
                     {!logingUser.login ? (
@@ -103,14 +103,14 @@ function Header() {
                         style={{ cursor: "pointer" }}
                         className="nav-item"
                       >
-                        <span className="nav-link">Logou</span>
+                        <span className="nav-link">Logout</span>
                       </li>
                     )}
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                       <a className="nav-link" href="/#">
                         <i className="fa-solid fa-star"></i>
                       </a>
-                    </li>
+                    </li> */}
 
                     <li className="nav-item">
                       <a className="nav-link" href="accountinfo">
@@ -159,7 +159,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#">
-                        Shibnobi Features
+                        Gas Guzzlrs Features
                       </a>
                     </li>
                     <li className="nav-item">
@@ -174,7 +174,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#">
-                        About Shibnobi
+                        About Gas Guzzlrs
                       </a>
                     </li>
                     <li className="nav-item">
@@ -216,7 +216,7 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <a className="nav-link" href="feautres">
-                          Shibnobi Features
+                          Gas Guzzlrs Features
                         </a>
                       </li>
 
@@ -248,7 +248,7 @@ function Header() {
 
                       <li className="nav-item">
                         <a className="nav-link" href="aboutshibnobi">
-                          About Shibnobi
+                          About Gas Guzzlrs
                         </a>
                       </li>
                       <li className="nav-item">
@@ -257,7 +257,7 @@ function Header() {
                           href="https://store.shibnobi.com/"
                           target={"_blank"}
                         >
-                          Shibnobi Store
+                          Gas Guzzlrs Store
                         </a>
                       </li>
 

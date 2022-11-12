@@ -16,7 +16,7 @@ function HowShibnobiMotorWorks() {
                 <div className="row">
                     <div className="col-12 col-lg-8 offset-lg-2">
                         <div className="heroText">
-                            <h1>How Shibnobi Works</h1>
+                            <h1>How Gas Guzzlrs Works</h1>
                         </div>
                     </div>
                 </div>

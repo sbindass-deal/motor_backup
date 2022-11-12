@@ -17,10 +17,12 @@ function Detail() {
   const { id } = useParams();
   const [vehicle,setVehicle] = React.useState({})
   const [vehicleImage,setVehicleImage] = React.useState([])
-  
+  const [comments,setcomments] = React.useState([])
+  //setInputComment
+  const [inputcomment,setInputComment] = React.useState("")
   const addBiding = () => {
     axios
-      .post(process.env.REACT_APP_URL + "/biding", {
+      .post(process.env.REACT_APP_URL + "biding", {
         auctionId: 0,
         user_id: 0,
         auctionAmmount: 0,
@@ -28,24 +30,30 @@ function Detail() {
       })
       .then((res) => console.log(res));
   };
+  const getComments = () => {
+    axios
+      .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
+      .then((res) => setcomments(res.data.data));
+  };
   const getVehicle = () => {
     axios
-      .get(process.env.REACT_APP_URL + "/vehicle/" + id)
+      .get(process.env.REACT_APP_URL + "vehicle/" + id)
       .then((res) => {
-        
+        console.log(res.data.data)
         setVehicle(res.data.data)
       });
   };
   //get images 
   const getVehicleImages = () => {
     axios
-      .get(process.env.REACT_APP_URL + "/vehicle-image/" + id)
+      .get(process.env.REACT_APP_URL + "vehicle-image/" + id)
       .then((res) => {  setVehicleImage(res.data.data)});
   };
 
   React.useEffect(() => {
     getVehicle();
     getVehicleImages();
+    getComments()
   }, []);
 
   return (
@@ -260,7 +268,7 @@ function Detail() {
               </p>
 
               <div className="row row_gap_5 videoGalleryRow">
-                <div className="col-12 col-sm-6 pt-4">
+                {/* <div className="col-12 col-sm-6 pt-4">
                   <h5>VIDEO GALLERY</h5>
                   <div>
                     <a
@@ -277,7 +285,7 @@ function Detail() {
                       More Video
                     </a>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-12 col-sm-6 pt-4">
                   <h5>PHOTO GALLERY</h5>
                   <div className="fancyCol">
@@ -290,6 +298,17 @@ function Detail() {
                   <a href="photo-gallery.html" className="gry_btn mt-3">
                     More Photos
                   </a>
+                </div>
+                <div className="col-12 col-sm-6 pt-4">
+                  <h5>&nbsp;</h5>
+                  <div className="fancyCol">
+                    {vehicleImage.length> 0 ? 
+                    <img src={process.env.REACT_APP_URL + "/" + vehicleImage[1].imagePath + "/" +vehicleImage[1].imageName   }alt="" />  : null
+                    }
+                    
+                    
+                  </div>
+                   
                 </div>
               </div>
 
@@ -354,127 +373,71 @@ function Detail() {
 
               <div className="row ">
                 <div className="col-12">
-                  <h5>65 COMMENTS</h5>
+                  <h5>{comments.length} COMMENTS</h5>
                   <form className="mb-3">
                     <div className="form-group">
                       <textarea
                         placeholder="add comment here"
                         className="field"
+                        value={inputcomment}
+                        onChange={(e)=>{
+setInputComment(e.target.value)
+                        }}
                       ></textarea>
                     </div>
                     <div className="form-group">
-                      <button type="button" className="gry_btn">
+                      <button type="button" 
+                      onClick={()=>{
+                        axios.post(process.env.REACT_APP_URL + "comments",{
+                          vehicleId: id,
+                          userId : 0,
+                          bidId:0,
+                          description : inputcomment
+
+                        })
+                        .then(()=>{
+
+                        })
+                      }}
+                      className="gry_btn">
                         Submit
                       </button>
                     </div>
                   </form>
                 </div>
                 <div className="col-12 pt-3">
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                        <img src={men_face} />
-                      </div>
-                      <div className="com_by">Z32kerber</div>
-                      <div className="com_date">
-                        <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                        7:31 PM
-                      </div>
-                    </div>
-                    <div className="commentBody">
-                      <p>
-                        Amazing car but the drive video was a disappointment.
-                      </p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-up"></i> 349
-                      </a>
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-down"></i> 20
-                      </a>
-                    </div>
-                  </div>
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                        <img src={men_face2} />
-                      </div>
-                      <div className="com_by">Wolfenhaus</div>
-                      <div className="com_date">
-                        <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                        7:31 PM
-                      </div>
-                    </div>
-                    <div className="commentBody">
-                      <p>
-                        Fastest around the track bragging rights means
-                        something…and it’s name is Senna.
-                      </p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-up"></i> 349
-                      </a>
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-down"></i> 20
-                      </a>
-                    </div>
-                  </div>
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                        <img src={men_face3} />
-                      </div>
-                      <div className="com_by">NobleMotorGroup</div>
-                      <div className="com_date">
-                        <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                        7:31 PM
-                      </div>
-                    </div>
-                    <div className="commentBody">
-                      <p>
-                        I’ve sold this car a couple times. It’s an amazing,
-                        beautiful spec. Whoever ends up with it will be
-                        immensely happy. Good luck bidders!
-                      </p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-up"></i> 349
-                      </a>
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-down"></i> 20
-                      </a>
-                    </div>
-                  </div>
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                        <img src={men_face4} />
-                      </div>
-                      <div className="com_by">DaveBrewer</div>
-                      <div className="com_date">
-                        <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                        7:31 PM
-                      </div>
-                    </div>
-                    <div className="commentBody">
-                      <p>
-                        Dang, and to think I was scared to list my Mustang “No
-                        Reserve”…
-                      </p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-up"></i> 349
-                      </a>
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-down"></i> 20
-                      </a>
-                    </div>
-                  </div>
 
+
+{
+  comments.map(data=>(<div className="commentRow">
+  <div className="commentHead">
+    <div className="com_byPic">
+      <img src={men_face} alt="" />
+    </div>
+    <div className="com_by">Z32kerber</div>
+    <div className="com_date">
+      <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
+      7:31 PM
+    </div>
+  </div>
+  <div className="commentBody">
+    <p>
+      {data.description}
+    </p>
+  </div>
+  <div className="commentFooter">
+    <a href="#" className="mr-3" >
+      <i className="fa-solid fa-thumbs-up"></i> 349
+    </a>
+    <a href="#" className="mr-3">
+      <i className="fa-solid fa-thumbs-down"></i> 20
+    </a>
+  </div>
+</div>))
+}
+
+                  
+                  
                   <div className="pt-4">
                     <button type="button" className="gry_btn">
                       Read More
@@ -485,7 +448,7 @@ function Detail() {
             </div>
             <div className="col-12 col-lg-3">
               <div className="card_Gray mt-4 mb-3">
-                <h6>Shibnobi Essentials</h6>
+                <h6>Gas Guzzlrs Essentials</h6>
                 <ul className="label__List">
                   <li>
                     <label className="label__">Seller:</label>
@@ -540,7 +503,7 @@ function Detail() {
               </div>
 
               <div className="card_Gray mb-3">
-                <h6>GET THE Shibnobi DAILY EMAIL</h6>
+                <h6>GET THE Gas Guzzlrs DAILY EMAIL</h6>
                 <p>Your daily digest of everything happening on the site.</p>
                 <div className="inlineField">
                   <input
@@ -557,7 +520,7 @@ function Detail() {
 
               <div className="pt-3 pb-3 sidebarPostRow">
                 <div className="sidebarPostHead">
-                  <h6>Recent Shibnobi Features</h6>
+                  <h6>Recent Gas Guzzlrs Features</h6>
                 </div>
 
                 <div className="sidebarPost">
@@ -566,7 +529,7 @@ function Detail() {
                       <img src={car_01} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Shibnobi Alumni Gathering at The Shop in
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
                       Dallas
                     </div>
                   </a>
@@ -577,7 +540,7 @@ function Detail() {
                       <img src={car_02} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Shibnobi Alumni Gathering at The Shop in
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
                       Dallas
                     </div>
                   </a>
@@ -588,7 +551,7 @@ function Detail() {
                       <img src={car_03} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Shibnobi Alumni Gathering at The Shop in
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
                       Dallas
                     </div>
                   </a>
@@ -599,7 +562,7 @@ function Detail() {
                       <img src={car_04} />
                     </div>
                     <div className="sidebarPost_text">
-                      Event Coverage: Shibnobi Alumni Gathering at The Shop in
+                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
                       Dallas
                     </div>
                   </a>
@@ -617,7 +580,7 @@ function Detail() {
                 <ul className="sidebar_Event">
                   <li>
                     <a href="#">
-                      Shibnobi Alumni Gathering: October 1 in conjunction with
+                      Gas Guzzlrs Alumni Gathering: October 1 in conjunction with
                       the Audrain Newport Concours & Motor Week – REGISTRATION
                       IS OPEN{" "}
                     </a>

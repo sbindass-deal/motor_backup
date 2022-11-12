@@ -95,7 +95,7 @@ function Features() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-center pb_30">
-                        <h2 className="title_combo title_Center">Shibnobi Features</h2>
+                        <h2 className="title_combo title_Center">Gas Guzzlrs Features</h2>
                     </div>
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
@@ -353,7 +353,7 @@ function Features() {
                                     <img src={car_03} alt="car_03"/>
                                     </div>
                                     <div className="card_postInfo">
-                                        <h5><a href="#">New Inventory in the Shibnobi Gear Store!</a></h5>
+                                        <h5><a href="#">New Inventory in the Gas Guzzlrs Gear Store!</a></h5>
                                         <ul className="priceDateList">
                                             <li className="Date__"><i className="fa-solid fa-clock"></i> 2 days</li>
                                         </ul>

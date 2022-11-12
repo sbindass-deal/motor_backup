@@ -18,16 +18,16 @@ function Footer() {
                         <ul className="fLinks fLinks_row">
                             {/* <li><a href="#">Auctions</a></li> */}
                             <li><a href="shipping">Shipping</a></li>
-                            <li><a href="feautres">Shibnobi Features</a></li>
+                            <li><a href="feautres">Gas Guzzlrs Features</a></li>
                             <li><a href="submit">Submit a Vehicle</a></li>
                             {/* <li><a href="makeamodel">Makes and Models</a></li> */}
                             {/* <li><a href="#">Event Calendar</a></li> */}
-                            {/* <li><a href="works">How Shibnobi Works</a></li> */}
+                            {/* <li><a href="works">How Gas Guzzlrs Works</a></li> */}
                             {/* <li><a href="showroom">Show Room</a></li> */}
                             <li><a href="carraffle">Car Raffle</a></li>
                             {/* <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</a></li> */}
                             <li><a href="getalerts">Get Alerts</a></li>
-                            <li><a href="aboutshibnobi">About Shibnobi</a></li>
+                            <li><a href="aboutGas Guzzlrs">About Gas Guzzlrs</a></li>
                         </ul>
                     </div>
                     <div className="col-12 col-md-3 col-lg-2 pb-3">
@@ -50,7 +50,7 @@ function Footer() {
                             <a href="amlpolicy">AML Policy</a>
                         </div>
                         <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                            <p>©2022 SHIBNOBI Motors  |  All Rights Reserved.</p>
+                            <p>©2022 Gas Guzzlrs Motors  |  All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

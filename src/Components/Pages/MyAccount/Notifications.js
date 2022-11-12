@@ -15,13 +15,14 @@ function Notifications() {
                         </div>
                     </div>
                     <div className="col-12 col-md-8 col-lg-9">
-                        <h3>Shibnobi Updates</h3>
+                        
+                        <h3>Gas Guzzlrs Updates</h3>
                         <hr/>
                         <ul className="rowList_ mb-4">
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi News and Updates</h6>
-                                    <p>We'll email you about site updates, pro tips and all things Shibnobi. We promise not to spam you.</p>
+                                    <h6>Gas Guzzlrs News and Updates</h6>
+                                    <p>We'll email you about site updates, pro tips and all things Gas Guzzlrs. We promise not to spam you.</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="tg-item">
@@ -32,8 +33,8 @@ function Notifications() {
                             </li>
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi Event Updates</h6>
-                                    <p>We'll email you about upcoming Shibnobi events.</p>
+                                    <h6>Gas Guzzlrs Event Updates</h6>
+                                    <p>We'll email you about upcoming Gas Guzzlrs events.</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="tg-item">
@@ -44,7 +45,7 @@ function Notifications() {
                             </li>
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi Daily Mail</h6>
+                                    <h6>Gas Guzzlrs Daily Mail</h6>
                                     <p>We'll email you at 5am PST every day with the latest listings, posts and calendar events.</p>
                                 </div>
                                 <div className="ml-auto">
@@ -56,7 +57,7 @@ function Notifications() {
                             </li>
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi Results Digest</h6>
+                                    <h6>Gas Guzzlrs Results Digest</h6>
                                     <p>We'll email you at 5am PT every day with the previous day's auction results.</p>
                                 </div>
                                 <div className="ml-auto">
@@ -68,8 +69,8 @@ function Notifications() {
                             </li>
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi Market Updates</h6>
-                                    <p>We'll occasionally email you data and reports featuring interesting Shibnobi auction results.</p>
+                                    <h6>Gas Guzzlrs Market Updates</h6>
+                                    <p>We'll occasionally email you data and reports featuring interesting Gas Guzzlrs auction results.</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="tg-item">
@@ -123,8 +124,8 @@ function Notifications() {
                             </li>
                             <li>
                                 <div className="pr-3">
-                                    <h6>Shibnobi History Updates</h6>
-                                    <p>We'll email you when the vehicle is listed again on Shibnobi.</p>
+                                    <h6>Gas Guzzlrs History Updates</h6>
+                                    <p>We'll email you when the vehicle is listed again on Gas Guzzlrs.</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="tg-item">
@@ -136,7 +137,7 @@ function Notifications() {
                             <li>
                                 <div className="pr-3">
                                     <h6>Text message notifications</h6>
-                                    <p>We'll occasionally email you data and reports featuring interesting Shibnobi auction results.</p>
+                                    <p>We'll occasionally email you data and reports featuring interesting Gas Guzzlrs auction results.</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="tg-item">
@@ -159,7 +160,7 @@ function Notifications() {
                         <hr/>
 
                         <h5>Partner Page Subscriptions</h5>
-                        <p>We'll email you about Shibnobi Partners you're following. Your subscribed Partner pages are shown below.</p>
+                        <p>We'll email you about Gas Guzzlrs Partners you're following. Your subscribed Partner pages are shown below.</p>
 
                         <hr/>
                         <h5>Seller Subscriptions</h5>

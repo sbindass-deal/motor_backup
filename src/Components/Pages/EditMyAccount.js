@@ -20,7 +20,7 @@ function EditMyAccount() {
                         </div>
                     </div>
                     <div className="col-12 col-md-8 col-lg-9">
-                        <h3>Enter Your Shibnobi User Info</h3>
+                        <h3>Enter Your Gas Guzzlrs User Info</h3>
                         <hr/>
                         <div className="row">
                             <div className="col-12 col-md-6">
