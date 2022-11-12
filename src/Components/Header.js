@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import shibnobiMotors from "../Assets/images/moters-logo.png";
+import shibnobiMotors from "../Assets/images/blogo.svg";
 import ForgotPasswordModal from "./Popups/ForgotPasswordModal";
 import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
@@ -41,7 +41,7 @@ function Header() {
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
                 <a className="navbar-brand" href="/">
-                  <img src={shibnobiMotors} alt="shibnobiMotors" />
+                  <img width= "150" src={shibnobiMotors} alt="shibnobiMotors" />
                 </a>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
@@ -54,11 +54,23 @@ function Header() {
 
                 <div className="collapse navbar-collapse" id="navb">
                   <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                      <a className="nav-link" href="/submit">
-                        Submit a Vehicle
-                      </a>
-                    </li>
+                  {!logingUser.login ? (
+                      <li onClick={handleShow} className="nav-item">
+                        <a
+                          onClick={handleShow}
+                          className="nav-link"
+                          href="javascript:void(0)"
+                        >
+                          Submit a Vehicle
+                        </a>
+                      </li>
+                    ) : (
+                      <li className="nav-item">
+                        <a className="nav-link" href="/submit">
+                          Submit a Vehicle
+                        </a>
+                      </li>
+                    )}
                     <li className="nav-item">
                       {/* <a className="nav-link" to="/auction">
                         Auctions
@@ -81,7 +93,7 @@ function Header() {
                         </div>
                       </div>
                     </li>
-                    {!logingUser.login ? (
+                    {/* {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
                         <a
                           onClick={handleShow}
@@ -97,7 +109,7 @@ function Header() {
                           Submit a Vehicle
                         </a>
                       </li>
-                    )}
+                    )} */}
 
                     <li className="nav-item">
                       <a className="nav-link" href="/works">

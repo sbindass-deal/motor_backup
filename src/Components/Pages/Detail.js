@@ -12,19 +12,22 @@ import car_02 from "../../Assets/images/car_02.jpg";
 import car_03 from "../../Assets/images/car_03.jpg";
 import car_04 from "../../Assets/images/car_04.jpg";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Detail() {
   const { id } = useParams();
   const [vehicle,setVehicle] = React.useState({})
   const [vehicleImage,setVehicleImage] = React.useState([])
+  const logingUser = useSelector((state) => state.login);
   const [comments,setcomments] = React.useState([])
+  const [biding,setBiding] = React.useState([])
   //setInputComment
   const [inputcomment,setInputComment] = React.useState("")
   const addBiding = () => {
     axios
-      .post(process.env.REACT_APP_URL + "biding", {
-        auctionId: 0,
-        user_id: 0,
+      .post(process.env.REACT_APP_URL + "biddings", {
+        auctionId: id,
+        userId: logingUser.user.id,
         auctionAmmount: 0,
         vehicle_id: id,
       })
@@ -50,10 +53,18 @@ function Detail() {
       .then((res) => {  setVehicleImage(res.data.data)});
   };
 
+
+  const getBidingDetails = () => {
+    axios
+      .get(process.env.REACT_APP_URL + "bidding/" + id)
+      .then((res) => {  setBiding(res.data.data)});
+  };
+
   React.useEffect(() => {
     getVehicle();
     getVehicleImages();
     getComments()
+    getBidingDetails()
   }, []);
 
   return (
@@ -71,7 +82,7 @@ function Detail() {
                 <div className="">
                   <ul className="labelList">
                     <li>
-                      <label>Current Bid:</label> <span>$126,888</span>
+                      <label>Current Bid:</label> <span>{vehicle.documentFee}</span>
                     </li>
                     <li>
                       <label>Ends In:</label> <span>5 days</span>
@@ -93,7 +104,8 @@ function Detail() {
                   <button
                     type="button"
                     className="gry_btn active"
-                    onclick="smoothScroll(document.getElementById('placeBid_col'))"
+onClick={()=>addBiding()}
+                    // onclick="smoothScroll(document.getElementById('placeBid_col'))"
                   >
                     Place Bid
                   </button>
@@ -335,7 +347,7 @@ function Detail() {
                     </li>
                     <li>
                       <label>Bids</label>
-                      <div>28</div>
+                      <div>{biding.length}</div>
                     </li>
                     <li>
                       <label>Place Bid</label>
@@ -347,7 +359,9 @@ function Detail() {
                           data-toggle="modal"
                           data-target="#RegisterModal"
                         >
-                          REGISTER TO BID
+                          {
+                            logingUser.user.id ? "BID" : "REGISTER TO BID"
+                          }
                         </a>
                       </div>
                     </li>
