@@ -391,11 +391,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-<<<<<<< HEAD
                     <button type="button" onClick={handleApi}  className="btn">
-=======
-                    <button type="submit" className="btn">
->>>>>>> 82a4efff3690e16e2857fc7db8add83fc3ba6a04
                       Register
                     </button>
                   </div>
