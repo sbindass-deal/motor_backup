@@ -22,8 +22,8 @@ const VechilesRegistraion = () => {
   const [userNameValid, setUserNameValid] = useState(true);
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
-  const [file, setFile] = useState()
-  const [file1, setFile1] = useState()
+  const [file, setFile] = useState();
+  const [file1, setFile1] = useState();
 
   const [errorCont, setErrorCont] = useState(false);
   const [signinAggri, setSigninAggri] = useState();
@@ -71,38 +71,34 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   }, []);
 
-
-
-  const  uploadFileOne =async  (vehicleId) => {   
-    const url = process.env.REACT_APP_URL + 'vehicle-image';
+  const uploadFileOne = async (vehicleId) => {
+    const url = process.env.REACT_APP_URL + "vehicle-image";
     const formData = new FormData();
-    formData.append('image', file);
-    formData.append('vehicleId', vehicleId);
+    formData.append("image", file);
+    formData.append("vehicleId", vehicleId);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     };
-   await  axios.post(url, formData, config).then((response) => {
+    await axios.post(url, formData, config).then((response) => {
       console.log(response.data);
     });
-
-  }
-  const  uploadFileTwo=async(vehicleId)=> {   
-    const url = process.env.REACT_APP_URL + 'vehicle-image';
+  };
+  const uploadFileTwo = async (vehicleId) => {
+    const url = process.env.REACT_APP_URL + "vehicle-image";
     const formData = new FormData();
-    formData.append('image', file1);
-    formData.append('vehicleId', vehicleId);
+    formData.append("image", file1);
+    formData.append("vehicleId", vehicleId);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     };
-   await axios.post(url, formData, config).then((response) => {
+    await axios.post(url, formData, config).then((response) => {
       console.log(response.data);
     });
-
-  }
+  };
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -392,7 +388,7 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, username, password, iname, phone } = information;
     e.preventDefault();
-   
+
     axios
       .post(`${url}vehicles`, {
         name: name,
@@ -406,18 +402,19 @@ const VechilesRegistraion = () => {
         country: vechilelocation,
         state: "",
         city: city,
-        consignment:soldvechiles,
+        consignment: soldvechiles,
         bat: "",
         batDescription: "",
         dealerName: "",
         dealerId: dealer,
         dealerDescription: dealership,
         ownerDetail: "",
-        km: "",
-        kmacc: "",
+        vin,
+        km,
+        kmacc,
         ogEngine: "",
         transmission: "",
-        title: "",
+        title: trucktitled,
         titleStatus: "",
         engineSize: "",
         stepOneImage: "",
@@ -432,10 +429,10 @@ const VechilesRegistraion = () => {
         membership: "",
         documentFee: "",
       })
-      .then((result) => { 
-    uploadFileOne(result.data.id)
-    uploadFileTwo(result.data.id)
-
+      .then((result) => {
+        uploadFileOne(result.data.id);
+        uploadFileTwo(result.data.id);
+        alert("Submit successfully!");
       })
       .catch((error) => {
         console.log(error);
@@ -597,7 +594,7 @@ const VechilesRegistraion = () => {
                             <select
                               value={namefield.make}
                               onChange={handleNameField}
-                              name="vechile"
+                              name="make"
                               className="field"
                               required
                             >
@@ -652,7 +649,7 @@ const VechilesRegistraion = () => {
                             <select
                               value={namefield.model}
                               onChange={handleNameField}
-                              name="vechilemodel"
+                              name="model"
                               className="field"
                               required
                             >
@@ -963,7 +960,7 @@ const VechilesRegistraion = () => {
                               value={namefield.city}
                               onChange={handleNameField}
                               type="text"
-                              name="citylocation"
+                              name="city"
                               placeholder="Enter"
                               className="field"
                               required
@@ -997,7 +994,7 @@ const VechilesRegistraion = () => {
                             <textarea
                               value={namefield.link}
                               onChange={handleNameField}
-                              name="includelinks"
+                              name="link"
                               className="field"
                               required
                             ></textarea>
@@ -1152,9 +1149,9 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                 }}
                                 value={namefield.file}
-                                onChange={(e)=>{
-                                  handleNameField(e)
-                                  setFile(e.target.files[0])
+                                onChange={(e) => {
+                                  handleNameField(e);
+                                  setFile(e.target.files[0]);
                                 }}
                                 name="file"
                                 type="file"
@@ -1415,7 +1412,7 @@ const VechilesRegistraion = () => {
                             <select
                               value={basicfact.km}
                               onChange={basicFactOnChange}
-                              name="currentodometer"
+                              name="km"
                               className="field"
                               required
                             >
@@ -1530,9 +1527,9 @@ const VechilesRegistraion = () => {
                                 }}
                                 value={basicfact.files}
                                 // onChange={basicFactOnChange}
-                                onChange={(e)=>{
-                                  basicFactOnChange(e)
-                                  setFile1(e.target.files[0])
+                                onChange={(e) => {
+                                  basicFactOnChange(e);
+                                  setFile1(e.target.files[0]);
                                 }}
                                 name="files"
                                 type="file"
