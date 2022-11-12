@@ -18,8 +18,6 @@ function Auctionlive() {
     });
   }, []);
 
-  
-
   // const handleSearchFilter=(e)=>{
   //     setSearchValue(22,e.target.value)
   // }
@@ -49,7 +47,7 @@ function Auctionlive() {
                     value={searchValue}
                     onChange={(e) => {
                       setSearchValue(e.target.value);
-                       
+
                       setauctions(
                         filteredUsers
                           .filter((data) => data.name.includes(e.target.value))
@@ -150,13 +148,13 @@ function Auctionlive() {
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
-                          {logingUser ? (
+                          {!logingUser ? (
                             <button type="button" className="btn">
-                              <a href={`detail/${curElem.id}`}>Bid Now</a>
+                              Register for bid
                             </button>
                           ) : (
                             <button type="button" className="btn">
-                              Register Now
+                              <a href={`detail/${curElem.id}`}>Bid Now</a>
                             </button>
                           )}
                         </ul>

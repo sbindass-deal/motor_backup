@@ -24,8 +24,8 @@ const VechilesRegistraion = () => {
   const [userNameValid, setUserNameValid] = useState(true);
   const [userPassWordValid, setUserPassWordValid] = useState(true);
   const [userPhone, setUserPhone] = useState(true);
-  const [file, setFile] = useState()
-  const [files, setFiles] = useState()
+  const [file, setFile] = useState();
+  const [files, setFiles] = useState();
 
   const [errorCont, setErrorCont] = useState(false);
   const [signinAggri, setSigninAggri] = useState();
@@ -37,7 +37,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
-   
+
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -46,7 +46,7 @@ const VechilesRegistraion = () => {
       setAccessories(accessories.filter((e) => e !== value));
     }
   };
-   
+
   const handleDetailsInfoOnChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -59,7 +59,7 @@ const VechilesRegistraion = () => {
     const { checked } = e.target;
     setSigninAggri(checked);
   };
-   
+
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
@@ -70,43 +70,32 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   }, []);
 
-
-
-  function uploadFileOne() {   
-    const url = process.env.REACT_APP_URL + 'vehicle-image';
+  function uploadFileOne() {
+    const url = process.env.REACT_APP_URL + "vehicle-image";
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('vehicleId', 1);
+    formData.append("file", file);
+    formData.append("vehicleId", 1);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data',
+        "content-type": "multipart/form-data",
       },
     };
-    axios.post(url, formData, config).then((response) => {
-       
-    });
-
+    axios.post(url, formData, config).then((response) => {});
   }
 
-
-  function uploadFileTwo() {   
-    const url = process.env.REACT_APP_URL + 'vehicle-image-detail';
+  function uploadFileTwo() {
+    const url = process.env.REACT_APP_URL + "vehicle-image-detail";
     const formData = new FormData();
-    formData.append('files', files);
-    formData.append('vehicleId', 1);
+    formData.append("files", files);
+    formData.append("vehicleId", 1);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data',
+        "content-type": "multipart/form-data",
       },
     };
-    axios.post(url, formData, config).then((response) => {
-       
-    });
-
+    axios.post(url, formData, config).then((response) => {});
   }
 
-
-  
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -125,7 +114,6 @@ const VechilesRegistraion = () => {
     soldvechiles: "",
     videolink: "",
     file: "",
-  
   });
 
   // basic facts
@@ -219,7 +207,6 @@ const VechilesRegistraion = () => {
       videolink.trim().length !== 0
     ) {
       setNameFieldValid(true);
-      
     } else {
       setNameFieldValid(false);
     }
@@ -329,7 +316,7 @@ const VechilesRegistraion = () => {
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
     alert("Form filled successfully");
-     
+
     // dispatch(detailssave(detailstab))
   };
   const informationOnChange = (e) => {
@@ -340,6 +327,7 @@ const VechilesRegistraion = () => {
   //  const informationSubmitHandler = () => {
   // dispatch(contactinfosave({...namefield,...basicfact,...detailstab,...information, id:Math.random()}))
   //  }
+
   const informationSubmitHandler = (e) => {
     const {
       name,
@@ -358,7 +346,6 @@ const VechilesRegistraion = () => {
       dealership,
       soldvechiles,
       videolink,
-      file,
     } = namefield;
     const {
       vin,
@@ -408,16 +395,47 @@ const VechilesRegistraion = () => {
     // );
     axios
       .post(`${url}vehicles`, {
-        ...namefield,
-        ...basicfact,
-        ...detailstab,
-        ...information, 
+        name: name,
+        email: email,
+        userId: 123, //redux user id lena h.
+        year: year,
+        make: vechile,
+        description: videolink,
+        model: vechilemodel,
+        owned: sale,
+        country: vechilelocation,
+        state: "",
+        city: citylocation,
+        consignment:soldvechiles,
+        bat: "",
+        batDescription: "",
+        dealerName: "",
+        dealerId: dealer,
+        dealerDescription: dealership,
+        ownerDetail: "",
+        km: "",
+        kmacc: "",
+        ogEngine: "",
+        transmission: "",
+        title: "",
+        titleStatus: "",
+        engineSize: "",
+        stepOneImage: "",
+        stepTwoImage: "",
+        ste: "",
+        link: includelinks,
+        accessories: "",
+        moreDescription: "",
+        reserve: "",
+        hereFrom: "",
+        ammountOnDocument: "",
+        membership: "",
+        documentFee: "",
       })
-      .then((result) => { 
-    uploadFileOne(id)
-    uploadFileTwo(id)
-    
-
+      .then((result) => {
+        uploadFileOne(id);
+        uploadFileTwo(id);
+        alert("Submit successfully");
       })
       .catch((error) => {
         console.log(error);
