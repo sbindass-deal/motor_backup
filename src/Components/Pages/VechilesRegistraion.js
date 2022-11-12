@@ -290,18 +290,18 @@ const VechilesRegistraion = () => {
       detailvin.trim().length !== 0 &&
       bodywork.trim().length &&
       rustpresent.trim().length !== 0 &&
-      modificationstock.trim().length !== 0 &&
+      // modificationstock.trim().length !== 0 &&
       // truckfromnew.trim().length !== 0 &&
       // servicesperformed.trim().length &&
       // issuesorproblems.trim().length !== 0 &&
       // moreDescription.trim().length !== 0 &&
       // reserve.trim().length !== 0 &&
-      shibnobiabout.trim().length &&
+      // shibnobiabout.trim().length &&
       ammountOnDocument.trim().length !== 0 &&
-      rtmember.trim().length !== 0 &&
-      shibnobi.trim().length !== 0 &&
-      documentFee.trim().length &&
-      memberShip.trim().length !== 0
+      // rtmember.trim().length !== 0 &&
+      // shibnobi.trim().length !== 0 &&
+      documentFee.trim().length
+      // memberShip.trim().length !== 0
       // accept.trim().length !== 0 &&
       // understand.trim().length !== 0
     ) {
@@ -318,8 +318,6 @@ const VechilesRegistraion = () => {
   }
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
-    alert("Form filled successfully");
-
     console.log(detailstab);
     // dispatch(detailssave(detailstab))
   };
@@ -400,18 +398,20 @@ const VechilesRegistraion = () => {
         model: model,
         owned: sale,
         country: vechilelocation,
-        state: "",
+        // state: "",
         city: city,
         consignment: soldvechiles,
-        bat: "",
-        batDescription: "",
+        // bat: "",
+        // batDescription: "",
         dealerName: "",
         dealerId: dealer,
         dealerDescription: dealership,
         ownerDetail: "",
         vin,
         km,
-        kmacc,
+        kmacc: status,
+        odmeter: odometer,
+        accurateField,
         ogEngine: "",
         transmission: "",
         title: trucktitled,
@@ -422,16 +422,34 @@ const VechilesRegistraion = () => {
         ste: "",
         link: link,
         accessories: "",
-        moreDescription: "",
-        reserve: "",
+        moreDescription: ammountOnDocument,
+        reserve,
         hereFrom: "",
         ammountOnDocument: "",
-        membership: "",
-        documentFee: "",
+        membership: memberShip,
+        documentFee,
+        Interstellar,
+        interior,
+        brandandmodel,
+        sizetires,
+        detailvin,
+        bodywork,
+        rustpresent,
+        modificationstock,
+        // truckfromnew, // nahi ja raha
+        // servicesperformed, // nahi ja rah
+        issuesorproblems,
       })
       .then((result) => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
+        setInformation({
+          uemail: "",
+          username: "",
+          password: "",
+          iname: "",
+          phone: "",
+        });
         alert("Submit successfully!");
       })
       .catch((error) => {
@@ -1199,8 +1217,6 @@ const VechilesRegistraion = () => {
                           >
                             NEXT
                           </a> */}
-                          {/* </button> */}
-                          {/* </button> */}
                         </div>
                       </div>
                     </form>
@@ -1363,9 +1379,9 @@ const VechilesRegistraion = () => {
                               <div className="form-group form-check">
                                 <label className="form-check-label">
                                   <input
-                                    value={basicfact.sizetires}
+                                    value={basicfact.trucktitled}
                                     onChange={basicFactOnChange}
-                                    name="sizetires"
+                                    name="trucktitled"
                                     className="form-check-input"
                                     type="checkbox"
                                   />{" "}
@@ -1377,9 +1393,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group form-check">
                                 <label className="form-check-label">
                                   <input
-                                    value={basicfact.trucktitled}
-                                    onChange={basicFactOnChange}
-                                    name="trucktitled"
+                                    name="other"
                                     className="form-check-input"
                                     type="checkbox"
                                   />{" "}
@@ -1396,10 +1410,10 @@ const VechilesRegistraion = () => {
                               be found on the tire sidewall.
                             </label>
                             <input
-                              value={basicfact.trucktitled}
+                              value={basicfact.sizetires}
                               onChange={basicFactOnChange}
                               type="text"
-                              name="trucktitled"
+                              name="sizetires"
                               placeholder="Ex. 305/70R18"
                               className="field"
                               required
@@ -1790,7 +1804,7 @@ const VechilesRegistraion = () => {
                             <textarea
                               value={detailstab.moreDescription}
                               onChange={detailsOnChange}
-                              name="anythingelse"
+                              name="moreDescription"
                               className="field"
                               placeholder="Ex. June 2017: clutch replaced, May 2018: tires replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
@@ -1917,7 +1931,7 @@ const VechilesRegistraion = () => {
                             <textarea
                               value={detailstab.ammountOnDocument}
                               onChange={detailsOnChange}
-                              name="amountdocument"
+                              name="ammountOnDocument"
                               className="field"
                             ></textarea>
                           </div>
@@ -1926,9 +1940,9 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>Do you want a reserve?</label>
                             <select
-                              value={detailstab.rtmember}
+                              value={detailstab.reserve}
                               onChange={detailsOnChange}
-                              name="rtmember"
+                              name="reserve"
                               className="field"
                               required
                             >
