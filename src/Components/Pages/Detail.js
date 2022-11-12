@@ -13,6 +13,7 @@ import car_03 from "../../Assets/images/car_03.jpg";
 import car_04 from "../../Assets/images/car_04.jpg";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import moment from "moment/moment";
 
 function Detail() {
   const { id } = useParams();
@@ -36,7 +37,7 @@ function Detail() {
   const getComments = () => {
     axios
       .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
-      .then((res) => setcomments(res.data.data));
+      .then((res) => setcomments(res.data.data.reverse()));
   };
   const getVehicle = () => {
     axios
@@ -347,7 +348,7 @@ onClick={()=>addBiding()}
                     </li>
                     <li>
                       <label>Bids</label>
-                      <div>{biding.length}</div>
+                      <div>{biding ? biding.length : 0}</div>
                     </li>
                     <li>
                       <label>Place Bid</label>
@@ -404,7 +405,7 @@ setInputComment(e.target.value)
                       onClick={()=>{
                         axios.post(process.env.REACT_APP_URL + "comments",{
                           vehicleId: id,
-                          userId : 0,
+                          userId : logingUser.user.id,
                           bidId:0,
                           description : inputcomment
 
@@ -430,10 +431,9 @@ setInputComment(e.target.value)
     <div className="com_byPic">
       <img src={men_face} alt="" />
     </div>
-    <div className="com_by">Z32kerber</div>
+    <div className="com_by">{data.name}</div>
     <div className="com_date">
-      <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-      7:31 PM
+      <i className="fa-solid fa-clock mr-1"></i> {moment(data.created_at).format('LLL')}
     </div>
   </div>
   <div className="commentBody">

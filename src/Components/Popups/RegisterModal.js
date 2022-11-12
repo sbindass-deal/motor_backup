@@ -78,17 +78,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
     
 
     axios
-      .post(`${url}/users`, {
-        email: email,
-        name: username,
+      .post(`${url}users`, {
+        email: email, 
         username: username,
         password: password,
         cpassword: cpassword,
-        name1: name,
+        name: name,
         phone: phone,
-        address1: address,
+        address: address,
         zip: zip,
-        country1: country,
+        country: country,
         creditcard: creditcard,
         month1: month,
         year1: year,
@@ -190,7 +189,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       data-toggle="collapse"
                       data-target="#wantBid"
                     >
-                      <input className="form-check-input" type="checkbox"  required/> I
+                      <input className="form-check-input" type="checkbox"  /> I
                       want the ability to bid on auctions (optional)
                     </label>
                     <div id="wantBid" className="collapse pt-3">
@@ -391,7 +390,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="submit"  className="btn">
+                    <button type="button" onClick={handleApi}  className="btn">
                       Register
                     </button>
                   </div>

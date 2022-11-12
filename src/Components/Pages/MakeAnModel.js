@@ -10,10 +10,12 @@ import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import axios from "axios";
+import { Navigate, useNavigation } from "react-router-dom";
 
 function MakeAnModel() {
   const [data, setData] = React.useState([]);
   const [make, setMake] = React.useState([]);
+  const navigate = useNavigation()
   const slide = useRef(null);
   const slide1 = useRef(null);
   const slide2 = useRef(null);
@@ -54,6 +56,45 @@ function MakeAnModel() {
     );
   }
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    // autoplay: true,
+    // speed: 10000,
+    // pauseOnHover: true,
+    // cssEase: "linear"
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       <section className="pt_80 pt_sm_50">
@@ -198,87 +239,188 @@ function MakeAnModel() {
         </div>
       </section>
 
-      {make.map((row,index) => {
-        const models = data
-          .filter((filter) => filter.make === row.make)
-          .map((data) => data);
-        console.log(models.length);
+      {make.length > 0 ? (
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 pb-3">
+                <h3 className="title_combo">{make[0].make}</h3>
+              </div>
 
-        const settings = {
-          dots: true,
-          infinite: true,
-          slidesToShow: models.length > 4 ? 4 : models.length,
-          slidesToScroll: 1,
-          arrows: false,
-          nextArrow: <SampleNextArrow />,
-          prevArrow: <SamplePrevArrow />,
-          // autoplay: true,
-          // speed: 10000,
-          // pauseOnHover: true,
-          // cssEase: "linear",
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: true,
-              },
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2,
-              },
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-          ],
-        };
-        return (
-          <section className="pt_40">
-            <div className="container">
-              <div className="row">
-                <div className="col-12 pb-3">
-                  <h3 className="title_combo">{row.make}</h3>
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: "8%",
-                    cursor: "pointer",
-                  }}
+              <div
+                style={{ position: "absolute", right: "8%", cursor: "pointer" }}
+              >
+                <span onClick={() => slide.current.slickPrev()}>
+                  <span>
+                    <WestIcon />
+                  </span>
+                  <span>Prev</span>
+                </span>
+                <span
+                  onClick={() => slide.current.slickNext()}
+                  style={{ marginLeft: 50 }}
                 >
-                  <span onClick={() => slide3.current.slickPrev()}>
-                    <span>
-                      <WestIcon />
-                    </span>
-                    <span>Prev</span>
+                  <span>Next</span>
+                  <span style={{ height: "100px" }}>
+                    <EastIcon />
                   </span>
-                  <span
-                    onClick={() => slide3.current.slickNext()}
-                    style={{ marginLeft: 50 }}
-                  >
-                    <span>Next</span>
-                    <span style={{ height: "100px" }}>
-                      <EastIcon />
-                    </span>
-                  </span>
-                </div>
+                </span>
+              </div>
 
-                <div className="col-12" style={{ height: "290px" }}>
-                  <div className="makes_Slide arrowTop_Slide">
-                    
-                    <Slider ref={index === 0 ? slide1 : index === 1 ? slide2 : slide3} {...settings}>
-                      {models.map((rows) => (
+              <div className="col-12 " style={{ height: "290px" }}>
+                <div className="makes_Slide arrowTop_Slide ">
+                  <Slider ref={slide} {...settings}>
+                  {data
+                      .filter((filter) => filter.make === make[0].make)
+                      .map((data) => (
+                        <div>
+                          <div className="card_post">
+                            <div className="card_postImg">
+                              <a href="detail">
+                                <button
+                                  type="button"
+                                  className="watchedIc"
+                                  onClick={()=>navigate("/details/"+ data.isd)}
+
+
+                                >
+                                  <span
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="Notify me when one is listed"
+                                  >
+                                    <i className="fa-solid fa-bell"></i>
+                                  </span>
+                                </button>
+                                <img src={process.env.REACT_APP_URL + data.stepOneImage} alt="car_01" />
+                              </a>
+                            </div>
+                            <div className="card_postInfo">
+                              <h6>
+                                <a href="#">
+                                  {data.model}
+                                </a>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                  </Slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {make.length > 1 ? (
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 pb-3">
+                <h3 className="title_combo">{make[1].make}</h3>
+              </div>
+
+              <div
+                style={{ position: "absolute", right: "8%", cursor: "pointer" }}
+              >
+                <span onClick={() => slide1.current.slickPrev()}>
+                  <span>
+                    <WestIcon />
+                  </span>
+                  <span>Prev</span>
+                </span>
+                <span
+                  onClick={() => slide1.current.slickNext()}
+                  style={{ marginLeft: 50 }}
+                >
+                  <span>Next</span>
+                  <span style={{ height: "100px" }}>
+                    <EastIcon />
+                  </span>
+                </span>
+              </div>
+
+              <div className="col-12" style={{ height: "290px" }}>
+                <div className="makes_Slide arrowTop_Slide">
+                  <Slider ref={slide1} {...settings}>
+                  {data
+                      .filter((filter) => filter.make === make[1].make)
+                      .map((data) => (
+                        <div>
+                          <div className="card_post">
+                            <div className="card_postImg">
+                              <a href="detail">
+                                <button
+                                  type="button"
+                                  className="watchedIc"
+                                  data-toggle="modal"
+                                  data-target="#loginModal"
+                                >
+                                  <span
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="Notify me when one is listed"
+                                  >
+                                    <i className="fa-solid fa-bell"></i>
+                                  </span>
+                                </button>
+                                <img src={process.env.REACT_APP_URL + data.stepOneImage} alt="car_01" />
+                              </a>
+                            </div>
+                            <div className="card_postInfo">
+                              <h6>
+                                <a href="#">
+                                  {data.model}
+                                </a>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                   
+                  </Slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {make.length > 2 ? (
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 pb-3">
+                <h3 className="title_combo">{make[2].make}</h3>
+              </div>
+              <div
+                style={{ position: "absolute", right: "8%", cursor: "pointer" }}
+              >
+                <span onClick={() => slide2.current.slickPrev()}>
+                  <span>
+                    <WestIcon />
+                  </span>
+                  <span>Prev</span>
+                </span>
+                <span
+                  onClick={() => slide2.current.slickNext()}
+                  style={{ marginLeft: 50 }}
+                >
+                  <span>Next</span>
+                  <span style={{ height: "100px" }}>
+                    <EastIcon />
+                  </span>
+                </span>
+              </div>
+
+              <div className="col-12" style={{ height: "290px" }}>
+                <div className="makes_Slide arrowTop_Slide">
+                  <Slider ref={slide2} {...settings}>
+                  {data
+                      .filter((filter) => filter.make === make[2].make)
+                      .map((data) => (
                         <div>
                           <div className="card_post">
                             <div className="card_postImg">
@@ -302,20 +444,96 @@ function MakeAnModel() {
                             </div>
                             <div className="card_postInfo">
                               <h6>
-                                <a href="#">Bentley 3.5 Litre & 4 1/4 Litre</a>
+                                <a href="#">
+                                  sdafasdfasd 3.5 Litre & 4 1/4 Litre
+                                </a>
                               </h6>
                             </div>
                           </div>
                         </div>
                       ))}
-                    </Slider>
-                  </div>
+                    
+                  </Slider>
                 </div>
               </div>
             </div>
-          </section>
-        );
-      })}
+          </div>
+        </section>
+      ) : null}
+
+      {make.length > 3 ? (
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 pb-3">
+                <h3 className="title_combo">{make[3].make}</h3>
+              </div>
+              <div
+                style={{ position: "absolute", right: "8%", cursor: "pointer" }}
+              >
+                <span onClick={() => slide3.current.slickPrev()}>
+                  <span>
+                    <WestIcon />
+                  </span>
+                  <span>Prev</span>
+                </span>
+                <span
+                  onClick={() => slide3.current.slickNext()}
+                  style={{ marginLeft: 50 }}
+                >
+                  <span>Next</span>
+                  <span style={{ height: "100px" }}>
+                    <EastIcon />
+                  </span>
+                </span>
+              </div>
+
+              <div className="col-12" style={{ height: "290px" }}>
+                <div className="makes_Slide arrowTop_Slide">
+                  <Slider ref={slide3} {...settings}>
+                    {data
+                      .filter((filter) => filter.make === make[3].make)
+                      .map((data) => (
+                        <div>
+                          <div className="card_post">
+                            <div className="card_postImg">
+                              <a href="detail">
+                                <button
+                                  type="button"
+                                  className="watchedIc"
+                                  data-toggle="modal"
+                                  data-target="#loginModal"
+                                >
+                                  <span
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="Notify me when one is listed"
+                                  >
+                                    <i className="fa-solid fa-bell"></i>
+                                  </span>
+                                </button>
+                                <img src={car_01} alt="car_01" />
+                              </a>
+                            </div>
+                            <div className="card_postInfo">
+                              <h6>
+                                <a href="#">
+                                  sdafasdfasd 3.5 Litre & 4 1/4 Litre
+                                </a>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                     
+                  </Slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
     </>
   );
 }
