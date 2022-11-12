@@ -29,7 +29,10 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
       })
       .then((result) => {
         if (result.data.message === "Login Successful") {
-          dispatch(auth(result.data.user));
+          if(result.data.user)
+          {
+            dispatch(auth(result.data.user));
+          }
           handleClose();
         } else {
           alert("fail");
