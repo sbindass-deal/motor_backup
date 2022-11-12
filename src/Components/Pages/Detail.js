@@ -397,6 +397,8 @@ setInputComment(e.target.value)
                         })
                         .then(()=>{
 
+                          window.location.reload(false);
+
                         })
                       }}
                       className="gry_btn">

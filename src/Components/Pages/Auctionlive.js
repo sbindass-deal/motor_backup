@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import icGrid from "../../Assets/images/icGrid.svg";
 import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { regBtn } from "../../redux/reducers/login";
 function Auctionlive() {
@@ -17,6 +18,16 @@ function Auctionlive() {
       setFilteredUsers(response.data.data);
     });
   }, []);
+
+
+  const getEndDate=(cal)=>{
+    let data = cal.split("T");
+    console.log(data[0])
+    let endDate = moment().format("YYYY-MM-DD");
+    let startDate = moment(data[0]).add(5,"days").format("YYYY-MM-DD");
+  
+    return startDate.toString();//endDate.diff(startDate, 'days');
+  }
 
   
 
@@ -148,7 +159,7 @@ function Auctionlive() {
                             <span>${curElem.documentFee}</span>
                           </li>
                           <li>
-                            <label>Ends In:</label> <span>5 days</span>
+                            <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
                           </li>
                           {logingUser ? (
                             <button type="button" className="btn">
