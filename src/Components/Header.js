@@ -41,7 +41,7 @@ function Header() {
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
                 <a className="navbar-brand" href="/">
-                  <img width= "150" src={shibnobiMotors} alt="shibnobiMotors" />
+                  <img width="150" src={shibnobiMotors} alt="shibnobiMotors" />
                 </a>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
@@ -54,7 +54,7 @@ function Header() {
 
                 <div className="collapse navbar-collapse" id="navb">
                   <ul className="navbar-nav ml-auto">
-                  {!logingUser.login ? (
+                    {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
                         <a
                           onClick={handleShow}

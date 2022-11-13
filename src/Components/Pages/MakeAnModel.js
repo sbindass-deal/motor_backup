@@ -15,7 +15,7 @@ import { Navigate, useNavigation } from "react-router-dom";
 function MakeAnModel() {
   const [data, setData] = React.useState([]);
   const [make, setMake] = React.useState([]);
-  const navigate = useNavigation()
+  const navigate = useNavigation();
   const slide = useRef(null);
   const slide1 = useRef(null);
   const slide2 = useRef(null);
@@ -270,7 +270,7 @@ function MakeAnModel() {
               <div className="col-12 " style={{ height: "290px" }}>
                 <div className="makes_Slide arrowTop_Slide ">
                   <Slider ref={slide} {...settings}>
-                  {data
+                    {data
                       .filter((filter) => filter.make === make[0].make)
                       .map((data) => (
                         <div>
@@ -280,9 +280,9 @@ function MakeAnModel() {
                                 <button
                                   type="button"
                                   className="watchedIc"
-                                  onClick={()=>navigate("/details/"+ data.isd)}
-
-
+                                  onClick={() =>
+                                    navigate("/details/" + data.isd)
+                                  }
                                 >
                                   <span
                                     data-toggle="tooltip"
@@ -292,14 +292,18 @@ function MakeAnModel() {
                                     <i className="fa-solid fa-bell"></i>
                                   </span>
                                 </button>
-                                <img src={process.env.REACT_APP_URL + data.stepOneImage} alt="car_01" />
+                                <img
+                                  src={
+                                    process.env.REACT_APP_URL +
+                                    data.stepOneImage
+                                  }
+                                  alt="car_01"
+                                />
                               </a>
                             </div>
                             <div className="card_postInfo">
                               <h6>
-                                <a href="#">
-                                  {data.model}
-                                </a>
+                                <a href="#">{data.model}</a>
                               </h6>
                             </div>
                           </div>
@@ -344,7 +348,7 @@ function MakeAnModel() {
               <div className="col-12" style={{ height: "290px" }}>
                 <div className="makes_Slide arrowTop_Slide">
                   <Slider ref={slide1} {...settings}>
-                  {data
+                    {data
                       .filter((filter) => filter.make === make[1].make)
                       .map((data) => (
                         <div>
@@ -365,21 +369,23 @@ function MakeAnModel() {
                                     <i className="fa-solid fa-bell"></i>
                                   </span>
                                 </button>
-                                <img src={process.env.REACT_APP_URL + data.stepOneImage} alt="car_01" />
+                                <img
+                                  src={
+                                    process.env.REACT_APP_URL +
+                                    data.stepOneImage
+                                  }
+                                  alt="car_01"
+                                />
                               </a>
                             </div>
                             <div className="card_postInfo">
                               <h6>
-                                <a href="#">
-                                  {data.model}
-                                </a>
+                                <a href="#">{data.model}</a>
                               </h6>
                             </div>
                           </div>
                         </div>
                       ))}
-
-                   
                   </Slider>
                 </div>
               </div>
@@ -418,7 +424,7 @@ function MakeAnModel() {
               <div className="col-12" style={{ height: "290px" }}>
                 <div className="makes_Slide arrowTop_Slide">
                   <Slider ref={slide2} {...settings}>
-                  {data
+                    {data
                       .filter((filter) => filter.make === make[2].make)
                       .map((data) => (
                         <div>
@@ -452,7 +458,6 @@ function MakeAnModel() {
                           </div>
                         </div>
                       ))}
-                    
                   </Slider>
                 </div>
               </div>
@@ -525,8 +530,6 @@ function MakeAnModel() {
                           </div>
                         </div>
                       ))}
-
-                     
                   </Slider>
                 </div>
               </div>

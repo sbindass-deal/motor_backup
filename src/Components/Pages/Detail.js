@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import mclaren_senna_reshoot from "../../Assets/images/2019_mclaren_senna_reshoot.webp";
 import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_screen-shot-2.webp";
 import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
@@ -27,6 +27,30 @@ function Detail() {
   //setInputComment
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
+  // countdown time start
+  const [days, setDays] = useState();
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] = useState();
+  const [seconds, setSeconds] = useState();
+  const deadline = new Date("nov 15, 2022 15:37:25").getTime();
+  const now = new Date().getTime();
+  const t = deadline - now;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
+      setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
+      setSeconds(Math.floor((t % (1000 * 60)) / 1000));
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [days, hours, minutes, seconds]);
+
+  // countdown time end
+
   const handleBidInput = (e) => {
     setBidValue(e.target.value);
   };
@@ -440,29 +464,29 @@ function Detail() {
                       ></textarea>
                     </div>
                     <div className="form-group">
-                      <button type="button" 
-                      onClick={()=>{
-                        axios.post(process.env.REACT_APP_URL + "comments",{
-                          vehicleId: id,
-                          userId : logingUser.user.id,
-                          bidId:0,
-                          description : inputcomment
-
-                        })
-                        .then(()=>{
-
-                          window.location.reload(false);
-
-                        })
-                      }}
-                      className="gry_btn">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          axios
+                            .post(process.env.REACT_APP_URL + "comments", {
+                              vehicleId: id,
+                              userId: logingUser.user.id,
+                              bidId: 0,
+                              description: inputcomment,
+                            })
+                            .then(() => {
+                              window.location.reload(false);
+                            });
+                        }}
+                        className="gry_btn"
+                      >
                         Submit
                       </button>
                     </div>
                   </form>
                 </div>
                 <div className="col-12 pt-3">
-                  {comments.map((data) => (
+                  {/* {comments.map((data) => (
                     <div className="commentRow">
                       <div className="commentHead">
                         <div className="com_byPic">
@@ -470,8 +494,34 @@ function Detail() {
                         </div>
                         <div className="com_by">Z32kerber</div>
                         <div className="com_date">
-                          <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                          7:31 PM
+                          <i className="fa-solid fa-clock mr-1"></i>
+                          {moment(data.created_at).format("LLL")}
+                        </div>
+                      </div>
+                      <div className="commentBody">
+                        <p>{data.description}</p>
+                      </div>
+                      <div className="commentFooter">
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-up"></i> 349
+                        </a>
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-down"></i> 20
+                        </a>
+                      </div>
+                    </div>
+                  ))} */}
+
+                  {comments.map((data) => (
+                    <div className="commentRow">
+                      <div className="commentHead">
+                        <div className="com_byPic">
+                          <img src={men_face} alt="" />
+                        </div>
+                        <div className="com_by">{data.name}</div>
+                        <div className="com_date">
+                          <i className="fa-solid fa-clock mr-1"></i>{" "}
+                          {moment(data.created_at).format("LLL")}
                         </div>
                       </div>
                       <div className="commentBody">
@@ -488,36 +538,6 @@ function Detail() {
                     </div>
                   ))}
 
-
-{
-  comments.map(data=>(<div className="commentRow">
-  <div className="commentHead">
-    <div className="com_byPic">
-      <img src={men_face} alt="" />
-    </div>
-    <div className="com_by">{data.name}</div>
-    <div className="com_date">
-      <i className="fa-solid fa-clock mr-1"></i> {moment(data.created_at).format('LLL')}
-    </div>
-  </div>
-  <div className="commentBody">
-    <p>
-      {data.description}
-    </p>
-  </div>
-  <div className="commentFooter">
-    <a href="#" className="mr-3" >
-      <i className="fa-solid fa-thumbs-up"></i> 349
-    </a>
-    <a href="#" className="mr-3">
-      <i className="fa-solid fa-thumbs-down"></i> 20
-    </a>
-  </div>
-</div>))
-}
-
-                  
-                  
                   <div className="pt-4">
                     <button type="button" className="gry_btn">
                       Read More
