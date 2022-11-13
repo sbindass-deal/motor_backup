@@ -192,7 +192,7 @@ const VechilesRegistraion = () => {
     setNamefield({ ...namefield, [Name]: Value });
     if (
       name.trim().length !== 0 &&
-      email.trim().length !== 0 &&
+      // email.trim().length !== 0 &&
       year.trim().length !== 0 &&
       make.trim().length !== 0 &&
       model.trim().length !== 0 &&
@@ -621,7 +621,7 @@ const VechilesRegistraion = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What is your email?</label>
                             <input
@@ -634,7 +634,7 @@ const VechilesRegistraion = () => {
                               required
                             />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
