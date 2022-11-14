@@ -13,7 +13,6 @@ function MyBidsWins() {
       setData(response.data.data);
     });
   }, []);
-  
 
   return (
     <div>
@@ -29,11 +28,11 @@ function MyBidsWins() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>My Bids &amp; Wins</h3>
-                <select class="field">
+                <h3>My Listing</h3>
+                {/* <select class="field">
                   <option>Recent Bid</option>
                   <option>Winner Bid</option>
-                </select>
+                </select> */}
               </div>
               <hr />
 
@@ -49,21 +48,22 @@ function MyBidsWins() {
                           <div className="">
                             <h6>{curElem.name}</h6>
                             <ul className="bidsLabelList">
-                              <li>
+                              {/* <li>
                                 <i className="fa-solid fa-dollar-sign"></i>{" "}
                                 {curElem.ammountOnDocument}
-                              </li>
-                              <li>
+                              </li> */}
+                              {/* <li>
                                 <i className="fa-solid fa-calendar-days"></i>{" "}
                                 {curElem.created_at}
-                              </li>
+                              </li> */}
                             </ul>
-                            <p>
-                              {curElem.dealerDescription}
-                            </p>
+                            <p>{curElem.description}</p>
                           </div>
                           <div className="pl-md-3">
-                            <a href={`detail/${curElem.id}`} className="gry_btn">
+                            <a
+                              href={`detail/${curElem.id}`}
+                              className="gry_btn"
+                            >
                               <i className="fa-solid fa-eye mr-2"></i> View
                             </a>
                           </div>
