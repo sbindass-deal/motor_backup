@@ -954,31 +954,47 @@ function Detail() {
             {/* <!-- Modal body --> */}
             <div className="modal-body">
               <form onSubmit={addBiding}>
-                <div className="form-group">
-                  <input
-                    value={bidValue}
-                    onChange={handleBidInput}
-                    type="number"
-                    className="form-control"
-                    placeholder="Please enter bid amount"
-                    required
+                <div className="row">
 
-                  />
+                
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input
+                      value={bidValue}
+                      onChange={handleBidInput}
+                      type="number"
+                      className="form-control"
+                      placeholder="Please enter bid amount"
+                      required
+                    />
+                  </div>
                 </div>
-
-                {/* <div className="form-group">
-                  <input
-                    value={bidValue}
-                    onChange={handleBidInput}
-                    type="number"
-                    className="form-control"
-                    placeholder="Please enter bid amount"
-                    required
-                  />
-                </div> */}
-                <button className="btn" type="submit">
-                  Submit
-                </button>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
+                  </div>
+                </div>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
+                  </div>
+                </div>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
+                  </div>
+                </div>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
+                  </div>
+                </div>
+                <div className="col-12 col-md-6">
+                  <button className="btn" type="submit">
+                    Submit
+                  </button>
+                </div>
+                </div>
               </form>
             </div>
           </div>

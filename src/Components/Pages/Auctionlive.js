@@ -138,7 +138,7 @@ function Auctionlive() {
               .filter((data) => data.done === 1 && data.premium === 1)
               .map((curElem) => {
                 return (
-                  <div key={curElem.id} className="col-12 col-md-6 pb-3">
+                  <div key={curElem.id} className="col-12 col-lg-4 col-md-6 pb-3 auctionLive">
                     <div className="card_post">
                       <div className="card_postImg">
                         <button type="button" className="watchedIc">
@@ -156,22 +156,25 @@ function Auctionlive() {
                         </h4>
                         <p>{curElem.anythingelse}</p>
                         <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label>{" "}
-                            <span>${curElem.documentFee}</span>
-                          </li>
-                          <li>
-                            <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
-                          </li>
-                          {!logingUser ? (
-                            <button type="button" className="btn">
-                              Register for bid
-                            </button>
-                          ) : (
-                            <button type="button" className="btn">
-                              <a href={`detail/${curElem.id}`}>Bid Now</a>
-                            </button>
-                          )}
+                            <li>
+                              <label>Current Bid:</label>{" "}
+                              <span>${curElem.documentFee}</span>
+                            </li>
+                            <li>
+                              <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
+                            </li>
+                            <li className="butn-shop">
+                              {!logingUser ? (
+                                <button type="button" className="btn">
+                                  Register for bid
+                                </button>
+                              ) : (
+                                <button type="button" className="btn">
+                                  <a href={`detail/${curElem.id}`}>Bid Now</a>
+                                </button>
+                              )}
+                            </li>
+                           
                         </ul>
                       </div>
                     </div>

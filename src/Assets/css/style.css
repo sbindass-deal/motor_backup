@@ -1038,3 +1038,18 @@ ul.bidList_.info_ li {
 ul.bidList_.info_ li.fulwdth {
   width: 100%;
 }
+
+.auctionLive .card_postImg {
+  width: 100%;
+  height: fit-content;
+  
+}
+.auctionLive .labelList li {
+  width: 23%;
+}
+.auctionLive .labelList li:last-child {
+  width: 43%;
+}
+.auctionLive li.butn-shop button.btn {
+  padding: 14px 21px;
+}
