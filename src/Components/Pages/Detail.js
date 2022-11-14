@@ -4,6 +4,7 @@ import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_sc
 import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
 import { useParams } from "react-router-dom";
 import men_face from "../../Assets/images/men-face.jpg";
+
 import men_face2 from "../../Assets/images/men-face2.webp";
 import men_face3 from "../../Assets/images/men-face3.jpg";
 import men_face4 from "../../Assets/images/men-face4.jfif";
@@ -59,13 +60,16 @@ function Detail() {
   };
   const handleClose = () => {
     setShow(false);
+    window.location.reload(false);
   };
   const handleShow = () => {
     setShow(true);
   };
   const addBiding = (e) => {
     e.preventDefault();
-    axios
+
+    if(bidValue > vehicle.documentFee){
+      axios
       .post(process.env.REACT_APP_URL + "biddings", {
         auctionId: id,
         userId: logingUser.user.id,
@@ -76,6 +80,23 @@ function Detail() {
         console.log(res);
         handleClose();
       });
+      
+
+    }else{
+      alert("Bid Amount is greater than " + vehicle.documentFee)
+    }
+
+    // axios
+    //   .post(process.env.REACT_APP_URL + "biddings", {
+    //     auctionId: id,
+    //     userId: logingUser.user.id,
+    //     auctionAmmount: bidValue,
+    //     vehicle_id: id,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     handleClose();
+    //   });
   };
   const getComments = () => {
     axios
@@ -102,7 +123,8 @@ function Detail() {
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
-      setAmountprice(res.data.data[0].auctionAmmount);
+      const length= res.data.data.length-1
+      setAmountprice(res.data.data[length].auctionAmmount);
     });
   };
 
@@ -409,7 +431,7 @@ function Detail() {
                         <div>
                           {amountprice && (
                             <span>
-                              USD ${amountprice} by <a href="#">DaveBrewer</a>
+                              USD ${amountprice} 
                             </span>
                           )}
                         </div>
@@ -423,8 +445,9 @@ function Detail() {
                       <li>
                         <label>Ends On</label>
                         <div>
-                          Friday, September 23 at 10:30pm{" "}
-                          <a href="#">remind me</a>
+                          {/* Friday, September 23 at 10:30pm{" "} */}
+                          {moment().add(5,"days").format("LLL")}
+                          {/* <a href="#">remind me</a> */}
                         </div>
                       </li>
                       <li>
@@ -613,37 +636,12 @@ function Detail() {
                   </form>
                 </div>
                 <div className="col-12 pt-3">
-                  {comments.map((data, i) => (
-                    <div className="commentRow" key={i}>
-                      <div className="commentHead">
-                        <div className="com_byPic">
-                          <img src={men_face} alt="" />
-                        </div>
-                        <div className="com_by">Z32kerber</div>
-                        <div className="com_date">
-                          <i className="fa-solid fa-clock mr-1"></i>
-                          {moment(data.created_at).format("LLL")}
-                        </div>
-                      </div>
-                      <div className="commentBody">
-                        <p>{data.description}</p>
-                      </div>
-                      <div className="commentFooter">
-                        <a href="#" className="mr-3">
-                          <i className="fa-solid fa-thumbs-up"></i> 349
-                        </a>
-                        <a href="#" className="mr-3">
-                          <i className="fa-solid fa-thumbs-down"></i> 20
-                        </a>
-                      </div>
-                    </div>
-                  ))} */}
 
                     {comments.map((data) => (
                       <div className="commentRow">
                         <div className="commentHead">
                           <div className="com_byPic">
-                            <img src={men_face} alt="" />
+                            <img src="https://pinnacle.works/wp-content/uploads/2022/06/dummy-image.jpg" alt="" />
                           </div>
                           <div className="com_by">{data.name}</div>
                           <div className="com_date">
@@ -964,6 +962,7 @@ function Detail() {
                     className="form-control"
                     placeholder="Please enter bid amount"
                     required
+
                   />
                 </div>
 

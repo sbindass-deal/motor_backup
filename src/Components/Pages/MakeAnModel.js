@@ -755,13 +755,15 @@ function MakeAnModel() {
                                       <i className="fa-solid fa-bell"></i>
                                     </span>
                                   </button>
-                                  <img
+                                 <a href={`detail/${curItem.id}`}>
+                                 <img
                                     src={
                                       process.env.REACT_APP_URL +
                                       curItem.stepOneImage
                                     }
                                     alt={curItem.name}
                                   />
+                                 </a>
                                 </div>
                                 <div className="card_postInfo">
                                   <h6>
