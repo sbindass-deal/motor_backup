@@ -588,45 +588,45 @@ function Detail() {
                   </div>
                 </div>
 
-                <div className="row ">
-                  <div className="col-12">
-                    <h5>{comments.length} COMMENTS</h5>
-                    <form className="mb-3">
-                      <div className="form-group">
-                        <textarea
-                          placeholder="add comment here"
-                          className="field"
-                          value={inputcomment}
-                          onChange={(e) => {
-                            setInputComment(e.target.value);
-                          }}
-                        ></textarea>
-                      </div>
-                      <div className="form-group">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            axios
-                              .post(process.env.REACT_APP_URL + "comments", {
-                                vehicleId: id,
-                                userId: logingUser.user.id,
-                                bidId: 0,
-                                description: inputcomment,
-                              })
-                              .then(() => {
-                                window.location.reload(false);
-                              });
-                          }}
-                          className="gry_btn"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div className="col-12 pt-3">
-                    {/* {comments.map((data) => (
-                    <div className="commentRow">
+              <div className="row ">
+                <div className="col-12">
+                  <h5>{comments.length} COMMENTS</h5>
+                  <form className="mb-3">
+                    <div className="form-group">
+                      <textarea
+                        placeholder="add comment here"
+                        className="field"
+                        value={inputcomment}
+                        onChange={(e) => {
+                          setInputComment(e.target.value);
+                        }}
+                      ></textarea>
+                    </div>
+                    <div className="form-group">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          axios
+                            .post(process.env.REACT_APP_URL + "comments", {
+                              vehicleId: id,
+                              userId: 0,
+                              bidId: 0,
+                              description: inputcomment,
+                            })
+                            .then(() => {
+                              window.location.reload(false);
+                            });
+                        }}
+                        className="gry_btn"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className="col-12 pt-3">
+                  {comments.map((data, i) => (
+                    <div className="commentRow" key={i}>
                       <div className="commentHead">
                         <div className="com_byPic">
                           <img src={men_face} alt="" />
@@ -979,7 +979,7 @@ function Detail() {
                   />
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <input
                     value={bidValue}
                     onChange={handleBidInput}
@@ -988,7 +988,7 @@ function Detail() {
                     placeholder="Please enter bid amount"
                     required
                   />
-                </div>
+                </div> */}
                 <button className="btn" type="submit">
                   Submit
                 </button>
