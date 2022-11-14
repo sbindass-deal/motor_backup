@@ -136,13 +136,15 @@ function Detail() {
     getComments();
     getBidingDetails();
   }, []);
+
+  
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center pb_30">
-              <h2 className="title_combo title_Center">{vehicle.name}</h2>
+              <h2 className="title_combo title_Center">{vehicle.make}-{vehicle.model}-{vehicle.year}</h2>
             </div>
             <div className="col-12">
               <div className="detailPostOption">
@@ -155,11 +157,11 @@ function Detail() {
                     <li>
                       <label>Ends In:</label> <span>5 days</span>
                     </li>
-                    <li>
+                    {/* <li>
                       <a href="#">
                         <i className="fa-solid fa-comment"></i> 55 Comments
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
                 <div className="d-flex">

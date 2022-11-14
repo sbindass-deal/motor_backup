@@ -163,7 +163,7 @@ function Auctionlive() {
                             <li>
                               <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
                             </li>
-                            <li className="butn-shop">
+                            {/* <li className="butn-shop">
                               {!logingUser ? (
                                 <button type="button" className="btn">
                                   Register for bid
@@ -173,7 +173,7 @@ function Auctionlive() {
                                   <a href={`detail/${curElem.id}`}>Bid Now</a>
                                 </button>
                               )}
-                            </li>
+                            </li> */}
                            
                         </ul>
                       </div>
