@@ -33,6 +33,9 @@ const VechilesRegistraion = () => {
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
   const [acceptDetails, setAcceptDetails] = useState();
+  const [understandCondition, setUnderstandCondition] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  console.log(understandCondition, acceptTerms);
   const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
     const { checked } = e.target;
@@ -363,7 +366,6 @@ const VechilesRegistraion = () => {
       kmacc,
       odometer,
       accurateField,
-      files,
     } = basicfact;
     const {
       detailvin,
@@ -403,29 +405,29 @@ const VechilesRegistraion = () => {
         consignment: soldvechiles,
         // bat: "",
         // batDescription: "",
-        dealerName: "",
+        dealerName: moreDescription,
         dealerId: dealer,
         dealerDescription: dealership,
-        ownerDetail: "",
+        ownerDetail: vechilesrace,
         vin,
         km,
         kmacc: status,
         odmeter: odometer,
         accurateField,
-        ogEngine: "",
-        transmission: "",
+        ogEngine: kmacc,
+        transmission: providelink,
         title: trucktitled,
-        titleStatus: "",
-        engineSize: "",
+        titleStatus: changedvechiles,
+        engineSize: vehiclepast,
         stepOneImage: "",
         stepTwoImage: "",
-        ste: "",
+        ste: ultiumdrive,
         link: link,
-        accessories: "",
+        accessories: truckfromnew,
         moreDescription: ammountOnDocument,
         reserve,
-        hereFrom: "",
-        ammountOnDocument: "",
+        hereFrom: shibnobiabout,
+        ammountOnDocument: servicesperformed,
         membership: memberShip,
         documentFee,
         Interstellar,
@@ -2029,8 +2031,9 @@ const VechilesRegistraion = () => {
                           <div className="form-group form-check">
                             <label className="form-check-label">
                               <input
-                                value="I accept"
-                                onChange={acceptDteailsPageOnChange}
+                                onChange={(e) =>
+                                  setAcceptTerms(e.target.checked)
+                                }
                                 name="accept"
                                 className="form-check-input"
                                 type="checkbox"
@@ -2049,8 +2052,9 @@ const VechilesRegistraion = () => {
                           <div className="form-group form-check">
                             <label className="form-check-label">
                               <input
-                                value={detailstab.understand}
-                                onChange={detailsOnChange}
+                                onChange={(e) =>
+                                  setUnderstandCondition(e.target.checked)
+                                }
                                 name="understand"
                                 className="form-check-input"
                                 type="checkbox"

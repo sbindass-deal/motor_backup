@@ -35,7 +35,7 @@ function Detail() {
   const deadline = new Date("nov 15, 2022 15:37:25").getTime();
   const now = new Date().getTime();
   const t = deadline - now;
-
+  console.log("bidding", biding);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
