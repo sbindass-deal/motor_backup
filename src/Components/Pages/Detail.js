@@ -243,7 +243,7 @@ function Detail() {
                   className="gry_btn dropdown-toggle"
                   data-toggle="dropdown"
                 >
-                  Make: {vehicle.make}
+                  User: {vehicle.make}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -446,6 +446,102 @@ function Detail() {
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="pb_40" id="placeBid_col">
+                <div className="card_Gray">
+                  <h5>CAR INFORMATION</h5>
+                  <ul className="bidList_ info_">
+                    <li>
+                      <label>Are you a dealer?</label>
+                      <div>
+                        Dealer
+                      </div>
+                    </li>
+                    <li>
+                      <label>Name of your dealership</label>
+                      <div>Carnovation</div>
+                    </li>
+                    <li>
+                      <label>Vin Number</label>
+                      <div>
+                        Fdr12222445556
+                      </div>
+                    </li>
+                    <li>
+                      <label>Truck finished in Interstellar White?</label>
+                      <div>Interstellar</div>
+                    </li>
+                    <li>
+                      <label>Inte</label>
+                      <div>Interstellar</div>
+                    </li>
+                    <li>
+                      <label>Interior upholstered in Jet Black and Light</label>
+                      <div>Interior</div>
+                    </li>
+                    <li>
+                      <label>What brand and model of tires are currently</label>
+                      <div>Brandand Model</div>
+                    </li>
+                    <li>
+                      <label>What size of tires are on the truck? *The size can</label>
+                      <div>km</div>
+                    </li>
+                    <li>
+                      <label>How is the truck titled?</label>
+                      <div>sizetires</div>
+                    </li>
+                    <li>
+                      <label>To the best of your knowledge, is this number</label>
+                      <div>accurateField</div>
+                    </li>
+                    <li>
+                      <label>Truck have a past History paint or bodywork?</label>
+                      <div>accurateField</div>
+                    </li>
+                    <li>
+                      <label>Does the truck have any modifications from stock?</label>
+                      <div>modificationstock</div>
+                    </li>
+                    <li>
+                      <label>What do you know about the history of the truck</label>
+                      <div>issuesorproblems</div>
+                    </li>
+                    
+                    <li>
+                      <label>Do you want a reserve?</label>
+                      <div>reserve</div>
+                    </li>
+                    <li>
+                      <label>What is the amount of the document fee t</label>
+                      <div>100$</div>
+                    </li>
+                    <li>
+                      <label>Are you an R&T member? Enter your membership number here (not required)</label>
+                      <div>memberShip</div>
+                    </li>
+                    <li className="fulwdth">
+                      <label>Please list and describe services performed and when</label>
+                      <div>Twin-hinge dihedral doors open to reveal a cockpit that features Touring-sized carbon-fiber bucket seats with black leather upholstery. Additional equipment includes matte Carbon Black Alcantara door sill trim, a glass upper rear bulkhead, blue six-point harnesses, </div>
+                    </li>
+                  </ul>
+                  {/* <div className="bid_bottom">
+                    <div className="">
+                      <a href="#" className="mr-2">
+                        How bidding works
+                      </a>
+                      <a href="#">
+                        <i className="fa-solid fa-star"></i> Watch auction
+                      </a>
+                    </div>
+                    <div className="">
+                      <ul className="bid_viewWatch">
+                        <li>28,657 views</li>
+                        <li>1,908 watchers</li>
+                      </ul>
+                    </div>
+                  </div> */}
                 </div>
               </div>
 
