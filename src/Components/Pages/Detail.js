@@ -28,6 +28,8 @@ function Detail() {
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
   // countdown time start
+  const [amountprice,setAmountprice]=useState()
+
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
@@ -35,9 +37,13 @@ function Detail() {
   const deadline = new Date("nov 15, 2022 15:37:25").getTime();
   const now = new Date().getTime();
   const t = deadline - now;
+
+
+
   console.log("bidding", biding);
   useEffect(() => {
     const interval = setInterval(() => {
+      
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
       setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
       setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
@@ -49,7 +55,17 @@ function Detail() {
     };
   }, [days, hours, minutes, seconds]);
 
+  
+
+
+
+
   // countdown time end
+
+
+  
+
+
 
   const handleBidInput = (e) => {
     setBidValue(e.target.value);
@@ -77,14 +93,21 @@ function Detail() {
   const getComments = () => {
     axios
       .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
-      .then((res) => setcomments(res.data.data.reverse()));
+      .then((res) => setcomments(res.data.data.reverse())
+      );
   };
+
+  // console.log(100,comments)
+
   const getVehicle = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
       console.log(res.data.data);
       setVehicle(res.data.data);
     });
   };
+
+  
+
   //get images
   const getVehicleImages = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
@@ -95,8 +118,11 @@ function Detail() {
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
+      setAmountprice(res.data.data[0].auctionAmmount)
     });
   };
+
+  console.log(9898911,biding)
 
   React.useEffect(() => {
     getVehicle();
@@ -397,15 +423,15 @@ function Detail() {
                       <li>
                         <label>Current Bid</label>
                         <div>
-                          USD $1,000,001 by <a href="#">DaveBrewer</a>
+                          USD ${amountprice} by <a href="#">DaveBrewer</a>
                         </div>
                       </li>
                       <li>
-                        <label>Time Left</label>
-                        <div>3 hours, 22 minutes, 44 seconds *</div>
+                        <label>Time Left</label>  
+                        <div>{hours} hours, {minutes} minutes, {seconds} seconds *</div>
                       </li>
                       <li>
-                        <label>Ends On</label>
+                        <label>Ends On</label> 
                         <div>
                           Friday, September 23 at 10:30pm{" "}
                           <a href="#">remind me</a>
@@ -454,96 +480,92 @@ function Detail() {
                     <ul className="bidList_ info_">
                       <li>
                         <label>Are you a dealer?</label>
-                        <div>Dealer</div>
+                        <div>{vehicle.dealerId}</div>
                       </li>
                       <li>
                         <label>Name of your dealership</label>
-                        <div>Carnovation</div>
+                        <div>{vehicle.dealerDescription}</div>
                       </li>
                       <li>
                         <label>Vin Number</label>
-                        <div>Fdr12222445556</div>
+                        <div>{vehicle.detailvin}</div>
                       </li>
                       <li>
                         <label>Truck finished in Interstellar White?</label>
-                        <div>Interstellar</div>
+                        <div>{vehicle.Interstellar}</div>
                       </li>
                       <li>
                         <label>Inte</label>
-                        <div>Interstellar</div>
+                        <div>{vehicle.Interstellar}</div>
                       </li>
                       <li>
                         <label>
                           Interior upholstered in Jet Black and Light
                         </label>
-                        <div>Interior</div>
+                        <div>{vehicle.interior}</div>
                       </li>
                       <li>
                         <label>
                           What brand and model of tires are currently
                         </label>
-                        <div>Brandand Model</div>
+                        <div>{vehicle.brandandmodel}</div>
                       </li>
                       <li>
                         <label>
                           What size of tires are on the truck? *The size can
                         </label>
-                        <div>km</div>
+                        <div>{vehicle.sizetires}</div>
                       </li>
                       <li>
                         <label>How is the truck titled?</label>
-                        <div>sizetires</div>
+                        <div>{vehicle.km}</div>
                       </li>
                       <li>
                         <label>
                           To the best of your knowledge, is this number
                         </label>
-                        <div>accurateField</div>
+                        <div>{vehicle.accurateField}</div>
                       </li>
                       <li>
                         <label>
                           Truck have a past History paint or bodywork?
                         </label>
-                        <div>accurateField</div>
+                        <div>{vehicle.bodywork}</div>
                       </li>
                       <li>
                         <label>
                           Does the truck have any modifications from stock?
                         </label>
-                        <div>modificationstock</div>
+                        <div>{vehicle.modificationstock}</div>
                       </li>
                       <li>
                         <label>
                           What do you know about the history of the truck
                         </label>
-                        <div>issuesorproblems</div>
+                        <div>{vehicle.issuesorproblems}</div>
                       </li>
 
                       <li>
                         <label>Do you want a reserve?</label>
-                        <div>reserve</div>
+                        <div>{vehicle.reserve}</div>
                       </li>
                       <li>
                         <label>What is the amount of the document fee t</label>
-                        <div>100$</div>
+                        <div>{vehicle.documentFee}</div>
                       </li>
                       <li>
                         <label>
                           Are you an R&T member? Enter your membership number
                           here (not required)
                         </label>
-                        <div>memberShip</div>
+                        <div>{vehicle.membership}</div>
                       </li>
                       <li className="fulwdth">
                         <label>
                           Please list and describe services performed and when
                         </label>
                         <div>
-                          Twin-hinge dihedral doors open to reveal a cockpit
-                          that features Touring-sized carbon-fiber bucket seats
-                          with black leather upholstery. Additional equipment
-                          includes matte Carbon Black Alcantara door sill trim,
-                          a glass upper rear bulkhead, blue six-point harnesses,{" "}
+                          {vehicle.moreDescription}
                         </div>
                       </li>
                     </ul>
@@ -946,6 +968,17 @@ function Detail() {
             {/* <!-- Modal body --> */}
             <div className="modal-body">
               <form onSubmit={addBiding}>
+                <div className="form-group">
+                  <input
+                    value={bidValue}
+                    onChange={handleBidInput}
+                    type="number"
+                    className="form-control"
+                    placeholder="Please enter bid amount"
+                    required
+                  />
+                </div>
+
                 <div className="form-group">
                   <input
                     value={bidValue}
