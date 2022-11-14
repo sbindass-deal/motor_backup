@@ -35,6 +35,8 @@ const VechilesRegistraion = () => {
   const [acceptDetails, setAcceptDetails] = useState();
   const [understandCondition, setUnderstandCondition] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const userDataLogin = useSelector((state) => state);
+  // console.log("ancd_user", userDataLogin.login.user.id);
   console.log(understandCondition, acceptTerms);
   const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
@@ -393,7 +395,7 @@ const VechilesRegistraion = () => {
       .post(`${url}vehicles`, {
         name: name,
         email: email,
-        userId: 123, //redux user id lena h.
+        userId: userDataLogin.login.user.id, //redux user id lena h.
         year: year,
         make: make,
         description: videolink,
