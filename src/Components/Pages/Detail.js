@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import mclaren_senna_reshoot from "../../Assets/images/2019_mclaren_senna_reshoot.webp";
 import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_screen-shot-2.webp";
 import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
@@ -27,6 +27,45 @@ function Detail() {
   //setInputComment
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
+  // countdown time start
+  const [amountprice,setAmountprice]=useState()
+
+  const [days, setDays] = useState();
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] = useState();
+  const [seconds, setSeconds] = useState();
+  const deadline = new Date("nov 15, 2022 15:37:25").getTime();
+  const now = new Date().getTime();
+  const t = deadline - now;
+
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      
+      setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
+      setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
+      setSeconds(Math.floor((t % (1000 * 60)) / 1000));
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [days, hours, minutes, seconds]);
+
+  
+
+
+
+
+  // countdown time end
+
+
+  
+
+
+
   const handleBidInput = (e) => {
     setBidValue(e.target.value);
   };
@@ -53,14 +92,21 @@ function Detail() {
   const getComments = () => {
     axios
       .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
-      .then((res) => setcomments(res.data.data.reverse()));
+      .then((res) => setcomments(res.data.data.reverse())
+      );
   };
+
+  // console.log(100,comments)
+
   const getVehicle = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
       console.log(res.data.data);
       setVehicle(res.data.data);
     });
   };
+
+  
+
   //get images
   const getVehicleImages = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
@@ -71,8 +117,11 @@ function Detail() {
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
+      setAmountprice(res.data.data[0].auctionAmmount)
     });
   };
+
+  console.log(9898911,biding)
 
   React.useEffect(() => {
     getVehicle();
@@ -214,12 +263,12 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown">
-                <button
+                {/* <button
                   type="button"
                   className="gry_btn dropdown-toggle"
                   data-toggle="dropdown"
                 >
-                  Make: {vehicle.make}
+                  User: {vehicle.make}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -250,7 +299,7 @@ function Detail() {
                 ) : null}
               </div>
 
-              <p>
+              {/* <p>
                 The Senna was designed under the direction of McLaren
                 Automotive’s Rob Melville and built on the carmaker’s MonoCage
                 III carbon-fiber monocoque platform. This example is finished in
@@ -306,10 +355,10 @@ function Detail() {
               <p>
                 The car is registered in a province that does not issue titles
                 for vehicles. It is being sold on its registration.
-              </p>
+              </p> */}
 
-              <div className="row row_gap_5 videoGalleryRow">
-                {/* <div className="col-12 col-sm-6 pt-4">
+                <div className="row row_gap_5 videoGalleryRow">
+                  {/* <div className="col-12 col-sm-6 pt-4">
                   <h5>VIDEO GALLERY</h5>
                   <div>
                     <a
@@ -327,86 +376,199 @@ function Detail() {
                     </a>
                   </div>
                 </div> */}
-                <div className="col-12 col-sm-6 pt-4">
-                  <h5>PHOTO GALLERY</h5>
-                  <div className="fancyCol">
-                    {vehicleImage.length > 0 ? (
-                      <img
-                        src={
-                          process.env.REACT_APP_URL +
-                          "/" +
-                          vehicleImage[0].imagePath +
-                          "/" +
-                          vehicleImage[0].imageName
-                        }
-                        alt=""
-                      />
-                    ) : null}
+                  <div className="col-12 col-sm-6 pt-4">
+                    <h5>PHOTO GALLERY</h5>
+                    <div className="fancyCol">
+                      {vehicleImage.length > 0 ? (
+                        <img
+                          src={
+                            process.env.REACT_APP_URL +
+                            "/" +
+                            vehicleImage[0].imagePath +
+                            "/" +
+                            vehicleImage[0].imageName
+                          }
+                          alt=""
+                        />
+                      ) : null}
+                    </div>
+                    <a href="photo-gallery.html" className="gry_btn mt-3">
+                      More Photos
+                    </a>
                   </div>
-                  <a href="photo-gallery.html" className="gry_btn mt-3">
-                    More Photos
-                  </a>
-                </div>
-                <div className="col-12 col-sm-6 pt-4">
-                  <h5>&nbsp;</h5>
-                  <div className="fancyCol">
-                    {vehicleImage.length > 0 ? (
-                      <img
-                        src={
-                          process.env.REACT_APP_URL +
-                          "/" +
-                          vehicleImage[1].imagePath +
-                          "/" +
-                          vehicleImage[1].imageName
-                        }
-                        alt=""
-                      />
-                    ) : null}
+                  <div className="col-12 col-sm-6 pt-4">
+                    <h5>&nbsp;</h5>
+                    <div className="fancyCol">
+                      {vehicleImage.length > 0 ? (
+                        <img
+                          src={
+                            process.env.REACT_APP_URL +
+                            "/" +
+                            vehicleImage[1].imagePath +
+                            "/" +
+                            vehicleImage[1].imageName
+                          }
+                          alt=""
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="ptb_40" id="placeBid_col">
-                <div className="card_Gray">
-                  <h5>BID ON THIS LISTING</h5>
-                  <ul className="bidList_">
-                    <li>
-                      <label>Current Bid</label>
-                      <div>
-                        USD $1,000,001 by <a href="#">DaveBrewer</a>
-                      </div>
-                    </li>
-                    <li>
-                      <label>Time Left</label>
-                      <div>3 hours, 22 minutes, 44 seconds *</div>
-                    </li>
-                    <li>
-                      <label>Ends On</label>
-                      <div>
-                        Friday, September 23 at 10:30pm{" "}
-                        <a href="#">remind me</a>
-                      </div>
-                    </li>
-                    <li>
-                      <label>Bids</label>
-                      <div>{biding ? biding.length : 0}</div>
-                    </li>
-                    <li>
-                      <label>Place Bid</label>
-                      <div>
-                        <a
-                          href="javascript:void(0)"
-                          className="gry_btn"
-                          onClick={addBiding}
-                          // data-toggle="modal"
-                          // data-target="#RegisterModal"
-                        >
-                          {logingUser.user.id ? "BID" : "REGISTER TO BID"}
+                <div className="ptb_40" id="placeBid_col">
+                  <div className="card_Gray">
+                    <h5>BID ON THIS LISTING</h5>
+                    <ul className="bidList_">
+                      <li>
+                        <label>Current Bid</label>
+                        <div>
+                          USD ${amountprice} by <a href="#">DaveBrewer</a>
+                        </div>
+                      </li>
+                      <li>
+                        <label>Time Left</label>  
+                        <div>{hours} hours, {minutes} minutes, {seconds} seconds *</div>
+                      </li>
+                      <li>
+                        <label>Ends On</label> 
+                        <div>
+                          Friday, September 23 at 10:30pm{" "}
+                          <a href="#">remind me</a>
+                        </div>
+                      </li>
+                      <li>
+                        <label>Bids</label>
+                        <div>{biding ? biding.length : 0}</div>
+                      </li>
+                      <li>
+                        <label>Place Bid</label>
+                        <div>
+                          <a
+                            href="javascript:void(0)"
+                            className="gry_btn"
+                            onClick={addBiding}
+                            // data-toggle="modal"
+                            // data-target="#RegisterModal"
+                          >
+                            {logingUser.user.id ? "BID" : "REGISTER TO BID"}
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="bid_bottom">
+                      <div className="">
+                        <a href="#" className="mr-2">
+                          How bidding works
+                        </a>
+                        <a href="#">
+                          <i className="fa-solid fa-star"></i> Watch auction
                         </a>
                       </div>
-                    </li>
-                  </ul>
-                  <div className="bid_bottom">
+                      <div className="">
+                        <ul className="bid_viewWatch">
+                          <li>28,657 views</li>
+                          <li>1,908 watchers</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="pb_40" id="placeBid_col">
+                  <div className="card_Gray">
+                    <h5>CAR INFORMATION</h5>
+                    <ul className="bidList_ info_">
+                      <li>
+                        <label>Are you a dealer?</label>
+                        <div>{vehicle.dealerId}</div>
+                      </li>
+                      <li>
+                        <label>Name of your dealership</label>
+                        <div>{vehicle.dealerDescription}</div>
+                      </li>
+                      <li>
+                        <label>Vin Number</label>
+                        <div>{vehicle.detailvin}</div>
+                      </li>
+                      <li>
+                        <label>Truck finished in Interstellar White?</label>
+                        <div>{vehicle.Interstellar}</div>
+                      </li>
+                      <li>
+                        <label>Inte</label>
+                        <div>{vehicle.Interstellar}</div>
+                      </li>
+                      <li>
+                        <label>
+                          Interior upholstered in Jet Black and Light
+                        </label>
+                        <div>{vehicle.interior}</div>
+                      </li>
+                      <li>
+                        <label>
+                          What brand and model of tires are currently
+                        </label>
+                        <div>{vehicle.brandandmodel}</div>
+                      </li>
+                      <li>
+                        <label>
+                          What size of tires are on the truck? *The size can
+                        </label>
+                        <div>{vehicle.sizetires}</div>
+                      </li>
+                      <li>
+                        <label>How is the truck titled?</label>
+                        <div>{vehicle.km}</div>
+                      </li>
+                      <li>
+                        <label>
+                          To the best of your knowledge, is this number
+                        </label>
+                        <div>{vehicle.accurateField}</div>
+                      </li>
+                      <li>
+                        <label>
+                          Truck have a past History paint or bodywork?
+                        </label>
+                        <div>{vehicle.bodywork}</div>
+                      </li>
+                      <li>
+                        <label>
+                          Does the truck have any modifications from stock?
+                        </label>
+                        <div>{vehicle.modificationstock}</div>
+                      </li>
+                      <li>
+                        <label>
+                          What do you know about the history of the truck
+                        </label>
+                        <div>{vehicle.issuesorproblems}</div>
+                      </li>
+
+                      <li>
+                        <label>Do you want a reserve?</label>
+                        <div>{vehicle.reserve}</div>
+                      </li>
+                      <li>
+                        <label>What is the amount of the document fee t</label>
+                        <div>{vehicle.documentFee}</div>
+                      </li>
+                      <li>
+                        <label>
+                          Are you an R&T member? Enter your membership number
+                          here (not required)
+                        </label>
+                        <div>{vehicle.membership}</div>
+                      </li>
+                      <li className="fulwdth">
+                        <label>
+                          Please list and describe services performed and when
+                        </label>
+                        <div>
+                          {vehicle.moreDescription}
+                        </div>
+                      </li>
+                    </ul>
+                    {/* <div className="bid_bottom">
                     <div className="">
                       <a href="#" className="mr-2">
                         How bidding works
@@ -421,48 +583,48 @@ function Detail() {
                         <li>1,908 watchers</li>
                       </ul>
                     </div>
+                  </div> */}
                   </div>
                 </div>
-              </div>
 
-              <div className="row ">
-                <div className="col-12">
-                  <h5>{comments.length} COMMENTS</h5>
-                  <form className="mb-3">
-                    <div className="form-group">
-                      <textarea
-                        placeholder="add comment here"
-                        className="field"
-                        value={inputcomment}
-                        onChange={(e) => {
-                          setInputComment(e.target.value);
-                        }}
-                      ></textarea>
-                    </div>
-                    <div className="form-group">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          axios
-                            .post(process.env.REACT_APP_URL + "comments", {
-                              vehicleId: id,
-                              userId: logingUser.user.id,
-                              bidId: 0,
-                              description: inputcomment,
-                            })
-                            .then(() => {
-                              window.location.reload(false);
-                            });
-                        }}
-                        className="gry_btn"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
-                <div className="col-12 pt-3">
-                  {comments.map((data) => (
+                <div className="row ">
+                  <div className="col-12">
+                    <h5>{comments.length} COMMENTS</h5>
+                    <form className="mb-3">
+                      <div className="form-group">
+                        <textarea
+                          placeholder="add comment here"
+                          className="field"
+                          value={inputcomment}
+                          onChange={(e) => {
+                            setInputComment(e.target.value);
+                          }}
+                        ></textarea>
+                      </div>
+                      <div className="form-group">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            axios
+                              .post(process.env.REACT_APP_URL + "comments", {
+                                vehicleId: id,
+                                userId: logingUser.user.id,
+                                bidId: 0,
+                                description: inputcomment,
+                              })
+                              .then(() => {
+                                window.location.reload(false);
+                              });
+                          }}
+                          className="gry_btn"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-12 pt-3">
+                    {/* {comments.map((data) => (
                     <div className="commentRow">
                       <div className="commentHead">
                         <div className="com_byPic">
@@ -470,33 +632,7 @@ function Detail() {
                         </div>
                         <div className="com_by">Z32kerber</div>
                         <div className="com_date">
-                          <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
-                          7:31 PM
-                        </div>
-                      </div>
-                      <div className="commentBody">
-                        <p>{data.description}</p>
-                      </div>
-                      <div className="commentFooter">
-                        <a href="#" className="mr-3">
-                          <i className="fa-solid fa-thumbs-up"></i> 349
-                        </a>
-                        <a href="#" className="mr-3">
-                          <i className="fa-solid fa-thumbs-down"></i> 20
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-
-                  {comments.map((data) => (
-                    <div className="commentRow">
-                      <div className="commentHead">
-                        <div className="com_byPic">
-                          <img src={men_face} alt="" />
-                        </div>
-                        <div className="com_by">{data.name}</div>
-                        <div className="com_date">
-                          <i className="fa-solid fa-clock mr-1"></i>{" "}
+                          <i className="fa-solid fa-clock mr-1"></i>
                           {moment(data.created_at).format("LLL")}
                         </div>
                       </div>
@@ -512,266 +648,295 @@ function Detail() {
                         </a>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
 
-                  <div className="pt-4">
-                    <button type="button" className="gry_btn">
-                      Read More
-                    </button>
+                    {comments.map((data) => (
+                      <div className="commentRow">
+                        <div className="commentHead">
+                          <div className="com_byPic">
+                            <img src={men_face} alt="" />
+                          </div>
+                          <div className="com_by">{data.name}</div>
+                          <div className="com_date">
+                            <i className="fa-solid fa-clock mr-1"></i>{" "}
+                            {moment(data.created_at).format("LLL")}
+                          </div>
+                        </div>
+                        <div className="commentBody">
+                          <p>{data.description}</p>
+                        </div>
+                        <div className="commentFooter">
+                          <a href="#" className="mr-3">
+                            <i className="fa-solid fa-thumbs-up"></i> 349
+                          </a>
+                          <a href="#" className="mr-3">
+                            <i className="fa-solid fa-thumbs-down"></i> 20
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="pt-4">
+                      <button type="button" className="gry_btn">
+                        Read More
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12 col-lg-3">
-              <div className="card_Gray mt-4 mb-3">
-                <h6>Gas Guzzlrs Essentials</h6>
-                <ul className="label__List">
-                  <li>
-                    <label className="label__">Seller:</label>
-                    <span className="label__Text">
-                      <a href="#">INsennaTY</a>
-                    </span>
-                  </li>
-                  <li>
-                    <label className="label__">Location:</label>
-                    <span className="label__Text">
-                      <a href="#">Toronto, Ontario, Canada</a>
-                    </span>
-                  </li>
-                  <li>
-                    <label className="label__">Listing Details:</label>
-                    <span className="label__Text">
-                      <ul className="listStyle_disc">
-                        <li>
-                          Chassis:{" "}
-                          <a href="#" target="_blank">
-                            SBM15ACA1KW800197
-                          </a>
-                        </li>
-                        <li>670 Miles </li>
-                        <li>Twin-Turbocharged 4.0-Liter V8 </li>
-                        <li>Seven-Speed Dual-Clutch Automatic Transaxle</li>
-                        <li>Graphite Grey Paint </li>
-                        <li>Paris Blue Aerovanes & Brake Calipers</li>
-                        <li>Black Leather Upholstery </li>
-                        <li>McLaren Track Telemetry Package</li>
-                        <li>Front & Rear Parking Sensors</li>
-                        <li>Backup Camera</li>
-                        <li>Glass Upper Rear Bulkhead</li>
-                        <li>Alcantara-Trimmed Side Sills</li>
-                        <li>Bowers & Wilkins Seven-Speaker Audio System</li>
-                        <li>Gorilla Glass Door Panels</li>
-                        <li>Window Sticker Copy</li>
-                        <li>Carbon-Fiber Door Panels Included </li>
-                        <li>Clean Carfax Report </li>
-                      </ul>
-                    </span>
-                  </li>
-                  <li>
-                    <label className="label__">Private Party or Dealer:</label>
-                    <span className="label__Text">Private Party</span>
-                  </li>
-                  <li>
-                    <label className="label__">Lot:</label>
-                    <span className="label__Text">#84636</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="card_Gray mb-3">
-                <h6>GET THE Gas Guzzlrs DAILY EMAIL</h6>
-                <p>Your daily digest of everything happening on the site.</p>
-                <div className="inlineField">
-                  <input
-                    type="text"
-                    name=""
-                    placeholder="Enter your email address"
-                    className="field"
-                  />
-                  <button type="button" className="gry_btn">
-                    Sign Up
-                  </button>
-                </div>
-              </div>
-
-              <div className="pt-3 pb-3 sidebarPostRow">
-                <div className="sidebarPostHead">
-                  <h6>Recent Gas Guzzlrs Features</h6>
+              <div className="col-12 col-lg-3">
+                <div className="card_Gray mt-4 mb-3">
+                  <h6>Gas Guzzlrs Essentials</h6>
+                  <ul className="label__List">
+                    <li>
+                      <label className="label__">Seller:</label>
+                      <span className="label__Text">
+                        <a href="#">INsennaTY</a>
+                      </span>
+                    </li>
+                    <li>
+                      <label className="label__">Location:</label>
+                      <span className="label__Text">
+                        <a href="#">Toronto, Ontario, Canada</a>
+                      </span>
+                    </li>
+                    <li>
+                      <label className="label__">Listing Details:</label>
+                      <span className="label__Text">
+                        <ul className="listStyle_disc">
+                          <li>
+                            Chassis:{" "}
+                            <a href="#" target="_blank">
+                              SBM15ACA1KW800197
+                            </a>
+                          </li>
+                          <li>670 Miles </li>
+                          <li>Twin-Turbocharged 4.0-Liter V8 </li>
+                          <li>Seven-Speed Dual-Clutch Automatic Transaxle</li>
+                          <li>Graphite Grey Paint </li>
+                          <li>Paris Blue Aerovanes & Brake Calipers</li>
+                          <li>Black Leather Upholstery </li>
+                          <li>McLaren Track Telemetry Package</li>
+                          <li>Front & Rear Parking Sensors</li>
+                          <li>Backup Camera</li>
+                          <li>Glass Upper Rear Bulkhead</li>
+                          <li>Alcantara-Trimmed Side Sills</li>
+                          <li>Bowers & Wilkins Seven-Speaker Audio System</li>
+                          <li>Gorilla Glass Door Panels</li>
+                          <li>Window Sticker Copy</li>
+                          <li>Carbon-Fiber Door Panels Included </li>
+                          <li>Clean Carfax Report </li>
+                        </ul>
+                      </span>
+                    </li>
+                    <li>
+                      <label className="label__">
+                        Private Party or Dealer:
+                      </label>
+                      <span className="label__Text">Private Party</span>
+                    </li>
+                    <li>
+                      <label className="label__">Lot:</label>
+                      <span className="label__Text">#84636</span>
+                    </li>
+                  </ul>
                 </div>
 
-                <div className="sidebarPost">
-                  <a href="#">
-                    <div className="sidebarPost_Img">
-                      <img src={car_01} />
-                    </div>
-                    <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
-                      in Dallas
-                    </div>
-                  </a>
-                </div>
-                <div className="sidebarPost">
-                  <a href="#">
-                    <div className="sidebarPost_Img">
-                      <img src={car_02} />
-                    </div>
-                    <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
-                      in Dallas
-                    </div>
-                  </a>
-                </div>
-                <div className="sidebarPost">
-                  <a href="#">
-                    <div className="sidebarPost_Img">
-                      <img src={car_03} />
-                    </div>
-                    <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
-                      in Dallas
-                    </div>
-                  </a>
-                </div>
-                <div className="sidebarPost">
-                  <a href="#">
-                    <div className="sidebarPost_Img">
-                      <img src={car_04} />
-                    </div>
-                    <div className="sidebarPost_text">
-                      Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
-                      in Dallas
-                    </div>
-                  </a>
+                <div className="card_Gray mb-3">
+                  <h6>GET THE Gas Guzzlrs DAILY EMAIL</h6>
+                  <p>Your daily digest of everything happening on the site.</p>
+                  <div className="inlineField">
+                    <input
+                      type="text"
+                      name=""
+                      placeholder="Enter your email address"
+                      className="field"
+                    />
+                    <button type="button" className="gry_btn">
+                      Sign Up
+                    </button>
+                  </div>
                 </div>
 
-                <div className="sidebarPostFooter text-center">
-                  <a href="#" className="gry_btn w-full">
-                    More features
-                  </a>
-                </div>
-              </div>
+                <div className="pt-3 pb-3 sidebarPostRow">
+                  <div className="sidebarPostHead">
+                    <h6>Recent Gas Guzzlrs Features</h6>
+                  </div>
 
-              <div className="card_Gray mt-3 pt-3">
-                <h6>Upcoming Events</h6>
-                <ul className="sidebar_Event">
-                  <li>
+                  <div className="sidebarPost">
                     <a href="#">
-                      Gas Guzzlrs Alumni Gathering: October 1 in conjunction
-                      with the Audrain Newport Concours & Motor Week –
-                      REGISTRATION IS OPEN{" "}
+                      <div className="sidebarPost_Img">
+                        <img src={car_01} />
+                      </div>
+                      <div className="sidebarPost_text">
+                        Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                        in Dallas
+                      </div>
                     </a>
-                    <div className="event_date">
-                      <i className="fa-solid fa-clock"></i> October 1, 2022
-                    </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div className="sidebarPost">
                     <a href="#">
-                      20th Rallylegend 2022 Republic of San Marino, Italy
+                      <div className="sidebarPost_Img">
+                        <img src={car_02} />
+                      </div>
+                      <div className="sidebarPost_text">
+                        Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                        in Dallas
+                      </div>
                     </a>
-                    <div className="event_date">
-                      <i className="fa-solid fa-clock"></i> October 13 - 16,
-                      2022
-                    </div>
-                  </li>
-                  <li>
-                    <a href="#">Targa Florio classNameica – Palermo, Italy</a>
-                    <div className="event_date">
-                      <i className="fa-solid fa-clock"></i> October 13 - 16,
-                      2022
-                    </div>
-                  </li>
-                  <li>
-                    <a href="#">Velocity Invitational</a>
-                    <div className="event_date">
-                      <i className="fa-solid fa-clock"></i> October 14 - 16,
-                      2022
-                    </div>
-                  </li>
-                  <li>
-                    <a href="#">SoCal Vintage BMW</a>
-                    <div className="event_date">
-                      <i className="fa-solid fa-clock"></i> November 5, 2022
-                    </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="sidebarPost_Img">
+                        <img src={car_03} />
+                      </div>
+                      <div className="sidebarPost_text">
+                        Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                        in Dallas
+                      </div>
+                    </a>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="sidebarPost_Img">
+                        <img src={car_04} />
+                      </div>
+                      <div className="sidebarPost_text">
+                        Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop
+                        in Dallas
+                      </div>
+                    </a>
+                  </div>
 
-              <div className="mt-4 pb-3">
-                <h6>CATEGORIES</h6>
-                <ul className="listStyle_disc">
-                  <li>
-                    <a href="#">Truck & 4×4</a>
-                  </li>
-                  <li>
-                    <a href="#">Race Cars</a>
-                  </li>
-                  <li>
-                    <a href="#">Hot Rods</a>
-                  </li>
-                  <li>
-                    <a href="#">RVs & Campers</a>
-                  </li>
-                  <li>
-                    <a href="#">Convertibles</a>
-                  </li>
-                  <li>
-                    <a href="#">Station Wagons</a>
-                  </li>
-                  <li>
-                    <a href="#">Vans</a>
-                  </li>
-                  <li>
-                    <a href="#">Motorcycles</a>
-                  </li>
-                  <li>
-                    <a href="#">Minibikes & Scooters</a>
-                  </li>
-                  <li>
-                    <a href="#">Projects</a>
-                  </li>
-                  <li>
-                    <a href="#">Boats</a>
-                  </li>
-                  <li>
-                    <a href="#">Parts</a>
-                  </li>
-                  <li>
-                    <a href="#">Wheels</a>
-                  </li>
-                  <li>
-                    <a href="#">Charity Auctions</a>
-                  </li>
-                </ul>
-              </div>
+                  <div className="sidebarPostFooter text-center">
+                    <a href="#" className="gry_btn w-full">
+                      More features
+                    </a>
+                  </div>
+                </div>
 
-              <div className="mt-3 pb-3">
-                <h6>ORIGIN</h6>
-                <ul className="listStyle_disc">
-                  <li>
-                    <a href="#">American</a>
-                  </li>
-                  <li>
-                    <a href="#">British</a>
-                  </li>
-                  <li>
-                    <a href="#">French</a>
-                  </li>
-                  <li>
-                    <a href="#">German</a>
-                  </li>
-                  <li>
-                    <a href="#">Italian</a>
-                  </li>
-                  <li>
-                    <a href="#">Japanese</a>
-                  </li>
-                  <li>
-                    <a href="#">Spanish</a>
-                  </li>
-                  <li>
-                    <a href="#">Swedish</a>
-                  </li>
-                </ul>
+                <div className="card_Gray mt-3 pt-3">
+                  <h6>Upcoming Events</h6>
+                  <ul className="sidebar_Event">
+                    <li>
+                      <a href="#">
+                        Gas Guzzlrs Alumni Gathering: October 1 in conjunction
+                        with the Audrain Newport Concours & Motor Week –
+                        REGISTRATION IS OPEN{" "}
+                      </a>
+                      <div className="event_date">
+                        <i className="fa-solid fa-clock"></i> October 1, 2022
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">
+                        20th Rallylegend 2022 Republic of San Marino, Italy
+                      </a>
+                      <div className="event_date">
+                        <i className="fa-solid fa-clock"></i> October 13 - 16,
+                        2022
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">Targa Florio classNameica – Palermo, Italy</a>
+                      <div className="event_date">
+                        <i className="fa-solid fa-clock"></i> October 13 - 16,
+                        2022
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">Velocity Invitational</a>
+                      <div className="event_date">
+                        <i className="fa-solid fa-clock"></i> October 14 - 16,
+                        2022
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">SoCal Vintage BMW</a>
+                      <div className="event_date">
+                        <i className="fa-solid fa-clock"></i> November 5, 2022
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-4 pb-3">
+                  <h6>CATEGORIES</h6>
+                  <ul className="listStyle_disc">
+                    <li>
+                      <a href="#">Truck & 4×4</a>
+                    </li>
+                    <li>
+                      <a href="#">Race Cars</a>
+                    </li>
+                    <li>
+                      <a href="#">Hot Rods</a>
+                    </li>
+                    <li>
+                      <a href="#">RVs & Campers</a>
+                    </li>
+                    <li>
+                      <a href="#">Convertibles</a>
+                    </li>
+                    <li>
+                      <a href="#">Station Wagons</a>
+                    </li>
+                    <li>
+                      <a href="#">Vans</a>
+                    </li>
+                    <li>
+                      <a href="#">Motorcycles</a>
+                    </li>
+                    <li>
+                      <a href="#">Minibikes & Scooters</a>
+                    </li>
+                    <li>
+                      <a href="#">Projects</a>
+                    </li>
+                    <li>
+                      <a href="#">Boats</a>
+                    </li>
+                    <li>
+                      <a href="#">Parts</a>
+                    </li>
+                    <li>
+                      <a href="#">Wheels</a>
+                    </li>
+                    <li>
+                      <a href="#">Charity Auctions</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-3 pb-3">
+                  <h6>ORIGIN</h6>
+                  <ul className="listStyle_disc">
+                    <li>
+                      <a href="#">American</a>
+                    </li>
+                    <li>
+                      <a href="#">British</a>
+                    </li>
+                    <li>
+                      <a href="#">French</a>
+                    </li>
+                    <li>
+                      <a href="#">German</a>
+                    </li>
+                    <li>
+                      <a href="#">Italian</a>
+                    </li>
+                    <li>
+                      <a href="#">Japanese</a>
+                    </li>
+                    <li>
+                      <a href="#">Spanish</a>
+                    </li>
+                    <li>
+                      <a href="#">Swedish</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -802,6 +967,17 @@ function Detail() {
             {/* <!-- Modal body --> */}
             <div className="modal-body">
               <form onSubmit={addBiding}>
+                <div className="form-group">
+                  <input
+                    value={bidValue}
+                    onChange={handleBidInput}
+                    type="number"
+                    className="form-control"
+                    placeholder="Please enter bid amount"
+                    required
+                  />
+                </div>
+
                 <div className="form-group">
                   <input
                     value={bidValue}

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import img_001 from "../../Assets/images/img_001.webp";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   basicfactsave,
   contactinfosave,
@@ -31,12 +33,12 @@ const VechilesRegistraion = () => {
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
   const [acceptDetails, setAcceptDetails] = useState();
+  const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
 
-  console.log(acceptDetails);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -193,21 +195,21 @@ const VechilesRegistraion = () => {
     setNamefield({ ...namefield, [Name]: Value });
     if (
       name.trim().length !== 0 &&
-      email.trim().length !== 0 &&
+      // email.trim().length !== 0 &&
       year.trim().length !== 0 &&
-      // make.trim().length !== 0 &&
-      // model.trim().length !== 0 &&
-      // city.trim().length !== 0 &&
-      // sale.trim().length !== 0 &&
-      // vechilelocation.trim().length !== 0 &&
-      // link.trim().length !== 0 &&
-      // vehiclepast.trim().length !== 0 &&
+      make.trim().length !== 0 &&
+      model.trim().length !== 0 &&
+      city.trim().length !== 0 &&
+      sale.trim().length !== 0 &&
+      vechilelocation.trim().length !== 0 &&
+      link.trim().length !== 0 &&
+      vehiclepast.trim().length !== 0 &&
       providelink.trim().length !== 0 &&
       changedvechiles.trim().length !== 0 &&
       dealer.trim().length !== 0 &&
       dealership.trim().length !== 0 &&
-      soldvechiles.trim().length !== 0
-      // videolink.trim().length !== 0
+      soldvechiles.trim().length !== 0 &&
+      videolink.trim().length !== 0
     ) {
       setNameFieldValid(true);
     } else {
@@ -238,19 +240,19 @@ const VechilesRegistraion = () => {
     const Name = e.target.name;
     setbasicfact({ ...basicfact, [Name]: Value });
     if (
-      // vin.trim().length !== 0 &&
-      // vechilesrace.trim().length &&
-      // ultiumdrive.trim().length !== 0 &&
+      vin.trim().length !== 0 &&
+      vechilesrace.trim().length !== 0 &&
+      ultiumdrive.trim().length !== 0 &&
       Interstellar.trim().length !== 0 &&
       interior.trim().length !== 0 &&
-      brandandmodel.trim().length
-      // sizetires.trim().length !== 0 &&
+      brandandmodel.trim().length &&
+      sizetires.trim().length !== 0 &&
       // trucktitled.trim().length !== 0 &&
-      // status.trim().length !== 0 &&
-      // km.trim().length &&
+      status.trim().length !== 0 &&
+      km.trim().length !== 0 &&
       // kmacc.trim().length !== 0 &&
-      // odometer.trim().length !== 0 &&
-      // accurateField.trim().length !== 0
+      odometer.trim().length !== 0 &&
+      accurateField.trim().length !== 0
     ) {
       setBasicFactValid(true);
     } else {
@@ -286,20 +288,20 @@ const VechilesRegistraion = () => {
     setDetailstab({ ...detailstab, [Name]: Value });
     if (
       detailvin.trim().length !== 0 &&
-      bodywork.trim().length &&
+      bodywork.trim().length !== 0 &&
       rustpresent.trim().length !== 0 &&
-      // modificationstock.trim().length !== 0 &&
+      modificationstock.trim().length !== 0 &&
       // truckfromnew.trim().length !== 0 &&
       // servicesperformed.trim().length &&
-      // issuesorproblems.trim().length !== 0 &&
-      // moreDescription.trim().length !== 0 &&
-      // reserve.trim().length !== 0 &&
-      // shibnobiabout.trim().length &&
+      issuesorproblems.trim().length !== 0 &&
+      moreDescription.trim().length !== 0 &&
+      reserve.trim().length !== 0 &&
+      shibnobiabout.trim().length !== 0 &&
       ammountOnDocument.trim().length !== 0 &&
       // rtmember.trim().length !== 0 &&
-      // shibnobi.trim().length !== 0 &&
-      documentFee.trim().length
-      // memberShip.trim().length !== 0
+      shibnobi.trim().length !== 0 &&
+      documentFee.trim().length !== 0 &&
+      memberShip.trim().length !== 0
       // accept.trim().length !== 0 &&
       // understand.trim().length !== 0
     ) {
@@ -441,6 +443,61 @@ const VechilesRegistraion = () => {
       .then((result) => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
+        notify("Form submit successfully!");
+        setNamefield({
+          name: "",
+          email: "",
+          year: "",
+          make: "",
+          model: "",
+          vechilelocation: "",
+          city: "",
+          sale: "",
+          link: "",
+          vehiclepast: "",
+          providelink: "",
+          changedvechiles: "",
+          dealer: "",
+          dealership: "",
+          soldvechiles: "",
+          videolink: "",
+          file: "",
+        });
+        setbasicfact({
+          vin: "",
+          vechilesrace: "",
+          ultiumdrive: "",
+          Interstellar: "",
+          interior: "",
+          brandandmodel: "",
+          sizetires: "",
+          trucktitled: "",
+          status: "",
+          km: "",
+          kmacc: "",
+          odometer: "",
+          accurateField: "",
+          files: "",
+        });
+        setDetailstab({
+          detailvin: "",
+          bodywork: "",
+          rustpresent: "",
+          modificationstock: "",
+          truckfromnew: "",
+          servicesperformed: "",
+          issuesorproblems: "",
+          moreDescription: "",
+          reserve: "",
+          shibnobiabout: "",
+          ammountOnDocument: "",
+          rtmember: "",
+          shibnobi: "",
+          documentFee: "",
+          memberShip: "",
+          accept: "",
+          understand: "",
+        });
         setInformation({
           uemail: "",
           username: "",
@@ -448,6 +505,9 @@ const VechilesRegistraion = () => {
           iname: "",
           phone: "",
         });
+        dispatch(step_one(false));
+        dispatch(step_two(false));
+        dispatch(step_three(false));
       })
       .catch((error) => {
         console.log(error);
@@ -458,6 +518,7 @@ const VechilesRegistraion = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
+          <ToastContainer />
           <div className="row">
             <div className="col-12 text-center pb-4">
               <h2>Sell your vehicle with Shibnobi Auctions!</h2>
@@ -565,7 +626,7 @@ const VechilesRegistraion = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What is your email?</label>
                             <input
@@ -578,7 +639,7 @@ const VechilesRegistraion = () => {
                               required
                             />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
@@ -606,76 +667,27 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What make is this vehicle?</label>
-                            <select
+                            <input
                               value={namefield.make}
                               onChange={handleNameField}
                               name="make"
+                              type="text"
                               className="field"
                               required
-                            >
-                              <option selected disabled value="">
-                                Choose...
-                              </option>
-                              <option value="Acura">Acura</option>
-                              <option value="Aston Martin">Aston Martin</option>
-                              <option value="Audi">Audi</option>
-                              <option value="Bentley">Bentley</option>
-                              <option value="BMW">BMW</option>
-                              <option value="Bugatti">Bugatti</option>
-                              <option value="Cadillac">Cadillac</option>
-                              <option value="Chevrolet">Chevrolet</option>
-                              <option value="Factory Five">Factory Five</option>
-                              <option value="Ferrari">Ferrari</option>
-                              <option value="Ford">Ford</option>
-                              <option value="GMC">GMC</option>
-                              <option value="Harley davidson">
-                                Harley davidson
-                              </option>
-                              <option value="Jeep">Jeep</option>
-                              <option value="Lamborghini">Lamborghini</option>
-                              <option value="Land Rover">Land Rover</option>
-                              <option value="Lincoln">Lincoln</option>
-                              <option value="Lucid">Lucid</option>
-                              <option value="Maserati">Maserati</option>
-                              <option value="Mazda">Mazda</option>
-                              <option value="Mercedes-AMG">Mercedes-AMG</option>
-                              <option value="Mercedes-Benz">
-                                Mercedes-Benz
-                              </option>
-                              <option value="Nissan">Nissan</option>
-                              <option value="Pleasure-Way">Pleasure-Way</option>
-                              <option value="Polaris">Polaris</option>
-                              <option value="Porsche">Porsche</option>
-                              <option value="Ram">Ram</option>
-                              <option value="Rivian">Rivian</option>
-                              <option value="Rolls-Royce">Rolls-Royce</option>
-                              <option value="Subaru">Subaru</option>
-                              <option value="Tesla">Tesla</option>
-                              <option value="Toyota">Toyota</option>
-                              <option value="Vanderhall">Vanderhall</option>
-                              <option value="Volvo">Volvo</option>
-                              <option value="!!!">Something else...</option>
-                            </select>
+                            />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What model is this vehicle?</label>
-                            <select
+                            <input
                               value={namefield.model}
                               onChange={handleNameField}
                               name="model"
+                              type="text"
                               className="field"
                               required
-                            >
-                              <option selected disabled value="">
-                                Choose...
-                              </option>
-                              <option value="Hummer EV Pickup Edition 1">
-                                Hummer EV Pickup Edition 1
-                              </option>
-                              <option value="!!!">Something else...</option>
-                            </select>
+                            />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -1042,7 +1054,7 @@ const VechilesRegistraion = () => {
                             <input
                               value={namefield.providelink}
                               onChange={handleNameField}
-                              type="text"
+                              type="url"
                               name="providelink"
                               placeholder="Enter"
                               className="field"
@@ -1478,7 +1490,7 @@ const VechilesRegistraion = () => {
                             <input
                               value={basicfact.odometer}
                               onChange={basicFactOnChange}
-                              type="text"
+                              type="number"
                               name="odometer"
                               placeholder="Ex. 41,000 miles"
                               className="field"
@@ -1563,8 +1575,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {basicFactValid &&
-                          basicfact.files.trim().length !== 0 ? (
+                          {basicFactValid ? (
                             <a
                               className="nav-link gry_btn"
                               data-toggle="pill"
@@ -1988,7 +1999,7 @@ const VechilesRegistraion = () => {
                             <input
                               value={detailstab.documentFee}
                               onChange={detailsOnChange}
-                              type="text"
+                              type="number"
                               name="documentFee"
                               placeholder="USD $"
                               className="field"
@@ -2023,6 +2034,7 @@ const VechilesRegistraion = () => {
                                 name="accept"
                                 className="form-check-input"
                                 type="checkbox"
+                                required
                               />{" "}
                               I accept the{" "}
                               <a href="#" className="link">
@@ -2042,6 +2054,7 @@ const VechilesRegistraion = () => {
                                 name="understand"
                                 className="form-check-input"
                                 type="checkbox"
+                                required
                               />{" "}
                               I understand that if the final bid for my vehicle
                               is below the reserve, shibnobi may choose (at its
@@ -2115,6 +2128,7 @@ const VechilesRegistraion = () => {
                               data-toggle="modal"
                               data-target="#RegisterModal"
                               className="link"
+                              required
                             >
                               Sign in
                             </a>{" "}
@@ -2134,6 +2148,7 @@ const VechilesRegistraion = () => {
                               name="uemail"
                               placeholder="Email"
                               className="field"
+                              required
                             />
                             {errorCont && information.uemail.length <= 0 ? (
                               <p className="text-danger">Please enter email</p>
@@ -2152,6 +2167,7 @@ const VechilesRegistraion = () => {
                               name="username"
                               className="field"
                               autoComplete="off"
+                              required
                             />
                             {errorCont && information.username.length <= 0 ? (
                               <p className="text-danger">
@@ -2172,6 +2188,7 @@ const VechilesRegistraion = () => {
                               name="password"
                               className="field"
                               autoComplete="off"
+                              required
                             />
                             {errorCont && information.password.length <= 0 ? (
                               <p className="text-danger">
@@ -2192,6 +2209,7 @@ const VechilesRegistraion = () => {
                               name="iname"
                               placeholder="Name"
                               className="field"
+                              required
                             />
                             {errorCont && information.iname.length <= 0 ? (
                               <p className="text-danger">Please enter name</p>
@@ -2210,6 +2228,7 @@ const VechilesRegistraion = () => {
                               name="phone"
                               placeholder="Phone"
                               className="field"
+                              required
                             />
                             {errorCont && information.phone.length <= 0 ? (
                               <p className="text-danger">
@@ -2232,11 +2251,11 @@ const VechilesRegistraion = () => {
                               />{" "}
                               Sign me up for the shibnobi Daily Mail
                             </label>
-                            {signinAggri || signinAggriSubmit ? (
+                            {/* {signinAggri || signinAggriSubmit ? (
                               ""
                             ) : (
                               <p className="text-danger">Please select</p>
-                            )}
+                            )} */}
                             {/* {errorCont && information.username <= 0 ? <p>Please enter user name</p> : ""} */}
                           </div>
                         </div>
