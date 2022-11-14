@@ -28,7 +28,7 @@ function Detail() {
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
   // countdown time start
-  const [amountprice,setAmountprice]=useState()
+  const [amountprice, setAmountprice] = useState();
 
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
@@ -38,12 +38,9 @@ function Detail() {
   const now = new Date().getTime();
   const t = deadline - now;
 
-
-
   console.log("bidding", biding);
   useEffect(() => {
     const interval = setInterval(() => {
-      
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
       setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
       setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
@@ -55,17 +52,7 @@ function Detail() {
     };
   }, [days, hours, minutes, seconds]);
 
-  
-
-
-
-
   // countdown time end
-
-
-  
-
-
 
   const handleBidInput = (e) => {
     setBidValue(e.target.value);
@@ -93,8 +80,7 @@ function Detail() {
   const getComments = () => {
     axios
       .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
-      .then((res) => setcomments(res.data.data.reverse())
-      );
+      .then((res) => setcomments(res.data.data.reverse()));
   };
 
   // console.log(100,comments)
@@ -106,8 +92,6 @@ function Detail() {
     });
   };
 
-  
-
   //get images
   const getVehicleImages = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
@@ -118,11 +102,11 @@ function Detail() {
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
-      setAmountprice(res.data.data[0].auctionAmmount)
+      setAmountprice(res.data.data[0].auctionAmmount);
     });
   };
 
-  console.log(9898911,biding)
+  console.log(9898911, biding);
 
   React.useEffect(() => {
     getVehicle();
@@ -423,15 +407,21 @@ function Detail() {
                       <li>
                         <label>Current Bid</label>
                         <div>
-                          USD ${amountprice} by <a href="#">DaveBrewer</a>
+                          {amountprice && (
+                            <span>
+                              USD ${amountprice} by <a href="#">DaveBrewer</a>
+                            </span>
+                          )}
                         </div>
                       </li>
                       <li>
-                        <label>Time Left</label>  
-                        <div>{hours} hours, {minutes} minutes, {seconds} seconds *</div>
+                        <label>Time Left</label>
+                        <div>
+                          {hours} hours, {minutes} minutes, {seconds} seconds *
+                        </div>
                       </li>
                       <li>
-                        <label>Ends On</label> 
+                        <label>Ends On</label>
                         <div>
                           Friday, September 23 at 10:30pm{" "}
                           <a href="#">remind me</a>
@@ -564,9 +554,7 @@ function Detail() {
                         <label>
                           Please list and describe services performed and when
                         </label>
-                        <div>
-                          {vehicle.moreDescription}
-                        </div>
+                        <div>{vehicle.moreDescription}</div>
                       </li>
                     </ul>
                     {/* <div className="bid_bottom">
