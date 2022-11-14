@@ -85,13 +85,13 @@ function Header() {
                           Auctions
                         </a>
                         <div class="dropdown-content">
-                          <a className="nav-link" href="auctionlive">
+                          <a className="nav-link" href="/auctionlive">
                             Live now
                           </a>
-                          <a className="nav-link" href="auctionpremium">
+                          <a className="nav-link" href="/auctionpremium">
                             Premium
                           </a>
-                          <a className="nav-link" href="auctionresults">
+                          <a className="nav-link" href="/auctionresults">
                             Resullt
                           </a>
                         </div>
@@ -148,7 +148,7 @@ function Header() {
                     </li> */}
 
                     <li className="nav-item">
-                      <a className="nav-link" href="accountinfo">
+                      <a className="nav-link" href="/accountinfo">
                         <i>
                           <AccountCircleIcon />
                         </i>
@@ -168,17 +168,17 @@ function Header() {
                   </ul>
                   <ul className="navbar-nav mobileOnly">
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Shipping
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Makes and Models
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Categories
                       </a>
                     </li>
@@ -188,32 +188,32 @@ function Header() {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Charity Auctions
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Gas Guzzlrs Features
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Event Calendar
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Car Raffle
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         About Gas Guzzlrs
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <a className="nav-link" href="/#">
                         Gear Store
                       </a>
                     </li>
@@ -231,7 +231,7 @@ function Header() {
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
                         <div class="dropdown">
-                          <a class="nav-link " href="makeamodel">
+                          <a class="nav-link " href="/makeamodel">
                             Makes and Models
                           </a>
                         </div>
@@ -272,17 +272,17 @@ function Header() {
                           Shipping
                         </a>
                         <div class="dropdown-content">
-                          <a className="nav-link" href="shipping">
+                          <a className="nav-link" href="/shipping">
                             Get a quote
                           </a>
-                          <a className="nav-link" href="myshipments">
+                          <a className="nav-link" href="/myshipments">
                             My Shipment
                           </a>
                         </div>
                       </div>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="aboutshibnobi">
+                        <a className="nav-link" href="/aboutshibnobi">
                           About Gas Guzzlrs
                         </a>
                       </li>
