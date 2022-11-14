@@ -440,22 +440,22 @@ function Detail() {
                       ></textarea>
                     </div>
                     <div className="form-group">
-                      <button type="button" 
-                      onClick={()=>{
-                        axios.post(process.env.REACT_APP_URL + "comments",{
-                          vehicleId: id,
-                          userId : logingUser.user.id,
-                          bidId:0,
-                          description : inputcomment
-
-                        })
-                        .then(()=>{
-
-                          window.location.reload(false);
-
-                        })
-                      }}
-                      className="gry_btn">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          axios
+                            .post(process.env.REACT_APP_URL + "comments", {
+                              vehicleId: id,
+                              userId: logingUser.user.id,
+                              bidId: 0,
+                              description: inputcomment,
+                            })
+                            .then(() => {
+                              window.location.reload(false);
+                            });
+                        }}
+                        className="gry_btn"
+                      >
                         Submit
                       </button>
                     </div>
@@ -488,36 +488,32 @@ function Detail() {
                     </div>
                   ))}
 
+                  {comments.map((data) => (
+                    <div className="commentRow">
+                      <div className="commentHead">
+                        <div className="com_byPic">
+                          <img src={men_face} alt="" />
+                        </div>
+                        <div className="com_by">{data.name}</div>
+                        <div className="com_date">
+                          <i className="fa-solid fa-clock mr-1"></i>{" "}
+                          {moment(data.created_at).format("LLL")}
+                        </div>
+                      </div>
+                      <div className="commentBody">
+                        <p>{data.description}</p>
+                      </div>
+                      <div className="commentFooter">
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-up"></i> 349
+                        </a>
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-down"></i> 20
+                        </a>
+                      </div>
+                    </div>
+                  ))}
 
-{
-  comments.map(data=>(<div className="commentRow">
-  <div className="commentHead">
-    <div className="com_byPic">
-      <img src={men_face} alt="" />
-    </div>
-    <div className="com_by">{data.name}</div>
-    <div className="com_date">
-      <i className="fa-solid fa-clock mr-1"></i> {moment(data.created_at).format('LLL')}
-    </div>
-  </div>
-  <div className="commentBody">
-    <p>
-      {data.description}
-    </p>
-  </div>
-  <div className="commentFooter">
-    <a href="#" className="mr-3" >
-      <i className="fa-solid fa-thumbs-up"></i> 349
-    </a>
-    <a href="#" className="mr-3">
-      <i className="fa-solid fa-thumbs-down"></i> 20
-    </a>
-  </div>
-</div>))
-}
-
-                  
-                  
                   <div className="pt-4">
                     <button type="button" className="gry_btn">
                       Read More
