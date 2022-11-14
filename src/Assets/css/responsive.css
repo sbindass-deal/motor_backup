@@ -1,5 +1,8 @@
 @media (min-width: 1200px) {
 	.container {max-width: 1170px;}
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 33.33%;
+	}
 }
 @media (min-width: 1400px) {
 	.container {max-width: 1370px;}
@@ -47,6 +50,8 @@ h5 {
 @media (max-width: 768px) {}
 @media (min-width: 768px){
 	.mobileOnly{display: none;}
+	.makes_Slide.arrowTop_Slide .card_post {width: 33.33%;}
+	ul.bidList_.info_ li {width: 50%;}
 	
 }
 @media (max-width: 767px) {
@@ -97,6 +102,8 @@ h2 {
 .daily_mail {  padding: 30px 15px;}
 .daily_mail_box button { position: inherit;}
 .daily_mail input { padding: 22px 15px;  margin-bottom: 10px;}
+.makes_Slide.arrowTop_Slide .card_post {width: 100%;}
+ul.bidList_.info_ li {width: 100%;}
 
 }
 

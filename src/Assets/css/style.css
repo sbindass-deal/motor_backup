@@ -1020,3 +1020,21 @@ ailSection{padding: 50px 0px; min-height: 300px;  background: url(../images/emai
     transform: scale(1, 1);
   }
 }
+
+.makes_Slide.arrowTop_Slide .card_post {
+  float: left;
+  padding-right: 9px;
+  width: 25%;
+}
+
+.modal-content {
+ 
+  border: 0px solid rgba(0,0,0,.2);
+ 
+}
+ul.bidList_.info_ li {
+  width: 33.33%;
+}
+ul.bidList_.info_ li.fulwdth {
+  width: 100%;
+}
