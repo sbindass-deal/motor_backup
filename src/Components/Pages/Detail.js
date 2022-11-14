@@ -40,6 +40,7 @@ function Detail() {
 
 
 
+  console.log("bidding", biding);
   useEffect(() => {
     const interval = setInterval(() => {
       
