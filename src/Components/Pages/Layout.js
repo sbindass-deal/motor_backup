@@ -32,6 +32,7 @@ import Auctionlive from "./Auctionlive";
 import AuctionPremium from "./AuctionPremium";
 import GetAlerts from "./GetAlerts";
 import Charity from "./Charity";
+import { ToastContainer } from "react-toastify";
 
 function Layout() {
   return (
@@ -70,6 +71,7 @@ function Layout() {
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="charity" element={<Charity />} />
         </Routes>
+        <ToastContainer />
       </BrowserRouter>
       {/* <AccountInfo/> */}
       {/* <Notifications/> */}

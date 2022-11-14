@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { auth } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const notify = (val) => toast(val);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -20,8 +23,6 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   const handleApi = () => {
     const url = process.env.REACT_APP_URL;
 
-     
-
     axios
       .post(`${url}login`, {
         email: email,
@@ -29,13 +30,14 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
       })
       .then((result) => {
         if (result.data.message === "Login Successful") {
-          if(result.data.user)
-          {
+          if (result.data.user) {
             dispatch(auth(result.data.user));
           }
+          notify("Login successfully ! 👍");
           handleClose();
         } else {
-          alert("fail");
+          notify("Login fail! Please enter valid userId and password");
+          handleClose();
         }
       })
       .catch((error) => {
@@ -49,9 +51,8 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   };
   const handlePasswordBtn = () => {
     handleClose();
-    handleShowForgPass(); 
+    handleShowForgPass();
   };
-
   return (
     // <!-- The loginModal -->
     <Modal
@@ -118,7 +119,9 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
                 <p>
                   Not registered with Shibnobi?
                   <span onClick={handleRegister}>
-                    <a className="signup" style={{marginLeft:"10px"}}
+                    <a
+                      className="signup"
+                      style={{ marginLeft: "10px" }}
                       href="javascript:void(0)"
                       // data-dismiss="modal"
                       // data-toggle="modal"

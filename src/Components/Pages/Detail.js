@@ -238,13 +238,13 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown">
-                <button
+                {/* <button
                   type="button"
                   className="gry_btn dropdown-toggle"
                   data-toggle="dropdown"
                 >
                   Make: {vehicle.make}
-                </button>
+                </button> */}
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
                     View all listings
@@ -274,7 +274,7 @@ function Detail() {
                 ) : null}
               </div>
 
-              <p>
+              {/* <p>
                 The Senna was designed under the direction of McLaren
                 Automotive’s Rob Melville and built on the carmaker’s MonoCage
                 III carbon-fiber monocoque platform. This example is finished in
@@ -330,7 +330,7 @@ function Detail() {
               <p>
                 The car is registered in a province that does not issue titles
                 for vehicles. It is being sold on its registration.
-              </p>
+              </p> */}
 
               <div className="row row_gap_5 videoGalleryRow">
                 {/* <div className="col-12 col-sm-6 pt-4">

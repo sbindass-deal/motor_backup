@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import img_001 from "../../Assets/images/img_001.webp";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   basicfactsave,
   contactinfosave,
@@ -31,6 +33,7 @@ const VechilesRegistraion = () => {
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
   const [acceptDetails, setAcceptDetails] = useState();
+  const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
     const { checked } = e.target;
     setAcceptDetails(checked);
@@ -440,6 +443,7 @@ const VechilesRegistraion = () => {
       .then((result) => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
+        notify("Form submit successfully!");
         setNamefield({
           name: "",
           email: "",
@@ -514,6 +518,7 @@ const VechilesRegistraion = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
+          <ToastContainer />
           <div className="row">
             <div className="col-12 text-center pb-4">
               <h2>Sell your vehicle with Shibnobi Auctions!</h2>

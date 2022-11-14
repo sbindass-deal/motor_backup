@@ -13,8 +13,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/reducers/login";
+import { toast } from "react-toastify";
 
 function Header() {
+  const notify = (val) => toast(val);
+
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state.login);
 
@@ -32,6 +35,7 @@ function Header() {
   const handleShowForgPass = () => setShowForgPass(true);
   const logout = () => {
     dispatch(logoutUser());
+    notify("Logout successfully ! 😎🤐");
   };
   return (
     <div>
@@ -234,31 +238,31 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <li className="nav-item">
-                          <a className="nav-link" href="showroom">
+                          <a className="nav-link" href="/showroom">
                             Show Room
                           </a>
                         </li>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="carraffle">
+                        <a className="nav-link" href="/carraffle">
                           Car Raffle
                         </a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="feautres">
+                        <a className="nav-link" href="/feautres">
                           Gas Guzzlrs Features
                         </a>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="charity">
+                        <a className="nav-link" href="/charity">
                           Charity Auctions
                         </a>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="getalerts">
+                        <a className="nav-link" href="/getalerts">
                           Get Alerts
                         </a>
                       </li>
