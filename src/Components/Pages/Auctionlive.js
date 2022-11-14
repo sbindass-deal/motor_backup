@@ -29,7 +29,7 @@ function Auctionlive() {
     return startDate.toString();//endDate.diff(startDate, 'days');
   }
 
-  
+
 
   
 
@@ -156,6 +156,7 @@ function Auctionlive() {
                         </h4>
                         <p>{curElem.anythingelse}</p>
                         <ul className="labelList">
+<<<<<<< Updated upstream
                             <li>
                               <label>Current Bid:</label>{" "}
                               <span>${curElem.documentFee}</span>
@@ -175,6 +176,24 @@ function Auctionlive() {
                               )}
                             </li> */}
                            
+=======
+                          <li>
+                            <label>Current Bid:</label>{" "}
+                            <span>${curElem.documentFee}</span>
+                          </li>
+                          <li>
+                            <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
+                          </li>
+                          {/* {!logingUser ? (
+                            <button type="button" className="btn">
+                              Register for bid
+                            </button>
+                          ) : (
+                            <button type="button" className="btn">
+                              <a href={`detail/${curElem.id}`}>Bid Now</a>
+                            </button>
+                          )} */}
+>>>>>>> Stashed changes
                         </ul>
                       </div>
                     </div>
