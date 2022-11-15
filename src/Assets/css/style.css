@@ -1053,3 +1053,9 @@ ul.bidList_.info_ li.fulwdth {
 .auctionLive li.butn-shop button.btn {
   padding: 14px 21px;
 }
+.auctionLive .card_postImg img {
+  min-width: 428px;
+  max-height: 241px !important;
+  object-fit: cover;
+  overflow: hidden !important;
+}
