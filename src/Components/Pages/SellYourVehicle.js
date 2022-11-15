@@ -81,7 +81,7 @@ function SellYourVehicle() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-center pb-4">
-                        <h2>Sell your vehicle with Shibnobi Auctions!</h2>
+                        <h2>Sell your vehicle with Gasguzzlers Auctions!</h2>
                     </div>
                     <div className="col-12 col-md-4 col-lg-3">
                         <div className="card_Gray mb-5 mb-md-0 divSticky">
@@ -109,7 +109,7 @@ function SellYourVehicle() {
                         <div className="tab-pane active" id="MakeModel_Pill">
                             <h3>Make & Model</h3>
                             <hr/>
-                            <h6>Think your vehicle should be sold via Shibnobi Auctions? Please fill out the form below.</h6>
+                            <h6>Think your vehicle should be sold via Gasguzzlers Auctions? Please fill out the form below.</h6>
 
                             <p className="small">Have an engine, wheels, seats, literature or any other non-vehicle item? <a href="#" className="link">Click here</a> to submit it.</p>
                             
@@ -440,7 +440,7 @@ function SellYourVehicle() {
                                         </div>								
                                         <div className="col-12 col-sm-12 col-md-6">
                                             <div className="form-group">
-                                                <label>Has this vehicle been listed on Shibnobi in the past?</label>
+                                                <label>Has this vehicle been listed on Gasguzzlers in the past?</label>
                                                 <select className="field">
                                                     <option>Yes</option>
                                                     <option>No</option>
@@ -455,7 +455,7 @@ function SellYourVehicle() {
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-12">
                                             <div className="form-group">
-                                                <label>What has changed on this vehicle since it was last listed on Shibnobi?</label>
+                                                <label>What has changed on this vehicle since it was last listed on Gasguzzlers?</label>
                                                 <textarea className="field"></textarea>
                                             </div>
                                         </div>
@@ -862,14 +862,14 @@ function SellYourVehicle() {
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6">
                                             <div className="form-group">
-                                                <label>Where did you hear about shibnobi?</label>
+                                                <label>Where did you hear about Gasguzzlers?</label>
                                                 <select className="field">
                                                 <option value="" selected="selected">Select one...</option>
-                                                <option value="referred">Referred by a shibnobi member</option>
+                                                <option value="referred">Referred by a Gasguzzlers member</option>
                                                 <option value="facebook">Facebook</option>
                                                 <option value="google">Google</option>
                                                 <option value="instagram">Instagram</option>
-                                                <option value="longtime">I'm a long time shibnobi Reader</option>
+                                                <option value="longtime">I'm a long time Gasguzzlers Reader</option>
                                                 <option value="repeat">Repeat seller</option>
                                                 <option value="other">Other</option>
                                                 </select>
@@ -896,7 +896,7 @@ function SellYourVehicle() {
                                         </div>
                                         <div className="form-group form-check">
                                             <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox"/> I understand that if the final bid for my vehicle is below the reserve, shibnobi may choose (at its sole discretion) to make up the difference. In this case the vehicle will appear as sold at the below-reserve price and shibnobi will pay me the difference between the high bid and the reserve once the transaction is complete.
+                                            <input className="form-check-input" type="checkbox"/> I understand that if the final bid for my vehicle is below the reserve, Gasguzzlers may choose (at its sole discretion) to make up the difference. In this case the vehicle will appear as sold at the below-reserve price and Gasguzzlers will pay me the difference between the high bid and the reserve once the transaction is complete.
                                             </label>
                                         </div>
                                         </div>
@@ -918,7 +918,7 @@ function SellYourVehicle() {
                                     <div className="col-12">
                                         <h5>Complete Your Contact Info</h5>
                                         <p>Already have a username? <a href="javascript:void(0)" data-dismiss="modal" data-toggle="modal" data-target="#RegisterModal" className="link">Sign in</a> here.</p>
-                                        <h6>If you're new to shibnobi, register below:</h6>
+                                        <h6>If you're new to Gasguzzlers, register below:</h6>
                                     </div>
                                 </div>
                                     <div className="row row_gap_5">
@@ -955,7 +955,7 @@ function SellYourVehicle() {
                                         <div className="col-12 col-sm-12 col-md-12">
                                             <div className="form-group form-check">
                                             <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox"/> Sign me up for the shibnobi Daily Mail
+                                            <input className="form-check-input" type="checkbox"/> Sign me up for the Gasguzzlers Daily Mail
                                             </label>
                                         </div>						
                                         </div>

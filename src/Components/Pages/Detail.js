@@ -135,6 +135,8 @@ function Detail() {
     getBidingDetails();
   }, []);
 
+  console.log(600, vehicle);
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -497,7 +499,7 @@ function Detail() {
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
-                      <li>
+                      {/* <li>
                         <label>Are you a dealer?</label>
                         <div>{vehicle.dealerId}</div>
                       </li>
@@ -584,7 +586,73 @@ function Detail() {
                           Please list and describe services performed and when
                         </label>
                         <div>{vehicle.moreDescription}</div>
+                      </li> */}
+
+                      <li>
+                        <label htmlFor="">
+                          Chassis : <b>123456789</b>
+                        </label>
                       </li>
+
+                      <li>
+                        <label htmlFor="">{vehicle.odmeter} Miles</label>
+                      </li>
+
+                      {vehicle.Interstellar === "Yes" && (
+                        <li>
+                          <label htmlFor=""> Interstellar</label>
+                        </li>
+                      )}
+
+                      <li>
+                        <label htmlFor="">
+                          Location: {vehicle.city}, {vehicle.country}
+                        </label>
+                      </li>
+
+
+                      {vehicle.accessories!== "" && (
+                        <li>
+                          <label htmlFor=""> {vehicle.accessories}</label>
+                        </li>
+                      )}
+
+                {vehicle.bodywork === "Yes" && (
+                        <li>
+                          <label htmlFor=""> Recently Painted</label>
+                        </li>
+                      )}
+
+
+                  <li>
+                    <label htmlFor="">{vehicle.moreDescription}</label>
+                  </li>
+
+                  <li>
+                    <label htmlFor="">{vehicle.premium}</label>
+                  </li>
+
+                  {vehicle.reserve === "Yes" && (
+                        <li>
+                          <label htmlFor=""> Reserve</label>
+                        </li>
+                      )}
+
+                  <li>
+                    <label htmlFor="">{vehicle.sizetires}</label>
+                  </li>
+
+                  <li>
+                    <label htmlFor="">{vehicle.km}</label>
+                  </li>
+                  <li>
+                    <label htmlFor="">{vehicle.brandandmodel}</label>
+                  </li>
+
+                    <li>
+                      <label htmlFor="">Private Party or Dealer : {vehicle.dealerId==="Yes" ? "Dealer" :"Privately owned"} </label>
+                    </li>
+
                     </ul>
                     {/* <div className="bid_bottom">
                     <div className="">

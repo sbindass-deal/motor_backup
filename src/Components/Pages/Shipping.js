@@ -77,7 +77,7 @@ function Shipping() {
                                 <p>We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p> 
                                 <br/>
                                 <h5>Seamless, secure, fully integrated</h5>
-                                <p>Every aspect of Bring a Trailer Shipping is managed through our simple My Shipments page. Whether you’re buying on shibnobi Auctions or shipping a private vehicle, everything—including tracking and payment—is in one place.</p>
+                                <p>Every aspect of Bring a Trailer Shipping is managed through our simple My Shipments page. Whether you’re buying on Gasguzzlers Auctions or shipping a private vehicle, everything—including tracking and payment—is in one place.</p>
                                 <br/>
                                 <h5>Personal support</h5>
                                 <p>Following your order, we will reach out to you to finalize logistics details. We are available via phone or email whenever you need us.</p>
@@ -92,10 +92,10 @@ function Shipping() {
                             </div>
                             <div className="col-12 col-md-7 ptb_40">
                                 <h5>The door-to-door vehicle transport solution from Bring a Trailer.</h5>
-                                <p>Bring a Trailer Shipping is our fully integrated vehicle transport service, available for both shibnobi Auction listings and (new!) your own private vehicles in the contiguous 48 U.S. states. Whether you’re moving, going to an event, or need a simple solution to ship a vehicle bought elsewhere, we have you covered. Let Bring a Trailer Shipping be your trusted partner for all your vehicle transport needs.</p> 
+                                <p>Bring a Trailer Shipping is our fully integrated vehicle transport service, available for both Gasguzzlers Auction listings and (new!) your own private vehicles in the contiguous 48 U.S. states. Whether you’re moving, going to an event, or need a simple solution to ship a vehicle bought elsewhere, we have you covered. Let Bring a Trailer Shipping be your trusted partner for all your vehicle transport needs.</p> 
                                 <br/>
                                 <h5>Instant quotes</h5>
-                                <p>The Shipping Calculator here—or on shibnobi Auction listings—lets you quote instant pricing for shipping a vehicle to your door. The price you see is the price you’ll pay: no fees, no hassles. Pick between fully enclosed transport or open transport at a lower cost (motorcycle shipping is available via enclosed transport only). Won an auction, but didn’t get a quote before your win? No problem. Generate a quote anytime on your My Bids & Wins page.</p>
+                                <p>The Shipping Calculator here—or on Gasguzzlers Auction listings—lets you quote instant pricing for shipping a vehicle to your door. The price you see is the price you’ll pay: no fees, no hassles. Pick between fully enclosed transport or open transport at a lower cost (motorcycle shipping is available via enclosed transport only). Won an auction, but didn’t get a quote before your win? No problem. Generate a quote anytime on your My Bids & Wins page.</p>
                             </div>
                         </div>
                     </div>

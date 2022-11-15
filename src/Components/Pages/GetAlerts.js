@@ -10,8 +10,8 @@ function GetAlerts() {
         <section className="pt_80 text-center">
             <div className="container">	
             <div className="daily_mail">	
-            <h2 className="title_combo title_Center">Shibnobi Daily Mail</h2>
-                <p className="title_combo title_Center">All the most relevant new content on Shibnobi at 5am Pacific each day, including:</p>
+            <h2 className="title_combo title_Center">Gasguzzlers Daily Mail</h2>
+                <p className="title_combo title_Center">All the most relevant new content on Gasguzzlers at 5am Pacific each day, including:</p>
                     
                 <div className="row mt-4">
                     <div className="col-md-8 offset-lg-2">
@@ -61,7 +61,7 @@ function GetAlerts() {
                         <div className="card_ic text-center">
                             <div className="card_icHead"><img src={premium}/></div>
                             <div className="card_icBody">
-                                <h4>Shibnobi Premium Listings</h4>
+                                <h4>Gasguzzlers Premium Listings</h4>
                                 <p>Each Premium listing is sent to you as soon as the auction goes live.</p>
                                 <button type="submit" className="results_subscribe btn">
                                 <i className="fa-regular fa-envelope"></i> <span>Subscribe</span>
@@ -87,7 +87,7 @@ function GetAlerts() {
                             <li>New photos or videos added to the listing are emailed to you.</li>
                             <li>A one-hour email reminder or 30 minute text reminder can be sent to you before the auction closes.</li>
                             <li>A summary of the auction result is emailed to you when it closes.</li>
-                            <li>Well email you if the vehicle is listed again on Shibnobi.</li>
+                            <li>Well email you if the vehicle is listed again on Gasguzzlers.</li>
                         </ul>
                         <a className="btn" href="#">
                             <i className="fa-solid fa-list mr-2"></i>Go to My Watchlist 

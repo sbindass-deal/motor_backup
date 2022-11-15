@@ -26,7 +26,7 @@ React.useEffect(()=>{
                 <div className="row">
                     <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
                         <h2 className="title_combo title_Center">Submit your Listing Today!</h2>
-                        <p>Shibnobi is simply the best way to buy and sell the best cars of all time. Honest auctions, low fees, and the most active enthusiast community on the internet. Have questions? <a href="#" className="link">Click here</a>.</p>
+                        <p>Gasguzzlers is simply the best way to buy and sell the best cars of all time. Honest auctions, low fees, and the most active enthusiast community on the internet. Have questions? <a href="#" className="link">Click here</a>.</p>
                     </div>
                     <div className="col-12 col-md-4 mb-4">
                         <div className="plan_card">

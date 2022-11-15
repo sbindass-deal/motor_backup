@@ -92,6 +92,7 @@ const VechilesRegistraion = () => {
       console.log(response.data);
     });
   };
+
   const uploadFileTwo = async (vehicleId) => {
     const url = process.env.REACT_APP_URL + "vehicle-image";
     const formData = new FormData();
@@ -1286,6 +1287,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
+                         
                             <label>
                               Is this vehicle a race car or not otherwise
                               registered for street use?
@@ -1537,6 +1539,7 @@ const VechilesRegistraion = () => {
                             </p>
                           </div>
                         </div>
+                       
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
@@ -1563,6 +1566,7 @@ const VechilesRegistraion = () => {
                                 required
                               />
                             </div>
+                            
                           </div>
                         </div>
                         <div className="col-12">
