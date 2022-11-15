@@ -509,10 +509,12 @@ function Detail() {
                         <label>Vin Number</label>
                         <div>{vehicle.detailvin}</div>
                       </li>
-                      <li>
-                        <label>Truck finished in Interstellar White?</label>
-                        <div>{vehicle.Interstellar}</div>
-                      </li>
+                      {vehicle.Interstellar === "Yes" && (
+                        <li>
+                          <label>Truck finished in Interstellar White?</label>
+                          <div>{vehicle.Interstellar}</div>
+                        </li>
+                      )}
                       <li>
                         <label>Inte</label>
                         <div>{vehicle.Interstellar}</div>

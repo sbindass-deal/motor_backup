@@ -36,8 +36,7 @@ const VechilesRegistraion = () => {
   const [understandCondition, setUnderstandCondition] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const userDataLogin = useSelector((state) => state);
-  // console.log("ancd_user", userDataLogin.login.user.id);
-  console.log(understandCondition, acceptTerms);
+  const [pickOne, setPickOne] = useState();
   const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
     const { checked } = e.target;
@@ -137,6 +136,7 @@ const VechilesRegistraion = () => {
     brandandmodel: "",
     sizetires: "",
     trucktitled: "",
+    other: "",
     status: "",
     km: "",
     kmacc: "",
@@ -212,7 +212,7 @@ const VechilesRegistraion = () => {
       providelink.trim().length !== 0 &&
       changedvechiles.trim().length !== 0 &&
       dealer.trim().length !== 0 &&
-      dealership.trim().length !== 0 &&
+      // dealership.trim().length !== 0 &&
       soldvechiles.trim().length !== 0 &&
       videolink.trim().length !== 0
     ) {
@@ -235,6 +235,7 @@ const VechilesRegistraion = () => {
       brandandmodel,
       sizetires,
       trucktitled,
+      other,
       status,
       km,
       kmacc,
@@ -250,9 +251,10 @@ const VechilesRegistraion = () => {
       ultiumdrive.trim().length !== 0 &&
       Interstellar.trim().length !== 0 &&
       interior.trim().length !== 0 &&
-      brandandmodel.trim().length &&
+      brandandmodel.trim().length !== 0 &&
       sizetires.trim().length !== 0 &&
       // trucktitled.trim().length !== 0 &&
+      // other.trim().length !== 0 &&
       status.trim().length !== 0 &&
       km.trim().length !== 0 &&
       // kmacc.trim().length !== 0 &&
@@ -292,7 +294,7 @@ const VechilesRegistraion = () => {
     const Name = e.target.name;
     setDetailstab({ ...detailstab, [Name]: Value });
     if (
-      detailvin.trim().length !== 0 &&
+      // detailvin.trim().length !== 0 &&
       bodywork.trim().length !== 0 &&
       rustpresent.trim().length !== 0 &&
       modificationstock.trim().length !== 0 &&
@@ -302,11 +304,11 @@ const VechilesRegistraion = () => {
       moreDescription.trim().length !== 0 &&
       reserve.trim().length !== 0 &&
       shibnobiabout.trim().length !== 0 &&
-      ammountOnDocument.trim().length !== 0 &&
+      ammountOnDocument.trim().length !== 0
       // rtmember.trim().length !== 0 &&
-      shibnobi.trim().length !== 0 &&
-      documentFee.trim().length !== 0 &&
-      memberShip.trim().length !== 0
+      // shibnobi.trim().length !== 0 &&
+      // documentFee.trim().length !== 0 &&
+      // memberShip.trim().length !== 0
       // accept.trim().length !== 0 &&
       // understand.trim().length !== 0
     ) {
@@ -363,6 +365,7 @@ const VechilesRegistraion = () => {
       brandandmodel,
       sizetires,
       trucktitled,
+      other,
       status,
       km,
       kmacc,
@@ -410,7 +413,7 @@ const VechilesRegistraion = () => {
         dealerName: moreDescription,
         dealerId: dealer,
         dealerDescription: dealership,
-        ownerDetail: vechilesrace,
+        ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
         km,
         kmacc: status,
@@ -419,6 +422,7 @@ const VechilesRegistraion = () => {
         ogEngine: kmacc,
         transmission: providelink,
         title: trucktitled,
+        other,
         titleStatus: changedvechiles,
         engineSize: vehiclepast,
         stepOneImage: "",
@@ -426,6 +430,7 @@ const VechilesRegistraion = () => {
         ste: ultiumdrive,
         link: link,
         accessories: truckfromnew,
+        detailsInfo,
         moreDescription: ammountOnDocument,
         reserve,
         hereFrom: shibnobiabout,
@@ -436,7 +441,7 @@ const VechilesRegistraion = () => {
         interior,
         brandandmodel,
         sizetires,
-        detailvin,
+        // detailvin,
         bodywork,
         rustpresent,
         modificationstock,
@@ -476,6 +481,7 @@ const VechilesRegistraion = () => {
           brandandmodel: "",
           sizetires: "",
           trucktitled: "",
+          other: "",
           status: "",
           km: "",
           kmacc: "",
@@ -1099,23 +1105,27 @@ const VechilesRegistraion = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>
-                              What is the name of your dealership? Please
-                              include a link to your website.
-                            </label>
-                            <input
-                              value={namefield.dealership}
-                              onChange={handleNameField}
-                              type="text"
-                              name="dealership"
-                              placeholder="Enter"
-                              className="field"
-                              required
-                            />
+                        {namefield.dealer === "Yes" ? (
+                          <div className="col-12 col-sm-12 col-md-6">
+                            <div className="form-group">
+                              <label>
+                                What is the name of your dealership? Please
+                                include a link to your website.
+                              </label>
+                              <input
+                                value={namefield.dealership}
+                                onChange={handleNameField}
+                                type="text"
+                                name="dealership"
+                                placeholder="Enter"
+                                className="field"
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
+                        ) : (
+                          ""
+                        )}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
@@ -1167,17 +1177,18 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
-                              <div className="icon">
+                              {/* <div className="icon">
                                 <i className="fas fa-cloud-upload-alt"></i>
-                              </div>
-                              <header>Drag & Drop to Upload File</header>
-                              <span>OR</span>
+                              </div> */}
+                              {/* <header>Drag & Drop to Upload File</header>
+                              <span>OR</span> */}
                               {/* <button>Browse File</button> */}
                               <input
                                 style={{
                                   backgroundColor: "#EF6031",
                                   fontSize: "1.2rem",
                                   textAlign: "center",
+                                  cursor: "pointer",
                                 }}
                                 value={namefield.file}
                                 onChange={(e) => {
@@ -1252,10 +1263,12 @@ const VechilesRegistraion = () => {
                     </p>
 
                     <h5>Please provide some basic info on your vehicle:</h5>
-                    <p>We love Hummer EVs!</p>
-                    <div className="mb-2">
+                    <p>
+                      We love {namefield.make} {namefield.model}s!{" "}
+                    </p>
+                    {/* <div className="mb-2">
                       <img src={img_001} />
-                    </div>
+                    </div> */}
 
                     <p>
                       Please provide some basic info to help us gather a better
@@ -1388,32 +1401,42 @@ const VechilesRegistraion = () => {
                           <p className="small">*Please pick only one:</p>
 
                           <div className="row">
-                            <div className="col-12 col-md-6">
-                              <div className="form-group form-check">
-                                <label className="form-check-label">
+                            <fieldset class="row mb-3 px-3">
+                              <div class="col-sm-10">
+                                <div class="form-check">
                                   <input
-                                    value={basicfact.trucktitled}
-                                    onChange={basicFactOnChange}
-                                    name="trucktitled"
-                                    className="form-check-input"
-                                    type="checkbox"
-                                  />{" "}
-                                  18" machine-finished alloy wheels
-                                </label>
-                              </div>
-                            </div>
-                            <div className="col-12 col-md-6">
-                              <div className="form-group form-check">
-                                <label className="form-check-label">
+                                    class="form-check-input"
+                                    onChange={(e) => setPickOne(e.target.value)}
+                                    type="radio"
+                                    name="gridRadios"
+                                    id="gridRadios1"
+                                    value="18 machine-finished alloy wheels"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="gridRadios1"
+                                  >
+                                    18" machine-finished alloy wheels
+                                  </label>
+                                </div>
+                                <div class="form-check">
                                   <input
-                                    name="other"
-                                    className="form-check-input"
-                                    type="checkbox"
-                                  />{" "}
-                                  Other
-                                </label>
+                                    class="form-check-input"
+                                    onChange={(e) => setPickOne(e.target.value)}
+                                    type="radio"
+                                    name="gridRadios"
+                                    id="gridRadios2"
+                                    value="other"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="gridRadios2"
+                                  >
+                                    Other
+                                  </label>
+                                </div>
                               </div>
-                            </div>
+                            </fieldset>
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -1540,17 +1563,18 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
-                              <div className="icon">
+                              {/* <div className="icon">
                                 <i className="fas fa-cloud-upload-alt"></i>
-                              </div>
-                              <header>Drag & Drop to Upload File</header>
-                              <span>OR</span>
+                              </div> */}
+                              {/* <header>Drag & Drop to Upload File</header>
+                              <span>OR</span> */}
                               {/* <button>Browse File</button> */}
                               <input
                                 style={{
                                   backgroundColor: "#EF6031",
                                   fontSize: "1.2rem",
                                   textAlign: "center",
+                                  cursor: "pointer",
                                 }}
                                 value={basicfact.files}
                                 // onChange={basicFactOnChange}
@@ -1630,7 +1654,7 @@ const VechilesRegistraion = () => {
                         </div>
                       </div>
                       <div className="row row_gap_5">
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What is the VIN?</label>
                             <select
@@ -1647,7 +1671,7 @@ const VechilesRegistraion = () => {
                               <option value="No">No</option>
                             </select>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
