@@ -19,19 +19,14 @@ function Auctionlive() {
     });
   }, []);
 
-
-  const getEndDate=(cal)=>{
+  const getEndDate = (cal) => {
     let data = cal.split("T");
-    console.log(data[0])
+    console.log(data[0]);
     let endDate = moment().format("YYYY-MM-DD");
-    let startDate = moment(data[0]).add(5,"days").format("YYYY-MM-DD");
-  
-    return startDate.toString();//endDate.diff(startDate, 'days');
-  }
+    let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
 
-
-
-  
+    return startDate.toString(); //endDate.diff(startDate, 'days');
+  };
 
   // const handleSearchFilter=(e)=>{
   //     setSearchValue(22,e.target.value)
@@ -138,14 +133,22 @@ function Auctionlive() {
               .filter((data) => data.done === 1 && data.premium === 1)
               .map((curElem) => {
                 return (
-                  <div key={curElem.id} className="col-12 col-lg-4 col-md-6 pb-3 auctionLive">
+                  <div
+                    key={curElem.id}
+                    className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
+                  >
                     <div className="card_post">
                       <div className="card_postImg">
                         <button type="button" className="watchedIc">
                           <i className="fa-solid fa-star"></i>
                         </button>
                         <a href={`detail/${curElem.id}`}>
-                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt=""/>
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            alt=""
+                          />
                         </a>
                       </div>
                       <div className="card_postInfo">
@@ -156,33 +159,13 @@ function Auctionlive() {
                         </h4>
                         <p>{curElem.anythingelse}</p>
                         <ul className="labelList">
-<<<<<<< Updated upstream
-                            <li>
-                              <label>Current Bid:</label>{" "}
-                              <span>${curElem.documentFee}</span>
-                            </li>
-                            <li>
-                              <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
-                            </li>
-                            {/* <li className="butn-shop">
-                              {!logingUser ? (
-                                <button type="button" className="btn">
-                                  Register for bid
-                                </button>
-                              ) : (
-                                <button type="button" className="btn">
-                                  <a href={`detail/${curElem.id}`}>Bid Now</a>
-                                </button>
-                              )}
-                            </li> */}
-                           
-=======
                           <li>
                             <label>Current Bid:</label>{" "}
                             <span>${curElem.documentFee}</span>
                           </li>
                           <li>
-                            <label>Ends On:</label> <span>{getEndDate(curElem.created_at)} </span>
+                            <label>Ends On:</label>{" "}
+                            <span>{getEndDate(curElem.created_at)} </span>
                           </li>
                           {/* {!logingUser ? (
                             <button type="button" className="btn">
@@ -193,7 +176,6 @@ function Auctionlive() {
                               <a href={`detail/${curElem.id}`}>Bid Now</a>
                             </button>
                           )} */}
->>>>>>> Stashed changes
                         </ul>
                       </div>
                     </div>

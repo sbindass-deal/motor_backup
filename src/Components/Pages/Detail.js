@@ -68,22 +68,20 @@ function Detail() {
   const addBiding = (e) => {
     e.preventDefault();
 
-    if(bidValue > vehicle.documentFee){
+    if (bidValue > vehicle.documentFee) {
       axios
-      .post(process.env.REACT_APP_URL + "biddings", {
-        auctionId: id,
-        userId: logingUser.user.id,
-        auctionAmmount: bidValue,
-        vehicle_id: id,
-      })
-      .then((res) => {
-        console.log(res);
-        handleClose();
-      });
-      
-
-    }else{
-      alert("Bid Amount is greater than " + vehicle.documentFee)
+        .post(process.env.REACT_APP_URL + "biddings", {
+          auctionId: id,
+          userId: logingUser.user.id,
+          auctionAmmount: bidValue,
+          vehicle_id: id,
+        })
+        .then((res) => {
+          console.log(res);
+          handleClose();
+        });
+    } else {
+      alert("Bid Amount is greater than " + vehicle.documentFee);
     }
 
     // axios
@@ -123,7 +121,7 @@ function Detail() {
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
-      const length= res.data.data.length-1
+      const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
     });
   };
@@ -137,14 +135,15 @@ function Detail() {
     getBidingDetails();
   }, []);
 
-  
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center pb_30">
-              <h2 className="title_combo title_Center">{vehicle.make}-{vehicle.model}-{vehicle.year}</h2>
+              <h2 className="title_combo title_Center">
+                {vehicle.make}-{vehicle.model}-{vehicle.year}
+              </h2>
             </div>
             <div className="col-12">
               <div className="detailPostOption">
@@ -178,7 +177,7 @@ function Detail() {
                     // onClick={() => addBiding()}
                     // onclick="smoothScroll(document.getElementById('placeBid_col'))"
                   >
-                    Place Bid
+                    Place a bid
                   </button>
                 </div>
               </div>
@@ -431,11 +430,7 @@ function Detail() {
                       <li>
                         <label>Current Bid</label>
                         <div>
-                          {amountprice && (
-                            <span>
-                              USD ${amountprice} 
-                            </span>
-                          )}
+                          {amountprice && <span>USD ${amountprice}</span>}
                         </div>
                       </li>
                       <li>
@@ -448,7 +443,7 @@ function Detail() {
                         <label>Ends On</label>
                         <div>
                           {/* Friday, September 23 at 10:30pm{" "} */}
-                          {moment().add(5,"days").format("LLL")}
+                          {moment().add(5, "days").format("LLL")}
                           {/* <a href="#">remind me</a> */}
                         </div>
                       </li>
@@ -459,15 +454,24 @@ function Detail() {
                       <li>
                         <label>Place Bid</label>
                         <div>
-                          <a
-                            href="javascript:void(0)"
-                            className="gry_btn"
-                            onClick={addBiding}
-                            // data-toggle="modal"
-                            // data-target="#RegisterModal"
-                          >
-                            {logingUser.user.id ? "BID" : "REGISTER TO BID"}
-                          </a>
+                          {logingUser.user.id ? (
+                            <button
+                              type="button"
+                              className="gry_btn"
+                              onClick={handleShow}
+                            >
+                              Place a bid
+                            </button>
+                          ) : (
+                            <a
+                              href="javascript:void(0)"
+                              className="gry_btn"
+                              // data-toggle="modal"
+                              // data-target="#RegisterModal"
+                            >
+                              REGISTER TO BID
+                            </a>
+                          )}
                         </div>
                       </li>
                     </ul>
@@ -601,49 +605,51 @@ function Detail() {
                   </div>
                 </div>
 
-              <div className="row ">
-                <div className="col-12">
-                  <h5>{comments.length} COMMENTS</h5>
-                  <form className="mb-3">
-                    <div className="form-group">
-                      <textarea
-                        placeholder="add comment here"
-                        className="field"
-                        value={inputcomment}
-                        onChange={(e) => {
-                          setInputComment(e.target.value);
-                        }}
-                      ></textarea>
-                    </div>
-                    <div className="form-group">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          axios
-                            .post(process.env.REACT_APP_URL + "comments", {
-                              vehicleId: id,
-                              userId: 0,
-                              bidId: 0,
-                              description: inputcomment,
-                            })
-                            .then(() => {
-                              window.location.reload(false);
-                            });
-                        }}
-                        className="gry_btn"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
-                <div className="col-12 pt-3">
-
+                <div className="row ">
+                  <div className="col-12">
+                    <h5>{comments.length} COMMENTS</h5>
+                    <form className="mb-3">
+                      <div className="form-group">
+                        <textarea
+                          placeholder="add comment here"
+                          className="field"
+                          value={inputcomment}
+                          onChange={(e) => {
+                            setInputComment(e.target.value);
+                          }}
+                        ></textarea>
+                      </div>
+                      <div className="form-group">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            axios
+                              .post(process.env.REACT_APP_URL + "comments", {
+                                vehicleId: id,
+                                userId: 0,
+                                bidId: 0,
+                                description: inputcomment,
+                              })
+                              .then(() => {
+                                window.location.reload(false);
+                              });
+                          }}
+                          className="gry_btn"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-12 pt-3">
                     {comments.map((data) => (
                       <div className="commentRow">
                         <div className="commentHead">
                           <div className="com_byPic">
-                            <img src="https://pinnacle.works/wp-content/uploads/2022/06/dummy-image.jpg" alt="" />
+                            <img
+                              src="https://pinnacle.works/wp-content/uploads/2022/06/dummy-image.jpg"
+                              alt=""
+                            />
                           </div>
                           <div className="com_by">{data.name}</div>
                           <div className="com_date">
@@ -942,7 +948,7 @@ function Detail() {
           <div className="modal-content">
             {/* <!-- Modal Header --> */}
             <div className="modal-header border-0">
-              <h4 className="modal-title">Place Bid</h4>
+              <h4 className="modal-title">Place a bid</h4>
               <button
                 onClick={handleClose}
                 type="button"
@@ -957,45 +963,23 @@ function Detail() {
             <div className="modal-body">
               <form onSubmit={addBiding}>
                 <div className="row">
-
-                
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <input
-                      value={bidValue}
-                      onChange={handleBidInput}
-                      type="number"
-                      className="form-control"
-                      placeholder="Please enter bid amount"
-                      required
-                    />
+                  <div className="col-12 col-md-12">
+                    <div className="form-group">
+                      <input
+                        value={bidValue}
+                        onChange={handleBidInput}
+                        type="number"
+                        className="form-control"
+                        placeholder="Please enter bid amount"
+                        required
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
+                  <div className="col-12 d-flex justify-content-center pt-4 ">
+                    <button className="btn" type="submit">
+                      Submit
+                    </button>
                   </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <input type="text" name="" className="field" placeholder="Email" required="" value="nill.nikhil007@gmail.com"/>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <button className="btn" type="submit">
-                    Submit
-                  </button>
-                </div>
                 </div>
               </form>
             </div>
