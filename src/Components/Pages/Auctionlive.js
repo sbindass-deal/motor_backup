@@ -167,15 +167,17 @@ function Auctionlive() {
                             <label>Ends On:</label>{" "}
                             <span>{getEndDate(curElem.created_at)} </span>
                           </li>
-                          {/* {!logingUser ? (
-                            <button type="button" className="btn">
-                              Register for bid
-                            </button>
-                          ) : (
-                            <button type="button" className="btn">
-                              <a href={`detail/${curElem.id}`}>Bid Now</a>
-                            </button>
-                          )} */}
+                          {/* <li className="butn-shop">
+                              {!logingUser ? (
+                                <button type="button" className="btn">
+                                  Register for bid
+                                </button>
+                              ) : (
+                                <button type="button" className="btn">
+                                  <a href={`detail/${curElem.id}`}>Bid Now</a>
+                                </button>
+                              )}
+                            </li> */}
                         </ul>
                       </div>
                     </div>
