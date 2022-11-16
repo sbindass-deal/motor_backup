@@ -153,7 +153,8 @@ function Detail() {
                   <ul className="labelList">
                     <li>
                       <label>Current Bid:</label>{" "}
-                      <span>{vehicle.documentFee}</span>
+                      <span>                          {amountprice && <span>USD ${amountprice}</span>}
+</span>
                     </li>
                     <li>
                       <label>Ends In:</label> <span>5 days</span>
@@ -741,15 +742,15 @@ function Detail() {
                       </div>
                     ))}
 
-                    <div className="pt-4">
+                    {/* <div className="pt-4">
                       <button type="button" className="gry_btn">
                         Read More
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
-              <div className="col-12 col-lg-3">
+              {/* <div className="col-12 col-lg-3">
                 <div className="card_Gray mt-4 mb-3">
                   <h6>Gas Guzzlrs Essentials</h6>
                   <ul className="label__List">
@@ -1002,7 +1003,7 @@ function Detail() {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

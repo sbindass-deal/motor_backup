@@ -1059,3 +1059,11 @@ ul.bidList_.info_ li.fulwdth {
   object-fit: cover;
   overflow: hidden !important;
 }
+
+footer a img {
+  width: 65%;
+}
+
+.navbar-brand img {
+  width: 190px;
+}

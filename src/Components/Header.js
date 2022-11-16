@@ -45,7 +45,7 @@ function Header() {
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
                 <a className="navbar-brand" href="/">
-                  <img width="150" src={shibnobiMotors} alt="shibnobiMotors" />
+                  <img src={shibnobiMotors} alt="shibnobiMotors" />
                 </a>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
