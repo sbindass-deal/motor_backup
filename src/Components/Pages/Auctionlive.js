@@ -162,7 +162,8 @@ function Auctionlive() {
                         <ul className="labelList">
                           <li>
                             <label>Current Bid:</label>
-                            {curElem["currentAmount"] === undefined  || curElem["currentAmount"] === null  ? (
+                            {curElem["currentAmount"] === undefined ||
+                            curElem["currentAmount"] === null ? (
                               <span>${curElem.documentFee}</span>
                             ) : (
                               <span>

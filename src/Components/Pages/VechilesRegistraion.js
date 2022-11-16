@@ -734,7 +734,7 @@ const VechilesRegistraion = () => {
                               {counryData.map((curElem, i) => {
                                 return (
                                   <option key={i} value="United States">
-                                    {curElem.name}:- {curElem.code}
+                                    {curElem.name}
                                   </option>
                                 );
                               })}

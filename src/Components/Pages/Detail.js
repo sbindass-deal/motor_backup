@@ -35,7 +35,9 @@ function Detail() {
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
-  const [newTiem, setNewTiem] = useState(new Date().getTime());
+  const [newTiem, setNewTiem] = useState(
+    new Date("2022-11-23 12:30:00").getTime()
+  );
   const now = new Date().getTime();
   const t = newTiem - now;
 
@@ -122,12 +124,12 @@ function Detail() {
       const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
       console.log("apiTime", res.data.data[0].created_at);
-      setNewTiem(
-        parseInt(
-          new Date(res.data.data[0].created_at).getTime() + 432000000,
-          10
-        )
-      );
+      // setNewTiem(
+      //   parseInt(
+      //     new Date(res.data.data[0].created_at).getTime() + 432000000,
+      //     10
+      //   )
+      // );
     });
   };
 
@@ -432,86 +434,12 @@ function Detail() {
                   </div>
                 </div>
 
-                <div className="ptb_40" id="placeBid_col">
-                  <div className="card_Gray">
-                    <h5>BID ON THIS LISTING</h5>
-                    <ul className="bidList_">
-                      <li>
-                        <label>Current Bid</label>
-                        <div>
-                          {amountprice ? (
-                            <span>USD ${amountprice}</span>
-                          ) : (
-                            <span>USD ${vehicle.documentFee} </span>
-                          )}
-                        </div>
-                      </li>
-                      <li>
-                        <label>Time Left</label>
-                        <div>
-                          {days} days {hours} hours, {minutes} minutes,{" "}
-                          {seconds} seconds *
-                        </div>
-                      </li>
-                      <li>
-                        <label>Ends On</label>
-                        <div>
-                          {/* Friday, September 23 at 10:30pm{" "} */}
-                          {moment().add(5, "days").format("LLL")}
-                          {/* <a href="#">remind me</a> */}
-                        </div>
-                      </li>
-                      <li>
-                        <label>Bids</label>
-                        <div>{biding ? biding.length : 0}</div>
-                      </li>
-                      <li>
-                        <label>Place Bid</label>
-                        <div>
-                          {logingUser.user.id ? (
-                            <button
-                              type="button"
-                              className="gry_btn"
-                              onClick={handleShow}
-                            >
-                              Place a bid
-                            </button>
-                          ) : (
-                            <a
-                              href="javascript:void(0)"
-                              className="gry_btn"
-                              // data-toggle="modal"
-                              // data-target="#RegisterModal"
-                            >
-                              REGISTER TO BID
-                            </a>
-                          )}
-                        </div>
-                      </li>
-                    </ul>
-                    <div className="bid_bottom">
-                      <div className="">
-                        <a href="#" className="mr-2">
-                          How bidding works
-                        </a>
-                        <a href="#">
-                          <i className="fa-solid fa-star"></i> Watch auction
-                        </a>
-                      </div>
-                      <div className="">
-                        <ul className="bid_viewWatch">
-                          <li>0 views</li>
-                          <li>0 watchers</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+               
                 <div className="pb_40" id="placeBid_col">
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
-                      {/* <li>
+                      <li>
                         <label>Are you a dealer?</label>
                         <div>{vehicle.dealerId}</div>
                       </li>
@@ -520,7 +448,7 @@ function Detail() {
                         <div>{vehicle.dealerDescription}</div>
                       </li>
                       <li>
-                        <label>Vin Number</label>
+                        <label>Chassis Number</label>
                         <div>{vehicle.detailvin}</div>
                       </li>
                       {vehicle.Interstellar === "Yes" && (
@@ -600,12 +528,6 @@ function Detail() {
                           Please list and describe services performed and when
                         </label>
                         <div>{vehicle.moreDescription}</div>
-                      </li> */}
-
-                      <li>
-                        <label htmlFor="">
-                          Chassis : <b>123456789</b>
-                        </label>
                       </li>
 
                       <li>
@@ -614,7 +536,7 @@ function Detail() {
 
                       {vehicle.Interstellar === "Yes" && (
                         <li>
-                          <label htmlFor=""> Interstellar</label>
+                          Interstellar <label htmlFor=""> Interstellar</label>
                         </li>
                       )}
 
@@ -632,7 +554,7 @@ function Detail() {
 
                       {vehicle.bodywork === "Yes" && (
                         <li>
-                          <label htmlFor=""> Recently Painted</label>
+                          Body Work <label htmlFor=""> Recently Painted</label>
                         </li>
                       )}
 
@@ -651,14 +573,14 @@ function Detail() {
                       )}
 
                       <li>
-                        <label htmlFor="">{vehicle.sizetires}</label>
+                      Size tires <label htmlFor="">{vehicle.sizetires}</label>
                       </li>
 
                       {/* <li>
                         <label htmlFor="">{vehicle.km}</label>
                       </li> */}
                       <li>
-                        <label htmlFor="">{vehicle.brandandmodel}</label>
+                       Brand  <label htmlFor="">{vehicle.brandandmodel}</label>
                       </li>
 
                       <li>
@@ -688,7 +610,81 @@ function Detail() {
                   </div> */}
                   </div>
                 </div>
-
+                <div className="ptb_40" id="placeBid_col">
+                  <div className="card_Gray">
+                    <h5>BID ON THIS LISTING</h5>
+                    <ul className="bidList_">
+                      <li>
+                        <label>Current Bid</label>
+                        <div>
+                          {amountprice ? (
+                            <span>USD ${amountprice}</span>
+                          ) : (
+                            <span>USD ${vehicle.documentFee} </span>
+                          )}
+                        </div>
+                      </li>
+                      <li>
+                        <label>Time Left</label>
+                        <div>
+                          {days} days {hours} hours, {minutes} minutes,{" "}
+                          {seconds} seconds *
+                        </div>
+                      </li>
+                      <li>
+                        <label>Ends On</label>
+                        <div>
+                          {/* Friday, September 23 at 10:30pm{" "} */}
+                          {moment().add(5, "days").format("LLL")}
+                          {/* <a href="#">remind me</a> */}
+                        </div>
+                      </li>
+                      <li>
+                        <label>Bids</label>
+                        <div>{biding ? biding.length : 0}</div>
+                      </li>
+                      <li>
+                        <label>Place Bid</label>
+                        <div>
+                          {logingUser.user.id ? (
+                            <button
+                              type="button"
+                              className="gry_btn"
+                              onClick={handleShow}
+                            >
+                              Place a bid
+                            </button>
+                          ) : (
+                            <a
+                              href="javascript:void(0)"
+                              className="gry_btn"
+                              // data-toggle="modal"
+                              // data-target="#RegisterModal"
+                            >
+                              REGISTER TO BID
+                            </a>
+                          )}
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="bid_bottom">
+                      <div className="">
+                        <a href="#" className="mr-2">
+                          How bidding works
+                        </a>
+                        <a href="#">
+                          <i className="fa-solid fa-star"></i> Watch auction
+                        </a>
+                      </div>
+                      <div className="">
+                        <ul className="bid_viewWatch">
+                          <li>0 views</li>
+                          <li>0 watchers</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="row ">
                   <div className="col-12">
                     <h5>{comments.length} COMMENTS</h5>
