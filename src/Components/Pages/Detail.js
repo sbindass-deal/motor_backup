@@ -249,7 +249,7 @@ function Detail() {
                   className="gry_btn dropdown-toggle"
                   data-toggle="dropdown"
                 >
-                  Era: 2010s
+                  Era: {vehicle.year}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
