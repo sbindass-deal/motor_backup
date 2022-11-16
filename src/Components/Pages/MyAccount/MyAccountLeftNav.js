@@ -15,10 +15,10 @@ function MyAccountLeftNav() {
           <a href="notifications">Notifications</a>
         </li>
         <li>
-          <a href="bidswins">My Listings</a>
+          <a href="listing">My Listings</a>
         </li>
         <li>
-          <a href="listing">My Bids & Wins</a>
+          <a href="bidswins">My Bids & Wins</a>
         </li>
         <li>
           <a href="myshipments">My Shipments</a>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import car_01 from "../../../Assets/images/car_01.jpg";
 import car_02 from "../../../Assets/images/car_02.jpg";
 import car_03 from "../../../Assets/images/car_03.jpg";
@@ -8,10 +9,19 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 
 function MyBidsWins() {
   const [data, setData] = useState([]);
+  const userId = useSelector((state) => state);
+
   React.useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
-      setData(response.data.data);
-    });
+    axios
+      .get(
+        process.env.REACT_APP_URL +
+          `bidding/basedOnUser/${userId.login.user.id}`
+      )
+
+      .then((response) => {
+        setData(response.data.data);
+        console.log(response.data.data);
+      });
   }, []);
 
   return (
@@ -28,7 +38,7 @@ function MyBidsWins() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>My Listing</h3>
+                <h3>My Bids & Win</h3>
                 {/* <select class="field">
                   <option>Recent Bid</option>
                   <option>Winner Bid</option>
@@ -57,7 +67,7 @@ function MyBidsWins() {
                                 {curElem.created_at}
                               </li> */}
                             </ul>
-                            <p>{curElem.description}</p>
+                            <p>{curElem.auctionAmmount}</p>
                           </div>
                           <div className="pl-md-3">
                             <a

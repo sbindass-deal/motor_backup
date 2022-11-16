@@ -27,7 +27,7 @@ function MyListings() {
               </div>
               <div className="col-12 col-md-8 col-lg-9">
                 <div class="FlexCol">
-                  <h3>My Bids & Win</h3>
+                  <h3>My Account</h3>
                   {/* <select class="field">
                   <option>Recent Bid</option>
                   <option>Winner Bid</option>

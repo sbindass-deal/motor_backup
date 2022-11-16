@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 function RegisterModal({ showReg, handleCloseReg }) {
+  const notify = (val) => toast(val);
   const url = process.env.REACT_APP_URL;
 
   const [email, setEmail] = useState("");
@@ -21,13 +23,13 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [year, setYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [selectone, setSelectone] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
 
   // const[checkdata,setCheckdata]=useState(false)
 
   // const toggle=()=>{
   //   setCheckdata(!che)
   // }
-
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -72,31 +74,42 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const handleSelectone = (e) => {
     setSelectone(e.target.value);
   };
-
-  const handleApi = () => {
-    axios
-      .post(`${url}users`, {
-        email: email, 
-        username: username,
-        password: password,
-        cpassword: cpassword,
-        name: name,
-        phone: phone,
-        address: address,
-        zip: zip,
-        country: country,
-        creditcard: creditcard,
-        month1: month,
-        year1: year,
-        cvc: cvc,
-        selectone: selectone,
-      })
-      .then((result) => {
-        handleCloseReg();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handlePasswordAndCpassword = () => {
+    setPasswordError(false);
+    console.log("buller");
+  };
+  const handleApi = (e) => {
+    e.preventDefault();
+    console.log(password, cpassword);
+    if (password === cpassword) {
+      axios
+        .post(`${url}users`, {
+          email: email,
+          username: username,
+          password: password,
+          cpassword: cpassword,
+          name: name,
+          phone: phone,
+          address: address,
+          zip: zip,
+          country: country,
+          creditcard: creditcard,
+          month1: month,
+          year1: year,
+          cvc: cvc,
+          selectone: selectone,
+        })
+        .then((result) => {
+          handleCloseReg();
+          notify("Register Successfully!");
+        })
+        .catch((error) => {
+          console.log(error);
+          notify("Register fail somthing wrong please try again !");
+        });
+    } else {
+      setPasswordError(true);
+    }
   };
 
   return (
@@ -132,7 +145,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     <input
                       value={email}
                       onChange={handleEmail}
-                      type="text"
+                      type="email"
                       name=""
                       className="field"
                       placeholder="Email"
@@ -149,6 +162,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       name=""
                       className="field"
                       placeholder="Username"
+                      autoComplete="off"
                       required
                     />
                   </div>
@@ -160,11 +174,17 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       onChange={handlePassword}
                       type="password"
                       name=""
+                      onFocus={handlePasswordAndCpassword}
                       className="field"
                       placeholder="Password"
                       required
                     />
                   </div>
+                  {passwordError && password !== cpassword && (
+                    <p className="text-danger">
+                      password and conform password should same!
+                    </p>
+                  )}
                 </div>
                 <div className="col-12 col-md-6">
                   <div className="form-group">
@@ -173,11 +193,17 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       onChange={handleCpassword}
                       type="password"
                       name=""
+                      onFocus={handlePasswordAndCpassword}
                       className="field"
                       placeholder="Confirm Password"
                       required
                     />
                   </div>
+                  {passwordError && password !== cpassword && (
+                    <p className="text-danger">
+                      password and conform password should same!
+                    </p>
+                  )}
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -186,7 +212,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       data-toggle="collapse"
                       data-target="#wantBid"
                     >
-                      <input className="form-check-input" type="checkbox"  /> I
+                      <input className="form-check-input" type="checkbox" /> I
                       want the ability to bid on auctions (optional)
                     </label>
                     <div id="wantBid" className="collapse pt-3">
@@ -209,7 +235,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Name (as it appears on your card)"
-                              required
                             />
                           </div>
                         </div>
@@ -222,7 +247,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Phone"
-                              required
                             />
                           </div>
                         </div>
@@ -235,7 +259,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Address"
-                              required
                             />
                           </div>
                         </div>
@@ -248,7 +271,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Zip / Postal Code"
-                              required
                             />
                           </div>
                         </div>
@@ -261,7 +283,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Country"
-                              required
                             />
                           </div>
                         </div>
@@ -274,7 +295,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="Credit Card Number"
-                              required
                             />
                           </div>
                         </div>
@@ -287,7 +307,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={month}
                                   onChange={handleMonth}
-                                  required
                                 >
                                   <option>1</option>
                                   <option>2</option>
@@ -308,7 +327,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                                   className="field"
                                   value={year}
                                   onChange={handleYear}
-                                  required
                                 >
                                   <option>2022</option>
                                   <option>2023</option>
@@ -334,7 +352,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               name=""
                               className="field"
                               placeholder="CVC"
-                              required
                             />
                           </div>
                         </div>
@@ -345,7 +362,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               className="field"
                               value={selectone}
                               onChange={handleSelectone}
-                              required
                             >
                               <option>Select one</option>
                               <option>Facebook</option>
@@ -391,7 +407,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="button" onClick={handleApi}  className="btn">
+                    <button type="submit" className="btn">
                       Register
                     </button>
                   </div>

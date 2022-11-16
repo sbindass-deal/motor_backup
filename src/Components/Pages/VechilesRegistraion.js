@@ -604,8 +604,8 @@ const VechilesRegistraion = () => {
                     <h3>Make & Model</h3>
                     <hr />
                     <h6>
-                      Think your vehicle should be sold via Gasguzzlers Auctions?
-                      Please fill out the form below.
+                      Think your vehicle should be sold via Gasguzzlers
+                      Auctions? Please fill out the form below.
                     </h6>
 
                     <p className="small">
@@ -1300,7 +1300,6 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                         
                             <label>
                               Is this vehicle a race car or not otherwise
                               registered for street use?
@@ -1562,7 +1561,7 @@ const VechilesRegistraion = () => {
                             </p>
                           </div>
                         </div>
-                       
+
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
@@ -1590,7 +1589,6 @@ const VechilesRegistraion = () => {
                                 required
                               />
                             </div>
-                            
                           </div>
                         </div>
                         <div className="col-12">
@@ -2091,12 +2089,12 @@ const VechilesRegistraion = () => {
                                 required
                               />{" "}
                               I understand that if the final bid for my vehicle
-                              is below the reserve, Gasguzzlers may choose (at its
-                              sole discretion) to make up the difference. In
+                              is below the reserve, Gasguzzlers may choose (at
+                              its sole discretion) to make up the difference. In
                               this case the vehicle will appear as sold at the
-                              below-reserve price and Gasguzzlers will pay me the
-                              difference between the high bid and the reserve
-                              once the transaction is complete.
+                              below-reserve price and Gasguzzlers will pay me
+                              the difference between the high bid and the
+                              reserve once the transaction is complete.
                             </label>
                           </div>
                         </div>
@@ -2154,7 +2152,7 @@ const VechilesRegistraion = () => {
                       <div className="row">
                         <div className="col-12">
                           <h5>Complete Your Contact Info</h5>
-                          <p>
+                          {/* <p>
                             Already have a username?{" "}
                             <a
                               href="javascript:void(0)"
@@ -2167,7 +2165,7 @@ const VechilesRegistraion = () => {
                               Sign in
                             </a>{" "}
                             here.
-                          </p>
+                          </p> */}
                           <h6>If you're new to Gasguzzlers, register below:</h6>
                         </div>
                       </div>
@@ -2191,7 +2189,7 @@ const VechilesRegistraion = () => {
                             )}
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Username</label>
                             <input
@@ -2211,8 +2209,8 @@ const VechilesRegistraion = () => {
                               ""
                             )}
                           </div>
-                        </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        </div> */}
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Password</label>
                             <input
@@ -2232,7 +2230,7 @@ const VechilesRegistraion = () => {
                               ""
                             )}
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Name</label>

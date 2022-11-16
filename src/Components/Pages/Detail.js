@@ -35,11 +35,10 @@ function Detail() {
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
-  const deadline = new Date("nov 15, 2022 15:37:25").getTime();
+  const [newTiem, setNewTiem] = useState(new Date().getTime());
   const now = new Date().getTime();
-  const t = deadline - now;
+  const t = newTiem - now;
 
-  console.log("bidding", biding);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -123,10 +122,15 @@ function Detail() {
       setBiding(res.data.data);
       const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
+      console.log("apiTime", res.data.data[0].created_at);
+      setNewTiem(
+        parseInt(
+          new Date(res.data.data[0].created_at).getTime() + 432000000,
+          10
+        )
+      );
     });
   };
-
-  console.log(9898911, biding);
 
   React.useEffect(() => {
     getVehicle();
@@ -134,8 +138,6 @@ function Detail() {
     getComments();
     getBidingDetails();
   }, []);
-
-  console.log(600, vehicle);
 
   return (
     <div>
@@ -153,8 +155,10 @@ function Detail() {
                   <ul className="labelList">
                     <li>
                       <label>Current Bid:</label>{" "}
-                      <span>                          {amountprice && <span>USD ${amountprice}</span>}
-</span>
+                      <span>
+                        {" "}
+                        {amountprice && <span>USD ${amountprice}</span>}
+                      </span>
                     </li>
                     <li>
                       <label>Ends In:</label> <span>5 days</span>
@@ -256,7 +260,7 @@ function Detail() {
                   </a>
                 </div>
               </div>
-              <div className="dropdown mr-2">
+              {/* <div className="dropdown mr-2">
                 <button
                   type="button"
                   className="gry_btn dropdown-toggle"
@@ -272,7 +276,7 @@ function Detail() {
                     Notify me about new listings
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="dropdown">
                 {/* <button
                   type="button"
@@ -439,7 +443,8 @@ function Detail() {
                       <li>
                         <label>Time Left</label>
                         <div>
-                          {hours} hours, {minutes} minutes, {seconds} seconds *
+                          {days} days {hours} hours, {minutes} minutes,{" "}
+                          {seconds} seconds *
                         </div>
                       </li>
                       <li>
@@ -613,49 +618,51 @@ function Detail() {
                         </label>
                       </li>
 
-
-                      {vehicle.accessories!== "" && (
+                      {vehicle.accessories !== "" && (
                         <li>
                           <label htmlFor=""> {vehicle.accessories}</label>
                         </li>
                       )}
 
-                {vehicle.bodywork === "Yes" && (
+                      {vehicle.bodywork === "Yes" && (
                         <li>
                           <label htmlFor=""> Recently Painted</label>
                         </li>
                       )}
 
+                      <li>
+                        <label htmlFor="">{vehicle.moreDescription}</label>
+                      </li>
 
-                  <li>
-                    <label htmlFor="">{vehicle.moreDescription}</label>
-                  </li>
+                      <li>
+                        <label htmlFor="">{vehicle.premium}</label>
+                      </li>
 
-                  <li>
-                    <label htmlFor="">{vehicle.premium}</label>
-                  </li>
-
-                  {vehicle.reserve === "Yes" && (
+                      {vehicle.reserve === "Yes" && (
                         <li>
                           <label htmlFor=""> Reserve</label>
                         </li>
                       )}
 
-                  <li>
-                    <label htmlFor="">{vehicle.sizetires}</label>
-                  </li>
+                      <li>
+                        <label htmlFor="">{vehicle.sizetires}</label>
+                      </li>
 
-                  <li>
-                    <label htmlFor="">{vehicle.km}</label>
-                  </li>
-                  <li>
-                    <label htmlFor="">{vehicle.brandandmodel}</label>
-                  </li>
+                      <li>
+                        <label htmlFor="">{vehicle.km}</label>
+                      </li>
+                      <li>
+                        <label htmlFor="">{vehicle.brandandmodel}</label>
+                      </li>
 
-                    <li>
-                      <label htmlFor="">Private Party or Dealer : {vehicle.dealerId==="Yes" ? "Dealer" :"Privately owned"} </label>
-                    </li>
-
+                      <li>
+                        <label htmlFor="">
+                          Private Party or Dealer :{" "}
+                          {vehicle.dealerId === "Yes"
+                            ? "Dealer"
+                            : "Privately owned"}{" "}
+                        </label>
+                      </li>
                     </ul>
                     {/* <div className="bid_bottom">
                     <div className="">
