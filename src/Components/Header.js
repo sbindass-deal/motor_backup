@@ -117,7 +117,7 @@ function Header() {
 
                     <li className="nav-item">
                       <a className="nav-link" href="/works">
-                        How Gasguzzlers Works
+                        How Gas guzzlers Works
                       </a>
                     </li>
                     {!logingUser.login ? (
@@ -137,9 +137,10 @@ function Header() {
                         onClick={logout}
                         style={{ cursor: "pointer" }}
                         className="nav-item"
-                        
                       >
-                        <a className="nav-link" href="javascript:void(0)">Logout</a>
+                        <a className="nav-link" href="javascript:void(0)">
+                          Logout
+                        </a>
                       </li>
                     )}
                     {/* <li className="nav-item">
@@ -147,14 +148,15 @@ function Header() {
                         <i className="fa-solid fa-star"></i>
                       </a>
                     </li> */}
-
-                    <li className="nav-item">
-                      <a className="nav-link" href="/accountinfo">
-                        <i>
-                          <AccountCircleIcon />
-                        </i>
-                      </a>
-                    </li>
+                    {logingUser.login && (
+                      <li className="nav-item">
+                        <a className="nav-link" href="/accountinfo">
+                          <i>
+                            <AccountCircleIcon />
+                          </i>
+                        </a>
+                      </li>
+                    )}
 
                     <li className="nav-item">
                       <a
@@ -195,7 +197,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/#">
-                        Gasguzzlers Features
+                        Gas guzzlers Features
                       </a>
                     </li>
                     <li className="nav-item">
@@ -210,7 +212,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/#">
-                      Gasguzzlers
+                        Gas guzzlers
                       </a>
                     </li>
                     <li className="nav-item">
@@ -222,7 +224,7 @@ function Header() {
                 </div>
               </nav>
             </div>
-            <div className="col-12 mobileOnlyHide" >
+            <div className="col-12 mobileOnlyHide">
               <nav className="navbar navbar-expand secondNavbar">
                 <div className="container-fluid">
                   <div
@@ -252,7 +254,7 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <a className="nav-link" href="/feautres">
-                          Gasguzzlers Features
+                          Gas guzzlers Features
                         </a>
                       </li>
 
@@ -284,7 +286,7 @@ function Header() {
 
                       <li className="nav-item">
                         <a className="nav-link" href="/aboutshibnobi">
-                          About Gasguzzlers
+                          About Gas guzzlers
                         </a>
                       </li>
                       <li className="nav-item">
@@ -293,7 +295,7 @@ function Header() {
                           href="https://store.shibnobi.com/"
                           target={"_blank"}
                         >
-                          Gasguzzlers Store
+                          Gas guzzlers Store
                         </a>
                       </li>
 
