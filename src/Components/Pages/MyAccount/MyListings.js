@@ -41,7 +41,8 @@ function MyListings() {
                       return (
                         <div key={curElem.id} className="bidsListRow">
                           <div className="bidsImg">
-                            <img src={car_01} alt="car_01" />
+                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt={curElem.stepOneImage} />
+                       
                           </div>
                           <div className="bidsInfo">
                             <div className="">

@@ -52,7 +52,7 @@ function MyBidsWins() {
                     return (
                       <div key={curElem.id} className="bidsListRow">
                         <div className="bidsImg">
-                          <img src={car_01} alt="car_01" />
+                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt={curElem.stepOneImage} />
                         </div>
                         <div className="bidsInfo">
                           <div className="">
@@ -67,7 +67,10 @@ function MyBidsWins() {
                                 {curElem.created_at}
                               </li> */}
                             </ul>
-                            <p>{curElem.auctionAmmount}</p>
+                            <p>
+                              You have BID $
+                              <span style={{color: '#fff'}}>{curElem.auctionAmmount}</span>
+                            </p>
                           </div>
                           <div className="pl-md-3">
                             <a
