@@ -196,7 +196,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                   {passwordError && password !== cpassword && (
                     <p className="text-danger">
-                      password and conform password should same!
+                      password & confirm password should same!
                     </p>
                   )}
                 </div>
