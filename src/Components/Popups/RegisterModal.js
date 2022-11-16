@@ -357,7 +357,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         </div>
                         <div className="col-12 col-md-6">
                           <div className="form-group">
-                            <label>Where did you hear about Gasguzzlers?</label>
+                            <label>Where did you hear about Gas guzzlers?</label>
                             <select
                               className="field"
                               value={selectone}
@@ -367,7 +367,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                               <option>Facebook</option>
                               <option>Google</option>
                               <option>Instagram</option>
-                              <option>Log time Gasguzzlers reader</option>
+                              <option>Log time Gas guzzlers reader</option>
                               <option>Other</option>
                             </select>
                           </div>
@@ -392,7 +392,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" />{" "}
-                      Sign me up for the Gasguzzlers Daily Mail
+                      Sign me up for the Gas guzzlers Daily Mail
                     </label>
                   </div>
                 </div>

@@ -20,7 +20,7 @@ function Footer() {
                         <ul className="fLinks fLinks_row">
                             {/* <li><a href="#">Auctions</a></li> */}
                             <li><a href="shipping">Shipping</a></li>
-                            <li><a href="feautres">Gasguzzlers Features</a></li>
+                            <li><a href="feautres">Gas guzzlers Features</a></li>
                             <li><a href="submit">Submit a Vehicle</a></li>
                             {/* <li><a href="makeamodel">Makes and Models</a></li> */}
                             {/* <li><a href="#">Event Calendar</a></li> */}
@@ -29,7 +29,7 @@ function Footer() {
                             <li><a href="carraffle">Car Raffle</a></li>
                             {/* <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</a></li> */}
                             <li><a href="getalerts">Get Alerts</a></li>
-                            <li><a href="aboutGas Guzzlrs">About Gasguzzlers</a></li>
+                            <li><a href="aboutGas Guzzlrs">About Gas guzzlers</a></li>
                         </ul>
                     </div>
                     <div className="col-12 col-md-3 col-lg-2 pb-3">
@@ -52,7 +52,7 @@ function Footer() {
                             <a href="amlpolicy">AML Policy</a>
                         </div>
                         <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                            <p>©2022 Gasguzzlers Motors  |  All Rights Reserved.</p>
+                            <p>©2022 Gas guzzlers Motors  |  All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

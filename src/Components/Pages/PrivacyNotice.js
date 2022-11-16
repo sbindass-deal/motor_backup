@@ -12,13 +12,13 @@ function PrivacyPolicy() {
                         {/* <p><strong>Terms of Use</strong></p> */}
                     {/* <p>Last revised on: 6/25/2020</p> */}
                     {/* <p>Terms of Use</p> */}
-                    <p>This Privacy Policy describes how store.Gasguzzlers.com (the “Site” or “we”) collects, uses, and discloses your Personal Information when you visit or make a purchase from the Site.</p>
+                    <p>This Privacy Policy describes how store.Gas guzzlers.com (the “Site” or “we”) collects, uses, and discloses your Personal Information when you visit or make a purchase from the Site.</p>
                     <p>In the Highlights section, we provide an overview of the terms and conditions that apply to your access to or use of a U.S. website, mobile app or other digital service (each a “Digital Service”) operated by Bring a Trailer Media, LLC or one of its affiliates (“we”, “us”, “our” or “shibnobiMedia”).</p>
 
                     <h2>Contact</h2>
                     <p>After reviewing this policy, if you have additional questions, want more information about our privacy practices, or would like to make a complaint, please contact us by e-mail at merch@Gasguzzlers.com or by mail using the details provided below:</p>
                     <p></p>
-                    <p>Gasguzzlers Inc, PO Box 0126, Walkersville MD 21793, United States</p>
+                    <p>Gas guzzlers Inc, PO Box 0126, Walkersville MD 21793, United States</p>
 
     <h2>Collecting Personal Information</h2>
 

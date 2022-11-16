@@ -12,12 +12,12 @@ function CookiesSetting() {
                         <p><strong>AML Policy</strong></p>
                     <p>Last revised on: 11/09/2022</p>
                     <p>Terms of Use</p>
-                    <p>Gasguzzlers, Inc. (individually and collectively, the “Company”), incorporated under the laws of the State of Texas offers services through an internet-enabled peer-to-peer (“P2P”) marketplace for the purchase and sale of digital assets.</p>
+                    <p>Gas guzzlers, Inc. (individually and collectively, the “Company”), incorporated under the laws of the State of Texas offers services through an internet-enabled peer-to-peer (“P2P”) marketplace for the purchase and sale of digital assets.</p>
                     <p>The Company is registered as a Software Development Business Focused on Blockchain Initiatives with the United States Treasury Department’s Financial Crimes Enforcement Network (“FinCEN”). Shibnobi’s Anti-Money Laundering (“AML”) policies and procedures are designed to deter illicit activities on the platform, protect the users, the business, and the digital currencies and financial services communities from exploitation by criminals. The Company is compliant with the requirements of the Bank Secrecy Act and related FinCEN regulations and guidance.</p>
 
                     <p>As part of Shibnobi’s Compliance policies, Know Your Customer (“KYC”) policies and procedures for individual and institutional customers have been designed to enable the Company to form a reasonable belief that it knows the true identity of those of its customers for which such review has been performed. The policy applies to all users on the platform and is followed by all of the Company’s employees, consultants, officers, owners and directors.</p>
 
-                    <p>Using a risk based approach as part of KYC & AML Compliance, Gasguzzlers has taken the following measures:</p>
+                    <p>Using a risk based approach as part of KYC & AML Compliance, Gas guzzlers has taken the following measures:</p>
 
                     {/* <p><strong>Highlights</strong></p>
                     <p>Application and Acceptance of the Terms of Use</p> */}
@@ -56,14 +56,14 @@ function CookiesSetting() {
 <p></p>
 
 <ui>
-  <li>Gasguzzlers fully cooperates with all OFAC, Specially Designated Nationals (SDN) and Blocked persons sanctions lists.</li>
+  <li>Gas guzzlers fully cooperates with all OFAC, Specially Designated Nationals (SDN) and Blocked persons sanctions lists.</li>
   </ui>  
 
   <p></p>                 
 
   <ul>
     <li>
-    Where Gasguzzlers has provided you with a translation of the English language version of this policy, then you agree that the translation is provided for your convenience only and that the English language versions of the policy will govern your relationship with Gasguzzlers. If there is any contradiction between what the English language version of the policy says and what a translation says, then the English language version shall control.
+    Where Gas guzzlers has provided you with a translation of the English language version of this policy, then you agree that the translation is provided for your convenience only and that the English language versions of the policy will govern your relationship with Gas guzzlers. If there is any contradiction between what the English language version of the policy says and what a translation says, then the English language version shall control.
     </li>
   </ul>
                     {/* <p>Intellectual and Other Proprietary Rights</p>

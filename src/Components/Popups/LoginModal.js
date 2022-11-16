@@ -117,7 +117,7 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
               </div>
               <div className="form-group">
                 <p>
-                  Not registered with Gasguzzlers?
+                  Not registered with Gas guzzlers?
                   <span onClick={handleRegister}>
                     <a
                       className="signup"
