@@ -180,11 +180,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required
                     />
                   </div>
-                  {passwordError && password !== cpassword && (
-                    <p className="text-danger">
-                      password and conform password should same!
-                    </p>
-                  )}
                 </div>
                 <div className="col-12 col-md-6">
                   <div className="form-group">
@@ -357,7 +352,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         </div>
                         <div className="col-12 col-md-6">
                           <div className="form-group">
-                            <label>Where did you hear about Gas guzzlers?</label>
+                            <label>
+                              Where did you hear about Gas guzzlers?
+                            </label>
                             <select
                               className="field"
                               value={selectone}

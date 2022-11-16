@@ -38,12 +38,13 @@ const VechilesRegistraion = () => {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const userDataLogin = useSelector((state) => state);
   const [pickOne, setPickOne] = useState();
+  const [submitLoading, setSubmitLoading] = useState(false);
   const notify = (val) => toast(val);
   const acceptDteailsPageOnChange = (e) => {
     const { checked } = e.target;
     setAcceptDetails(checked);
   };
-
+  console.log(understandCondition, acceptTerms);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -196,6 +197,7 @@ const VechilesRegistraion = () => {
       dealership,
       soldvechiles,
       videolink,
+      file,
     } = namefield;
     const Value = e.target.value;
     const Name = e.target.name;
@@ -209,7 +211,7 @@ const VechilesRegistraion = () => {
       city.trim().length !== 0 &&
       sale.trim().length !== 0 &&
       vechilelocation.trim().length !== 0 &&
-      link.trim().length !== 0 &&
+      // link.trim().length !== 0 &&
       vehiclepast.trim().length !== 0 &&
       providelink.trim().length !== 0 &&
       changedvechiles.trim().length !== 0 &&
@@ -217,6 +219,7 @@ const VechilesRegistraion = () => {
       // dealership.trim().length !== 0 &&
       soldvechiles.trim().length !== 0 &&
       videolink.trim().length !== 0
+      // file.trim().length !== 0
     ) {
       setNameFieldValid(true);
     } else {
@@ -243,6 +246,7 @@ const VechilesRegistraion = () => {
       kmacc,
       odometer,
       accurateField,
+      files,
     } = basicfact;
     const Value = e.target.value;
     const Name = e.target.name;
@@ -262,6 +266,7 @@ const VechilesRegistraion = () => {
       // kmacc.trim().length !== 0 &&
       odometer.trim().length !== 0 &&
       accurateField.trim().length !== 0
+      // files.trim().length !== 0
     ) {
       setBasicFactValid(true);
     } else {
@@ -303,9 +308,9 @@ const VechilesRegistraion = () => {
       // truckfromnew.trim().length !== 0 &&
       // servicesperformed.trim().length &&
       issuesorproblems.trim().length !== 0 &&
-      moreDescription.trim().length !== 0 &&
+      // moreDescription.trim().length !== 0 &&
       reserve.trim().length !== 0 &&
-      shibnobiabout.trim().length !== 0 &&
+      // shibnobiabout.trim().length !== 0 &&
       ammountOnDocument.trim().length !== 0
       // rtmember.trim().length !== 0 &&
       // shibnobi.trim().length !== 0 &&
@@ -395,6 +400,7 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, username, password, iname, phone } = information;
     e.preventDefault();
+    setSubmitLoading(true);
 
     axios
       .post(`${url}vehicles`, {
@@ -429,7 +435,7 @@ const VechilesRegistraion = () => {
         engineSize: vehiclepast,
         stepOneImage: "",
         stepTwoImage: "",
-        ste: ultiumdrive,
+        ste: `${ultiumdrive === "Yes" ? "Drive e4WD system" : ""}`,
         link: link,
         accessories: truckfromnew,
         detailsInfo,
@@ -452,6 +458,7 @@ const VechilesRegistraion = () => {
         issuesorproblems,
       })
       .then((result) => {
+        setSubmitLoading(false);
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
         notify("Form submit successfully!");
@@ -523,6 +530,7 @@ const VechilesRegistraion = () => {
       })
       .catch((error) => {
         console.log(error);
+        setSubmitLoading(false);
       });
   };
 
@@ -768,23 +776,26 @@ const VechilesRegistraion = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>Where and when? Please include links.</label>
-                            <textarea
-                              value={namefield.link}
-                              onChange={handleNameField}
-                              name="link"
-                              className="field"
-                              required
-                            ></textarea>
+                        {namefield.sale === "Yes" && (
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <label>
+                                Where and when? Please include links.
+                              </label>
+                              <textarea
+                                value={namefield.link}
+                                onChange={handleNameField}
+                                name="link"
+                                className="field"
+                              ></textarea>
+                            </div>
                           </div>
-                        </div>
+                        )}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Has this vehicle been listed on Gas guzzlers in the
-                              past?
+                              Has this vehicle been listed on Gas guzzlers in
+                              the past?
                             </label>
                             <select
                               value={namefield.vehiclepast}
@@ -955,7 +966,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           {/* <button type="submit" className="gry_btn"> */}
                           {/* <button type="button" onClick={handleNextSubmit} > */}
-                          {/* {nameFieldValid &&
+                          {nameFieldValid &&
                           namefield.file.trim().length !== 0 ? (
                             <a
                               className="nav-link gry_btn"
@@ -963,7 +974,7 @@ const VechilesRegistraion = () => {
                               href="#BasicFacts_Pill"
                               onClick={() => {
                                 dispatch(step_one(true));
-                                handleNextSubmit();
+                                // handleNextSubmit();
                               }}
                             >
                               NEXT
@@ -972,8 +983,8 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#BasicFacts_Pill"
@@ -983,7 +994,7 @@ const VechilesRegistraion = () => {
                             }}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </form>
@@ -1347,7 +1358,7 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {/* {basicFactValid ? (
+                          {basicFactValid ? (
                             <a
                               className="nav-link gry_btn"
                               data-toggle="pill"
@@ -1360,15 +1371,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#Details_Pill"
                             onClick={() => dispatch(step_two(true))}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </form>
@@ -1736,7 +1747,9 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Where did you hear about Gas guzzlers?</label>
+                            <label>
+                              Where did you hear about Gas guzzlers?
+                            </label>
                             <select
                               value={detailstab.shibnobi}
                               onChange={detailsOnChange}
@@ -1847,7 +1860,9 @@ const VechilesRegistraion = () => {
                           {/* <button type="submit" className="gry_btn">
                           NEXT
                         </button> */}
-                          {/* {detailsTabValid ? (
+                          {detailsTabValid &&
+                          understandCondition &&
+                          acceptTerms ? (
                             <a
                               className="nav-link gry_btn"
                               data-toggle="pill"
@@ -1860,15 +1875,15 @@ const VechilesRegistraion = () => {
                             <button type="submit" className="gry_btn">
                               NEXT
                             </button>
-                          )} */}
-                          <a
+                          )}
+                          {/* <a
                             className="nav-link gry_btn"
                             data-toggle="pill"
                             href="#ContactInfo_Pill"
                             onClick={() => dispatch(step_three(true))}
                           >
                             NEXT
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </form>
@@ -1908,10 +1923,7 @@ const VechilesRegistraion = () => {
                             </a>{" "}
                             here.
                           </p> */}
-                          <h6>
-                            If you're new to Gasguzzlers, subscribe to our
-                            newsletter:
-                          </h6>
+                          <h6>Subscribe to our newsletter:</h6>
                         </div>
                       </div>
                       <div className="row row_gap_5">
@@ -2040,9 +2052,13 @@ const VechilesRegistraion = () => {
                           {/* <button type="button" className="gry_btn">
                           BACK
                         </button> */}
-                          <button type="submit" className="gry_btn">
-                            Finish
-                          </button>
+                          {submitLoading ? (
+                            <button className="gry_btn">Loading...</button>
+                          ) : (
+                            <button type="submit" className="gry_btn">
+                              Finish
+                            </button>
+                          )}
                         </div>
                       </div>
                     </form>

@@ -29,7 +29,7 @@ function Detail() {
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
   // countdown time start
-  const [amountprice, setAmountprice] = useState();
+  const [amountprice, setAmountprice] = useState(0);
 
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
@@ -66,8 +66,7 @@ function Detail() {
   };
   const addBiding = (e) => {
     e.preventDefault();
-
-    if (bidValue > vehicle.documentFee) {
+    if (bidValue > vehicle.documentFee && bidValue > amountprice) {
       axios
         .post(process.env.REACT_APP_URL + "biddings", {
           auctionId: id,
@@ -80,7 +79,7 @@ function Detail() {
           handleClose();
         });
     } else {
-      alert("Bid Amount is greater than " + vehicle.documentFee);
+      alert("Bid Amount should be greater than " + amountprice);
     }
 
     // axios
@@ -156,8 +155,11 @@ function Detail() {
                     <li>
                       <label>Current Bid:</label>{" "}
                       <span>
-                        {" "}
-                        {amountprice && <span>USD ${amountprice}</span>}
+                        {amountprice ? (
+                          <span>USD ${amountprice}</span>
+                        ) : (
+                          <span>USD ${vehicle.documentFee} </span>
+                        )}
                       </span>
                     </li>
                     <li>
@@ -212,7 +214,7 @@ function Detail() {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn dropdown-toggle"
+                  className="gry_btn"
                   data-toggle="dropdown"
                 >
                   Make: {vehicle.make}
@@ -229,7 +231,7 @@ function Detail() {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn dropdown-toggle"
+                  className="gry_btn"
                   data-toggle="dropdown"
                 >
                   Model: {vehicle.model}
@@ -246,8 +248,8 @@ function Detail() {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn dropdown-toggle"
-                  data-toggle="dropdown"
+                  className="gry_btn"
+                  // data-toggle="dropdown"
                 >
                   Era: {vehicle.year}
                 </button>
@@ -437,7 +439,11 @@ function Detail() {
                       <li>
                         <label>Current Bid</label>
                         <div>
-                          {amountprice && <span>USD ${amountprice}</span>}
+                          {amountprice ? (
+                            <span>USD ${amountprice}</span>
+                          ) : (
+                            <span>USD ${vehicle.documentFee} </span>
+                          )}
                         </div>
                       </li>
                       <li>
@@ -494,8 +500,8 @@ function Detail() {
                       </div>
                       <div className="">
                         <ul className="bid_viewWatch">
-                          <li>28,657 views</li>
-                          <li>1,908 watchers</li>
+                          <li>0 views</li>
+                          <li>0 watchers</li>
                         </ul>
                       </div>
                     </div>
@@ -630,13 +636,13 @@ function Detail() {
                         </li>
                       )}
 
-                      <li>
+                      {/* <li>
                         <label htmlFor="">{vehicle.moreDescription}</label>
-                      </li>
+                      </li> */}
 
-                      <li>
+                      {/* <li>
                         <label htmlFor="">{vehicle.premium}</label>
-                      </li>
+                      </li> */}
 
                       {vehicle.reserve === "Yes" && (
                         <li>
@@ -648,9 +654,9 @@ function Detail() {
                         <label htmlFor="">{vehicle.sizetires}</label>
                       </li>
 
-                      <li>
+                      {/* <li>
                         <label htmlFor="">{vehicle.km}</label>
-                      </li>
+                      </li> */}
                       <li>
                         <label htmlFor="">{vehicle.brandandmodel}</label>
                       </li>

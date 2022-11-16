@@ -16,6 +16,7 @@ function Auctionlive() {
     axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
       setauctions(response.data.data);
       setFilteredUsers(response.data.data);
+      console.log("vechileApi", response.data.data);
     });
   }, []);
 
@@ -160,8 +161,14 @@ function Auctionlive() {
                         <p>{curElem.anythingelse}</p>
                         <ul className="labelList">
                           <li>
-                            <label>Current Bid:</label>{" "}
-                            <span>${curElem.documentFee}</span>
+                            <label>Current Bid:</label>
+                            {curElem["currentAmount"] === undefined  || curElem["currentAmount"] === null  ? (
+                              <span>${curElem.documentFee}</span>
+                            ) : (
+                              <span>
+                                ${curElem.currentAmount.auctionAmmount}
+                              </span>
+                            )}
                           </li>
                           <li>
                             <label>Ends On:</label>{" "}
