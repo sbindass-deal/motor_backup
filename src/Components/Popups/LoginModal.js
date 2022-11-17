@@ -87,7 +87,7 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
                   type="text"
                   name=""
                   className="field"
-                  placeholder="Username or Email"
+                  placeholder="Email"
                 />
               </div>
               <div className="form-group">
@@ -117,7 +117,7 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
               </div>
               <div className="form-group">
                 <p>
-                  Not registered with Gas guzzlers?
+                  Not registered with Gas guzzlrs?
                   <span onClick={handleRegister}>
                     <a
                       className="signup"

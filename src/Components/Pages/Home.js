@@ -38,7 +38,8 @@ function Home() {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       console.log("homeApi", response.data.data);
-      setShowBidOnSlide(response.data.data);
+      const bidApiArr = response.data.data;
+      setShowBidOnSlide(bidApiArr.slice(-4));
     } catch (err) {
       console.log(err);
     }
@@ -326,7 +327,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="ptb_50">
+      {/* <section className="ptb_50">
         <div className="container">
           <div className="row">
             <div className="col-12 pb_30">
@@ -469,12 +470,46 @@ function Home() {
                   )}
                 </Slider>
               </div>
-              {/* <!--latestBids_Slide--> */}
             </div>
           </div>
         </div>
+      </section> */}
+      <section className="px-md-4">
+        <div className="col-12 pb_30">
+          <h2 className="title_combo">
+            Latest Bids <span>({showBidOnSlide.length} Auctions Now Live)</span>
+          </h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4 pb-2">
+          {showBidOnSlide.map((curElem, i) => {
+            return (
+              <div class="col mb-3" key={i}>
+                <div class="card h-100 border-0 ">
+                  <img
+                    src={process.env.REACT_APP_URL + curElem.stepOneImage}
+                    class="card-img-top"
+                    style={{ maxHeight: "25vh" }}
+                    alt={curElem.make}
+                  />
+                  <div class="card-body" style={{ backgroundColor: "#000000" }}>
+                    <h5 class="card-title">
+                      {curElem.make} {curElem.model} {curElem.year}
+                    </h5>
+                    <p>
+                      {curElem["currentAmount"] === undefined ||
+                      curElem["currentAmount"] === null ? (
+                        <span>${curElem.documentFee}</span>
+                      ) : (
+                        <span>${curElem.currentAmount.auctionAmmount}</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
-
       <section className="ptb_80 bgHolder bgImg01 d-flex align-items-center">
         <div className="container">
           <div className="row">
@@ -516,7 +551,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
                   <div className="blogPostText">
-                    <h4>Gas guzzlers Auction: 1984 Ferrari 512 BBi</h4>
+                    <h4>Gas guzzlrs Auction: 1984 Ferrari 512 BBi</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
@@ -553,7 +588,7 @@ function Home() {
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
                     <h4>
-                      Gas guzzlers Auction: 50-Years-Owned 1972 Datsun 240Z
+                      Gas guzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z
                     </h4>
                     <ul className="post_labelList">
                       <li>
@@ -590,7 +625,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
                   <div className="blogPostText">
-                    <h4>Gas guzzlers Auction: 1984 Ferrari 512 BBi</h4>
+                    <h4>Gas guzzlrs Auction: 1984 Ferrari 512 BBi</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
@@ -627,7 +662,7 @@ function Home() {
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
                     <h4>
-                      Gas guzzlers Auction: 50-Years-Owned 1972 Datsun 240Z
+                      Gas guzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z
                     </h4>
                     <ul className="post_labelList">
                       <li>

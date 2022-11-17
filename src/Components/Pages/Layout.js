@@ -33,6 +33,7 @@ import AuctionPremium from "./AuctionPremium";
 import GetAlerts from "./GetAlerts";
 import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
+import NewVechileRegister from "../newVechile/NewVechileRegister";
 
 function Layout() {
   return (
@@ -68,6 +69,7 @@ function Layout() {
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
           <Route path="vechiles" element={<VechilesRegistraion />} />
+          {/* <Route path="vechiles" element={<NewVechileRegister />} /> */}
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="charity" element={<Charity />} />
         </Routes>

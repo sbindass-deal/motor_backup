@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import img_001 from "../../Assets/images/img_001.webp";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   basicfactsave,
@@ -160,6 +160,7 @@ const VechilesRegistraion = () => {
     issuesorproblems: "",
     moreDescription: "",
     reserve: "",
+    reserveAmount: "",
     shibnobiabout: "",
     ammountOnDocument: "",
     rtmember: "",
@@ -288,6 +289,7 @@ const VechilesRegistraion = () => {
       issuesorproblems,
       moreDescription,
       reserve,
+      reserveAmount,
       shibnobiabout,
       ammountOnDocument,
       rtmember,
@@ -389,6 +391,7 @@ const VechilesRegistraion = () => {
       issuesorproblems,
       moreDescription,
       reserve,
+      reserveAmount,
       shibnobiabout,
       ammountOnDocument,
       rtmember,
@@ -406,6 +409,7 @@ const VechilesRegistraion = () => {
       .post(`${url}vehicles`, {
         name: name,
         email: email,
+        premium: reduxValue.submitvechilesReducer.submitPlan,
         userId: userDataLogin.login.user.id, //redux user id lena h.
         year: year,
         make: make,
@@ -423,10 +427,9 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
-        km,
-        kmacc: status,
+        km: odometer,
+        kmacc: accurateField,
         odmeter: odometer,
-        accurateField,
         ogEngine: kmacc,
         transmission: providelink,
         title: trucktitled,
@@ -437,10 +440,11 @@ const VechilesRegistraion = () => {
         stepTwoImage: "",
         ste: `${ultiumdrive === "Yes" ? "Drive e4WD system" : ""}`,
         link: link,
-        accessories: truckfromnew,
-        detailsInfo,
+        accessories: accessories.toString(),
+        truckDetails: detailsInfo.toString(),
         moreDescription: ammountOnDocument,
         reserve,
+        reserveAmount,
         hereFrom: shibnobiabout,
         ammountOnDocument: servicesperformed,
         membership: memberShip,
@@ -508,6 +512,7 @@ const VechilesRegistraion = () => {
           issuesorproblems: "",
           moreDescription: "",
           reserve: "",
+          reserveAmount: "",
           shibnobiabout: "",
           ammountOnDocument: "",
           rtmember: "",
@@ -538,10 +543,9 @@ const VechilesRegistraion = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
-          <ToastContainer />
           <div className="row">
             <div className="col-12 text-center pb-4">
-              <h2>Sell your vehicle with Gas guzzlers Auctions!</h2>
+              <h2>Sell your vehicle with Gas guzzlrs Auctions!</h2>
             </div>
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
@@ -613,7 +617,7 @@ const VechilesRegistraion = () => {
                     <h3>Make & Model</h3>
                     <hr />
                     <h6>
-                      Think your vehicle should be sold via Gas guzzlers
+                      Think your vehicle should be sold via Gas guzzlrs
                       Auctions? Please fill out the form below.
                     </h6>
 
@@ -794,8 +798,8 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Has this vehicle been listed on Gas guzzlers in
-                              the past?
+                              Has this vehicle been listed on Gas guzzlrs in the
+                              past?
                             </label>
                             <select
                               value={namefield.vehiclepast}
@@ -830,7 +834,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>
                               What has changed on this vehicle since it was last
-                              listed on Gas guzzlers?
+                              listed on Gas guzzlrs?
                             </label>
                             <textarea
                               value={namefield.changedvechiles}
@@ -1745,11 +1749,27 @@ const VechilesRegistraion = () => {
                             </select>
                           </div>
                         </div>
+                        {detailstab.reserve === "Yes" && (
+                          <div className="col-12 col-sm-12 col-md-6">
+                            <div className="form-group">
+                              <label>
+                                Please provide a link to the listing:
+                              </label>
+                              <input
+                                value={detailsInfo.reserveAmount}
+                                onChange={handleNameField}
+                                type="text"
+                                name="reserveAmount"
+                                placeholder="Enter"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          </div>
+                        )}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>
-                              Where did you hear about Gas guzzlers?
-                            </label>
+                            <label>Where did you hear about Gas guzzlrs?</label>
                             <select
                               value={detailstab.shibnobi}
                               onChange={detailsOnChange}
@@ -1761,13 +1781,13 @@ const VechilesRegistraion = () => {
                                 Choose...
                               </option>
                               <option value="referred">
-                                Referred by a Gas guzzlers member
+                                Referred by a Gas guzzlrs member
                               </option>
                               <option value="facebook">Facebook</option>
                               <option value="google">Google</option>
                               <option value="instagram">Instagram</option>
                               <option value="longtime">
-                                I'm a long time Gas guzzlers Reader
+                                I'm a long time Gas guzzlrs Reader
                               </option>
                               <option value="repeat">Repeat seller</option>
                               <option value="other">Other</option>
@@ -1844,10 +1864,10 @@ const VechilesRegistraion = () => {
                                 required
                               />{" "}
                               I understand that if the final bid for my vehicle
-                              is below the reserve, Gas guzzlers may choose (at
+                              is below the reserve, Gas guzzlrs may choose (at
                               its sole discretion) to make up the difference. In
                               this case the vehicle will appear as sold at the
-                              below-reserve price and Gas guzzlers will pay me
+                              below-reserve price and Gas guzzlrs will pay me
                               the difference between the high bid and the
                               reserve once the transaction is complete.
                             </label>
@@ -2038,7 +2058,7 @@ const VechilesRegistraion = () => {
                                 className="form-check-input"
                                 type="checkbox"
                               />{" "}
-                              Sign me up for the Gas guzzlers Daily Mail
+                              Sign me up for the Gas guzzlrs Daily Mail
                             </label>
                             {/* {signinAggri || signinAggriSubmit ? (
                               ""

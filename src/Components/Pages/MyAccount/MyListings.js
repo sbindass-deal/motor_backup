@@ -3,13 +3,17 @@ import React from "react";
 import { useState } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import car_01 from "../../../Assets/images/car_01.jpg";
+import { useSelector } from "react-redux";
 
 function MyListings() {
   const [data, setData] = useState([]);
+  const userId = useSelector((state) => state);
   React.useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
-      setData(response.data.data);
-    });
+    axios
+      .get(process.env.REACT_APP_URL + `vehicle/user/${userId.login.user.id}`)
+      .then((response) => {
+        setData(response.data.data);
+      });
   }, []);
 
   return (
@@ -41,8 +45,12 @@ function MyListings() {
                       return (
                         <div key={curElem.id} className="bidsListRow">
                           <div className="bidsImg">
-                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt={curElem.stepOneImage} />
-                       
+                            <img
+                              src={
+                                process.env.REACT_APP_URL + curElem.stepOneImage
+                              }
+                              alt={curElem.stepOneImage}
+                            />
                           </div>
                           <div className="bidsInfo">
                             <div className="">

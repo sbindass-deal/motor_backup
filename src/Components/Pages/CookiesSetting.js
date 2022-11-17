@@ -1,72 +1,140 @@
-import React from 'react'
+import React from "react";
 
 function CookiesSetting() {
   return (
     <div>
-        <section className="ptb_80 pt_sm_50">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-md-12 col-lg-12">
-                      <h2 className="title_combo title_Center">AML Policy</h2>
-                      <div className="post-excerpt">
-                        <p><strong>AML Policy</strong></p>
-                    <p>Last revised on: 11/09/2022</p>
-                    <p>Terms of Use</p>
-                    <p>Gas guzzlers, Inc. (individually and collectively, the “Company”), incorporated under the laws of the State of Texas offers services through an internet-enabled peer-to-peer (“P2P”) marketplace for the purchase and sale of digital assets.</p>
-                    <p>The Company is registered as a Software Development Business Focused on Blockchain Initiatives with the United States Treasury Department’s Financial Crimes Enforcement Network (“FinCEN”). Shibnobi’s Anti-Money Laundering (“AML”) policies and procedures are designed to deter illicit activities on the platform, protect the users, the business, and the digital currencies and financial services communities from exploitation by criminals. The Company is compliant with the requirements of the Bank Secrecy Act and related FinCEN regulations and guidance.</p>
+      <section className="ptb_80 pt_sm_50">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-12 col-lg-12">
+              <h2 className="title_combo title_Center">AML Policy</h2>
+              <div className="post-excerpt">
+                <p>
+                  <strong>AML Policy</strong>
+                </p>
+                <p>Last revised on: 11/09/2022</p>
+                <p>Terms of Use</p>
+                <p>
+                  Gas guzzlrs, Inc. (individually and collectively, the
+                  “Company”), incorporated under the laws of the State of Texas
+                  offers services through an internet-enabled peer-to-peer
+                  (“P2P”) marketplace for the purchase and sale of digital
+                  assets.
+                </p>
+                <p>
+                  The Company is registered as a Software Development Business
+                  Focused on Blockchain Initiatives with the United States
+                  Treasury Department’s Financial Crimes Enforcement Network
+                  (“FinCEN”). Shibnobi’s Anti-Money Laundering (“AML”) policies
+                  and procedures are designed to deter illicit activities on the
+                  platform, protect the users, the business, and the digital
+                  currencies and financial services communities from
+                  exploitation by criminals. The Company is compliant with the
+                  requirements of the Bank Secrecy Act and related FinCEN
+                  regulations and guidance.
+                </p>
 
-                    <p>As part of Shibnobi’s Compliance policies, Know Your Customer (“KYC”) policies and procedures for individual and institutional customers have been designed to enable the Company to form a reasonable belief that it knows the true identity of those of its customers for which such review has been performed. The policy applies to all users on the platform and is followed by all of the Company’s employees, consultants, officers, owners and directors.</p>
+                <p>
+                  As part of Shibnobi’s Compliance policies, Know Your Customer
+                  (“KYC”) policies and procedures for individual and
+                  institutional customers have been designed to enable the
+                  Company to form a reasonable belief that it knows the true
+                  identity of those of its customers for which such review has
+                  been performed. The policy applies to all users on the
+                  platform and is followed by all of the Company’s employees,
+                  consultants, officers, owners and directors.
+                </p>
 
-                    <p>Using a risk based approach as part of KYC & AML Compliance, Gas guzzlers has taken the following measures:</p>
+                <p>
+                  Using a risk based approach as part of KYC & AML Compliance,
+                  Gas guzzlrs has taken the following measures:
+                </p>
 
-                    {/* <p><strong>Highlights</strong></p>
+                {/* <p><strong>Highlights</strong></p>
                     <p>Application and Acceptance of the Terms of Use</p> */}
 
-                    <ul style={{}}>
-                    <li>Appointment of a Chief Compliance Officer who has the sufficient level of expertise and independence, has responsibility for the oversight of compliance with the relevant legislation, regulations, rules and industry guidance;</li>
-<p></p>
-                    <li>Establishing and maintaining risk-based KYC, Customer Due Diligence (CDD), and Enhanced Due Diligence (EDD) Policy;
-                    </li>
-                    
-                    <p></p>
-                    <li>Cooperation with law enforcement requests and local regulatory requirements;</li>
-                    <p></p>
-                    <li>Filing of Suspicious Activity Reports (“SARs”);</li>
-                    <p></p>
-                    <li>Company-wide BSA/AML/OFAC training;</li>
-                    <p></p>
-                    <li>Use of various anti-fraud systems;</li>
-                    <p></p>
-                    <li>Ongoing rule based transaction monitoring;</li>
-                    <p></p>
-                    <li>Investigations using blockchain analytics;</li>
-                    </ul>
+                <ul style={{}}>
+                  <li>
+                    Appointment of a Chief Compliance Officer who has the
+                    sufficient level of expertise and independence, has
+                    responsibility for the oversight of compliance with the
+                    relevant legislation, regulations, rules and industry
+                    guidance;
+                  </li>
+                  <p></p>
+                  <li>
+                    Establishing and maintaining risk-based KYC, Customer Due
+                    Diligence (CDD), and Enhanced Due Diligence (EDD) Policy;
+                  </li>
 
-                    <p></p>
-                    <ul>
-                    <li>We file SARs if we know, suspect or have reason to suspect suspicious activities have occurred on our platform. A suspicious transaction is often one that is inconsistent with a user’s known and legitimate business, personal activities or personal means. Our Chief Compliance Officer reviews and investigates suspicious activity to determine if sufficient information has been collected to justify the filing of a SAR. Our Chief Compliance Officer maintains records and supporting documentation of all SARs that have been filed.</li>
-                    </ul>
-                    <p></p>
-                   
+                  <p></p>
+                  <li>
+                    Cooperation with law enforcement requests and local
+                    regulatory requirements;
+                  </li>
+                  <p></p>
+                  <li>Filing of Suspicious Activity Reports (“SARs”);</li>
+                  <p></p>
+                  <li>Company-wide BSA/AML/OFAC training;</li>
+                  <p></p>
+                  <li>Use of various anti-fraud systems;</li>
+                  <p></p>
+                  <li>Ongoing rule based transaction monitoring;</li>
+                  <p></p>
+                  <li>Investigations using blockchain analytics;</li>
+                </ul>
 
-<ul>
-  <li>The Company has also adopted ongoing OFAC sanctions policies and procedures designed to protect the platform from being used for prohibited transactions, by sanctioned individuals or for the purposes of evading, avoiding or otherwise circumventing U.S. and global sanctions.
-  </li>
-</ul>
-<p></p>
+                <p></p>
+                <ul>
+                  <li>
+                    We file SARs if we know, suspect or have reason to suspect
+                    suspicious activities have occurred on our platform. A
+                    suspicious transaction is often one that is inconsistent
+                    with a user’s known and legitimate business, personal
+                    activities or personal means. Our Chief Compliance Officer
+                    reviews and investigates suspicious activity to determine if
+                    sufficient information has been collected to justify the
+                    filing of a SAR. Our Chief Compliance Officer maintains
+                    records and supporting documentation of all SARs that have
+                    been filed.
+                  </li>
+                </ul>
+                <p></p>
 
-<ui>
-  <li>Gas guzzlers fully cooperates with all OFAC, Specially Designated Nationals (SDN) and Blocked persons sanctions lists.</li>
-  </ui>  
+                <ul>
+                  <li>
+                    The Company has also adopted ongoing OFAC sanctions policies
+                    and procedures designed to protect the platform from being
+                    used for prohibited transactions, by sanctioned individuals
+                    or for the purposes of evading, avoiding or otherwise
+                    circumventing U.S. and global sanctions.
+                  </li>
+                </ul>
+                <p></p>
 
-  <p></p>                 
+                <ui>
+                  <li>
+                    Gas guzzlrs fully cooperates with all OFAC, Specially
+                    Designated Nationals (SDN) and Blocked persons sanctions
+                    lists.
+                  </li>
+                </ui>
 
-  <ul>
-    <li>
-    Where Gas guzzlers has provided you with a translation of the English language version of this policy, then you agree that the translation is provided for your convenience only and that the English language versions of the policy will govern your relationship with Gas guzzlers. If there is any contradiction between what the English language version of the policy says and what a translation says, then the English language version shall control.
-    </li>
-  </ul>
-                    {/* <p>Intellectual and Other Proprietary Rights</p>
+                <p></p>
+
+                <ul>
+                  <li>
+                    Where Gas guzzlrs has provided you with a translation of the
+                    English language version of this policy, then you agree that
+                    the translation is provided for your convenience only and
+                    that the English language versions of the policy will govern
+                    your relationship with Gas guzzlrs. If there is any
+                    contradiction between what the English language version of
+                    the policy says and what a translation says, then the
+                    English language version shall control.
+                  </li>
+                </ul>
+                {/* <p>Intellectual and Other Proprietary Rights</p>
                     <ul>
                     <li>As between shibnobiMedia and you, shibnobiMedia owns all right, title and interest in and to the copyrights, trademarks, service marks, trade names, patents and all other intellectual and proprietary rights throughout the world associated with the Digital Services and Content except, if applicable, with respect to your User Content.</li>
                     <li>You may not build a business, in whole or in part, resell, redistribute, recirculate or make any other commercial use of, or create derivative works or materials utilizing any portion of the Digital Services (including any code used in any software) or Content, whether or not for profit.</li>
@@ -125,14 +193,13 @@ function CookiesSetting() {
                     <p>(b) shibnobiMedia may in its sole discretion maintain different types of accounts for different types of Users. If you open an account to use or Access the Digital Services on behalf of a company, organization or other entity, then (i) “you” includes you and that entity, and (ii) you represent and warrant that you are an authorized representative of the entity with the authority to bind the entity to the Agreement and that you agree to the Agreement on the entity’s behalf.</p>
                     <p>7. Intellectual and Other Proprietary Rights</p>
                     <p>The rights granted to you in this Agreement are subject to the following restrictions:</p> */}
-
-                    </div>
-                </div>
-                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }
 
-export default CookiesSetting
+export default CookiesSetting;

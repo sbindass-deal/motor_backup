@@ -154,7 +154,7 @@ function Auctionlive() {
                       </div>
                       <div className="card_postInfo">
                         <h4>
-                          <a href="#">
+                          <a href={`detail/${curElem.id}`}>
                             {curElem.name} {curElem.year}
                           </a>
                         </h4>

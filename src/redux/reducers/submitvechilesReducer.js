@@ -6,6 +6,7 @@ const initialState = {
   step_three: false,
   step_four: false,
   contactinfo: [],
+  submitPlan: "",
 };
 
 export const submitdetails = createSlice({
@@ -24,10 +25,13 @@ export const submitdetails = createSlice({
     contactinfosave: (state, action) => {
       state.contactinfo.push(action.payload);
     },
+    selectPlan: (state, action) => {
+      state.submitPlan = action.payload;
+    },
   },
 });
 
-export const { step_one, step_two, step_three, contactinfosave } =
+export const { step_one, step_two, step_three, contactinfosave, selectPlan } =
   submitdetails.actions;
 
 export default submitdetails.reducer;

@@ -20,7 +20,6 @@ function Header() {
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state.login);
-
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
@@ -117,7 +116,7 @@ function Header() {
 
                     <li className="nav-item">
                       <a className="nav-link" href="/works">
-                        How Gas guzzlers Works
+                        How Gas guzzlrs Works
                       </a>
                     </li>
                     {!logingUser.login ? (
@@ -152,7 +151,7 @@ function Header() {
                       <li className="nav-item">
                         <a className="nav-link" href="/accountinfo">
                           <i>
-                            <AccountCircleIcon />
+                            Hi {logingUser.user.username} <AccountCircleIcon />
                           </i>
                         </a>
                       </li>
@@ -197,7 +196,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/#">
-                        Gas guzzlers Features
+                        Gas guzzlrs Features
                       </a>
                     </li>
                     <li className="nav-item">
@@ -212,7 +211,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/#">
-                        Gas guzzlers
+                        Gas guzzlrs
                       </a>
                     </li>
                     <li className="nav-item">
@@ -254,7 +253,7 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <a className="nav-link" href="/feautres">
-                          Gas guzzlers Features
+                          Gas guzzlrs Features
                         </a>
                       </li>
 
@@ -286,7 +285,7 @@ function Header() {
 
                       <li className="nav-item">
                         <a className="nav-link" href="/aboutshibnobi">
-                          About Gas guzzlers
+                          About Gas guzzlrs
                         </a>
                       </li>
                       <li className="nav-item">
@@ -295,7 +294,7 @@ function Header() {
                           href="https://store.shibnobi.com/"
                           target={"_blank"}
                         >
-                          Gas guzzlers Store
+                          Gas guzzlrs Store
                         </a>
                       </li>
 

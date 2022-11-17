@@ -165,7 +165,11 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      <label>Ends In:</label> <span>5 days</span>
+                      <label>Ends In:</label>{" "}
+                      <span>
+                        {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
+                        seconds *
+                      </span>
                     </li>
                     {/* <li>
                       <a href="#">
@@ -181,7 +185,29 @@ function Detail() {
                   <a href="#" className="gry_btn mr-2">
                     <i className="fa-solid fa-star mr-2"></i> Watch
                   </a>
-                  <button
+                  {t <= 0 ? (
+                    <a
+                      className="gry_btn active"
+                      // onClick={() => addBiding()}
+                      // onclick="smoothScroll(document.getElementById('placeBid_col'))"
+                    >
+                      Auction is closed :{" "}
+                      {amountprice ? (
+                        <span>USD $ {amountprice}</span>
+                      ) : (
+                        <span>USD $ {vehicle.documentFee} </span>
+                      )}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      className="gry_btn active"
+                      onClick={handleShow}
+                    >
+                      Place a bid
+                    </button>
+                  )}
+                  {/* <button
                     type="button"
                     className="gry_btn active"
                     onClick={handleShow}
@@ -189,7 +215,7 @@ function Detail() {
                     // onclick="smoothScroll(document.getElementById('placeBid_col'))"
                   >
                     Place a bid
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -434,7 +460,6 @@ function Detail() {
                   </div>
                 </div>
 
-               
                 <div className="pb_40" id="placeBid_col">
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
@@ -573,14 +598,14 @@ function Detail() {
                       )}
 
                       <li>
-                      Size tires <label htmlFor="">{vehicle.sizetires}</label>
+                        Size tires <label htmlFor="">{vehicle.sizetires}</label>
                       </li>
 
                       {/* <li>
                         <label htmlFor="">{vehicle.km}</label>
                       </li> */}
                       <li>
-                       Brand  <label htmlFor="">{vehicle.brandandmodel}</label>
+                        Brand <label htmlFor="">{vehicle.brandandmodel}</label>
                       </li>
 
                       <li>
@@ -618,9 +643,9 @@ function Detail() {
                         <label>Current Bid</label>
                         <div>
                           {amountprice ? (
-                            <span>USD ${amountprice}</span>
+                            <span>USD${amountprice}</span>
                           ) : (
-                            <span>USD ${vehicle.documentFee} </span>
+                            <span>USD${vehicle.documentFee} </span>
                           )}
                         </div>
                       </li>
@@ -645,26 +670,34 @@ function Detail() {
                       </li>
                       <li>
                         <label>Place Bid</label>
-                        <div>
-                          {logingUser.user.id ? (
-                            <button
-                              type="button"
-                              className="gry_btn"
-                              onClick={handleShow}
-                            >
-                              Place a bid
-                            </button>
-                          ) : (
-                            <a
-                              href="javascript:void(0)"
-                              className="gry_btn"
-                              // data-toggle="modal"
-                              // data-target="#RegisterModal"
-                            >
-                              REGISTER TO BID
+                        {t >= 0 ? (
+                          <div>
+                            {logingUser.user.id ? (
+                              <button
+                                type="button"
+                                className="gry_btn"
+                                onClick={handleShow}
+                              >
+                                Place a bid
+                              </button>
+                            ) : (
+                              <a href="javascript:void(0)" className="gry_btn">
+                                REGISTER TO BID
+                              </a>
+                            )}
+                          </div>
+                        ) : (
+                          <div>
+                            <a className="gry_btn">
+                              Auction is closed :{" "}
+                              {amountprice ? (
+                                <span>USD ${amountprice}</span>
+                              ) : (
+                                <span>USD ${vehicle.documentFee} </span>
+                              )}
                             </a>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </li>
                     </ul>
                     <div className="bid_bottom">
