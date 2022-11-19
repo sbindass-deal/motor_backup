@@ -19,6 +19,7 @@ import { Modal } from "react-bootstrap";
 
 function Detail() {
   const { id } = useParams();
+  const userId = useSelector((state) => state);
   const [vehicle, setVehicle] = React.useState({});
   const [vehicleImage, setVehicleImage] = React.useState([]);
   const logingUser = useSelector((state) => state.login);
@@ -30,6 +31,7 @@ function Detail() {
   const [bidValue, setBidValue] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
+  const [addVehicleUserId, setAddVehicleUserId] = useState(null);
 
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
@@ -40,7 +42,6 @@ function Detail() {
   );
   const now = new Date().getTime();
   const t = newTiem - now;
-
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -106,7 +107,7 @@ function Detail() {
 
   const getVehicle = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
-      console.log(res.data.data);
+      setAddVehicleUserId(res.data.data.userId);
       setVehicle(res.data.data);
     });
   };
@@ -203,6 +204,9 @@ function Detail() {
                       type="button"
                       className="gry_btn active"
                       onClick={handleShow}
+                      disabled={
+                        userId.login.user.id === addVehicleUserId ? true : false
+                      }
                     >
                       Place a bid
                     </button>
@@ -677,6 +681,11 @@ function Detail() {
                                 type="button"
                                 className="gry_btn"
                                 onClick={handleShow}
+                                disabled={
+                                  userId.login.user.id === addVehicleUserId
+                                    ? true
+                                    : false
+                                }
                               >
                                 Place a bid
                               </button>

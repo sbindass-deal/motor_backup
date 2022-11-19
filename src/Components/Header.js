@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 
 function Header() {
   const notify = (val) => toast(val);
+  const [showSearchModal, setShowSearchModal] = useState(false);
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state.login);
@@ -32,6 +33,9 @@ function Header() {
 
   const handleCloseForgPass = () => setShowForgPass(false);
   const handleShowForgPass = () => setShowForgPass(true);
+  const handleCloseModal = () => {
+    setShowSearchModal(false);
+  };
   const logout = () => {
     dispatch(logoutUser());
     notify("Logout successfully ! 😎🤐");
@@ -157,12 +161,16 @@ function Header() {
                       </li>
                     )}
 
-                    <li className="nav-item">
+                    <li
+                      onClick={() => setShowSearchModal(true)}
+                      className="nav-item"
+                      style={{ cursor: "pointer" }}
+                    >
                       <a
                         className="nav-link"
-                        href="javascript:void(0)"
-                        data-toggle="modal"
-                        data-target="#myModal"
+                        // href="javascript:void(0)"
+                        // data-toggle="modal"
+                        // data-target="#myModal"
                       >
                         <i className="fa-solid fa-magnifying-glass"></i>
                       </a>
@@ -331,7 +339,10 @@ function Header() {
         handleShowForgPass={handleShowForgPass}
       />
       <RegisterModal showReg={showReg} handleCloseReg={handleCloseReg} />
-      <SearchModal />
+      <SearchModal
+        handleCloseModal={handleCloseModal}
+        showSearchModal={showSearchModal}
+      />
       <ForgotPasswordModal
         showForgPass={showForgPass}
         handleCloseForgPass={handleCloseForgPass}

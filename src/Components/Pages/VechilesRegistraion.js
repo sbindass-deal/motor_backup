@@ -78,20 +78,32 @@ const VechilesRegistraion = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
-
+  // const uploadMultipleFiles = (e) => {
+  //   const fileObj = [];
+  //   const fileArray = [];
+  //   fileObj.push(e.target.files);
+  //   for (let i = 0; i < fileObj[0].length; i++) {
+  //     fileArray.push(URL.createObjectURL(fileObj[0][i]));
+  //   }
+  //   setFile(fileArray);
+  // };
   const uploadFileOne = async (vehicleId) => {
-    const url = process.env.REACT_APP_URL + "vehicle-image";
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("vehicleId", vehicleId);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios.post(url, formData, config).then((response) => {
-      console.log(response.data);
-    });
+    console.log(11111, file);
+
+    for (let i = 0; i < file.length; i++) {
+      const url = process.env.REACT_APP_URL + "vehicle-image";
+      const formData = new FormData();
+      formData.append("image", file[i]);
+      formData.append("vehicleId", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
   };
 
   const uploadFileTwo = async (vehicleId) => {
@@ -951,11 +963,12 @@ const VechilesRegistraion = () => {
                                 value={namefield.file}
                                 onChange={(e) => {
                                   handleNameField(e);
-                                  setFile(e.target.files[0]);
+                                  setFile(e.target.files);
                                 }}
                                 name="file"
                                 type="file"
                                 required
+                                multiple
                               />
                             </div>
                           </div>
@@ -1752,9 +1765,7 @@ const VechilesRegistraion = () => {
                         {detailstab.reserve === "Yes" && (
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
-                              <label>
-                                Please provide a link to the listing:
-                              </label>
+                              <label>Please provide reserve amount:</label>
                               <input
                                 value={detailsInfo.reserveAmount}
                                 onChange={handleNameField}
