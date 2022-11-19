@@ -6,13 +6,25 @@ import bnb_coin from "../../Assets/images/raffle-2.jpg";
 import bi_ticket from "../../Assets/images/raffle-3.jpg";
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal } from "react-bootstrap";
+import axios from "axios";
+import { useEffect } from "react";
+
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import referralCodeGenerator from "referral-code-generator"
+
 
 function CarRaffle() {
   const [modalShow, setModalShow] = useState(false);
   const [showImage, setShowImage] = useState();
-  //   const show = () => {
-  //     setModalShow(true);
-  //   };
+
+  const [lotterydata, setLotterydata] = useState([]);
+  const [lotaryId, setLotaryId] = useState();
+  const [filteredId, setFilteredId] = useState();
+  console.log(filteredId, "id");
+
+  const [refferalgeneratior,setRefferalgeneratior]=useState()
+  const [refferalgeneratior1,setRefferalgeneratior1]=useState()
+ 
   const closeMoal = () => {
     setModalShow(false);
   };
@@ -20,7 +32,51 @@ function CarRaffle() {
     setShowImage(val);
     setModalShow(true);
   };
+  useEffect(() => {
+    const lotterydata1 = lotterydata.filter(
+      (curVal) => curVal.amount == lotaryId
+      
+      );
+      
+      {
+        lotterydata1.map((curVal)=>{
+          console.log("first",curVal.id)
+          return setFilteredId(curVal.id)
+        })
+      }
 
+  }, [lotaryId]);
+
+  console.log(8000,refferalgeneratior)
+
+  React.useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_URL + "getAllLotteryAmount")
+      .then((response) => {
+        console.log(101919, response.data.data);
+        setLotterydata(response.data.data);
+      });
+  }, []);
+
+  const addTickets = () => {
+    axios
+      .post(process.env.REACT_APP_URL + "addTicket", {
+        id: filteredId,
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleRefferal=()=>{
+    // referralCodeGenerator.custom('lowercase', 6, 6, 'temitope')
+    setRefferalgeneratior(referralCodeGenerator.custom('lowercase', 11, 8, 'vikasSharmaa'))
+  }
+
+  useEffect(()=>{
+    setRefferalgeneratior1(refferalgeneratior)
+    
+  },[refferalgeneratior])
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -122,18 +178,30 @@ function CarRaffle() {
                   <div className="col-12 col-md-12">
                     <div className="form-group">
                       <label>Enter amount</label>
-                      <select className="field">
+                      <select
+                        onChange={(e) => setLotaryId(e.target.value)}
+                        className="field"
+                      >
                         <option>Enter amount</option>
-                        <option>100</option>
-                        <option>200</option>
+
+                        {lotterydata.map((curval) => {
+                          // console.log(12,curval.amount)
+                          return <option>{curval.amount}</option>;
+                        })}
+
+                        {/* <option>200</option>
                         <option>300</option>
-                        <option>400</option>
+                        <option>400</option> */}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group">
-                      <button type="button" className="btn w-full">
+                      <button
+                        type="button"
+                        className="btn w-full"
+                        onClick={addTickets}
+                      >
                         Enter Lottery
                       </button>
                     </div>
@@ -184,9 +252,10 @@ function CarRaffle() {
                         <div className="">12</div>
                       </li>
                     </ul>
-                    <button type="button" className="gry_btn w-full">
-                      Copy Refferal Link
+                    <button type="button" className="gry_btn w-full" onClick={handleRefferal}>
+                     Copy Reffer al Link
                     </button>
+                    <p className="code_genetaror">{refferalgeneratior1}</p>
                     <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
                       purchased amount will go back to you
