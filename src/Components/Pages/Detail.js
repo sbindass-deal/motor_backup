@@ -4,7 +4,6 @@ import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_sc
 import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
 import { useParams } from "react-router-dom";
 import men_face from "../../Assets/images/men-face.jpg";
-
 import men_face2 from "../../Assets/images/men-face2.webp";
 import men_face3 from "../../Assets/images/men-face3.jpg";
 import men_face4 from "../../Assets/images/men-face4.jfif";
@@ -16,6 +15,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 
 function Detail() {
   const { id } = useParams();
@@ -26,12 +26,38 @@ function Detail() {
   const [comments, setcomments] = React.useState([]);
   const [biding, setBiding] = React.useState([]);
   const [show, setShow] = useState(false);
+  const [index, setIndex] = useState(0);
+
   //setInputComment
   const [inputcomment, setInputComment] = React.useState("");
   const [bidValue, setBidValue] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [addVehicleUserId, setAddVehicleUserId] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [showImage, setShowImage] = useState([]);
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  //   const show = () => {
+  //     setModalShow(true);
+  //   };
+  const closeMoal = () => {
+    setModalShow(false);
+  };
+  const handleImageHow = async (id) => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + "/vehicle-image/" + id
+      );
+      setShowImage(response.data.data);
+      console.log(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+    setModalShow(true);
+  };
 
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
@@ -441,9 +467,13 @@ function Detail() {
                         />
                       ) : null}
                     </div>
-                    <a href="photo-gallery.html" className="gry_btn mt-3">
+                    <button
+                      onClick={() => handleImageHow(id)}
+                      type="button"
+                      className="gry_btn mt-3"
+                    >
                       More Photos
-                    </a>
+                    </button>
                   </div>
                   <div className="col-12 col-sm-6 pt-4">
                     <h5>&nbsp;</h5>
@@ -468,7 +498,7 @@ function Detail() {
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
-                      <li>
+                      {/* <li>
                         <label>Are you a dealer?</label>
                         <div>{vehicle.dealerId}</div>
                       </li>
@@ -557,7 +587,7 @@ function Detail() {
                           Please list and describe services performed and when
                         </label>
                         <div>{vehicle.moreDescription}</div>
-                      </li>
+                      </li> */}
 
                       <li>
                         <label htmlFor="">{vehicle.odmeter} Miles</label>
@@ -1059,6 +1089,44 @@ function Detail() {
           </div>
         </div>
       </section>
+      <Modal
+        show={modalShow}
+        onHide={closeMoal}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Modal.Title id="contained-modal-title-vcenter">Image</Modal.Title>
+          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
+            X
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          <Carousel activeIndex={index} onSelect={handleSelect}>
+            {showImage.map((curElem) => {
+              return (
+                <Carousel.Item key={curElem.id}>
+                  <img
+                    className="d-block w-100"
+                    src={
+                      process.env.REACT_APP_URL +
+                      curElem.imagePath +
+                      curElem.imageName
+                    }
+                    alt={curElem.imageName}
+                  />
+                  <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
+
       <Modal
         show={show}
         onHide={handleClose}

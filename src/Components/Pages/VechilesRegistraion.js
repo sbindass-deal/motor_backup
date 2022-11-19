@@ -107,18 +107,20 @@ const VechilesRegistraion = () => {
   };
 
   const uploadFileTwo = async (vehicleId) => {
-    const url = process.env.REACT_APP_URL + "vehicle-image";
-    const formData = new FormData();
-    formData.append("image", file1);
-    formData.append("vehicleId", vehicleId);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios.post(url, formData, config).then((response) => {
-      console.log(response.data);
-    });
+    for (let i = 0; i < file1.length; i++) {
+      const url = process.env.REACT_APP_URL + "vehicle-image";
+      const formData = new FormData();
+      formData.append("image", file1[1]);
+      formData.append("vehicleId", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
   };
   const [namefield, setNamefield] = useState({
     name: "",
@@ -290,6 +292,7 @@ const VechilesRegistraion = () => {
     e.preventDefault();
     //    dispatch(basicfactsave(basicfact))
   };
+  console.log("reserveAmount", detailsInfo.reserveAmount);
   const detailsOnChange = (e) => {
     const {
       detailvin,
@@ -748,11 +751,7 @@ const VechilesRegistraion = () => {
                               </option>
 
                               {counryData.map((curElem, i) => {
-                                return (
-                                  <option key={i} value="United States">
-                                    {curElem.name}
-                                  </option>
-                                );
+                                return <option key={i}>{curElem.name}</option>;
                               })}
                             </select>
                           </div>
@@ -1356,6 +1355,7 @@ const VechilesRegistraion = () => {
                                 }}
                                 name="files"
                                 type="file"
+                                multiple
                                 required
                               />
                             </div>
@@ -1768,8 +1768,8 @@ const VechilesRegistraion = () => {
                               <label>Please provide reserve amount:</label>
                               <input
                                 value={detailsInfo.reserveAmount}
-                                onChange={handleNameField}
-                                type="text"
+                                onChange={detailsOnChange}
+                                type="number"
                                 name="reserveAmount"
                                 placeholder="Enter"
                                 className="field"

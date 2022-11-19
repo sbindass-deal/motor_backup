@@ -12,8 +12,14 @@ import { useEffect } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import referralCodeGenerator from "referral-code-generator"
 
+import Carousel from "react-bootstrap/Carousel";
 
 function CarRaffle() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
   const [modalShow, setModalShow] = useState(false);
   const [showImage, setShowImage] = useState();
 
@@ -25,11 +31,14 @@ function CarRaffle() {
   const [refferalgeneratior,setRefferalgeneratior]=useState()
   const [refferalgeneratior1,setRefferalgeneratior1]=useState()
  
+  //   const show = () => {
+  //     setModalShow(true);
+  //   };
   const closeMoal = () => {
     setModalShow(false);
   };
-  const handleImageHow = (val) => {
-    setShowImage(val);
+  const handleImageHow = (num) => {
+    setIndex(num);
     setModalShow(true);
   };
   useEffect(() => {
@@ -103,20 +112,23 @@ function CarRaffle() {
 
                       <div className="carousel-inner">
                         <div
-                          onClick={() => handleImageHow(ads_car_1)}
+                          onClick={() => handleImageHow(0)}
                           className="carousel-item active"
+                          style={{ cursor: "pointer" }}
                         >
                           <img src={ads_car_1} alt="ads car" />
                         </div>
                         <div
-                          onClick={() => handleImageHow(ads_car_2)}
+                          onClick={() => handleImageHow(1)}
                           className="carousel-item"
+                          style={{ cursor: "pointer" }}
                         >
                           <img src={ads_car_2} alt="ads car" />
                         </div>
                         <div
-                          onClick={() => handleImageHow(ads_car_3)}
+                          onClick={() => handleImageHow(2)}
                           className="carousel-item"
+                          style={{ cursor: "pointer" }}
                         >
                           <img src={ads_car_3} alt="ads car" />
                         </div>
@@ -283,11 +295,39 @@ function CarRaffle() {
           </div>
         </Modal.Header>
         <Modal.Body>
-          <img
+          {/* <img
             src={showImage}
             alt=""
-            style={{ maxHeight: "67vh", width: "100%", objectFit: "contain" }}
-          />
+            style={{ maxHeight: "67vh", width: "100%" }}
+          /> */}
+          <Carousel activeIndex={index} onSelect={handleSelect}>
+            <Carousel.Item>
+              <img
+                className="d-block w-100 img-fluid"
+                src={ads_car_1}
+                alt="First slide"
+              />
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100 img-fluid"
+                src={ads_car_2}
+                alt="Second slide"
+              />
+
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100 img-fluid"
+                src={ads_car_3}
+                alt="Third slide"
+              />
+
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
