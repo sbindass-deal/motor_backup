@@ -1,50 +1,41 @@
-import { SingleBed } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import img_001 from "../../Assets/images/img_001.webp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  basicfactsave,
-  contactinfosave,
-  detailssave,
-  makemodesave,
   step_one,
   step_three,
   step_two,
 } from "../../redux/reducers/submitvechilesReducer";
 import counryData from "../countryList";
+import { Modal } from "react-bootstrap";
+import TermsOfUse from "./TermsOfUse";
+import CookiesSetting from "./CookiesSetting";
 
 const VechilesRegistraion = () => {
-  const [nameFieldValid, setNameFieldValid] = useState(false);
-  const [basicFactValid, setBasicFactValid] = useState(false);
-  const [detailsTabValid, setDetailsTabValid] = useState(false);
-  const [userNameValid, setUserNameValid] = useState(true);
-  const [userPassWordValid, setUserPassWordValid] = useState(true);
-  const [userPhone, setUserPhone] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
+  const [amlPolicy, setAmlPolicy] = useState(false);
   const [file, setFile] = useState();
   const [file1, setFile1] = useState();
-
-  const [errorCont, setErrorCont] = useState(false);
   const [signinAggri, setSigninAggri] = useState();
-  const [signinAggriSubmit, setSigninAggriSubmit] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
-  const [acceptDetails, setAcceptDetails] = useState();
   const [understandCondition, setUnderstandCondition] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const userDataLogin = useSelector((state) => state);
   const [pickOne, setPickOne] = useState();
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [errorMakeAndModal, setErrorMakeAndModal] = useState(true);
+  const [errorBasicFact, setErrorBasicFact] = useState(true);
+  const [errorDetais, setErrorDetais] = useState(true);
+  const [showError, setShowError] = useState(true);
   const notify = (val) => toast(val);
-  const acceptDteailsPageOnChange = (e) => {
-    const { checked } = e.target;
-    setAcceptDetails(checked);
+  const closeMoal = () => {
+    setModalShow(false);
   };
-  console.log(understandCondition, acceptTerms);
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -53,8 +44,6 @@ const VechilesRegistraion = () => {
       setAccessories(accessories.filter((e) => e !== value));
     }
   };
-
-  console.log(accessories);
   const handleDetailsInfoOnChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -68,7 +57,6 @@ const VechilesRegistraion = () => {
     setSigninAggri(checked);
   };
 
-  console.log(errorCont);
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const reduxValue = useSelector((data) => data);
@@ -78,18 +66,7 @@ const VechilesRegistraion = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
-  // const uploadMultipleFiles = (e) => {
-  //   const fileObj = [];
-  //   const fileArray = [];
-  //   fileObj.push(e.target.files);
-  //   for (let i = 0; i < fileObj[0].length; i++) {
-  //     fileArray.push(URL.createObjectURL(fileObj[0][i]));
-  //   }
-  //   setFile(fileArray);
-  // };
   const uploadFileOne = async (vehicleId) => {
-    console.log(11111, file);
-
     for (let i = 0; i < file.length; i++) {
       const url = process.env.REACT_APP_URL + "vehicle-image";
       const formData = new FormData();
@@ -195,171 +172,48 @@ const VechilesRegistraion = () => {
     phone: "",
   });
   const handleNameField = (e) => {
-    const {
-      name,
-      email,
-      year,
-      make,
-      model,
-      vechilelocation,
-      city,
-      sale,
-      link,
-      vehiclepast,
-      providelink,
-      changedvechiles,
-      dealer,
-      dealership,
-      soldvechiles,
-      videolink,
-      file,
-    } = namefield;
     const Value = e.target.value;
     const Name = e.target.name;
     setNamefield({ ...namefield, [Name]: Value });
-    if (
-      name.trim().length !== 0 &&
-      // email.trim().length !== 0 &&
-      year.trim().length !== 0 &&
-      make.trim().length !== 0 &&
-      model.trim().length !== 0 &&
-      city.trim().length !== 0 &&
-      sale.trim().length !== 0 &&
-      vechilelocation.trim().length !== 0 &&
-      // link.trim().length !== 0 &&
-      vehiclepast.trim().length !== 0 &&
-      providelink.trim().length !== 0 &&
-      changedvechiles.trim().length !== 0 &&
-      dealer.trim().length !== 0 &&
-      // dealership.trim().length !== 0 &&
-      soldvechiles.trim().length !== 0 &&
-      videolink.trim().length !== 0
-      // file.trim().length !== 0
-    ) {
-      setNameFieldValid(true);
-    } else {
-      setNameFieldValid(false);
-    }
   };
 
   const handleNextSubmit = (e) => {
     e.preventDefault();
+    setErrorMakeAndModal(false);
+    dispatch(step_one(true));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
   };
   const basicFactOnChange = (e) => {
-    const {
-      vin,
-      vechilesrace,
-      ultiumdrive,
-      Interstellar,
-      interior,
-      brandandmodel,
-      sizetires,
-      trucktitled,
-      other,
-      status,
-      km,
-      kmacc,
-      odometer,
-      accurateField,
-      files,
-    } = basicfact;
     const Value = e.target.value;
     const Name = e.target.name;
     setbasicfact({ ...basicfact, [Name]: Value });
-    if (
-      vin.trim().length !== 0 &&
-      vechilesrace.trim().length !== 0 &&
-      ultiumdrive.trim().length !== 0 &&
-      Interstellar.trim().length !== 0 &&
-      interior.trim().length !== 0 &&
-      brandandmodel.trim().length !== 0 &&
-      sizetires.trim().length !== 0 &&
-      // trucktitled.trim().length !== 0 &&
-      // other.trim().length !== 0 &&
-      status.trim().length !== 0 &&
-      km.trim().length !== 0 &&
-      // kmacc.trim().length !== 0 &&
-      odometer.trim().length !== 0 &&
-      accurateField.trim().length !== 0
-      // files.trim().length !== 0
-    ) {
-      setBasicFactValid(true);
-    } else {
-      setBasicFactValid(false);
-    }
   };
   const basicFactSubmitHandler = (e) => {
     e.preventDefault();
-    //    dispatch(basicfactsave(basicfact))
+    setErrorBasicFact(false);
+    dispatch(step_one(true));
+    dispatch(step_two(true));
+    dispatch(step_three(false));
   };
   console.log("reserveAmount", detailsInfo.reserveAmount);
   const detailsOnChange = (e) => {
-    const {
-      detailvin,
-      bodywork,
-      rustpresent,
-      modificationstock,
-      truckfromnew,
-      servicesperformed,
-      issuesorproblems,
-      moreDescription,
-      reserve,
-      reserveAmount,
-      shibnobiabout,
-      ammountOnDocument,
-      rtmember,
-      shibnobi,
-      documentFee,
-      memberShip,
-      accept,
-      understand,
-    } = detailstab;
     const Value = e.target.value;
     const Name = e.target.name;
     setDetailstab({ ...detailstab, [Name]: Value });
-    if (
-      // detailvin.trim().length !== 0 &&
-      bodywork.trim().length !== 0 &&
-      rustpresent.trim().length !== 0 &&
-      modificationstock.trim().length !== 0 &&
-      // truckfromnew.trim().length !== 0 &&
-      // servicesperformed.trim().length &&
-      issuesorproblems.trim().length !== 0 &&
-      // moreDescription.trim().length !== 0 &&
-      reserve.trim().length !== 0 &&
-      // shibnobiabout.trim().length !== 0 &&
-      ammountOnDocument.trim().length !== 0
-      // rtmember.trim().length !== 0 &&
-      // shibnobi.trim().length !== 0 &&
-      // documentFee.trim().length !== 0 &&
-      // memberShip.trim().length !== 0
-      // accept.trim().length !== 0 &&
-      // understand.trim().length !== 0
-    ) {
-      setDetailsTabValid(true);
-    } else {
-      setDetailsTabValid(false);
-    }
   };
-  if (
-    information.username.trim().length < 5 &&
-    information.username.trim().length > 10
-  ) {
-    setUserNameValid(false);
-  }
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(detailstab);
-    // dispatch(detailssave(detailstab))
+    setErrorDetais(false);
+    dispatch(step_one(true));
+    dispatch(step_two(true));
+    dispatch(step_three(true));
   };
   const informationOnChange = (e) => {
     const Value = e.target.value;
     const Name = e.target.name;
     setInformation({ ...information, [Name]: Value });
   };
-  //  const informationSubmitHandler = () => {
-  // dispatch(contactinfosave({...namefield,...basicfact,...detailstab,...information, id:Math.random()}))
-  //  }
 
   const informationSubmitHandler = (e) => {
     const {
@@ -390,18 +244,14 @@ const VechilesRegistraion = () => {
       sizetires,
       trucktitled,
       other,
-      status,
-      km,
       kmacc,
       odometer,
       accurateField,
     } = basicfact;
     const {
-      detailvin,
       bodywork,
       rustpresent,
       modificationstock,
-      truckfromnew,
       servicesperformed,
       issuesorproblems,
       moreDescription,
@@ -409,34 +259,34 @@ const VechilesRegistraion = () => {
       reserveAmount,
       shibnobiabout,
       ammountOnDocument,
-      rtmember,
-      shibnobi,
       documentFee,
       memberShip,
-      accept,
-      understand,
     } = detailstab;
-    const { uemail, username, password, iname, phone } = information;
+    const { uemail, iname, phone } = information;
     e.preventDefault();
-    setSubmitLoading(true);
+    if (
+      phone.trim().length >= 11 ||
+      errorMakeAndModal ||
+      errorBasicFact ||
+      errorDetais
+    ) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
         name: name,
         email: email,
         premium: reduxValue.submitvechilesReducer.submitPlan,
-        userId: userDataLogin.login.user.id, //redux user id lena h.
+        userId: userDataLogin.login.user.id,
         year: year,
         make: make,
         description: videolink,
         model: model,
         owned: sale,
         country: vechilelocation,
-        // state: "",
         city: city,
         consignment: soldvechiles,
-        // bat: "",
-        // batDescription: "",
         dealerName: moreDescription,
         dealerId: dealer,
         dealerDescription: dealership,
@@ -467,13 +317,13 @@ const VechilesRegistraion = () => {
         Interstellar,
         interior,
         brandandmodel,
+        understandCondition,
+        acceptTerms,
+        pickOne,
         sizetires,
-        // detailvin,
         bodywork,
         rustpresent,
         modificationstock,
-        // truckfromnew, // nahi ja raha
-        // servicesperformed, // nahi ja rah
         issuesorproblems,
       })
       .then((result) => {
@@ -554,6 +404,45 @@ const VechilesRegistraion = () => {
       });
   };
 
+  const handleMakeAndModalTab = () => {
+    dispatch(step_one(false));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+    setShowError(true);
+  };
+  const handleBasicFactTab = () => {
+    dispatch(step_one(true));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+    setShowError(true);
+  };
+  const handleDetailsTab = () => {
+    dispatch(step_one(true));
+    dispatch(step_two(true));
+    dispatch(step_three(false));
+    setShowError(true);
+  };
+  const handleContactTab = () => {
+    dispatch(step_one(true));
+    dispatch(step_two(true));
+    dispatch(step_three(true));
+  };
+  const handleBackMakeAndModal = () => {
+    dispatch(step_one(false));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+  };
+  const handleBackBasicFact = () => {
+    dispatch(step_one(true));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+  };
+  const handleBackDetails = () => {
+    dispatch(step_one(true));
+    dispatch(step_two(true));
+    dispatch(step_three(false));
+  };
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -573,11 +462,16 @@ const VechilesRegistraion = () => {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      // data-toggle="pill"
-                      // href="#MakeModel_Pill"
+                      onClick={handleMakeAndModalTab}
+                      style={{ cursor: "pointer" }}
                     >
                       Make & Model
                     </a>
+                    {!showError && errorMakeAndModal ? (
+                      <span className="text-danger">
+                        Pleae file make & model input field proper
+                      </span>
+                    ) : null}
                   </li>
                   <li className="nav-item">
                     <a
@@ -587,11 +481,16 @@ const VechilesRegistraion = () => {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      // data-toggle="pill"
-                      // href="#BasicFacts_Pill"
+                      onClick={handleBasicFactTab}
+                      style={{ cursor: "pointer" }}
                     >
                       Basic Facts
                     </a>
+                    {!showError && errorBasicFact ? (
+                      <span className="text-danger">
+                        Pleae file Basic Facts input field proper
+                      </span>
+                    ) : null}
                   </li>
                   <li className="nav-item">
                     <a
@@ -602,10 +501,16 @@ const VechilesRegistraion = () => {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      // data-toggle="pill"
+                      onClick={handleDetailsTab}
+                      style={{ cursor: "pointer" }}
                     >
                       Details
                     </a>
+                    {!showError && errorDetais ? (
+                      <span className="text-danger">
+                        Pleae file Details input field proper
+                      </span>
+                    ) : null}
                   </li>
                   <li className="nav-item">
                     <a
@@ -616,7 +521,8 @@ const VechilesRegistraion = () => {
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      // data-toggle="pill"
+                      onClick={handleContactTab}
+                      style={{ cursor: "pointer" }}
                     >
                       Contact Info
                     </a>
@@ -628,7 +534,7 @@ const VechilesRegistraion = () => {
               {/* <!-- Tab panes --> */}
               <div className="tab-content">
                 {reduxValue.submitvechilesReducer.step_one === false ? (
-                  <div className="tab-pane active" id="MakeModel_Pill">
+                  <div className="tab-pane active">
                     <h3>Make & Model</h3>
                     <hr />
                     <h6>
@@ -665,20 +571,6 @@ const VechilesRegistraion = () => {
                             />
                           </div>
                         </div>
-                        {/* <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>What is your email?</label>
-                            <input
-                              value={namefield.email}
-                              onChange={handleNameField}
-                              type="email"
-                              name="email"
-                              placeholder="Your email"
-                              className="field"
-                              required
-                            />
-                          </div>
-                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
@@ -791,21 +683,6 @@ const VechilesRegistraion = () => {
                             </select>
                           </div>
                         </div>
-                        {namefield.sale === "Yes" && (
-                          <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group">
-                              <label>
-                                Where and when? Please include links.
-                              </label>
-                              <textarea
-                                value={namefield.link}
-                                onChange={handleNameField}
-                                name="link"
-                                className="field"
-                              ></textarea>
-                            </div>
-                          </div>
-                        )}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
@@ -827,35 +704,42 @@ const VechilesRegistraion = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Please provide a link to the listing:</label>
-                            <input
-                              value={namefield.providelink}
-                              onChange={handleNameField}
-                              type="url"
-                              name="providelink"
-                              placeholder="Enter"
-                              className="field"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>
-                              What has changed on this vehicle since it was last
-                              listed on Gas guzzlrs?
-                            </label>
-                            <textarea
-                              value={namefield.changedvechiles}
-                              onChange={handleNameField}
-                              name="changedvechiles"
-                              className="field"
-                              required
-                            ></textarea>
-                          </div>
-                        </div>
+                        {namefield.sale === "Yes" ||
+                        namefield.vehiclepast === "Yes" ? (
+                          <>
+                            <div className="col-12 col-sm-12 col-md-6">
+                              <div className="form-group">
+                                <label>
+                                  Please provide a link to the listing:
+                                </label>
+                                <input
+                                  value={namefield.providelink}
+                                  onChange={handleNameField}
+                                  type="url"
+                                  name="providelink"
+                                  placeholder="Enter"
+                                  className="field"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="form-group">
+                                <label>
+                                  What has changed on this vehicle since it was
+                                  last listed on Gas guzzlrs?
+                                </label>
+                                <textarea
+                                  value={namefield.changedvechiles}
+                                  onChange={handleNameField}
+                                  name="changedvechiles"
+                                  className="field"
+                                  required
+                                ></textarea>
+                              </div>
+                            </div>
+                          </>
+                        ) : null}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Are you a dealer?</label>
@@ -980,37 +864,9 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12"></div>
                         <div className="col-12 col-sm-12 col-md-12">
-                          {/* <button type="submit" className="gry_btn"> */}
-                          {/* <button type="button" onClick={handleNextSubmit} > */}
-                          {nameFieldValid &&
-                          namefield.file.trim().length !== 0 ? (
-                            <a
-                              className="nav-link gry_btn"
-                              data-toggle="pill"
-                              href="#BasicFacts_Pill"
-                              onClick={() => {
-                                dispatch(step_one(true));
-                                // handleNextSubmit();
-                              }}
-                            >
-                              NEXT
-                            </a>
-                          ) : (
-                            <button type="submit" className="gry_btn">
-                              NEXT
-                            </button>
-                          )}
-                          {/* <a
-                            className="nav-link gry_btn"
-                            data-toggle="pill"
-                            href="#BasicFacts_Pill"
-                            onClick={() => {
-                              dispatch(step_one(true));
-                              handleNextSubmit();
-                            }}
-                          >
+                          <button type="submit" className="gry_btn">
                             NEXT
-                          </a> */}
+                          </button>
                         </div>
                       </div>
                     </form>
@@ -1019,7 +875,7 @@ const VechilesRegistraion = () => {
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
                 reduxValue.submitvechilesReducer.step_two === false ? (
-                  <div className="tab-pane fade" id="BasicFacts_Pill">
+                  <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
 
@@ -1369,34 +1225,16 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12"></div>
                         <div className="col-12 col-sm-12 col-md-12">
-                          {/* <button type="button" className="gry_btn">
-                          BACK
-                        </button> */}
-                          {/* <button type="submit" className="gry_btn">
-                          NEXT
-                        </button> */}
-                          {basicFactValid ? (
-                            <a
-                              className="nav-link gry_btn"
-                              data-toggle="pill"
-                              href="#Details_Pill"
-                              onClick={() => dispatch(step_two(true))}
-                            >
-                              NEXT
-                            </a>
-                          ) : (
-                            <button type="submit" className="gry_btn">
-                              NEXT
-                            </button>
-                          )}
-                          {/* <a
-                            className="nav-link gry_btn"
-                            data-toggle="pill"
-                            href="#Details_Pill"
-                            onClick={() => dispatch(step_two(true))}
+                          <button
+                            onClick={handleBackMakeAndModal}
+                            type="button"
+                            className="gry_btn"
                           >
+                            BACK
+                          </button>
+                          <button type="submit" className="gry_btn">
                             NEXT
-                          </a> */}
+                          </button>
                         </div>
                       </div>
                     </form>
@@ -1406,7 +1244,7 @@ const VechilesRegistraion = () => {
                 {reduxValue.submitvechilesReducer.step_one === true &&
                 reduxValue.submitvechilesReducer.step_two === true &&
                 reduxValue.submitvechilesReducer.step_three === false ? (
-                  <div className="tab-pane fade" id="Details_Pill">
+                  <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
 
@@ -1426,24 +1264,6 @@ const VechilesRegistraion = () => {
                         </div>
                       </div>
                       <div className="row row_gap_5">
-                        {/* <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>What is the VIN?</label>
-                            <select
-                              value={detailstab.detailvin}
-                              onChange={detailsOnChange}
-                              name="detailvin"
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Choose...
-                              </option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
-                            </select>
-                          </div>
-                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
@@ -1854,11 +1674,25 @@ const VechilesRegistraion = () => {
                                 required
                               />{" "}
                               I accept the{" "}
-                              <a href="/termsandconditions" className="link">
+                              <a
+                                onClick={() => {
+                                  setAmlPolicy(false);
+                                  setModalShow(true);
+                                }}
+                                className="link"
+                                style={{ cursor: "pointer" }}
+                              >
                                 Terms of Service
                               </a>{" "}
                               and{" "}
-                              <a href="/amlpolicy" className="link">
+                              <a
+                                onClick={() => {
+                                  setAmlPolicy(true);
+                                  setModalShow(true);
+                                }}
+                                style={{ cursor: "pointer" }}
+                                className="link"
+                              >
                                 AML Policy
                               </a>
                             </label>
@@ -1885,36 +1719,16 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
-                          {/* <button type="button" className="gry_btn">
-                          BACK
-                        </button> */}
-                          {/* <button type="submit" className="gry_btn">
-                          NEXT
-                        </button> */}
-                          {detailsTabValid &&
-                          understandCondition &&
-                          acceptTerms ? (
-                            <a
-                              className="nav-link gry_btn"
-                              data-toggle="pill"
-                              href="#ContactInfo_Pill"
-                              onClick={() => dispatch(step_three(true))}
-                            >
-                              NEXT
-                            </a>
-                          ) : (
-                            <button type="submit" className="gry_btn">
-                              NEXT
-                            </button>
-                          )}
-                          {/* <a
-                            className="nav-link gry_btn"
-                            data-toggle="pill"
-                            href="#ContactInfo_Pill"
-                            onClick={() => dispatch(step_three(true))}
+                          <button
+                            onClick={handleBackBasicFact}
+                            type="button"
+                            className="gry_btn"
                           >
+                            BACK
+                          </button>
+                          <button type="submit" className="gry_btn">
                             NEXT
-                          </a> */}
+                          </button>
                         </div>
                       </div>
                     </form>
@@ -1923,16 +1737,16 @@ const VechilesRegistraion = () => {
                 {reduxValue.submitvechilesReducer.step_one === true &&
                 reduxValue.submitvechilesReducer.step_two === true &&
                 reduxValue.submitvechilesReducer.step_three === true ? (
-                  <div className="tab-pane fade" id="ContactInfo_Pill">
+                  <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
 
                     <p className="small">
                       Have an engine, wheels, seats, literature or any other
-                      non-vehicle item?{" "}
+                      non-vehicle item?
                       <a href="#" className="link">
                         Click here
-                      </a>{" "}
+                      </a>
                       to submit it.
                     </p>
 
@@ -1940,20 +1754,6 @@ const VechilesRegistraion = () => {
                       <div className="row">
                         <div className="col-12">
                           <h5>Complete Your Contact Info</h5>
-                          {/* <p>
-                            Already have a username?{" "}
-                            <a
-                              href="javascript:void(0)"
-                              data-dismiss="modal"
-                              data-toggle="modal"
-                              data-target="#RegisterModal"
-                              className="link"
-                              required
-                            >
-                              Sign in
-                            </a>{" "}
-                            here.
-                          </p> */}
                           <h6>Subscribe to our newsletter:</h6>
                         </div>
                       </div>
@@ -1970,55 +1770,8 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             />
-                            {errorCont && information.uemail.length <= 0 ? (
-                              <p className="text-danger">Please enter email</p>
-                            ) : (
-                              ""
-                            )}
                           </div>
                         </div>
-                        {/* <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Username</label>
-                            <input
-                              value={information.username}
-                              onChange={informationOnChange}
-                              type="text"
-                              name="username"
-                              className="field"
-                              autoComplete="off"
-                              required
-                            />
-                            {errorCont && information.username.length <= 0 ? (
-                              <p className="text-danger">
-                                Please enter user name
-                              </p>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </div> */}
-                        {/* <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Password</label>
-                            <input
-                              value={information.password}
-                              onChange={informationOnChange}
-                              type="password"
-                              name="password"
-                              className="field"
-                              autoComplete="off"
-                              required
-                            />
-                            {errorCont && information.password.length <= 0 ? (
-                              <p className="text-danger">
-                                Please enter password
-                              </p>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Name</label>
@@ -2031,11 +1784,6 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             />
-                            {errorCont && information.iname.length <= 0 ? (
-                              <p className="text-danger">Please enter name</p>
-                            ) : (
-                              ""
-                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -2050,14 +1798,12 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             />
-                            {errorCont && information.phone.length <= 0 ? (
-                              <p className="text-danger">
-                                Please enter phone number
-                              </p>
-                            ) : (
-                              ""
-                            )}
                           </div>
+                          {information.phone.trim().length >= 11 && (
+                            <p className="text-danger">
+                              Enter correct phone number
+                            </p>
+                          )}
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group form-check">
@@ -2068,23 +1814,23 @@ const VechilesRegistraion = () => {
                                 onChange={signInChange}
                                 className="form-check-input"
                                 type="checkbox"
-                              />{" "}
+                              />
                               Sign me up for the Gas guzzlrs Daily Mail
                             </label>
-                            {/* {signinAggri || signinAggriSubmit ? (
-                              ""
-                            ) : (
-                              <p className="text-danger">Please select</p>
-                            )} */}
-                            {/* {errorCont && information.username <= 0 ? <p>Please enter user name</p> : ""} */}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
-                          {/* <button type="button" className="gry_btn">
-                          BACK
-                        </button> */}
+                          <button
+                            type="button"
+                            onClick={handleBackDetails}
+                            className="gry_btn"
+                          >
+                            BACK
+                          </button>
                           {submitLoading ? (
-                            <button className="gry_btn">Loading...</button>
+                            <button type="button" className="gry_btn">
+                              Loading...
+                            </button>
                           ) : (
                             <button type="submit" className="gry_btn">
                               Finish
@@ -2100,6 +1846,28 @@ const VechilesRegistraion = () => {
           </div>
         </div>
       </section>
+      <Modal
+        show={modalShow}
+        onHide={closeMoal}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Modal.Title id="contained-modal-title-vcenter">
+            {amlPolicy ? "AML Policy" : "Terms of Service"}
+          </Modal.Title>
+          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
+            X
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          {amlPolicy ? <CookiesSetting /> : <TermsOfUse />}
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
     </div>
   );
 };

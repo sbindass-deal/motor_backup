@@ -9,8 +9,8 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import referralCodeGenerator from "referral-code-generator"
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import referralCodeGenerator from "referral-code-generator";
 
 import Carousel from "react-bootstrap/Carousel";
 
@@ -28,9 +28,9 @@ function CarRaffle() {
   const [filteredId, setFilteredId] = useState();
   console.log(filteredId, "id");
 
-  const [refferalgeneratior,setRefferalgeneratior]=useState()
-  const [refferalgeneratior1,setRefferalgeneratior1]=useState()
- 
+  const [refferalgeneratior, setRefferalgeneratior] = useState();
+  const [refferalgeneratior1, setRefferalgeneratior1] = useState();
+
   //   const show = () => {
   //     setModalShow(true);
   //   };
@@ -44,19 +44,17 @@ function CarRaffle() {
   useEffect(() => {
     const lotterydata1 = lotterydata.filter(
       (curVal) => curVal.amount == lotaryId
-      
-      );
-      
-      {
-        lotterydata1.map((curVal)=>{
-          console.log("first",curVal.id)
-          return setFilteredId(curVal.id)
-        })
-      }
+    );
 
+    {
+      lotterydata1.map((curVal) => {
+        console.log("first", curVal.id);
+        return setFilteredId(curVal.id);
+      });
+    }
   }, [lotaryId]);
 
-  console.log(8000,refferalgeneratior)
+  console.log(8000, refferalgeneratior);
 
   React.useEffect(() => {
     axios
@@ -77,15 +75,16 @@ function CarRaffle() {
       });
   };
 
-  const handleRefferal=()=>{
+  const handleRefferal = () => {
     // referralCodeGenerator.custom('lowercase', 6, 6, 'temitope')
-    setRefferalgeneratior(referralCodeGenerator.custom('lowercase', 11, 8, 'vikasSharmaa'))
-  }
+    setRefferalgeneratior(
+      referralCodeGenerator.custom("lowercase", 11, 8, "vikasSharmaa")
+    );
+  };
 
-  useEffect(()=>{
-    setRefferalgeneratior1(refferalgeneratior)
-    
-  },[refferalgeneratior])
+  useEffect(() => {
+    setRefferalgeneratior1(refferalgeneratior);
+  }, [refferalgeneratior]);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -182,11 +181,11 @@ function CarRaffle() {
 
               <div className="card_Gray2">
                 <div className="row row_gap_5">
-                  <div className="col-12 mb-3">
+                  {/* <div className="col-12 mb-3">
                     <h5>
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
-                  </div>
+                  </div> */}
                   <div className="col-12 col-md-12">
                     <div className="form-group">
                       <label>Enter amount</label>
@@ -196,10 +195,9 @@ function CarRaffle() {
                       >
                         <option>Enter amount</option>
 
-                        {lotterydata.map((curval) => {
-                          // console.log(12,curval.amount)
+                        {/* {lotterydata.map((curval) => {
                           return <option>{curval.amount}</option>;
-                        })}
+                        })} */}
 
                         {/* <option>200</option>
                         <option>300</option>
@@ -264,8 +262,12 @@ function CarRaffle() {
                         <div className="">12</div>
                       </li>
                     </ul>
-                    <button type="button" className="gry_btn w-full" onClick={handleRefferal}>
-                     Copy Reffer al Link
+                    <button
+                      type="button"
+                      className="gry_btn w-full"
+                      onClick={handleRefferal}
+                    >
+                      Copy Reffer al Link
                     </button>
                     <p className="code_genetaror">{refferalgeneratior1}</p>
                     <p className="small mt-2">

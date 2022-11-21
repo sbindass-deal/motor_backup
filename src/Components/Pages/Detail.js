@@ -142,6 +142,7 @@ function Detail() {
   const getVehicleImages = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
       setVehicleImage(res.data.data);
+      console.log("image", res.data.data);
     });
   };
 
@@ -150,7 +151,6 @@ function Detail() {
       setBiding(res.data.data);
       const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
-      console.log("apiTime", res.data.data[0].created_at);
       // setNewTiem(
       //   parseInt(
       //     new Date(res.data.data[0].created_at).getTime() + 432000000,
@@ -483,9 +483,9 @@ function Detail() {
                           src={
                             process.env.REACT_APP_URL +
                             "/" +
-                            vehicleImage[1].imagePath +
+                            vehicleImage[0].imagePath +
                             "/" +
-                            vehicleImage[1].imageName
+                            vehicleImage[0].imageName
                           }
                           alt=""
                         />
@@ -610,6 +610,9 @@ function Detail() {
                           <label htmlFor=""> {vehicle.accessories}</label>
                         </li>
                       )}
+                      <li>
+                        <label htmlFor="">{vehicle.truckDetails}</label>
+                      </li>
 
                       {vehicle.bodywork === "Yes" && (
                         <li>
@@ -631,9 +634,17 @@ function Detail() {
                         </li>
                       )}
 
-                      <li>
-                        Size tires <label htmlFor="">{vehicle.sizetires}</label>
-                      </li>
+                      {vehicle.sizetires !== null && (
+                        <li>
+                          Size tires{" "}
+                          <label htmlFor="">{vehicle.sizetires}</label>
+                        </li>
+                      )}
+                      {vehicle.pickOne !== null && (
+                        <li>
+                          <label htmlFor="">{vehicle.pickOne}</label>
+                        </li>
+                      )}
 
                       {/* <li>
                         <label htmlFor="">{vehicle.km}</label>
