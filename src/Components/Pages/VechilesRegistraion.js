@@ -26,7 +26,6 @@ const VechilesRegistraion = () => {
   const [understandCondition, setUnderstandCondition] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const userDataLogin = useSelector((state) => state);
-  const [pickOne, setPickOne] = useState();
   const [submitLoading, setSubmitLoading] = useState(false);
   const [errorMakeAndModal, setErrorMakeAndModal] = useState(true);
   const [errorBasicFact, setErrorBasicFact] = useState(true);
@@ -133,10 +132,13 @@ const VechilesRegistraion = () => {
     other: "",
     status: "",
     km: "",
+    wheels: "",
     kmacc: "",
     odometer: "",
     accurateField: "",
     files: "",
+    otherTruckTitle: "",
+    otherStatus: "",
   });
 
   // details tabs
@@ -153,13 +155,14 @@ const VechilesRegistraion = () => {
     reserve: "",
     reserveAmount: "",
     shibnobiabout: "",
-    ammountOnDocument: "",
     rtmember: "",
     shibnobi: "",
     documentFee: "",
-    memberShip: "",
     accept: "",
     understand: "",
+    truckHistory: "",
+    rustDetails: "",
+    modificationOnTrck: "",
   });
 
   // contact info
@@ -244,9 +247,13 @@ const VechilesRegistraion = () => {
       sizetires,
       trucktitled,
       other,
+      status,
       kmacc,
       odometer,
       accurateField,
+      wheels,
+      otherTruckTitle,
+      otherStatus,
     } = basicfact;
     const {
       bodywork,
@@ -258,9 +265,10 @@ const VechilesRegistraion = () => {
       reserve,
       reserveAmount,
       shibnobiabout,
-      ammountOnDocument,
       documentFee,
-      memberShip,
+      truckHistory,
+      rustDetails,
+      modificationOnTrck,
     } = detailstab;
     const { uemail, iname, phone } = information;
     e.preventDefault();
@@ -275,8 +283,8 @@ const VechilesRegistraion = () => {
 
     axios
       .post(`${url}vehicles`, {
-        name: name,
-        email: email,
+        name: iname,
+        email: uemail,
         premium: reduxValue.submitvechilesReducer.submitPlan,
         userId: userDataLogin.login.user.id,
         year: year,
@@ -307,24 +315,30 @@ const VechilesRegistraion = () => {
         link: link,
         accessories: accessories.toString(),
         truckDetails: detailsInfo.toString(),
-        moreDescription: ammountOnDocument,
+        moreDescription: "",
         reserve,
         reserveAmount,
         hereFrom: shibnobiabout,
         ammountOnDocument: servicesperformed,
-        membership: memberShip,
         documentFee,
         Interstellar,
+        pickOne: wheels,
         interior,
         brandandmodel,
         understandCondition,
         acceptTerms,
-        pickOne,
         sizetires,
         bodywork,
         rustpresent,
         modificationstock,
         issuesorproblems,
+        status, // db me check karni h
+        otherTruckTitle, // db me add karbani h
+        otherStatus, // db me add karbani h
+        truckHistory, // db me add karni h
+        rustDetails, // db me add karni h
+        modificationOnTrck, // db me add karni h
+        phone,
       })
       .then((result) => {
         setSubmitLoading(false);
@@ -379,11 +393,9 @@ const VechilesRegistraion = () => {
           reserve: "",
           reserveAmount: "",
           shibnobiabout: "",
-          ammountOnDocument: "",
           rtmember: "",
           shibnobi: "",
           documentFee: "",
-          memberShip: "",
           accept: "",
           understand: "",
         });
@@ -542,14 +554,6 @@ const VechilesRegistraion = () => {
                       Auctions? Please fill out the form below.
                     </h6>
 
-                    <p className="small">
-                      Have an engine, wheels, seats, literature or any other
-                      non-vehicle item?{" "}
-                      <a href="#" className="link">
-                        Click here
-                      </a>{" "}
-                      to submit it.
-                    </p>
                     <form className="" onSubmit={handleNextSubmit}>
                       <div className="row">
                         <div className="col-12 pb-3">
@@ -879,15 +883,6 @@ const VechilesRegistraion = () => {
                     <h3>Basic Facts</h3>
                     <hr />
 
-                    <p className="small">
-                      Have an engine, wheels, seats, literature or any other
-                      non-vehicle item?{" "}
-                      <a href="#" className="link">
-                        Click here
-                      </a>{" "}
-                      to submit it.
-                    </p>
-
                     <h5>Please provide some basic info on your vehicle:</h5>
                     <p>
                       We love {namefield.make} {namefield.model}s!{" "}
@@ -898,9 +893,9 @@ const VechilesRegistraion = () => {
 
                     <p>
                       Please provide some basic info to help us gather a better
-                      sense of your truck. The more information you can provide
-                      up front, the quicker we will be able to write the auction
-                      listing.
+                      sense of your vehicle. The more information you can
+                      provide up front, the quicker we will be able to write the
+                      auction listing.
                     </p>
 
                     <form onSubmit={basicFactSubmitHandler} className="pt-3">
@@ -947,7 +942,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Does the truck have an Ultium Drive e4WD system?
+                              Does the vehicle have an Ultium Drive e4WD system?
                             </label>
                             <select
                               value={basicfact.ultiumdrive}
@@ -967,7 +962,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Is the truck finished in Interstellar White?
+                              Is the vehicle finished in Interstellar White?
                             </label>
                             <select
                               value={basicfact.Interstellar}
@@ -1023,53 +1018,22 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
-                          <label>What wheels are on the truck?</label>
-                          <p className="small">*Please pick only one:</p>
-
-                          <div className="row">
-                            <fieldset class="row mb-3 px-3">
-                              <div class="col-sm-10">
-                                <div class="form-check">
-                                  <input
-                                    class="form-check-input"
-                                    onChange={(e) => setPickOne(e.target.value)}
-                                    type="radio"
-                                    name="gridRadios"
-                                    id="gridRadios1"
-                                    value="18 machine-finished alloy wheels"
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="gridRadios1"
-                                  >
-                                    18" machine-finished alloy wheels
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input
-                                    class="form-check-input"
-                                    onChange={(e) => setPickOne(e.target.value)}
-                                    type="radio"
-                                    name="gridRadios"
-                                    id="gridRadios2"
-                                    value="other"
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="gridRadios2"
-                                  >
-                                    Other
-                                  </label>
-                                </div>
-                              </div>
-                            </fieldset>
-                          </div>
+                          <label>What wheels are on the vehicle?</label>
+                          <input
+                            value={basicfact.wheels}
+                            onChange={basicFactOnChange}
+                            name="wheels"
+                            type="text"
+                            placeholder="wheels"
+                            className="field"
+                            required
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              What size of tires are on the truck? *The size can
-                              be found on the tire sidewall.
+                              What size of tires are on the vehicle? *The size
+                              can be found on the tire sidewall.
                             </label>
                             <input
                               value={basicfact.sizetires}
@@ -1084,7 +1048,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>How is the truck titled?</label>
+                            <label>How is the vehicle titled?</label>
                             <select
                               value={basicfact.km}
                               onChange={basicFactOnChange}
@@ -1115,6 +1079,20 @@ const VechilesRegistraion = () => {
                               <option value="other">Other</option>
                             </select>
                           </div>
+                          {basicfact.km === "other" ? (
+                            <div className="form-group">
+                              <label>Enter vehicle titled</label>
+                              <input
+                                value={basicfact.otherTruckTitle}
+                                onChange={basicFactOnChange}
+                                type="text"
+                                name="otherTruckTitle"
+                                placeholder="vehicle title"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          ) : null}
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -1136,6 +1114,20 @@ const VechilesRegistraion = () => {
                               <option value="other">Other</option>
                             </select>
                           </div>
+                          {basicfact.status === "other" ? (
+                            <div className="form-group">
+                              <label>Enter status of the titled</label>
+                              <input
+                                value={basicfact.otherStatus}
+                                onChange={basicFactOnChange}
+                                type="text"
+                                name="otherStatus"
+                                placeholder="vehicle title"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          ) : null}
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -1248,15 +1240,6 @@ const VechilesRegistraion = () => {
                     <h3>Details</h3>
                     <hr />
 
-                    <p className="small">
-                      Have an engine, wheels, seats, literature or any other
-                      non-vehicle item?{" "}
-                      <a href="#" className="link">
-                        Click here
-                      </a>{" "}
-                      to submit it.
-                    </p>
-
                     <form className="pt-3" onSubmit={detailsSubmitHandler}>
                       <div className="row">
                         <div className="col-12">
@@ -1267,7 +1250,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Does the truck have any history of paint or
+                              Does the vehicle have any history of paint or
                               bodywork?
                             </label>
                             <select
@@ -1284,11 +1267,27 @@ const VechilesRegistraion = () => {
                               <option value="No">No</option>
                             </select>
                           </div>
+                          {detailstab.bodywork === "Yes" && (
+                            <div className="form-group">
+                              <label>
+                                Enter vehicle history, paint or bodywork
+                              </label>
+                              <input
+                                value={detailstab.truckHistory}
+                                onChange={detailsOnChange}
+                                type="text"
+                                name="truckHistory"
+                                placeholder="Enter vehicle history"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          )}
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Is there any rust present on the truck?
+                              Is there any rust present on the vehicle?
                             </label>
                             <select
                               value={detailstab.rustpresent}
@@ -1304,11 +1303,26 @@ const VechilesRegistraion = () => {
                               <option value="No">No</option>
                             </select>
                           </div>
+                          {detailstab.rustpresent === "Yes" && (
+                            <div className="form-group">
+                              <label>Enter rust details</label>
+                              <input
+                                value={detailstab.rustDetails}
+                                onChange={detailsOnChange}
+                                type="text"
+                                name="rustDetails"
+                                placeholder="Enter rust"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          )}
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Does the truck have any modifications from stock?
+                              Does the vehicle have any modifications from
+                              stock?
                             </label>
                             <select
                               value={detailstab.modificationstock}
@@ -1324,11 +1338,25 @@ const VechilesRegistraion = () => {
                               <option value="Yes">Yes</option>
                             </select>
                           </div>
+                          {detailstab.modificationstock === "Yes" && (
+                            <div className="form-group">
+                              <label>Enter modifications details</label>
+                              <input
+                                value={detailstab.modificationOnTrck}
+                                onChange={detailsOnChange}
+                                type="text"
+                                name="modificationOnTrck"
+                                placeholder="Enter modifications"
+                                className="field"
+                                required
+                              />
+                            </div>
+                          )}
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
-                              Is the truck equipped with any of the following?
+                              Is the vehicle equipped with any of the following?
                               <br /> Please select all that apply:
                             </label>
                             <div className="row">
@@ -1404,12 +1432,12 @@ const VechilesRegistraion = () => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
 
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
-                              What do you know about the history of the truck
+                              What do you know about the history of the vehicle
                               from new?
                             </label>
                             <textarea
@@ -1553,17 +1581,6 @@ const VechilesRegistraion = () => {
                             ></textarea>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>Anything else we should know?</label>
-                            <textarea
-                              value={detailstab.ammountOnDocument}
-                              onChange={detailsOnChange}
-                              name="ammountOnDocument"
-                              className="field"
-                            ></textarea>
-                          </div>
-                        </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Do you want a reserve?</label>
@@ -1638,24 +1655,6 @@ const VechilesRegistraion = () => {
                               type="number"
                               name="documentFee"
                               placeholder="USD $"
-                              className="field"
-                              required
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>
-                              Are you an R&T member? Enter your membership
-                              number here (not required)
-                            </label>
-                            <input
-                              value={detailstab.memberShip}
-                              onChange={detailsOnChange}
-                              type="text"
-                              name="memberShip"
-                              placeholder="Enter"
                               className="field"
                               required
                             />
@@ -1740,15 +1739,6 @@ const VechilesRegistraion = () => {
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
-
-                    <p className="small">
-                      Have an engine, wheels, seats, literature or any other
-                      non-vehicle item?
-                      <a href="#" className="link">
-                        Click here
-                      </a>
-                      to submit it.
-                    </p>
 
                     <form className="pt-3" onSubmit={informationSubmitHandler}>
                       <div className="row">

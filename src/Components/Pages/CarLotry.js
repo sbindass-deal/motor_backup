@@ -26,14 +26,34 @@ function CarRaffle() {
   const [lotterydata, setLotterydata] = useState([]);
   const [lotaryId, setLotaryId] = useState();
   const [filteredId, setFilteredId] = useState();
-  console.log(filteredId, "id");
 
   const [refferalgeneratior, setRefferalgeneratior] = useState();
   const [refferalgeneratior1, setRefferalgeneratior1] = useState();
+  const [showLotary, setShowLotary] = useState([]);
+  const [days, setDays] = useState();
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] = useState();
+  const [seconds, setSeconds] = useState();
+  const [newTiem, setNewTiem] = useState(
+    new Date("2022-11-22 12:30:00").getTime()
+  );
+  const now = new Date().getTime();
+  const t = newTiem - now + 432000000;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
+      setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
+      setSeconds(Math.floor((t % (1000 * 60)) / 1000));
+    }, 1000);
 
-  //   const show = () => {
-  //     setModalShow(true);
-  //   };
+    return () => {
+      clearInterval(interval);
+    };
+  }, [days, hours, minutes, seconds]);
+
+  // countdown time end
+
   const closeMoal = () => {
     setModalShow(false);
   };
@@ -54,14 +74,31 @@ function CarRaffle() {
     }
   }, [lotaryId]);
 
-  console.log(8000, refferalgeneratior);
+  const fetchLotaryApi = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + "getLotteryDetail"
+      );
+      console.log("res", response.data.data);
+      setShowLotary(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchLotaryApi();
+  }, []);
 
   React.useEffect(() => {
     axios
       .get(process.env.REACT_APP_URL + "getAllLotteryAmount")
       .then((response) => {
-        console.log(101919, response.data.data);
-        setLotterydata(response.data.data);
+        setLotterydata(
+          response.data.data === null || response.data.data === undefined
+            ? []
+            : response.data.data
+        );
+        console.log("apiDatajjkj", response.data.data);
       });
   }, []);
 
@@ -69,6 +106,9 @@ function CarRaffle() {
     axios
       .post(process.env.REACT_APP_URL + "addTicket", {
         id: filteredId,
+        name: "user",
+        lottery_id: "22",
+        userId: "11",
       })
       .then((err) => {
         console.log(err);
@@ -76,7 +116,6 @@ function CarRaffle() {
   };
 
   const handleRefferal = () => {
-    // referralCodeGenerator.custom('lowercase', 6, 6, 'temitope')
     setRefferalgeneratior(
       referralCodeGenerator.custom("lowercase", 11, 8, "vikasSharmaa")
     );
@@ -135,46 +174,50 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-12 col-md-5">
-                    <div className="">
-                      <h5 className="m-0">Lottery Prize</h5>
-                      <div className="lotteryPriceNumber">
-                        <div className="price_normal">$40247.13</div>
-                      </div>
-                      <div className="mb-3">
-                        <i className="fa-solid fa-circle-info"></i> Lottery
-                        Breakdown
-                      </div>
+                    {showLotary.map((curElem) => {
+                      return (
+                        <div className="" key={curElem.id}>
+                          <h5 className="m-0">Lottery Prize</h5>
+                          <div className="lotteryPriceNumber">
+                            <div className="price_normal">${curElem.price}</div>
+                          </div>
+                          <div className="mb-3">
+                            <i className="fa-solid fa-circle-info"></i> Lottery
+                            Breakdown
+                          </div>
 
-                      <div className="counterCol">
-                        <h5>Countdown to the next draw</h5>
-                        <div id="clockdiv">
-                          <div>
-                            <span className="days" id="day">
-                              2
-                            </span>
-                            <div className="smalltext">Days</div>
-                          </div>
-                          <div>
-                            <span className="hours" id="hour">
-                              4
-                            </span>
-                            <div className="smalltext">Hours</div>
-                          </div>
-                          <div>
-                            <span className="minutes" id="minute">
-                              50
-                            </span>
-                            <div className="smalltext">Minutes</div>
-                          </div>
-                          <div>
-                            <span className="seconds" id="second">
-                              10
-                            </span>
-                            <div className="smalltext">Seconds</div>
+                          <div className="counterCol">
+                            <h5>Countdown to the next draw</h5>
+                            <div id="clockdiv">
+                              <div>
+                                <span className="days" id="day">
+                                  {days}
+                                </span>
+                                <div className="smalltext">Days</div>
+                              </div>
+                              <div>
+                                <span className="hours" id="hour">
+                                  {hours}
+                                </span>
+                                <div className="smalltext">Hours</div>
+                              </div>
+                              <div>
+                                <span className="minutes" id="minute">
+                                  {minutes}
+                                </span>
+                                <div className="smalltext">Minutes</div>
+                              </div>
+                              <div>
+                                <span className="seconds" id="second">
+                                  {seconds}
+                                </span>
+                                <div className="smalltext">Seconds</div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -195,13 +238,13 @@ function CarRaffle() {
                       >
                         <option>Enter amount</option>
 
-                        {/* {lotterydata.map((curval) => {
+                        {lotterydata.map((curval) => {
                           return <option>{curval.amount}</option>;
-                        })} */}
+                        })}
 
-                        {/* <option>200</option>
+                        <option>200</option>
                         <option>300</option>
-                        <option>400</option> */}
+                        <option>400</option>
                       </select>
                     </div>
                   </div>
@@ -226,9 +269,9 @@ function CarRaffle() {
                     <h6>My Tickets</h6>
                     <div className="myTicketRow">
                       <div className="myTicketCol">
-                        <div className="MT_ic">
+                        {/* <div className="MT_ic">
                           <img src={bi_ticket} />
-                        </div>
+                        </div> */}
                         <div className="MT_Count">10</div>
                         <div className="MT_Price">$3229</div>
                       </div>

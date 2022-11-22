@@ -64,7 +64,7 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-23 12:30:00").getTime()
+    new Date("2022-11-26 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -151,12 +151,14 @@ function Detail() {
       setBiding(res.data.data);
       const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
-      // setNewTiem(
-      //   parseInt(
-      //     new Date(res.data.data[0].created_at).getTime() + 432000000,
-      //     10
-      //   )
-      // );
+
+      const dateLocal = new Date(res.data.data[0].created_at);
+      const newDate = new Date(
+        dateLocal.getTime() - dateLocal.getTimezoneOffset() * 60 * 1000
+      );
+      console.log("serverTime", newDate);
+
+      // setNewTiem(parseInt(newDate.getTime() + 432000000, 10));
     });
   };
 

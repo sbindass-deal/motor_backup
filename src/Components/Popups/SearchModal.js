@@ -42,6 +42,9 @@ function SearchModal({ handleCloseModal, showSearchModal }) {
     }
   };
   useEffect(() => {
+    if (searchValue === "") {
+      return;
+    }
     featchSearchApi();
   }, [searchValue]);
 
