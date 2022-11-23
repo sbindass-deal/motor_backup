@@ -333,11 +333,11 @@ const VechilesRegistraion = () => {
         modificationstock,
         issuesorproblems,
         status, // db me check karni h
-        otherTruckTitle, // db me add karbani h
-        otherStatus, // db me add karbani h
-        truckHistory, // db me add karni h
-        rustDetails, // db me add karni h
-        modificationOnTrck, // db me add karni h
+        otherTruckTitle,
+        otherStatus,
+        truckHistory,
+        rustDetails,
+        modificationOnTruck: modificationOnTrck,
         phone,
       })
       .then((result) => {
@@ -1781,7 +1781,12 @@ const VechilesRegistraion = () => {
                             <label>Phone</label>
                             <input
                               value={information.phone}
-                              onChange={informationOnChange}
+                              onChange={(e) => {
+                                if (e.target.value.trim().length >= 11) {
+                                  return false;
+                                }
+                                informationOnChange(e);
+                              }}
                               type="number"
                               name="phone"
                               placeholder="Phone"

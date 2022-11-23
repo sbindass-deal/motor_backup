@@ -34,6 +34,7 @@ import GetAlerts from "./GetAlerts";
 import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
 import NewVechileRegister from "../newVechile/NewVechileRegister";
+import StoreDetails from "./StoreDetails";
 
 function Layout() {
   return (
@@ -54,7 +55,9 @@ function Layout() {
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
-          <Route path="showroom" element={<PhotoGallery />} />
+          {/* <Route path="showroom" element={<PhotoGallery />} /> */}
+          <Route path="showroom" element={<Store />} />
+          <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />
           <Route path="accountinfo" element={<AccountInfo />} />

@@ -13,9 +13,11 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import referralCodeGenerator from "referral-code-generator";
 
 import Carousel from "react-bootstrap/Carousel";
+import { useSelector } from "react-redux";
 
 function CarRaffle() {
   const [index, setIndex] = useState(0);
+  const userId = useSelector((state) => state);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -26,10 +28,14 @@ function CarRaffle() {
   const [lotterydata, setLotterydata] = useState([]);
   const [lotaryId, setLotaryId] = useState();
   const [filteredId, setFilteredId] = useState();
+  const [inputLotteryNumber, setInputLotteryNumber] = useState();
+  const [loteryIdInApi, setLoteryIdInApi] = useState();
 
   const [refferalgeneratior, setRefferalgeneratior] = useState();
   const [refferalgeneratior1, setRefferalgeneratior1] = useState();
   const [showLotary, setShowLotary] = useState([]);
+  const [lotaryPrice, setLotaryPrice] = useState(0);
+  const [allLotaryApi, setAllLotaryApi] = useState([]);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
@@ -68,7 +74,6 @@ function CarRaffle() {
 
     {
       lotterydata1.map((curVal) => {
-        console.log("first", curVal.id);
         return setFilteredId(curVal.id);
       });
     }
@@ -79,36 +84,53 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
-      console.log("res", response.data.data);
       setShowLotary(response.data.data);
+      setLoteryIdInApi(response.data.data[0].id);
+      setLotaryPrice(response.data.data[0].price);
     } catch (err) {
       console.log(err);
     }
   };
+  const fetchLotaryApiAll = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL +
+          `tickets/${loteryIdInApi}/user/${userId.login.user.id}`
+      );
+      setAllLotaryApi(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetchLotaryApi();
   }, []);
+  useEffect(() => {
+    fetchLotaryApiAll();
+  }, [loteryIdInApi]);
 
-  React.useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_URL + "getAllLotteryAmount")
-      .then((response) => {
-        setLotterydata(
-          response.data.data === null || response.data.data === undefined
-            ? []
-            : response.data.data
-        );
-        console.log("apiDatajjkj", response.data.data);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   axios
+  //     .get(process.env.REACT_APP_URL + "getAllLotteryAmount")
+  //     .then((response) => {
+  //       setLotterydata(
+  //         response.data.data === null || response.data.data === undefined
+  //           ? []
+  //           : response.data.data
+  //       );
+  //     });
+  // }, []);
 
   const addTickets = () => {
     axios
       .post(process.env.REACT_APP_URL + "addTicket", {
-        id: filteredId,
-        name: "user",
-        lottery_id: "22",
-        userId: "11",
+        // id: "1",
+        name: userId.login.user.username,
+        lottery_id: loteryIdInApi,
+        userId: userId.login.user.id,
+        // ticket_number: inputLotteryNumber,
+        qty: parseInt(inputLotteryNumber, 10),
       })
       .then((err) => {
         console.log(err);
@@ -214,6 +236,7 @@ function CarRaffle() {
                                 <div className="smalltext">Seconds</div>
                               </div>
                             </div>
+                            <p>{curElem.description}</p>
                           </div>
                         </div>
                       );
@@ -231,29 +254,28 @@ function CarRaffle() {
                   </div> */}
                   <div className="col-12 col-md-12">
                     <div className="form-group">
-                      <label>Enter amount</label>
-                      <select
-                        onChange={(e) => setLotaryId(e.target.value)}
-                        className="field"
-                      >
-                        <option>Enter amount</option>
-
-                        {lotterydata.map((curval) => {
-                          return <option>{curval.amount}</option>;
-                        })}
-
-                        <option>200</option>
-                        <option>300</option>
-                        <option>400</option>
-                      </select>
+                      <label>Number Of Tickets</label>
+                      <input
+                        type="number"
+                        value={inputLotteryNumber}
+                        onChange={(e) => {
+                          if (e.target.value.trim().length >= 5) {
+                            return false;
+                          }
+                          setInputLotteryNumber(e.target.value);
+                        }}
+                        className="form-control"
+                        max={1000}
+                        id="validationCustom01"
+                      />
                     </div>
                   </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group">
                       <button
                         type="button"
-                        className="btn w-full"
                         onClick={addTickets}
+                        className="btn w-full"
                       >
                         Enter Lottery
                       </button>
@@ -266,16 +288,18 @@ function CarRaffle() {
               <div className="card_Gray2 mt-5 mt-md-0">
                 <div className="">
                   <div className="cardBorder">
-                    <h6>My Tickets</h6>
+                    <h6>My Tickets - {allLotaryApi.length}</h6>
                     <div className="myTicketRow">
                       <div className="myTicketCol">
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}
-                        <div className="MT_Count">10</div>
-                        <div className="MT_Price">$3229</div>
+                        {/* <div className="MT_Count">10</div> */}
+                        <div className="MT_Price">
+                          ${lotaryPrice * allLotaryApi.length}
+                        </div>
                       </div>
-                      <div className="">1 Ticket = 0.01 BNB</div>
+                      <div className="">1 Ticket = $ {lotaryPrice}</div>
                     </div>
                   </div>
 
@@ -301,7 +325,7 @@ function CarRaffle() {
                         <div className="">5</div>
                       </li>
                       <li>
-                        <div className="">Total Earnings (BNB)</div>
+                        <div className="">Total Earnings ($)</div>
                         <div className="">12</div>
                       </li>
                     </ul>
