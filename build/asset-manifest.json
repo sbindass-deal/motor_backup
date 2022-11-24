@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b78d6210.css",
-    "main.js": "/static/js/main.fd8a8fdc.js",
+    "main.css": "/static/css/main.b89ac951.css",
+    "main.js": "/static/js/main.f25f2268.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
     "static/media/about-2.jpeg": "/static/media/about-2.22ccb1cfa96bceb1548e.jpeg",
     "static/media/bgImg_01.jpg": "/static/media/bgImg_01.26a3479bdc7930909428.jpg",
@@ -52,10 +52,10 @@
     "static/media/2019_mclaren_senna_reshoot_3093_web-scaled.webp": "/static/media/2019_mclaren_senna_reshoot_3093_web-scaled.037cd6e98295bf211ec6.webp",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
     "static/media/raffle-3.jpg": "/static/media/raffle-3.e26afd26e5b85c981602.jpg",
-    "static/media/ic_01.svg": "/static/media/ic_01.4cf2ecc7082d5356a5ecbcc6366cf2e1.svg",
-    "static/media/ic_02.svg": "/static/media/ic_02.896ed9961a8398a91f875581de8a3593.svg",
-    "static/media/ic_03.svg": "/static/media/ic_03.405185353ba233bd5308467bed127d1c.svg",
-    "static/media/ic_04.svg": "/static/media/ic_04.7d72027c42940faee504d28182b0c248.svg",
+    "static/media/ic_01.svg": "/static/media/ic_01.6ad86f5322cf4138d64104387827abaf.svg",
+    "static/media/ic_02.svg": "/static/media/ic_02.4b36876617dc6a2e9baf9f6a39b2103c.svg",
+    "static/media/ic_03.svg": "/static/media/ic_03.0c7bc5b48b9eee28ab213c1ee12810df.svg",
+    "static/media/ic_04.svg": "/static/media/ic_04.d77707dbce91af7980371eff106e5d2f.svg",
     "static/media/men-face4.jfif": "/static/media/men-face4.4b2f9008dd8076787783.jfif",
     "index.html": "/index.html",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
@@ -63,20 +63,20 @@
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "static/media/check-circle.svg": "/static/media/check-circle.d6975cb27e60878c004b.svg",
+    "static/media/check-circle.svg": "/static/media/check-circle.8216908bc1d44324181a.svg",
     "static/media/icGrid.svg": "/static/media/icGrid.483731707dbdf461982cedb149596cc4.svg",
-    "static/media/ic_scrollDown.svg": "/static/media/ic_scrollDown.f2f7b9030ab0588b1f2e09699864c3d7.svg",
+    "static/media/ic_scrollDown.svg": "/static/media/ic_scrollDown.0169217fa841796987370ba5fe08f810.svg",
     "static/media/check_ic.svg": "/static/media/check_ic.6a6f2b0965877e9cbe74.svg",
-    "static/media/ArrowRight_2.svg": "/static/media/ArrowRight_2.67a586ee9f9c00fcda6f.svg",
-    "static/media/ArrowRight.svg": "/static/media/ArrowRight.aee4aa55ac55c7360f17.svg",
-    "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.63385bdfd0e38f6e5aff.svg",
-    "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.650f14e52ce025773617.svg",
-    "main.b78d6210.css.map": "/static/css/main.b78d6210.css.map",
-    "main.fd8a8fdc.js.map": "/static/js/main.fd8a8fdc.js.map",
+    "static/media/ArrowRight_2.svg": "/static/media/ArrowRight_2.2283df6c9b192abc2075.svg",
+    "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
+    "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
+    "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
+    "main.b89ac951.css.map": "/static/css/main.b89ac951.css.map",
+    "main.f25f2268.js.map": "/static/js/main.f25f2268.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b78d6210.css",
-    "static/js/main.fd8a8fdc.js"
+    "static/css/main.b89ac951.css",
+    "static/js/main.f25f2268.js"
   ]
 }

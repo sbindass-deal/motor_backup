@@ -131,18 +131,22 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
               <div>
-                <h3>How our Live Auctions Work</h3>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.{" "}
+                <h3>How it will work for the giveway</h3>
+                <p style={{ lineHeight: "2rem" }}>
+                  Every dollar amount spent or equivalent ( CRYPTO BUY IN ) on
+                  your favorite products in the Gas Guzzlrs store/ticket site
+                  gives you the allotted amount of automatic entries for the
+                  chance to WIN our current giveaway. All your entries are
+                  calculated realtime for you to see in your personal account
+                  dashboard during each giveaway.
                 </p>
-                <ul className="dotList">
+                {/* <ul className="dotList">
                   <li>Lorem Ipsum has been the industry's standard</li>
                   <li>dummy text ever since the 1500s</li>
                   <li>When an unknown printer took a galley of type</li>
                   <li>Scrambled it to make a type specimen book.</li>
                   <li>It has survived not only five centuries.</li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
@@ -152,18 +156,22 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
-                <h3>How Bidding Works</h3>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.{" "}
+                <h3>How we will choose the winner</h3>
+                <p style={{ lineHeight: "2rem" }}>
+                  At the completion of the contest, a regulated 3rd party
+                  contest agent conducts a computer randomized drawing and
+                  immediately provides us with the winner information in which
+                  we will then upload to Youtube, Facebook, Instagram and
+                  Twitter. Of course, the winner will FIRST be announced on the
+                  Gas Guzzlrs YouTube Channel
                 </p>
-                <ul className="dotList">
+                {/* <ul className="dotList">
                   <li>Lorem Ipsum has been the industry's standard</li>
                   <li>dummy text ever since the 1500s</li>
                   <li>When an unknown printer took a galley of type</li>
                   <li>Scrambled it to make a type specimen book.</li>
                   <li>It has survived not only five centuries.</li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>

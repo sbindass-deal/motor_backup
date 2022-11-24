@@ -297,6 +297,11 @@ function Header() {
                         </a>
                       </li>
                       <li className="nav-item">
+                        <a className="nav-link" href="/faq">
+                          Faq
+                        </a>
+                      </li>
+                      <li className="nav-item">
                         <a
                           className="nav-link"
                           href="https://store.shibnobi.com/"

@@ -35,6 +35,7 @@ import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
 import NewVechileRegister from "../newVechile/NewVechileRegister";
 import StoreDetails from "./StoreDetails";
+import Faq from "./Faq";
 
 function Layout() {
   return (
@@ -66,6 +67,7 @@ function Layout() {
           <Route path="bidswins" element={<MyBidsWins />} />
           <Route path="myshipments" element={<MyShipments />} />
           <Route path="carraffle" element={<CarRaffle />} />
+          <Route path="carraffle/:coupon" element={<CarRaffle />} />
           <Route path="detail/:id" element={<Detail />} />
           <Route path="auctionresults" element={<AuctionResults />} />
           <Route path="auctionlive" element={<Auctionlive />} />
@@ -74,7 +76,9 @@ function Layout() {
           <Route path="vechiles" element={<VechilesRegistraion />} />
           {/* <Route path="vechiles" element={<NewVechileRegister />} /> */}
           <Route path="getalerts" element={<GetAlerts />} />
+          <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
+          {/* <Route path="*" element={< />} /> */}
         </Routes>
         <ToastContainer />
       </BrowserRouter>

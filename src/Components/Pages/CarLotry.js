@@ -14,6 +14,7 @@ import referralCodeGenerator from "referral-code-generator";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function CarRaffle() {
   const [index, setIndex] = useState(0);
@@ -23,21 +24,13 @@ function CarRaffle() {
     setIndex(selectedIndex);
   };
   const [modalShow, setModalShow] = useState(false);
-  const [showImage, setShowImage] = useState();
-
-  const [lotterydata, setLotterydata] = useState([]);
-  const [lotaryId, setLotaryId] = useState();
-  const [filteredId, setFilteredId] = useState();
-  const [inputLotteryNumber, setInputLotteryNumber] = useState();
-  const [loteryIdInApi, setLoteryIdInApi] = useState();
-
-  const [refferalgeneratior, setRefferalgeneratior] = useState();
-  const [refferalgeneratior1, setRefferalgeneratior1] = useState();
-  const [showLotary, setShowLotary] = useState([]);
-  const [lotaryPrice, setLotaryPrice] = useState(0);
+  const [inputLotteryNumber, setInputLotteryNumber] = useState("");
+  const [showLotary, setShowLotary] = useState({});
   const [allLotaryApi, setAllLotaryApi] = useState([]);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
+  const coupen = useParams();
+  console.log("new Coupen", coupen);
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
@@ -58,8 +51,6 @@ function CarRaffle() {
     };
   }, [days, hours, minutes, seconds]);
 
-  // countdown time end
-
   const closeMoal = () => {
     setModalShow(false);
   };
@@ -67,26 +58,13 @@ function CarRaffle() {
     setIndex(num);
     setModalShow(true);
   };
-  useEffect(() => {
-    const lotterydata1 = lotterydata.filter(
-      (curVal) => curVal.amount == lotaryId
-    );
-
-    {
-      lotterydata1.map((curVal) => {
-        return setFilteredId(curVal.id);
-      });
-    }
-  }, [lotaryId]);
 
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
-      setShowLotary(response.data.data);
-      setLoteryIdInApi(response.data.data[0].id);
-      setLotaryPrice(response.data.data[0].price);
+      setShowLotary(response.data.data[0]);
     } catch (err) {
       console.log(err);
     }
@@ -95,7 +73,7 @@ function CarRaffle() {
     try {
       const response = await axios.get(
         process.env.REACT_APP_URL +
-          `tickets/${loteryIdInApi}/user/${userId.login.user.id}`
+          `tickets/${showLotary.id}/user/${userId.login.user.id}`
       );
       setAllLotaryApi(response.data.data);
     } catch (err) {
@@ -108,44 +86,28 @@ function CarRaffle() {
   }, []);
   useEffect(() => {
     fetchLotaryApiAll();
-  }, [loteryIdInApi]);
-
-  // React.useEffect(() => {
-  //   axios
-  //     .get(process.env.REACT_APP_URL + "getAllLotteryAmount")
-  //     .then((response) => {
-  //       setLotterydata(
-  //         response.data.data === null || response.data.data === undefined
-  //           ? []
-  //           : response.data.data
-  //       );
-  //     });
-  // }, []);
+  }, [showLotary.id, inputLotteryNumber]);
 
   const addTickets = () => {
     axios
       .post(process.env.REACT_APP_URL + "addTicket", {
-        // id: "1",
         name: userId.login.user.username,
-        lottery_id: loteryIdInApi,
+        lottery_id: showLotary.id,
         userId: userId.login.user.id,
-        // ticket_number: inputLotteryNumber,
         qty: parseInt(inputLotteryNumber, 10),
       })
       .then((err) => {
         console.log(err);
       });
+    setInputLotteryNumber("");
+    fetchLotaryApiAll();
+  };
+  const handleCopyUrl = () => {
+    const text = document.getElementById("myUrl");
+    text.select();
+    navigator.clipboard.writeText(text.value);
   };
 
-  const handleRefferal = () => {
-    setRefferalgeneratior(
-      referralCodeGenerator.custom("lowercase", 11, 8, "vikasSharmaa")
-    );
-  };
-
-  useEffect(() => {
-    setRefferalgeneratior1(refferalgeneratior);
-  }, [refferalgeneratior]);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -196,51 +158,55 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-12 col-md-5">
-                    {showLotary.map((curElem) => {
-                      return (
-                        <div className="" key={curElem.id}>
-                          <h5 className="m-0">Lottery Prize</h5>
-                          <div className="lotteryPriceNumber">
-                            <div className="price_normal">${curElem.price}</div>
-                          </div>
-                          <div className="mb-3">
-                            <i className="fa-solid fa-circle-info"></i> Lottery
-                            Breakdown
-                          </div>
+                    <div className="" key={showLotary.id}>
+                      <h5 className="m-0">Lottery Prize</h5>
+                      <div className="lotteryPriceNumber">
+                        <div className="price_normal">${showLotary.price}</div>
+                      </div>
+                      <div className="mb-3">
+                        <i className="fa-solid fa-circle-info"></i> Lottery
+                        Breakdown
+                      </div>
 
-                          <div className="counterCol">
-                            <h5>Countdown to the next draw</h5>
-                            <div id="clockdiv">
-                              <div>
-                                <span className="days" id="day">
-                                  {days}
-                                </span>
-                                <div className="smalltext">Days</div>
-                              </div>
-                              <div>
-                                <span className="hours" id="hour">
-                                  {hours}
-                                </span>
-                                <div className="smalltext">Hours</div>
-                              </div>
-                              <div>
-                                <span className="minutes" id="minute">
-                                  {minutes}
-                                </span>
-                                <div className="smalltext">Minutes</div>
-                              </div>
-                              <div>
-                                <span className="seconds" id="second">
-                                  {seconds}
-                                </span>
-                                <div className="smalltext">Seconds</div>
-                              </div>
-                            </div>
-                            <p>{curElem.description}</p>
+                      <div className="counterCol">
+                        <h5>Countdown to the next draw</h5>
+                        <div id="clockdiv">
+                          <div>
+                            <span className="days" id="day">
+                              {days}
+                            </span>
+                            <div className="smalltext">Days</div>
+                          </div>
+                          <div>
+                            <span className="hours" id="hour">
+                              {hours}
+                            </span>
+                            <div className="smalltext">Hours</div>
+                          </div>
+                          <div>
+                            <span className="minutes" id="minute">
+                              {minutes}
+                            </span>
+                            <div className="smalltext">Minutes</div>
+                          </div>
+                          <div>
+                            <span className="seconds" id="second">
+                              {seconds}
+                            </span>
+                            <div className="smalltext">Seconds</div>
                           </div>
                         </div>
-                      );
-                    })}
+                        <p className="py-4">
+                          {showLotary.description}
+                          <button
+                            type="button"
+                            className="btn readMoreBtn mt-3 "
+                          >
+                            Read More
+                          </button>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -296,10 +262,10 @@ function CarRaffle() {
                         </div> */}
                         {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
-                          ${lotaryPrice * allLotaryApi.length}
+                          ${showLotary.price * allLotaryApi.length}
                         </div>
                       </div>
-                      <div className="">1 Ticket = $ {lotaryPrice}</div>
+                      <div className="">1 Ticket = $ {showLotary.price}</div>
                     </div>
                   </div>
 
@@ -329,14 +295,12 @@ function CarRaffle() {
                         <div className="">12</div>
                       </li>
                     </ul>
-                    <button
-                      type="button"
-                      className="gry_btn w-full"
-                      onClick={handleRefferal}
-                    >
+
+                    {/* <input id="myUrl" value="newBtn" type="text" /> */}
+                    {/* <button onClick={handleCopyUrl}>click</button> */}
+                    <button type="button" className="gry_btn w-full">
                       Copy Reffer al Link
                     </button>
-                    <p className="code_genetaror">{refferalgeneratior1}</p>
                     <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
                       purchased amount will go back to you
