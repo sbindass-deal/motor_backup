@@ -1320,6 +1320,20 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
+                            <label>Fule Type</label>
+                            <select name="fuleType" className="field" required>
+                              <option selected disabled value="">
+                                Choose...
+                              </option>
+                              <option value="Yes">Electric</option>
+                              <option value="CNG">CNG</option>
+                              <option value="Petrol">Petrol</option>
+                              <option value="Diesel">Diesel</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
                             <label>
                               Does the vehicle have any modifications from
                               stock?

@@ -4,16 +4,11 @@ import ForgotPasswordModal from "./Popups/ForgotPasswordModal";
 import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
-// import {Link} from 'react-router-dom'
-import { Modal, Button } from "react-bootstrap";
-
-// icons
-// import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/reducers/login";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 function Header() {
   const notify = (val) => toast(val);
@@ -47,9 +42,9 @@ function Header() {
           <div className="row">
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                   <img src={shibnobiMotors} alt="shibnobiMotors" />
-                </a>
+                </Link>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
                   type="button"
@@ -63,77 +58,77 @@ function Header() {
                   <ul className="navbar-nav ml-auto">
                     {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
-                        <a
+                        <Link
                           onClick={handleShow}
                           className="nav-link"
-                          href="javascript:void(0)"
+                          to="javascript:void(0)"
                         >
                           Submit a Vehicle
-                        </a>
+                        </Link>
                       </li>
                     ) : (
                       <li className="nav-item">
-                        <a className="nav-link" href="/submit">
+                        <Link className="nav-link" to="/submit">
                           Submit a Vehicle
-                        </a>
+                        </Link>
                       </li>
                     )}
                     <li className="nav-item">
-                      {/* <a className="nav-link" to="/auction">
+                      {/* <Link className="nav-link" to="/auction">
                         Auctions
-                      </a> */}
+                      </Link> */}
 
-                      <div class="dropdown">
-                        <a class="nav-link " href="#h">
+                      <div className="dropdown">
+                        <Link className="nav-link " to="#">
                           Auctions
-                        </a>
-                        <div class="dropdown-content">
-                          <a className="nav-link" href="/auctionlive">
+                        </Link>
+                        <div className="dropdown-content">
+                          <Link className="nav-link" to="/auctionlive">
                             Live now
-                          </a>
-                          <a className="nav-link" href="/auctionpremium">
+                          </Link>
+                          {/* <Link className="nav-link" to="/auctionpremium">
                             Premium
-                          </a>
-                          <a className="nav-link" href="/auctionresults">
+                          </Link>
+                          <Link className="nav-link" to="/auctionresults">
                             Resullt
-                          </a>
+                          </Link> */}
                         </div>
                       </div>
                     </li>
                     {/* {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
-                        <a
+                        <Link
                           onClick={handleShow}
                           className="nav-link"
-                          href="javascript:void(0)"
+                          to="javascript:void(0)"
                         >
                           Submit a Vehicle
-                        </a>
+                        </Link>
                       </li>
                     ) : (
                       <li className="nav-item">
-                        <a className="nav-link" href="/submit">
+                        <Link className="nav-link" to="/submit">
                           Submit a Vehicle
-                        </a>
+                        </Link>
                       </li>
                     )} */}
 
                     <li className="nav-item">
-                      <a className="nav-link" href="/works">
+                      <Link className="nav-link" to="/works">
                         How Gas guzzlrs Works
-                      </a>
+                      </Link>
                     </li>
                     {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
-                        <a
+                        <Link
                           onClick={handleShow}
                           className="nav-link"
-                          href="javascript:void(0)"
+                          to="javascript:void(0)"
                           // data-toggle="modal"
                           // data-target="#loginModal"
                         >
                           Log In
-                        </a>
+                        </Link>
                       </li>
                     ) : (
                       <li
@@ -141,23 +136,23 @@ function Header() {
                         style={{ cursor: "pointer" }}
                         className="nav-item"
                       >
-                        <a className="nav-link" href="javascript:void(0)">
+                        <Link className="nav-link" to="javascript:void(0)">
                           Logout
-                        </a>
+                        </Link>
                       </li>
                     )}
                     {/* <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         <i className="fa-solid fa-star"></i>
-                      </a>
+                      </Link>
                     </li> */}
                     {logingUser.login && (
                       <li className="nav-item">
-                        <a className="nav-link" href="/accountinfo">
+                        <Link className="nav-link" to="/accountinfo">
                           <i>
                             Hi {logingUser.user.username} <AccountCircleIcon />
                           </i>
-                        </a>
+                        </Link>
                       </li>
                     )}
 
@@ -166,66 +161,66 @@ function Header() {
                       className="nav-item"
                       style={{ cursor: "pointer" }}
                     >
-                      <a
+                      <Link
                         className="nav-link"
-                        // href="javascript:void(0)"
+                        // to="javascript:void(0)"
                         // data-toggle="modal"
                         // data-target="#myModal"
                       >
                         <i className="fa-solid fa-magnifying-glass"></i>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                   <ul className="navbar-nav mobileOnly">
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Shipping
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Makes and Models
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Categories
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" to="/">
                         Get Alerts
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Charity Auctions
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Gas guzzlrs Features
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Event Calendar
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Car Raffle
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Gas guzzlrs
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">
+                      <Link className="nav-link" to="/">
                         Gear Store
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -240,81 +235,81 @@ function Header() {
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
-                        <div class="dropdown">
-                          <a class="nav-link " href="/makeamodel">
+                        <div className="dropdown">
+                          <Link className="nav-link " to="/makeamodel">
                             Makes and Models
-                          </a>
+                          </Link>
                         </div>
                       </li>
                       <li className="nav-item">
                         <li className="nav-item">
-                          <a className="nav-link" href="/showroom">
+                          <Link className="nav-link" to="/showroom">
                             Show Room
-                          </a>
+                          </Link>
                         </li>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="/carraffle">
+                        <Link className="nav-link" to="/carraffle">
                           Car Raffle
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/feautres">
+                        <Link className="nav-link" to="/feautres">
                           Gas guzzlrs Features
-                        </a>
+                        </Link>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="/charity">
+                        <Link className="nav-link" to="/charity">
                           Charity Auctions
-                        </a>
+                        </Link>
                       </li>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="/getalerts">
+                        <Link className="nav-link" to="/getalerts">
                           Get Alerts
-                        </a>
+                        </Link>
                       </li>
 
-                      <div class="dropdown">
-                        <a class="nav-link " href="#shipping">
+                      <div className="dropdown">
+                        <Link className="nav-link " to="#shipping">
                           Shipping
-                        </a>
-                        <div class="dropdown-content">
-                          <a className="nav-link" href="/shipping">
+                        </Link>
+                        <div className="dropdown-content">
+                          <Link className="nav-link" to="/shipping">
                             Get a quote
-                          </a>
-                          <a className="nav-link" href="/myshipments">
+                          </Link>
+                          <Link className="nav-link" to="/myshipments">
                             My Shipment
-                          </a>
+                          </Link>
                         </div>
                       </div>
 
                       <li className="nav-item">
-                        <a className="nav-link" href="/aboutshibnobi">
+                        <Link className="nav-link" to="/aboutshibnobi">
                           About Gas guzzlrs
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/faq">
+                        <Link className="nav-link" to="/faq">
                           Faq
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a
+                        <Link
                           className="nav-link"
-                          href="https://store.shibnobi.com/"
+                          to="https://store.shibnobi.com/"
                           target={"_blank"}
                         >
                           Gas guzzlrs Store
-                        </a>
+                        </Link>
                       </li>
 
                       <li className="nav-item dropdown d-none">
-                        <a
+                        <Link
                           className="nav-link"
-                          href="#"
+                          to="/"
                           id="navbarDropdownMenu"
                           role="button"
                           data-toggle="dropdown"
@@ -322,7 +317,7 @@ function Header() {
                           aria-expanded="false"
                         >
                           <span className="navbarToggler"></span>
-                        </a>
+                        </Link>
                         <ul
                           className="dropdown-menu dropdown-menu-right secondNavDropdown"
                           aria-labelledby="navbarDropdownMenu"

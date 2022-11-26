@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 import ads_car_2 from "../../Assets/images/raffle-5.jpg";
 import ads_car_3 from "../../Assets/images/raffle-6.jpg";
-import bnb_coin from "../../Assets/images/raffle-2.jpg";
-import bi_ticket from "../../Assets/images/raffle-3.jpg";
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import referralCodeGenerator from "referral-code-generator";
+import { RWebShare } from "react-web-share";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 function CarRaffle() {
   const [index, setIndex] = useState(0);
@@ -29,12 +25,11 @@ function CarRaffle() {
   const [allLotaryApi, setAllLotaryApi] = useState([]);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
-  const coupen = useParams();
-  console.log("new Coupen", coupen);
+  const [coupen, setCoupen] = useState("udshfjhfksh");
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-22 12:30:00").getTime()
+    new Date("2022-11-27 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now + 432000000;
@@ -64,7 +59,11 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
-      setShowLotary(response.data.data[0]);
+      if (response.data.data.length > 0) {
+        setShowLotary(response.data.data[0]);
+      } else {
+        console.log("Data is empty");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -75,7 +74,11 @@ function CarRaffle() {
         process.env.REACT_APP_URL +
           `tickets/${showLotary.id}/user/${userId.login.user.id}`
       );
-      setAllLotaryApi(response.data.data);
+      if (response.data.data) {
+        setAllLotaryApi(response.data.data);
+      } else {
+        console.log("Data is empty");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -83,10 +86,11 @@ function CarRaffle() {
 
   useEffect(() => {
     fetchLotaryApi();
-  }, []);
+    setCoupen(`userId-${userId.login.user.id}-ticket-${showLotary.id}`);
+  }, [showLotary]);
   useEffect(() => {
     fetchLotaryApiAll();
-  }, [showLotary.id, inputLotteryNumber]);
+  }, [showLotary, inputLotteryNumber]);
 
   const addTickets = () => {
     axios
@@ -101,11 +105,6 @@ function CarRaffle() {
       });
     setInputLotteryNumber("");
     fetchLotaryApiAll();
-  };
-  const handleCopyUrl = () => {
-    const text = document.getElementById("myUrl");
-    text.select();
-    navigator.clipboard.writeText(text.value);
   };
 
   return (
@@ -173,24 +172,27 @@ function CarRaffle() {
                         <div id="clockdiv">
                           <div>
                             <span className="days" id="day">
-                              {days}
+                              0{days}
                             </span>
                             <div className="smalltext">Days</div>
                           </div>
                           <div>
                             <span className="hours" id="hour">
+                              {hours < 10 ? 0 : ""}
                               {hours}
                             </span>
                             <div className="smalltext">Hours</div>
                           </div>
                           <div>
                             <span className="minutes" id="minute">
+                              {minutes < 10 ? 0 : ""}
                               {minutes}
                             </span>
                             <div className="smalltext">Minutes</div>
                           </div>
                           <div>
                             <span className="seconds" id="second">
+                              {seconds < 10 ? 0 : ""}
                               {seconds}
                             </span>
                             <div className="smalltext">Seconds</div>
@@ -295,12 +297,25 @@ function CarRaffle() {
                         <div className="">12</div>
                       </li>
                     </ul>
+                    <div>
+                      <RWebShare
+                        data={{
+                          text: "Gas guzzlrs Share Reffer Link",
+                          url: `http://localhost:3000/carraffle/${coupen}`,
+                          title: "Gas guzzlrs",
+                        }}
+                        // onClick={() => console.log("shared successfully!")}
+                      >
+                        {/* <button>Share on Web</button> */}
+                        <button type="button" className="gry_btn w-full">
+                          Share Reffer Link
+                        </button>
+                      </RWebShare>
+                    </div>
 
-                    {/* <input id="myUrl" value="newBtn" type="text" /> */}
-                    {/* <button onClick={handleCopyUrl}>click</button> */}
-                    <button type="button" className="gry_btn w-full">
+                    {/* <button type="button" className="gry_btn w-full">
                       Copy Reffer al Link
-                    </button>
+                    </button> */}
                     <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
                       purchased amount will go back to you

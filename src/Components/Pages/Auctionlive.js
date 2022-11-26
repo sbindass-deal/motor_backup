@@ -3,14 +3,12 @@ import icGrid from "../../Assets/images/icGrid.svg";
 import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
-import { regBtn } from "../../redux/reducers/login";
+import { useSelector } from "react-redux";
 function Auctionlive() {
-  const dispatch = useDispatch();
+  const userId = useSelector((state) => state);
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const logingUser = useSelector((state) => state.login.login);
 
   React.useEffect(() => {
     axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
@@ -26,12 +24,19 @@ function Auctionlive() {
     let endDate = moment().format("YYYY-MM-DD");
     let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
 
-    return startDate.toString(); //endDate.diff(startDate, 'days');
+    return startDate.toString();
   };
-
-  // const handleSearchFilter=(e)=>{
-  //     setSearchValue(22,e.target.value)
-  // }
+  const addFabrity = (id) => {
+    axios
+      .post(process.env.REACT_APP_URL + "createLikes", {
+        userId: userId.login.user.id,
+        vehicleId: id,
+        date: new Date().toString(),
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -140,9 +145,19 @@ function Auctionlive() {
                   >
                     <div className="card_post">
                       <div className="card_postImg">
-                        <button type="button" className="watchedIc">
-                          <i className="fa-solid fa-star"></i>
+                        <button
+                          onClick={() => addFabrity(curElem.id)}
+                          type="button"
+                          className="watchedIc"
+                        >
+                          <i
+                            className="fa-solid fa-star"
+                            style={{
+                              color: `${curElem.like > 0 ? "#EF6031" : ""}`,
+                            }}
+                          ></i>
                         </button>
+
                         <a href={`detail/${curElem.id}`}>
                           <img
                             src={
@@ -158,7 +173,7 @@ function Auctionlive() {
                             {curElem.name} {curElem.year}
                           </a>
                         </h4>
-                        <p>{curElem.anythingelse}</p>
+                        <p>{curElem.anythingelse} </p>
                         <ul className="labelList">
                           <li>
                             <label>Current Bid:</label>
@@ -192,86 +207,6 @@ function Auctionlive() {
                   </div>
                 );
               })}
-            {/* <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_02}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> */}
-            {/* <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_03}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> */}
-            {/* <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_04}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> */}
-            {/* <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_05}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> */}
-            {/* <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
-                                <img src={img_06}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> */}
           </div>
         </div>
       </section>

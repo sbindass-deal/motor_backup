@@ -40,8 +40,8 @@ import Faq from "./Faq";
 function Layout() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route index element={<Home />} />
           <Route path="listing" element={<MyListings />} />

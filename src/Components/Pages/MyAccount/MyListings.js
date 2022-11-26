@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 function MyListings() {
   const [data, setData] = useState([]);
+  const [changeResurve, setChangeResurve] = useState(false);
   const userId = useSelector((state) => state);
   React.useEffect(() => {
     axios
@@ -67,7 +68,20 @@ function MyListings() {
                               </ul>
                               <p>{curElem.description}</p>
                             </div>
-                            <div className="pl-md-3">
+
+                            <div className="pl-md-3 d-flex">
+                              <div className="mx-2">
+                                <button
+                                  onClick={() =>
+                                    setChangeResurve(!changeResurve)
+                                  }
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  {curElem.reserve}
+                                </button>
+                              </div>
+
                               <a
                                 href={`detail/${curElem.id}`}
                                 className="gry_btn"
@@ -79,82 +93,6 @@ function MyListings() {
                         </div>
                       );
                     })}
-
-                    {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                        <img src={car_02} alt="car_02"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                    {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_03} alt="car_03"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                    {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_04} alt="car_04"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                    {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_01} alt="car_01"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
                   </div>
                 </div>
               </div>

@@ -64,7 +64,7 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-26 12:30:00").getTime()
+    new Date("2022-11-30 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -130,12 +130,32 @@ function Detail() {
   };
 
   // console.log(100,comments)
+  const addViews = (id) => {
+    axios
+      .post(process.env.REACT_APP_URL + "createViews", {
+        userId: userId.login.user.id,
+        vehicleId: id,
+        date: new Date().toString(),
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    if (id) {
+      addViews(id);
+    }
+  }, []);
 
   const getVehicle = () => {
-    axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
-      setAddVehicleUserId(res.data.data.userId);
-      setVehicle(res.data.data);
-    });
+    axios
+      .get(
+        process.env.REACT_APP_URL + "vehicle/" + id + "/" + userId.login.user.id
+      )
+      .then((res) => {
+        setAddVehicleUserId(res.data.data.userId);
+        setVehicle(res.data.data[0]);
+      });
   };
 
   //get images
@@ -168,6 +188,17 @@ function Detail() {
     getComments();
     getBidingDetails();
   }, []);
+  const addFabrity = (id) => {
+    axios
+      .post(process.env.REACT_APP_URL + "createLikes", {
+        userId: userId.login.user.id,
+        vehicleId: id,
+        date: new Date().toString(),
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -211,7 +242,11 @@ function Detail() {
                   <a href="#" className="gry_btn mr-2">
                     How it Works
                   </a>
-                  <a href="#" className="gry_btn mr-2">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    onClick={() => addFabrity(id)}
+                    className="gry_btn mr-2"
+                  >
                     <i className="fa-solid fa-star mr-2"></i> Watch
                   </a>
                   {t <= 0 ? (
@@ -757,14 +792,14 @@ function Detail() {
                         <a href="#" className="mr-2">
                           How bidding works
                         </a>
-                        <a href="#">
+                        {/* <a href="#">
                           <i className="fa-solid fa-star"></i> Watch auction
-                        </a>
+                        </a> */}
                       </div>
                       <div className="">
                         <ul className="bid_viewWatch">
-                          <li>0 views</li>
-                          <li>0 watchers</li>
+                          <li>{vehicle.view} views</li>
+                          <li>{vehicle.like} watchers</li>
                         </ul>
                       </div>
                     </div>

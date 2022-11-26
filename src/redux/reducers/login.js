@@ -12,15 +12,6 @@ export const login = createSlice({
   reducers: {
     auth: (state, action) => {
       state.user = action.payload;
-      // if (
-      //   action.payload.name &&
-      //   action.payload.email &&
-      //   action.payload.username
-      // ) {
-      //   state.login = true;
-      // } else {
-      //   state.login = false;
-      // }
       state.login = true;
     },
     logoutUser: (state, action) => {
