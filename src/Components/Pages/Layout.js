@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -17,13 +16,13 @@ import Store from "./Store";
 import Features from "./Features";
 import Detail from "./Detail";
 import TermsOfUse from "./TermsOfUse";
-import PrivacyNotice from "./PrivacyNotice";
+// import PrivacyNotice from "./PrivacyNotice";
 import AboutShibanobi from "./AboutShibanobi";
 import Shipping from "./Shipping";
 import CookiesSetting from "./CookiesSetting";
-import SellYourVehicle from "./SellYourVehicle";
+// import SellYourVehicle from "./SellYourVehicle";
 import AuctionResults from "./AuctionResults";
-import CarLotry from "./CarLotry";
+// import CarLotry from "./CarLotry";
 import PrivacyPolicy from "./PrivacyNotice";
 import CarRaffle from "./CarLotry";
 import EditMyAccount from "./EditMyAccount";
@@ -33,9 +32,9 @@ import AuctionPremium from "./AuctionPremium";
 import GetAlerts from "./GetAlerts";
 import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
-import NewVechileRegister from "../newVechile/NewVechileRegister";
 import StoreDetails from "./StoreDetails";
 import Faq from "./Faq";
+import NotFoundPage from "./NotFoundPage";
 
 function Layout() {
   return (
@@ -74,43 +73,26 @@ function Layout() {
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
           <Route path="vechiles" element={<VechilesRegistraion />} />
-          {/* <Route path="vechiles" element={<NewVechileRegister />} /> */}
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
-          {/* <Route path="*" element={< />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </BrowserRouter>
-      {/* <AccountInfo/> */}
-      {/* <Notifications/> */}
-      {/* <MyListings/> */}
-      {/* <MyBidsWins/> */}
-      {/* <HowShibnobiMotorWorks/> */}
-      {/* <PhotoGallery/> */}
-      {/* <Home/> */}
-      {/* <SubmitaVehicle/> */}
-      {/* <MyShipments/> */}
-      {/* <MakeAnModel/> */}
-      {/* <Store/> */}
-      {/* <Features/> */}
-      {/* <Detail/> */}
-      {/* <TermsOfUse/> */}
-      {/* <PrivacyNotice/> */}
-      {/* <AboutShibanobi/> */}
-      {/* <Shipping/> */}
-      {/* <CookiesSetting/> */}
-      {/* <SellYourVehicle/> */}
-      {/* <AuctionResults/> */}
-      {/* <CarLotry/> */}
       <Footer />
     </>
-
-    // <div>
-    //     <Header/>
-    //     <Home/>
-    //     <Footer/>
-    // </div>
   );
 }
 

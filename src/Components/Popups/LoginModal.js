@@ -10,7 +10,17 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const notify = (val) => toast(val);
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleEmail = (e) => {
     setEmail(e.target.value);

@@ -59,11 +59,11 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
-      if (response.data.data.length > 0) {
-        setShowLotary(response.data.data[0]);
-      } else {
-        console.log("Data is empty");
-      }
+      // if (response.data.data.length > 0) {
+      setShowLotary(response.data.data[0]);
+      // } else {
+      //   console.log("Data is empty");
+      // }
     } catch (err) {
       console.log(err);
     }
@@ -87,10 +87,10 @@ function CarRaffle() {
   useEffect(() => {
     fetchLotaryApi();
     setCoupen(`userId-${userId.login.user.id}-ticket-${showLotary.id}`);
-  }, [showLotary]);
+  }, [showLotary.id]);
   useEffect(() => {
     fetchLotaryApiAll();
-  }, [showLotary, inputLotteryNumber]);
+  }, [showLotary.id, inputLotteryNumber]);
 
   const addTickets = () => {
     axios
@@ -202,7 +202,7 @@ function CarRaffle() {
                           {showLotary.description}
                           <button
                             type="button"
-                            className="btn readMoreBtn mt-3 "
+                            className="btn readMoreBtn mt-3"
                           >
                             Read More
                           </button>
@@ -225,9 +225,13 @@ function CarRaffle() {
                       <label>Number Of Tickets</label>
                       <input
                         type="number"
+                        min={1}
                         value={inputLotteryNumber}
                         onChange={(e) => {
-                          if (e.target.value.trim().length >= 5) {
+                          if (
+                            e.target.value.trim().length >= 5 ||
+                            e.target.value.trim().length <= 0
+                          ) {
                             return false;
                           }
                           setInputLotteryNumber(e.target.value);

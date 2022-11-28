@@ -4,7 +4,17 @@ import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 function RegisterModal({ showReg, handleCloseReg }) {
-  const notify = (val) => toast(val);
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const url = process.env.REACT_APP_URL;
 
   const [email, setEmail] = useState("");

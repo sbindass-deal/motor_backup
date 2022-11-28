@@ -12,8 +12,10 @@ function Auctionlive() {
 
   React.useEffect(() => {
     axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
-      setauctions(response.data.data);
-      setFilteredUsers(response.data.data);
+      if (response.data.status === 200 && response.data.data.length > 0) {
+        setauctions(response.data.data);
+        setFilteredUsers(response.data.data);
+      }
       console.log("vechileApi", response.data.data);
     });
   }, []);

@@ -2,15 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Img_01 from "../../Assets/images/img_01.jpg";
 import Img_02 from "../../Assets/images/img_02.jpg";
 import ic_scrollDown from "../../Assets/images/ic_scrollDown.svg";
-import car_01 from "../../Assets/images/car_01.jpg";
-import car_02 from "../../Assets/images/car_02.jpg";
 import car_03 from "../../Assets/images/car_03.jpg";
 import car_04 from "../../Assets/images/car_04.jpg";
 import img_05 from "../../Assets/images/img_05.jpg";
 import img_06 from "../../Assets/images/img_06.jpg";
 import addBanner from "../../Assets/images/Mask-group.png";
-import Header from "../Header";
-import Footer from "../Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -19,39 +15,25 @@ import WestIcon from "@mui/icons-material/West";
 import axios from "axios";
 
 function Home() {
-  const [banner, setBanner] = useState([]);
   const [showBidOnSlide, setShowBidOnSlide] = useState([]);
-
-  const getBanner = async () => {
-    try {
-      const response = await axios.get(
-        `http://ec2-34-207-128-251.compute-1.amazonaws.com:8081/`
-      );
-
-      setBanner(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const fetchVehicles = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-      console.log("homeApi", response.data.data);
       const bidApiArr = response.data.data;
-      setShowBidOnSlide(bidApiArr.slice(-4));
+      if (response.data.status === 200 && response.data.data.length > 0) {
+        setShowBidOnSlide(bidApiArr.slice(-4));
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getBanner();
     fetchVehicles();
   }, []);
 
   const slide = useRef(null);
-  const slide1 = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -114,53 +96,45 @@ function Home() {
       },
     ],
   };
-  const settings1 = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    // autoplay: true,
-    // speed: 10000,
-    // pauseOnHover: true,
-    // cssEase: "linear"
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  // const settings1 = {
+  //   dots: false,
+  //   infinite: true,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   arrows: false,
+  //   nextArrow: <SampleNextArrow />,
+  //   prevArrow: <SamplePrevArrow />,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 1,
+  //         infinite: true,
+  //         dots: true,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 600,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 2,
+  //         initialSlide: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 480,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // };
   return (
     <div>
       <section className="heroSection d-flex align-items-center">
-        <button
-          type="button"
-          className="scrollDownIc"
-          onclick="smoothScroll(document.getElementById('second'))"
-        >
+        <button type="button" className="scrollDownIc">
           <img src={ic_scrollDown} alt="ic_scrollDown" />
         </button>
         <div className="container">
@@ -321,7 +295,6 @@ function Home() {
                   </div>
                 </Slider>
               </div>
-              {/* <!--featuredAuctions_Slide--> */}
             </div>
           </div>
         </div>
@@ -480,19 +453,22 @@ function Home() {
             Latest Bids <span>({showBidOnSlide.length} Auctions Now Live)</span>
           </h2>
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4 pb-2">
+        <div className="row row-cols-1 row-cols-md-4 g-4 pb-2">
           {showBidOnSlide.map((curElem, i) => {
             return (
-              <div class="col mb-3" key={i}>
-                <div class="card h-100 border-0 ">
+              <div className="col mb-3" key={i}>
+                <div className="card h-100 border-0 ">
                   <img
                     src={process.env.REACT_APP_URL + curElem.stepOneImage}
-                    class="card-img-top"
+                    className="card-img-top"
                     style={{ maxHeight: "25vh" }}
                     alt={curElem.make}
                   />
-                  <div class="card-body" style={{ backgroundColor: "#000000" }}>
-                    <h5 class="card-title">
+                  <div
+                    className="card-body"
+                    style={{ backgroundColor: "#000000" }}
+                  >
+                    <h5 className="card-title">
                       {curElem.make} {curElem.model} {curElem.year}
                     </h5>
                     <p>
@@ -616,7 +592,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {/* <!--row--> */}
               <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7">
                   <div className="blogPost">
@@ -652,7 +627,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {/* <!--row--> */}
               <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7 order-md-1">
                   <div className="blogPost">
@@ -690,7 +664,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {/* <!--row--> */}
               <div className="row">
                 <div className="col-12 text-center pt_40">
                   <a href="#" className="btn">
@@ -717,83 +690,3 @@ function Home() {
 }
 
 export default Home;
-
-// import React from 'react'
-// import Slider from 'react-slick';
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-
-// const Home = () => {
-//     var settings = {
-//         dots: true,
-//         infinite: false,
-//         speed: 500,
-//         slidesToShow: 4,
-//         slidesToScroll: 4,
-//         initialSlide: 0,
-//         responsive: [
-//           {
-//             breakpoint: 1024,
-//             settings: {
-//               slidesToShow: 3,
-//               slidesToScroll: 3,
-//               infinite: true,
-//               dots: true
-//             }
-//           },
-//           {
-//             breakpoint: 600,
-//             settings: {
-//               slidesToShow: 2,
-//               slidesToScroll: 2,
-//               initialSlide: 2
-//             }
-//           },
-//           {
-//             breakpoint: 480,
-//             settings: {
-//               slidesToShow: 1,
-//               slidesToScroll: 1
-//             }
-//           }
-//         ]
-//       };
-//   return (
-//     <div >
-//          <div style={{backgroundColor:"red"}}>
-//         <h2> Multiple items </h2>
-//         <Slider {...settings}>
-//           <div>
-//             <h3>1</h3>
-//           </div>
-//           <div>
-//             <h3>2</h3>
-//           </div>
-//           <div>
-//             <h3>3</h3>
-//           </div>
-//           <div>
-//             <h3>4</h3>
-//           </div>
-//           <div>
-//             <h3>5</h3>
-//           </div>
-//           <div>
-//             <h3>6</h3>
-//           </div>
-//           <div>
-//             <h3>7</h3>
-//           </div>
-//           <div>
-//             <h3>8</h3>
-//           </div>
-//           <div>
-//             <h3>9</h3>
-//           </div>
-//         </Slider>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Home

@@ -11,7 +11,17 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const notify = (val) => toast(val);
+  const notify = (val) =>
+    toast.warn(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -123,7 +133,7 @@ function Header() {
                         <Link
                           onClick={handleShow}
                           className="nav-link"
-                          to="javascript:void(0)"
+                          // to="javascript:void(0)"
                           // data-toggle="modal"
                           // data-target="#loginModal"
                         >
@@ -136,9 +146,7 @@ function Header() {
                         style={{ cursor: "pointer" }}
                         className="nav-item"
                       >
-                        <Link className="nav-link" to="javascript:void(0)">
-                          Logout
-                        </Link>
+                        <Link className="nav-link">Logout</Link>
                       </li>
                     )}
                     {/* <li className="nav-item">
@@ -273,7 +281,7 @@ function Header() {
                       </li>
 
                       <div className="dropdown">
-                        <Link className="nav-link " to="#shipping">
+                        <Link className="nav-link " to="#">
                           Shipping
                         </Link>
                         <div className="dropdown-content">
@@ -299,8 +307,8 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          to="https://store.shibnobi.com/"
-                          target={"_blank"}
+                          // to="https://store.shibnobi.com/"
+                          // target={"_blank"}
                         >
                           Gas guzzlrs Store
                         </Link>

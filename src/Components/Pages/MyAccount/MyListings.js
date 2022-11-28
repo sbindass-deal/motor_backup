@@ -16,6 +16,16 @@ function MyListings() {
         setData(response.data.data);
       });
   }, []);
+  const fetchResurveApi = () => {
+    axios
+      .post(process.env.REACT_APP_URL + "changeReserve", {
+        reserve: "Yes",
+        reservAmount: 400,
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
