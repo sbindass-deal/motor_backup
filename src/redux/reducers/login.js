@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   login: false,
   reg: false,
+  show: false,
 };
 
 export const login = createSlice({
@@ -21,9 +22,16 @@ export const login = createSlice({
     regBtn: (state, action) => {
       state.reg = true;
     },
+    showModal: (state, action) => {
+      state.show = true;
+    },
+    showModalClose: (state, action) => {
+      state.show = false;
+    },
   },
 });
 
-export const { auth, logoutUser, regBtn } = login.actions;
+export const { auth, logoutUser, regBtn, showModal, showModalClose } =
+  login.actions;
 
 export default login.reducer;

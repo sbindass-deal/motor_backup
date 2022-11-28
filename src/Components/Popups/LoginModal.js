@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { auth } from "../../redux/reducers/login";
+import { auth, showModalClose } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
+function LoginModal({ handleShowReg, handleShowForgPass }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const logingUser = useSelector((state) => state.login);
+  const show = logingUser.show;
+
   const dispatch = useDispatch();
   const notify = (val) =>
     toast.success(val, {
@@ -21,6 +24,10 @@ function LoginModal({ show, handleClose, handleShowReg, handleShowForgPass }) {
       progress: undefined,
       theme: "light",
     });
+
+  const handleClose = () => {
+    dispatch(showModalClose());
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);

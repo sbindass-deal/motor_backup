@@ -1082,3 +1082,6 @@ footer a img {
 .readMoreBtn{
   border: 5px solid white;
 }
+.navActive{
+  color:#EA5E30;
+}

@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import mclaren_senna_reshoot from "../../Assets/images/2019_mclaren_senna_reshoot.webp";
-import mclaren_senna_screen_shot from "../../Assets/images/2019_mclaren_senna_screen-shot-2.webp";
-import mclaren_senna_reshoot_3093_web_sscaled from "../../Assets/images/2019_mclaren_senna_reshoot_3093_web-scaled.webp";
 import { useParams } from "react-router-dom";
-import men_face from "../../Assets/images/men-face.jpg";
-import men_face2 from "../../Assets/images/men-face2.webp";
-import men_face3 from "../../Assets/images/men-face3.jpg";
-import men_face4 from "../../Assets/images/men-face4.jfif";
-import car_01 from "../../Assets/images/car_01.jpg";
-import car_02 from "../../Assets/images/car_02.jpg";
-import car_03 from "../../Assets/images/car_03.jpg";
-import car_04 from "../../Assets/images/car_04.jpg";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -40,9 +29,6 @@ function Detail() {
     setIndex(selectedIndex);
   };
 
-  //   const show = () => {
-  //     setModalShow(true);
-  //   };
   const closeMoal = () => {
     setModalShow(false);
   };
@@ -52,7 +38,6 @@ function Detail() {
         process.env.REACT_APP_URL + "/vehicle-image/" + id
       );
       setShowImage(response.data.data);
-      console.log(response.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -64,10 +49,12 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-30 12:30:00").getTime()
+    new Date("2022-11-28 19:53:00").getTime()
   );
+  // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
   const t = newTiem - now;
+  console.log("time", t);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -79,7 +66,7 @@ function Detail() {
     return () => {
       clearInterval(interval);
     };
-  }, [days, hours, minutes, seconds]);
+  }, [days, hours, minutes, seconds, newTiem]);
 
   // countdown time end
 
@@ -93,9 +80,31 @@ function Detail() {
   const handleShow = () => {
     setShow(true);
   };
+  // let d = new Date();
+  // parseInt(d.setMinutes(d.getMinutes() + 2).toLocaleString(), 10);
+  // console.log("addEnd Time", d);
+  // console.log("vehicle", vehicle.id);
+  const fetchEndTime = () => {
+    let d = new Date();
+    d.setMinutes(d.getMinutes() + 5);
+
+    axios
+      .post(process.env.REACT_APP_URL + "changeEndTime", {
+        EndTime: d.toLocaleString(),
+        id: vehicle.id,
+      })
+      .then((res) => {
+        handleClose();
+      });
+  };
   const addBiding = (e) => {
     e.preventDefault();
-    if (bidValue > vehicle.documentFee && bidValue > amountprice) {
+    const bidVal = parseInt(bidValue, 10);
+    if (bidVal < parseInt(vehicle.documentFee, 10)) {
+      alert("Bid Amount should be greater than " + vehicle.documentFee);
+    } else if (bidVal < parseInt(amountprice, 10)) {
+      alert("Bid Amount should be greater than " + amountprice);
+    } else {
       axios
         .post(process.env.REACT_APP_URL + "biddings", {
           auctionId: id,
@@ -104,24 +113,13 @@ function Detail() {
           vehicle_id: id,
         })
         .then((res) => {
-          console.log(res);
-          handleClose();
+          if (res.data.status === 200 && t < 1000 * 60 * 5) {
+            fetchEndTime();
+          } else {
+            handleClose();
+          }
         });
-    } else {
-      alert("Bid Amount should be greater than " + amountprice);
     }
-
-    // axios
-    //   .post(process.env.REACT_APP_URL + "biddings", {
-    //     auctionId: id,
-    //     userId: logingUser.user.id,
-    //     auctionAmmount: bidValue,
-    //     vehicle_id: id,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     handleClose();
-    //   });
   };
   const getComments = () => {
     axios
@@ -155,6 +153,9 @@ function Detail() {
       .then((res) => {
         setAddVehicleUserId(res.data.data.userId);
         setVehicle(res.data.data[0]);
+        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+        // console.log("end", new Date(res.data.data[0].EndTime));
+        setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
       });
   };
 
@@ -162,7 +163,6 @@ function Detail() {
   const getVehicleImages = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
       setVehicleImage(res.data.data);
-      console.log("image", res.data.data);
     });
   };
 
@@ -172,13 +172,11 @@ function Detail() {
       const length = res.data.data.length - 1;
       setAmountprice(res.data.data[length].auctionAmmount);
 
-      const dateLocal = new Date(res.data.data[0].created_at);
-      const newDate = new Date(
-        dateLocal.getTime() - dateLocal.getTimezoneOffset() * 60 * 1000
-      );
-      console.log("serverTime", newDate);
-
-      // setNewTiem(parseInt(newDate.getTime() + 432000000, 10));
+      // const dateLocal = new Date(res.data.data[0].created_at);
+      // const newDate = new Date(
+      //   dateLocal.getTime() - dateLocal.getTimezoneOffset() * 60 * 1000
+      // );
+      // console.log("serverTime", res.data.data[0].EndDate.getTime());
     });
   };
 
@@ -225,11 +223,19 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      <label>Ends In:</label>{" "}
+                      <label>Ends In:</label>
                       <span>
-                        {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
-                        seconds *
+                        {/* {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
+                        seconds * */}
                       </span>
+                      {t > 0 ? (
+                        <span>
+                          {days} days {hours} hours, {minutes} minutes,{" "}
+                          {seconds} seconds *
+                        </span>
+                      ) : (
+                        <span> &nbsp;Time Out</span>
+                      )}
                     </li>
                     {/* <li>
                       <a href="#">
@@ -725,10 +731,14 @@ function Detail() {
                       </li>
                       <li>
                         <label>Time Left</label>
-                        <div>
-                          {days} days {hours} hours, {minutes} minutes,{" "}
-                          {seconds} seconds *
-                        </div>
+                        {t > 0 ? (
+                          <div>
+                            {days} days {hours} hours, {minutes} minutes,{" "}
+                            {seconds} seconds *
+                          </div>
+                        ) : (
+                          <div>&nbsp;Time Out</div>
+                        )}
                       </li>
                       <li>
                         <label>Ends On</label>
@@ -937,7 +947,17 @@ function Detail() {
                     <div className="form-group">
                       <input
                         value={bidValue}
-                        onChange={handleBidInput}
+                        max={9999999999}
+                        min={0}
+                        onChange={(e) => {
+                          if (
+                            e.target.value.trim().length >= 10 ||
+                            e.target.value.trim().length < 0
+                          ) {
+                            return false;
+                          }
+                          handleBidInput(e);
+                        }}
                         type="number"
                         className="form-control"
                         placeholder="Please enter bid amount"

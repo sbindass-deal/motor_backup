@@ -6,11 +6,13 @@ import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../redux/reducers/login";
+import { logoutUser, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
+  const location = useLocation();
+  console.log(location);
   const notify = (val) =>
     toast.warn(val, {
       position: "bottom-center",
@@ -26,12 +28,15 @@ function Header() {
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state.login);
-  const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    dispatch(showModalClose());
+  };
+  const handleShow = () => {
+    dispatch(showModal());
+  };
 
   const handleCloseReg = () => setShowReg(false);
   const handleShowReg = () => setShowReg(true);
@@ -68,13 +73,7 @@ function Header() {
                   <ul className="navbar-nav ml-auto">
                     {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
-                        <Link
-                          onClick={handleShow}
-                          className="nav-link"
-                          to="javascript:void(0)"
-                        >
-                          Submit a Vehicle
-                        </Link>
+                        <Link className="nav-link">Submit a Vehicle</Link>
                       </li>
                     ) : (
                       <li className="nav-item">
@@ -89,7 +88,7 @@ function Header() {
                       </Link> */}
 
                       <div className="dropdown">
-                        <Link className="nav-link " to="#">
+                        <Link className="nav-link" to="#">
                           Auctions
                         </Link>
                         <div className="dropdown-content">
@@ -341,7 +340,6 @@ function Header() {
       </header>
 
       <LoginModal
-        show={show}
         handleClose={handleClose}
         handleShowReg={handleShowReg}
         handleShowForgPass={handleShowForgPass}

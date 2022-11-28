@@ -10,11 +10,14 @@ import { useEffect } from "react";
 import { RWebShare } from "react-web-share";
 
 import Carousel from "react-bootstrap/Carousel";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showModal } from "../../redux/reducers/login";
 
 function CarRaffle() {
+  const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
   const userId = useSelector((state) => state);
+  const logingUser = useSelector((state) => state.login);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -23,6 +26,7 @@ function CarRaffle() {
   const [inputLotteryNumber, setInputLotteryNumber] = useState("");
   const [showLotary, setShowLotary] = useState({});
   const [allLotaryApi, setAllLotaryApi] = useState([]);
+  const [showReadMore, setshowReadMore] = useState(false);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [coupen, setCoupen] = useState("udshfjhfksh");
@@ -53,7 +57,9 @@ function CarRaffle() {
     setIndex(num);
     setModalShow(true);
   };
-
+  const handleLogin = () => {
+    dispatch(showModal());
+  };
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(
@@ -199,12 +205,16 @@ function CarRaffle() {
                           </div>
                         </div>
                         <p className="py-4">
-                          {showLotary.description}
+                          <p>Hellos</p>
+                          {showLotary.description && !showReadMore
+                            ? showLotary.description.substr(0, 100)
+                            : showLotary.description}
                           <button
                             type="button"
+                            onClick={() => setshowReadMore(!showReadMore)}
                             className="btn readMoreBtn mt-3"
                           >
-                            Read More
+                            {showReadMore ? "Read Less" : "Read More"}
                           </button>
                         </p>
                       </div>
@@ -246,7 +256,7 @@ function CarRaffle() {
                     <div className="form-group">
                       <button
                         type="button"
-                        onClick={addTickets}
+                        onClick={logingUser.login ? addTickets : handleLogin}
                         className="btn w-full"
                       >
                         Enter Lottery

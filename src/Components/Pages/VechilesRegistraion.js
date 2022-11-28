@@ -31,15 +31,16 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
-  const notify = (val) => toast.success(val, {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   const closeMoal = () => {
     setModalShow(false);
@@ -172,6 +173,7 @@ const VechilesRegistraion = () => {
     truckHistory: "",
     rustDetails: "",
     modificationOnTrck: "",
+    fuleType: "",
   });
 
   // contact info
@@ -278,6 +280,7 @@ const VechilesRegistraion = () => {
       truckHistory,
       rustDetails,
       modificationOnTrck,
+      fuleType,
     } = detailstab;
     const { uemail, iname, phone } = information;
     e.preventDefault();
@@ -347,6 +350,7 @@ const VechilesRegistraion = () => {
         truckHistory,
         rustDetails,
         modificationOnTruck: modificationOnTrck,
+        // fuleType,
         phone,
       })
       .then((result) => {
@@ -1330,7 +1334,13 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Fule Type</label>
-                            <select name="fuleType" className="field" required>
+                            <select
+                              name="fuleType"
+                              value={detailstab.fuleType}
+                              onChange={detailsOnChange}
+                              className="field"
+                              required
+                            >
                               <option selected disabled value="">
                                 Choose...
                               </option>
