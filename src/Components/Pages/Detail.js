@@ -9,16 +9,16 @@ import Carousel from "react-bootstrap/Carousel";
 function Detail() {
   const { id } = useParams();
   const userId = useSelector((state) => state);
-  const [vehicle, setVehicle] = React.useState({});
-  const [vehicleImage, setVehicleImage] = React.useState([]);
+  const [vehicle, setVehicle] = useState({});
+  const [vehicleImage, setVehicleImage] = useState([]);
   const logingUser = useSelector((state) => state.login);
-  const [comments, setcomments] = React.useState([]);
-  const [biding, setBiding] = React.useState([]);
+  const [comments, setcomments] = useState([]);
+  const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
 
   //setInputComment
-  const [inputcomment, setInputComment] = React.useState("");
+  const [inputcomment, setInputComment] = useState("");
   const [bidValue, setBidValue] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
@@ -54,7 +54,6 @@ function Detail() {
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
   const t = newTiem - now;
-  console.log("time", t);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -81,9 +80,9 @@ function Detail() {
     setShow(true);
   };
   // let d = new Date();
-  // parseInt(d.setMinutes(d.getMinutes() + 2).toLocaleString(), 10);
-  // console.log("addEnd Time", d);
-  // console.log("vehicle", vehicle.id);
+  // // parseInt(d.setMinutes(d.getMinutes() + 5).toLocaleString(), 10);
+  // d.setMinutes(d.getMinutes() + 5);
+  // console.log("addEnd Time", d.toLocaleString());
   const fetchEndTime = () => {
     let d = new Date();
     d.setMinutes(d.getMinutes() + 5);
@@ -146,17 +145,13 @@ function Detail() {
   }, []);
 
   const getVehicle = () => {
-    axios
-      .get(
-        process.env.REACT_APP_URL + "vehicle/" + id + "/" + userId.login.user.id
-      )
-      .then((res) => {
-        setAddVehicleUserId(res.data.data.userId);
-        setVehicle(res.data.data[0]);
-        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
-        // console.log("end", new Date(res.data.data[0].EndTime));
-        setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
-      });
+    axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
+      setAddVehicleUserId(res.data.data.userId);
+      setVehicle(res.data.data[0]);
+      // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+      // console.log("end", new Date(res.data.data[0].EndTime));
+      setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
+    });
   };
 
   //get images
@@ -193,8 +188,12 @@ function Detail() {
         vehicleId: id,
         date: new Date().toString(),
       })
-      .then((err) => {
-        console.log(err);
+      .then((res) => {
+        if (res.data.status === 200) {
+          setVehicle({});
+          getVehicle();
+        }
+        console.log(res);
       });
   };
 
@@ -248,13 +247,26 @@ function Detail() {
                   <a href="#" className="gry_btn mr-2">
                     How it Works
                   </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => addFabrity(id)}
-                    className="gry_btn mr-2"
-                  >
-                    <i className="fa-solid fa-star mr-2"></i> Watch
-                  </a>
+                  {vehicle.like === 1 ? (
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addFabrity(id)}
+                      className="gry_btn mr-2 faList"
+                    >
+                      <i className="fa-solid fa-star mr-2 "></i>
+                      Watch
+                    </a>
+                  ) : (
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addFabrity(id)}
+                      className="gry_btn mr-2"
+                    >
+                      <i className="fa-solid fa-star mr-2 "></i>
+                      Watch
+                    </a>
+                  )}
+
                   {t <= 0 ? (
                     <a
                       className="gry_btn active"

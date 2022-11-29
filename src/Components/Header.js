@@ -12,7 +12,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
-  console.log(location);
   const notify = (val) =>
     toast.warn(val, {
       position: "bottom-center",
@@ -77,7 +76,12 @@ function Header() {
                       </li>
                     ) : (
                       <li className="nav-item">
-                        <Link className="nav-link" to="/submit">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/submit" && "navActive"
+                          }`}
+                          to="/submit"
+                        >
                           Submit a Vehicle
                         </Link>
                       </li>
@@ -88,7 +92,12 @@ function Header() {
                       </Link> */}
 
                       <div className="dropdown">
-                        <Link className="nav-link" to="#">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/auctionlive" && "navActive"
+                          }`}
+                          to="#"
+                        >
                           Auctions
                         </Link>
                         <div className="dropdown-content">
@@ -123,7 +132,12 @@ function Header() {
                     )} */}
 
                     <li className="nav-item">
-                      <Link className="nav-link" to="/works">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/works" && "navActive"
+                        }`}
+                        to="/works"
+                      >
                         How Gas guzzlrs Works
                       </Link>
                     </li>
@@ -155,7 +169,12 @@ function Header() {
                     </li> */}
                     {logingUser.login && (
                       <li className="nav-item">
-                        <Link className="nav-link" to="/accountinfo">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/accountinfo" && "navActive"
+                          }`}
+                          to="/accountinfo"
+                        >
                           <i>
                             Hi {logingUser.user.username} <AccountCircleIcon />
                           </i>
@@ -243,44 +262,111 @@ function Header() {
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
                         <div className="dropdown">
-                          <Link className="nav-link " to="/makeamodel">
+                          <Link
+                            className={`nav-link`}
+                            style={{
+                              color: `${
+                                location.pathname === "/makeamodel"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            to="/makeamodel"
+                          >
                             Makes and Models
                           </Link>
                         </div>
                       </li>
                       <li className="nav-item">
                         <li className="nav-item">
-                          <Link className="nav-link" to="/showroom">
+                          <Link
+                            className="nav-link"
+                            style={{
+                              color: `${
+                                location.pathname === "/showroom"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            to="/showroom"
+                          >
                             Show Room
                           </Link>
                         </li>
                       </li>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/carraffle">
+                        <Link
+                          style={{
+                            color: `${
+                              location.pathname === "/carraffle"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          className="nav-link"
+                          to="/carraffle"
+                        >
                           Car Raffle
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/feautres">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/feautres" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/feautres"
+                        >
                           Gas guzzlrs Features
                         </Link>
                       </li>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/charity">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/charity" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/charity"
+                        >
                           Charity Auctions
                         </Link>
                       </li>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/getalerts">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/getalerts"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/getalerts"
+                        >
                           Get Alerts
                         </Link>
                       </li>
 
                       <div className="dropdown">
-                        <Link className="nav-link " to="#">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/shipping" ||
+                              location.pathname === "/myshipments"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="#"
+                        >
                           Shipping
                         </Link>
                         <div className="dropdown-content">
@@ -294,12 +380,30 @@ function Header() {
                       </div>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/aboutshibnobi">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/aboutshibnobi"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/aboutshibnobi"
+                        >
                           About Gas guzzlrs
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/faq">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/faq" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/faq"
+                        >
                           Faq
                         </Link>
                       </li>

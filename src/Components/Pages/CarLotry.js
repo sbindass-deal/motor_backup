@@ -65,11 +65,11 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
-      // if (response.data.data.length > 0) {
-      setShowLotary(response.data.data[0]);
-      // } else {
-      //   console.log("Data is empty");
-      // }
+      if (response.data.data.length > 0) {
+        setShowLotary(response.data.data[0]);
+      } else {
+        console.log("Data is empty");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -204,19 +204,22 @@ function CarRaffle() {
                             <div className="smalltext">Seconds</div>
                           </div>
                         </div>
-                        <p className="py-4">
-                          <p>Hellos</p>
-                          {showLotary.description && !showReadMore
-                            ? showLotary.description.substr(0, 100)
-                            : showLotary.description}
-                          <button
-                            type="button"
-                            onClick={() => setshowReadMore(!showReadMore)}
-                            className="btn readMoreBtn mt-3"
-                          >
-                            {showReadMore ? "Read Less" : "Read More"}
-                          </button>
-                        </p>
+                        {showLotary.description ? (
+                          <p className="py-4">
+                            {showLotary.description && !showReadMore
+                              ? showLotary.description.substr(0, 100)
+                              : showLotary.description}
+                            <button
+                              type="button"
+                              onClick={() => setshowReadMore(!showReadMore)}
+                              className="btn readMoreBtn mt-3"
+                            >
+                              {showReadMore ? "Read Less" : "Read More"}
+                            </button>
+                          </p>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   </div>
@@ -278,7 +281,9 @@ function CarRaffle() {
                         </div> */}
                         {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
-                          ${showLotary.price * allLotaryApi.length}
+                          $
+                          {showLotary.price &&
+                            showLotary.price * allLotaryApi.length}
                         </div>
                       </div>
                       <div className="">1 Ticket = $ {showLotary.price}</div>

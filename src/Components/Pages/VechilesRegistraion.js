@@ -132,6 +132,7 @@ const VechilesRegistraion = () => {
 
   const [basicfact, setbasicfact] = useState({
     vin: "",
+    showroom: "",
     vechilesrace: "",
     ultiumdrive: "",
     Interstellar: "",
@@ -173,7 +174,7 @@ const VechilesRegistraion = () => {
     truckHistory: "",
     rustDetails: "",
     modificationOnTrck: "",
-    fuleType: "",
+    fuel: "",
   });
 
   // contact info
@@ -250,6 +251,7 @@ const VechilesRegistraion = () => {
     } = namefield;
     const {
       vin,
+      showroom,
       vechilesrace,
       ultiumdrive,
       Interstellar,
@@ -280,9 +282,13 @@ const VechilesRegistraion = () => {
       truckHistory,
       rustDetails,
       modificationOnTrck,
-      fuleType,
+      fuel,
     } = detailstab;
     const { uemail, iname, phone } = information;
+    let d = new Date();
+    d.setHours(d.getHours() + 24);
+    // console.log("addEnd Time", d.toLocaleString());
+
     e.preventDefault();
     if (
       phone.trim().length >= 11 ||
@@ -312,6 +318,7 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
+        displayInShowroom: showroom,
         km: odometer,
         kmacc: accurateField,
         odmeter: odometer,
@@ -350,7 +357,8 @@ const VechilesRegistraion = () => {
         truckHistory,
         rustDetails,
         modificationOnTruck: modificationOnTrck,
-        // fuleType,
+        fuel,
+        EndTime: d.toLocaleString(),
         phone,
       })
       .then((result) => {
@@ -379,6 +387,7 @@ const VechilesRegistraion = () => {
         });
         setbasicfact({
           vin: "",
+          showroom: "",
           vechilesrace: "",
           ultiumdrive: "",
           Interstellar: "",
@@ -933,6 +942,25 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
+                            <label>Do you want to add on showroom?</label>
+                            <select
+                              value={basicfact.showroom}
+                              onChange={basicFactOnChange}
+                              name="showroom"
+                              className="field"
+                              required
+                            >
+                              <option selected disabled value="">
+                                Choose...
+                              </option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
                             <label>
                               Is this vehicle a race car or not otherwise
                               registered for street use?
@@ -1333,10 +1361,10 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Fule Type</label>
+                            <label>Fuel Type</label>
                             <select
-                              name="fuleType"
-                              value={detailstab.fuleType}
+                              name="fuel"
+                              value={detailstab.fuel}
                               onChange={detailsOnChange}
                               className="field"
                               required

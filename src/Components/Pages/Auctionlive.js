@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import icGrid from "../../Assets/images/icGrid.svg";
 import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
@@ -10,19 +10,24 @@ function Auctionlive() {
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  React.useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + "vehicles").then((response) => {
+  const fetchVehicleApi = async () => {
+    try {
+      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       if (response.data.status === 200 && response.data.data.length > 0) {
         setauctions(response.data.data);
         setFilteredUsers(response.data.data);
       }
-      console.log("vechileApi", response.data.data);
-    });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchVehicleApi();
   }, []);
 
   const getEndDate = (cal) => {
     let data = cal.split("T");
-    console.log(data[0]);
     let endDate = moment().format("YYYY-MM-DD");
     let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
 
@@ -35,8 +40,13 @@ function Auctionlive() {
         vehicleId: id,
         date: new Date().toString(),
       })
-      .then((err) => {
-        console.log(err);
+      .then((res) => {
+        console.log("like", res.data.status);
+        if (res.data.status === 200) {
+          setauctions([]);
+          setFilteredUsers([]);
+          fetchVehicleApi();
+        }
       });
   };
 
@@ -104,39 +114,6 @@ function Auctionlive() {
           </div>
 
           <div className="row pt-4 row_gridList">
-            {/* {filteredUsers.map((curElem) => {
-              return (
-                <div key={curElem.id} className="col-12 col-md-6 pb-3">
-                  <div className="card_post">
-                    <div className="card_postImg">
-                      <button type="button" className="watchedIc">
-                        <i className="fa-solid fa-star"></i>
-                      </button>
-                      <a href="detail">
-                        <img src={img_01} />
-                      </a>
-                    </div>
-                    <div className="card_postInfo">
-                      <h4>
-                        <a href="detail.html">
-                          {curElem.name} {curElem.year}
-                        </a>
-                      </h4>
-                      <p>{curElem.anythingelse}</p>
-                      <ul className="labelList">
-                        <li>
-                          <label>Current Bid:</label>{" "}
-                          <span>${curElem.documentFee}</span>
-                        </li>
-                        <li>
-                          <label>Ends In:</label> <span>5 days</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })} */}
             {data
               .filter((data) => data.done === 1 && data.premium === 1)
               .map((curElem) => {
@@ -153,10 +130,9 @@ function Auctionlive() {
                           className="watchedIc"
                         >
                           <i
-                            className="fa-solid fa-star"
-                            style={{
-                              color: `${curElem.like > 0 ? "#EF6031" : ""}`,
-                            }}
+                            className={`fa-solid fa-star ${
+                              curElem.like >= 1 ? "faList" : ""
+                            }`}
                           ></i>
                         </button>
 
@@ -165,7 +141,7 @@ function Auctionlive() {
                             src={
                               process.env.REACT_APP_URL + curElem.stepOneImage
                             }
-                            alt=""
+                            alt={curElem.make}
                           />
                         </a>
                       </div>
