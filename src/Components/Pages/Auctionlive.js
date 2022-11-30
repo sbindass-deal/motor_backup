@@ -41,7 +41,7 @@ function Auctionlive() {
         date: new Date().toString(),
       })
       .then((res) => {
-        console.log("like", res.data.status);
+        // console.log("like", res.data.status);
         if (res.data.status === 200) {
           setauctions([]);
           setFilteredUsers([]);
@@ -148,13 +148,20 @@ function Auctionlive() {
                       <div className="card_postInfo">
                         <h4>
                           <a href={`detail/${curElem.id}`}>
-                            {curElem.name} {curElem.year}
+                            {curElem.make} {curElem.model}-{curElem.year}-
+                            {curElem.odmeter}
                           </a>
                         </h4>
-                        <p>{curElem.anythingelse} </p>
-                        <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label>
+                        <ul
+                          className="labelList"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <li className="w-auto">
+                            <label>Current&nbsp;Bid:</label>
+                            <br />
                             {curElem["currentAmount"] === undefined ||
                             curElem["currentAmount"] === null ? (
                               <span>${curElem.documentFee}</span>
@@ -165,20 +172,11 @@ function Auctionlive() {
                             )}
                           </li>
                           <li>
-                            <label>Ends On:</label>{" "}
-                            <span>{getEndDate(curElem.created_at)} </span>
+                            <label>Ends On:</label>
+                            <br />
+                            {/* <span>{getEndDate(curElem.created_at)} </span> */}
+                            <span>{curElem.EndTime}</span>
                           </li>
-                          {/* <li className="butn-shop">
-                              {!logingUser ? (
-                                <button type="button" className="btn">
-                                  Register for bid
-                                </button>
-                              ) : (
-                                <button type="button" className="btn">
-                                  <a href={`detail/${curElem.id}`}>Bid Now</a>
-                                </button>
-                              )}
-                            </li> */}
                         </ul>
                       </div>
                     </div>

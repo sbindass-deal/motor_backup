@@ -20,6 +20,7 @@ function Detail() {
   //setInputComment
   const [inputcomment, setInputComment] = useState("");
   const [bidValue, setBidValue] = useState();
+  const [bidComment, setBidComment] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [addVehicleUserId, setAddVehicleUserId] = useState(null);
@@ -110,6 +111,7 @@ function Detail() {
           userId: logingUser.user.id,
           auctionAmmount: bidValue,
           vehicle_id: id,
+          comment: bidComment,
         })
         .then((res) => {
           if (res.data.status === 200 && t < 1000 * 60 * 5) {
@@ -123,7 +125,9 @@ function Detail() {
   const getComments = () => {
     axios
       .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
-      .then((res) => setcomments(res.data.data.reverse()));
+      .then((res) => {
+        setcomments(res.data.data.reverse());
+      });
   };
 
   // console.log(100,comments)
@@ -146,7 +150,7 @@ function Detail() {
 
   const getVehicle = () => {
     axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
-      setAddVehicleUserId(res.data.data.userId);
+      setAddVehicleUserId(res.data.data[0].userId);
       setVehicle(res.data.data[0]);
       // console.log("t", new Date(res.data.data[0].EndTime).getTime());
       // console.log("end", new Date(res.data.data[0].EndTime));
@@ -204,7 +208,7 @@ function Detail() {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                {vehicle.make}-{vehicle.model}-{vehicle.year}
+                {vehicle.make}-{vehicle.model}-{vehicle.year}-{vehicle.odmeter}
               </h2>
             </div>
             <div className="col-12">
@@ -822,7 +826,22 @@ function Detail() {
                 <div className="row ">
                   <div className="col-12">
                     <h5>{comments.length} COMMENTS</h5>
-                    <form className="mb-3">
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        axios
+                          .post(process.env.REACT_APP_URL + "comments", {
+                            vehicleId: id,
+                            userId: userId.login.user.id,
+                            bidId: 0,
+                            description: inputcomment,
+                          })
+                          .then(() => {
+                            window.location.reload(false);
+                          });
+                      }}
+                      className="mb-3"
+                    >
                       <div className="form-group">
                         <textarea
                           placeholder="add comment here"
@@ -831,25 +850,11 @@ function Detail() {
                           onChange={(e) => {
                             setInputComment(e.target.value);
                           }}
+                          required
                         ></textarea>
                       </div>
                       <div className="form-group">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            axios
-                              .post(process.env.REACT_APP_URL + "comments", {
-                                vehicleId: id,
-                                userId: 0,
-                                bidId: 0,
-                                description: inputcomment,
-                              })
-                              .then(() => {
-                                window.location.reload(false);
-                              });
-                          }}
-                          className="gry_btn"
-                        >
+                        <button type="submit" className="gry_btn">
                           Submit
                         </button>
                       </div>
@@ -975,6 +980,19 @@ function Detail() {
                         placeholder="Please enter bid amount"
                         required
                       />
+                    </div>
+                    <div class="col-md-">
+                      <label for="validationCustom01" class="form-label">
+                        comment
+                      </label>
+                      <textarea
+                        value={bidComment}
+                        onChange={(e) => setBidComment(e.target.value)}
+                        class="form-control"
+                        id="bidCommetn"
+                        placeholder="Enter commemts"
+                        rows="3"
+                      ></textarea>
                     </div>
                   </div>
                   <div className="col-12 d-flex justify-content-center pt-4 ">

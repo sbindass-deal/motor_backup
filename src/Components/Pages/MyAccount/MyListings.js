@@ -1,29 +1,73 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import car_01 from "../../../Assets/images/car_01.jpg";
 import { useSelector } from "react-redux";
+import ChatIcon from "@mui/icons-material/Chat";
+import { Button, Modal } from "react-bootstrap";
 
 function MyListings() {
   const [data, setData] = useState([]);
-  const [changeResurve, setChangeResurve] = useState(false);
+  const [chatMessage, setChatMessage] = useState();
+  const [chateApiData, setChateApiData] = useState([]);
   const userId = useSelector((state) => state);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   React.useEffect(() => {
     axios
-      .get(process.env.REACT_APP_URL + `vehicle/user/${userId.login.user.id}`)
+      .get(process.env.REACT_APP_URL + `byUserVehicle/${userId.login.user.id}`)
       .then((response) => {
         setData(response.data.data);
       });
   }, []);
-  const fetchResurveApi = () => {
+  const fetchResurveApi = (vId, resurve, resurveAmount) => {
     axios
       .post(process.env.REACT_APP_URL + "changeReserve", {
-        reserve: "Yes",
-        reservAmount: 400,
+        id: vId,
+        reserve: resurve === "Yes" ? "No" : "Yes",
+        reservAmount: resurveAmount,
       })
-      .then((err) => {
-        console.log(err);
+      .then((res) => {
+        if (res.data.status === 200) {
+          setData([]);
+          window.location.reload(false);
+        }
+        console.log(res);
+      });
+  };
+
+  const getChateMessageApi = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/2`
+      );
+      if (res.data.status === 200) {
+        setChateApiData(res.data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getChateMessageApi();
+  }, []);
+
+  const handleChatMessage = (e) => {
+    e.preventDefault();
+    axios
+      .post(process.env.REACT_APP_URL + "addChat", {
+        userId: userId.login.user.id,
+        vehicleId: 2,
+        message: chatMessage,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setChateApiData(res.data.data);
+        }
       });
   };
 
@@ -82,8 +126,21 @@ function MyListings() {
                             <div className="pl-md-3 d-flex">
                               <div className="mx-2">
                                 <button
+                                  onClick={handleShow}
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  <ChatIcon />
+                                </button>
+                              </div>
+                              <div className="mx-2">
+                                <button
                                   onClick={() =>
-                                    setChangeResurve(!changeResurve)
+                                    fetchResurveApi(
+                                      curElem.id,
+                                      curElem.reserve,
+                                      curElem.reservAmount
+                                    )
                                   }
                                   type="button"
                                   className="gry_btn"
@@ -163,6 +220,59 @@ function MyListings() {
           </div>
         </section>
       )}
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header>
+          <Modal.Title>Chat</Modal.Title>
+          <div style={{ cursor: "pointer" }} onClick={handleClose}>
+            X
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          <div
+            className="row mx-1 my-1 rounded"
+            style={{
+              height: "40vh",
+              backgroundColor: "white",
+              color: "black",
+              overflow: "auto",
+            }}
+          >
+            <div className="col-12 py-2">
+              {chateApiData.map((curElem, i) => {
+                return (
+                  <span key={i}>
+                    {curElem.message}
+                    <br />
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <form onSubmit={handleChatMessage}>
+            <div className="row">
+              <div className="col-12 col-md-12">
+                <label for="validationCustom01" class="form-label">
+                  Message
+                </label>
+                <input
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                  class="form-control"
+                  type="text"
+                  id="chatMessage"
+                  placeholder="Enter message"
+                  required
+                ></input>
+              </div>
+              <div className="col-12 d-flex justify-content-center pt-4 ">
+                <button className="btn" type="submit">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

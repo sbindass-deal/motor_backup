@@ -1,7 +1,7 @@
 const faq = [
   {
     id: 1,
-    que: "Do I have to be a dealer to attend your auction",
+    que: "Do I have to be a dealer to attend your auction?",
     ans: `Anyone can attend our online auctions. You do not have to be a dealer to purchase.
        In rare cases, some items are only available for auction to licensed automotive dealers. Those items are noted as "Dealer, Out of State." This note means that you must be a licensed automotive dealer or that you must live out of the state of the auction sale to purchase those items. Generally, those requirements are in place to comply with state or local laws, such as emission regulations. The vast majority of auction inventory is available to anyone who has a valid, government-issued photo ID
        `,
