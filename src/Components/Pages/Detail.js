@@ -100,9 +100,9 @@ function Detail() {
   const addBiding = (e) => {
     e.preventDefault();
     const bidVal = parseInt(bidValue, 10);
-    if (bidVal < parseInt(vehicle.documentFee, 10)) {
+    if (bidVal <= parseInt(vehicle.documentFee, 10)) {
       alert("Bid Amount should be greater than " + vehicle.documentFee);
-    } else if (bidVal < parseInt(amountprice, 10)) {
+    } else if (bidVal <= parseInt(amountprice, 10)) {
       alert("Bid Amount should be greater than " + amountprice);
     } else {
       axios
@@ -226,7 +226,7 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      <label>Ends In:</label>
+                      <label>Ends In:&nbsp;</label>
                       <span>
                         {/* {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
                         seconds * */}
@@ -242,15 +242,15 @@ function Detail() {
                     </li>
                     {vehicle.reservAmount && (
                       <li>
-                        Reserv: <span>{vehicle.reserve}</span>
+                        Reserve: <span>{vehicle.reserve}</span>
                       </li>
                     )}
                   </ul>
                 </div>
                 <div className="d-flex">
-                  <a href="#" className="gry_btn mr-2">
+                  {/* <a href="#" className="gry_btn mr-2">
                     How it Works
-                  </a>
+                  </a> */}
                   {vehicle.like === 1 ? (
                     <a
                       style={{ cursor: "pointer" }}
@@ -285,16 +285,22 @@ function Detail() {
                       )}
                     </a>
                   ) : (
-                    <button
-                      type="button"
-                      className="gry_btn active"
-                      onClick={handleShow}
-                      disabled={
-                        userId.login.user.id === addVehicleUserId ? true : false
-                      }
-                    >
-                      Place a bid
-                    </button>
+                    <>
+                      {userId.login.user.id !== addVehicleUserId && (
+                        <button
+                          type="button"
+                          className="gry_btn active"
+                          onClick={handleShow}
+                          // disabled={
+                          //   userId.login.user.id === addVehicleUserId
+                          //     ? true
+                          //     : false
+                          // }
+                        >
+                          Place a bid
+                        </button>
+                      )}
+                    </>
                   )}
                   {/* <button
                     type="button"
@@ -678,18 +684,22 @@ function Detail() {
                         {t >= 0 ? (
                           <div>
                             {logingUser.user.id ? (
-                              <button
-                                type="button"
-                                className="gry_btn"
-                                onClick={handleShow}
-                                disabled={
-                                  userId.login.user.id === addVehicleUserId
-                                    ? true
-                                    : false
-                                }
-                              >
-                                Place a bid
-                              </button>
+                              <>
+                                {userId.login.user.id !== addVehicleUserId && (
+                                  <button
+                                    type="button"
+                                    className="gry_btn"
+                                    onClick={handleShow}
+                                    // disabled={
+                                    //   userId.login.user.id === addVehicleUserId
+                                    //     ? true
+                                    //     : false
+                                    // }
+                                  >
+                                    Place a bid
+                                  </button>
+                                )}
+                              </>
                             ) : (
                               <a href="javascript:void(0)" className="gry_btn">
                                 REGISTER TO BID
@@ -786,10 +796,10 @@ function Detail() {
                         </div>
                         <div className="commentFooter">
                           <a href="#" className="mr-3">
-                            <i className="fa-solid fa-thumbs-up"></i> 349
+                            <i className="fa-solid fa-thumbs-up"></i> 0
                           </a>
                           <a href="#" className="mr-3">
-                            <i className="fa-solid fa-thumbs-down"></i> 20
+                            <i className="fa-solid fa-thumbs-down"></i> 0
                           </a>
                         </div>
                       </div>

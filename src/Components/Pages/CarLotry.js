@@ -237,20 +237,14 @@ function CarRaffle() {
                     <div className="form-group">
                       <label>Number Of Tickets</label>
                       <input
-                        type="number"
-                        min={1}
+                        type="text"
                         value={inputLotteryNumber}
                         onChange={(e) => {
-                          if (
-                            e.target.value.trim().length >= 5 ||
-                            e.target.value.trim().length <= 0
-                          ) {
-                            return false;
-                          }
-                          setInputLotteryNumber(e.target.value);
+                          let value = e.target.value.replace(/\D/g, "");
+                          setInputLotteryNumber(value);
                         }}
                         className="form-control"
-                        max={1000}
+                        maxLength={4}
                         id="validationCustom01"
                       />
                     </div>

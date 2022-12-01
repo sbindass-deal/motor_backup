@@ -16,30 +16,15 @@ function RegisterModal({ showReg, handleCloseReg }) {
       theme: "light",
     });
   const url = process.env.REACT_APP_URL;
-
+  const [name, setName] = useState();
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState();
   const [username, setUsername] = useState("");
+  const [delair, setDelair] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
-
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [zip, setZip] = useState("");
-  const [country, setCountry] = useState("");
-  const [creditcard, setCreditcard] = useState("");
-
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-  const [cvc, setCvc] = useState("");
-  const [selectone, setSelectone] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
-  // const[checkdata,setCheckdata]=useState(false)
-
-  // const toggle=()=>{
-  //   setCheckdata(!che)
-  // }
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -51,38 +36,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
   };
   const handleCpassword = (e) => {
     setCpassword(e.target.value);
-  };
-
-  const handleName1 = (e) => {
-    setName(e.target.value);
-  };
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
-  const handleAddress1 = (e) => {
-    setAddress(e.target.value);
-  };
-  const handleZip = (e) => {
-    setZip(e.target.value);
-  };
-
-  const handleCountry = (e) => {
-    setCountry(e.target.value);
-  };
-  const handleCreditcard = (e) => {
-    setCreditcard(e.target.value);
-  };
-  const handleMonth = (e) => {
-    setMonth(e.target.value);
-  };
-  const handleYear = (e) => {
-    setYear(e.target.value);
-  };
-  const handleCvc = (e) => {
-    setCvc(e.target.value);
-  };
-  const handleSelectone = (e) => {
-    setSelectone(e.target.value);
   };
   const handlePasswordAndCpassword = () => {
     setPasswordError(false);
@@ -100,14 +53,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
           cpassword: cpassword,
           name: name,
           phone: phone,
-          address: address,
-          zip: zip,
-          country: country,
-          creditcard: creditcard,
-          month1: month,
-          year1: year,
-          cvc: cvc,
-          selectone: selectone,
+          delair,
         })
         .then((result) => {
           handleCloseReg();
@@ -153,6 +99,20 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-6">
                   <div className="form-group">
                     <input
+                      name="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      type="text"
+                      className="field"
+                      placeholder="name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input
                       value={email}
                       onChange={handleEmail}
                       type="email"
@@ -177,6 +137,43 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     />
                   </div>
                 </div>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <input
+                      value={phone}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, "");
+                        setPhone(value);
+                      }}
+                      type="text"
+                      maxLength={10}
+                      name="phone"
+                      className="field"
+                      placeholder="Phone number"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <label>Are you a dealer?</label>
+                    <select
+                      value={delair}
+                      onChange={(e) => setDelair(e.target.value)}
+                      name="dealer"
+                      className="field"
+                      required
+                    >
+                      <option selected disabled value="">
+                        Choose...
+                      </option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="col-12 col-md-6">
                   <div className="form-group">
                     <input
@@ -209,177 +206,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       password & confirm password should same!
                     </p>
                   )}
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="form-group form-check">
-                    <label
-                      className="form-check-label"
-                      data-toggle="collapse"
-                      data-target="#wantBid"
-                    >
-                      <input className="form-check-input" type="checkbox" /> I
-                      want the ability to bid on auctions (optional)
-                    </label>
-                    <div id="wantBid" className="collapse pt-3">
-                      <p className="m-0">
-                        Bring a Trailer requires a credit card to bid.{" "}
-                        <a href="javascript:void(0)">Click here</a> for more
-                        info.
-                      </p>
-                      <p className="small">
-                        There is no charge to register. Bring a Trailer will
-                        only authorize that your card is valid.
-                      </p>
-                      <div className="row">
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={name}
-                              onChange={handleName1}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Name (as it appears on your card)"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={phone}
-                              onChange={handlePhone}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Phone"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={address}
-                              onChange={handleAddress1}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Address"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={zip}
-                              onChange={handleZip}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Zip / Postal Code"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={country}
-                              onChange={handleCountry}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Country"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <input
-                              value={creditcard}
-                              onChange={handleCreditcard}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="Credit Card Number"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <label>Expiration</label>
-                            <div className="row row_gap_5">
-                              <div className="col-6">
-                                <select
-                                  className="field"
-                                  value={month}
-                                  onChange={handleMonth}
-                                >
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6</option>
-                                  <option>7</option>
-                                  <option>8</option>
-                                  <option>9</option>
-                                  <option>10</option>
-                                  <option>11</option>
-                                  <option>12</option>
-                                </select>
-                              </div>
-                              <div className="col-6">
-                                <select
-                                  className="field"
-                                  value={year}
-                                  onChange={handleYear}
-                                >
-                                  <option>2022</option>
-                                  <option>2023</option>
-                                  <option>2024</option>
-                                  <option>2025</option>
-                                  <option>2026</option>
-                                  <option>2027</option>
-                                  <option>2028</option>
-                                  <option>2029</option>
-                                  <option>2030</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <label className="mobileOnlyHide">&nbsp;</label>
-                            <input
-                              value={cvc}
-                              onChange={handleCvc}
-                              type="text"
-                              name=""
-                              className="field"
-                              placeholder="CVC"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="form-group">
-                            <label>Where did you hear about Gas guzzlrs?</label>
-                            <select
-                              className="field"
-                              value={selectone}
-                              onChange={handleSelectone}
-                            >
-                              <option>Select one</option>
-                              <option>Facebook</option>
-                              <option>Google</option>
-                              <option>Instagram</option>
-                              <option>Log time Gas guzzlrs reader</option>
-                              <option>Other</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -420,14 +246,13 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <p className="m-0">
-                      Already have an account?{" "}
+                      Already have an account?
                       <a
                         href="javascript:void(0)"
                         data-dismiss="modal"
                         data-toggle="modal"
                         data-target="#loginModal"
                       >
-                        {" "}
                         Log in
                       </a>
                     </p>

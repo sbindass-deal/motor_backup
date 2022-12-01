@@ -296,19 +296,25 @@ function Header() {
                       </li>
 
                       <li className="nav-item">
-                        <Link
-                          style={{
-                            color: `${
-                              location.pathname === "/carraffle"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          className="nav-link"
-                          to="/carraffle"
-                        >
-                          Car Raffle
-                        </Link>
+                        {logingUser.login ? (
+                          <Link
+                            style={{
+                              color: `${
+                                location.pathname === "/carraffle"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            className="nav-link"
+                            to="/carraffle"
+                          >
+                            Car Raffle
+                          </Link>
+                        ) : (
+                          <Link onClick={handleShow} className="nav-link">
+                            Car Raffle
+                          </Link>
+                        )}
                       </li>
                       <li className="nav-item">
                         <Link

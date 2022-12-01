@@ -11,28 +11,43 @@ function Notifications() {
     news: "",
     event: "",
     dailyMail: "",
+    resultsDigest: "",
+    marketUpdates: "",
+    additionalContent: "",
+    hourReminder: "",
+    resultSummary: "",
+    historyUpdates: "",
+    messageNotifications: "",
+    premiumListings: "",
+    reserveListings: "",
+    commentMentions: "",
+    playBidSound: "",
+    playCommentSound: "",
   });
   const handleOnChangeNews = (e) => {
-    const a = e.target.checked;
+    const Checked = e.target.checked;
     const Name = e.target.name;
-    setNotificationUpd({ ...notificationUpd, [Name]: a });
+    setNotificationUpd({ ...notificationUpd, [Name]: Checked });
   };
   console.log(notificationUpd);
-
-  // useEffect(() => {
-  //   const fetchNotificationApi = async() => {
-  //     try{
-  //         const response = await axios.get(`${process.env.REACT_APP_URL}/notification`)
-  //         console.log(response)
-  //     }catch(err){
-  //         console.log(err)
-  //     }
-  //   }
-  //   fetchNotificationApi()
-  // }, [])
-
   const handleNotification = () => {
-    const { news, event, dailyMail } = notificationUpd;
+    const {
+      news,
+      event,
+      dailyMail,
+      resultsDigest,
+      marketUpdates,
+      additionalContent,
+      hourReminder,
+      resultSummary,
+      historyUpdates,
+      messageNotifications,
+      premiumListings,
+      reserveListings,
+      commentMentions,
+      playBidSound,
+      playCommentSound,
+    } = notificationUpd;
     axios
       .post(process.env.REACT_APP_URL + "createNotification", {
         userId: userId.login.user.id,
@@ -41,18 +56,18 @@ function Notifications() {
         newsandUpdate: news,
         events: event,
         dailymail: dailyMail,
-        result: "",
-        market: "",
-        additionalContent: "",
-        anhourRemainder: "",
-        resultSummary: "",
-        historyUpdate: "",
-        textNotification: "",
-        premiumListing: "",
-        noReserve: "",
-        commentMention: "",
-        bidSound: "",
-        commentSound: "",
+        result: resultsDigest,
+        market: marketUpdates,
+        additionalContent,
+        anhourRemainder: hourReminder,
+        resultSummary: resultSummary,
+        historyUpdate: historyUpdates,
+        textNotification: messageNotifications,
+        premiumListing: premiumListings,
+        noReserve: reserveListings,
+        commentMention: commentMentions,
+        bidSound: playBidSound,
+        commentSound: playCommentSound,
       })
       .then((res) => {
         console.log(res);
@@ -60,7 +75,7 @@ function Notifications() {
   };
   useEffect(() => {
     handleNotification();
-  }, [notificationUpd.news, notificationUpd.event, notificationUpd.dailyMail]);
+  }, [notificationUpd]);
 
   return (
     <div>
@@ -75,30 +90,6 @@ function Notifications() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              {/* <h3>Gas Guzzlrs Updates</h3>
-              <hr />
-              <div className="container">
-                {noti.map((curElem) => {
-                  return (
-                    <div className="row" key={curElem.id}>
-                      <h6>{curElem.name}</h6>
-                      <div className="col-10">
-                        <p className="text-muted">{curElem.desc}</p>
-                      </div>
-                      <div className="col-2">
-                        <button
-                          onClick={() => handleNotification(curElem)}
-                          type="button"
-                          className="btn btn-danger"
-                        >
-                          {curElem.status}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div> */}
-
               <h3>Gas Guzzlrs Updates</h3>
               <hr />
               <ul className="rowList_ mb-4">
@@ -118,6 +109,7 @@ function Notifications() {
                         onChange={handleOnChangeNews}
                         id="cb1"
                         type="checkbox"
+                        checked={notificationUpd.news}
                       />
                       <label
                         className="tgl-btn"
@@ -139,6 +131,7 @@ function Notifications() {
                         className="tgl tgl-skewed"
                         name="event"
                         onChange={handleOnChangeNews}
+                        checked={notificationUpd.event}
                         id="cb2"
                         type="checkbox"
                       />
@@ -163,6 +156,7 @@ function Notifications() {
                     <div className="tg-item">
                       <input
                         onChange={handleOnChangeNews}
+                        checked={notificationUpd.dailyMail}
                         name="dailyMail"
                         className="tgl tgl-skewed"
                         id="cb3"
@@ -188,6 +182,9 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.resultsDigest}
+                        name="resultsDigest"
                         className="tgl tgl-skewed"
                         id="cb4"
                         type="checkbox"
@@ -212,10 +209,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.marketUpdates}
+                        name="marketUpdates"
                         className="tgl tgl-skewed"
                         id="cb5"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -247,10 +246,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.additionalContent}
+                        name="additionalContent"
                         className="tgl tgl-skewed"
                         id="cb01"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -272,10 +273,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.hourReminder}
+                        name="hourReminder"
                         className="tgl tgl-skewed"
                         id="cb02"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -297,6 +300,9 @@ function Notifications() {
                     <div className="tg-item">
                       <input
                         className="tgl tgl-skewed"
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.resultSummary}
+                        name="resultSummary"
                         id="cb03"
                         type="checkbox"
                       />
@@ -320,6 +326,9 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.historyUpdates}
+                        name="historyUpdates"
                         className="tgl tgl-skewed"
                         id="cb04"
                         type="checkbox"
@@ -344,10 +353,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.messageNotifications}
+                        name="messageNotifications"
                         className="tgl tgl-skewed"
                         id="cb05"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -407,6 +418,9 @@ function Notifications() {
                     <div className="tg-item">
                       <input
                         className="tgl tgl-skewed"
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.premiumListings}
+                        name="premiumListings"
                         id="cb001"
                         type="checkbox"
                       />
@@ -428,6 +442,9 @@ function Notifications() {
                     <div className="tg-item">
                       <input
                         className="tgl tgl-skewed"
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.reserveListings}
+                        name="reserveListings"
                         id="cb002"
                         type="checkbox"
                       />
@@ -451,10 +468,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.commentMentions}
+                        name="commentMentions"
                         className="tgl tgl-skewed"
                         id="cb003"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -472,10 +491,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.playBidSound}
+                        name="playBidSound"
                         className="tgl tgl-skewed"
                         id="cb004"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
@@ -493,10 +514,12 @@ function Notifications() {
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
+                        onChange={handleOnChangeNews}
+                        checked={notificationUpd.playCommentSound}
+                        name="playCommentSound"
                         className="tgl tgl-skewed"
                         id="cb005"
                         type="checkbox"
-                        checked
                       />
                       <label
                         className="tgl-btn"
