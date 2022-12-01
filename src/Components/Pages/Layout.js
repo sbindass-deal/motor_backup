@@ -51,7 +51,7 @@ function Layout() {
           <Route path="gallary" element={<PhotoGallery />} />
           <Route path="submit" element={<SubmitaVehicle />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
-          <Route path="makeamodel" element={<MakeAnModel />} />
+          {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />

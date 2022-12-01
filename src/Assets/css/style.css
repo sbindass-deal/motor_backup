@@ -392,7 +392,7 @@ select.field option{background-color: #111;}
 
 .modal-content{background-color: #222;}
 .modal-header .close{color: #fff;}
-.modal {background: rgba(0,0,0,0.9);}
+.modal {background: rgba(0,0,0,0.7);}
 .modal a{color: #ef6031;}
 .modal a:hover{text-decoration: underline !important;}
 

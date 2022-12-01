@@ -260,7 +260,7 @@ function Header() {
                     id="navbarNavDropdown"
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <div className="dropdown">
                           <Link
                             className={`nav-link`}
@@ -276,7 +276,7 @@ function Header() {
                             Makes and Models
                           </Link>
                         </div>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         <li className="nav-item">
                           <Link

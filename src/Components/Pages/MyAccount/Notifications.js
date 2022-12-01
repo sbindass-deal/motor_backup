@@ -13,7 +13,6 @@ function Notifications() {
     dailyMail: "",
   });
   const handleOnChangeNews = (e) => {
-    // console.log(e.target.checked);
     const a = e.target.checked;
     const Name = e.target.name;
     setNotificationUpd({ ...notificationUpd, [Name]: a });

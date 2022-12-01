@@ -240,11 +240,11 @@ function Detail() {
                         <span> &nbsp;Time Out</span>
                       )}
                     </li>
-                    {/* <li>
-                      <a href="#">
-                        <i className="fa-solid fa-comment"></i> 55 Comments
-                      </a>
-                    </li> */}
+                    {vehicle.reservAmount && (
+                      <li>
+                        Reserv: <span>{vehicle.reserve}</span>
+                      </li>
+                    )}
                   </ul>
                 </div>
                 <div className="d-flex">
@@ -363,11 +363,7 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown mr-2">
-                <button
-                  type="button"
-                  className="gry_btn"
-                  // data-toggle="dropdown"
-                >
+                <button type="button" className="gry_btn">
                   Era: {vehicle.year}
                 </button>
                 <div className="dropdown-menu">
@@ -557,97 +553,6 @@ function Detail() {
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
-                      {/* <li>
-                        <label>Are you a dealer?</label>
-                        <div>{vehicle.dealerId}</div>
-                      </li>
-                      <li>
-                        <label>Name of your dealership</label>
-                        <div>{vehicle.dealerDescription}</div>
-                      </li>
-                      <li>
-                        <label>Chassis Number</label>
-                        <div>{vehicle.detailvin}</div>
-                      </li>
-                      {vehicle.Interstellar === "Yes" && (
-                        <li>
-                          <label>Truck finished in Interstellar White?</label>
-                          <div>{vehicle.Interstellar}</div>
-                        </li>
-                      )}
-                      <li>
-                        <label>Inte</label>
-                        <div>{vehicle.Interstellar}</div>
-                      </li>
-                      <li>
-                        <label>
-                          Interior upholstered in Jet Black and Light
-                        </label>
-                        <div>{vehicle.interior}</div>
-                      </li>
-                      <li>
-                        <label>
-                          What brand and model of tires are currently
-                        </label>
-                        <div>{vehicle.brandandmodel}</div>
-                      </li>
-                      <li>
-                        <label>
-                          What size of tires are on the truck? *The size can
-                        </label>
-                        <div>{vehicle.sizetires}</div>
-                      </li>
-                      <li>
-                        <label>How is the truck titled?</label>
-                        <div>{vehicle.km}</div>
-                      </li>
-                      <li>
-                        <label>
-                          To the best of your knowledge, is this number
-                        </label>
-                        <div>{vehicle.accurateField}</div>
-                      </li>
-                      <li>
-                        <label>
-                          Truck have a past History paint or bodywork?
-                        </label>
-                        <div>{vehicle.bodywork}</div>
-                      </li>
-                      <li>
-                        <label>
-                          Does the truck have any modifications from stock?
-                        </label>
-                        <div>{vehicle.modificationstock}</div>
-                      </li>
-                      <li>
-                        <label>
-                          What do you know about the history of the truck
-                        </label>
-                        <div>{vehicle.issuesorproblems}</div>
-                      </li>
-
-                      <li>
-                        <label>Do you want a reserve?</label>
-                        <div>{vehicle.reserve}</div>
-                      </li>
-                      <li>
-                        <label>What is the amount of the document fee t</label>
-                        <div>{vehicle.documentFee}</div>
-                      </li>
-                      <li>
-                        <label>
-                          Are you an R&T member? Enter your membership number
-                          here (not required)
-                        </label>
-                        <div>{vehicle.membership}</div>
-                      </li>
-                      <li className="fulwdth">
-                        <label>
-                          Please list and describe services performed and when
-                        </label>
-                        <div>{vehicle.moreDescription}</div>
-                      </li> */}
-
                       <li>
                         <label htmlFor="">{vehicle.odmeter} Miles</label>
                       </li>

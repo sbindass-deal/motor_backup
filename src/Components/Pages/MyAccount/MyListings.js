@@ -2,22 +2,25 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-import car_01 from "../../../Assets/images/car_01.jpg";
 import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 function MyListings() {
   const [data, setData] = useState([]);
-  const [chatMessage, setChatMessage] = useState();
+  const [chatMessage, setChatMessage] = useState("");
   const [chateApiData, setChateApiData] = useState([]);
+  const [vehicleId, setVehicleId] = useState();
   const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setVehicleId(id);
+    setShow(true);
+  };
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .get(process.env.REACT_APP_URL + `byUserVehicle/${userId.login.user.id}`)
       .then((response) => {
@@ -40,32 +43,35 @@ function MyListings() {
       });
   };
 
-  const getChateMessageApi = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/2`
-      );
-      if (res.data.status === 200) {
-        setChateApiData(res.data.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const getChateMessageApi = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/${vehicleId}`
+        );
+        if (res.data.status === 200) {
+          setChateApiData(res.data.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     getChateMessageApi();
-  }, []);
+  }, [show]);
 
   const handleChatMessage = (e) => {
     e.preventDefault();
     axios
       .post(process.env.REACT_APP_URL + "addChat", {
         userId: userId.login.user.id,
-        vehicleId: 2,
+        vehicleId: vehicleId,
         message: chatMessage,
       })
       .then((res) => {
         if (res.data.status === 200) {
+          // setChateApiData([])
+          // getChateMessageApi()
+          setChatMessage("");
           setChateApiData(res.data.data);
         }
       });
@@ -124,31 +130,34 @@ function MyListings() {
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              <div className="mx-2">
-                                <button
-                                  onClick={handleShow}
-                                  type="button"
-                                  className="gry_btn"
-                                >
-                                  <ChatIcon />
-                                </button>
-                              </div>
-                              <div className="mx-2">
-                                <button
-                                  onClick={() =>
-                                    fetchResurveApi(
-                                      curElem.id,
-                                      curElem.reserve,
-                                      curElem.reservAmount
-                                    )
-                                  }
-                                  type="button"
-                                  className="gry_btn"
-                                >
-                                  {curElem.reserve}
-                                </button>
-                              </div>
-
+                              {curElem.reservAmount && (
+                                <>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleShow(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      <ChatIcon />
+                                    </button>
+                                  </div>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() =>
+                                        fetchResurveApi(
+                                          curElem.id,
+                                          curElem.reserve,
+                                          curElem.reservAmount
+                                        )
+                                      }
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      {curElem.reserve}
+                                    </button>
+                                  </div>
+                                </>
+                              )}
                               <a
                                 href={`detail/${curElem.id}`}
                                 className="gry_btn"

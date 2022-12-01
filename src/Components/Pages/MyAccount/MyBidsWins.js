@@ -1,17 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import car_01 from "../../../Assets/images/car_01.jpg";
-import car_02 from "../../../Assets/images/car_02.jpg";
-import car_03 from "../../../Assets/images/car_03.jpg";
-import car_04 from "../../../Assets/images/car_04.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import ChatIcon from "@mui/icons-material/Chat";
+import { Modal } from "react-bootstrap";
 
 function MyBidsWins() {
   const [data, setData] = useState([]);
   const userId = useSelector((state) => state);
+  const [chatMessage, setChatMessage] = useState("");
+  const [chateApiData, setChateApiData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [vehicleId, setVehicleId] = useState();
 
-  React.useEffect(() => {
+  const handleClose = () => {
+    setChateApiData([]);
+    setShow(false);
+  };
+  const handleShow = (id) => {
+    setVehicleId(id);
+    setShow(true);
+  };
+
+  useEffect(() => {
     axios
       .get(
         process.env.REACT_APP_URL +
@@ -23,6 +35,37 @@ function MyBidsWins() {
         console.log(response.data.data);
       });
   }, []);
+  useEffect(() => {
+    const getChateMessageApi = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/${vehicleId}`
+        );
+        if (res.data.status === 200) {
+          setChateApiData(res.data.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getChateMessageApi();
+  }, [show]);
+
+  const handleChatMessage = (e) => {
+    e.preventDefault();
+    axios
+      .post(process.env.REACT_APP_URL + "addChat", {
+        userId: userId.login.user.id,
+        vehicleId: vehicleId,
+        message: chatMessage,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setChatMessage("");
+          setChateApiData(res.data.data);
+        }
+      });
+  };
 
   return (
     <div>
@@ -39,10 +82,6 @@ function MyBidsWins() {
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
                 <h3>My Bids & Win</h3>
-                {/* <select class="field">
-                  <option>Recent Bid</option>
-                  <option>Winner Bid</option>
-                </select> */}
               </div>
               <hr />
 
@@ -52,27 +91,34 @@ function MyBidsWins() {
                     return (
                       <div key={curElem.id} className="bidsListRow">
                         <div className="bidsImg">
-                          <img src={process.env.REACT_APP_URL + curElem.stepOneImage} alt={curElem.stepOneImage} />
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            alt={curElem.stepOneImage}
+                          />
                         </div>
                         <div className="bidsInfo">
                           <div className="">
                             <h6>{curElem.name}</h6>
-                            <ul className="bidsLabelList">
-                              {/* <li>
-                                <i className="fa-solid fa-dollar-sign"></i>{" "}
-                                {curElem.ammountOnDocument}
-                              </li> */}
-                              {/* <li>
-                                <i className="fa-solid fa-calendar-days"></i>{" "}
-                                {curElem.created_at}
-                              </li> */}
-                            </ul>
                             <p>
-                              You have BID $
-                              <span style={{color: '#fff'}}>{curElem.auctionAmmount}</span>
+                              You have BID{" "}
+                              <i className="fa-solid fa-dollar-sign"></i>
+                              <span style={{ color: "#fff" }}>
+                                {curElem.auctionAmmount}
+                              </span>
                             </p>
                           </div>
-                          <div className="pl-md-3">
+                          <div className="pl-md-3 d-flex">
+                            <div className="mx-2">
+                              <button
+                                onClick={() => handleShow(curElem.id)}
+                                type="button"
+                                className="gry_btn"
+                              >
+                                <ChatIcon />
+                              </button>
+                            </div>
                             <a
                               href={`detail/${curElem.id}`}
                               className="gry_btn"
@@ -84,88 +130,65 @@ function MyBidsWins() {
                       </div>
                     );
                   })}
-
-                  {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                        <img src={car_02} alt="car_02"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                  {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_03} alt="car_03"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                  {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_04} alt="car_04"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-                  {/* <div className="bidsListRow">
-                                    <div className="bidsImg">
-                                    <img src={car_01} alt="car_01"/>
-                                    </div>
-                                    <div className="bidsInfo">
-                                        <div className="">
-                                            <h6>2008 BMW M3 Sedan 6-Speed</h6>
-                                            <ul className="bidsLabelList">
-                                                <li><i className="fa-solid fa-dollar-sign"></i> 15,000</li>
-                                                <li><i className="fa-solid fa-calendar-days"></i> 10-10-2022</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
-                                        </div>
-                                        <div className="pl-md-3">
-                                            <a href="#" className="gry_btn"><i className="fa-solid fa-eye mr-2"></i> View</a>
-                                        </div>
-                                    </div>
-                                </div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header>
+          <Modal.Title>Chat</Modal.Title>
+          <div style={{ cursor: "pointer" }} onClick={handleClose}>
+            X
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          <div
+            className="row mx-1 my-1 rounded"
+            style={{
+              height: "40vh",
+              backgroundColor: "white",
+              color: "black",
+              overflow: "auto",
+            }}
+          >
+            <div className="col-12 py-2">
+              {chateApiData.map((curElem, i) => {
+                return (
+                  <span key={i}>
+                    {curElem.message}
+                    <br />
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <form onSubmit={handleChatMessage}>
+            <div className="row">
+              <div className="col-12 col-md-12">
+                <label for="validationCustom01" class="form-label">
+                  Message
+                </label>
+                <input
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                  class="form-control"
+                  type="text"
+                  id="chatMessage"
+                  placeholder="Enter message"
+                  required
+                ></input>
+              </div>
+              <div className="col-12 d-flex justify-content-center pt-4 ">
+                <button className="btn" type="submit">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
