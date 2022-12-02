@@ -101,7 +101,14 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     <input
                       name="name"
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      onKeyPress={(event) => {
+                        if (!/[a-z]/.test(event.key)) {
+                          event.preventDefault();
+                        }
+                      }}
                       type="text"
                       minLength={2}
                       maxLength={25}
@@ -135,7 +142,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       type="text"
                       name="userName"
                       minLength={4}
-                      maxLength={12}
+                      maxLength={15}
                       className="field"
                       placeholder="Username"
                       autoComplete="off"
