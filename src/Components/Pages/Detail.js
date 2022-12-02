@@ -528,13 +528,13 @@ function Detail() {
                         />
                       ) : null}
                     </div>
-                    <button
+                    {/* <button
                       onClick={() => handleImageHow(id)}
                       type="button"
                       className="gry_btn mt-3"
                     >
                       More Photos
-                    </button>
+                    </button> */}
                   </div>
                   <div className="col-12 col-sm-6 pt-4">
                     <h5>&nbsp;</h5>
