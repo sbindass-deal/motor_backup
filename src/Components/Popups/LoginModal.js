@@ -102,7 +102,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   value={email}
                   onChange={handleEmail}
                   type="text"
-                  name=""
+                  name="email"
+                  minLength={4}
+                  maxLength={31}
                   className="field"
                   placeholder="Email"
                 />
@@ -111,8 +113,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 <input
                   value={password}
                   onChange={handlePassword}
+                  minLength={4}
+                  maxLength={12}
                   type="password"
-                  name=""
+                  name="password"
                   className="field"
                   placeholder="Password"
                 />

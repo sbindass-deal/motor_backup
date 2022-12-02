@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { showModal } from "../../redux/reducers/login";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -16,6 +18,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       theme: "light",
     });
   const url = process.env.REACT_APP_URL;
+  const dispatch = useDispatch();
   const [name, setName] = useState();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState();
@@ -245,6 +248,74 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div>
                 <div className="col-12 col-md-12">
+                  <div className="form-group form-check">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        required
+                      />{" "}
+                      I accept the Terms of Use and Privacy Notice(Optional)
+                    </label>
+                  </div>
+                </div>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12 col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="cartNumber"
+                          className="field"
+                          minLength={4}
+                          maxLength={16}
+                          placeholder="Cart number"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="account"
+                          className="field"
+                          minLength={2}
+                          maxLength={16}
+                          placeholder="Account Number"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="address"
+                          className="field"
+                          minLength={4}
+                          maxLength={100}
+                          placeholder="Address"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="country"
+                          className="field"
+                          minLength={4}
+                          maxLength={50}
+                          placeholder="Country"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-12 col-md-12">
                   <div className="form-group">
                     <p className="small">
                       This site is protected by reCAPTCHA and the Google{" "}
@@ -253,6 +324,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </p>
                   </div>
                 </div>
+
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <button type="submit" className="btn">
@@ -263,8 +335,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <p className="m-0">
-                      Already have an account?
+                      Already have an account?&nbsp;&nbsp;
                       <a
+                        onClick={() => dispatch(showModal())}
                         href="javascript:void(0)"
                         data-dismiss="modal"
                         data-toggle="modal"

@@ -512,6 +512,26 @@ function Detail() {
                 The car is registered in a province that does not issue titles
                 for vehicles. It is being sold on its registration.
               </p> */}
+                <p className="py-4">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Expedita quod nemo ab, harum similique nulla autem unde quo
+                  eveniet minus, eaque libero provident dolorum ad. Harum
+                  possimus error consequatur quam. Molestiae beatae fuga
+                  consequatur provident est tempore quos sequi ut aliquam quasi
+                  impedit fugiat, repellendus cumque ad, quas corrupti natus
+                  laborum minima dolorum nobis cupiditate, aspernatur id
+                  reprehenderit necessitatibus. Iste? Quas, doloribus nesciunt
+                  pariatur dicta ex, impedit commodi illo consequuntur fugiat
+                  delectus sequi ducimus voluptatibus, sapiente aspernatur
+                  suscipit soluta dolorem officia non unde perspiciatis vel
+                  tenetur atque nostrum. Quisquam, similique. Rerum sed eius
+                  sint suscipit est repellendus exercitationem ad magnam velit
+                  porro numquam harum mollitia incidunt deserunt quaerat
+                  blanditiis error ut, repellat dignissimos fuga, dolor aliquid.
+                  Quisquam pariatur tempora eligendi? Obcaecati eius, quod
+                  expedita adipisci praesentium nisi quibusdam iure, quidem non
+                  assumenda rerum, placeat est minus vero enim dolorem mollitia.
+                </p>
 
                 <div className="pb_40" id="placeBid_col">
                   <div className="card_Gray">
@@ -600,6 +620,27 @@ function Detail() {
                   </div> */}
                   </div>
                 </div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Iusto vel omnis aliquam accusamus eveniet. Ipsa molestias
+                  totam, eligendi beatae id inventore nesciunt provident est sed
+                  in, impedit at ipsum mollitia! Ad corporis esse architecto cum
+                  placeat aspernatur tempore? Odit saepe harum repellat ut
+                  aspernatur, officia eius. Officiis veritatis earum quae, et
+                  eum nisi quis aut ducimus cum quisquam animi necessitatibus.
+                  Ab dolores, distinctio harum alias illum in nam quos, sed
+                  blanditiis dignissimos quasi. Incidunt repellendus ab, sunt
+                  quisquam neque tempora fugiat nesciunt commodi quo perferendis
+                  quod enim reprehenderit necessitatibus illum! Minus beatae
+                  maiores eos placeat consequuntur totam? Rerum ratione fugit
+                  nobis alias laboriosam, sunt atque. Quia voluptatem aliquam
+                  magni eveniet illum ad, autem odio ullam culpa voluptate nemo
+                  sint eligendi? Exercitationem optio qui nulla asperiores illo
+                  reiciendis quis iure, nesciunt amet illum assumenda eos quidem
+                  reprehenderit corporis molestias, odio modi quibusdam vero
+                  magnam expedita cupiditate laborum tenetur. Voluptatum, dolor
+                  reprehenderit!
+                </p>
                 <div className="ptb_40" id="placeBid_col">
                   <div className="card_Gray">
                     <h5>BID ON THIS LISTING</h5>
