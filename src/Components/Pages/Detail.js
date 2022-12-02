@@ -368,6 +368,7 @@ function Detail() {
                   </a>
                 </div>
               </div>
+
               <div className="dropdown mr-2">
                 <button type="button" className="gry_btn">
                   Era: {vehicle.year}
@@ -381,6 +382,25 @@ function Detail() {
                   </a>
                 </div>
               </div>
+              <div className="dropdown mr-2">
+                <button
+                  onClick={() => handleImageHow(id)}
+                  type="button"
+                  className="gry_btn"
+                >
+                  More Photos
+                </button>
+
+                <div className="dropdown-menu">
+                  <a className="dropdown-item" href="#">
+                    View all listings
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    Notify me about new listings
+                  </a>
+                </div>
+              </div>
+
               {/* <div className="dropdown mr-2">
                 <button
                   type="button"
@@ -492,68 +512,6 @@ function Detail() {
                 The car is registered in a province that does not issue titles
                 for vehicles. It is being sold on its registration.
               </p> */}
-
-                <div className="row row_gap_5 videoGalleryRow">
-                  {/* <div className="col-12 col-sm-6 pt-4">
-                  <h5>VIDEO GALLERY</h5>
-                  <div>
-                    <a
-                      href="https://youtu.be/J5kJcmHMvgs"
-                      data-fancybox="videoGallery"
-                      className="fancyCol"
-                    >
-                      <div className="playIc">
-                        <i className="fa-solid fa-play"></i>
-                      </div>
-                      <img src="images/2019_mclaren_senna_reshoot.webp" />
-                    </a>
-                    <a href="video-gallery.html" className="gry_btn mt-3">
-                      More Video
-                    </a>
-                  </div>
-                </div> */}
-                  <div className="col-12 col-sm-6 pt-4">
-                    <h5>PHOTO GALLERY</h5>
-                    <div className="fancyCol">
-                      {vehicleImage.length > 0 ? (
-                        <img
-                          src={
-                            process.env.REACT_APP_URL +
-                            "/" +
-                            vehicleImage[0].imagePath +
-                            "/" +
-                            vehicleImage[0].imageName
-                          }
-                          alt=""
-                        />
-                      ) : null}
-                    </div>
-                    <button
-                      onClick={() => handleImageHow(id)}
-                      type="button"
-                      className="gry_btn mt-3"
-                    >
-                      More Photos
-                    </button>
-                  </div>
-                  <div className="col-12 col-sm-6 pt-4">
-                    <h5>&nbsp;</h5>
-                    <div className="fancyCol">
-                      {vehicleImage.length > 0 ? (
-                        <img
-                          src={
-                            process.env.REACT_APP_URL +
-                            "/" +
-                            vehicleImage[0].imagePath +
-                            "/" +
-                            vehicleImage[0].imageName
-                          }
-                          alt=""
-                        />
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
 
                 <div className="pb_40" id="placeBid_col">
                   <div className="card_Gray">
@@ -738,7 +696,69 @@ function Detail() {
                     </div>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row row_gap_5 videoGalleryRow">
+                  {/* <div className="col-12 col-sm-6 pt-4">
+                  <h5>VIDEO GALLERY</h5>
+                  <div>
+                    <a
+                      href="https://youtu.be/J5kJcmHMvgs"
+                      data-fancybox="videoGallery"
+                      className="fancyCol"
+                    >
+                      <div className="playIc">
+                        <i className="fa-solid fa-play"></i>
+                      </div>
+                      <img src="images/2019_mclaren_senna_reshoot.webp" />
+                    </a>
+                    <a href="video-gallery.html" className="gry_btn mt-3">
+                      More Video
+                    </a>
+                  </div>
+                </div> */}
+                  <div className="col-12 col-sm-6 pt-4">
+                    <h5>PHOTO GALLERY</h5>
+                    <div className="fancyCol">
+                      {vehicleImage.length > 0 ? (
+                        <img
+                          src={
+                            process.env.REACT_APP_URL +
+                            "/" +
+                            vehicleImage[0].imagePath +
+                            "/" +
+                            vehicleImage[0].imageName
+                          }
+                          alt=""
+                        />
+                      ) : null}
+                    </div>
+                    {/* <button
+                      onClick={() => handleImageHow(id)}
+                      type="button"
+                      className="gry_btn mt-3"
+                    >
+                      More Photos
+                    </button> */}
+                  </div>
+                  <div className="col-12 col-sm-6 pt-4">
+                    <h5>&nbsp;</h5>
+                    <div className="fancyCol">
+                      {vehicleImage.length > 0 ? (
+                        <img
+                          src={
+                            process.env.REACT_APP_URL +
+                            "/" +
+                            vehicleImage[0].imagePath +
+                            "/" +
+                            vehicleImage[0].imageName
+                          }
+                          alt=""
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row pt-4">
                   <div className="col-12">
                     <h5>{comments.length} COMMENTS</h5>
                     <form

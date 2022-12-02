@@ -105,7 +105,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         setName(e.target.value);
                       }}
                       onKeyPress={(event) => {
-                        if (!/[a-z]/.test(event.key)) {
+                        if (!/[a-zA-Z]/.test(event.key)) {
                           event.preventDefault();
                         }
                       }}

@@ -3,7 +3,6 @@ import submitvechilesReducer from "./reducers/submitvechilesReducer";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import login from "./reducers/login";
-import watchListReducer from "./reducers/watchListReducer";
 
 const persistConfig = {
   key: "root",
@@ -14,7 +13,6 @@ const persistConfig = {
 const reducer = combineReducers({
   submitvechilesReducer: submitvechilesReducer,
   login: login,
-  watchListReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
