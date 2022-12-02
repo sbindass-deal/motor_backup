@@ -103,6 +103,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       type="text"
+                      minLength={2}
+                      maxLength={25}
                       className="field"
                       placeholder="name"
                       required
@@ -115,8 +117,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     <input
                       value={email}
                       onChange={handleEmail}
+                      minLength={5}
+                      maxLength={31}
                       type="email"
-                      name=""
+                      name="email"
                       className="field"
                       placeholder="Email"
                       required
@@ -129,7 +133,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       value={username}
                       onChange={handleUsername}
                       type="text"
-                      name=""
+                      name="userName"
+                      minLength={4}
+                      maxLength={12}
                       className="field"
                       placeholder="Username"
                       autoComplete="off"
@@ -146,7 +152,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         setPhone(value);
                       }}
                       type="text"
-                      maxLength={10}
+                      minLength={10}
+                      maxLength={12}
                       name="phone"
                       className="field"
                       placeholder="Phone number"
@@ -157,7 +164,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
                 <div className="col-12 col-md-6">
                   <div className="form-group">
-                    <label>Are you a dealer?</label>
                     <select
                       value={delair}
                       onChange={(e) => setDelair(e.target.value)}
@@ -166,7 +172,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required
                     >
                       <option selected disabled value="">
-                        Choose...
+                        Are you a dealer?
                       </option>
                       <option>Yes</option>
                       <option>No</option>
@@ -180,9 +186,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       value={password}
                       onChange={handlePassword}
                       type="password"
-                      name=""
+                      name="password"
                       onFocus={handlePasswordAndCpassword}
                       className="field"
+                      minLength={4}
+                      maxLength={12}
                       placeholder="Password"
                       required
                     />
@@ -195,6 +203,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       onChange={handleCpassword}
                       type="password"
                       name=""
+                      minLength={4}
+                      maxLength={12}
                       onFocus={handlePasswordAndCpassword}
                       className="field"
                       placeholder="Confirm Password"

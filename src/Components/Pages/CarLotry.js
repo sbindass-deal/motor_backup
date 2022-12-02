@@ -33,7 +33,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-27 12:30:00").getTime()
+    new Date("2022-11-30 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now + 432000000;
@@ -164,14 +164,14 @@ function CarRaffle() {
                   </div>
                   <div className="col-12 col-md-5">
                     <div className="" key={showLotary.id}>
-                      <h5 className="m-0">Lottery Prize</h5>
-                      <div className="lotteryPriceNumber">
+                      {/* <h5 className="m-0">Lottery Prize</h5> */}
+                      {/* <div className="lotteryPriceNumber">
                         <div className="price_normal">${showLotary.price}</div>
                       </div>
                       <div className="mb-3">
                         <i className="fa-solid fa-circle-info"></i> Lottery
                         Breakdown
-                      </div>
+                      </div> */}
 
                       <div className="counterCol">
                         <h5>Countdown to the next draw</h5>
@@ -280,7 +280,7 @@ function CarRaffle() {
                             showLotary.price * allLotaryApi.length}
                         </div>
                       </div>
-                      <div className="">1 Ticket = $ {showLotary.price}</div>
+                      {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
 
