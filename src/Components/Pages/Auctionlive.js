@@ -139,9 +139,14 @@ function Auctionlive() {
                         <a href={`detail/${curElem.id}`}>
                           <img
                             src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
+                              curElem.stepOneImage === null ||
+                              curElem.stepOneImage === undefined ||
+                              curElem.stepOneImage === ""
+                                ? img_01
+                                : process.env.REACT_APP_URL +
+                                  curElem.stepOneImage
                             }
-                            alt={curElem.make}
+                            alt=""
                           />
                         </a>
                       </div>
@@ -160,22 +165,41 @@ function Auctionlive() {
                           }}
                         >
                           <li className="w-auto">
-                            <label>Current&nbsp;Bid:</label>
-                            <br />
-                            {curElem["currentAmount"] === undefined ||
-                            curElem["currentAmount"] === null ? (
-                              <span>${curElem.documentFee}</span>
-                            ) : (
+                            {curElem.currentAmount ? (
                               <span>
-                                ${curElem.currentAmount.auctionAmmount}
+                                <label>Current&nbsp;Bid:</label>
+                                <br />${curElem.currentAmount.auctionAmmount}
                               </span>
-                            )}
+                            ) : curElem.documentFee ? (
+                              <span>
+                                <label>Documents fee:</label>
+                                <br /> ${curElem.documentFee}
+                              </span>
+                            ) : null}
                           </li>
                           <li>
-                            <label>Ends On:</label>
-                            <br />
                             {/* <span>{getEndDate(curElem.created_at)} </span> */}
-                            <span>{curElem.EndTime}</span>
+                            {/* <span>{curElem.EndTime}</span> */}
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() >
+                            7200000 ? (
+                              <label>Upcomming Auction</label>
+                            ) : parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() >
+                                0 &&
+                              parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                7200000 ? (
+                              <label>Bid is live now</label>
+                            ) : (
+                              <label>Sold</label>
+                            )}
                           </li>
                         </ul>
                       </div>

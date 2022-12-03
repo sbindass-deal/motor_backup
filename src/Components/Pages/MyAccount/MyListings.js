@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
 
@@ -116,6 +116,15 @@ function MyListings() {
                             <div className="pl-md-3 d-flex">
                               {curElem.reserve === "Yes" && (
                                 <>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleShow(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      Sold
+                                    </button>
+                                  </div>
                                   <div className="mx-2">
                                     <button
                                       onClick={() => handleShow(curElem.id)}

@@ -226,13 +226,11 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      <label>Ends In:&nbsp;</label>
-                      <span>
-                        {/* {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
-                        seconds * */}
-                      </span>
-                      {t > 0 ? (
+                      {t > 7200000 ? (
+                        <span>Comming soon</span>
+                      ) : t > 0 && t <= 7200000 ? (
                         <span>
+                          <label>Ends In:&nbsp;</label>
                           {days} days {hours} hours, {minutes} minutes,{" "}
                           {seconds} seconds *
                         </span>
@@ -240,7 +238,7 @@ function Detail() {
                         <span> &nbsp;Time Out</span>
                       )}
                     </li>
-                    {vehicle.reservAmount && (
+                    {vehicle.reserve === "Yes" && (
                       <li>
                         Reserve: <span>{vehicle.reserve}</span>
                       </li>
@@ -272,12 +270,8 @@ function Detail() {
                   )}
 
                   {t <= 0 ? (
-                    <a
-                      className="gry_btn active"
-                      // onClick={() => addBiding()}
-                      // onclick="smoothScroll(document.getElementById('placeBid_col'))"
-                    >
-                      Auction is closed :{" "}
+                    <a className="gry_btn active">
+                      Sold :{" "}
                       {amountprice ? (
                         <span>USD $ {amountprice}</span>
                       ) : (
@@ -291,11 +285,6 @@ function Detail() {
                           type="button"
                           className="gry_btn active"
                           onClick={handleShow}
-                          // disabled={
-                          //   userId.login.user.id === addVehicleUserId
-                          //     ? true
-                          //     : false
-                          // }
                         >
                           Place a bid
                         </button>
@@ -656,24 +645,24 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        <label>Time Left</label>
-                        {t > 0 ? (
-                          <div>
+                        {t > 7200000 ? (
+                          <span>Comming soon</span>
+                        ) : t > 0 && t <= 7200000 ? (
+                          <span>
+                            <label>Ends In:&nbsp;</label>
                             {days} days {hours} hours, {minutes} minutes,{" "}
                             {seconds} seconds *
-                          </div>
+                          </span>
                         ) : (
-                          <div>&nbsp;Time Out</div>
+                          <span> &nbsp;Time Out</span>
                         )}
                       </li>
-                      <li>
+                      {/* <li>
                         <label>Ends On</label>
                         <div>
-                          {/* Friday, September 23 at 10:30pm{" "} */}
                           {moment().add(5, "days").format("LLL")}
-                          {/* <a href="#">remind me</a> */}
                         </div>
-                      </li>
+                      </li> */}
                       <li>
                         <label>Bids</label>
                         <div>{biding ? biding.length : 0}</div>
@@ -708,7 +697,7 @@ function Detail() {
                         ) : (
                           <div>
                             <a className="gry_btn">
-                              Auction is closed :{" "}
+                              Sold :{" "}
                               {amountprice ? (
                                 <span>USD ${amountprice}</span>
                               ) : (
