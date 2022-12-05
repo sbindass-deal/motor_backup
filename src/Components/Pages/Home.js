@@ -157,32 +157,20 @@ function Home() {
             <div className="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
             </div>
-            <div
-              style={{
-                position: "absolute",
-                left: "48%",
-                top: "21.5%",
-                zIndex: "1",
-                cursor: "pointer",
-              }}
-            >
+            
+            <div className="col-12" style={{ height: "550px" }}>
+            <div className="nextArrow"  >
               <span onClick={() => slide.current.slickPrev()}>
-                <span>
-                  <WestIcon />
-                </span>
-                <span>Prev</span>
+                <span className="prev">Prev</span>
               </span>
               <span
                 onClick={() => slide.current.slickNext()}
                 style={{ marginLeft: 50 }}
               >
-                <span>Next</span>
-                <span>
-                  <EastIcon />
-                </span>
+                <span className="next">Next</span>
+                
               </span>
             </div>
-            <div className="col-12" style={{ height: "550px" }}>
               <div className="featuredAuctions_Slide">
                 <Slider ref={slide} {...settings}>
                   <div>
@@ -447,7 +435,7 @@ function Home() {
           </div>
         </div>
       </section> */}
-      <section className="px-md-4">
+      {/* <section className="px-md-4">
         <div className="col-12 pb_30">
           <h2 className="title_combo">
             Latest Bids <span>({showBidOnSlide.length} Auctions Now Live)</span>
@@ -464,14 +452,11 @@ function Home() {
                     style={{ maxHeight: "25vh" }}
                     alt={curElem.make}
                   />
-                  <div
-                    className="card-body"
-                    style={{ backgroundColor: "#000000" }}
-                  >
+                  <div className="card-body contSec">
                     <h5 className="card-title">
                       {curElem.make} {curElem.model} {curElem.year}
                     </h5>
-                    <p>
+                    <p className="priceDateList">
                       {curElem["currentAmount"] === undefined ||
                       curElem["currentAmount"] === null ? (
                         <span>${curElem.documentFee}</span>
@@ -485,7 +470,7 @@ function Home() {
             );
           })}
         </div>
-      </section>
+      </section> */}
       <section className="ptb_80 bgHolder bgImg01 d-flex align-items-center">
         <div className="container">
           <div className="row">

@@ -4,16 +4,13 @@ import faq from "../UI/faq";
 
 const Faq = () => {
   return (
-    <div className="container px-md-5 py-4 ">
-      <h3 className="text-center" style={{ color: "#FBA027" }}>
-        Frequently Asked Questions
-      </h3>
+    <div className="ptb_80 pt_sm_50 container ">
+      <h2 class="title_combo title_Center">Frequently Asked Questions 
+        <span style={{textAlign:'center'}}> Gas Guzzlrs makes it easy to register and bid.</span>
+      </h2>
       <div className="row">
         <p className="text-center py-3 px-md-5">
-          <span style={{ color: "#FBA027" }}>
-            Gas Guzzlrs makes it easy to register and bid.
-          </span>
-          <br /> We conduct our registration and bidding online through our GG
+          We conduct our registration and bidding online through our GG
           Software, an in house appl that manages a platform for auctions and
           payment processing. Learn more about how to create an account and
           register for our auctions.
