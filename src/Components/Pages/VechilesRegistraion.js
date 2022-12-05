@@ -1244,7 +1244,7 @@ const VechilesRegistraion = () => {
                                 }}
                                 onChange={(e) => {
                                   basicFactOnChange(e);
-                                  setFile1(e.target.files[0]);
+                                  setFile1(e.target.files);
                                 }}
                                 name="files"
                                 type="file"
