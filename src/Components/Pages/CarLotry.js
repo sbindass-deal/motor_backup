@@ -33,7 +33,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-30 12:30:00").getTime()
+    new Date("2022-12-05 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now + 432000000;
