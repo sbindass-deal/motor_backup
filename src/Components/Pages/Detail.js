@@ -255,7 +255,7 @@ function Detail() {
                       onClick={() => addFabrity(id)}
                       className="gry_btn mr-2 faList"
                     >
-                      <i className="fa-solid fa-star mr-2 "></i>
+                      <i className="fa-solid fa-heart mr-2 "></i>
                       Watch
                     </a>
                   ) : (
@@ -264,7 +264,7 @@ function Detail() {
                       onClick={() => addFabrity(id)}
                       className="gry_btn mr-2"
                     >
-                      <i className="fa-solid fa-star mr-2 "></i>
+                      <i className="fa-solid fa-heart mr-2 "></i>
                       Watch
                     </a>
                   )}
@@ -601,7 +601,7 @@ function Detail() {
                         How bidding works
                       </a>
                       <a href="#">
-                        <i className="fa-solid fa-star"></i> Watch auction
+                        <i className="fa-solid fa-heart"></i> Watch auction
                       </a>
                     </div>
                     <div className="">
@@ -707,7 +707,7 @@ function Detail() {
                           How bidding works
                         </a>
                         {/* <a href="#">
-                          <i className="fa-solid fa-star"></i> Watch auction
+                          <i className="fa-solid fa-heart"></i> Watch auction
                         </a> */}
                       </div>
                       <div className="">

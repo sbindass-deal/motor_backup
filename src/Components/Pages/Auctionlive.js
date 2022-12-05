@@ -91,7 +91,7 @@ function Auctionlive() {
                 </li>
                 <li className="">
                   <button type="button" className="gry_btn">
-                    <i className="fa-solid fa-star mr-2"></i> Watched
+                    <i className="fa-solid fa-heart mr-2"></i> Watched
                   </button>
                 </li>
                 <li className="d-flex">

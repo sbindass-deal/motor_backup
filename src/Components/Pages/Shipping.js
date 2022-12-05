@@ -181,11 +181,11 @@ function Shipping() {
                 </div>
                 <div className="commentBody">
                   <div className="starReview">
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
                   </div>
                   <p>Amazing car but the drive video was a disappointment.</p>
                 </div>
@@ -212,11 +212,11 @@ function Shipping() {
                 </div>
                 <div className="commentBody">
                   <div className="starReview">
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
                   </div>
                   <p>
                     Fastest around the track bragging rights means something…and
@@ -246,11 +246,11 @@ function Shipping() {
                 </div>
                 <div className="commentBody">
                   <div className="starReview">
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
                   </div>
                   <p>
                     I’ve sold this car a couple times. It’s an amazing,
@@ -281,11 +281,11 @@ function Shipping() {
                 </div>
                 <div className="commentBody">
                   <div className="starReview">
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
-                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
                   </div>
                   <p>
                     Dang, and to think I was scared to list my Mustang “No

@@ -29,7 +29,7 @@ function AuctionPremium() {
                     {auctions.filter(data=>data.premium === 0).map((data)=>(<div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                <a href={`detail/${data.id}`}><img src={img_01} alt=""/></a>
                             </div>
                             <div className="card_postInfo">
