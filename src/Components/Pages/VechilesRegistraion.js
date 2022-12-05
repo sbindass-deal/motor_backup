@@ -96,7 +96,7 @@ const VechilesRegistraion = () => {
     for (let i = 0; i < file1.length; i++) {
       const url = process.env.REACT_APP_URL + "vehicle-image";
       const formData = new FormData();
-      formData.append("image", file1[1]);
+      formData.append("image", file1[i]);
       formData.append("vehicleId", vehicleId);
       const config = {
         headers: {
@@ -200,8 +200,11 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   };
   const basicFactOnChange = (e) => {
-    const Value = e.target.value;
+    let Value = e.target.value;
     const Name = e.target.name;
+    if (Name === "odometer") {
+      Value = e.target.value.replace(/\D/g, "");
+    }
     setbasicfact({ ...basicfact, [Name]: Value });
   };
   const basicFactSubmitHandler = (e) => {
@@ -211,7 +214,6 @@ const VechilesRegistraion = () => {
     dispatch(step_two(true));
     dispatch(step_three(false));
   };
-  console.log("reserveAmount", detailsInfo.reserveAmount);
   const detailsOnChange = (e) => {
     const Value = e.target.value;
     const Name = e.target.name;
@@ -225,8 +227,11 @@ const VechilesRegistraion = () => {
     dispatch(step_three(true));
   };
   const informationOnChange = (e) => {
-    const Value = e.target.value;
+    let Value = e.target.value;
     const Name = e.target.name;
+    if (Name === "phone") {
+      Value = e.target.value.replace(/\D/g, "");
+    }
     setInformation({ ...information, [Name]: Value });
   };
 
@@ -869,7 +874,6 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                   cursor: "pointer",
                                 }}
-                                value={namefield.file}
                                 onChange={(e) => {
                                   handleNameField(e);
                                   setFile(e.target.files);
@@ -1176,16 +1180,18 @@ const VechilesRegistraion = () => {
                             <input
                               value={basicfact.odometer}
                               onChange={basicFactOnChange}
-                              type="number"
+                              type="text"
+                              minLength={1}
+                              maxLength={12}
                               name="odometer"
                               placeholder="Ex. 41,000 miles"
                               className="field"
                               required
                             />
-                            <p className="small">
+                            {/* <p className="small">
                               *Don't forget to include a photo of the current
                               reading during the photo upload process
-                            </p>
+                            </p> */}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -1236,8 +1242,6 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                   cursor: "pointer",
                                 }}
-                                value={basicfact.files}
-                                // onChange={basicFactOnChange}
                                 onChange={(e) => {
                                   basicFactOnChange(e);
                                   setFile1(e.target.files[0]);
@@ -1817,6 +1821,8 @@ const VechilesRegistraion = () => {
                               onChange={informationOnChange}
                               type="email"
                               name="uemail"
+                              maxLength={31}
+                              minLength={4}
                               placeholder="Email"
                               className="field"
                               required
@@ -1829,7 +1835,14 @@ const VechilesRegistraion = () => {
                             <input
                               value={information.iname}
                               onChange={informationOnChange}
+                              onKeyPress={(event) => {
+                                if (!/[a-zA-Z]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
                               type="text"
+                              maxLength={25}
+                              minLength={2}
                               name="iname"
                               placeholder="Name"
                               className="field"
@@ -1842,13 +1855,10 @@ const VechilesRegistraion = () => {
                             <label>Phone</label>
                             <input
                               value={information.phone}
-                              onChange={(e) => {
-                                if (e.target.value.trim().length >= 11) {
-                                  return false;
-                                }
-                                informationOnChange(e);
-                              }}
-                              type="number"
+                              onChange={informationOnChange}
+                              type="text"
+                              maxLength={12}
+                              minLength={10}
                               name="phone"
                               placeholder="Phone"
                               className="field"

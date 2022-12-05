@@ -227,7 +227,7 @@ function Detail() {
                     </li>
                     <li>
                       {t > 7200000 ? (
-                        <span>Comming soon</span>
+                        <span>Upcomming Auction</span>
                       ) : t > 0 && t <= 7200000 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
@@ -278,6 +278,10 @@ function Detail() {
                         <span>USD $ {vehicle.documentFee} </span>
                       )}
                     </a>
+                  ) : t >= 7200000 ? (
+                    <button type="button" className="gry_btn">
+                      Upcomming Auction
+                    </button>
                   ) : (
                     <>
                       {userId.login.user.id !== addVehicleUserId && (
@@ -646,7 +650,7 @@ function Detail() {
                       </li>
                       <li>
                         {t > 7200000 ? (
-                          <span>Comming soon</span>
+                          <span>Upcomming Auction</span>
                         ) : t > 0 && t <= 7200000 ? (
                           <span>
                             <label>Ends In:&nbsp;</label>
@@ -669,42 +673,31 @@ function Detail() {
                       </li>
                       <li>
                         <label>Place Bid</label>
-                        {t >= 0 ? (
-                          <div>
-                            {logingUser.user.id ? (
-                              <>
-                                {userId.login.user.id !== addVehicleUserId && (
-                                  <button
-                                    type="button"
-                                    className="gry_btn"
-                                    onClick={handleShow}
-                                    // disabled={
-                                    //   userId.login.user.id === addVehicleUserId
-                                    //     ? true
-                                    //     : false
-                                    // }
-                                  >
-                                    Place a bid
-                                  </button>
-                                )}
-                              </>
+                        {t <= 0 ? (
+                          <a className="gry_btn active">
+                            Sold :{" "}
+                            {amountprice ? (
+                              <span>USD $ {amountprice}</span>
                             ) : (
-                              <a href="javascript:void(0)" className="gry_btn">
-                                REGISTER TO BID
-                              </a>
+                              <span>USD $ {vehicle.documentFee} </span>
                             )}
-                          </div>
+                          </a>
+                        ) : t >= 7200000 ? (
+                          <button type="button" className="gry_btn">
+                            Upcomming Auction
+                          </button>
                         ) : (
-                          <div>
-                            <a className="gry_btn">
-                              Sold :{" "}
-                              {amountprice ? (
-                                <span>USD ${amountprice}</span>
-                              ) : (
-                                <span>USD ${vehicle.documentFee} </span>
-                              )}
-                            </a>
-                          </div>
+                          <>
+                            {userId.login.user.id !== addVehicleUserId && (
+                              <button
+                                type="button"
+                                className="gry_btn active"
+                                onClick={handleShow}
+                              >
+                                Place a bid
+                              </button>
+                            )}
+                          </>
                         )}
                       </li>
                     </ul>

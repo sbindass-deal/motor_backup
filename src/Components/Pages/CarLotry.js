@@ -240,7 +240,7 @@ function CarRaffle() {
                         type="text"
                         value={inputLotteryNumber}
                         onChange={(e) => {
-                          let value = e.target.value.replace(/\D/g, "");
+                          const value = e.target.value.replace(/\D/g, "");
                           setInputLotteryNumber(value);
                         }}
                         className="form-control"
