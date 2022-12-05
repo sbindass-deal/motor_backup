@@ -68,7 +68,7 @@ function Header() {
                   <span className="navbarToggler"></span>
                 </button>
 
-                <div className="collapse navbar-collapse" id="navb">
+                <div className="collapse navbar-collapse toNv" id="navb">
                   <ul className="navbar-nav ml-auto">
                     {!logingUser.login ? (
                       <li onClick={handleShow} className="nav-item">
@@ -138,7 +138,7 @@ function Header() {
                         }`}
                         to="/works"
                       >
-                        How Gas guzzlrs Works
+                        How its Works
                       </Link>
                     </li>
                     {!logingUser.login ? (
@@ -168,19 +168,19 @@ function Header() {
                       </Link>
                     </li> */}
                     {logingUser.login && (
-                      <li className="nav-item">
+                      <li className="nav-item afterLogin">
                         <Link
                           className={`nav-link ${
                             location.pathname === "/accountinfo" && "navActive"
                           }`}
                           to="/accountinfo"
                         >
-                          <i>
-                            Hi {logingUser.user.username} <AccountCircleIcon />
-                          </i>
+                          <AccountCircleIcon /> <br/><span>Hi {logingUser.user.username}</span>
                         </Link>
                       </li>
+                     
                     )}
+                   
 
                     <li
                       onClick={() => setShowSearchModal(true)}
@@ -225,7 +225,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/">
-                        Gas guzzlrs Features
+                        Features
                       </Link>
                     </li>
                     <li className="nav-item">
@@ -277,8 +277,8 @@ function Header() {
                           </Link>
                         </div>
                       </li> */}
+                    
                       <li className="nav-item">
-                        <li className="nav-item">
                           <Link
                             className="nav-link"
                             style={{
@@ -290,10 +290,10 @@ function Header() {
                             }}
                             to="/showroom"
                           >
-                            Show Room
+                            Showroom
                           </Link>
-                        </li>
                       </li>
+                     
 
                       <li className="nav-item">
                         {logingUser.login ? (
@@ -308,11 +308,11 @@ function Header() {
                             className="nav-link"
                             to="/carraffle"
                           >
-                            Car Raffle
+                            Raffle
                           </Link>
                         ) : (
                           <Link onClick={handleShow} className="nav-link">
-                            Car Raffle
+                            Raffle
                           </Link>
                         )}
                       </li>
@@ -326,7 +326,7 @@ function Header() {
                           }}
                           to="/feautres"
                         >
-                          Gas guzzlrs Features
+                          Features
                         </Link>
                       </li>
 
@@ -344,7 +344,7 @@ function Header() {
                         </Link>
                       </li>
 
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -358,7 +358,7 @@ function Header() {
                         >
                           Get Alerts
                         </Link>
-                      </li>
+                      </li> */}
 
                       <div className="dropdown">
                         <Link
@@ -419,7 +419,7 @@ function Header() {
                           // to="https://store.shibnobi.com/"
                           // target={"_blank"}
                         >
-                          Gas guzzlrs Store
+                           Store
                         </Link>
                       </li>
 

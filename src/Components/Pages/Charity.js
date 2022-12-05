@@ -21,7 +21,7 @@ function Charity() {
                                 <input type="text" name="" placeholder="Filter auctions for make, model, category…"/>
                             </li>
                             <li className="">
-                                <button type="button" className="gry_btn"><i className="fa-solid fa-star mr-2"></i> Watched</button>
+                                <button type="button" className="gry_btn"><i className="fa-solid fa-heart mr-2"></i> Watched</button>
                             </li>
                             <li className="d-flex">
                                 <button type="button" className="gry_btn gridView active"><img src={icGrid}/></button>
@@ -44,7 +44,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_01}/>
                             </div>
                             <div className="card_postInfo">
@@ -60,7 +60,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_02}/>
                             </div>
                             <div className="card_postInfo">
@@ -76,7 +76,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_03}/>
                             </div>
                             <div className="card_postInfo">
@@ -92,7 +92,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_04}/>
                             </div>
                             <div className="card_postInfo">
@@ -108,7 +108,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_05}/>
                             </div>
                             <div className="card_postInfo">
@@ -124,7 +124,7 @@ function Charity() {
                     <div className="col-12 col-md-6 pb-3">
                         <div className="card_post">
                             <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-star"></i></button>
+                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
                                 <img src={img_06}/>
                             </div>
                             <div className="card_postInfo">

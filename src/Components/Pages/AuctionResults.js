@@ -95,7 +95,7 @@ function AuctionResults() {
                     <div className="card_postImg">
                       <div className="card_postImg_labe">Popular</div>
                       <button type="button" className="watchedIc">
-                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-heart"></i>
                       </button>
                       <a href="detail">
                         {" "}
@@ -130,7 +130,7 @@ function AuctionResults() {
                     <div className="card_postImg">
                       <div className="card_postImg_labe">Popular</div>
                       <button type="button" className="watchedIc">
-                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-heart"></i>
                       </button>
                       <a href={`detail/${data.id}`}>
                         {" "}
