@@ -14,8 +14,10 @@ function Auctionlive() {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       if (response.data.status === 200 && response.data.data.length > 0) {
-        setauctions(response.data.data);
-        setFilteredUsers(response.data.data);
+        const newData = response.data.data.reverse();
+        // console.log("111", newData.reverse());
+        setauctions(newData.reverse());
+        setFilteredUsers(newData.reverse());
       }
     } catch (err) {
       console.log(err);

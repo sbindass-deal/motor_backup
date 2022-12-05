@@ -215,8 +215,11 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   };
   const detailsOnChange = (e) => {
-    const Value = e.target.value;
+    let Value = e.target.value;
     const Name = e.target.name;
+    if (Name === "reserveAmount" || Name === "documentFee") {
+      Value = e.target.value.replace(/\D/g, "");
+    }
     setDetailstab({ ...detailstab, [Name]: Value });
   };
   const detailsSubmitHandler = (e) => {
@@ -291,7 +294,8 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, iname, phone } = information;
     let d = new Date();
-    d.setHours(d.getHours() + 24);
+    d.setHours(d.getHours() + 2);
+    d.setMinutes(d.getMinutes() + 5);
     // console.log("addEnd Time", d.toLocaleString());
 
     e.preventDefault();
@@ -594,6 +598,8 @@ const VechilesRegistraion = () => {
                             <input
                               value={namefield.name}
                               onChange={handleNameField}
+                              minLength={2}
+                              maxLength={31}
                               type="text"
                               name="name"
                               placeholder="Your name"
@@ -639,6 +645,8 @@ const VechilesRegistraion = () => {
                               onChange={handleNameField}
                               name="make"
                               type="text"
+                              minLength={2}
+                              maxLength={31}
                               className="field"
                               required
                             />
@@ -650,6 +658,8 @@ const VechilesRegistraion = () => {
                             <input
                               value={namefield.model}
                               onChange={handleNameField}
+                              minLength={2}
+                              maxLength={31}
                               name="model"
                               type="text"
                               className="field"
@@ -687,6 +697,8 @@ const VechilesRegistraion = () => {
                               onChange={handleNameField}
                               type="text"
                               name="city"
+                              minLength={2}
+                              maxLength={31}
                               placeholder="Enter"
                               className="field"
                               required
@@ -747,6 +759,8 @@ const VechilesRegistraion = () => {
                                   value={namefield.providelink}
                                   onChange={handleNameField}
                                   type="url"
+                                  minLength={2}
+                                  maxLength={200}
                                   name="providelink"
                                   placeholder="Enter"
                                   className="field"
@@ -800,6 +814,8 @@ const VechilesRegistraion = () => {
                                 value={namefield.dealership}
                                 onChange={handleNameField}
                                 type="text"
+                                minLength={2}
+                                maxLength={200}
                                 name="dealership"
                                 placeholder="Enter"
                                 className="field"
@@ -839,6 +855,8 @@ const VechilesRegistraion = () => {
                             <textarea
                               value={namefield.videolink}
                               onChange={handleNameField}
+                              minLength={2}
+                              maxLength={200}
                               name="videolink"
                               className="field"
                               required
@@ -934,6 +952,8 @@ const VechilesRegistraion = () => {
                               onChange={basicFactOnChange}
                               type="text"
                               name="vin"
+                              minLength={2}
+                              maxLength={41}
                               placeholder="Enter"
                               className="field"
                               required
@@ -1054,6 +1074,8 @@ const VechilesRegistraion = () => {
                             <input
                               value={basicfact.brandandmodel}
                               onChange={basicFactOnChange}
+                              minLength={2}
+                              maxLength={41}
                               name="brandandmodel"
                               type="text"
                               placeholder="Ex. Michelin Pilot Sport"
@@ -1069,6 +1091,8 @@ const VechilesRegistraion = () => {
                             onChange={basicFactOnChange}
                             name="wheels"
                             type="text"
+                            minLength={2}
+                            maxLength={31}
                             placeholder="wheels"
                             className="field"
                             required
@@ -1085,6 +1109,8 @@ const VechilesRegistraion = () => {
                               onChange={basicFactOnChange}
                               type="text"
                               name="sizetires"
+                              minLength={2}
+                              maxLength={31}
                               placeholder="Ex. 305/70R18"
                               className="field"
                               required
@@ -1131,6 +1157,8 @@ const VechilesRegistraion = () => {
                                 value={basicfact.otherTruckTitle}
                                 onChange={basicFactOnChange}
                                 type="text"
+                                minLength={2}
+                                maxLength={41}
                                 name="otherTruckTitle"
                                 placeholder="vehicle title"
                                 className="field"
@@ -1167,6 +1195,8 @@ const VechilesRegistraion = () => {
                                 onChange={basicFactOnChange}
                                 type="text"
                                 name="otherStatus"
+                                minLength={2}
+                                maxLength={41}
                                 placeholder="vehicle title"
                                 className="field"
                                 required
@@ -1322,6 +1352,8 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 type="text"
                                 name="truckHistory"
+                                minLength={2}
+                                maxLength={200}
                                 placeholder="Enter vehicle history"
                                 className="field"
                                 required
@@ -1356,6 +1388,8 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 type="text"
                                 name="rustDetails"
+                                minLength={2}
+                                maxLength={41}
                                 placeholder="Enter rust"
                                 className="field"
                                 required
@@ -1409,6 +1443,8 @@ const VechilesRegistraion = () => {
                               <input
                                 value={detailstab.modificationOnTrck}
                                 onChange={detailsOnChange}
+                                minLength={2}
+                                maxLength={200}
                                 type="text"
                                 name="modificationOnTrck"
                                 placeholder="Enter modifications"
@@ -1509,6 +1545,8 @@ const VechilesRegistraion = () => {
                               value={detailstab.issuesorproblems}
                               onChange={detailsOnChange}
                               name="issuesorproblems"
+                              minLength={2}
+                              maxLength={200}
                               className="field"
                               required
                             ></textarea>
@@ -1527,6 +1565,8 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="moreDescription"
                               className="field"
+                              minLength={2}
+                              maxLength={200}
                               placeholder="Ex. June 2017: clutch replaced, May 2018: tires replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
                             ></textarea>
@@ -1641,6 +1681,8 @@ const VechilesRegistraion = () => {
                               value={detailstab.shibnobiabout}
                               onChange={detailsOnChange}
                               name="shibnobiabout"
+                              minLength={2}
+                              maxLength={200}
                               className="field"
                               required
                             ></textarea>
@@ -1671,7 +1713,9 @@ const VechilesRegistraion = () => {
                               <input
                                 value={detailsInfo.reserveAmount}
                                 onChange={detailsOnChange}
-                                type="number"
+                                type="text"
+                                maxLength={10}
+                                minLength={1}
                                 name="reserveAmount"
                                 placeholder="Enter"
                                 className="field"
@@ -1717,7 +1761,9 @@ const VechilesRegistraion = () => {
                             <input
                               value={detailstab.documentFee}
                               onChange={detailsOnChange}
-                              type="number"
+                              type="text"
+                              minLength={1}
+                              maxLength={10}
                               name="documentFee"
                               placeholder="USD $"
                               className="field"
