@@ -121,7 +121,7 @@ function CarRaffle() {
             <div className="col-12 col-md-8 col-lg-8">
               <div className="orangeCard mb-4">
                 <div className="row">
-                  <div className="col-12 col-md-7">
+                  <div className="col-12 col-md-5">
                     <div
                       id="adsSlide"
                       className="carousel slide"
@@ -162,7 +162,7 @@ function CarRaffle() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 col-md-5">
+                  <div className="col-12 col-md-7">
                     <div className="" key={showLotary.id}>
                       {/* <h5 className="m-0">Lottery Prize</h5> */}
                       {/* <div className="lotteryPriceNumber">
@@ -174,48 +174,53 @@ function CarRaffle() {
                       </div> */}
 
                       <div className="counterCol">
-                        <h5>Countdown to the next draw</h5>
-                        <div id="clockdiv">
-                          <div>
+                        <h5 style={{textAlign:"center"}}>Countdown to the next draw</h5>
+                        <div className="clockTimer" id="clockdiv">
+                          <div className="timerBg">
                             <span className="days" id="day">
-                              0{days}
+                              {/* 0{days} */}
+                              00
                             </span>
                             <div className="smalltext">Days</div>
                           </div>
-                          <div>
+                          <div className="timerBg">
                             <span className="hours" id="hour">
-                              {hours < 10 ? 0 : ""}
-                              {hours}
+                              {/* {hours < 10 ? 0 : ""}
+                              {hours} */}
+                              00
                             </span>
                             <div className="smalltext">Hours</div>
                           </div>
-                          <div>
+                          <div className="timerBg">
                             <span className="minutes" id="minute">
-                              {minutes < 10 ? 0 : ""}
-                              {minutes}
+                              {/* {minutes < 10 ? 0 : ""}
+                              {minutes} */}
+                              00
                             </span>
                             <div className="smalltext">Minutes</div>
                           </div>
-                          <div>
+                          <div className="timerBg">
                             <span className="seconds" id="second">
-                              {seconds < 10 ? 0 : ""}
-                              {seconds}
+                              {/* {seconds < 10 ? 0 : ""}
+                              {seconds} */}
+                              00
                             </span>
                             <div className="smalltext">Seconds</div>
                           </div>
                         </div>
+                        
                         {showLotary.description ? (
                           <p className="py-4">
                             {showLotary.description && !showReadMore
                               ? showLotary.description.substr(0, 100)
                               : showLotary.description}
-                            <button
-                              type="button"
+                            <p
+                              type="text"
                               onClick={() => setshowReadMore(!showReadMore)}
-                              className="btn readMoreBtn mt-3"
+                              className="rMore mt-3"
                             >
                               {showReadMore ? "Read Less" : "Read More"}
-                            </button>
+                            </p>
                           </p>
                         ) : (
                           ""
