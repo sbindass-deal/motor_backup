@@ -742,16 +742,21 @@ function Detail() {
                     <h5>PHOTO GALLERY</h5>
                     <div className="fancyCol">
                       {vehicleImage.length > 0 ? (
-                        <img
+                        vehicleImage.map((curImg) => {
+                          return(
+                            <img
                           src={
                             process.env.REACT_APP_URL +
                             "/" +
-                            vehicleImage[0].imagePath +
+                            curImg.imagePath +
                             "/" +
-                            vehicleImage[0].imageName
+                            curImg.imageName
                           }
                           alt=""
                         />
+
+                          )
+                        })
                       ) : null}
                     </div>
                     {/* <button

@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.b4fc8a81.css",
-    "main.js": "/static/js/main.afe0d63f.js",
+    "main.css": "/static/css/main.142a58fd.css",
+    "main.js": "/static/js/main.18cbd2c8.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
     "static/media/about-2.jpeg": "/static/media/about-2.22ccb1cfa96bceb1548e.jpeg",
     "static/media/bgImg_01.jpg": "/static/media/bgImg_01.26a3479bdc7930909428.jpg",
     "static/media/bgImg_02.jpg": "/static/media/bgImg_02.228531a01e0bfabd1cd1.jpg",
-    "static/media/store-hero.png": "/static/media/store-hero.f55153872acce8c05f6d.png",
     "static/media/HIW2.jpg": "/static/media/HIW2.35354230cb5e47ee678e.jpg",
+    "static/media/store-hero.png": "/static/media/store-hero.d8575397672b39dc2b05.png",
     "static/media/about-3.jpg": "/static/media/about-3.07577c52c7976dfbea20.jpg",
     "static/media/howItWork.jpg": "/static/media/howItWork.5ca8eae483a1f31ab7f2.jpg",
     "static/media/img_005.jpg": "/static/media/img_005.6c5497e60fe806b031d2.jpg",
@@ -65,12 +65,12 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.b4fc8a81.css.map": "/static/css/main.b4fc8a81.css.map",
-    "main.afe0d63f.js.map": "/static/js/main.afe0d63f.js.map",
+    "main.142a58fd.css.map": "/static/css/main.142a58fd.css.map",
+    "main.18cbd2c8.js.map": "/static/js/main.18cbd2c8.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4fc8a81.css",
-    "static/js/main.afe0d63f.js"
+    "static/css/main.142a58fd.css",
+    "static/js/main.18cbd2c8.js"
   ]
 }

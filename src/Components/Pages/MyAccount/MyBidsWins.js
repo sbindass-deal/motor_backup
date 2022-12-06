@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 import car_01 from "../../../Assets/images/car_01.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -31,8 +32,15 @@ function MyBidsWins() {
       )
 
       .then((response) => {
-        setData(response.data.data);
-        console.log(response.data.data);
+        const d = response.data.data;
+        let uniqueObjArray = [
+          ...new Map(
+            response.data.data.map((item) => [item["id"], item])
+          ).values(),
+        ];
+        console.log("hello", uniqueObjArray);
+
+        setData(uniqueObjArray.reverse());
       });
   }, []);
   useEffect(() => {

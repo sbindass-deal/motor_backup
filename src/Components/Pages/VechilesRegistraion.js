@@ -1353,7 +1353,7 @@ const VechilesRegistraion = () => {
                                 type="text"
                                 name="truckHistory"
                                 minLength={2}
-                                maxLength={200}
+                                maxLength={100}
                                 placeholder="Enter vehicle history"
                                 className="field"
                                 required
@@ -1444,7 +1444,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.modificationOnTrck}
                                 onChange={detailsOnChange}
                                 minLength={2}
-                                maxLength={200}
+                                maxLength={100}
                                 type="text"
                                 name="modificationOnTrck"
                                 placeholder="Enter modifications"
@@ -1546,7 +1546,7 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="issuesorproblems"
                               minLength={2}
-                              maxLength={200}
+                              maxLength={100}
                               className="field"
                               required
                             ></textarea>
