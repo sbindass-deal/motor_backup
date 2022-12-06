@@ -11,7 +11,8 @@ function Store() {
       // const filteredData = response.data.data.filter(
       //   (item) => item.displayInShowroom === "Yes"
       // );
-      setVehicleData(response.data.data);
+      const newData = response.data.data.reverse();
+      setVehicleData(newData);
     } catch (err) {
       console.log(err);
     }

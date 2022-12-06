@@ -83,7 +83,22 @@ function Auctionlive() {
 
                       setauctions(
                         filteredUsers
-                          .filter((data) => data.name.includes(e.target.value))
+                          .filter(
+                            (data) =>
+                              data.make
+                                .toLowerCase()
+                                .includes(e.target.value) ||
+                              data.make
+                                .toUpperCase()
+                                .includes(e.target.value) ||
+                              data.model
+                                .toLowerCase()
+                                .includes(e.target.value) ||
+                              data.model
+                                .toUpperCase()
+                                .includes(e.target.value) ||
+                              data.year.toUpperCase().includes(e.target.value)
+                          )
                           .map((data) => data)
                       );
                     }}

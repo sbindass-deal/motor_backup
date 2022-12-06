@@ -815,7 +815,7 @@ const VechilesRegistraion = () => {
                                 onChange={handleNameField}
                                 type="text"
                                 minLength={2}
-                                maxLength={200}
+                                maxLength={50}
                                 name="dealership"
                                 placeholder="Enter"
                                 className="field"
@@ -953,7 +953,7 @@ const VechilesRegistraion = () => {
                               type="text"
                               name="vin"
                               minLength={2}
-                              maxLength={41}
+                              maxLength={31}
                               placeholder="Enter"
                               className="field"
                               required
@@ -1075,7 +1075,7 @@ const VechilesRegistraion = () => {
                               value={basicfact.brandandmodel}
                               onChange={basicFactOnChange}
                               minLength={2}
-                              maxLength={41}
+                              maxLength={31}
                               name="brandandmodel"
                               type="text"
                               placeholder="Ex. Michelin Pilot Sport"
@@ -1158,7 +1158,7 @@ const VechilesRegistraion = () => {
                                 onChange={basicFactOnChange}
                                 type="text"
                                 minLength={2}
-                                maxLength={41}
+                                maxLength={31}
                                 name="otherTruckTitle"
                                 placeholder="vehicle title"
                                 className="field"
@@ -1196,7 +1196,7 @@ const VechilesRegistraion = () => {
                                 type="text"
                                 name="otherStatus"
                                 minLength={2}
-                                maxLength={41}
+                                maxLength={31}
                                 placeholder="vehicle title"
                                 className="field"
                                 required

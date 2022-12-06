@@ -74,15 +74,9 @@ function SearchModal({ handleCloseModal, showSearchModal }) {
               </button>
             </form>
             <div>
-              {searchData
-                .filter(
-                  (item) =>
-                    item.name.toLowerCase().includes(searchValue) ||
-                    item.name.toUpperCase().includes(searchValue)
-                )
-                .map((curElem, i) => {
-                  return <p key={i}>{curElem.name}</p>;
-                })}
+              {searchData.map((curElem, i) => {
+                return <p key={i}>{curElem.name}</p>;
+              })}
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function AccountInfo() {
   const reduxValue = useSelector((data) => data.login.user);
-
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
