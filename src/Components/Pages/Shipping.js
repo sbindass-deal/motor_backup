@@ -5,7 +5,7 @@ import men_face from "../../Assets/images/men-face.jpg";
 import men_face2 from "../../Assets/images/men-face2.webp";
 import men_face3 from "../../Assets/images/men-face3.jpg";
 import men_face4 from "../../Assets/images/men-face4.jfif";
-
+import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 function Shipping() {
   return (
     <div>
@@ -17,7 +17,7 @@ function Shipping() {
                 <div className="row">
                   <div className="col-12 pb-3">
                     <h4>Shipping Calculator</h4>
-                    <p>Enter your information below to get a quote.</p>
+                    <p>Enter your information below to get a Pay now.</p>
                   </div>
                 </div>
                 <div className="row row_gap_5">
@@ -100,7 +100,7 @@ function Shipping() {
                   </div>
                   <div className="col-12 col-sm-12 col-md-12">
                     <button type="button" className="gry_btn w-full">
-                      GET QUOTE
+                      GET Pay now
                     </button>
                   </div>
                 </div>
@@ -110,6 +110,7 @@ function Shipping() {
               <div className="row">
               <div className="col-12 col-md-12 pb_40">
                 <div className="sallerBox mb-20">
+               
                   <div className="sellerInfo">
                     <p className="sallerName">Saller name</p>
                     <p className="saller_price">$2000</p>
@@ -117,11 +118,12 @@ function Shipping() {
                   </div>
                   <div className="timeandbtn">
                     <p>1 Day </p>
-                    <button className="btn">Quote</button>
+                    <button className="btn">Pay now</button>
                   </div>
 
                 </div>
                 <div className="sallerBox mb-20">
+                  
                   <div className="sellerInfo">
                     <p className="sallerName">Saller name</p>
                     <p className="saller_price">$2000</p>
@@ -129,11 +131,12 @@ function Shipping() {
                   </div>
                   <div className="timeandbtn">
                     <p>1 Day </p>
-                    <button className="btn">Quote</button>
+                    <button className="btn">Pay now</button>
                   </div>
 
                 </div>
                 <div className="sallerBox mb-20">
+               
                   <div className="sellerInfo">
                     <p className="sallerName">Saller name</p>
                     <p className="saller_price">$2000</p>
@@ -141,7 +144,7 @@ function Shipping() {
                   </div>
                   <div className="timeandbtn">
                     <p>1 Day </p>
-                    <button className="btn">Quote</button>
+                    <button className="btn">Pay now</button>
                   </div>
 
                 </div>

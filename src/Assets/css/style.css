@@ -35,7 +35,7 @@ a {
 
 a:hover,
 a:active{
-  color: #ef6031;
+  color: #f7931a;
 }
 
 h1,
@@ -103,7 +103,7 @@ footer {
 }
 hr{border-color: #333;}
 
-.link{color: #ef6031 !important;}
+.link{color: #f7931a !important;}
 .link:hover{text-decoration: underline !important;}
 
 .ptb_20{padding-top: 20px; padding-bottom: 20px;}
@@ -156,8 +156,8 @@ img.addBanner {
 .heroText{text-align: center; padding: 50px 0px;}
 .heroText h1{margin-bottom: 30px;}
 
-.btn{color: #fff; font-size: 16px; font-weight: 700; text-transform: uppercase; background: #ef6031; border-radius: 50px; padding: 12px 40px; border: none;}
-.btn:hover{background-color: #fff; color: #ef6031;}
+.btn{color: #fff; font-size: 16px; font-weight: 700; text-transform: uppercase; background: #f7931a; border-radius: 50px; padding: 12px 40px; border: none;}
+.btn:hover{background-color: #fff; color: #f7931a;}
 .btn:focus{outline: none; box-shadow: none;}
 
 .scrollDownIc{position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); background-color: transparent; border: none; z-index: 9;}
@@ -167,7 +167,7 @@ img.addBanner {
 .card_post{}
 .card_postImg{width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;}
 .watchedIc{font-size: 16px; color: #fff; position: absolute; top: 6px; right: 6px; background-color: rgba(0, 0, 0, 0.2); padding: 5px; border-radius: 50px; border: none; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;}
-.watchedIc:hover{color: #ef6031;}
+.watchedIc:hover{color: #f7931a;}
 .card_postImg img{min-width: 100%; min-height: 100%; object-fit: cover;}
 .card_postInfo{padding: 25px 0px;}
 .card_postInfo h4{}
@@ -228,12 +228,12 @@ img.addBanner {
 
 .priceDateList{display: flex; flex-wrap: wrap; align-items: center;}
 .priceDateList li{margin-right: 15px; margin-bottom: 5px;}
-.price__{font-size: 24px; color: #ef6031; font-weight: 600;}
+.price__{font-size: 24px; color: #f7931a; font-weight: 600;}
 .Date__{font-size: 14px; opacity: 0.3;}
 .Date__ svg{margin-right: 4px;}
 
 .title_combo{display: flex; flex-wrap: wrap; align-items: center;}
-.title_combo span{font-size: 14px; color: #ef6031; font-weight: 600; margin-left: 20px;}
+.title_combo span{font-size: 14px; color: #f7931a; font-weight: 600; margin-left: 20px;}
 
 .title_Center{justify-content: center;}
 .title_Center span{width: 100%; padding-top: 10px;}
@@ -257,12 +257,12 @@ section.bgHolder{min-height: 500px;}
 
 .post_labelList{display: flex; flex-wrap: wrap; margin-bottom: 7px;}
 .post_labelList li{font-size: 12px; color: #fff; margin-right: 20px; margin-bottom: 7px; display: inline-flex; align-items: center;}
-.post_labelList li svg{color: #ef6031; font-size: 14px; margin-right: 5px;}
+.post_labelList li svg{color: #f7931a; font-size: 14px; margin-right: 5px;}
 
 
 footer{background: #090808; padding-top: 55px;}
 footer h6{position: relative; padding-bottom: 15px; margin-bottom: 15px;}
-footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; background: #ef6031; bottom: 0; left: 0;}
+footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; background: #f7931a; bottom: 0; left: 0;}
 .fLinks{}
 .fLinks li{padding: 5px 0px;}
 .fLinks li a{}
@@ -283,7 +283,7 @@ footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; back
 .searchForm{display: flex; position: relative;}
 .searchForm input{width: 100%; color: #fff; font-size: 20px; padding: 15px; border: none; border-bottom: 1px rgba(255, 255, 255, 0.2) solid; background-color: transparent; padding-right: 70px;}
 .searchForm button{background-color: transparent; padding: 15px; color: #fff; font-size: 20px; border: none; position: absolute; bottom: 0; right: 0;}
-.searchForm button:hover{color: #ef6031;}
+.searchForm button:hover{color: #f7931a;}
 .searchForm input:focus{border-color: #fff;}
 
 .searchModal .close{color: #fff; font-size: 24px; position: absolute; top: 0; right: 0; padding: 10px;
@@ -297,7 +297,7 @@ footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; back
 .gry_btn img{width: 16px;}
 .gry_btn svg{font-size: 16px;}
 .gry_btn:hover,
-.gry_btn.active{color: #fff; background: #ef6031; border-color: #ef6031;}
+.gry_btn.active{color: #fff; background: #f7931a; border-color: #f7931a;}
 .post_select{color: #fff; padding: 8px; background-color: transparent; width: 160px;}
 .post_select option{background-color: #111;}
 
@@ -312,7 +312,7 @@ footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; back
 .dropdownCol .gry_btn{font-size: 12px; padding: 5px 8px; height: auto; border-radius: 5px;}
 .dropdownCol .dropdown-menu{background-color: #222;}
 .dropdownCol .dropdown-item{font-size: 12px; padding: 4px 8px; color: #fff;}
-.dropdownCol .dropdown-item:hover{color: #ef6031; background-color: #222;}
+.dropdownCol .dropdown-item:hover{color: #f7931a; background-color: #222;}
 
 .w-full{width: 100%;}
 
@@ -331,7 +331,7 @@ footer h6:before{position: absolute; content: ''; width: 40px; height: 3px; back
 
 .bidList_{margin-bottom: 15px; display: flex; flex-wrap: wrap;}
 .bidList_ li{display: inline-flex; flex-wrap: wrap; width: 50%; padding: 10px 15px 0px 0px;}
-.bidList_ li label{width: 100%; margin: 0px; color: #ef6031; font-size: 12px;}
+.bidList_ li label{width: 100%; margin: 0px; color: #f7931a; font-size: 12px;}
 
 .bid_bottom{display: flex; justify-content: space-between; align-items: center; font-size: 12px;}
 .bid_viewWatch{display: flex; justify-content: flex-end; padding: 10px 0px;}
@@ -359,7 +359,7 @@ select.field option{background-color: #111;}
 .label__List>li{font-size: 12px;}
 .label__List>li .label__{font-weight: 500; }
 .label__List>li .label__Text{}
-.label__List>li .label__Text a{color: #ef6031;}
+.label__List>li .label__Text a{color: #f7931a;}
 
 .listStyle_disc{padding-left: 15px; margin-bottom: 10px;}
 .listStyle_disc li{list-style: disc; margin-bottom: 5px;}
@@ -393,7 +393,7 @@ select.field option{background-color: #111;}
 .modal-content{background-color: #222;}
 .modal-header .close{color: #fff;}
 .modal {background: rgba(0,0,0,0.7);}
-.modal a{color: #ef6031;}
+.modal a{color: #f7931a;}
 .modal a:hover{text-decoration: underline !important;}
 
 /* width */
@@ -413,7 +413,7 @@ select.field option{background-color: #111;}
     padding: 30px;
     background-color: #111;}
 
-.starReview{color: #ef6031; margin-bottom: 5px;}
+.starReview{color: #f7931a; margin-bottom: 5px;}
 
 .card_postImg_200{height: 200px !important;}
 .makes_Slide .card_postImg{height: 200px;}
@@ -421,7 +421,7 @@ select.field option{background-color: #111;}
 .makes_Slide .card_postInfo h6{font-weight: 500;}
 
 .sideBar__{}
-.sideBar__ .active{color: #ef6031;}
+.sideBar__ .active{color: #f7931a;}
 .sideBar__ li {padding: 8px 0px;}
 .sideBar__ li a{}
 
@@ -430,7 +430,7 @@ select.field option{background-color: #111;}
 .labelList_label{width: 120px; min-width: 120px; padding-right: 15px; position: relative;}
 .labelList_label:after{position: absolute; content: ':'; top: 0; right: 0;}
 .labelList_text{padding-left: 20px;}
-.labelList_text a{font-size: 12px; color: #ef6031;}
+.labelList_text a{font-size: 12px; color: #f7931a;}
 .labelList_text a:hover{text-decoration: underline !important;}
 
 
@@ -542,8 +542,8 @@ select.field option{background-color: #111;}
 .plan_cardFooter .gry_btn{width: 100%; border-radius: 8px;}
 
 .plan_card:hover .plan_cardHead h4{background-color: #111;}
-.plan_Plus .plan_cardHead h4{background-color: #ef6031;}
-.plan_card.plan_Plus:hover:before{background-color: #ef6031;}
+.plan_Plus .plan_cardHead h4{background-color: #f7931a;}
+.plan_card.plan_Plus:hover:before{background-color: #f7931a;}
 .plan_WhiteGlove .plan_cardHead h4{background-color: #F44236;}
 .plan_card.plan_WhiteGlove:hover:before{background-color: #F44236;}
 
@@ -566,7 +566,7 @@ select.field option{background-color: #111;}
 }
 .HIW_list li:last-child:before{display: none;}
 
-.HIW_list li:hover:after{background-color: #ef6031;}
+.HIW_list li:hover:after{background-color: #f7931a;}
 
 
 .dotList{padding-left: 20px;}
@@ -580,7 +580,7 @@ select.field option{background-color: #111;}
 .orderInfo{padding: 10px 15px; width: calc(100% - 200px);}
 .orderInfo h5{margin-bottom: 5px;}
 .price__{font-size: 18px; margin-bottom: 10px;}
-.price__ svg{margin-right: 3px; color: #ef6031;}
+.price__ svg{margin-right: 3px; color: #f7931a;}
 
 .orderInfo .gry_btn{font-size: 12px; height: auto; padding: 8px 15px;}
 
@@ -643,7 +643,7 @@ select.field option{background-color: #111;}
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
-
+.rMore { color: black; border-top: 1px solid #b8782b; padding-top: 10px; cursor: pointer;}
 /*======lightTheme=======*/
 
 .lightTheme{}
@@ -662,7 +662,7 @@ body.lightTheme{background-color: #fff; color: #000;}
 
 .lightTheme a:hover,
 .lightTheme a:active{
-  color: #ef6031;
+  color: #f7931a;
 }
 
 .lightTheme .btn:hover{color: #fff; background-color: #000;}
@@ -711,7 +711,7 @@ body.lightTheme{background-color: #fff; color: #000;}
 .row_gapNone .blogPostText{padding: 30px 20px; max-width: 500px; margin: 0 auto;}
 
 .heroSectionSlide{position: relative;}
-.heroBanner{background-color: #ef6031; text-align: center; position: relative;}
+.heroBanner{background-color: #f7931a; text-align: center; position: relative;}
 .heroBanner:before{position: absolute;content: ''; width: 100%; height: 70px; background: #fff; left: 0; bottom: 0;}
 .heroBanner:after{position: absolute; content: 'Vintage car'; color: #fff; font-size: 14vw; line-height: 0.7; text-align: center; text-transform: uppercase; font-weight: bold; bottom: 70px; left: 0px; width: 100%; opacity: 0.1;}
 .heroBanner .heroText_2{padding: 70px 20px 90px;}
@@ -734,7 +734,7 @@ body.lightTheme{background-color: #fff; color: #000;}
 
 .hideGalleryGroup{display: none;}
 .fancyCol .seeMoreTag{background-color: rgba(0, 0, 0, 0.8); color: #fff; font-size: 12px; padding: 6px 12px; position: absolute; bottom: 0; right: 0; }
-.fancyCol:hover .seeMoreTag{color: #fff; background: #ef6031;}
+.fancyCol:hover .seeMoreTag{color: #fff; background: #f7931a;}
 
 
 .divSticky{position: sticky; top: 0;}
@@ -758,9 +758,9 @@ body.lightTheme{background-color: #fff; color: #000;}
     text-align: center;
     line-height: 26px; box-shadow: none; color: #fff;}
 
-.pagination .page-link:hover{background-color: #ef6031;}
+.pagination .page-link:hover{background-color: #f7931a;}
 .page-item.disabled .page-link{background-color: #111; color: #555; border-color: #111;}
-.page-item.active .page-link {background-color: #ef6031; border-color: #ef6031;}
+.page-item.active .page-link {background-color: #f7931a; border-color: #f7931a;}
 
 .aboutSection,
 .howItWorkSection{padding: 50px 0px;
@@ -789,7 +789,7 @@ body.lightTheme{background-color: #fff; color: #000;}
 .bidsInfo p{margin: 0px; opacity: 0.5;}
 .bidsLabelList{display: flex; flex-wrap: wrap;}
 .bidsLabelList li{margin-right: 10px; margin-bottom: 8px;}
-.bidsLabelList li svg{margin-right: 3px; color: #ef6031;}
+.bidsLabelList li svg{margin-right: 3px; color: #f7931a;}
 
 
 
@@ -823,10 +823,10 @@ body.lightTheme{background-color: #fff; color: #000;}
 
 
 .sideBar__{}
-.sideBar__ .active{color: #ef6031;}
+.sideBar__ .active{color: #f7931a;}
 .sideBar__ li {width: 100%;}
 .sideBar__ li a.nav-link{}
-.sideBar__ li a.nav-link.active{background-color: #ef6031; color: #fff;}
+.sideBar__ li a.nav-link.active{background-color: #f7931a; color: #fff;}
 
 form .gry_btn{
   min-width: 130px;
@@ -867,7 +867,7 @@ form .gry_btn{
   font-weight: 500;
   border: none;
   outline: none;
-  background: #ef6031;
+  background: #f7931a;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -883,7 +883,7 @@ form .gry_btn{
 
 .card_postImg_labe{position: absolute; left: 0; top: 0; padding: 5px  8px; background: rgba(246, 129, 28, 0.9); color: #fff; font-size: 10px; font-weight: 600; text-transform: uppercase;}
 
-.orangeCard{background-color: #ef6031; border-radius: 16px; padding: 20px;}
+.orangeCard{background-color: #f7931a; border-radius: 16px; padding: 20px;}
 
 .orangeCard h5{font-size: 16px; font-weight: 500;}
 
@@ -1060,7 +1060,7 @@ footer a img { width: 65%;}
 .accordion-item{ padding: 0px 20px;}
 .readMoreBtn{border: 5px solid white;}
 .navActive{ color:#EA5E30;}
-.faList{ color: #EF6031 !important;}
+.faList{ color: #f7931a !important;}
 
 
 /* New Css Nik */
@@ -1084,22 +1084,22 @@ li.nav-item.afterLogin span{animation: blink 1s linear infinite;}
 .nextArrow span.next:after {  background-image: url('../images/ArrowRight.svg'); background-position: center right; top: 5px; right: -10px;}
 .nextArrow span.prev:before, .nextArrow span.next:after { position: relative; content: ''; display: inline-block; width: 80px; height: 20px; background-size: 80px; background-repeat: no-repeat; z-index: 7;}
 .nextArrow span.prev,.nextArrow span.next{ font-size: 18px !important;}
-p.priceDateList span {font-size: 16px; color: #EF6234; font-weight: 600;}
+p.priceDateList span {font-size: 16px; color: #f7931a; font-weight: 600;}
 .card-body.contSec { padding: 1.25rem 0; background: black;}
 .contSec h5.card-title { margin-bottom: 3px;}
 .accordion-item { border-bottom: 1px solid #2e2d2d !important; padding: 0px 20px;}
 
 .toNv a.nav-link:hover, .toNv a.nav-link:active {  color: #000000;}
 .dropdown-content {  background-color: #000000 !important;}
-.dropdown-content a.nav-link:hover { color: #EF6234 !important;}
+.dropdown-content a.nav-link:hover { color: #f7931a !important;}
 
 .secondNavbar .navbar-nav li:hover { border-bottom: 5px solid #f7931a; transition: 0.5s; color: #f7931a;}
 .secondNavbar .navbar-nav li:hover a { color: #f7931a;}
 
 .sellerInfo { width: 70%;}
-p.sallerName { font-size: 18px; font-weight: 600; color: #7e7e7e;}
+p.sallerName { font-size: 18px; font-weight: 600; color: #7e7e7e;margin-bottom: 0;}
 p.saller_price { font-size: 20px; font-weight: 700; color: #f7931a;}
-.timeandbtn { text-align: right;}
+.timeandbtn { text-align: right; width: 20%;}
 .mb-20 { margin-bottom: 20px;}
 .sallerBox {
   width: 100%;
@@ -1108,4 +1108,125 @@ p.saller_price { font-size: 20px; font-weight: 700; color: #f7931a;}
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
+}
+.clockTimer{text-align: center;}
+.clockTimer .timerBg { background: black; margin: 10px; padding: 15px 10px !important; box-shadow: -1px 4px 17px 2px #0000009c;}
+
+.timeandbtn button.btn {
+  width: 86%;
+  padding: 6px;
+  margin-bottom: 0 !important;
+  margin-top: 33%;
+}
+table.showroomCol {
+  width: 100%;
+}
+table.showroomCol tr td {
+  padding: 2px 5px;
+}
+.card_post.store.auction .card_postInfo p {
+  position: absolute;
+  top: 219px;
+  right: 0px;
+  padding: 2px 8px 0px 5px;
+  text-align: right;
+  color: #f7931a;
+}
+.card_post.store.auction{position: relative;}
+.card_post.store.auction:before {
+  content: 'For Auctions';
+  
+  width: 150px;
+  height: 150px;
+  right: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-position: center;
+  z-index: 1;
+}
+.card_post.store.auction:before {
+  content: 'For Auctions';
+  width: 110px;
+  height: 20px;
+  right: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-position: center;
+  z-index: 1;
+  background: #ffc107;
+  text-align: center;
+  color: black;
+  font-size: 12px;
+}
+
+.card_post.store.auction:before {
+  width: 120px;
+  height: 29px;
+  background-color: #f7931a;
+  padding: 0px 2px;
+  text-align: right;
+  font-size: 16px;
+  color: white;
+  
+}
+
+
+table.showroomCol tr td:last-child {
+  text-align: right;
+}
+.card_post.store.auction {
+  border: 1px solid #333131;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+.card_post.store.auction .card_postInfo.pt-3 {
+  padding-bottom: 0;
+}
+
+.storeDetail .carousel-inner {
+  position: relative;
+  width: 380px;
+  overflow: hidden;
+  height: 380px;
+}
+.detailPageContent table tr td:first-child {
+  min-width: 150px !important;
+  border-right: 0.5px solid #313131;
+}
+
+.detailPageContent table tr td {
+  padding: 10px 0;
+  border-bottom: 0.5px solid #313131;
+}
+.detailPageContent table tr td:last-child {
+ padding-left: 15px;
+}
+
+
+
+
+
+.carousel-indicators .carousel-indicator {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 3px;
+  padding: 0;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
+}
+
+.carousel-indicators .carousel-indicator.active {
+  opacity: 1;
 }
