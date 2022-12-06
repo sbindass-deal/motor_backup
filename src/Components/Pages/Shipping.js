@@ -17,7 +17,7 @@ function Shipping() {
                 <div className="row">
                   <div className="col-12 pb-3">
                     <h4>Shipping Calculator</h4>
-                    <p>Enter your information below to get an instant quote.</p>
+                    <p>Enter your information below to get a quote.</p>
                   </div>
                 </div>
                 <div className="row row_gap_5">
@@ -90,8 +90,17 @@ function Shipping() {
                     </div>
                   </div>
                   <div className="col-12 col-sm-12 col-md-12">
+                    <div className="form-group">
+                      <select className="field Saller">
+                        <option value="">Saller one <span>$5000</span></option>
+                        <option value="Saller two">Saller two <span>$3500</span></option>
+                        <option value="Saller three">Saller three <span>$8000</span></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-12">
                     <button type="button" className="gry_btn w-full">
-                      GET INSTANT QUOTE
+                      GET QUOTE
                     </button>
                   </div>
                 </div>
@@ -99,6 +108,44 @@ function Shipping() {
             </div>
             <div className="col-12 col-md-8 col-lg-8">
               <div className="row">
+              <div className="col-12 col-md-12 pb_40">
+                <div className="sallerBox mb-20">
+                  <div className="sellerInfo">
+                    <p className="sallerName">Saller name</p>
+                    <p className="saller_price">$2000</p>
+                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                  </div>
+                  <div className="timeandbtn">
+                    <p>1 Day </p>
+                    <button className="btn">Quote</button>
+                  </div>
+
+                </div>
+                <div className="sallerBox mb-20">
+                  <div className="sellerInfo">
+                    <p className="sallerName">Saller name</p>
+                    <p className="saller_price">$2000</p>
+                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                  </div>
+                  <div className="timeandbtn">
+                    <p>1 Day </p>
+                    <button className="btn">Quote</button>
+                  </div>
+
+                </div>
+                <div className="sallerBox mb-20">
+                  <div className="sellerInfo">
+                    <p className="sallerName">Saller name</p>
+                    <p className="saller_price">$2000</p>
+                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                  </div>
+                  <div className="timeandbtn">
+                    <p>1 Day </p>
+                    <button className="btn">Quote</button>
+                  </div>
+
+                </div>
+              </div>
                 <div className="col-12 col-md-7 ptb_40">
                   <h5>Track your shipment in real time</h5>
                   <p>
@@ -122,43 +169,9 @@ function Shipping() {
                     whenever you need us.
                   </p>
                 </div>
-                <div className="col-12 col-md-5 text-center">
-                  <img src={tracking_mockup} />
-                </div>
+                
               </div>
-              <div className="row ptb_40">
-                <div className="col-12 col-md-5 text-center">
-                  <img src={bListing_Module} />
-                </div>
-                <div className="col-12 col-md-7 ptb_40">
-                  <h5>
-                    The door-to-door vehicle transport solution from Bring a
-                    Trailer.
-                  </h5>
-                  <p>
-                    Bring a Trailer Shipping is our fully integrated vehicle
-                    transport service, available for both Gas guzzlrs Auction
-                    listings and (new!) your own private vehicles in the
-                    contiguous 48 U.S. states. Whether you’re moving, going to
-                    an event, or need a simple solution to ship a vehicle bought
-                    elsewhere, we have you covered. Let Bring a Trailer Shipping
-                    be your trusted partner for all your vehicle transport
-                    needs.
-                  </p>
-                  <br />
-                  <h5>Instant quotes</h5>
-                  <p>
-                    The Shipping Calculator here—or on Gas guzzlrs Auction
-                    listings—lets you quote instant pricing for shipping a
-                    vehicle to your door. The price you see is the price you’ll
-                    pay: no fees, no hassles. Pick between fully enclosed
-                    transport or open transport at a lower cost (motorcycle
-                    shipping is available via enclosed transport only). Won an
-                    auction, but didn’t get a quote before your win? No problem.
-                    Generate a quote anytime on your My Bids & Wins page.
-                  </p>
-                </div>
-              </div>
+              
             </div>
           </div>
 

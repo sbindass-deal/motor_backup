@@ -118,7 +118,7 @@ hr{border-color: #333;}
 
 
 .navbar {padding: 10px 0px;}
-.navbar-nav .nav-link{font-size: 16px; padding: 8px 5px !important;}
+.navbar-nav .nav-link{font-size: 16px; padding: 8px 15px !important;}
 
 .secondNavbar{padding: 6px 0px;}
 .secondNavbar .navbar-nav{width: 100% !important; justify-content: space-between;}
@@ -1070,15 +1070,15 @@ li.nav-item.afterLogin span { font-size: 13px; position: absolute; top: -17px; r
 .secondNavbar .navbar-nav {  justify-content: end;}
 header { height: 103px;border: 1px solid #333;}
 .secondNavbar { padding: 10px 0px; position: relative; right: 0; top: -28px;}
-.toNv:before { content: ''; background: #f7931b; position: absolute; width: 70%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
+.toNv:before { content: ''; background: #f7931b; position: absolute; width: 73%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
 .toNv{position: relative;z-index: 1;}
-.secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 90%; height: 100%; right: -6%; z-index: -1; border-top-left-radius: 50px;}
+.secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 78%; height: 100%; right: -6%; z-index: -1; border-top-left-radius: 50px;}
 .secondNavbar .navbar-nav {position: relative;  height: 43px;}
 a.navbar-brand { position: relative;top: 17px;left: -30px;}
 
 li.nav-item.afterLogin span{animation: blink 1s linear infinite;}
 @keyframes blink{0%{opacity: 0;}50%{opacity: .5;}100%{opacity: 1;}}
-.nextArrow { position: absolute; bottom: -20px; left: calc(50% - 140px);}
+.nextArrow { position: absolute; bottom: -20px; left: calc(50% - 14075px);}
 
 .nextArrow span.prev:before {  background-image: url('../images/ArrowLeft.svg');  background-position: center left;  top: 5px; right: 15px;}
 .nextArrow span.next:after {  background-image: url('../images/ArrowRight.svg'); background-position: center right; top: 5px; right: -10px;}
@@ -1088,3 +1088,24 @@ p.priceDateList span {font-size: 16px; color: #EF6234; font-weight: 600;}
 .card-body.contSec { padding: 1.25rem 0; background: black;}
 .contSec h5.card-title { margin-bottom: 3px;}
 .accordion-item { border-bottom: 1px solid #2e2d2d !important; padding: 0px 20px;}
+
+.toNv a.nav-link:hover, .toNv a.nav-link:active {  color: #000000;}
+.dropdown-content {  background-color: #000000 !important;}
+.dropdown-content a.nav-link:hover { color: #EF6234 !important;}
+
+.secondNavbar .navbar-nav li:hover { border-bottom: 5px solid #f7931a; transition: 0.5s; color: #f7931a;}
+.secondNavbar .navbar-nav li:hover a { color: #f7931a;}
+
+.sellerInfo { width: 70%;}
+p.sallerName { font-size: 18px; font-weight: 600; color: #7e7e7e;}
+p.saller_price { font-size: 20px; font-weight: 700; color: #f7931a;}
+.timeandbtn { text-align: right;}
+.mb-20 { margin-bottom: 20px;}
+.sallerBox {
+  width: 100%;
+  border: 1px solid #ffd5a330;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
