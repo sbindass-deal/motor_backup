@@ -15,9 +15,12 @@ function Auctionlive() {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       if (response.data.status === 200 && response.data.data.length > 0) {
         const newData = response.data.data.reverse();
-        // console.log("111", newData.reverse());
-        setauctions(newData.reverse());
-        setFilteredUsers(newData.reverse());
+        const filteredData = newData.filter(
+          (item) => item.displayInShowroom === "Yes"
+        );
+
+        setauctions(filteredData);
+        setFilteredUsers(filteredData);
       }
     } catch (err) {
       console.log(err);

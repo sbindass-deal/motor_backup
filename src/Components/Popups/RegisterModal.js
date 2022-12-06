@@ -55,8 +55,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
           password: password,
           cpassword: cpassword,
           name: name,
-          phone: phone,
-          delair,
+          mobile: phone,
+          dealer: delair,
         })
         .then((result) => {
           handleCloseReg();
@@ -247,7 +247,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </label>
                   </div>
                 </div>
-                <div className="col-12 col-md-12">
+                {/* <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input
@@ -314,7 +314,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <p className="small">

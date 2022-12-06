@@ -17,7 +17,7 @@ function MyAccountLeftNav() {
             Account Info
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/notifications" ? "active" : ""
@@ -26,7 +26,7 @@ function MyAccountLeftNav() {
           >
             Notifications
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link
             className={` ${location.pathname === "/listing" ? "active" : ""} `}

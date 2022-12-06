@@ -966,7 +966,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Do you want to add on showroom?</label>
+                            <label>Do you want to add on Auction?</label>
                             <select
                               value={basicfact.showroom}
                               onChange={basicFactOnChange}
