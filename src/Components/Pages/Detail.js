@@ -134,7 +134,6 @@ function Detail() {
   const addViews = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createViews", {
-        userId: userId.login.user.id,
         vehicleId: id,
         date: new Date().toString(),
       })
@@ -188,7 +187,6 @@ function Detail() {
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
-        userId: userId.login.user.id,
         vehicleId: id,
         date: new Date().toString(),
       })
@@ -284,7 +282,7 @@ function Detail() {
                     </button>
                   ) : (
                     <>
-                      {userId.login.user.id !== addVehicleUserId && (
+                      {vehicle.sold === "1" && (
                         <button
                           type="button"
                           className="gry_btn active"
@@ -688,7 +686,7 @@ function Detail() {
                           </button>
                         ) : (
                           <>
-                            {userId.login.user.id !== addVehicleUserId && (
+                            {vehicle.sold === "1" && (
                               <button
                                 type="button"
                                 className="gry_btn active"
@@ -794,7 +792,6 @@ function Detail() {
                         axios
                           .post(process.env.REACT_APP_URL + "comments", {
                             vehicleId: id,
-                            userId: userId.login.user.id,
                             bidId: 0,
                             description: inputcomment,
                           })
