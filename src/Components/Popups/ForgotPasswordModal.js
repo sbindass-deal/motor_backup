@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 
 function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -12,11 +12,9 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
   const handleApi = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}/users`, {
-        email,
-      })
+      .get(`${process.env.REACT_APP_URL}forgotpassword`)
       .then((result) => {
-        handleCloseForgPass();
+        // handleCloseForgPass();
         console.log("res", result);
       })
       .catch((error) => {
