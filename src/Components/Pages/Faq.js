@@ -1,6 +1,7 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
 import faq from "../UI/faq";
+import PaymentProcess from "./PaymentProcess";
 
 const Faq = () => {
   return (
@@ -43,7 +44,12 @@ const Faq = () => {
               );
             })}
           </Accordion>
+         
         </div>
+        <div className="col-12 col-md-6">
+          <PaymentProcess/>
+       </div>
+        
       </div>
     </div>
   );

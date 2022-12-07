@@ -55,56 +55,43 @@ h5 {
 	
 }
 @media (max-width: 767px) {
-h1 {
-  font-size: 34px;
-}
-
-h2 {
-  font-size: 28px;
-}
-.scrollDownIc img {
-    width: 22px;
-}
-
+	h1 { font-size: 34px;}
+	h2 { font-size: 28px;}
+	.scrollDownIc img { width: 22px;}
 	.copyRight p{margin-top: 15px;}
 	.mobileOnlyHide{display: none;}
 	.navbar-brand img{height: 40px;}
-
 	.arrowTop_Slide .slide-arrow{bottom: -30px; top: unset;}
-.arrowTop_Slide .prev-arrow{left: calc(50% - 140px); }
-.arrowTop_Slide .next-arrow{right: calc(50% - 140px);} 
-
-.lightTheme .latestBids_Slide .prev-arrow {left: calc(50% - 55px);}
-.lightTheme .latestBids_Slide .next-arrow {right: calc(50% - 55px);}
-
-.title_combo{justify-content: center;}
-.title_combo span{display: block; margin: 0; width: 100%; text-align: center; margin-top: 10px;}
-
-.price__ {
-    font-size: 20px;}
-.card_postImg {height: 250px;}
-.blogPost {
-    height: 250px;
-} 
-
-.btn{font-size: 14px; padding: 12px 25px;}
-
-.bgHolder h1.text-back{color: #fff !important;}
-
-.pt_sm_50{padding-top: 50px;}
-
-.postTopOption{flex-wrap: wrap;}
-
-.postHero {height: 250px;}
-
-.sideBar__{display: flex; overflow: auto; padding-bottom: 8px;}
-.sideBar__ li{white-space: nowrap; padding: 8px;}
-.daily_mail {  padding: 30px 15px;}
-.daily_mail_box button { position: inherit;}
-.daily_mail input { padding: 22px 15px;  margin-bottom: 10px;}
-.makes_Slide.arrowTop_Slide .card_post {width: 100%;}
-ul.bidList_.info_ li {width: 100%;}
-
+	.arrowTop_Slide .prev-arrow{left: calc(50% - 140px); }
+	.arrowTop_Slide .next-arrow{right: calc(50% - 140px);} 
+	.lightTheme .latestBids_Slide .prev-arrow {left: calc(50% - 55px);}
+	.lightTheme .latestBids_Slide .next-arrow {right: calc(50% - 55px);}
+	.title_combo{justify-content: center;}
+	.title_combo span{display: block; margin: 0; width: 100%; text-align: center; margin-top: 10px;}
+	.price__ { font-size: 20px;}
+	.card_postImg {height: 250px;}
+	.blogPost { height: 250px;} 
+	.btn{font-size: 14px; padding: 12px 25px;}
+	.bgHolder h1.text-back{color: #fff !important;}
+	.pt_sm_50{padding-top: 50px;}
+	.postTopOption{flex-wrap: wrap;}
+	.postHero {height: 250px;}
+	.sideBar__{display: flex; overflow: auto; padding-bottom: 8px;}
+	.sideBar__ li{white-space: nowrap; padding: 8px;}
+	.daily_mail {  padding: 30px 15px;}
+	.daily_mail_box button { position: inherit;}
+	.daily_mail input { padding: 22px 15px;  margin-bottom: 10px;}
+	.makes_Slide.arrowTop_Slide .card_post {width: 100%;}
+	ul.bidList_.info_ li {width: 100%;}
+	.toNv {  position: relative; z-index: 1;  padding-top: 40px;}
+	.toNv:before { content: ''; background: #f7931b; position: absolute; width: 100%; height: 100%; right: 0; z-index: -2;  border-top-left-radius: 0px; top: 30px;}
+	a.navbar-brand { position: relative;  top: 17px;  left: -7px;}
+	.slick-slide { margin: 0 0px;}
+	.nextArrow { position: absolute; bottom: -39px;left: calc(50% - 145px);}
+	h1.animate-charcter {font-size: 115px !important;}
+	h1.animate-charcter span {font-size: 30px !important;}
+	img.carGif {width: 100%;}
+	.containerSec {height: 81vh;}
 }
 
 @media (max-width: 575px) {

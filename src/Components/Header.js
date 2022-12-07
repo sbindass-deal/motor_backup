@@ -301,7 +301,10 @@ function Header() {
                             Raffle
                           </Link>
                         ) : (
-                          <Link onClick={handleShow} className="nav-link">
+                          <Link
+                            // onClick={handleShow}
+                            className="nav-link"
+                          >
                             Raffle
                           </Link>
                         )}
@@ -366,12 +369,23 @@ function Header() {
                           Shipping
                         </Link>
                         <div className="dropdown-content">
-                          <Link className="nav-link" to="/shipping">
+                          {/* <Link className="nav-link" to="/shipping"> */}
+                          <a
+                            href="https://www.iecstransport.com/"
+                            target="_blank"
+                          >
                             Get a quote
-                          </Link>
-                          <Link className="nav-link" to="/myshipments">
+                          </a>
+                          {/* </Link> */}
+                          {/* <Link className="nav-link" to="https://www.iecstransport.com/"> */}
+                          <a
+                            href="https://www.iecstransport.com/"
+                            target="_blank"
+                          >
                             My Shipment
-                          </Link>
+                          </a>
+
+                          {/* </Link> */}
                         </div>
                       </div>
 

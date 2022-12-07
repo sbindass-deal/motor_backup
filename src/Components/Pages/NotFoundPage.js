@@ -1,31 +1,20 @@
 import React from "react";
+import '../Pages/NotFoundPage.css'
+import carGif from '../../Assets/images/not_found.gif'
 
 const NotFoundPage = () => {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-          zIndex: "1",
-          top: "0px",
-          bottom: "0px",
-          height: "100vh",
-          width: "100%",
-          backgroundColor: "black",
-        }}
-      >
-        <div className="row">
-          <div className="col-12">
-            <h1 className="text-center" style={{ color: "#EF6031" }}>
-              {" "}
-              404
-              <br /> Page Not Found
-            </h1>
+      <div className="containerSec">
+        <div className="col-lg-12 col-md-12 col-sm-12 ">
+          <div className="inner-content">
+            <h1 className=" animate-charcter">404 <span>Page Not Found</span></h1>
+
+            <img className="carGif" src={carGif}/>
           </div>
+        
         </div>
+        
       </div>
     </>
   );
