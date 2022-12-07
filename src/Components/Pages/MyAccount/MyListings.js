@@ -80,6 +80,21 @@ function MyListings() {
         }
       });
   };
+
+  const handleSoldApi = (id) => {
+    axios
+      .post(process.env.REACT_APP_URL + "sold", {
+        id: id,
+        sold: 0,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setChatMessage("");
+          setChateApiData(res.data.data);
+        }
+      });
+  };
+
   if (vehicleLoding) {
     return (
       <div
@@ -145,7 +160,7 @@ function MyListings() {
                                 <>
                                   <div className="mx-2">
                                     <button
-                                      onClick={() => handleShow(curElem.id)}
+                                      onClick={() => handleSoldApi(curElem.id)}
                                       type="button"
                                       className="gry_btn"
                                     >
