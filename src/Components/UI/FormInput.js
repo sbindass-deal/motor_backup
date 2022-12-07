@@ -15,15 +15,17 @@ const FormInput = (props) => {
         <label>{label}</label>
         <input
           className="field"
+          autoComplete="off"
           {...inputProps}
           onChange={onChange}
           onBlur={handleFocus}
+
           type={props.type ? props.type : "text"}
           onFocus={() =>
             inputProps.name === "confirmPassword" && setFocused(true)
           }
           focused={focused.toString()}
-          autoComplete="off"
+
         />
         <span>{errorMessage}</span>
       </div>
