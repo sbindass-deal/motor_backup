@@ -52,7 +52,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           if (result.data.user) {
             dispatch(auth(result.data.user));
           }
-          notify("Login successfully ! 👍");
+          notify("Sorry you can't login we are working on it! 👍");
           handleClose();
         } else {
           notify("Login fail! Please enter valid userId and password");

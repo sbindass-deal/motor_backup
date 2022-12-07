@@ -12,6 +12,7 @@ import { RWebShare } from "react-web-share";
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
+import StripeCheckout from "react-stripe-checkout";
 
 function CarRaffle() {
   const dispatch = useDispatch();
@@ -111,6 +112,10 @@ function CarRaffle() {
       });
     setInputLotteryNumber("");
     fetchLotaryApiAll();
+  };
+
+  const onToken = (token, addresses) => {
+    console.log(token, addresses);
   };
 
   return (
@@ -260,13 +265,17 @@ function CarRaffle() {
                   </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group">
-                      <button
+                      {/* <button
                         type="button"
                         onClick={logingUser.login ? addTickets : handleLogin}
                         className="btn w-full"
                       >
                         Enter Lottery
-                      </button>
+                      </button> */}
+                      <StripeCheckout
+                        stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                        token={onToken}
+                      />
                     </div>
                   </div>
                 </div>

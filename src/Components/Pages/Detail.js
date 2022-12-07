@@ -741,23 +741,22 @@ function Detail() {
                   <div className="col-12 col-sm-6 pt-4">
                     <h5>PHOTO GALLERY</h5>
                     <div className="fancyCol">
-                      {vehicleImage.length > 0 ? (
-                        vehicleImage.map((curImg) => {
-                          return(
-                            <img
-                          src={
-                            process.env.REACT_APP_URL +
-                            "/" +
-                            curImg.imagePath +
-                            "/" +
-                            curImg.imageName
-                          }
-                          alt=""
-                        />
-
-                          )
-                        })
-                      ) : null}
+                      {vehicleImage.length > 0
+                        ? vehicleImage.map((curImg) => {
+                            return (
+                              <img
+                                src={
+                                  process.env.REACT_APP_URL +
+                                  "/" +
+                                  curImg.imagePath +
+                                  "/" +
+                                  curImg.imageName
+                                }
+                                alt=""
+                              />
+                            );
+                          })
+                        : null}
                     </div>
                     {/* <button
                       onClick={() => handleImageHow(id)}

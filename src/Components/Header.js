@@ -70,22 +70,19 @@ function Header() {
 
                 <div className="collapse navbar-collapse toNv" id="navb">
                   <ul className="navbar-nav ml-auto">
-                    {!logingUser.login ? (
-                      <li onClick={handleShow} className="nav-item">
+                    {/* <li onClick={handleShow} className="nav-item">
                         <Link className="nav-link">Submit a Vehicle</Link>
-                      </li>
-                    ) : (
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/submit" && "navActive"
-                          }`}
-                          to="/submit"
-                        >
-                          Submit a Vehicle
-                        </Link>
-                      </li>
-                    )}
+                      </li> */}
+                    <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/submit" && "navActive"
+                        }`}
+                        to="/submit"
+                      >
+                        Submit a Vehicle
+                      </Link>
+                    </li>
                     <li className="nav-item">
                       {/* <Link className="nav-link" to="/auction">
                         Auctions
@@ -167,21 +164,17 @@ function Header() {
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
-                    {logingUser.login && (
-                      <li className="nav-item afterLogin">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/accountinfo" && "navActive"
-                          }`}
-                          to="/accountinfo"
-                        >
-                          <AccountCircleIcon /> <br/><span>Hi {logingUser.user.username}</span>
-                        </Link>
-                      </li>
-                     
-                    )}
-                   
-
+                    <li className="nav-item afterLogin">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/accountinfo" && "navActive"
+                        }`}
+                        to="/accountinfo"
+                      >
+                        <AccountCircleIcon /> <br />
+                        <span>Hi {logingUser.user.username}</span>
+                      </Link>
+                    </li>
                     <li
                       onClick={() => setShowSearchModal(true)}
                       className="nav-item"
@@ -277,26 +270,23 @@ function Header() {
                           </Link>
                         </div>
                       </li> */}
-                    
-                      <li className="nav-item">
-                          <Link
-                            className="nav-link"
-                            style={{
-                              color: `${
-                                location.pathname === "/showroom"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
-                            }}
-                            to="/showroom"
-                          >
-                            Showroom
-                          </Link>
-                      </li>
-                     
 
                       <li className="nav-item">
-                        {logingUser.login ? (
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/showroom" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/showroom"
+                        >
+                          Showroom
+                        </Link>
+                      </li>
+
+                      <li className="nav-item">
+                        {true ? (
                           <Link
                             style={{
                               color: `${
@@ -419,7 +409,7 @@ function Header() {
                           // to="https://store.shibnobi.com/"
                           // target={"_blank"}
                         >
-                           Store
+                          Store
                         </Link>
                       </li>
 
