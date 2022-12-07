@@ -24,7 +24,7 @@ function MyListings() {
   useEffect(() => {
     setVehicleLoding(true);
     axios
-      .get(process.env.REACT_APP_URL + `byUserVehicle/${userId.login.user.id}`)
+      .get(process.env.REACT_APP_URL + `byUserVehicle`)
       .then((response) => {
         setData(response.data.data);
         setVehicleLoding(false);
@@ -77,21 +77,21 @@ function MyListings() {
         }
       });
   };
-  if(vehicleLoding){
-    return(
+  if (vehicleLoding) {
+    return (
       <div
-      className="container"
-      style={{
-        height: "80vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div className="row">
-        <Spinner />
+        className="container"
+        style={{
+          height: "80vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div className="row">
+          <Spinner />
+        </div>
       </div>
-    </div>
 
     )
   }
@@ -113,93 +113,93 @@ function MyListings() {
                 <h3>My Account</h3>
               </div>
               <hr />
-                <div className="row">
-                  <div className="col-12">
-                    {data.length > 0 ? (
-                      data.map((curElem) => {
-                        return (
-                          <div key={curElem.id} className="bidsListRow">
-                            <div className="bidsImg">
-                              <img
-                                src={
-                                  process.env.REACT_APP_URL +
-                                  curElem.stepOneImage
-                                }
-                                alt={curElem.stepOneImage}
-                              />
+              <div className="row">
+                <div className="col-12">
+                  {data.length > 0 ? (
+                    data.map((curElem) => {
+                      return (
+                        <div key={curElem.id} className="bidsListRow">
+                          <div className="bidsImg">
+                            <img
+                              src={
+                                process.env.REACT_APP_URL +
+                                curElem.stepOneImage
+                              }
+                              alt={curElem.stepOneImage}
+                            />
+                          </div>
+                          <div className="bidsInfo">
+                            <div className="">
+                              <h6>{curElem.name}</h6>
+                              <p>{curElem.description}</p>
                             </div>
-                            <div className="bidsInfo">
-                              <div className="">
-                                <h6>{curElem.name}</h6>
-                                <p>{curElem.description}</p>
-                              </div>
 
-                              <div className="pl-md-3 d-flex">
-                                {curElem.reserve === "Yes" && (
-                                  <>
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() => handleShow(curElem.id)}
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        Sold
-                                      </button>
-                                    </div>
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() => handleShow(curElem.id)}
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        <ChatIcon />
-                                      </button>
-                                    </div>
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() =>
-                                          fetchResurveApi(
-                                            curElem.id,
-                                            curElem.reserve,
-                                            curElem.reservAmount
-                                          )
-                                        }
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        {curElem.reserve}
-                                      </button>
-                                    </div>
-                                  </>
-                                )}
-                                <a
-                                  href={`detail/${curElem.id}`}
-                                  className="gry_btn"
-                                >
-                                  <i className="fa-solid fa-eye mr-2"></i> View
-                                </a>
-                              </div>
+                            <div className="pl-md-3 d-flex">
+                              {curElem.reserve === "Yes" && (
+                                <>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleShow(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      Sold
+                                    </button>
+                                  </div>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleShow(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      <ChatIcon />
+                                    </button>
+                                  </div>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() =>
+                                        fetchResurveApi(
+                                          curElem.id,
+                                          curElem.reserve,
+                                          curElem.reservAmount
+                                        )
+                                      }
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      {curElem.reserve}
+                                    </button>
+                                  </div>
+                                </>
+                              )}
+                              <a
+                                href={`detail/${curElem.id}`}
+                                className="gry_btn"
+                              >
+                                <i className="fa-solid fa-eye mr-2"></i> View
+                              </a>
                             </div>
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div
-                        className="container"
-                        style={{
-                          height: "50vh",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <div className="row">
-                          <h3>You have not listed any vehicle</h3>
                         </div>
+                      );
+                    })
+                  ) : (
+                    <div
+                      className="container"
+                      style={{
+                        height: "50vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div className="row">
+                        <h3>You have not listed any vehicle</h3>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
+              </div>
             </div>
           </div>
         </div>
