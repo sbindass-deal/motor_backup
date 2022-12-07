@@ -8,9 +8,10 @@ function Store() {
   const fetchStoreVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-      // const filteredData = response.data.data.filter(
-      //   (item) => item.displayInShowroom === "Yes"
+      // const filteredData = response.data.data.filter((item) =>
+      //   item.make.inclues("suniln")
       // );
+      // console.log("hello", filteredData);
       const newData = response.data.data.reverse();
       setVehicleData(newData);
     } catch (err) {

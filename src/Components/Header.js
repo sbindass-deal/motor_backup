@@ -6,12 +6,13 @@ import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser, showModal, showModalClose } from "../redux/reducers/login";
+import { authToken, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const notify = (val) =>
     toast.warn(val, {
       position: "bottom-center",
@@ -46,8 +47,9 @@ function Header() {
     setShowSearchModal(false);
   };
   const logout = () => {
-    dispatch(logoutUser());
+    dispatch(authToken(null));
     notify("Logout successfully ! 😎🤐");
+    navigate("/");
   };
   return (
     <div>
@@ -138,7 +140,7 @@ function Header() {
                         How its Works
                       </Link>
                     </li>
-                    {!logingUser.login ? (
+                    {!logingUser.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           onClick={handleShow}
@@ -172,7 +174,7 @@ function Header() {
                         to="/accountinfo"
                       >
                         <AccountCircleIcon /> <br />
-                        <span>Hi {logingUser.user.username}</span>
+                        <span>{logingUser.user.username}</span>
                       </Link>
                     </li>
                     <li
