@@ -24,7 +24,7 @@ import CookiesSetting from "./CookiesSetting";
 import AuctionResults from "./AuctionResults";
 // import CarLotry from "./CarLotry";
 import PrivacyPolicy from "./PrivacyNotice";
-import CarRaffle from "./CarLotry";
+import CarRaffle from "./CarLottery";
 import EditMyAccount from "./EditMyAccount";
 import VechilesRegistraion from "./VechilesRegistraion";
 import Auctionlive from "./Auctionlive";

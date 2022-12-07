@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { auth, showModalClose } from "../../redux/reducers/login";
+import { auth, authToken, showModalClose } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FormInput from "../UI/FormInput";
 
 function LoginModal({ handleShowReg, handleShowForgPass }) {
   const [email, setEmail] = useState("");
@@ -46,7 +47,8 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        if (result.data.message === "Login Successful") {
+        if (result.status === 200) {
+          dispatch(authToken(result.data.access_token));
           if (result.data.user) {
             dispatch(auth(result.data.user));
           }
@@ -71,7 +73,6 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     handleShowForgPass();
   };
   return (
-    // <!-- The loginModal -->
     <Modal
       show={show}
       onHide={handleClose}
@@ -81,7 +82,6 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
-          {/* <!-- Modal Header --> */}
           <div className="modal-header border-0">
             <h4 className="modal-title">Log In</h4>
             <button
@@ -93,43 +93,36 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
               <i className="fa-solid fa-xmark"></i>
             </button>
           </div>
-
-          {/* <!-- Modal body --> */}
           <div className="modal-body">
-            <form>
-              <div className="form-group">
-                <input
+            <form className="row">
+              <div className="col-md-12">
+                <FormInput
                   value={email}
                   onChange={handleEmail}
-                  type="text"
-                  name="email"
-                  minLength={4}
-                  maxLength={31}
-                  className="field"
-                  placeholder="Email"
+                  name="userName"
+                  placeholder="Enter Username"
+                  errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                  label="Username"
+                  pattern="^[A-Za-z0-9]{3,16}$"
+                  required={true}
                 />
               </div>
-              <div className="form-group">
-                <input
+              <div className="col-md-12">
+                <FormInput
                   value={password}
                   onChange={handlePassword}
-                  minLength={4}
-                  maxLength={12}
-                  type="password"
                   name="password"
-                  className="field"
-                  placeholder="Password"
+                  placeholder="Enter Password"
+                  errorMessage="incorporate password!"
+                  label="Password"
+                  type="password"
+                  pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                  required={true}
                 />
               </div>
+
               <div onClick={handlePasswordBtn} className="form-group">
-                <a
-                  href="javascript:void(0)"
-                  // data-dismiss="modal"
-                  // data-toggle="modal"
-                  // data-target="#forgotPasswordModal"
-                >
-                  Forgot your password?
-                </a>
+                <a href="javascript:void(0)">Forgot your password?</a>
               </div>
               <div className="form-group">
                 <button onClick={handleApi} type="button" className="btn">
@@ -144,9 +137,6 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                       className="signup"
                       style={{ marginLeft: "10px" }}
                       href="javascript:void(0)"
-                      // data-dismiss="modal"
-                      // data-toggle="modal"
-                      // data-target="#RegisterModal"
                     >
                       Sign up
                     </a>

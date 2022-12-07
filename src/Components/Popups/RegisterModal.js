@@ -81,45 +81,54 @@ function RegisterModal({ showReg, handleCloseReg }) {
           <div className="modal-body">
             <form onSubmit={handleApi}>
               <div className="row">
-                <FormInput
-                  value={userInput.name}
-                  onChange={handleUserInput}
-                  name="name"
-                  placeholder="Enter Name"
-                  errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
-                  label="Name"
-                  pattern="^[A-Za-z ]{3,16}$"
-                  required={true}
-                />
-                <FormInput
-                  value={userInput.email}
-                  onChange={handleUserInput}
-                  name="email"
-                  placeholder="Enter Email"
-                  errorMessage="It should be a valid email address!"
-                  label="Email"
-                  required={true}
-                />
-                <FormInput
-                  value={userInput.userName}
-                  onChange={handleUserInput}
-                  name="userName"
-                  placeholder="Enter Username"
-                  errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
-                  label="Username"
-                  pattern="^[A-Za-z0-9]{3,16}$"
-                  required={true}
-                />
-                <FormInput
-                  value={userInput.phone}
-                  onChange={handleUserInput}
-                  name="phone"
-                  placeholder="Enter phone number"
-                  errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
-                  label="Phone"
-                  pattern="^[0-9]{10,12}$"
-                  required={true}
-                />
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  {" "}
+                  <FormInput
+                    value={userInput.name}
+                    onChange={handleUserInput}
+                    name="name"
+                    placeholder="Enter Name"
+                    errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                    label="Name"
+                    pattern="^[A-Za-z ]{3,16}$"
+                    required={true}
+                  />
+                </div>
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  <FormInput
+                    value={userInput.email}
+                    onChange={handleUserInput}
+                    name="email"
+                    placeholder="Enter Email"
+                    errorMessage="It should be a valid email address!"
+                    label="Email"
+                    required={true}
+                  />
+                </div>
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  <FormInput
+                    value={userInput.userName}
+                    onChange={handleUserInput}
+                    name="userName"
+                    placeholder="Enter Username"
+                    errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                    label="Username"
+                    pattern="^[A-Za-z0-9]{3,16}$"
+                    required={true}
+                  />
+                </div>
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  <FormInput
+                    value={userInput.phone}
+                    onChange={handleUserInput}
+                    name="phone"
+                    placeholder="Enter phone number"
+                    errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
+                    label="Phone"
+                    pattern="^[0-9]{10,12}$"
+                    required={true}
+                  />
+                </div>
 
                 <div className="col-12 col-md-6">
                   <div className="form-group">
@@ -138,28 +147,32 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </select>
                   </div>
                 </div>
-                <FormInput
-                  value={userInput.password}
-                  onChange={handleUserInput}
-                  name="password"
-                  placeholder="Enter Password"
-                  errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
-                  label="Password"
-                  type="password"
-                  pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
-                  required={true}
-                />
-                <FormInput
-                  value={userInput.cPassword}
-                  onChange={handleUserInput}
-                  name="cPassword"
-                  placeholder="Enter Confirm Password"
-                  errorMessage="Passwords don't match!"
-                  label="Confirm Password"
-                  type="password"
-                  pattern={userInput.password}
-                  required={true}
-                />
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  <FormInput
+                    value={userInput.password}
+                    onChange={handleUserInput}
+                    name="password"
+                    placeholder="Enter Password"
+                    errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
+                    label="Password"
+                    type="password"
+                    pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                    required={true}
+                  />
+                </div>
+                <div className="col-md-12 col-lg-6 col-sm-12">
+                  <FormInput
+                    value={userInput.cPassword}
+                    onChange={handleUserInput}
+                    name="cPassword"
+                    placeholder="Enter Confirm Password"
+                    errorMessage="Passwords don't match!"
+                    label="Confirm Password"
+                    type="password"
+                    pattern={userInput.password}
+                    required={true}
+                  />
+                </div>
 
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">

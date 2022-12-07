@@ -15,7 +15,18 @@ import { Modal } from "react-bootstrap";
 import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
+import { countryData } from "../../countryAndCity"
+
+
+
 const VechilesRegistraion = () => {
+
+
+
+
+
+
+
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [file, setFile] = useState();
@@ -152,6 +163,16 @@ const VechilesRegistraion = () => {
     otherStatus: "",
   });
 
+
+
+  //   const fetchCountryData = countryData.map((curVal) => {
+  //     return console.log(567, curVal)
+  //   })
+
+  //   useEffect(() => {
+  //     fetchCountryData()
+  // },[])
+
   // details tabs
 
   const [detailstab, setDetailstab] = useState({
@@ -176,6 +197,9 @@ const VechilesRegistraion = () => {
     modificationOnTrck: "",
     fuel: "",
   });
+
+
+
 
   // contact info
 
@@ -520,7 +544,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -539,8 +563,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -559,8 +583,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -672,6 +696,10 @@ const VechilesRegistraion = () => {
                             <label>
                               What country is the vehicle currently located in?
                             </label>
+
+
+
+
                             <select
                               value={namefield.vechilelocation}
                               onChange={handleNameField}
@@ -692,7 +720,23 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What city is the vehicle located in?</label>
-                            <input
+
+                            <select
+                              // value={namefield.city}
+                              // onChange={handleNameField}
+                              name="vechilelocation"
+                              className="field"
+                              required
+                            >
+                              <option selected disabled value="">
+                                Choose...
+                              </option>
+
+                              {countryData[namefield.vechilelocation ? namefield.vechilelocation : 'Afghanistan'].map((curElem, i) => {
+                                return <option key={i}>{curElem}</option>;
+                              })}
+                            </select>
+                            {/* <input
                               value={namefield.city}
                               onChange={handleNameField}
                               type="text"
@@ -702,7 +746,7 @@ const VechilesRegistraion = () => {
                               placeholder="Enter"
                               className="field"
                               required
-                            />
+                            /> */}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -748,7 +792,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                        namefield.vehiclepast === "Yes" ? (
+                          namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
@@ -922,7 +966,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1309,8 +1353,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1845,8 +1889,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
