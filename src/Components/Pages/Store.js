@@ -11,7 +11,6 @@ function Store() {
   const fetchStoreVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-
       const newData = response.data.data.reverse();
       setVehicleData(newData);
       setFilterData(newData);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ import FormInput from "../UI/FormInput";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
-  const reduxValue = useSelector((data) => data.login.user);
+  const reduxValue = useSelector((data) => data.login);
 
   const notify = (val) =>
     toast.success(val, {
@@ -23,16 +24,27 @@ function EditMyAccount() {
     });
 
   const [editUser, setEditUser] = useState({
-    name: reduxValue.name,
-    userName: reduxValue.username,
-    email: reduxValue.email,
-    phone: reduxValue.mobile,
+    name: reduxValue.user.name,
+    userName: reduxValue.user.username,
+    email: reduxValue.user.email,
+    phone: reduxValue.user.mobile,
   });
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
     setEditUser({ ...editUser, [Name]: Value });
   };
+const fetchUserDetails = async() => {
+  try{
+    const res = await axios.get(`${url}user`)
+    console.log(res.data.data)
+  }catch(err){
+    console.log(err)
+  }
+}
+useEffect(() => {
+  fetchUserDetails()
+}, [])
 
   const handleApi = (e) => {
     e.preventDefault();
@@ -40,9 +52,9 @@ function EditMyAccount() {
 
     axios
       .post(`${url}users`, {
-        user_id: reduxValue.id,
-        id: reduxValue.id,
-        email: reduxValue.email,
+        user_id: reduxValue.user.id,
+        id: reduxValue.user.id,
+        email: reduxValue.user.email,
         username: userName,
         phone: phone,
         name: name,

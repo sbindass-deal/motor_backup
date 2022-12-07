@@ -38,7 +38,8 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     setPassword(e.target.value);
   };
 
-  const handleApi = () => {
+  const handleApi = (e) => {
+    e.preventDefault();
     const url = process.env.REACT_APP_URL;
 
     axios
@@ -47,20 +48,17 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        if (result.status === 200) {
+        if (result.data.access_token) {
           dispatch(authToken(result.data.access_token));
           if (result.data.user) {
             dispatch(auth(result.data.user));
           }
-          notify("Sorry you can't login we are working on it! 👍");
-          handleClose();
-        } else {
-          notify("Login fail! Please enter valid userId and password");
+          notify("Login successfully");
           handleClose();
         }
       })
       .catch((error) => {
-        console.log(error);
+        notify(error.message);
       });
   };
 
@@ -94,16 +92,16 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
             </button>
           </div>
           <div className="modal-body">
-            <form className="row">
+            <form onSubmit={handleApi}>
               <div className="col-md-12">
                 <FormInput
                   value={email}
                   onChange={handleEmail}
-                  name="userName"
-                  placeholder="Enter Username"
-                  errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
-                  label="Username"
-                  pattern="^[A-Za-z0-9]{3,16}$"
+                  name="email"
+                  placeholder="Enter Email"
+                  type="email"
+                  errorMessage="It should be a valid email address!"
+                  label="Email"
                   required={true}
                 />
               </div>
@@ -125,9 +123,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 <a href="javascript:void(0)">Forgot your password?</a>
               </div>
               <div className="form-group">
-                <button onClick={handleApi} type="button" className="btn">
-                  Log In
-                </button>
+                <button className="btn">Log In</button>
               </div>
               <div className="form-group">
                 <p>
