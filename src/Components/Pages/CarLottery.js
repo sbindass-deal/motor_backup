@@ -6,6 +6,7 @@ import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { RWebShare } from "react-web-share";
 
@@ -79,7 +80,7 @@ function CarRaffle() {
     try {
       const response = await axios.get(
         process.env.REACT_APP_URL +
-          `tickets/${showLotary.id}/user/${userId.login.user.id}`
+        `tickets/${showLotary.id}/user/${userId.login.user.id}`
       );
       if (response.data.data) {
         setAllLotaryApi(response.data.data);
@@ -265,13 +266,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group">
-                      {/* <button
-                        type="button"
-                        onClick={logingUser.login ? addTickets : handleLogin}
-                        className="btn w-full"
-                      >
-                        Enter Lottery
-                      </button> */}
+                      <ConnectButton></ConnectButton>
                       <StripeCheckout
                         stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                         token={onToken}
@@ -335,7 +330,7 @@ function CarRaffle() {
                           url: `http://localhost:3000/carraffle/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
-                        // onClick={() => console.log("shared successfully!")}
+                      // onClick={() => console.log("shared successfully!")}
                       >
                         {/* <button>Share on Web</button> */}
                         <button type="button" className="gry_btn w-full">

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation } from "react-router-dom";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 
 function Header() {
   const location = useLocation();
@@ -165,9 +165,7 @@ function Header() {
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
-                    <li>
-                      <ConnectButton></ConnectButton>
-                    </li>
+                   
                     <li className="nav-item afterLogin">
                       <Link
                         className={`nav-link ${
