@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
+import StripeCheckout from "react-stripe-checkout";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -20,6 +21,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     });
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
+  const [addUserInBid, setAddUserInBid] = useState(false);
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -29,6 +31,14 @@ function RegisterModal({ showReg, handleCloseReg }) {
     password: "",
     cPassword: "",
   });
+  const [cartInput, setCartInput] = useState({
+    cartNumber: "",
+    bankAccount: "",
+  });
+  const handleCartInput = (e) => {
+    setCartInput({ ...cartInput, [e.target.name]: e.target.value });
+  };
+
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
@@ -55,6 +65,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
         console.log(error);
         notify("Register fail somthing wrong please try again !");
       });
+  };
+  const onToken = (address) => {
+    console.log(address);
   };
 
   return (
@@ -173,6 +186,46 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                 </div>
+                <div className="col-12 col-md-12">
+                  <div className="form-group form-check">
+                    <label className="form-check-label">
+                      <input
+                        onChange={(e) => setAddUserInBid(e.target.checked)}
+                        className="form-check-input"
+                        type="checkbox"
+                      />
+                      Do you want to bid?(Optional)
+                    </label>
+                  </div>
+                </div>
+
+                {/* {
+                  <>
+                    <div className="col-md-12 col-lg-6 col-sm-12">
+                      <FormInput
+                        value={cartInput.cartNumber}
+                        onChange={handleCartInput}
+                        name="cartNumber"
+                        placeholder="Enter Cart Number"
+                        errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                        label="Cart Number"
+                        pattern="^[A-Za-z ]{3,16}$"
+                        required={true}
+                      />
+                    </div>
+                    <div className="col-md-12 col-lg-6 col-sm-12">
+                      <FormInput
+                        value={cartInput.bankAccount}
+                        onChange={handleCartInput}
+                        name="bankAccount"
+                        placeholder="Enter Account Number"
+                        errorMessage="It should be a valid email address!"
+                        label="Account Number"
+                        required={true}
+                      />
+                    </div>
+                  </>
+                } */}
 
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -206,9 +259,17 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="submit" className="btn">
-                      Register
-                    </button>
+                    {!addUserInBid && (
+                      <button type="submit" className="btn">
+                        Register
+                      </button>
+                    )}
+                    {addUserInBid && (
+                      <StripeCheckout
+                        stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                        token={onToken}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-12 col-md-12">
