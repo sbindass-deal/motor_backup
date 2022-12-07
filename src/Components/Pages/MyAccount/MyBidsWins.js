@@ -26,10 +26,7 @@ function MyBidsWins() {
 
   useEffect(() => {
     axios
-      .get(
-        process.env.REACT_APP_URL +
-          `bidding/basedOnUser/${userId.login.user.id}`
-      )
+      .get(process.env.REACT_APP_URL + `biddingDetail/basedOnUser`)
 
       .then((response) => {
         const d = response.data.data;

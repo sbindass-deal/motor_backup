@@ -133,6 +133,11 @@ function MyListings() {
                             <div className="">
                               <h6>{curElem.name}</h6>
                               <p>{curElem.description}</p>
+                              {curElem.bidding.map((curBid) => {
+                                return (
+                                  <p>High Bid:- {curBid.auctionAmmount}</p>
+                                );
+                              })}
                             </div>
 
                             <div className="pl-md-3 d-flex">
