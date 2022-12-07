@@ -22,7 +22,7 @@ const faq = [
   },
   {
     id: 4,
-    que: `Is there s buyers fee?`,
+    que: `Is there a buyers fee?`,
     ans: `Yes, all vehicles will have a buyers fee. This all depends on the type of auction or buy it now option.`,
   },
   {

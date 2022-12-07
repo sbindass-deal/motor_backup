@@ -44,6 +44,7 @@ const StoreDetails = () => {
               class="img-fluid rounded-start w-100 "
               alt="details-img"
             />
+            <button className="btn mt-20">Process Payment</button>
           </div>
           <div class="col-12 col-sm-12 col-md-7">
             <div class="card-body">
@@ -54,7 +55,7 @@ const StoreDetails = () => {
               <div className="detailPageContent">
                 <table width={"100%"}>
                   <tr>
-                    <td>document Fee</td>
+                    <td>Document Fee</td>
                     <td>${vehicle.documentFee}</td>
                   </tr>
                   <tr>
