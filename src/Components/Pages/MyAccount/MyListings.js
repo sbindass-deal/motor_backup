@@ -22,20 +22,16 @@ function MyListings() {
   };
 
   useEffect(() => {
-    const fetchVechileData = async () => {
-      setVehicleLoding(true);
-      try {
-        const res = await axios.get(
-          process.env.REACT_APP_URL + `byUserVehicle`
-        );
-        setData(res.data.data);
+    setVehicleLoding(true);
+    axios
+      .get(process.env.REACT_APP_URL + `byUserVehicle`)
+      .then((response) => {
+        setData(response.data.data);
         setVehicleLoding(false);
-      } catch (err) {
-        console.log(err);
+      })
+      .catch((err) => {
         setVehicleLoding(false);
-      }
-    };
-    fetchVechileData();
+      });
   }, []);
   const fetchResurveApi = (vId, resurve, resurveAmount) => {
     axios

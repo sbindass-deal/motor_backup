@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 function AccountInfo() {
-  const reduxValue = useSelector((data) => data.login.user);
+  const [userInfo, setUserinfo] = useState({
+    username: "",
+    email: " ",
+  });
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+      setUserinfo(res.data.data);
+    });
+  }, []);
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -25,13 +35,13 @@ function AccountInfo() {
                 <li>
                   <div className="labelList_label">Email Address</div>
                   <div className="labelList_text">
-                    {reduxValue.email} <br />
+                    {userInfo.email} <br />
                     <a href="#">Resend Verification Email</a>
                   </div>
                 </li>
                 <li>
                   <div className="labelList_label">Username</div>
-                  <div className="labelList_text">{reduxValue.username}</div>
+                  <div className="labelList_text">{userInfo.username}</div>
                 </li>
                 <li>
                   <div className="labelList_label">Password</div>

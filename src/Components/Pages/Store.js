@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import car_01 from "../../Assets/images/car_01.jpg";
 
 function Store() {
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [loading, setLoader] = useState(true);
   const [vehicleData, setVehicleData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const fetchStoreVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-      // const filteredData = response.data.data.filter((item) =>
-      //   item.make.inclues("suniln")
-      // );
-      // console.log("hello", filteredData);
       const newData = response.data.data.reverse();
       setVehicleData(newData);
+      setFilterData(newData);
+      setLoader(false)
     } catch (err) {
       console.log(err);
     }
@@ -48,9 +49,28 @@ function Store() {
                 <li className="post_search">
                   <input
                     type="text"
+                    autoComplete="off"
                     name="search"
                     value={searchInputValue}
-                    onChange={(e) => setSearchInputValue(e.target.value)}
+                    onChange={(e) => {
+                      let value = e.target.value
+                      setSearchInputValue(e.target.value)
+
+
+                      if (value === "") {
+                        setFilterData(vehicleData)
+                      }
+                      else {
+                        setFilterData(vehicleData.filter(data =>
+                          data.make == value ||
+                          data.model == value ||
+                          data.year == value ||
+                          data.name == value
+
+                        ).map(data => data))
+                      }
+
+                    }}
                     placeholder="Search for a make or model"
                   />
                 </li>
@@ -190,59 +210,66 @@ function Store() {
         </div>
       </section>
 
-      <section className="pt_40">
-        <div className="container">
-          <div className="row">
-            {vehicleData.map((curElem) => {
-              return (
-                <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
-                  <div className="card_post store auction">
-                    <a
-                      href={`showroom/${curElem.id}`}
-                      className="card_postImg card_postImg_200"
-                    >
-                      <img
-                        src={
-                          curElem.stepOneImage === null ||
-                          curElem.stepOneImage === undefined ||
-                          curElem.stepOneImage === ""
-                            ? car_01
-                            : process.env.REACT_APP_URL + curElem.stepOneImage
-                        }
-                        alt={curElem.make}
-                      />
-                    </a>
-                    <div className="card_postInfo pt-3">
-                      <h6 className="name_price">
-                        <a href={`showroom/${curElem.id}`}>
-                          {curElem.make} {curElem.model} {curElem.year}
+      {
+        loading ?
+          <Spinner />
+          :
+          <section className="pt_40">
+            <div className="container">
+              <div className="row">
+                {filterData.map((curElem) => {
+                  return (
+                    <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                      <div className="card_post store auction">
+                        <a
+                          href={`showroom/${curElem.id}`}
+                          className="card_postImg card_postImg_200"
+                        >
+                          <img
+                            src={
+                              curElem.stepOneImage === null ||
+                                curElem.stepOneImage === undefined ||
+                                curElem.stepOneImage === ""
+                                ? car_01
+                                : process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            alt={curElem.make}
+                          />
                         </a>
-                        <p className="price__">${curElem.documentFee}</p>
-                      </h6>
-                      <table className="showroomCol">
-                        <tbody>
-                          <tr>
-                            <td>Odometer Reading </td>
-                            <td>{curElem.odmeter}</td>
-                          </tr>
-                          <tr>
-                            <td>Fuel Type</td>
-                            <td>{curElem.fuel}</td>
-                          </tr>
-                          <tr>
-                            <td>Saller</td>
-                            <td>{curElem.name}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                        <div className="card_postInfo pt-3">
+                          <h6 className="name_price">
+                            <a href={`showroom/${curElem.id}`}>
+                              {curElem.make} {curElem.model} {curElem.year}
+                            </a>
+                            <p className="price__">${curElem.documentFee}</p>
+                          </h6>
+                          <table className="showroomCol">
+                            <tbody>
+                              <tr>
+                                <td>Odometer Reading </td>
+                                <td>{curElem.odmeter}</td>
+                              </tr>
+                              <tr>
+                                <td>Fuel Type</td>
+                                <td>{curElem.fuel}</td>
+                              </tr>
+                              <tr>
+                                <td>Saller</td>
+                                <td>{curElem.name}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+      }
+
+
     </div>
   );
 }
