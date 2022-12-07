@@ -77,137 +77,133 @@ function MyListings() {
         }
       });
   };
+  if(vehicleLoding){
+    return(
+      <div
+      className="container"
+      style={{
+        height: "80vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div className="row">
+        <Spinner />
+      </div>
+    </div>
+
+    )
+  }
 
   return (
     <div>
-      {vehicleLoding ? (
-        <div
-          className="container"
-          style={{
-            height: "80vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <section className="ptb_80 pt_sm_50">
+        <div className="container">
           <div className="row">
-            <Spinner />
-          </div>
-        </div>
-      ) : (
-        <>
-          {data.length > 0 ? (
-            <section className="ptb_80 pt_sm_50">
-              <div className="container">
+            <div className="col-12 col-md-4 col-lg-3">
+              <div className="card_Gray mb-5 mb-md-0">
+                <h5>My Account</h5>
+                <hr />
+                <MyAccountLeftNav />
+              </div>
+            </div>
+            <div className="col-12 col-md-8 col-lg-9">
+              <div class="FlexCol">
+                <h3>My Account</h3>
+              </div>
+              <hr />
                 <div className="row">
-                  <div className="col-12 col-md-4 col-lg-3">
-                    <div className="card_Gray mb-5 mb-md-0">
-                      <h5>My Account</h5>
-                      <hr />
-                      <MyAccountLeftNav />
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-8 col-lg-9">
-                    <div class="FlexCol">
-                      <h3>My Account</h3>
-                    </div>
-                    <hr />
-
-                    <div className="row">
-                      <div className="col-12">
-                        {data.map((curElem) => {
-                          return (
-                            <div key={curElem.id} className="bidsListRow">
-                              <div className="bidsImg">
-                                <img
-                                  src={
-                                    process.env.REACT_APP_URL +
-                                    curElem.stepOneImage
-                                  }
-                                  alt={curElem.stepOneImage}
-                                />
+                  <div className="col-12">
+                    {data.length > 0 ? (
+                      data.map((curElem) => {
+                        return (
+                          <div key={curElem.id} className="bidsListRow">
+                            <div className="bidsImg">
+                              <img
+                                src={
+                                  process.env.REACT_APP_URL +
+                                  curElem.stepOneImage
+                                }
+                                alt={curElem.stepOneImage}
+                              />
+                            </div>
+                            <div className="bidsInfo">
+                              <div className="">
+                                <h6>{curElem.name}</h6>
+                                <p>{curElem.description}</p>
                               </div>
-                              <div className="bidsInfo">
-                                <div className="">
-                                  <h6>{curElem.name}</h6>
-                                  <p>{curElem.description}</p>
-                                </div>
 
-                                <div className="pl-md-3 d-flex">
-                                  {curElem.reserve === "Yes" && (
-                                    <>
-                                      <div className="mx-2">
-                                        <button
-                                          onClick={() => handleShow(curElem.id)}
-                                          type="button"
-                                          className="gry_btn"
-                                        >
-                                          Sold
-                                        </button>
-                                      </div>
-                                      <div className="mx-2">
-                                        <button
-                                          onClick={() => handleShow(curElem.id)}
-                                          type="button"
-                                          className="gry_btn"
-                                        >
-                                          <ChatIcon />
-                                        </button>
-                                      </div>
-                                      <div className="mx-2">
-                                        <button
-                                          onClick={() =>
-                                            fetchResurveApi(
-                                              curElem.id,
-                                              curElem.reserve,
-                                              curElem.reservAmount
-                                            )
-                                          }
-                                          type="button"
-                                          className="gry_btn"
-                                        >
-                                          {curElem.reserve}
-                                        </button>
-                                      </div>
-                                    </>
-                                  )}
-                                  <a
-                                    href={`detail/${curElem.id}`}
-                                    className="gry_btn"
-                                  >
-                                    <i className="fa-solid fa-eye mr-2"></i>{" "}
-                                    View
-                                  </a>
-                                </div>
+                              <div className="pl-md-3 d-flex">
+                                {curElem.reserve === "Yes" && (
+                                  <>
+                                    <div className="mx-2">
+                                      <button
+                                        onClick={() => handleShow(curElem.id)}
+                                        type="button"
+                                        className="gry_btn"
+                                      >
+                                        Sold
+                                      </button>
+                                    </div>
+                                    <div className="mx-2">
+                                      <button
+                                        onClick={() => handleShow(curElem.id)}
+                                        type="button"
+                                        className="gry_btn"
+                                      >
+                                        <ChatIcon />
+                                      </button>
+                                    </div>
+                                    <div className="mx-2">
+                                      <button
+                                        onClick={() =>
+                                          fetchResurveApi(
+                                            curElem.id,
+                                            curElem.reserve,
+                                            curElem.reservAmount
+                                          )
+                                        }
+                                        type="button"
+                                        className="gry_btn"
+                                      >
+                                        {curElem.reserve}
+                                      </button>
+                                    </div>
+                                  </>
+                                )}
+                                <a
+                                  href={`detail/${curElem.id}`}
+                                  className="gry_btn"
+                                >
+                                  <i className="fa-solid fa-eye mr-2"></i> View
+                                </a>
                               </div>
                             </div>
-                          );
-                        })}
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div
+                        className="container"
+                        style={{
+                          height: "50vh",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div className="row">
+                          <h3>You have not listed any vehicle</h3>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            </section>
-          ) : (
-            <section className="ptb_80 pt_sm_50">
-              <div
-                className="container"
-                style={{
-                  height: "80vh",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div className="row">
-                  <h3>You have not listed any vehicle</h3>
-                </div>
-              </div>
-            </section>
-          )}
-        </>
-      )}
+            </div>
+          </div>
+        </div>
+      </section>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header>
           <Modal.Title>Chat</Modal.Title>

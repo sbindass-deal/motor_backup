@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import FormInput from "../UI/FormInput";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
@@ -25,14 +26,11 @@ function EditMyAccount() {
     name: reduxValue.name,
     userName: reduxValue.username,
     email: reduxValue.email,
-    phone: reduxValue.phone,
+    phone: reduxValue.mobile,
   });
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
-    if (Name === "phone") {
-      Value = e.target.value.replace(/\D/g, "");
-    }
     setEditUser({ ...editUser, [Name]: Value });
   };
 
@@ -93,74 +91,45 @@ function EditMyAccount() {
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">
-                  <div className="col-12 col-md-6">
-                    <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        name="name"
-                        value={editUser.name}
-                        onChange={handleEditOnChange}
-                        onKeyPress={(event) => {
-                          if (!/[a-zA-Z]/.test(event.key)) {
-                            event.preventDefault();
-                          }
-                        }}
-                        type="text"
-                        minLength={2}
-                        maxLength={31}
-                        className="field"
-                        placeholder="name"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-12 col-md-6">
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input
-                        value={editUser.email}
-                        onChange={handleEditOnChange}
-                        minLength={5}
-                        maxLength={31}
-                        type="email"
-                        name="email"
-                        className="field"
-                        placeholder="Email"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <div className="form-group">
-                      <label>User Name</label>
-                      <input
-                        value={editUser.userName}
-                        onChange={handleEditOnChange}
-                        type="text"
-                        name="userName"
-                        minLength={4}
-                        maxLength={15}
-                        className="field"
-                        placeholder="Username"
-                        autoComplete="off"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <div className="form-group">
-                      <label>Phone</label>
-                      <input
-                        value={editUser.phone}
-                        onChange={handleEditOnChange}
-                        type="text"
-                        minLength={10}
-                        maxLength={12}
-                        name="phone"
-                        className="field"
-                        placeholder="Phone number"
-                      />
-                    </div>
-                  </div>
+                  <FormInput
+                    value={editUser.name}
+                    onChange={handleEditOnChange}
+                    name="name"
+                    placeholder="Enter Name"
+                    errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                    label="Name"
+                    pattern="^[A-Za-z ]{3,16}$"
+                    required={true}
+                  />
+                  <FormInput
+                    value={editUser.email}
+                    onChange={handleEditOnChange}
+                    name="email"
+                    placeholder="Enter Email"
+                    errorMessage="It should be a valid email address!"
+                    label="Email"
+                    disabled={true}
+                  />
+                  <FormInput
+                    value={editUser.userName}
+                    onChange={handleEditOnChange}
+                    name="userName"
+                    placeholder="Enter Username"
+                    errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                    label="Username"
+                    pattern="^[A-Za-z0-9]{3,16}$"
+                    required={true}
+                  />
+                  <FormInput
+                    value={editUser.phone}
+                    onChange={handleEditOnChange}
+                    name="phone"
+                    placeholder="Enter phone number"
+                    errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
+                    label="Phone"
+                    pattern="^[0-9]{10,12}$"
+                    required={true}
+                  />
                   <div className="col-12 col-md-12">
                     <div className="form-group">
                       <button type="submit" className="gry_btn mt-3">

@@ -1,0 +1,36 @@
+import { useState } from "react";
+import styles from "./formInput.module.css";
+
+const FormInput = (props) => {
+  const [focused, setFocused] = useState(false);
+  const { label, errorMessage, onChange, id, ...inputProps } = props;
+
+  const handleFocus = (e) => {
+    setFocused(true);
+  };
+
+  return (
+      <div className="col-md-12 col-lg-6 col-sm-12">
+        <div className="form-group">
+          <div className={styles.formInput}>
+            <label>{label}</label>
+            <input
+              className="field"
+              {...inputProps}
+              onChange={onChange}
+              onBlur={handleFocus}
+              type={props.type ? props.type : "text"}
+              onFocus={() =>
+                inputProps.name === "confirmPassword" && setFocused(true)
+              }
+              focused={focused.toString()}
+              autoComplete="off"
+            />
+            <span>{errorMessage}</span>
+          </div>
+        </div>
+      </div>
+  );
+};
+
+export default FormInput;

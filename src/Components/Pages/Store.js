@@ -200,63 +200,45 @@ function Store() {
                       href={`showroom/${curElem.id}`}
                       className="card_postImg card_postImg_200"
                     >
-                      {/* <img
-                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
-                          alt={curElem.make}
-                        /> */}
-                      <img src={car_01} />
+                      <img
+                        src={
+                          curElem.stepOneImage === null ||
+                          curElem.stepOneImage === undefined ||
+                          curElem.stepOneImage === ""
+                            ? car_01
+                            : process.env.REACT_APP_URL + curElem.stepOneImage
+                        }
+                        alt={curElem.make}
+                      />
                     </a>
                     <div className="card_postInfo pt-3">
                       <h6 className="name_price">
                         <a href={`showroom/${curElem.id}`}>
-                          {curElem.year} {curElem.make} {curElem.model}
+                          {curElem.make} {curElem.model} {curElem.year}
                         </a>
                         <p className="price__">${curElem.documentFee}</p>
                       </h6>
-                      {/* <ul className="priceDateList">
-                          <li className="price__">${curElem.documentFee}</li>
-                        </ul> */}
                       <table className="showroomCol">
                         <tbody>
                           <tr>
-                            <td>Mileage </td>
-                            <td>10/km</td>
+                            <td>Odometer Reading </td>
+                            <td>{curElem.odmeter}</td>
                           </tr>
                           <tr>
                             <td>Fuel Type</td>
-                            <td>CNG</td>
+                            <td>{curElem.fuel}</td>
                           </tr>
                           <tr>
                             <td>Saller</td>
-                            <td>Nikhil Patil</td>
+                            <td>{curElem.name}</td>
                           </tr>
                         </tbody>
                       </table>
-                      {/* <div className="row">
-                          <div className="col-6">{curElem.sizetires}</div>
-                          <div className="col-6"> Mileage 10/km</div>
-                        </div>
-                        <div className="row">
-                          <div className="col-6">{curElem.accessories}</div>
-                          <div className="col-6"> Fuel CNG</div>
-                        </div> */}
-                      {/* <p>{curElem.titleStatus}</p> */}
                     </div>
-                    <div className="row">
-                      <div className="col-6">{curElem.accessories}</div>
-                      <div className="col-6"> {curElem.fuel}</div>
-                    </div>
-                    <p>{curElem.titleStatus}</p>
                   </div>
                 </div>
               );
             })}
-
-            {/* <div className="col-12 text-center">
-              <a href="#" className="btn mt-4">
-                View More
-              </a>
-            </div> */}
           </div>
         </div>
       </section>
