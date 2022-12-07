@@ -11,7 +11,9 @@ function AccountInfo() {
   });
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
-      setUserinfo(res.data.data);
+      if (res.data.data !== null || res.data.data !== undefined) {
+        setUserinfo(res.data.data);
+      }
     });
   }, []);
 

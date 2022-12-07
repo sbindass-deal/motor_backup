@@ -14,7 +14,7 @@ function Store() {
       const newData = response.data.data.reverse();
       setVehicleData(newData);
       setFilterData(newData);
-      setLoader(false)
+      setLoader(false);
     } catch (err) {
       console.log(err);
     }
@@ -53,23 +53,27 @@ function Store() {
                     name="search"
                     value={searchInputValue}
                     onChange={(e) => {
-                      let value = e.target.value
-                      setSearchInputValue(e.target.value)
-
+                      let value = e.target.value;
+                      setSearchInputValue(e.target.value);
 
                       if (value === "") {
-                        setFilterData(vehicleData)
+                        setFilterData(vehicleData);
+                      } else {
+                        setFilterData(
+                          vehicleData
+                            .filter(
+                              (data) =>
+                                data.make.toLowerCase().includes(value) ||
+                                data.make.toUpperCase().includes(value) ||
+                                data.model.toLowerCase().includes(value) ||
+                                data.model.toUpperCase().includes(value) ||
+                                data.year.includes(value) ||
+                                data.name.toLowerCase().includes(value) ||
+                                data.name.toUpperCase().includes(value)
+                            )
+                            .map((data) => data)
+                        );
                       }
-                      else {
-                        setFilterData(vehicleData.filter(data =>
-                          data.make == value ||
-                          data.model == value ||
-                          data.year == value ||
-                          data.name == value
-
-                        ).map(data => data))
-                      }
-
                     }}
                     placeholder="Search for a make or model"
                   />
@@ -210,66 +214,63 @@ function Store() {
         </div>
       </section>
 
-      {
-        loading ?
-          <Spinner />
-          :
-          <section className="pt_40">
-            <div className="container">
-              <div className="row">
-                {filterData.map((curElem) => {
-                  return (
-                    <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
-                      <div className="card_post store auction">
-                        <a
-                          href={`showroom/${curElem.id}`}
-                          className="card_postImg card_postImg_200"
-                        >
-                          <img
-                            src={
-                              curElem.stepOneImage === null ||
-                                curElem.stepOneImage === undefined ||
-                                curElem.stepOneImage === ""
-                                ? car_01
-                                : process.env.REACT_APP_URL + curElem.stepOneImage
-                            }
-                            alt={curElem.make}
-                          />
-                        </a>
-                        <div className="card_postInfo pt-3">
-                          <h6 className="name_price">
-                            <a href={`showroom/${curElem.id}`}>
-                              {curElem.make} {curElem.model} {curElem.year}
-                            </a>
-                            <p className="price__">${curElem.documentFee}</p>
-                          </h6>
-                          <table className="showroomCol">
-                            <tbody>
-                              <tr>
-                                <td>Odometer Reading </td>
-                                <td>{curElem.odmeter}</td>
-                              </tr>
-                              <tr>
-                                <td>Fuel Type</td>
-                                <td>{curElem.fuel}</td>
-                              </tr>
-                              <tr>
-                                <td>Saller</td>
-                                <td>{curElem.name}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              {filterData.map((curElem) => {
+                return (
+                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                    <div className="card_post store auction">
+                      <a
+                        href={`showroom/${curElem.id}`}
+                        className="card_postImg card_postImg_200"
+                      >
+                        <img
+                          src={
+                            curElem.stepOneImage === null ||
+                            curElem.stepOneImage === undefined ||
+                            curElem.stepOneImage === ""
+                              ? car_01
+                              : process.env.REACT_APP_URL + curElem.stepOneImage
+                          }
+                          alt={curElem.make}
+                        />
+                      </a>
+                      <div className="card_postInfo pt-3">
+                        <h6 className="name_price">
+                          <a href={`showroom/${curElem.id}`}>
+                            {curElem.make} {curElem.model} {curElem.year}
+                          </a>
+                          <p className="price__">${curElem.documentFee}</p>
+                        </h6>
+                        <table className="showroomCol">
+                          <tbody>
+                            <tr>
+                              <td>Odometer Reading </td>
+                              <td>{curElem.odmeter}</td>
+                            </tr>
+                            <tr>
+                              <td>Fuel Type</td>
+                              <td>{curElem.fuel}</td>
+                            </tr>
+                            <tr>
+                              <td>Saller</td>
+                              <td>{curElem.name}</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
-          </section>
-      }
-
-
+          </div>
+        </section>
+      )}
     </div>
   );
 }
