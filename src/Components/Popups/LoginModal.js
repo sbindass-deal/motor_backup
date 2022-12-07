@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { auth, showModalClose } from "../../redux/reducers/login";
+import { auth, authToken, showModalClose } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,7 +47,8 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        if (result.data.message === "Login Successful") {
+        if (result.status === 200) {
+          dispatch(authToken(result.data.access_token));
           if (result.data.user) {
             dispatch(auth(result.data.user));
           }
