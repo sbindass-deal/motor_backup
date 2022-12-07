@@ -135,7 +135,19 @@ function Auctionlive() {
             </div>
           </div>
           {loading ? (
-            <Spinner />
+            <div
+              className="container"
+              style={{
+                height: "80vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="row">
+                <Spinner />
+              </div>
+            </div>
           ) : (
             <div className="row pt-4 row_gridList">
               {data

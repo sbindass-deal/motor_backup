@@ -87,7 +87,9 @@ function MyListings() {
         id: id,
         sold: 0,
       })
-      .then((res) => {});
+      .then((res) => {
+        window.location.reload(false);
+      });
   };
 
   if (vehicleLoding) {
