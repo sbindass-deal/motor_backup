@@ -174,41 +174,45 @@ function CarRaffle() {
                       </div> */}
 
                       <div className="counterCol">
-                        <h5 style={{textAlign:"center"}}>Countdown to the next draw</h5>
-                        <div className="clockTimer" id="clockdiv">
-                          <div className="timerBg">
-                            <span className="days" id="day">
-                              {/* 0{days} */}
-                              00
-                            </span>
-                            <div className="smalltext">Days</div>
+                        <h5 style={{ textAlign: "center" }}>
+                          Countdown to the next draw
+                        </h5>
+                        {t > 0 ? (
+                          <div className="clockTimer" id="clockdiv">
+                            <div className="timerBg">
+                              <span className="days" id="day">
+                                0{days}
+                              </span>
+                              <div className="smalltext">Days</div>
+                            </div>
+                            <div className="timerBg">
+                              <span className="hours" id="hour">
+                                {hours < 10 ? 0 : ""}
+                                {hours}
+                              </span>
+                              <div className="smalltext">Hours</div>
+                            </div>
+                            <div className="timerBg">
+                              <span className="minutes" id="minute">
+                                {minutes < 10 ? 0 : ""}
+                                {minutes}
+                              </span>
+                              <div className="smalltext">Minutes</div>
+                            </div>
+                            <div className="timerBg">
+                              <span className="seconds" id="second">
+                                {seconds < 10 ? 0 : ""}
+                                {seconds}
+                              </span>
+                              <div className="smalltext">Seconds</div>
+                            </div>
                           </div>
-                          <div className="timerBg">
-                            <span className="hours" id="hour">
-                              {/* {hours < 10 ? 0 : ""}
-                              {hours} */}
-                              00
-                            </span>
-                            <div className="smalltext">Hours</div>
+                        ) : (
+                          <div className="clockTimer text-dark" id="clockdiv">
+                            Time up
                           </div>
-                          <div className="timerBg">
-                            <span className="minutes" id="minute">
-                              {/* {minutes < 10 ? 0 : ""}
-                              {minutes} */}
-                              00
-                            </span>
-                            <div className="smalltext">Minutes</div>
-                          </div>
-                          <div className="timerBg">
-                            <span className="seconds" id="second">
-                              {/* {seconds < 10 ? 0 : ""}
-                              {seconds} */}
-                              00
-                            </span>
-                            <div className="smalltext">Seconds</div>
-                          </div>
-                        </div>
-                        
+                        )}
+
                         {showLotary.description ? (
                           <p className="py-4">
                             {showLotary.description && !showReadMore

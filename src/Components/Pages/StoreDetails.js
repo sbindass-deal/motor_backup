@@ -1,9 +1,7 @@
 import axios from "axios";
-import moment from "moment";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Carousel } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import car_01 from "../../Assets/images/car_01.jpg";
 
@@ -16,9 +14,8 @@ const StoreDetails = () => {
         process.env.REACT_APP_URL + "vehicle/" + id
       );
       const apiData = response.data.data;
-      if (apiData.status === 200 && apiData.length >= 0) {
-        console.log("showRoom", { ...response.data.data[0] });
-        setVehicle({ ...response.data.data });
+      if (response.data.status === 200 && apiData.length >= 0) {
+        setVehicle({ ...response.data.data[0] });
       }
     } catch (err) {
       console.log(err);
@@ -59,44 +56,26 @@ const StoreDetails = () => {
                   </tr>
                   <tr>
                     <td>Tires size</td>
-                    <td>16 inch</td>
+                    <td>{vehicle.sizetires}</td>
                   </tr>
                   <tr>
                     <td>Accessories</td>
-                    <td>Wheels, Sit cover, speakers</td>
+                    <td>{vehicle.accessories}</td>
                   </tr>
                   <tr>
                     <td>Fuel Type</td>
-                    <td>CNG</td>
+                    <td>{vehicle.fuel}</td>
                   </tr>
                   <tr>
                     <td>More Description</td>
-                    <td>
-                      Looking to buy a car? CarWale helps you locate authorized
-                      dealers for 41 brands across India. We have listed over
-                      7052 dealer showrooms located in 864 cities in India.
-                      Choose the brand and city of your choice and get contact
-                      information and full address of dealers near you.
-                    </td>
+                    <td>{vehicle.moreDescription}</td>
                   </tr>
                   <tr>
                     <td>Manufacture</td>
-                    <td>2022-02-10</td>
+                    <td>{new Date(vehicle.created_at).toLocaleDateString()}</td>
                   </tr>
                 </table>
               </div>
-              {/* <div className="row">
-                    <div className="col-6">{vehicle.documentFee}</div>
-                    <div className="col-6">{vehicle.sizetires}</div>
-                    <div className="col-6">{vehicle.accessories}</div>
-                    <div className="col-6"> Fuel CNG</div>
-                  </div>
-                  <p class="card-text">{vehicle.moreDescription}</p>
-                  <p class="card-text">
-                    <small class="text-muted">
-                      {moment(vehicle.created_at).format("YYYY-MM-DD")}
-                    </small>
-                  </p> */}
             </div>
           </div>
         </div>
