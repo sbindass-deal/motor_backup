@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import Home from "./Home";
@@ -37,6 +37,7 @@ import Faq from "./Faq";
 import NotFoundPage from "./NotFoundPage";
 
 function Layout() {
+
   return (
     <>
       <BrowserRouter>

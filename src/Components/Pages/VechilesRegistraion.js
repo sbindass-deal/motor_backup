@@ -15,18 +15,9 @@ import { Modal } from "react-bootstrap";
 import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
-import { countryData } from "../../countryAndCity"
-
-
+import { countryData } from "../../countryAndCity";
 
 const VechilesRegistraion = () => {
-
-
-
-
-
-
-
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [file, setFile] = useState();
@@ -143,7 +134,7 @@ const VechilesRegistraion = () => {
 
   const [basicfact, setbasicfact] = useState({
     vin: "",
-    showroom: "",
+    displayInAuction: "",
     vechilesrace: "",
     ultiumdrive: "",
     Interstellar: "",
@@ -162,8 +153,6 @@ const VechilesRegistraion = () => {
     otherTruckTitle: "",
     otherStatus: "",
   });
-
-
 
   //   const fetchCountryData = countryData.map((curVal) => {
   //     return console.log(567, curVal)
@@ -197,9 +186,6 @@ const VechilesRegistraion = () => {
     modificationOnTrck: "",
     fuel: "",
   });
-
-
-
 
   // contact info
 
@@ -283,7 +269,7 @@ const VechilesRegistraion = () => {
     } = namefield;
     const {
       vin,
-      showroom,
+      displayInAuction,
       vechilesrace,
       ultiumdrive,
       Interstellar,
@@ -351,7 +337,7 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
-        displayInShowroom: showroom,
+        displayInAuction: displayInAuction,
         km: odometer,
         kmacc: accurateField,
         odmeter: odometer,
@@ -393,6 +379,8 @@ const VechilesRegistraion = () => {
         fuel,
         EndTime: d.toLocaleString(),
         phone,
+        approved: 1,
+        sold: 1,
       })
       .then((result) => {
         setSubmitLoading(false);
@@ -420,7 +408,7 @@ const VechilesRegistraion = () => {
         });
         setbasicfact({
           vin: "",
-          showroom: "",
+          displayInAuction: "",
           vechilesrace: "",
           ultiumdrive: "",
           Interstellar: "",
@@ -544,7 +532,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                        reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -563,8 +551,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -583,8 +571,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -697,9 +685,6 @@ const VechilesRegistraion = () => {
                               What country is the vehicle currently located in?
                             </label>
 
-
-
-
                             <select
                               value={namefield.vechilelocation}
                               onChange={handleNameField}
@@ -732,7 +717,11 @@ const VechilesRegistraion = () => {
                                 Choose...
                               </option>
 
-                              {countryData[namefield.vechilelocation ? namefield.vechilelocation : 'Afghanistan'].map((curElem, i) => {
+                              {countryData[
+                                namefield.vechilelocation
+                                  ? namefield.vechilelocation
+                                  : "Afghanistan"
+                              ].map((curElem, i) => {
                                 return <option key={i}>{curElem}</option>;
                               })}
                             </select>
@@ -792,7 +781,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                        namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
@@ -966,7 +955,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1012,9 +1001,9 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>Do you want to add on Auction?</label>
                             <select
-                              value={basicfact.showroom}
+                              value={basicfact.displayInAuction}
                               onChange={basicFactOnChange}
-                              name="showroom"
+                              name="displayInAuction"
                               className="field"
                               required
                             >
@@ -1353,8 +1342,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1889,8 +1878,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />

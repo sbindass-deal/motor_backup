@@ -2,14 +2,18 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
 
 function EditMyAccount() {
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    username: "",
+    email: "",
+    phone: "",
+  });
   const url = process.env.REACT_APP_URL;
-  const reduxValue = useSelector((data) => data.login);
 
   const notify = (val) =>
     toast.success(val, {
@@ -24,37 +28,42 @@ function EditMyAccount() {
     });
 
   const [editUser, setEditUser] = useState({
-    name: reduxValue.user.name,
-    userName: reduxValue.user.username,
-    email: reduxValue.user.email,
-    phone: reduxValue.user.mobile,
+    name: userDetails.name,
+    userName: userDetails.username,
+    email: userDetails.email,
+    phone: userDetails.mobile,
   });
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
     setEditUser({ ...editUser, [Name]: Value });
   };
-const fetchUserDetails = async() => {
-  try{
-    const res = await axios.get(`${url}user`)
-    console.log(res.data.data)
-  }catch(err){
-    console.log(err)
-  }
-}
-useEffect(() => {
-  fetchUserDetails()
-}, [])
+  const fetchUserDetails = async () => {
+    try {
+      const res = await axios.get(`${url}user`);
+      const userLoginData = res.data.data;
+      setUserDetails(res.data.data);
+      setEditUser({
+        name: userLoginData.name,
+        userName: userLoginData.username,
+        email: userLoginData.email,
+        phone: userLoginData.mobile,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
 
   const handleApi = (e) => {
     e.preventDefault();
-    const { name, userName, phone } = editUser;
+    const { name, userName, phone, email } = editUser;
 
     axios
       .post(`${url}users`, {
-        user_id: reduxValue.user.id,
-        id: reduxValue.user.id,
-        email: reduxValue.user.email,
+        email: email,
         username: userName,
         phone: phone,
         name: name,
@@ -103,45 +112,53 @@ useEffect(() => {
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">
-                  <FormInput
-                    value={editUser.name}
-                    onChange={handleEditOnChange}
-                    name="name"
-                    placeholder="Enter Name"
-                    errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
-                    label="Name"
-                    pattern="^[A-Za-z ]{3,16}$"
-                    required={true}
-                  />
-                  <FormInput
-                    value={editUser.email}
-                    onChange={handleEditOnChange}
-                    name="email"
-                    placeholder="Enter Email"
-                    errorMessage="It should be a valid email address!"
-                    label="Email"
-                    disabled={true}
-                  />
-                  <FormInput
-                    value={editUser.userName}
-                    onChange={handleEditOnChange}
-                    name="userName"
-                    placeholder="Enter Username"
-                    errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
-                    label="Username"
-                    pattern="^[A-Za-z0-9]{3,16}$"
-                    required={true}
-                  />
-                  <FormInput
-                    value={editUser.phone}
-                    onChange={handleEditOnChange}
-                    name="phone"
-                    placeholder="Enter phone number"
-                    errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
-                    label="Phone"
-                    pattern="^[0-9]{10,12}$"
-                    required={true}
-                  />
+                  <div className="col-lg-6 col-sm-12">
+                    <FormInput
+                      value={editUser.name}
+                      onChange={handleEditOnChange}
+                      name="name"
+                      placeholder="Enter Name"
+                      errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                      label="Name"
+                      pattern="^[A-Za-z ]{3,16}$"
+                      required={true}
+                    />
+                  </div>
+                  <div className="col-lg-6 col-sm-12">
+                    <FormInput
+                      value={editUser.email}
+                      onChange={handleEditOnChange}
+                      name="email"
+                      placeholder="Enter Email"
+                      errorMessage="It should be a valid email address!"
+                      label="Email"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="col-lg-6 col-sm-12">
+                    <FormInput
+                      value={editUser.userName}
+                      onChange={handleEditOnChange}
+                      name="userName"
+                      placeholder="Enter Username"
+                      errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                      label="Username"
+                      pattern="^[A-Za-z0-9]{3,16}$"
+                      required={true}
+                    />
+                  </div>
+                  <div className="col-lg-6 col-sm-12">
+                    <FormInput
+                      value={editUser.phone}
+                      onChange={handleEditOnChange}
+                      name="phone"
+                      placeholder="Enter phone number"
+                      errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
+                      label="Phone"
+                      pattern="^[0-9]{10,12}$"
+                      required={true}
+                    />
+                  </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group">
                       <button type="submit" className="gry_btn mt-3">
