@@ -8,10 +8,8 @@ import Carousel from "react-bootstrap/Carousel";
 
 function Detail() {
   const { id } = useParams();
-  const userId = useSelector((state) => state);
   const [vehicle, setVehicle] = useState({});
   const [vehicleImage, setVehicleImage] = useState([]);
-  const logingUser = useSelector((state) => state.login);
   const [comments, setcomments] = useState([]);
   const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
@@ -108,7 +106,6 @@ function Detail() {
       axios
         .post(process.env.REACT_APP_URL + "biddings", {
           auctionId: id,
-          userId: logingUser.user.id,
           auctionAmmount: bidValue,
           vehicle_id: id,
           comment: bidComment,
