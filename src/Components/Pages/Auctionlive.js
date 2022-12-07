@@ -4,12 +4,13 @@ import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { Spinner } from "react-bootstrap";
 function Auctionlive() {
   const userId = useSelector((state) => state);
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
-
+  const [loading, setLoader] = useState(true);
   const fetchVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
@@ -21,6 +22,7 @@ function Auctionlive() {
 
         setauctions(filteredData);
         setFilteredUsers(filteredData);
+        setLoader(false)
       }
     } catch (err) {
       console.log(err);
@@ -57,6 +59,7 @@ function Auctionlive() {
 
   return (
     <div>
+
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
@@ -132,104 +135,111 @@ function Auctionlive() {
               </ul>
             </div>
           </div>
+          {
+            loading ?
+              <Spinner />
+              :
+              <div className="row pt-4 row_gridList">
+                {data
+                  .filter((data) => data.done === 1 && data.premium === 1)
+                  .map((curElem) => {
+                    return (
+                      <div
+                        key={curElem.id}
+                        className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
+                      >
+                        <div className="card_post">
+                          <div className="card_postImg">
+                            <button
+                              onClick={() => addFabrity(curElem.id)}
+                              type="button"
+                              className="watchedIc"
+                            >
+                              <i
+                                className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
+                                  }`}
+                              ></i>
+                            </button>
 
-          <div className="row pt-4 row_gridList">
-            {data
-              .filter((data) => data.done === 1 && data.premium === 1)
-              .map((curElem) => {
-                return (
-                  <div
-                    key={curElem.id}
-                    className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
-                  >
-                    <div className="card_post">
-                      <div className="card_postImg">
-                        <button
-                          onClick={() => addFabrity(curElem.id)}
-                          type="button"
-                          className="watchedIc"
-                        >
-                          <i
-                            className={`fa-solid fa-star ${
-                              curElem.like >= 1 ? "faList" : ""
-                            }`}
-                          ></i>
-                        </button>
+                            <a href={`detail/${curElem.id}`}>
+                              <img
+                                src={
+                                  curElem.stepOneImage === null ||
+                                    curElem.stepOneImage === undefined ||
+                                    curElem.stepOneImage === ""
+                                    ? img_01
+                                    : process.env.REACT_APP_URL +
+                                    curElem.stepOneImage
+                                }
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="card_postInfo">
+                            <h4>
+                              <a href={`detail/${curElem.id}`}>
+                                {curElem.make} {curElem.model}-{curElem.year}-
+                                {curElem.odmeter}
+                              </a>
+                            </h4>
+                            <ul
+                              className="labelList"
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <li className="w-auto">
+                                {curElem.currentAmount ? (
+                                  <span>
+                                    <label>Current&nbsp;Bid:</label>
+                                    <br />${curElem.currentAmount.auctionAmmount}
+                                  </span>
+                                ) : curElem.documentFee ? (
+                                  <span>
+                                    <label>Documents fee:</label>
+                                    <br /> ${curElem.documentFee}
+                                  </span>
+                                ) : null}
+                              </li>
+                              <li>
+                                {/* <span>{getEndDate(curElem.created_at)} </span> */}
+                                {/* <span>{curElem.EndTime}</span> */}
+                                {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                                  new Date().getTime() >
+                                  7200000 ? (
+                                  <label>Upcomming Auction</label>
+                                ) : parseInt(
+                                  new Date(curElem.EndTime).getTime(),
+                                  10
+                                ) -
+                                  new Date().getTime() >
+                                  0 &&
+                                  parseInt(
+                                    new Date(curElem.EndTime).getTime(),
+                                    10
+                                  ) -
+                                  new Date().getTime() <
+                                  7200000 ? (
+                                  <label>Bid is live now</label>
+                                ) : (
+                                  <label>Sold</label>
+                                )}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+          }
 
-                        <a href={`detail/${curElem.id}`}>
-                          <img
-                            src={
-                              curElem.stepOneImage === null ||
-                              curElem.stepOneImage === undefined ||
-                              curElem.stepOneImage === ""
-                                ? img_01
-                                : process.env.REACT_APP_URL +
-                                  curElem.stepOneImage
-                            }
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="card_postInfo">
-                        <h4>
-                          <a href={`detail/${curElem.id}`}>
-                            {curElem.make} {curElem.model}-{curElem.year}-
-                            {curElem.odmeter}
-                          </a>
-                        </h4>
-                        <ul
-                          className="labelList"
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <li className="w-auto">
-                            {curElem.currentAmount ? (
-                              <span>
-                                <label>Current&nbsp;Bid:</label>
-                                <br />${curElem.currentAmount.auctionAmmount}
-                              </span>
-                            ) : curElem.documentFee ? (
-                              <span>
-                                <label>Documents fee:</label>
-                                <br /> ${curElem.documentFee}
-                              </span>
-                            ) : null}
-                          </li>
-                          <li>
-                            {/* <span>{getEndDate(curElem.created_at)} </span> */}
-                            {/* <span>{curElem.EndTime}</span> */}
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              new Date().getTime() >
-                            7200000 ? (
-                              <label>Upcomming Auction</label>
-                            ) : parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() >
-                                0 &&
-                              parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() <
-                                7200000 ? (
-                              <label>Bid is live now</label>
-                            ) : (
-                              <label>Sold</label>
-                            )}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+
         </div>
       </section>
+
+
     </div>
   );
 }
