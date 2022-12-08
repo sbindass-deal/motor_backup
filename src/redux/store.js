@@ -1,8 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import submitvechilesReducer from "./reducers/submitvechilesReducer";
-import { persistReducer, persistStore } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import login from "./reducers/login";
+import dayAndNightMode from "./reducers/dayAndNightMode";
 
 const persistConfig = {
   key: "root",
@@ -11,8 +12,9 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  submitvechilesReducer: submitvechilesReducer,
-  login: login,
+  submitvechilesReducer,
+  login,
+  dayAndNightMode,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

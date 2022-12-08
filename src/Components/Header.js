@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authToken, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { changeMode } from "../redux/reducers/dayAndNightMode";
 
 function Header() {
   const location = useLocation();
@@ -28,7 +28,8 @@ function Header() {
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   const dispatch = useDispatch();
-  const logingUser = useSelector((state) => state.login);
+  const logingUser = useSelector((state) => state);
+  console.log("hello11", logingUser.dayAndNightMode.mode);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
@@ -113,7 +114,7 @@ function Header() {
                         </div>
                       </div>
                     </li>
-                    {/* {!logingUser.login ? (
+                    {/* {!logingUser.login.login ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           onClick={handleShow}
@@ -141,7 +142,7 @@ function Header() {
                         How its Works
                       </Link>
                     </li>
-                    {!logingUser.token ? (
+                    {!logingUser.login.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           onClick={handleShow}
@@ -167,7 +168,7 @@ function Header() {
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
-                   
+
                     <li className="nav-item afterLogin">
                       <Link
                         className={`nav-link ${
@@ -176,7 +177,7 @@ function Header() {
                         to="/accountinfo"
                       >
                         <AccountCircleIcon /> <br />
-                        <span>{logingUser.user.username}</span>
+                        <span>{logingUser.login.user.username}</span>
                       </Link>
                     </li>
                     <li
@@ -193,6 +194,13 @@ function Header() {
                         <i className="fa-solid fa-magnifying-glass"></i>
                       </Link>
                     </li>
+
+                    <button
+                      onClick={() => dispatch(changeMode())}
+                      className="nav-item"
+                    >
+                      {logingUser.dayAndNightMode.mode ? "Day" : "Night"}
+                    </button>
                   </ul>
                   <ul className="navbar-nav mobileOnly">
                     <li className="nav-item">
