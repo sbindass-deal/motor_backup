@@ -199,7 +199,7 @@ function Header() {
                       onClick={() => dispatch(changeMode())}
                       className="nav-item"
                     >
-                      {logingUser.dayAndNightMode.mode ? "Day" : "Night"}
+                      {logingUser.dayAndNightMode.mode ? "Night" : "Day"}
                     </button>
                   </ul>
                   <ul className="navbar-nav mobileOnly">

@@ -10,6 +10,7 @@ function Auctionlive() {
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [viewListActive, setViewListActive] = useState(false);
   const [loading, setLoader] = useState(true);
   const fetchVehicleApi = async () => {
     try {
@@ -115,10 +116,22 @@ function Auctionlive() {
                   </button>
                 </li>
                 <li className="d-flex">
-                  <button type="button" className="gry_btn gridView active">
+                  <button
+                    onClick={() => setViewListActive(false)}
+                    type="button"
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
+                  >
                     <img src={icGrid} />
                   </button>
-                  <button type="button" className="gry_btn listView">
+                  <button
+                    onClick={() => setViewListActive(true)}
+                    type="button"
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
+                  >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
                 </li>
@@ -149,7 +162,11 @@ function Auctionlive() {
               </div>
             </div>
           ) : (
-            <div className="row pt-4 row_gridList">
+            <div
+              className={`row pt-4 row_gridList ${
+                viewListActive && "activeListView"
+              }`}
+            >
               {data
                 .filter((data) => data.done === 1 && data.premium === 1)
                 .map((curElem) => {
@@ -208,7 +225,7 @@ function Auctionlive() {
                                 </span>
                               ) : curElem.documentFee ? (
                                 <span>
-                                  <label>Documents fee:</label>
+                                  <label>Opening Bid:</label>
                                   <br /> ${curElem.documentFee}
                                 </span>
                               ) : null}
@@ -235,7 +252,7 @@ function Auctionlive() {
                                 ) -
                                   new Date().getTime() <
                                   7200000 ? (
-                                <label>Bid is live now</label>
+                                <label>Auction is live now</label>
                               ) : (
                                 <label>Sold</label>
                               )}

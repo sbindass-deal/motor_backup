@@ -1,5 +1,5 @@
 import "./App.css";
-import '@rainbow-me/rainbowkit/styles.css';
+import "@rainbow-me/rainbowkit/styles.css";
 import "./Assets/css/bootstrap.min.css";
 import "./Assets/css/style.css";
 import "./Assets/css/responsive.css";
@@ -31,9 +31,10 @@ import {
   coinbaseWallet,
   imTokenWallet,
   trustWallet,
-  omniWallet
+  omniWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { useEffect } from "react";
 
 const bsc = {
   id: 56,
@@ -80,7 +81,7 @@ const connectors = connectorsForWallets([
       coinbaseWallet({ chains }),
       imTokenWallet({ chains }),
       trustWallet({ chains }),
-      omniWallet({ chains })
+      omniWallet({ chains }),
     ],
   },
 ]);
@@ -90,12 +91,29 @@ const client = createClient({
   connectors,
   provider,
 });
-
+const addBodyClass = (className) => document.body.classList.add(className);
+const removeBodyClass = (className) =>
+  document.body.classList.remove(className);
 function App() {
-  const logingUser = useSelector((state) => state.login);
+  const logingUser = useSelector((state) => state);
+  const className = logingUser.dayAndNightMode.mode ? "dark" : "light"
+
+  useEffect(() => {
+    // Set up
+    className instanceof Array
+      ? className.map(addBodyClass)
+      : addBodyClass(className);
+
+    // Clean up
+    return () => {
+      className instanceof Array
+        ? className.map(removeBodyClass)
+        : removeBodyClass(className);
+    };
+  }, [className]);
   axios.interceptors.request.use(
     (req) => {
-      req.headers.Authorization = `Bearer ${logingUser.token}`;
+      req.headers.Authorization = `Bearer ${logingUser.login.token}`;
 
       return req;
     },
@@ -105,12 +123,13 @@ function App() {
   );
 
   return (
-    <WagmiConfig client={client}>
-          <RainbowKitProvider theme={darkTheme()} chains={chains}>
-      <Layout />
-      </RainbowKitProvider>
-
-    </WagmiConfig>
+    <>
+      <WagmiConfig client={client}>
+        <RainbowKitProvider theme={darkTheme()} chains={chains}>
+          <Layout />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </>
   );
 }
 
