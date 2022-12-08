@@ -1260,3 +1260,30 @@ table.showroomCol tr td:last-child {
 .searchBody::-webkit-scrollbar-thumb:hover { background: #ffc107;}
 
 img.carGif {  width: 35%;}
+
+
+.userTable.MuiDataGrid-root.MuiDataGrid-root--densityStandard.css-1e2bxag-MuiDataGrid-root {
+  color: #fff;
+}
+.lotryBtn {
+  display: flex;
+  width: 100%;
+}
+.lotryBtn > div >button {
+  background: #f7931b !important;
+  border-radius: 5px !important;
+  width: 100% !important;
+  margin-right: 10px !important;
+}
+
+.lotryBtn .Btn > span {
+  background: #f7931b !important;
+  border-radius: 5px !important;
+  padding: 0px 25px !important;
+}
+button.Btn { background: #f7931b !important; }
+#clockdiv { margin: 0 -20px !important;}
+a.nav-link.navActive { text-align: left !important;}
+a.nav-link.false { text-align: initial;}
+.searchForm input { background-color: #000000eb;
+}

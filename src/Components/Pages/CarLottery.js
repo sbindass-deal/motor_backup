@@ -265,9 +265,10 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-12 col-md-12">
-                    <div className="form-group">
-                      <ConnectButton></ConnectButton>
+                    <div className="form-group lotryBtn">
+                      <ConnectButton ></ConnectButton>
                       <StripeCheckout
+                        className="Btn"
                         stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                         token={onToken}
                       />
