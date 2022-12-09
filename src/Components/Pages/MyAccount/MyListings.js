@@ -153,18 +153,21 @@ function MyListings() {
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {curElem.sold === "1" && (
+                              {
                                 <div className="mx-2">
                                   <button
                                     onClick={() => handleSoldApi(curElem.id)}
                                     type="button"
                                     className="gry_btn"
+                                    disabled={
+                                      curElem.sold === "0" ? true : false
+                                    }
                                   >
                                     Sold
                                   </button>
                                 </div>
-                              )}
-                              {curElem.reserve === "Yes" && (
+                              }
+                              {curElem.reserve === "Yes" ? (
                                 <>
                                   <div className="mx-2">
                                     <button
@@ -191,7 +194,7 @@ function MyListings() {
                                     </button>
                                   </div>
                                 </>
-                              )}
+                              ) : null}
                               <a
                                 href={`detail/${curElem.id}`}
                                 className="gry_btn"
