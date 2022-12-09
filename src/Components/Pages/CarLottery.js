@@ -416,36 +416,37 @@ function CarRaffle() {
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className="payTPop">
         <Modal.Header closebutton>
           <Modal.Title>Payment Process</Modal.Title>
+          <button variant="secondary" onClick={handleClose}>
+            X
+          </button>
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
             <h2>Model Name : 2021 BMW Nexon</h2>
             <h3 className="price__">Price : $2000</h3>
+            <p>Choose Payment Option:</p>
+            <div className="ress">
             <div className="ProcessPymt">
-              <p>Choose Payment Option:</p>
+             
               <ConnectButton></ConnectButton>
+              
+              {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+            </div>
+            <div>
               <StripeCheckout
                 className="Btn"
                 stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                 token={onToken}
               />
-
-              {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
+            </div>
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <button variant="secondary" onClick={handleClose}>
-            Close
-          </button>
-          <button variant="primary" onClick={handleClose}>
-            Save Changes
-          </button>
-        </Modal.Footer>
+        
       </Modal>
     </div>
   );
