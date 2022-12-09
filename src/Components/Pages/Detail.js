@@ -279,7 +279,7 @@ function Detail() {
                     </button>
                   ) : (
                     <>
-                      {vehicle.sold === "1" && vehicle.canBid === "yes" ? (
+                      {vehicle.canBid === "yes" && (
                         <button
                           type="button"
                           className="gry_btn active"
@@ -287,7 +287,7 @@ function Detail() {
                         >
                           Place a bid
                         </button>
-                      ) : null}
+                      )}
                     </>
                   )}
                   {/* <button
@@ -683,8 +683,7 @@ function Detail() {
                           </button>
                         ) : (
                           <>
-                            {vehicle.sold === "1" &&
-                            vehicle.canBid === "yes" ? (
+                            {vehicle.canBid === "yes" && (
                               <button
                                 type="button"
                                 className="gry_btn active"
@@ -692,7 +691,7 @@ function Detail() {
                               >
                                 Place a bid
                               </button>
-                            ) : null}
+                            )}
                           </>
                         )}
                       </li>
