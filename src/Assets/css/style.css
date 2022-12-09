@@ -1247,7 +1247,7 @@ ul.slick-dots { display: none !important;}
 label { font-size: 12px;}
 .post-excerpt { padding: 0px 70px;}
 .post-excerpt h2 { font-size: 21px; margin-top: 50px; border-bottom: 1px solid #dedede; padding-bottom: 6px;}
-.payTPop button { background: transparent; border: transparent; color: #fff; font-size: 18px;}
+.payTPop button { background: transparent; border: transparent; color: #fff; font-size: 14px; margin: 5px;}
 .payTPop .modal-content { border: 0px solid rgba(0,0,0,.2); background: #000; top: 90px;}
 .payTPop .modal-header { border-bottom: 1px solid #1b1b1b00;}
 .payTPop .modal-content { border: 0px solid rgba(0,0,0,.2); background: #000; top: 90px; box-shadow: 1px 1px 65px 0px #ffd7a738; border-radius: 10px;}
@@ -1281,4 +1281,65 @@ li.reserved {
   font-size: 22px;
   position: relative;
   top: -11px;
+}
+
+button.iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  padding: 8px 10px;
+  border: none;
+  background: #f7931a;
+  margin-right: 5px;
+}
+button.iekbcc0.iekbcc9.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367va.ju367v11.ju367v1c.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.iekbcc0.ju367v4.ju367va.ju367v1k.ju367v25 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.iekbcc0.ju367v4.ju367va.ju367v1k {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.iekbcc0.ju367v4.ju367va.ju367v1k.ju367v25 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+button.iekbcc0.iekbcc9.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367va.ju367v11.ju367v1c.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: #f7931b;
+  padding: 5px 15px;
+}
+.iekbcc0.ju367va.ju367v1n {
+  display: flex;
+}
+button.iekbcc0.iekbcc9.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367va.ju367v11.ju367v1c.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: #f7931b;
+  padding: 5px 15px;
+  border: none;
+}
+button.Btn {
+  background-color: #f7931b !important;
+  margin-top: 10px;
+}
+button.Btn span {
+  background: #f7931b !important;
+}
+button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background-color: #f7931b;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+.ress {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
