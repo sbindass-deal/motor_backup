@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.91ca2f8d.css",
-    "main.js": "/static/js/main.85855319.js",
+    "main.css": "/static/css/main.efe5c43c.css",
+    "main.js": "/static/js/main.0583d16d.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -73,6 +73,7 @@
     "static/media/img_002.jpg": "/static/media/img_002.a07e34fbe8502c629d41.jpg",
     "static/media/raffle-1.jpg": "/static/media/raffle-1.cb3f29ca1467856ef003.jpg",
     "static/media/img_004.jpg": "/static/media/img_004.e3d7adab743cd8f70b7a.jpg",
+    "static/media/lightmode-logo.png": "/static/media/lightmode-logo.e4a24ca447d3c92953ca.png",
     "static/media/HIW4.jpeg": "/static/media/HIW4.d0df402fcacf1b67fbf1.jpeg",
     "static/media/car_02.jpg": "/static/media/car_02.2817b553872266eacaac.jpg",
     "static/media/transparent.png": "/static/media/transparent.c3606f2756f8544d4f71.png",
@@ -100,14 +101,16 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/check-circle.svg": "/static/media/check-circle.8216908bc1d44324181a.svg",
     "static/media/icGrid.svg": "/static/media/icGrid.483731707dbdf461982cedb149596cc4.svg",
+    "static/media/icons8-moon.svg": "/static/media/icons8-moon.10416b5312321d94cc4dce0488c10a40.svg",
+    "static/media/icons8-sun.svg": "/static/media/icons8-sun.2187ce7240777cfb10b5cf93886a0df7.svg",
     "static/media/ic_scrollDown.svg": "/static/media/ic_scrollDown.0169217fa841796987370ba5fe08f810.svg",
     "static/media/check_ic.svg": "/static/media/check_ic.6a6f2b0965877e9cbe74.svg",
     "static/media/ArrowRight_2.svg": "/static/media/ArrowRight_2.2283df6c9b192abc2075.svg",
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.91ca2f8d.css.map": "/static/css/main.91ca2f8d.css.map",
-    "main.85855319.js.map": "/static/js/main.85855319.js.map",
+    "main.efe5c43c.css.map": "/static/css/main.efe5c43c.css.map",
+    "main.0583d16d.js.map": "/static/js/main.0583d16d.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -148,7 +151,7 @@
     "48.085fd972.chunk.js.map": "/static/js/48.085fd972.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.91ca2f8d.css",
-    "static/js/main.85855319.js"
+    "static/css/main.efe5c43c.css",
+    "static/js/main.0583d16d.js"
   ]
 }

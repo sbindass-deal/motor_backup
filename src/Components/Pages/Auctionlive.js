@@ -83,25 +83,19 @@ function Auctionlive() {
                   <input
                     value={searchValue}
                     onChange={(e) => {
-                      setSearchValue(e.target.value);
-
+                      let value = e.target.value;
+                      setSearchValue(value);
                       setauctions(
                         filteredUsers
                           .filter(
                             (data) =>
                               data.make
                                 .toLowerCase()
-                                .includes(e.target.value) ||
-                              data.make
-                                .toUpperCase()
-                                .includes(e.target.value) ||
+                                .includes(value.toLowerCase()) ||
+                              data.year.includes(value) ||
                               data.model
                                 .toLowerCase()
-                                .includes(e.target.value) ||
-                              data.model
-                                .toUpperCase()
-                                .includes(e.target.value) ||
-                              data.year.toUpperCase().includes(e.target.value)
+                                .includes(value.toLowerCase())
                           )
                           .map((data) => data)
                       );

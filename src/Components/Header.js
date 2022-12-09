@@ -53,6 +53,7 @@ function Header() {
   };
   const logout = () => {
     dispatch(authToken(null));
+    window.location.reload(false);
     notify("Logout successfully ! 😎🤐");
     navigate("/");
   };

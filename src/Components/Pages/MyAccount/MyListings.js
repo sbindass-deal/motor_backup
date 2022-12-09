@@ -26,7 +26,10 @@ function MyListings() {
     axios
       .get(process.env.REACT_APP_URL + `byUserVehicle`)
       .then((response) => {
-        setData(response.data.data);
+        console.log("hell22", response.data.data, response.data.status);
+        if (response.data.data && response.data.status === 200) {
+          setData(response.data.data);
+        }
         setVehicleLoding(false);
       })
       .catch((err) => {
@@ -160,7 +163,10 @@ function MyListings() {
                                     type="button"
                                     className="gry_btn"
                                     disabled={
-                                      curElem.reserve === "Yes" && curElem.sold === "0" ? false : true
+                                      curElem.reserve === "Yes" &&
+                                      curElem.sold === "1"
+                                        ? false
+                                        : true
                                     }
                                   >
                                     Sold

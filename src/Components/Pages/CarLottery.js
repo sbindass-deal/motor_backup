@@ -16,6 +16,7 @@ import { showModal } from "../../redux/reducers/login";
 import StripeCheckout from "react-stripe-checkout";
 
 function CarRaffle() {
+  const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -24,7 +25,6 @@ function CarRaffle() {
   };
   const handleShow = () => setShow(true);
   const [index, setIndex] = useState(0);
-  const userId = useSelector((state) => state);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -107,6 +107,9 @@ function CarRaffle() {
   const addTickets = () => {
     if (inputLotteryNumber <= 0) {
       alert("Pleae add valid number");
+      return;
+    } else if (!logingUser.login.token) {
+      handleLogin();
       return;
     }
     axios
