@@ -783,7 +783,7 @@ const VechilesRegistraion = () => {
                         {namefield.sale === "Yes" ||
                         namefield.vehiclepast === "Yes" ? (
                           <>
-                            <div className="col-12 col-sm-12 col-md-6">
+                            <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <label>
                                   Please provide a link to the listing:
@@ -859,7 +859,7 @@ const VechilesRegistraion = () => {
                         ) : (
                           ""
                         )}
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
                               Is the vehicle being sold on consignment?
@@ -920,7 +920,7 @@ const VechilesRegistraion = () => {
                               {/* <button>Browse File</button> */}
                               <input
                                 style={{
-                                  backgroundColor: "#EF6031",
+                                  
                                   fontSize: "1.2rem",
                                   textAlign: "center",
                                   cursor: "pointer",
@@ -1183,7 +1183,10 @@ const VechilesRegistraion = () => {
                               <option value="other">Other</option>
                             </select>
                           </div>
-                          {basicfact.km === "other" ? (
+                         
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                        {basicfact.km === "other" ? (
                             <div className="form-group">
                               <label>Enter vehicle titled</label>
                               <input
@@ -1300,7 +1303,7 @@ const VechilesRegistraion = () => {
                               {/* <button>Browse File</button> */}
                               <input
                                 style={{
-                                  backgroundColor: "#EF6031",
+                                  border: "#EF6031",
                                   fontSize: "1.2rem",
                                   textAlign: "center",
                                   cursor: "pointer",

@@ -10,7 +10,7 @@ function TermsOfUse() {
               <h2 className="title_combo title_Center">Terms of service</h2>
               <div className="post-excerpt">
                 <p>
-                  <strong>OVERVIEW</strong>
+                  <h2>OVERVIEW</h2>
                 </p>
                 <p>Last revised on: 11/09/2022</p>
                 {/* <p>Terms of Use</p> */}
@@ -66,7 +66,7 @@ function TermsOfUse() {
                   and services to you.{" "}
                 </p>
                 <p>
-                  <strong>SECTION 1 - ONLINE STORE TERMS</strong>
+                  <h2>SECTION 1 - ONLINE STORE TERMS</h2>
                 </p>
                 {/* <p>Application and Acceptance of the Terms of Use</p> */}
                 <ul>
@@ -101,7 +101,7 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>SECTION 2 - GENERAL CONDITIONS</strong>
+                  <h2>SECTION 2 - GENERAL CONDITIONS</h2>
                 </p>
                 <ul>
                   <p>
@@ -137,10 +137,10 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF
                     INFORMATION
-                  </strong>
+                  </h2>
                 </p>
                 <ul>
                   <p>
@@ -166,9 +166,9 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
-                  </strong>
+                  </h2>
                 </p>
                 <ul>
                   <p>
@@ -192,9 +192,9 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 5 - PRODUCTS OR SERVICES (if applicable)
-                  </strong>
+                  </h2>
                 </p>
                 <ul>
                   <p>
@@ -235,9 +235,9 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
-                  </strong>
+                  </h2>
                 </p>
                 <ul>
                   <p>
@@ -269,7 +269,7 @@ function TermsOfUse() {
                   <p> For more detail, please review our Returns Policy. </p>
                 </ul>
                 <p>
-                  <strong>SECTION 7 - OPTIONAL TOOLS</strong>
+                  <h2>SECTION 7 - OPTIONAL TOOLS</h2>
                 </p>
                 <ul>
                   <p>
@@ -306,7 +306,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 8 - THIRD-PARTY LINKS</strong>
+                  <h2>SECTION 8 - THIRD-PARTY LINKS</h2>
                 </p>
                 <ul>
                   <p>
@@ -340,9 +340,9 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS
-                  </strong>
+                  </h2>
                 </p>
 
                 <ul>
@@ -389,7 +389,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 10 - PERSONAL INFORMATION</strong>
+                  <h2>SECTION 10 - PERSONAL INFORMATION</h2>
                 </p>
 
                 <ul>
@@ -401,9 +401,9 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS
-                  </strong>
+                  </h2>
                 </p>
 
                 <ul>
@@ -434,7 +434,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 12 - PROHIBITED USES</strong>
+                  <h2>SECTION 12 - PROHIBITED USES</h2>
                 </p>
                 <ul>
                   <p>
@@ -466,10 +466,10 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>
+                  <h2>
                     SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF
                     LIABILITY
-                  </strong>
+                  </h2>
                 </p>
                 <ul>
                   <p>
@@ -532,7 +532,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 14 - INDEMNIFICATION</strong>
+                  <h2>SECTION 14 - INDEMNIFICATION</h2>
                 </p>
 
                 <ul>
@@ -552,7 +552,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 15 - SEVERABILITY</strong>
+                  <h2>SECTION 15 - SEVERABILITY</h2>
                 </p>
 
                 <ul>
@@ -569,7 +569,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 16 - TERMINATION</strong>
+                  <h2>SECTION 16 - TERMINATION</h2>
                 </p>
 
                 <ul>
@@ -601,7 +601,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 17 - ENTIRE AGREEMENT</strong>
+                  <h2>SECTION 17 - ENTIRE AGREEMENT</h2>
                 </p>
 
                 <ul>
@@ -631,7 +631,7 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <strong>SECTION 18 - GOVERNING LAW</strong>
+                  <h2>SECTION 18 - GOVERNING LAW</h2>
                 </p>
                 <ul>
                   <p>
@@ -653,7 +653,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 19 - CHANGES TO TERMS OF SERVICE</strong>
+                  <h2>SECTION 19 - CHANGES TO TERMS OF SERVICE</h2>
                 </p>
 
                 <ul>
@@ -665,7 +665,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <strong>SECTION 20 - CONTACT INFORMATION</strong>
+                  <h2>SECTION 20 - CONTACT INFORMATION</h2>
                 </p>
 
                 <ul>
@@ -680,7 +680,7 @@ function TermsOfUse() {
                     <ul>
                     <li>If you believe your copyright has been infringed, you may provide us with notice in accordance with the process described in the corresponding section of the Terms of Use below.</li>
                     </ul>
-                    <p><strong><span id="terms">Terms of Use</span></strong></p>
+                    <p><h2><span id="terms">Terms of Use</span></h2></p>
                     <p>Last revised on: June 25, 2020</p>
                     <p>1. Application and Acceptance of this Agreement</p>
                     <p>These Terms of Use (including the binding arbitration provision located here) along with our <a href="https://bringatrailer.com/privacy-notice/" target="_blank" rel="noopener noreferrer">Privacy Notice</a>, any <a href="https://bringatrailer.com/faq/" target="_blank" rel="noopener noreferrer">FAQs</a>, and any additional guidelines, terms, procedures or rules that may apply to a specific feature of the Digital Services (collectively, the “Agreement”) that are owned or operated by Bring a Trailer Media, LLC or its affiliates (“we”, “us”, “our” or “shibnobiMedia”), are a contract in electronic form between you (“you,” “your,” and “yourself”) and shibnobiMedia. This Agreement applies to the extent you use the Digital Services to (a) act as a “Buyer” submitting bids expressing an intent to purchase vehicles or other products and services listed by Sellers on the Digital Services, (b) act as a “Seller” submitting information in connection with the listing of a vehicle or other product or service on a Digital Service by shibnobiMedia on your behalf or (c) as a visitor, registrant or user in any other capacity permitted by these terms (together with “Buyers” and “Sellers”, collectively, “Users”). This Agreement sets forth the legally binding terms governing your access and use of the Digital Services. This Agreement applies to shibnobiMedia and its affiliates only and does not cover other companies, including third parties that may advertise or sponsor content, products or services on the Digital Services or any third-party platforms (such as social media platforms or app stores) or other channels that you may use to access the Digital Services or any Content (as defined below).</p>

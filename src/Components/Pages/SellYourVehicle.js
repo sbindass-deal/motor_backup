@@ -599,7 +599,7 @@ function SellYourVehicle() {
                           />
                         </div>
                       </div>
-                      <div className="col-12 col-sm-12 col-md-6">
+                      <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
                           <label>
                             Is the vehicle being sold on consignment?
