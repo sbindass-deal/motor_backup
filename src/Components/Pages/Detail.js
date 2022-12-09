@@ -221,9 +221,9 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      {t > 7200000 ? (
+                      {t > 900000 ? (
                         <span>Upcomming Auction</span>
-                      ) : t > 0 && t <= 7200000 ? (
+                      ) : t > 0 && t <= 900000 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
                           {days} days {hours} hours, {minutes} minutes,{" "}
@@ -276,7 +276,7 @@ function Detail() {
                         <span> USD $ {vehicle.documentFee} </span>
                       )}
                     </a>
-                  ) : t >= 7200000 ? (
+                  ) : t >= 900000 ? (
                     <button type="button" className="gry_btn">
                       Upcomming Auction
                     </button>
@@ -647,9 +647,9 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        {t > 7200000 ? (
+                        {t > 900000 ? (
                           <span>Upcomming Auction</span>
-                        ) : t > 0 && t <= 7200000 ? (
+                        ) : t > 0 && t <= 900000 ? (
                           <span>
                             <label>Ends In:&nbsp;</label>
                             {days} days {hours} hours, {minutes} minutes,{" "}
@@ -683,7 +683,7 @@ function Detail() {
                               <span> USD $ {vehicle.documentFee} </span>
                             )}
                           </a>
-                        ) : t >= 7200000 ? (
+                        ) : t >= 900000 ? (
                           <button type="button" className="gry_btn">
                             Upcomming Auction
                           </button>

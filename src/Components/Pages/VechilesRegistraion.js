@@ -304,8 +304,8 @@ const VechilesRegistraion = () => {
     } = detailstab;
     const { uemail, iname, phone } = information;
     let d = new Date();
-    d.setHours(d.getHours() + 2);
-    d.setMinutes(d.getMinutes() + 5);
+    // d.setHours(d.getHours() + 2);
+    d.setMinutes(d.getMinutes() + 20);
     // console.log("addEnd Time", d.toLocaleString());
 
     e.preventDefault();
@@ -999,7 +999,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Do you want to add on Auction?</label>
+                            <label>Do you want to submit for Auction?</label>
                             <select
                               value={basicfact.displayInAuction}
                               onChange={basicFactOnChange}

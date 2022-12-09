@@ -145,6 +145,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
                 <div className="col-12 col-md-6">
                   <div className="form-group">
+                    <label htmlFor="">Are you a dealer?</label>
                     <select
                       value={userInput.dealer}
                       onChange={handleUserInput}
@@ -153,7 +154,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required
                     >
                       <option selected disabled value="">
-                        Are you a dealer?
+                        Choose...
                       </option>
                       <option>Yes</option>
                       <option>No</option>

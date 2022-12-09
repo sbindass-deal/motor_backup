@@ -160,7 +160,7 @@ function MyListings() {
                                     type="button"
                                     className="gry_btn"
                                     disabled={
-                                      curElem.sold === "0" ? true : false
+                                      curElem.reserve === "Yes" && curElem.sold === "0" ? false : true
                                     }
                                   >
                                     Sold

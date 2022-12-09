@@ -17,9 +17,11 @@ import StripeCheckout from "react-stripe-checkout";
 
 function CarRaffle() {
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [index, setIndex] = useState(0);
   const userId = useSelector((state) => state);
-  const logingUser = useSelector((state) => state.login);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -79,8 +81,7 @@ function CarRaffle() {
   const fetchLotaryApiAll = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_URL +
-        `tickets/${showLotary.id}/user/${userId.login.user.id}`
+        process.env.REACT_APP_URL + `tickets/${showLotary.id}`
       );
       if (response.data.data) {
         setAllLotaryApi(response.data.data);
@@ -94,13 +95,17 @@ function CarRaffle() {
 
   useEffect(() => {
     fetchLotaryApi();
-    setCoupen(`userId-${userId.login.user.id}-ticket-${showLotary.id}`);
+    setCoupen(`userId-fdsfa-ticket-dsfa`);
   }, [showLotary.id]);
   useEffect(() => {
     fetchLotaryApiAll();
   }, [showLotary.id, inputLotteryNumber]);
 
   const addTickets = () => {
+    if (inputLotteryNumber <= 0) {
+      alert("Pleae add valid number");
+      return;
+    }
     axios
       .post(process.env.REACT_APP_URL + "addTicket", {
         name: userId.login.user.username,
@@ -108,8 +113,8 @@ function CarRaffle() {
         userId: userId.login.user.id,
         qty: parseInt(inputLotteryNumber, 10),
       })
-      .then((err) => {
-        console.log(err);
+      .then((res) => {
+        handleShow();
       });
     setInputLotteryNumber("");
     fetchLotaryApiAll();
@@ -266,12 +271,13 @@ function CarRaffle() {
                   </div>
                   <div className="col-12 col-md-12">
                     <div className="form-group lotryBtn">
-                      <ConnectButton ></ConnectButton>
-                      <StripeCheckout
-                        className="Btn"
-                        stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                        token={onToken}
-                      />
+                      <button
+                        type="button"
+                        className="btn"
+                        onClick={addTickets}
+                      >
+                        Make Payment
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -331,7 +337,7 @@ function CarRaffle() {
                           url: `http://localhost:3000/carraffle/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
-                      // onClick={() => console.log("shared successfully!")}
+                        // onClick={() => console.log("shared successfully!")}
                       >
                         {/* <button>Share on Web</button> */}
                         <button type="button" className="gry_btn w-full">
@@ -405,6 +411,37 @@ function CarRaffle() {
           </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
+      </Modal>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closebutton>
+          <Modal.Title>Payment Process</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="processPy">
+            <h2>Model Name : 2021 BMW Nexon</h2>
+            <h3 className="price__">Price : $2000</h3>
+            <div className="ProcessPymt">
+              <p>Choose Payment Option:</p>
+              <ConnectButton></ConnectButton>
+              <StripeCheckout
+                className="Btn"
+                stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                token={onToken}
+              />
+
+              {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button variant="secondary" onClick={handleClose}>
+            Close
+          </button>
+          <button variant="primary" onClick={handleClose}>
+            Save Changes
+          </button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
