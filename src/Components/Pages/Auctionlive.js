@@ -12,6 +12,7 @@ function Auctionlive() {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
   const [loading, setLoader] = useState(true);
+  const [highlightWatch, setHighlightWatch] = useState(false);
   const fetchVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
@@ -20,7 +21,7 @@ function Auctionlive() {
         const filteredData = newData.filter(
           (item) => item.displayInAuction === "Yes"
         );
-
+        // const watchedData = newData.filter((item) => item.like > 0);
         setauctions(filteredData);
         setFilteredUsers(filteredData);
         setLoader(false);
@@ -111,7 +112,11 @@ function Auctionlive() {
                   />
                 </li>
                 <li className="">
-                  <button type="button" className="gry_btn">
+                  <button
+                    onClick={() => setHighlightWatch(!highlightWatch)}
+                    type="button"
+                    className={`gry_btn ${highlightWatch && "active"}`}
+                  >
                     <i className="fa-solid fa-heart mr-2"></i> Watched
                   </button>
                 </li>
@@ -167,7 +172,10 @@ function Auctionlive() {
                 viewListActive && "activeListView"
               }`}
             >
-              {data
+              {(data.length > 0 && highlightWatch
+                ? data.filter((item) => item.like > 0)
+                : data
+              )
                 .filter((data) => data.done === 1 && data.premium === 1)
                 .map((curElem) => {
                   return (
