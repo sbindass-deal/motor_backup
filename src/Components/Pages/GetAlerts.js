@@ -3,6 +3,7 @@ import results_digest from "../../Assets/images/results-digest.png";
 import nr from "../../Assets/images/nr.png";
 import premium from "../../Assets/images/premium.png";
 import auction_list from "../../Assets/images/auction_list.jpg";
+// import auction_list from "../../Assets/images/auction_list.jpg";
 
 function GetAlerts() {
   return (
