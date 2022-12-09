@@ -53,9 +53,9 @@ function Header() {
   };
   const logout = () => {
     dispatch(authToken(null));
-    window.location.reload(false);
     notify("Logout successfully ! 😎🤐");
     navigate("/");
+    // window.location.reload(false);
   };
   return (
     <div>
@@ -191,7 +191,7 @@ function Header() {
                           to="/accountinfo"
                         >
                           <AccountCircleIcon /> <br />
-                          <span>{logingUser.login.user.username}</span>
+                          {/* <span>{logingUser.login.user.username}</span> */}
                         </Link>
                       )}
                     </li>

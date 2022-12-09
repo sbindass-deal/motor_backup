@@ -196,7 +196,7 @@ function MyListings() {
                                       type="button"
                                       className="gry_btn"
                                     >
-                                      {curElem.reserve}
+                                      Reserve off
                                     </button>
                                   </div>
                                 </>
