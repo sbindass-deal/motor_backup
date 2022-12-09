@@ -1296,3 +1296,7 @@ button.sunMoonBtn { background: transparent; border: 0; position: relative; top:
 .toNv ul.navbar-nav { padding-right: 15px;}
 .navbarToggler:before,.navbarToggler:after {  background: #fff; }
 .dark .navbar-toggler.collapsed .navbarToggler { background-color: #fff;}
+ul.slick-dots { display: none !important;}
+label { font-size: 12px;}
+.post-excerpt { padding: 0px 70px;}
+.post-excerpt h2 { font-size: 21px; margin-top: 50px; border-bottom: 1px solid #dedede; padding-bottom: 6px;}

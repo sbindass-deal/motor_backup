@@ -10,7 +10,7 @@ function CookiesSetting() {
               <h2 className="title_combo title_Center">AML Policy</h2>
               <div className="post-excerpt">
                 <p>
-                  <strong>AML Policy</strong>
+                  <h2>AML Policy</h2>
                 </p>
                 <p>Last revised on: 11/09/2022</p>
                 <p>Terms of Use</p>
@@ -50,7 +50,7 @@ function CookiesSetting() {
                   Gas guzzlrs has taken the following measures:
                 </p>
 
-                {/* <p><strong>Highlights</strong></p>
+                {/* <p><h2>Highlights</h2></p>
                     <p>Application and Acceptance of the Terms of Use</p> */}
 
                 <ul style={{}}>
@@ -171,7 +171,7 @@ function CookiesSetting() {
                     <ul>
                     <li>If you believe your copyright has been infringed, you may provide us with notice in accordance with the process described in the corresponding section of the Terms of Use below.</li>
                     </ul>
-                    <p><strong><span id="terms">Terms of Use</span></strong></p>
+                    <p><h2><span id="terms">Terms of Use</span></h2></p>
                     <p>Last revised on: June 25, 2020</p>
                     <p>1. Application and Acceptance of this Agreement</p>
                     <p>These Terms of Use (including the binding arbitration provision located here) along with our <a href="https://bringatrailer.com/privacy-notice/" target="_blank" rel="noopener noreferrer">Privacy Notice</a>, any <a href="https://bringatrailer.com/faq/" target="_blank" rel="noopener noreferrer">FAQs</a>, and any additional guidelines, terms, procedures or rules that may apply to a specific feature of the Digital Services (collectively, the “Agreement”) that are owned or operated by Bring a Trailer Media, LLC or its affiliates (“we”, “us”, “our” or “shibnobiMedia”), are a contract in electronic form between you (“you,” “your,” and “yourself”) and shibnobiMedia. This Agreement applies to the extent you use the Digital Services to (a) act as a “Buyer” submitting bids expressing an intent to purchase vehicles or other products and services listed by Sellers on the Digital Services, (b) act as a “Seller” submitting information in connection with the listing of a vehicle or other product or service on a Digital Service by shibnobiMedia on your behalf or (c) as a visitor, registrant or user in any other capacity permitted by these terms (together with “Buyers” and “Sellers”, collectively, “Users”). This Agreement sets forth the legally binding terms governing your access and use of the Digital Services. This Agreement applies to shibnobiMedia and its affiliates only and does not cover other companies, including third parties that may advertise or sponsor content, products or services on the Digital Services or any third-party platforms (such as social media platforms or app stores) or other channels that you may use to access the Digital Services or any Content (as defined below).</p>

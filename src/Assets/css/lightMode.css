@@ -35,7 +35,7 @@ body.light{  background-color: #fff; color: #000;}
 .light .searchBody { background: #fff;}
 .light .searchAuto { background: #f0f0f0;}
 .light .searchAuto:hover { background: #fff; border-bottom: 1px solid #ffc107; cursor: pointer;}
-.light .searchForm input { background-color: #ffff; color: #000;}
+.light .searchForm input { border-bottom: 1px #ffd6a5 solid; background-color: #ffff; color: #000;}
 .light .searchForm button { color: #000;}
 .light .navbarToggler:before,.light .navbarToggler:after {  background: #000;}
 .light .navbar-toggler.collapsed .navbarToggler { background-color: #000;}
@@ -48,3 +48,5 @@ body.light{  background-color: #fff; color: #000;}
 .light .card_Gray { background-color: #f7f7f7;}
 .light .sideBar__ li a {  color: #000;}
 .light .field{ color: #000;}
+.light .modal-content { background-color: #fff0;}
+.light .card_ic { background: #f7f7f7;}
