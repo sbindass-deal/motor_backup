@@ -2,6 +2,7 @@ import React from "react";
 // import shibnobiMotors from '../Assets/images/shibnobiMotors.png'
 // import shibnobiMotors from "../Assets/images/moters-logo.png";
 import shibnobiMotors from "../Assets/images/transparent.png";
+import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
 
 function Footer() {
   return (
@@ -11,7 +12,8 @@ function Footer() {
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
               <a href="/" className="mb-3">
-                <img src={shibnobiMotors} />
+              <img src={shibnobiMotors} alt="shibnobiMotors" className="darkLogo"/>
+                  <img src={shibnobiMotorsW} alt="shibnobiMotors" className="whiteLogo"/>
               </a>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting

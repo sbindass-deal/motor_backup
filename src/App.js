@@ -3,6 +3,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import "./Assets/css/bootstrap.min.css";
 import "./Assets/css/style.css";
 import "./Assets/css/responsive.css";
+import "./Assets/css/lightMode.css";
 import Layout from "./Components/Pages/Layout";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -96,7 +97,7 @@ const removeBodyClass = (className) =>
   document.body.classList.remove(className);
 function App() {
   const logingUser = useSelector((state) => state);
-  const className = logingUser.dayAndNightMode.mode ? "dark" : "light"
+  const className = logingUser.dayAndNightMode.mode ? "light" : "dark"
 
   useEffect(() => {
     // Set up

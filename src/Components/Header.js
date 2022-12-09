@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import shibnobiMotors from "../Assets/images/transparent.png";
+import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
+import sunIcon from "../Assets/images/icons8-sun.svg"
+import smoonIcon from "../Assets/images/icons8-moon.svg"
 import ForgotPasswordModal from "./Popups/ForgotPasswordModal";
 import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
@@ -61,7 +64,9 @@ function Header() {
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
                 <Link className="navbar-brand" to="/">
-                  <img src={shibnobiMotors} alt="shibnobiMotors" />
+                  <img src={shibnobiMotors} alt="shibnobiMotors" className="darkLogo"/>
+                  <img src={shibnobiMotorsW} alt="shibnobiMotors" className="whiteLogo"/>
+                  
                 </Link>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
@@ -194,13 +199,13 @@ function Header() {
                         <i className="fa-solid fa-magnifying-glass"></i>
                       </Link>
                     </li>
-
+                    <li className="nav-item">
                     <button
-                      onClick={() => dispatch(changeMode())}
-                      className="nav-item"
-                    >
-                      {logingUser.dayAndNightMode.mode ? "Night" : "Day"}
+                      className="sunMoonBtn"
+                      onClick={() => dispatch(changeMode())}>
+                      {logingUser.dayAndNightMode.mode ? <img src={sunIcon}/> : <img src={smoonIcon}/>}
                     </button>
+                    </li>
                   </ul>
                   <ul className="navbar-nav mobileOnly">
                     <li className="nav-item">

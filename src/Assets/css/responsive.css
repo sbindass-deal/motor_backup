@@ -92,6 +92,21 @@ h5 {
 	h1.animate-charcter span {font-size: 30px !important;}
 	img.carGif {width: 100%;}
 	.containerSec {height: 81vh;}
+	a.navbar-brand {top: 0;}
+	button.sunMoonBtn {
+		position: absolute;
+		z-index: 999;
+		border: 1px solid;
+		background: transparent;
+		padding: 7px;
+		border-radius: 5px;
+		border: none;
+		top: -44px;
+		left: 76%;
+	  }
+	  .light button.sunMoonBtn {
+		filter: brightness(0.5);
+	}
 }
 
 @media (max-width: 575px) {

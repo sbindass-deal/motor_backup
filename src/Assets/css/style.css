@@ -1070,7 +1070,7 @@ li.nav-item.afterLogin span { font-size: 13px; position: absolute; top: -17px; r
 .secondNavbar .navbar-nav {  justify-content: end;}
 header { height: 103px;border: 1px solid #333;}
 .secondNavbar { padding: 10px 0px; position: relative; right: 0; top: -28px;}
-.toNv:before { content: ''; background: #f7931b; position: absolute; width: 73%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
+.toNv:before { content: ''; background: #f7931b; position: absolute; width: 83%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
 .toNv{position: relative;z-index: 1;}
 .secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 78%; height: 100%; right: -6%; z-index: -1; border-top-left-radius: 50px;}
 .secondNavbar .navbar-nav {position: relative;  height: 43px;}
@@ -1290,3 +1290,9 @@ a.nav-link.false { text-align: initial;}
 .ju367vcf {  border: none !important; background: #f7931b;}
 .lotryBtn button.iekbcc0.iekbcc9 { width: 220px !important;}
 .lotryBtn button.iekbcc0.iekbcc9.ju367v71 { width: 140px !important;}
+img.darkLogo { display: block;}
+img.whiteLogo { display: none;}
+button.sunMoonBtn { background: transparent; border: 0; position: relative; top: 7px;}
+.toNv ul.navbar-nav { padding-right: 15px;}
+.navbarToggler:before,.navbarToggler:after {  background: #fff; }
+.dark .navbar-toggler.collapsed .navbarToggler { background-color: #fff;}
