@@ -42,3 +42,9 @@ body.light{  background-color: #fff; color: #000;}
 .light .accordion-button { background-color: transparent !important;color: #000000;}
 .light .accordion-body { color: #000; }
 .light .accordion-item { border-bottom: 1px solid #ececec !important;}
+.light .plan_card { background-color: #f8f8f8;}
+.light .plan_card:hover .plan_cardHead h4 {  background-color: #f4ce5f;}
+.light .HIW_list li:after { background-color: #f7931a;}
+.light .card_Gray { background-color: #f7f7f7;}
+.light .sideBar__ li a {  color: #000;}
+.light .field{ color: #000;}
