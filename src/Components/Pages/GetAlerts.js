@@ -10,8 +10,8 @@ function GetAlerts() {
       <section className="pt_80 text-center">
         <div className="container">
           <div className="daily_mail">
-            <h2 className="title_combo title_Center">Gas guzzlrs Daily Mail</h2>
-            <p className="title_combo title_Center">
+            <h2 className="text title_combo title_Center" style={{color:"#fff"}}>Gas guzzlrs Daily Mail</h2>
+            <p className="title_combo title_Center" style={{color:"#fff"}}>
               All the most relevant new content on Gas guzzlrs at 5am Pacific
               each day, including:
             </p>

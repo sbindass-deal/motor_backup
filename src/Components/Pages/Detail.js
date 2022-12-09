@@ -234,7 +234,8 @@ function Detail() {
                       )}
                     </li>
                     {vehicle.reserve === "Yes" && (
-                      <li>
+                      <li className="reserved">
+                       
                         Reserve: <span>{vehicle.reserve}</span>
                       </li>
                     )}
