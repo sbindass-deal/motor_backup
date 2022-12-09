@@ -153,47 +153,48 @@ function MyListings() {
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {curElem.reserve === "Yes" &&
-                                curElem.sold === "1" && (
-                                  <>
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() =>
-                                          handleSoldApi(curElem.id)
-                                        }
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        Sold
-                                      </button>
-                                    </div>
-
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() => handleShow(curElem.id)}
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        <ChatIcon />
-                                      </button>
-                                    </div>
-                                    <div className="mx-2">
-                                      <button
-                                        onClick={() =>
-                                          fetchResurveApi(
-                                            curElem.id,
-                                            curElem.reserve,
-                                            curElem.reservAmount
-                                          )
-                                        }
-                                        type="button"
-                                        className="gry_btn"
-                                      >
-                                        {curElem.reserve}
-                                      </button>
-                                    </div>
-                                  </>
-                                )}
+                              {
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() => handleSoldApi(curElem.id)}
+                                    type="button"
+                                    className="gry_btn"
+                                    disabled={
+                                      curElem.sold === "0" ? true : false
+                                    }
+                                  >
+                                    Sold
+                                  </button>
+                                </div>
+                              }
+                              {curElem.reserve === "Yes" ? (
+                                <>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleShow(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      <ChatIcon />
+                                    </button>
+                                  </div>
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() =>
+                                        fetchResurveApi(
+                                          curElem.id,
+                                          curElem.reserve,
+                                          curElem.reservAmount
+                                        )
+                                      }
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      {curElem.reserve}
+                                    </button>
+                                  </div>
+                                </>
+                              ) : null}
                               <a
                                 href={`detail/${curElem.id}`}
                                 className="gry_btn"

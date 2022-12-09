@@ -214,9 +214,9 @@ function Detail() {
                       <label>Current Bid:</label>{" "}
                       <span>
                         {amountprice ? (
-                          <span>USD ${amountprice}</span>
+                          <span> USD ${amountprice}</span>
                         ) : (
-                          <span>USD ${vehicle.documentFee} </span>
+                          <span> USD ${vehicle.documentFee} </span>
                         )}
                       </span>
                     </li>
@@ -266,11 +266,14 @@ function Detail() {
 
                   {t <= 0 ? (
                     <a className="gry_btn active">
-                      Sold :{" "}
+                      {vehicle.reserve === "Yes" && vehicle.sold === "1"
+                        ? "High Bid"
+                        : "Sold"}{" "}
+                      :{" "}
                       {amountprice ? (
-                        <span>USD $ {amountprice}</span>
+                        <span> USD $ {amountprice}</span>
                       ) : (
-                        <span>USD $ {vehicle.documentFee} </span>
+                        <span> USD $ {vehicle.documentFee} </span>
                       )}
                     </a>
                   ) : t >= 7200000 ? (
@@ -637,9 +640,9 @@ function Detail() {
                         <label>Current Bid</label>
                         <div>
                           {amountprice ? (
-                            <span>USD${amountprice}</span>
+                            <span> USD${amountprice}</span>
                           ) : (
-                            <span>USD${vehicle.documentFee} </span>
+                            <span> USD${vehicle.documentFee} </span>
                           )}
                         </div>
                       </li>
@@ -670,11 +673,14 @@ function Detail() {
                         <label>Place Bid</label>
                         {t <= 0 ? (
                           <a className="gry_btn active">
-                            Sold :{" "}
+                            {vehicle.reserve === "Yes" && vehicle.sold === "1"
+                              ? "High Bid"
+                              : "Sold"}{" "}
+                            :{" "}
                             {amountprice ? (
-                              <span>USD $ {amountprice}</span>
+                              <span> USD $ {amountprice}</span>
                             ) : (
-                              <span>USD $ {vehicle.documentFee} </span>
+                              <span> USD $ {vehicle.documentFee} </span>
                             )}
                           </a>
                         ) : t >= 7200000 ? (
