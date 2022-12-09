@@ -18,7 +18,10 @@ import StripeCheckout from "react-stripe-checkout";
 function CarRaffle() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    window.location.reload(false);
+  };
   const handleShow = () => setShow(true);
   const [index, setIndex] = useState(0);
   const userId = useSelector((state) => state);
@@ -108,9 +111,7 @@ function CarRaffle() {
     }
     axios
       .post(process.env.REACT_APP_URL + "addTicket", {
-        name: userId.login.user.username,
         lottery_id: showLotary.id,
-        userId: userId.login.user.id,
         qty: parseInt(inputLotteryNumber, 10),
       })
       .then((res) => {

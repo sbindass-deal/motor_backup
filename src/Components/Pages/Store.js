@@ -224,7 +224,10 @@ function Store() {
                 return (
                   <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
                     <div className="card_post store auction">
-                      <p className="forOction">For Auction</p>
+                      {curElem.displayInAuction === "Yes" && (
+                        <p className="forOction">For Auction</p>
+                      )}
+
                       <a
                         href={`showroom/${curElem.id}`}
                         className="card_postImg card_postImg_200"
