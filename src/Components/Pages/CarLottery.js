@@ -7,17 +7,20 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import {useNavigate} from 'react-router-dom'
 import { RWebShare } from "react-web-share";
+import CryptoJS from "crypto-js";
 
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
 import StripeCheckout from "react-stripe-checkout";
+import Paymentsuccess from "./Paymentsuccess";
 
 function CarRaffle() {
   const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -98,7 +101,19 @@ function CarRaffle() {
 
   useEffect(() => {
     fetchLotaryApi();
-    setCoupen(`userId-fdsfa-ticket-dsfa`);
+
+    const word = "meuteste";
+
+let key = "12345678901234567890123456789012";
+key = CryptoJS.enc.Utf8.parse(key);
+
+let iv = "1234567890123456";
+iv = CryptoJS.enc.Utf8.parse(iv);
+
+let encrypted = CryptoJS.AES.encrypt(word, key, { iv: iv });
+encrypted = encrypted.toString();
+
+    setCoupen(encrypted);
   }, [showLotary.id]);
   useEffect(() => {
     fetchLotaryApiAll();
@@ -126,6 +141,10 @@ function CarRaffle() {
 
   const onToken = (token, addresses) => {
     console.log(token, addresses);
+    alert("pqay success fully");
+    if(token != null){
+      navigate('/successpayment');
+    }
   };
 
   return (
@@ -338,7 +357,7 @@ function CarRaffle() {
                       <RWebShare
                         data={{
                           text: "Gas guzzlrs Share Reffer Link",
-                          url: `http://localhost:3000/carraffle/${coupen}`,
+                          url: `${window.location.href}/share/id/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
                         // onClick={() => console.log("shared successfully!")}

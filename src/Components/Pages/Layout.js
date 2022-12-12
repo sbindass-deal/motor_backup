@@ -35,6 +35,7 @@ import { ToastContainer } from "react-toastify";
 import StoreDetails from "./StoreDetails";
 import Faq from "./Faq";
 import NotFoundPage from "./NotFoundPage";
+import Paymentsuccess from "./Paymentsuccess";
 
 function Layout() {
 
@@ -53,6 +54,7 @@ function Layout() {
           <Route path="submit" element={<SubmitaVehicle />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
+          <Route path="successpayment" element={<Paymentsuccess />} />
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
