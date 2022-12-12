@@ -45,7 +45,6 @@ function Auctionlive() {
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
-        userId: userId.login.user.id,
         vehicleId: id,
         date: new Date().toString(),
       })
@@ -251,7 +250,7 @@ function Auctionlive() {
                                 10
                               ) -
                                 new Date().getTime() >
-                              7200000 ? (
+                              900000 ? (
                                 <label>Upcomming Auction</label>
                               ) : parseInt(
                                   new Date(curElem.EndTime).getTime(),
@@ -264,7 +263,7 @@ function Auctionlive() {
                                   10
                                 ) -
                                   new Date().getTime() <
-                                  7200000 ? (
+                                  900000 ? (
                                 <label>Auction is live now</label>
                               ) : (
                                 <label>Sold</label>

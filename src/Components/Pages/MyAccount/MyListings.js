@@ -258,17 +258,21 @@ function MyListings() {
               overflow: "auto",
             }}
           >
-            <div className="col-12 py-2">
+            <div className="col-12 py-2 bg-secondary">
               {chateApiData.map((curElem, i) => {
                 return (
-                  <span key={i}>
-                    {curElem.userId ? (
-                      curElem.message
+                  <div key={i}>
+                    {curElem.userId === 2 ? (
+                      <div className="rounded px-2 d-flex justify-content-start p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
                     ) : (
-                      <div className="text-danger">{curElem.message}</div>
+                      <div className="rounded px-2 d-flex justify-content-end p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
                     )}
                     <br />
-                  </span>
+                  </div>
                 );
               })}
             </div>

@@ -229,7 +229,11 @@ function Store() {
                       )}
 
                       <a
-                        href={`showroom/${curElem.id}`}
+                        href={
+                          curElem.displayInAuction === "Yes"
+                            ? `detail/${curElem.id}`
+                            : `showroom/${curElem.id}`
+                        }
                         className="card_postImg card_postImg_200"
                       >
                         {/* <img
