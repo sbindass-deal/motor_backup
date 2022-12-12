@@ -44,7 +44,7 @@ function MyBidsWins() {
     const getChateMessageApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/${vehicleId}`
+          `${process.env.REACT_APP_URL}getChat/${vehicleId}`
         );
         if (res.data.status === 200) {
           setChateApiData(res.data.data);

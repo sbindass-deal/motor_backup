@@ -50,11 +50,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       .then((result) => {
         if (result.data.access_token) {
           dispatch(authToken(result.data.access_token));
-          if (result.data.user) {
-            dispatch(auth(result.data.user));
-          }
           notify("Login successfully");
           handleClose();
+          window.location.reload(false);
         }
       })
       .catch((error) => {

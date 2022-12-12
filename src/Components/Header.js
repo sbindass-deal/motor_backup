@@ -158,7 +158,6 @@ function Header() {
                     {!logingUser.login.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
-                          onClick={handleShow}
                           className="nav-link"
                           // to="javascript:void(0)"
                           // data-toggle="modal"

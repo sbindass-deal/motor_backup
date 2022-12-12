@@ -97,7 +97,7 @@ const removeBodyClass = (className) =>
   document.body.classList.remove(className);
 function App() {
   const logingUser = useSelector((state) => state);
-  const className = logingUser.dayAndNightMode.mode ? "light" : "dark"
+  const className = logingUser.dayAndNightMode.mode ? "light" : "dark";
 
   useEffect(() => {
     // Set up
@@ -112,16 +112,18 @@ function App() {
         : removeBodyClass(className);
     };
   }, [className]);
-  axios.interceptors.request.use(
-    (req) => {
-      req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+  useEffect(() => {
+    axios.interceptors.request.use(
+      (req) => {
+        req.headers.Authorization = `Bearer ${logingUser.login.token}`;
 
-      return req;
-    },
-    (err) => {
-      return Promise.reject(err);
-    }
-  );
+        return req;
+      },
+      (err) => {
+        return Promise.reject(err);
+      }
+    );
+  }, [logingUser.login.token]);
 
   return (
     <>
