@@ -192,7 +192,7 @@ function Auctionlive() {
                           </button>
 
                           <a href={`detail/${curElem.id}`}>
-                            <img
+                            {/* <img
                               src={
                                 curElem.stepOneImage === null ||
                                 curElem.stepOneImage === undefined ||
@@ -202,6 +202,17 @@ function Auctionlive() {
                                     curElem.stepOneImage
                               }
                               alt=""
+                            /> */}
+                            <img
+                              src={
+                                process.env.REACT_APP_URL + curElem.stepOneImage
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.model}
                             />
                           </a>
                         </div>

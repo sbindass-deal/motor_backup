@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function MyAccountLeftNav() {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <div>
       <ul class="sideBar__">

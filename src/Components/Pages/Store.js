@@ -232,7 +232,7 @@ function Store() {
                         href={`showroom/${curElem.id}`}
                         className="card_postImg card_postImg_200"
                       >
-                        <img
+                        {/* <img
                           src={
                             curElem.stepOneImage === null ||
                             curElem.stepOneImage === undefined ||
@@ -240,6 +240,15 @@ function Store() {
                               ? car_01
                               : process.env.REACT_APP_URL + curElem.stepOneImage
                           }
+                          alt={curElem.make}
+                        /> */}
+                        <img
+                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
                           alt={curElem.make}
                         />
                       </a>

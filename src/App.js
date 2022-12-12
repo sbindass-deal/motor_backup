@@ -115,7 +115,9 @@ function App() {
   useEffect(() => {
     axios.interceptors.request.use(
       (req) => {
-        req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+        req.headers.Authorization = `Bearer ${
+          logingUser.login.token !== null && logingUser.login.token
+        }`;
 
         return req;
       },

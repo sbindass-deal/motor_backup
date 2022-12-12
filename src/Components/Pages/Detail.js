@@ -235,7 +235,6 @@ function Detail() {
                     </li>
                     {vehicle.reserve === "Yes" && (
                       <li className="reserved">
-                       
                         Reserve: <span>{vehicle.reserve}</span>
                       </li>
                     )}
@@ -312,7 +311,8 @@ function Detail() {
             <div className="col-12 pb-3">
               <div className="postHero">
                 {vehicleImage.length > 0 ? (
-                  <img
+                  <>
+                    {/* <img
                     src={
                       process.env.REACT_APP_URL +
                       "/" +
@@ -321,7 +321,23 @@ function Detail() {
                       vehicleImage[0].imageName
                     }
                     alt=""
-                  />
+                  /> */}
+                    <img
+                      src={
+                        process.env.REACT_APP_URL +
+                        "/" +
+                        vehicleImage[0].imagePath +
+                        "/" +
+                        vehicleImage[0].imageName
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="details-images"
+                    />
+                  </>
                 ) : null}
               </div>
             </div>
@@ -746,7 +762,8 @@ function Detail() {
                       {vehicleImage.length > 0
                         ? vehicleImage.map((curImg) => {
                             return (
-                              <img
+                              <>
+                                {/* <img
                                 src={
                                   process.env.REACT_APP_URL +
                                   "/" +
@@ -755,7 +772,23 @@ function Detail() {
                                   curImg.imageName
                                 }
                                 alt=""
-                              />
+                              /> */}
+                                <img
+                                  src={
+                                    process.env.REACT_APP_URL +
+                                    "/" +
+                                    curImg.imagePath +
+                                    "/" +
+                                    curImg.imageName
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="details-images"
+                                />
+                              </>
                             );
                           })
                         : null}

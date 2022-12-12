@@ -66,6 +66,14 @@ function MyListings() {
       }
     };
     getChateMessageApi();
+    const interVal = setInterval(() => {
+      if (show) {
+        getChateMessageApi();
+      }
+    }, 5000);
+    return () => {
+      clearInterval(interVal);
+    };
   }, [show]);
 
   const handleChatMessage = (e) => {
@@ -254,7 +262,11 @@ function MyListings() {
               {chateApiData.map((curElem, i) => {
                 return (
                   <span key={i}>
-                    {curElem.message}
+                    {curElem.userId ? (
+                      curElem.message
+                    ) : (
+                      <div className="text-danger">{curElem.message}</div>
+                    )}
                     <br />
                   </span>
                 );
