@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
+import FormInput from "../UI/FormInput";
+import SmallSpinner from "../UI/SmallSpinner";
 
 function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
+  const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false);
   const [email, setEmail] = useState("");
 
   const handleEmail = (e) => {
@@ -12,14 +15,11 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
   const handleApi = (e) => {
     e.preventDefault();
     axios
-      .get(`${process.env.REACT_APP_URL}forgotpassword`)
-      .then((result) => {
-        // handleCloseForgPass();
-        console.log("res", result);
+      .post(`${process.env.REACT_APP_URL}sendMail/${email}`, {
+        email: email,
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((result) => {})
+      .catch((error) => {});
   };
 
   return (
@@ -48,23 +48,28 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
 
           {/* <!-- Modal body --> */}
           <div className="modal-body">
-            <p>Please enter your username or email</p>
+            {/* <p>Please enter your username or email</p> */}
             <form onSubmit={handleApi}>
               <div className="form-group">
-                <input
+                <FormInput
                   value={email}
                   onChange={handleEmail}
-                  type="email"
                   name="email"
-                  className="field"
                   placeholder="Username or Email"
-                  required
+                  type="email"
+                  errorMessage="It should be a valid email address!"
+                  label="Please enter your username or email"
+                  required={true}
                 />
               </div>
               <div className="form-group">
-                <button type="submit" className="btn">
-                  Get New Password
-                </button>
+                {forgotPasswordLoading ? (
+                  <SmallSpinner />
+                ) : (
+                  <button type="submit" className="btn">
+                    Get New Password
+                  </button>
+                )}
               </div>
               <div className="form-group">
                 <p>

@@ -7,7 +7,7 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import CryptoJS from "crypto-js";
 
@@ -104,14 +104,14 @@ function CarRaffle() {
 
     const word = "meuteste";
 
-let key = "12345678901234567890123456789012";
-key = CryptoJS.enc.Utf8.parse(key);
+    let key = "12345678901234567890123456789012";
+    key = CryptoJS.enc.Utf8.parse(key);
 
-let iv = "1234567890123456";
-iv = CryptoJS.enc.Utf8.parse(iv);
+    let iv = "1234567890123456";
+    iv = CryptoJS.enc.Utf8.parse(iv);
 
-let encrypted = CryptoJS.AES.encrypt(word, key, { iv: iv });
-encrypted = encrypted.toString();
+    let encrypted = CryptoJS.AES.encrypt(word, key, { iv: iv });
+    encrypted = encrypted.toString();
 
     setCoupen(encrypted);
   }, [showLotary.id]);
@@ -142,8 +142,8 @@ encrypted = encrypted.toString();
   const onToken = (token, addresses) => {
     console.log(token, addresses);
     alert("pqay success fully");
-    if(token != null){
-      navigate('/successpayment');
+    if (token !== null) {
+      navigate("/successpayment");
     }
   };
 
@@ -448,24 +448,22 @@ encrypted = encrypted.toString();
             <h3 className="price__">Price : $2000</h3>
             <p>Choose Payment Option:</p>
             <div className="ress">
-            <div className="ProcessPymt">
-             
-              <ConnectButton></ConnectButton>
-              
-              {/* <img src={Paypal} />
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
               <img src={Stipe} /> */}
-            </div>
-            <div>
-              <StripeCheckout
-                className="Btn"
-                stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                token={onToken}
-              />
-            </div>
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
             </div>
           </div>
         </Modal.Body>
-        
       </Modal>
     </div>
   );

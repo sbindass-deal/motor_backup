@@ -149,13 +149,23 @@ function MyListings() {
                               src={
                                 process.env.REACT_APP_URL + curElem.stepOneImage
                               }
-                              alt={curElem.stepOneImage}
+                              class="img-fluid rounded-start w-100 "
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.make}
                             />
                           </div>
                           <div className="bidsInfo">
                             <div className="">
-                              <h6>{curElem.name}</h6>
-                              <p>{curElem.description}</p>
+                              <h6>
+                                {curElem.make} {curElem.model} {curElem.year}
+                              </h6>
+                              <p>
+                                {curElem.fuel} {curElem.odmeter}
+                              </p>
                               {curElem.bidding.map((curBid) => {
                                 return (
                                   <p>High Bid:- {curBid.auctionAmmount}</p>
@@ -164,23 +174,24 @@ function MyListings() {
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() => handleSoldApi(curElem.id)}
-                                    type="button"
-                                    className="gry_btn"
-                                    disabled={
-                                      curElem.reserve === "Yes" &&
-                                      curElem.sold === "1"
-                                        ? false
-                                        : true
-                                    }
-                                  >
-                                    Sold
-                                  </button>
-                                </div>
-                              }
+                              {curElem.reserve === "Yes" &&
+                                curElem.sold === "1" && (
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleSoldApi(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                      disabled={
+                                        curElem.reserve === "Yes" &&
+                                        curElem.sold === "1"
+                                          ? false
+                                          : true
+                                      }
+                                    >
+                                      Sold
+                                    </button>
+                                  </div>
+                                )}
                               {curElem.reserve === "Yes" ? (
                                 <>
                                   <div className="mx-2">
@@ -210,7 +221,11 @@ function MyListings() {
                                 </>
                               ) : null}
                               <a
-                                href={`detail/${curElem.id}`}
+                                href={
+                                  curElem.displayInAuction === "Yes"
+                                    ? `detail/${curElem.id}`
+                                    : `showroom/${curElem.id}`
+                                }
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View
@@ -258,17 +273,21 @@ function MyListings() {
               overflow: "auto",
             }}
           >
-            <div className="col-12 py-2">
+            <div className="col-12 py-2 bg-secondary">
               {chateApiData.map((curElem, i) => {
                 return (
-                  <span key={i}>
-                    {curElem.userId ? (
-                      curElem.message
+                  <div key={i}>
+                    {curElem.userId === 2 ? (
+                      <div className="rounded px-2 d-flex justify-content-start p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
                     ) : (
-                      <div className="text-danger">{curElem.message}</div>
+                      <div className="rounded px-2 d-flex justify-content-end p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
                     )}
                     <br />
-                  </span>
+                  </div>
                 );
               })}
             </div>
