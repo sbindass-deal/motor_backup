@@ -34,6 +34,7 @@ import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
 import StoreDetails from "./StoreDetails";
 import Faq from "./Faq";
+import Shop from "./Shop";
 import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
@@ -81,6 +82,7 @@ function Layout() {
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
+          <Route path="Shop" element={<Shop/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer

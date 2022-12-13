@@ -15,16 +15,17 @@
     height:100vh;
     display: flex;
   flex-direction: column;
+  background-image: url('../../Assets/images/giphy.gif');
   }
   .wrapper-2{
     padding :30px;
     text-align:center;
   }
   .wrapper-2 h1{
-      font-family: 'Kaushan Script', cursive;
-    font-size:4em;
+      
+    font-size:3em;
     letter-spacing:3px;
-    color:#5892FF ;
+    color:#f7931b ;
     margin:0;
     margin-bottom:20px;
   }
@@ -32,37 +33,24 @@
     margin:0;
     font-size:1.3em;
     color:#aaa;
-    font-family: 'Source Sans Pro', sans-serif;
     letter-spacing:1px;
   }
   .go-home{
     color:#fff;
-    background:#5892FF;
+    background:#f7931b;
     border:none;
     padding:10px 50px;
     margin:30px 0;
     border-radius:30px;
     text-transform:capitalize;
-    box-shadow: 0 10px 16px 1px rgba(174, 199, 251, 1);
+    
   }
-  .footer-like{
-    margin-top: auto; 
-    background:#D7E6FE;
-    padding:6px;
-    text-align:center;
-  }
-  .footer-like p{
-    margin:0;
-    padding:4px;
-    color:#5892FF;
-    font-family: 'Source Sans Pro', sans-serif;
-    letter-spacing:1px;
-  }
-  .footer-like p a{
-    text-decoration:none;
-    color:#5892FF;
-    font-weight:600;
-  }
+  .content {
+    margin: 100px auto;
+    height: 50vh;
+}
+ 
+  
   
   @media (min-width:360px){
     h1{
@@ -83,7 +71,7 @@
     max-width:620px;
     margin:0 auto;
     margin-top:50px;
-    box-shadow: 4px 8px 40px 8px rgba(88, 146, 255, 0.2);
+    box-shadow: 4px 8px 40px 8px rgb(51 51 51 / 48%);
   }
     
   }

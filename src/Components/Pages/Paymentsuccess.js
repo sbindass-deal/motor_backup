@@ -14,11 +14,11 @@ const Paymentsuccess = () => {
       Buy Again Ticket
       </button>
     </div>
-    <div className="footer-like">
+    {/* <div className="footer-like">
       <p>Email not received?
        <a href="#">Click here to send again</a>
       </p>
-    </div>
+    </div> */}
 </div>
 </div>
 

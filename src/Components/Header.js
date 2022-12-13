@@ -451,7 +451,7 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          // to="https://store.shibnobi.com/"
+                           to="/shop"
                           // target={"_blank"}
                         >
                           Store

@@ -7,7 +7,7 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import CryptoJS from "crypto-js";
 
@@ -133,8 +133,8 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
   const onToken = (token, addresses) => {
     console.log(token, addresses);
     alert("pqay success fully");
-    if(token != null){
-      navigate('/successpayment');
+    if (token !== null) {
+      navigate("/successpayment");
     }
   };
 
@@ -439,24 +439,22 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
             <h3 className="price__">Price : $2000</h3>
             <p>Choose Payment Option:</p>
             <div className="ress">
-            <div className="ProcessPymt">
-             
-              <ConnectButton></ConnectButton>
-              
-              {/* <img src={Paypal} />
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
               <img src={Stipe} /> */}
-            </div>
-            <div>
-              <StripeCheckout
-                className="Btn"
-                stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                token={onToken}
-              />
-            </div>
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
             </div>
           </div>
         </Modal.Body>
-        
       </Modal>
     </div>
   );

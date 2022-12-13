@@ -763,16 +763,6 @@ function Detail() {
                         ? vehicleImage.map((curImg) => {
                             return (
                               <>
-                                {/* <img
-                                src={
-                                  process.env.REACT_APP_URL +
-                                  "/" +
-                                  curImg.imagePath +
-                                  "/" +
-                                  curImg.imageName
-                                }
-                                alt=""
-                              /> */}
                                 <img
                                   src={
                                     process.env.REACT_APP_URL +
@@ -781,12 +771,7 @@ function Detail() {
                                     "/" +
                                     curImg.imageName
                                   }
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onerror = null;
-                                    currentTarget.src =
-                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                  }}
-                                  alt="details-images"
+                                  alt=""
                                 />
                               </>
                             );

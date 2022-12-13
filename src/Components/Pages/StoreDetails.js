@@ -31,6 +31,17 @@ const StoreDetails = () => {
         <div className="row">
           <div class="col-12 col-sm-12 col-md-5 storeDetail">
             <img
+              src={process.env.REACT_APP_URL + vehicle.stepOneImage}
+              class="img-fluid rounded-start w-100 "
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src =
+                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+              }}
+              alt={vehicle.make}
+            />
+
+            {/* <img
               src={
                 vehicle.stepOneImage === null ||
                 vehicle.stepOneImage === undefined ||
@@ -40,7 +51,7 @@ const StoreDetails = () => {
               }
               class="img-fluid rounded-start w-100 "
               alt="details-img"
-            />
+            /> */}
             <button className="btn mt-20">Process Payment</button>
           </div>
           <div class="col-12 col-sm-12 col-md-7">
