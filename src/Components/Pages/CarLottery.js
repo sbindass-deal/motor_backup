@@ -101,19 +101,10 @@ function CarRaffle() {
 
   useEffect(() => {
     fetchLotaryApi();
+const value={"earning":5,"total_reffaral":15,"lottery_id":showLotary.id}
+var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@123').toString();
 
-    const word = "meuteste";
-
-let key = "12345678901234567890123456789012";
-key = CryptoJS.enc.Utf8.parse(key);
-
-let iv = "1234567890123456";
-iv = CryptoJS.enc.Utf8.parse(iv);
-
-let encrypted = CryptoJS.AES.encrypt(word, key, { iv: iv });
-encrypted = encrypted.toString();
-
-    setCoupen(encrypted);
+    setCoupen(ciphertext.replaceAll("/","g_s"));
   }, [showLotary.id]);
   useEffect(() => {
     fetchLotaryApiAll();
@@ -357,7 +348,7 @@ encrypted = encrypted.toString();
                       <RWebShare
                         data={{
                           text: "Gas guzzlrs Share Reffer Link",
-                          url: `${window.location.href}/share/id/${coupen}`,
+                          url: `${window.location.href}/refferallink/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
                         // onClick={() => console.log("shared successfully!")}
