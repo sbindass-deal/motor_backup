@@ -149,13 +149,23 @@ function MyListings() {
                               src={
                                 process.env.REACT_APP_URL + curElem.stepOneImage
                               }
-                              alt={curElem.stepOneImage}
+                              class="img-fluid rounded-start w-100 "
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.make}
                             />
                           </div>
                           <div className="bidsInfo">
                             <div className="">
-                              <h6>{curElem.name}</h6>
-                              <p>{curElem.description}</p>
+                              <h6>
+                                {curElem.make} {curElem.model} {curElem.year}
+                              </h6>
+                              <p>
+                                {curElem.fuel} {curElem.odmeter}
+                              </p>
                               {curElem.bidding.map((curBid) => {
                                 return (
                                   <p>High Bid:- {curBid.auctionAmmount}</p>
@@ -211,7 +221,11 @@ function MyListings() {
                                 </>
                               ) : null}
                               <a
-                                href={`detail/${curElem.id}`}
+                                href={
+                                  curElem.displayInAuction === "Yes"
+                                    ? `detail/${curElem.id}`
+                                    : `showroom/${curElem.id}`
+                                }
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View

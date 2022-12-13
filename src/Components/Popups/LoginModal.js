@@ -117,7 +117,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   errorMessage="incorporate password!"
                   label="Password"
                   type="password"
-                  pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                  // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
               </div>

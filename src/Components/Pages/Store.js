@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
 import car_01 from "../../Assets/images/car_01.jpg";
+import SmallSpinner from "../UI/SmallSpinner";
 
 function Store() {
   const [searchInputValue, setSearchInputValue] = useState("");
@@ -17,6 +17,7 @@ function Store() {
       setLoader(false);
     } catch (err) {
       console.log(err);
+      setLoader(false);
     }
   };
 
@@ -215,7 +216,7 @@ function Store() {
       </section>
 
       {loading ? (
-        <Spinner />
+        <SmallSpinner spin={true} />
       ) : (
         <section className="pt_40">
           <div className="container">
@@ -258,7 +259,13 @@ function Store() {
                       </a>
                       <div className="card_postInfo pt-3">
                         <h6 className="name_price">
-                          <a href={`showroom/${curElem.id}`}>
+                          <a
+                            href={
+                              curElem.displayInAuction === "Yes"
+                                ? `detail/${curElem.id}`
+                                : `showroom/${curElem.id}`
+                            }
+                          >
                             {curElem.make} {curElem.model} {curElem.year}
                           </a>
                           <p className="price__">${curElem.documentFee}</p>

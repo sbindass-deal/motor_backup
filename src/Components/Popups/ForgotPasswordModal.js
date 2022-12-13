@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Modal, Spinner } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
 
@@ -14,14 +14,12 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
 
   const handleApi = (e) => {
     e.preventDefault();
-    setForgotPasswordLoading(true);
-    console.log("email");
-    try {
-      const res = axios.get(`${process.env.REACT_APP_URL}sendMail/${email}`);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+    axios
+      .post(`${process.env.REACT_APP_URL}sendMail/${email}`, {
+        email: email,
+      })
+      .then((result) => {})
+      .catch((error) => {});
   };
 
   return (

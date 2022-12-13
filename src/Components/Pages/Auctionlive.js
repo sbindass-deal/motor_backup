@@ -4,7 +4,7 @@ import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { Spinner } from "react-bootstrap";
+import SmallSpinner from "../UI/SmallSpinner";
 function Auctionlive() {
   const userId = useSelector((state) => state);
   const [data, setauctions] = useState([]);
@@ -57,6 +57,9 @@ function Auctionlive() {
         }
       });
   };
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
 
   return (
     <div>
@@ -145,53 +148,38 @@ function Auctionlive() {
               </ul>
             </div>
           </div>
-          {loading ? (
-            <div
-              className="container"
-              style={{
-                height: "80vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div className="row">
-                <Spinner />
-              </div>
-            </div>
-          ) : (
-            <div
-              className={`row pt-4 row_gridList ${
-                viewListActive && "activeListView"
-              }`}
-            >
-              {(data.length > 0 && highlightWatch
-                ? data.filter((item) => item.like > 0)
-                : data
-              )
-                .filter((data) => data.done === 1 && data.premium === 1)
-                .map((curElem) => {
-                  return (
-                    <div
-                      key={curElem.id}
-                      className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
-                    >
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
+          <div
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
+          >
+            {(data.length > 0 && highlightWatch
+              ? data.filter((item) => item.like > 0)
+              : data
+            )
+              .filter((data) => data.done === 1 && data.premium === 1)
+              .map((curElem) => {
+                return (
+                  <div
+                    key={curElem.id}
+                    className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
+                  >
+                    <div className="card_post">
+                      <div className="card_postImg">
+                        <button
+                          onClick={() => addFabrity(curElem.id)}
+                          type="button"
+                          className="watchedIc"
+                        >
+                          <i
+                            className={`fa-solid fa-star ${
+                              curElem.like >= 1 ? "faList" : ""
+                            }`}
+                          ></i>
+                        </button>
 
-                          <a href={`detail/${curElem.id}`}>
-                            {/* <img
+                        <a href={`detail/${curElem.id}`}>
+                          {/* <img
                               src={
                                 curElem.stepOneImage === null ||
                                 curElem.stepOneImage === undefined ||
@@ -202,81 +190,78 @@ function Auctionlive() {
                               }
                               alt=""
                             /> */}
-                            <img
-                              src={
-                                process.env.REACT_APP_URL + curElem.stepOneImage
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt={curElem.model}
-                            />
-                          </a>
-                        </div>
-                        <div className="card_postInfo">
-                          <h4>
-                            <a href={`detail/${curElem.id}`}>
-                              {curElem.make} {curElem.model}-{curElem.year}-
-                              {curElem.odmeter}
-                            </a>
-                          </h4>
-                          <ul
-                            className="labelList"
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
+                          <img
+                            loading="lazy"
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                             }}
-                          >
-                            <li className="w-auto">
-                              {curElem.currentAmount ? (
-                                <span>
-                                  <label>Current&nbsp;Bid:</label>
-                                  <br />${curElem.currentAmount.auctionAmmount}
-                                </span>
-                              ) : curElem.documentFee ? (
-                                <span>
-                                  <label>Opening Bid:</label>
-                                  <br /> ${curElem.documentFee}
-                                </span>
-                              ) : null}
-                            </li>
-                            <li>
-                              {/* <span>{getEndDate(curElem.created_at)} </span> */}
-                              {/* <span>{curElem.EndTime}</span> */}
-                              {parseInt(
+                            alt={curElem.model}
+                          />
+                        </a>
+                      </div>
+                      <div className="card_postInfo">
+                        <h4>
+                          <a href={`detail/${curElem.id}`}>
+                            {curElem.make} {curElem.model}-{curElem.year}-
+                            {curElem.odmeter}
+                          </a>
+                        </h4>
+                        <ul
+                          className="labelList"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <li className="w-auto">
+                            {curElem.currentAmount ? (
+                              <span>
+                                <label>Current&nbsp;Bid:</label>
+                                <br />${curElem.currentAmount.auctionAmmount}
+                              </span>
+                            ) : curElem.documentFee ? (
+                              <span>
+                                <label>Opening Bid:</label>
+                                <br /> ${curElem.documentFee}
+                              </span>
+                            ) : null}
+                          </li>
+                          <li>
+                            {/* <span>{getEndDate(curElem.created_at)} </span> */}
+                            {/* <span>{curElem.EndTime}</span> */}
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() >
+                            900000 ? (
+                              <label>Upcomming Auction</label>
+                            ) : parseInt(
                                 new Date(curElem.EndTime).getTime(),
                                 10
                               ) -
                                 new Date().getTime() >
-                              900000 ? (
-                                <label>Upcomming Auction</label>
-                              ) : parseInt(
-                                  new Date(curElem.EndTime).getTime(),
-                                  10
-                                ) -
-                                  new Date().getTime() >
-                                  0 &&
-                                parseInt(
-                                  new Date(curElem.EndTime).getTime(),
-                                  10
-                                ) -
-                                  new Date().getTime() <
-                                  900000 ? (
-                                <label>Auction is live now</label>
-                              ) : (
-                                <label>Sold</label>
-                              )}
-                            </li>
-                          </ul>
-                        </div>
+                                0 &&
+                              parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                900000 ? (
+                              <label>Auction is live now</label>
+                            ) : (
+                              <label>Sold</label>
+                            )}
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                  );
-                })}
-            </div>
-          )}
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </section>
     </div>
