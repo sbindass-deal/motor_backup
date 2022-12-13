@@ -164,23 +164,24 @@ function MyListings() {
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() => handleSoldApi(curElem.id)}
-                                    type="button"
-                                    className="gry_btn"
-                                    disabled={
-                                      curElem.reserve === "Yes" &&
-                                      curElem.sold === "1"
-                                        ? false
-                                        : true
-                                    }
-                                  >
-                                    Sold
-                                  </button>
-                                </div>
-                              }
+                              {curElem.reserve === "Yes" &&
+                                curElem.sold === "1" && (
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() => handleSoldApi(curElem.id)}
+                                      type="button"
+                                      className="gry_btn"
+                                      disabled={
+                                        curElem.reserve === "Yes" &&
+                                        curElem.sold === "1"
+                                          ? false
+                                          : true
+                                      }
+                                    >
+                                      Sold
+                                    </button>
+                                  </div>
+                                )}
                               {curElem.reserve === "Yes" ? (
                                 <>
                                   <div className="mx-2">

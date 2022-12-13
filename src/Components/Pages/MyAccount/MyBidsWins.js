@@ -115,15 +115,18 @@ function MyBidsWins() {
                             </p>
                           </div>
                           <div className="pl-md-3 d-flex">
-                            <div className="mx-2">
-                              <button
-                                onClick={() => handleShow(curElem.id)}
-                                type="button"
-                                className="gry_btn"
-                              >
-                                <ChatIcon />
-                              </button>
-                            </div>
+                            {curElem.reserve === "Yes" && (
+                              <div className="mx-2">
+                                <button
+                                  onClick={() => handleShow(curElem.id)}
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  <ChatIcon />
+                                </button>
+                              </div>
+                            )}
+
                             <a
                               href={`detail/${curElem.id}`}
                               className="gry_btn"
