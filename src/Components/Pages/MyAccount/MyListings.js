@@ -188,7 +188,7 @@ function MyListings() {
                                           : true
                                       }
                                     >
-                                      Sold
+                                      Sell
                                     </button>
                                   </div>
                                 )}
