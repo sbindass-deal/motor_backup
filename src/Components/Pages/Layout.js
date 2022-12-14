@@ -37,6 +37,7 @@ import Faq from "./Faq";
 import Shop from "./Shop";
 import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
+import ReffarallinkFile from "./ReffarallinkFile";
 
 function Layout() {
   return (
@@ -55,6 +56,7 @@ function Layout() {
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
+          <Route path="carraffle/refferallink/:id" element={<ReffarallinkFile /> } />
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
