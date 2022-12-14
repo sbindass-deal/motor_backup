@@ -3,6 +3,7 @@ import React from "react";
 // import shibnobiMotors from "../Assets/images/moters-logo.png";
 import shibnobiMotors from "../Assets/images/transparent.png";
 import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -11,10 +12,18 @@ function Footer() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
-              <a href="/" className="mb-3">
-              <img src={shibnobiMotors} alt="shibnobiMotors" className="darkLogo"/>
-                  <img src={shibnobiMotorsW} alt="shibnobiMotors" className="whiteLogo"/>
-              </a>
+              <Link to="/" className="mb-3">
+                <img
+                  src={shibnobiMotors}
+                  alt="shibnobiMotors"
+                  className="darkLogo"
+                />
+                <img
+                  src={shibnobiMotorsW}
+                  alt="shibnobiMotors"
+                  className="whiteLogo"
+                />
+              </Link>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.{" "}
@@ -23,29 +32,29 @@ function Footer() {
             <div className="col-12 col-md-6 col-lg-7 pb-4">
               <h6>Useful links</h6>
               <ul className="fLinks fLinks_row">
-                {/* <li><a href="#">Auctions</a></li> */}
+                {/* <li><Link to="#">Auctions</Link></li> */}
                 <li>
-                  <a href="shipping">Shipping</a>
+                  <Link to="/shipping">Shipping</Link>
                 </li>
                 <li>
-                  <a href="feautres">Gas guzzlrs Features</a>
+                  <Link to="/feautres">Gas guzzlrs Features</Link>
                 </li>
                 <li>
-                  <a href="submit">Submit a Vehicle</a>
+                  <Link to="/submit">Submit a Vehicle</Link>
                 </li>
-                {/* <li><a href="makeamodel">Makes and Models</a></li> */}
-                {/* <li><a href="#">Event Calendar</a></li> */}
-                {/* <li><a href="works">How Gasguzzlers Works</a></li> */}
-                {/* <li><a href="showroom">Show Room</a></li> */}
+                {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
+                {/* <li><Link to="#">Event Calendar</Link></li> */}
+                {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
+                {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <a href="carraffle">Car Raffle</a>
+                  <Link to="/carraffle">Car Raffle</Link>
                 </li>
-                {/* <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</a></li> */}
+                {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>
-                  <a href="getalerts">Get Alerts</a>
+                  <Link to="/getalerts">Get Alerts</Link>
                 </li>
                 <li>
-                  <a href="aboutGas Guzzlrs">About Gas guzzlrs</a>
+                  <Link to="/aboutshibnobi">About Gas guzzlrs</Link>
                 </li>
               </ul>
             </div>
@@ -86,9 +95,9 @@ function Footer() {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
-                <a href="/privacy">PRIVACY POLICY</a>
-                <a href="/termsandconditions">TERMS AND CONDITIONS</a>
-                <a href="amlpolicy">AML Policy</a>
+                <Link to="/privacy">PRIVACY POLICY</Link>
+                <Link to="/termsandconditions">TERMS AND CONDITIONS</Link>
+                <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
                 <p>©2022 Gas guzzlrs Motors | All Rights Reserved.</p>

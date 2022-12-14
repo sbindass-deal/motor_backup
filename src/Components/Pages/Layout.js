@@ -39,7 +39,6 @@ import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 
 function Layout() {
-
   return (
     <>
       <BrowserRouter>
@@ -80,7 +79,7 @@ function Layout() {
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
-          <Route path="Shop" element={<Shop/>} />
+          <Route path="Shop" element={<Shop />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer
@@ -95,8 +94,8 @@ function Layout() {
           pauseOnHover
           theme="light"
         />
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

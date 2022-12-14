@@ -6,6 +6,7 @@ import car_01 from "../../../Assets/images/car_01.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyBidsWins() {
   const [data, setData] = useState([]);
@@ -127,12 +128,12 @@ function MyBidsWins() {
                               </div>
                             )}
 
-                            <a
-                              href={`detail/${curElem.id}`}
+                            <Link
+                              to={`/detail/${curElem.id}`}
                               className="gry_btn"
                             >
                               <i className="fa-solid fa-eye mr-2"></i> View
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

@@ -16,6 +16,7 @@ import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
 import { countryData } from "../../countryAndCity";
+import FormInput from "../UI/FormInput";
 
 const VechilesRegistraion = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -307,6 +308,18 @@ const VechilesRegistraion = () => {
     // d.setHours(d.getHours() + 2);
     d.setMinutes(d.getMinutes() + 20);
     // console.log("addEnd Time", d.toLocaleString());
+    const handleDateTimeFormate = () => {
+      let curDateAndTime = new Date();
+      curDateAndTime.setMinutes(curDateAndTime.getMinutes() + 20);
+      const formateDay = curDateAndTime.getDate();
+      const formateMonth = curDateAndTime.getMonth() + 1;
+      const formateYear = curDateAndTime.getFullYear();
+      const formateHour = curDateAndTime.getHours();
+      const formateMint = curDateAndTime.getMinutes();
+      const formateSecond = curDateAndTime.getSeconds();
+      return `${formateYear}/${formateMonth}/${formateDay}, ${formateHour}:${formateMint}:${formateSecond}`;
+    };
+    const EndDateTime = handleDateTimeFormate();
 
     e.preventDefault();
     if (
@@ -377,7 +390,7 @@ const VechilesRegistraion = () => {
         rustDetails,
         modificationOnTruck: modificationOnTrck,
         fuel,
-        EndTime: d.toLocaleString(),
+        EndTime: EndDateTime.toString(),
         phone,
         approved: 1,
         sold: 1,
@@ -605,20 +618,16 @@ const VechilesRegistraion = () => {
                       </div>
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>What is your name?</label>
-                            <input
-                              value={namefield.name}
-                              onChange={handleNameField}
-                              minLength={2}
-                              maxLength={31}
-                              type="text"
-                              name="name"
-                              placeholder="Your name"
-                              className="field"
-                              required
-                            />
-                          </div>
+                          <FormInput
+                            value={namefield.name}
+                            onChange={handleNameField}
+                            name="name"
+                            placeholder="Enter Name"
+                            errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                            label="What is your name?"
+                            pattern="^[A-Za-z ]{3,16}$"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -920,7 +929,6 @@ const VechilesRegistraion = () => {
                               {/* <button>Browse File</button> */}
                               <input
                                 style={{
-                                  
                                   fontSize: "1.2rem",
                                   textAlign: "center",
                                   cursor: "pointer",
@@ -1183,10 +1191,9 @@ const VechilesRegistraion = () => {
                               <option value="other">Other</option>
                             </select>
                           </div>
-                         
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
-                        {basicfact.km === "other" ? (
+                          {basicfact.km === "other" ? (
                             <div className="form-group">
                               <label>Enter vehicle titled</label>
                               <input
@@ -1446,7 +1453,7 @@ const VechilesRegistraion = () => {
                               <option selected disabled value="">
                                 Choose...
                               </option>
-                              <option value="Yes">Electric</option>
+                              <option value="Electric">Electric</option>
                               <option value="CNG">CNG</option>
                               <option value="Petrol">Petrol</option>
                               <option value="Diesel">Diesel</option>
@@ -1896,62 +1903,40 @@ const VechilesRegistraion = () => {
                       </div>
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Email</label>
-                            <input
-                              value={information.uemail}
-                              onChange={informationOnChange}
-                              type="email"
-                              name="uemail"
-                              maxLength={31}
-                              minLength={4}
-                              placeholder="Email"
-                              className="field"
-                              required
-                            />
-                          </div>
+                          <FormInput
+                            value={information.uemail}
+                            onChange={informationOnChange}
+                            name="uemail"
+                            type="email"
+                            placeholder="Enter Email"
+                            errorMessage="It should be a valid email address!"
+                            label="Email"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Name</label>
-                            <input
-                              value={information.iname}
-                              onChange={informationOnChange}
-                              onKeyPress={(event) => {
-                                if (!/[a-zA-Z]/.test(event.key)) {
-                                  event.preventDefault();
-                                }
-                              }}
-                              type="text"
-                              maxLength={25}
-                              minLength={2}
-                              name="iname"
-                              placeholder="Name"
-                              className="field"
-                              required
-                            />
-                          </div>
+                          <FormInput
+                            value={information.iname}
+                            onChange={informationOnChange}
+                            name="iname"
+                            placeholder="Enter Name"
+                            errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                            label="Name"
+                            pattern="^[A-Za-z ]{3,16}$"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Phone</label>
-                            <input
-                              value={information.phone}
-                              onChange={informationOnChange}
-                              type="text"
-                              maxLength={12}
-                              minLength={10}
-                              name="phone"
-                              placeholder="Phone"
-                              className="field"
-                              required
-                            />
-                          </div>
-                          {information.phone.trim().length >= 11 && (
-                            <p className="text-danger">
-                              Enter correct phone number
-                            </p>
-                          )}
+                          <FormInput
+                            value={information.phone}
+                            onChange={informationOnChange}
+                            name="phone"
+                            placeholder="Enter phone number"
+                            errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
+                            label="Phone"
+                            pattern="^[0-9]{10,12}$"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group form-check">

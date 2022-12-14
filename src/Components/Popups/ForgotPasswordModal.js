@@ -15,7 +15,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
   const handleApi = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}sendMail/${email}`, {
+      .post(`${process.env.REACT_APP_URL}sendMail`, {
         email: email,
       })
       .then((result) => {})

@@ -55,7 +55,7 @@ function Header() {
     dispatch(authToken(null));
     notify("Logout successfully ! 😎🤐");
     navigate("/");
-    // window.location.reload(false);
+    window.location.reload(false);
   };
   return (
     <div>
@@ -451,7 +451,7 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                           to="/shop"
+                          to="/shop"
                           // target={"_blank"}
                         >
                           Store

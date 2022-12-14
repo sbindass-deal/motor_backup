@@ -5,6 +5,7 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyListings() {
   const [data, setData] = useState([]);
@@ -220,16 +221,16 @@ function MyListings() {
                                   </div>
                                 </>
                               ) : null}
-                              <a
-                                href={
+                              <Link
+                                to={
                                   curElem.displayInAuction === "Yes"
-                                    ? `detail/${curElem.id}`
-                                    : `showroom/${curElem.id}`
+                                    ? `/detail/${curElem.id}`
+                                    : `/showroom/${curElem.id}`
                                 }
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>

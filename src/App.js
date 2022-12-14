@@ -113,18 +113,17 @@ function App() {
     };
   }, [className]);
   useEffect(() => {
-    axios.interceptors.request.use(
-      (req) => {
-        req.headers.Authorization = `Bearer ${
-          logingUser.login.token !== null && logingUser.login.token
-        }`;
-
-        return req;
-      },
-      (err) => {
-        return Promise.reject(err);
-      }
-    );
+    if (logingUser.login.token !== null) {
+      axios.interceptors.request.use(
+        (req) => {
+          req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+          return req;
+        },
+        (err) => {
+          return Promise.reject(err);
+        }
+      );
+    }
   }, [logingUser.login.token]);
 
   return (

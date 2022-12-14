@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import car_01 from "../../Assets/images/car_01.jpg";
 import SmallSpinner from "../UI/SmallSpinner";
 
@@ -229,11 +230,11 @@ function Store() {
                         <p className="forOction">For Auction</p>
                       )}
 
-                      <a
-                        href={
+                      <Link
+                        to={
                           curElem.displayInAuction === "Yes"
-                            ? `detail/${curElem.id}`
-                            : `showroom/${curElem.id}`
+                            ? `/detail/${curElem.id}`
+                            : `/showroom/${curElem.id}`
                         }
                         className="card_postImg card_postImg_200"
                       >
@@ -256,18 +257,18 @@ function Store() {
                           }}
                           alt={curElem.make}
                         />
-                      </a>
+                      </Link>
                       <div className="card_postInfo pt-3">
                         <h6 className="name_price">
-                          <a
-                            href={
+                          <Link
+                            to={
                               curElem.displayInAuction === "Yes"
-                                ? `detail/${curElem.id}`
-                                : `showroom/${curElem.id}`
+                                ? `/detail/${curElem.id}`
+                                : `/showroom/${curElem.id}`
                             }
                           >
                             {curElem.make} {curElem.model} {curElem.year}
-                          </a>
+                          </Link>
                           <p className="price__">${curElem.documentFee}</p>
                         </h6>
                         <table className="showroomCol">
