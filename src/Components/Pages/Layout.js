@@ -38,6 +38,7 @@ import Shop from "./Shop";
 import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
+import ShopDetails from "./ShopDetails";
 
 function Layout() {
   return (
@@ -56,7 +57,10 @@ function Layout() {
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
-          <Route path="carraffle/refferallink/:id" element={<ReffarallinkFile /> } />
+          <Route
+            path="carraffle/refferallink/:id"
+            element={<ReffarallinkFile />}
+          />
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
@@ -81,7 +85,8 @@ function Layout() {
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
-          <Route path="Shop" element={<Shop />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="shop/2" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer
