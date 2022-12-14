@@ -22,6 +22,8 @@ function CarRaffle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const locallink="http://localhost:3000/carraffle";
+  const serverLink="http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
   const handleClose = () => {
     setShow(false);
     window.location.reload(false);
@@ -348,10 +350,11 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                       <RWebShare
                         data={{
                           text: "Gas guzzlrs Share Reffer Link",
-                          url: `${window.location.href}/refferallink/${coupen}`,
+                          url: `${locallink}/refferallink/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
-                        // onClick={() => console.log("shared successfully!")}
+                        
+                         onClick={() => console.log("shared successfully!")}
                       >
                         {/* <button>Share on Web</button> */}
                         <button type="button" className="gry_btn w-full">

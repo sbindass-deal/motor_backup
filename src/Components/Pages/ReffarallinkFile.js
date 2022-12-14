@@ -16,7 +16,7 @@ export default function ReffarallinkFile(props) {
  var bytes = CryptoJS.AES.decrypt(updated_id, 'my-gas-guzzelers@123');
  var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
- alert(decryptedData.lottery_id)
+//  alert(decryptedData.lottery_id)
   axios
       .post(process.env.REACT_APP_URL + "addrefers", {
         lottery_id: decryptedData.lottery_id,
