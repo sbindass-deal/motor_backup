@@ -3,15 +3,30 @@ import results_digest from "../../Assets/images/results-digest.png";
 import nr from "../../Assets/images/nr.png";
 import premium from "../../Assets/images/premium.png";
 import auction_list from "../../Assets/images/auction_list.jpg";
+import axios from "axios";
 
-function GetAlerts() {
+const GetAlerts = () => {
+  const handleSubmitApi = () => {
+    // axios
+    //   .post(`${process.env.REACT_APP_URL}sendMail`, {
+    //     email: email,
+    //   })
+    //   .then((result) => {})
+    //   .catch((error) => {});
+  };
+
   return (
     <div>
       <section className="pt_80 text-center">
         <div className="container">
           <div className="daily_mail">
-            <h2 className="text title_combo title_Center" style={{color:"#fff"}}>Gas guzzlrs Daily Mail</h2>
-            <p className="title_combo title_Center" style={{color:"#fff"}}>
+            <h2
+              className="text title_combo title_Center"
+              style={{ color: "#fff" }}
+            >
+              Gas guzzlrs Daily Mail
+            </h2>
+            <p className="title_combo title_Center" style={{ color: "#fff" }}>
               All the most relevant new content on Gas guzzlrs at 5am Pacific
               each day, including:
             </p>
@@ -19,13 +34,17 @@ function GetAlerts() {
             <div className="row mt-4">
               <div className="col-md-8 offset-lg-2">
                 <div className="daily_mail_box">
-                  <input
+                  {/* <input
                     type="text"
                     className="form-control"
                     name="email"
                     placeholder="Enter email address"
-                  />
-                  <button type="submit" className="results_subscribe btn">
+                  /> */}
+                  <button
+                    onClick={handleSubmitApi}
+                    type="button"
+                    className="results_subscribe btn"
+                  >
                     <i className="fa-regular fa-envelope"></i>{" "}
                     <span>Subscribe</span>
                   </button>
@@ -135,6 +154,6 @@ function GetAlerts() {
       </section>
     </div>
   );
-}
+};
 
 export default GetAlerts;

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
+import { async } from "q";
 
 function Detail() {
   const { id } = useParams();
@@ -48,11 +49,11 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-28 19:53:00").getTime()
+    new Date("2022-12-15, 19:53:00").getTime()
   );
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
-  const t = newTiem - now;
+  const t = parseInt(newTiem - now, 10);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -144,13 +145,14 @@ function Detail() {
     }
   }, []);
 
-  const getVehicle = () => {
-    axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
+  const getVehicle = async () => {
+    await axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
       setAddVehicleUserId(res.data.data[0].userId);
       setVehicle(res.data.data[0]);
       // console.log("t", new Date(res.data.data[0].EndTime).getTime());
       // console.log("end", new Date(res.data.data[0].EndTime));
       setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
+      // console.log("api date", new Date(res.data.data[0].EndTime));
     });
   };
 
@@ -263,7 +265,6 @@ function Detail() {
                       Watch
                     </a>
                   )}
-
                   {t <= 0 ? (
                     <a className="gry_btn active">
                       {vehicle.reserve === "Yes" && vehicle.sold === "1"
@@ -278,7 +279,7 @@ function Detail() {
                     </a>
                   ) : t >= 900000 ? (
                     <button type="button" className="gry_btn">
-                      Upcomming Auction
+                      Upcoming Auction
                     </button>
                   ) : (
                     <>

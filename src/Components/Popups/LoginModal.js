@@ -12,6 +12,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
   const [loginLoading, setLoginLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassWord, setShowPassWord] = useState(false);
   const logingUser = useSelector((state) => state.login);
   const show = logingUser.show;
 
@@ -116,10 +117,16 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   placeholder="Enter Password"
                   errorMessage="incorporate password!"
                   label="Password"
-                  type="password"
+                  type={showPassWord ? "text" : "password"}
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassWord(!showPassWord)}
+                >
+                  show
+                </button>
               </div>
 
               <div onClick={handlePasswordBtn} className="form-group">

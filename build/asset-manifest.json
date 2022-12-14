@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.21ae908f.css",
-    "main.js": "/static/js/main.e879b7d2.js",
+    "main.css": "/static/css/main.7cb89a68.css",
+    "main.js": "/static/js/main.807b7305.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -94,6 +94,7 @@
     "static/media/raffle-5.jpg": "/static/media/raffle-5.725b85a1037fb656d29a.jpg",
     "static/media/about-1.jpg": "/static/media/about-1.b76a45bd59a0457b947a.jpg",
     "static/media/raffle-6.jpg": "/static/media/raffle-6.9b2b48d4d2f594e1b7a5.jpg",
+    "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
     "static/media/paypal.png": "/static/media/paypal.f89b7a8d4414ecccc93b.png",
     "static/media/ic_01.svg": "/static/media/ic_01.6ad86f5322cf4138d64104387827abaf.svg",
@@ -116,8 +117,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.21ae908f.css.map": "/static/css/main.21ae908f.css.map",
-    "main.e879b7d2.js.map": "/static/js/main.e879b7d2.js.map",
+    "main.7cb89a68.css.map": "/static/css/main.7cb89a68.css.map",
+    "main.807b7305.js.map": "/static/js/main.807b7305.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -158,7 +159,7 @@
     "48.085fd972.chunk.js.map": "/static/js/48.085fd972.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21ae908f.css",
-    "static/js/main.e879b7d2.js"
+    "static/css/main.7cb89a68.css",
+    "static/js/main.807b7305.js"
   ]
 }

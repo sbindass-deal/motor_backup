@@ -1,13 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import car_01 from "../../Assets/images/car_01.jpg";
 import SmallSpinner from "../UI/SmallSpinner";
+import FilteredModal from "./FilteredModal";
 
 function Store() {
+  const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [loading, setLoader] = useState(true);
   const [vehicleData, setVehicleData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  const handleShow = () => {
+    setShowModal(true);
+  };
   const fetchStoreVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
@@ -26,7 +37,7 @@ function Store() {
   }, []);
 
   return (
-    <div>
+    <>
       <section className="storeHeroSection d-flex align-items-center">
         <div className="container">
           <div className="row">
@@ -81,10 +92,11 @@ function Store() {
                 </li>
                 <li className="">
                   <button
+                    onClick={handleShow}
                     type="button"
                     className="gry_btn"
-                    data-toggle="modal"
-                    data-target="#FiltersModal"
+                    // data-toggle="modal"
+                    // data-target="#FiltersModal"
                   >
                     <i className="fa-solid fa-filter mr-2"></i> Filters
                   </button>
@@ -103,115 +115,7 @@ function Store() {
               </ul>
             </div>
           </div>
-
-          <div className="modal fade" id="FiltersModal">
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header border-0">
-                  <h4 className="modal-title">Filters</h4>
-                  <button type="button" className="close" data-dismiss="modal">
-                    <i className="fa-solid fa-xmark"></i>
-                  </button>
-                </div>
-
-                <div className="modal-body">
-                  <form>
-                    <div className="row row_gap_5">
-                      <div className="col-12 col-md-6">
-                        <label>Vehicle Year</label>
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name=""
-                            className="field"
-                            placeholder="1900"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <label>To</label>
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name=""
-                            className="field"
-                            placeholder="2023"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <label>List Date</label>
-                        <div className="form-group">
-                          <select className="field">
-                            <option>All Time</option>
-                            <option>7 Days</option>
-                            <option>Last Month</option>
-                            <option>Last Year</option>
-                            <option>Last 2 Year</option>
-                            <option>Last 5 Year</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <label>Result</label>
-                        <div className="form-group">
-                          <select className="field">
-                            <option>All</option>
-                            <option>Sold Only</option>
-                            <option>Reserve Not Met</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <label>High Price</label>
-                        <div className="form-group">
-                          <select className="field">
-                            <option>No Min</option>
-                            <option>$5k</option>
-                            <option>#10k</option>
-                            <option>#15k</option>
-                            <option>#20k</option>
-                            <option>#25k</option>
-                            <option>#30k</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <label>To</label>
-                        <div className="form-group">
-                          <select className="field">
-                            <option>No Max</option>
-                            <option>$5k</option>
-                            <option>#10k</option>
-                            <option>#15k</option>
-                            <option>#20k</option>
-                            <option>#25k</option>
-                            <option>#30k</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-12">
-                        <label>Include Words / Models / Tags</label>
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name=""
-                            className="field"
-                            placeholder="Enter"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <button type="button" className="btn">
-                        Filters
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FilteredModal showModal={showModal} handleClose={handleClose} />
         </div>
       </section>
 
@@ -229,11 +133,11 @@ function Store() {
                         <p className="forOction">For Auction</p>
                       )}
 
-                      <a
-                        href={
+                      <Link
+                        to={
                           curElem.displayInAuction === "Yes"
-                            ? `detail/${curElem.id}`
-                            : `showroom/${curElem.id}`
+                            ? `/detail/${curElem.id}`
+                            : `/showroom/${curElem.id}`
                         }
                         className="card_postImg card_postImg_200"
                       >
@@ -256,18 +160,18 @@ function Store() {
                           }}
                           alt={curElem.make}
                         />
-                      </a>
+                      </Link>
                       <div className="card_postInfo pt-3">
                         <h6 className="name_price">
-                          <a
-                            href={
+                          <Link
+                            to={
                               curElem.displayInAuction === "Yes"
-                                ? `detail/${curElem.id}`
-                                : `showroom/${curElem.id}`
+                                ? `/detail/${curElem.id}`
+                                : `/showroom/${curElem.id}`
                             }
                           >
                             {curElem.make} {curElem.model} {curElem.year}
-                          </a>
+                          </Link>
                           <p className="price__">${curElem.documentFee}</p>
                         </h6>
                         <table className="showroomCol">
@@ -295,7 +199,7 @@ function Store() {
           </div>
         </section>
       )}
-    </div>
+    </>
   );
 }
 

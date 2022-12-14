@@ -5,6 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import SmallSpinner from "../UI/SmallSpinner";
+import { Link } from "react-router-dom";
 function Auctionlive() {
   const userId = useSelector((state) => state);
   const [data, setauctions] = useState([]);
@@ -34,7 +35,6 @@ function Auctionlive() {
   useEffect(() => {
     fetchVehicleApi();
   }, []);
-
   const getEndDate = (cal) => {
     let data = cal.split("T");
     let endDate = moment().format("YYYY-MM-DD");
@@ -178,7 +178,7 @@ function Auctionlive() {
                           ></i>
                         </button>
 
-                        <a href={`detail/${curElem.id}`}>
+                        <Link to={`/detail/${curElem.id}`}>
                           {/* <img
                               src={
                                 curElem.stepOneImage === null ||
@@ -202,14 +202,14 @@ function Auctionlive() {
                             }}
                             alt={curElem.model}
                           />
-                        </a>
+                        </Link>
                       </div>
                       <div className="card_postInfo">
                         <h4>
-                          <a href={`detail/${curElem.id}`}>
+                          <Link to={`/detail/${curElem.id}`}>
                             {curElem.make} {curElem.model}-{curElem.year}-
                             {curElem.odmeter}
-                          </a>
+                          </Link>
                         </h4>
                         <ul
                           className="labelList"
@@ -234,6 +234,7 @@ function Auctionlive() {
                           <li>
                             {/* <span>{getEndDate(curElem.created_at)} </span> */}
                             {/* <span>{curElem.EndTime}</span> */}
+
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               new Date().getTime() >
                             900000 ? (

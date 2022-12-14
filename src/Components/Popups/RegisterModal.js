@@ -21,6 +21,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
     });
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
+  const [showPassWord, setShowPassWord] = useState(false);
+  const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(false);
   const [userInput, setUserInput] = useState({
     name: "",
@@ -170,10 +172,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     placeholder="Enter Password"
                     errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
                     label="Password"
-                    type="password"
+                    type={showPassWord ? "text" : "password"}
                     pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                     required={true}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassWord(!showPassWord)}
+                  >
+                    show
+                  </button>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
@@ -183,10 +191,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     placeholder="Enter Confirm Password"
                     errorMessage="Passwords don't match!"
                     label="Confirm Password"
-                    type="password"
+                    type={showCPassword ? "text" : "password"}
                     pattern={userInput.password}
                     required={true}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowCPassWord(!showCPassword)}
+                  >
+                    show
+                  </button>
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">

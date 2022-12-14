@@ -5,6 +5,7 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyListings() {
   const [data, setData] = useState([]);
@@ -92,11 +93,12 @@ function MyListings() {
       });
   };
 
-  const handleSoldApi = (id) => {
+  const handleSoldApi = (id, userId) => {
     axios
       .post(process.env.REACT_APP_URL + "sold", {
         id: id,
         sold: 0,
+        userId,
       })
       .then((res) => {
         window.location.reload(false);
@@ -178,7 +180,12 @@ function MyListings() {
                                 curElem.sold === "1" && (
                                   <div className="mx-2">
                                     <button
-                                      onClick={() => handleSoldApi(curElem.id)}
+                                      onClick={() =>
+                                        handleSoldApi(
+                                          curElem.id,
+                                          curElem.userId
+                                        )
+                                      }
                                       type="button"
                                       className="gry_btn"
                                       disabled={
@@ -220,16 +227,16 @@ function MyListings() {
                                   </div>
                                 </>
                               ) : null}
-                              <a
-                                href={
+                              <Link
+                                to={
                                   curElem.displayInAuction === "Yes"
-                                    ? `detail/${curElem.id}`
-                                    : `showroom/${curElem.id}`
+                                    ? `/detail/${curElem.id}`
+                                    : `/showroom/${curElem.id}`
                                 }
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
