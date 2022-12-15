@@ -93,11 +93,12 @@ function MyListings() {
       });
   };
 
-  const handleSoldApi = (id) => {
+  const handleSoldApi = (id, userId) => {
     axios
       .post(process.env.REACT_APP_URL + "sold", {
         id: id,
         sold: 0,
+        userId,
       })
       .then((res) => {
         window.location.reload(false);
@@ -179,7 +180,12 @@ function MyListings() {
                                 curElem.sold === "1" && (
                                   <div className="mx-2">
                                     <button
-                                      onClick={() => handleSoldApi(curElem.id)}
+                                      onClick={() =>
+                                        handleSoldApi(
+                                          curElem.id,
+                                          curElem.userId
+                                        )
+                                      }
                                       type="button"
                                       className="gry_btn"
                                       disabled={
