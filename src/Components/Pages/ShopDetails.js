@@ -3,9 +3,10 @@ import React,{useRef} from 'react'
 import Carousel from "react-bootstrap/Carousel";
 import './Shopdetail.css'
 import img_04 from "../../Assets/images/img-4.png";
-import img_05 from "../../Assets/images/img-5.png";
+import img_05 from "../../Assets/images/img-8.webp";
 import img_06 from "../../Assets/images/img-6.webp";
-import img_01 from "../../Assets/images/img-1.jpg";
+import img_07 from "../../Assets/images/img-7.jpeg";
+import img_01 from "../../Assets/images/img-1.webp";
 import img_02 from "../../Assets/images/img-2.webp";
 import img_03 from "../../Assets/images/img-3.webp";
 
@@ -92,7 +93,7 @@ const ShopDetails = () => {
           <div className="col-md-6 sliderSec ">
             <Carousel slide={false}>
               <Carousel.Item>
-                <img className="d-block w-100" src={img_04} alt="First slide" />
+                <img className="d-block w-100" src={img_01} alt="First slide" />
               </Carousel.Item>
               <Carousel.Item>
                 <img
@@ -102,7 +103,7 @@ const ShopDetails = () => {
                 />
               </Carousel.Item>
               <Carousel.Item>
-                <img className="d-block w-100" src={img_06} alt="Third slide" />
+                <img className="d-block w-100" src={img_07} alt="Third slide" />
               </Carousel.Item>
             </Carousel>
           </div>
@@ -222,7 +223,7 @@ Spread festive cheer with this playful pure cotton top. Comfy regular fit. Featu
                             <div>
                                 <div className="card_post">
                                     <div className="card_postImg">
-                                    <img src={img_06} alt="car_02"/>
+                                    <img src={img_07} alt="car_02"/>
                                     </div>
                                     <div className="card_postInfo">
                                         <h5><a href="#">1966 Porsche 912 Coupe</a></h5>

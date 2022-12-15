@@ -117,8 +117,8 @@ function Header() {
                               <p className="searchName">Nikhukki</p>
                               <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
                               </div>
-                        </div> */}
-                        <i className="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <i className="fa-solid fa-magnifying-glass"></i> */}
                       </Link>
                     </li>
 

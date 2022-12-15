@@ -1078,9 +1078,9 @@ li.nav-item.afterLogin span { font-size: 13px; position: absolute; top: -17px; r
 .secondNavbar .navbar-nav {  justify-content: end;}
 header { height: 103px;border: 1px solid #333;}
 .secondNavbar { padding: 10px 0px; position: relative; right: 0; top: -28px;}
-.toNv:before { content: ''; background: #f7931b; position: absolute; width: 83%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
+.toNv:before { content: ''; background: #f7931b; position: absolute; width: 98%; height: 100%; right: -7%; z-index: -2; border-top-left-radius: 50px;}
 .toNv{position: relative;z-index: 1;}
-.secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 78%; height: 100%; right: -6%; z-index: -1; border-top-left-radius: 50px;}
+.secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 90%; height: 100%; right: -6%; z-index: -1; border-top-left-radius: 50px;}
 .secondNavbar .navbar-nav {position: relative;  height: 43px;}
 a.navbar-brand { position: relative;top: 17px;left: -30px;}
 
@@ -1410,3 +1410,7 @@ animation-name: spin;
 
 .searchForm input { background-color: #00000000; border-bottom: 1px solid; width: 400px;font-size: 17px; padding: 0 10px;}
 .searchForm button { padding: 4px 10px;}
+.charity{ background-image: url('../images/charity.png');}
+.charity .heroText p { font-size: 22px;padding-bottom: 15px;}
+.charity .heroText h1 {margin-bottom: 15px;}
+

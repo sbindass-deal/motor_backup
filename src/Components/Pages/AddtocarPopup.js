@@ -1,5 +1,5 @@
 import React from 'react'
-import img_01 from "../../Assets/images/img-1.jpg";
+import img_01 from "../../Assets/images/img-1.webp";
 function AddtocarPopup() {
   return (
     <div className="content addToCart">
