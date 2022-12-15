@@ -1,13 +1,16 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
 import faq from "../UI/faq";
-import PaymentProcess from "./PaymentProcess";
 
 const Faq = () => {
   return (
     <div className="ptb_80 pt_sm_50 container ">
-      <h2 class="title_combo title_Center">Frequently Asked Questions 
-        <span style={{textAlign:'center'}}> Gas Guzzlrs makes it easy to register and bid.</span>
+      <h2 class="title_combo title_Center">
+        Frequently Asked Questions
+        <span style={{ textAlign: "center" }}>
+          {" "}
+          Gas Guzzlrs makes it easy to register and bid.
+        </span>
       </h2>
       <div className="row">
         <p className="text-center py-3 px-md-5">
@@ -44,12 +47,7 @@ const Faq = () => {
               );
             })}
           </Accordion>
-         
         </div>
-        <div className="col-12 col-md-6">
-          <PaymentProcess/>
-       </div>
-        
       </div>
     </div>
   );

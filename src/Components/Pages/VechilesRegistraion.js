@@ -250,6 +250,8 @@ const VechilesRegistraion = () => {
   };
 
   const informationSubmitHandler = (e) => {
+    e.preventDefault();
+
     const {
       name,
       email,
@@ -321,13 +323,7 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    e.preventDefault();
-    if (
-      phone.trim().length >= 11 ||
-      errorMakeAndModal ||
-      errorBasicFact ||
-      errorDetais
-    ) {
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
       return setShowError(false);
     }
 
@@ -1752,17 +1748,15 @@ const VechilesRegistraion = () => {
                         {detailstab.reserve === "Yes" && (
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
-                              <label>Please provide reserve amount:</label>
-                              <input
+                              <FormInput
                                 value={detailsInfo.reserveAmount}
                                 onChange={detailsOnChange}
-                                type="text"
-                                maxLength={10}
-                                minLength={1}
                                 name="reserveAmount"
                                 placeholder="Enter"
-                                className="field"
-                                required
+                                errorMessage="Reserve amount should be 1-10 characters and shouldn't include any special character and alphabet!"
+                                label="Please provide reserve amount:"
+                                pattern="^[0-9]{1,12}$"
+                                required={true}
                               />
                             </div>
                           </div>
