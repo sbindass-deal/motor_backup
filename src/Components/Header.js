@@ -90,16 +90,38 @@ function Header() {
                     {/* <li onClick={handleShow} className="nav-item">
                         <Link className="nav-link">Submit a Vehicle</Link>
                       </li> */}
-                    <li className="nav-item">
+                      <li
+                      onClick={() => setShowSearchModal(true)}
+                      className="nav-item"
+                      style={{ cursor: "pointer" }}
+                    >
                       <Link
-                        className={`nav-link ${
-                          location.pathname === "/submit" && "navActive"
-                        }`}
-                        to="/submit"
+                        className="nav-link"
+                        // to="javascript:void(0)"
+                        // data-toggle="modal"
+                        // data-target="#myModal"
                       >
-                        Submit a Vehicle
+                        <form className="searchForm">
+                          <input
+                            type="text"
+                            name="search"
+                            placeholder="Search..."
+                            required
+                          />
+                          <button type="">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                        </form>
+                        {/* <div className="searchBody">
+                            return <div className="searchAuto" >
+                              <p className="searchName">Nikhukki</p>
+                              <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
+                              </div>
+                        </div>
+                        <i className="fa-solid fa-magnifying-glass"></i> */}
                       </Link>
                     </li>
+
                     <li className="nav-item">
                       {/* <Link className="nav-link" to="/auction">
                         Auctions
@@ -194,20 +216,7 @@ function Header() {
                         </Link>
                       )}
                     </li>
-                    <li
-                      onClick={() => setShowSearchModal(true)}
-                      className="nav-item"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <Link
-                        className="nav-link"
-                        // to="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#myModal"
-                      >
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                      </Link>
-                    </li>
+                    
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -301,6 +310,16 @@ function Header() {
                           </Link>
                         </div>
                       </li> */}
+                       <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/submit" && "navActive"
+                        }`}
+                        to="/submit"
+                      >
+                        Submit a Vehicle
+                      </Link>
+                    </li>
 
                       <li className="nav-item">
                         <Link
