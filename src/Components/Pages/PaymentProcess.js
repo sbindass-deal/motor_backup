@@ -46,6 +46,7 @@ function PaymentProcess({ btn }) {
           <div className="processPy">
             <h2>Model Name : 2021 BMW Nexon</h2>
             <h3 className="price__">Price : $2000</h3>
+           
             <div className="ProcessPymt">
               <p>Choose Payment Option:</p>
               <ConnectButton></ConnectButton>

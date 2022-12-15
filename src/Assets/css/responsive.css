@@ -6,8 +6,8 @@
 }
 @media (min-width: 1400px) {
 	.container {max-width: 1370px;}
-
-.sliderSec .carousel-inner { width: 100% !important;}
+	.sliderSec .carousel-inner { width: 100% !important;}
+	.searchBody { width: 43%;}
 }
 @media (min-width: 1500px) {}
 @media (max-width: 1366px) {}

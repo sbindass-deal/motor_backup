@@ -50,7 +50,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-12-05 12:30:00").getTime()
+    new Date("2022-12-17 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now + 432000000;
@@ -281,47 +281,74 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
-                  <div className="col-12 col-md-12">
-                    <div className="form-group">
-                      <label>Number Of Tickets</label>
-                      <input
-                        type="text"
-                        value={inputLotteryNumber}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/\D/g, "");
-                          setInputLotteryNumber(value);
-                        }}
-                        className="form-control"
-                        maxLength={4}
-                        id="validationCustom01"
-                      />
+                  <div className="col-lg-7 col-md-7 col-sm-12">
+                    <lable>Number of Tickets</lable>
+                    <div className="ticketFom">
+
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          value={inputLotteryNumber}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, "");
+                            setInputLotteryNumber(value);
+                          }}
+                          className="form-control"
+                          maxLength={4}
+                          id="validationCustom01"
+                        />
+                      </div>
+                      <div className="form-group lotryBtn">
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={addTickets}
+                        >
+                          Make Payment
+                        </button>
+                      </div>
                     </div>
+                   
                   </div>
-                  <div className="col-12 col-md-12">
-                    <div className="form-group lotryBtn">
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={addTickets}
-                      >
-                        Make Payment
-                      </button>
-                    </div>
+                  <div className="col-lg-5 col-md-5 col-sm-12">
+                   <table className="tikTable">
+                    <tr>
+                      <td>Price of 1 ticket</td>
+                      <td>$5</td>
+                    </tr>
+                    <tr>
+                      <td>Total ticket stock</td>
+                      <td>100</td>
+                    </tr>
+                    <tr>
+                      <td>Deadline to purchase ticket</td>
+                      <td>02-01-2023</td>
+                    </tr>
+                    <tr>
+                      <td>Lucky draw date</td>
+                      <td>05-01-2023</td>
+                    </tr>
+                   </table>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-4 col-lg-4">
-              <div className="card_Gray2 mt-5 mt-md-0">
+            <div className="col-12 col-md-4 col-lg-4 ">
+              <div className="card_Gray2 mt-5 mt-md-0 divSticky">
                 <div className="">
                   <div className="cardBorder">
+                  
                     <h6>My Tickets - {allLotaryApi.length}</h6>
+                   
+
+                   
+                   
                     <div className="myTicketRow">
                       <div className="myTicketCol">
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}
-                        {/* <div className="MT_Count">10</div> */}
+                        <div className="MT_Count">10</div>
                         <div className="MT_Price">
                           $
                           {showLotary.price &&
@@ -452,6 +479,9 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
           <div className="processPy">
             <h2>Model Name : 2021 BMW Nexon</h2>
             <h3 className="price__">Price : $2000</h3>
+
+            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <br/>
             <p>Choose Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
