@@ -1436,3 +1436,11 @@ animation-name: spin;
 table.tikTable { width: 100%;}
 
 .navbar-expand-md .navbar-collapse { height: 41px; align-items: baseline;}
+
+table.tikTable tr td:first-child:before {  content: '';  width: 5px;  height: 1px;  background: #f7931b;  position: absolute;  right: 20px;  top: 10px;}
+table.tikTable tr td:first-child { color: #f7931b; position: relative;}
+.carLottery { right: 0; bottom: 0; min-width: 100%; min-height: 100%;}
+
+.carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
+video#myVideo { width: 100%;}
+.carLottery .container-fluid, .carLottery .heroText { padding: 0;}

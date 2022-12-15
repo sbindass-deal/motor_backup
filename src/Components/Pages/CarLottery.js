@@ -147,16 +147,29 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
 
   return (
     <div>
+       <section className="carLottery d-flex align-items-center">
+            <div className="container-fluid">
+                <div className="heroText">
+                  <video 
+                    autoplay 
+                    loop 
+                    controls 
+                    id="myVideo" 
+                    poster={carraffle}>
+                    <source 
+                      src={Video} 
+                      type="video/mp4"/>
+                  </video>                 
+                </div>
+            </div>
+       </section>
+
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             
             <div className="col-12 col-md-8 col-lg-8">
-              <div className="col-lg-12">
-                <video width="100%" height="340px" controls poster={carraffle}>
-                  <source src={Video} type="video/mp4"/>      
-                </video>
-              </div>
+            
               <div className="orangeCard mb-4">
                 <div className="row">
                   <div className="col-12 col-md-5">
