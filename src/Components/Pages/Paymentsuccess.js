@@ -3,8 +3,8 @@ import { Button, Result } from 'antd';
 import './PaymentrSuccess.css';
 const Paymentsuccess = () => {
   return (
-    <>
-    <div className="content">
+   <>
+     <div className="content">
   <div className="wrapper-1">
     <div className="wrapper-2">
       <h1>Thank you !</h1>

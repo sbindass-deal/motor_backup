@@ -1404,3 +1404,9 @@ animation-name: spin;
   margin-bottom: 28px;
   font-size: 50px;
 }
+
+
+/*-- New Css --*/
+
+.searchForm input { background-color: #00000000; border-bottom: 1px solid; width: 400px;font-size: 17px; padding: 0 10px;}
+.searchForm button { padding: 4px 10px;}

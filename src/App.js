@@ -2,6 +2,7 @@ import "./App.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./Assets/css/bootstrap.min.css";
 import "./Assets/css/style.css";
+import "./Assets/css/carousel.css";
 import "./Assets/css/responsive.css";
 import "./Assets/css/lightMode.css";
 import Layout from "./Components/Pages/Layout";
