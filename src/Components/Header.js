@@ -530,18 +530,11 @@ function Header() {
         handleCloseForgPass={handleCloseForgPass}
       />
       {sowAutoCompleate && (
-        <div
-          style={{
-            height: "20vh",
-            width: "20vh",
-            position: "fixed",
-            top: "20vh",
-            left: "50vh",
-            backgroundColor: "red",
-            zIndex: "1",
-          }}
-        >
-          kdjsalkfjlka
+        <div className="autoCom">
+          <a href="#" className="searchList">
+            <p className="title">Nikhil</p>
+            <p className="dec">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+          </a>
         </div>
       )}
     </>

@@ -3,8 +3,13 @@ import React, { useState, Component } from "react";
 import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 import ads_car_2 from "../../Assets/images/raffle-5.jpg";
 import ads_car_3 from "../../Assets/images/raffle-6.jpg";
+
+import ticket from "../../Assets/images/ticket-solid.svg";
+import ticketSocket from "../../Assets/images/clipboard-list-solid.svg";
+import weekly from "../../Assets/images/calendar-week-solid.svg";
+
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
-import { Modal } from "react-bootstrap";
+import { Modal, Placeholder } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -171,11 +176,7 @@ function CarRaffle() {
           <div className="row">
             <div className="col-12 col-md-8 col-lg-8">
             
-              <div className="col-lg-12">
-                <video width="100%" height="340px" controls poster={carraffle}>
-                  <source src={Video} type="video/mp4" />
-                </video>
-              </div>
+             
               <div className="orangeCard mb-4">
                 <div className="row">
                   <div className="col-12 col-md-5">
@@ -291,6 +292,39 @@ function CarRaffle() {
                   </div>
                 </div>
               </div>
+              <div className="card_Gray2 mb-4">
+                <div className="row row_gap_5 ">
+                  <div className="col-md-3 iconSecT">
+                    <div className="imgIco">
+                      <img src={ticket}/>
+                      </div>
+                      <h5>Price of 1 ticket</h5>
+                      <p>$5</p>
+                  </div>
+                  <div className="col-md-3 iconSecT">
+                  <div className="imgIco">
+                      <img src={ticketSocket}/>
+                      </div>
+                      <h5>Total ticket stock</h5>
+                      <p>100</p>
+                  </div>
+                  <div className="col-md-3 iconSecT">
+                  <div className="imgIco">
+                      <img src={weekly}/>
+                      </div>
+                      <h5>Deadline to purchase ticket</h5>
+                      <p>02-01-2023</p>
+                  </div>
+                  <div className="col-md-3 iconSecT">
+                  <div className="imgIco">
+                      <img src={weekly}/>
+                      </div>
+                      <h5>Lucky draw date</h5>
+                      <p>02-01-2023</p>
+                  </div>
+
+                </div>
+              </div>
 
               <div className="card_Gray2">
                 <div className="row row_gap_5">
@@ -299,7 +333,7 @@ function CarRaffle() {
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
-                  <div className="col-lg-7 col-md-7 col-sm-12">
+                  <div className="col-lg-12 col-md-12 col-sm-12">
                     <lable>Number of Tickets</lable>
                     <div className="ticketFom">
 
@@ -310,6 +344,7 @@ function CarRaffle() {
                           onChange={(e) => {
                             const value = e.target.value.replace(/\D/g, "");
                             setInputLotteryNumber(value);
+                            Placeholder="Number of Tickets "
                           }}
                           className="form-control"
                           maxLength={4}
@@ -328,26 +363,7 @@ function CarRaffle() {
                     </div>
                    
                   </div>
-                  <div className="col-lg-5 col-md-5 col-sm-12">
-                   <table className="tikTable">
-                    <tr>
-                      <td>Price of 1 ticket</td>
-                      <td>$5</td>
-                    </tr>
-                    <tr>
-                      <td>Total ticket stock</td>
-                      <td>100</td>
-                    </tr>
-                    <tr>
-                      <td>Deadline to purchase ticket</td>
-                      <td>02-01-2023</td>
-                    </tr>
-                    <tr>
-                      <td>Lucky draw date</td>
-                      <td>05-01-2023</td>
-                    </tr>
-                   </table>
-                  </div>
+
                 </div>
               </div>
             </div>

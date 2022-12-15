@@ -1432,7 +1432,7 @@ animation-name: spin;
 
 .ticketFom .form-group { width: 100%;}
 .ticketFom .form-group input { height: 48px;}
-.ticketFom { display: flex;}
+.ticketFom { display: flex; align-items: center;}
 table.tikTable { width: 100%;}
 
 .navbar-expand-md .navbar-collapse { height: 41px; align-items: baseline;}
@@ -1444,3 +1444,27 @@ table.tikTable tr td:first-child { color: #f7931b; position: relative;}
 .carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
 video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
+
+
+.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 36%;  top: 60px;  padding: 10px;}
+p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
+p.dec {font-size: 12px;}
+a.searchList {  border-bottom: 1px solid #f7931b38;}
+.imgIco img {
+  width: 41%;
+  text-align: center;
+}
+.imgIco {
+  width: 70px;
+  height: 70px;
+  background: #f7931b;
+  border-radius: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.iconSecT h5 { font-size: 14px; padding-top: 10px;}
+.iconSecT p { font-size: 17px; color: #f7931b; font-weight: 700;}
+.col-md-3.iconSecT { text-align: center;}
