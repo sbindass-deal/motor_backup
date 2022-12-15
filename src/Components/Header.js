@@ -100,7 +100,7 @@ function Header() {
                         <Link className="nav-link">Submit a Vehicle</Link>
                       </li> */}
                     <li
-                      // onClick={() => setSowAutoCompleate(true)}
+                      // onClick={() => setShowSearchModal(true)}
                       className="nav-item"
                       style={{ cursor: "pointer" }}
                     >
@@ -124,15 +124,13 @@ function Header() {
                             <i className="fa-solid fa-magnifying-glass"></i>
                           </button>
                         </form>
-
-                        {/* <div className="searchBody" >
+                        {/* <div className="searchBody">
                              <div className="searchAuto" >
                               <p className="searchName">Nikhukki</p>
                               <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
                               </div>
-                        </div> */}
-
-                        <i className="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <i className="fa-solid fa-magnifying-glass"></i> */}
                       </Link>
                     </li>
 

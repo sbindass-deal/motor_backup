@@ -737,7 +737,7 @@ body.lightTheme{background-color: #fff; color: #000;}
 .fancyCol:hover .seeMoreTag{color: #fff; background: #f7931a;}
 
 
-.divSticky{position: sticky; top: 0;}
+.divSticky{position: sticky !important; top: 0;}
 
 
 .storeHeroSection {
@@ -1206,7 +1206,19 @@ table.showroomCol tr td:last-child {
 .processPy {  text-align: center;  padding: 40px; }
 .ProcessPymt img {  border: 1px solid #181818;  margin: 5px;  padding: 0 10px;  width: 24%;  background: #000000;}
 .processPy h2 {  font-size: 20px;}
-.searchBody {  padding: 10px;  box-shadow: 1px 4px 36px -1px #f7931a1f;  height: 78vh;  scroll-behavior: auto;  overflow: scroll;  background: #000;}
+.searchBody {
+  padding: 10px;
+  box-shadow: 1px 4px 36px -1px #f7931a1f;
+  height: 78vh;
+  scroll-behavior: auto;
+  overflow: scroll;
+  background: #000;
+  width: 35.2%;
+  position: absolute;
+  margin-left: auto;
+}
+.searchForm {justify-content: flex-end;}
+
 .searchBody p {  border-bottom: 1px solid #0000;}
 /* .searchBody p:hover {
   color: #ffc107;
@@ -1414,3 +1426,13 @@ animation-name: spin;
 .charity .heroText p { font-size: 22px;padding-bottom: 15px;}
 .charity .heroText h1 {margin-bottom: 15px;}
 
+.myTick { display: flex;justify-content: space-between;}
+.processPy p { padding-top: 17px; border-top: 1px solid #362513;}
+.ticketCount { position: relative; top: -12px; color: #f7931b;}
+
+.ticketFom .form-group { width: 100%;}
+.ticketFom .form-group input { height: 48px;}
+.ticketFom { display: flex;}
+table.tikTable { width: 100%;}
+
+.navbar-expand-md .navbar-collapse { height: 41px; align-items: baseline;}
