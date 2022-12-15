@@ -108,7 +108,7 @@ function MyBidsWins() {
                           <div className="">
                             <h6>{curElem.name}</h6>
                             <p>
-                              You have BID{" "}
+                              You have BID
                               <i className="fa-solid fa-dollar-sign"></i>
                               <span style={{ color: "#fff" }}>
                                 {curElem.auctionAmmount}
@@ -116,7 +116,7 @@ function MyBidsWins() {
                             </p>
                           </div>
                           <div className="pl-md-3 d-flex">
-                            {curElem.reserve === "Yes" && (
+                            {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button
                                   onClick={() => handleShow(curElem.id)}
@@ -126,7 +126,20 @@ function MyBidsWins() {
                                   <ChatIcon />
                                 </button>
                               </div>
-                            )}
+                            )} */}
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() <
+                              0 && curElem.reserve === "Yes" ? (
+                              <div className="mx-2">
+                                <button
+                                  onClick={() => handleShow(curElem.id)}
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  <ChatIcon />
+                                </button>
+                              </div>
+                            ) : null}
 
                             <Link
                               to={`/detail/${curElem.id}`}

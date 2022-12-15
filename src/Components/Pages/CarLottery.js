@@ -18,17 +18,16 @@ import { showModal } from "../../redux/reducers/login";
 import StripeCheckout from "react-stripe-checkout";
 import Paymentsuccess from "./Paymentsuccess";
 import Video from "../../Assets/images/Introducing_video.mp4";
-import carraffle from "../../Assets/images/carraffle-bg.png"
-
-
+import carraffle from "../../Assets/images/carraffle-bg.png";
 
 function CarRaffle() {
   const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
-  const locallink="http://localhost:3000/carraffle";
-  const serverLink="http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
+  const locallink = "http://localhost:3000/carraffle";
+  const serverLink =
+    "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
   const handleClose = () => {
     setShow(false);
     window.location.reload(false);
@@ -108,10 +107,13 @@ function CarRaffle() {
 
   useEffect(() => {
     fetchLotaryApi();
-const value={"earning":5,"total_reffaral":15,"lottery_id":showLotary.id}
-var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@123').toString();
+    const value = { earning: 5, total_reffaral: 15, lottery_id: showLotary.id };
+    var ciphertext = CryptoJS.AES.encrypt(
+      JSON.stringify(value),
+      "my-gas-guzzelers@123"
+    ).toString();
 
-    setCoupen(ciphertext.replaceAll("/","g_s"));
+    setCoupen(ciphertext.replaceAll("/", "g_s"));
   }, [showLotary.id]);
   useEffect(() => {
     fetchLotaryApiAll();
@@ -167,9 +169,13 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-            
             <div className="col-12 col-md-8 col-lg-8">
             
+              <div className="col-lg-12">
+                <video width="100%" height="340px" controls poster={carraffle}>
+                  <source src={Video} type="video/mp4" />
+                </video>
+              </div>
               <div className="orangeCard mb-4">
                 <div className="row">
                   <div className="col-12 col-md-5">
@@ -194,15 +200,14 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                           className="carousel-item active"
                           style={{ cursor: "pointer" }}
                         >
-                         <img src={ads_car_2} alt="ads car" />
-                         
+                          <img src={ads_car_2} alt="ads car" />
                         </div>
                         <div
                           onClick={() => handleImageHow(1)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                         <img src={ads_car_1} alt="ads car" />
+                          <img src={ads_car_1} alt="ads car" />
                         </div>
                         <div
                           onClick={() => handleImageHow(2)}
@@ -363,7 +368,7 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                         </div> */}
                         <div className="MT_Count">10</div>
                         <div className="MT_Price">
-                          $
+                          Total Amount $ &nbsp;
                           {showLotary.price &&
                             showLotary.price * allLotaryApi.length}
                         </div>
@@ -371,7 +376,7 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
-{/* 
+                  {/* 
                   <h6>My Winnings</h6>
                   <div className="myTicketCol">
                     <div className="MT_ic">
@@ -394,7 +399,7 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                         <div className="">5</div>
                       </li>
                       <li>
-                        <div className="">Total Earnings ($)</div>
+                        <div className="">Total Earnings</div>
                         <div className="">12</div>
                       </li>
                     </ul>
@@ -405,8 +410,7 @@ var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'my-gas-guzzelers@1
                           url: `${locallink}/refferallink/${coupen}`,
                           title: "Gas guzzlrs",
                         }}
-                        
-                         onClick={() => console.log("shared successfully!")}
+                        onClick={() => console.log("shared successfully!")}
                       >
                         {/* <button>Share on Web</button> */}
                         <button type="button" className="gry_btn w-full">

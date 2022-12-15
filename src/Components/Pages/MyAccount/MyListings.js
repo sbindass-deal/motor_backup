@@ -8,6 +8,7 @@ import { Modal, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function MyListings() {
+  const logingUser = useSelector((state) => state);
   const [data, setData] = useState([]);
   const [chatMessage, setChatMessage] = useState("");
   const [chateApiData, setChateApiData] = useState([]);
@@ -36,7 +37,7 @@ function MyListings() {
       .catch((err) => {
         setVehicleLoding(false);
       });
-  }, []);
+  }, [logingUser.login.token]);
   const fetchResurveApi = (vId, resurve, resurveAmount) => {
     axios
       .post(process.env.REACT_APP_URL + "changeReserve", {
@@ -170,14 +171,25 @@ function MyListings() {
                               </p>
                               {curElem.bidding.map((curBid) => {
                                 return (
-                                  <p>High Bid:- {curBid.auctionAmmount}</p>
+                                  <p>
+                                    {curElem.reserve === "Yes"
+                                      ? "High Bid"
+                                      : "Current Bid"}
+                                    :- {curBid.auctionAmmount}
+                                  </p>
                                 );
                               })}
                             </div>
 
                             <div className="pl-md-3 d-flex">
                               {curElem.reserve === "Yes" &&
-                                curElem.sold === "1" && (
+                                curElem.sold === "1" &&
+                                parseInt(
+                                  new Date(curElem.EndTime).getTime(),
+                                  10
+                                ) -
+                                  new Date().getTime() <
+                                  0 && (
                                   <div className="mx-2">
                                     <button
                                       onClick={() =>
@@ -188,18 +200,12 @@ function MyListings() {
                                       }
                                       type="button"
                                       className="gry_btn"
-                                      disabled={
-                                        curElem.reserve === "Yes" &&
-                                        curElem.sold === "1"
-                                          ? false
-                                          : true
-                                      }
                                     >
                                       Sell
                                     </button>
                                   </div>
                                 )}
-                              {curElem.reserve === "Yes" ? (
+                              {/* {curElem.reserve === "Yes" ? (
                                 <>
                                   <div className="mx-2">
                                     <button
@@ -226,6 +232,51 @@ function MyListings() {
                                     </button>
                                   </div>
                                 </>
+                              ) : null} */}
+                              {parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                0 && curElem.reserve === "Yes" ? (
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() => handleShow(curElem.id)}
+                                    type="button"
+                                    className="gry_btn"
+                                  >
+                                    <ChatIcon />
+                                  </button>
+                                </div>
+                              ) : null}
+                              {parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                900000 &&
+                              parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() >
+                                0 &&
+                              curElem.reserve === "Yes" ? (
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() =>
+                                      fetchResurveApi(
+                                        curElem.id,
+                                        curElem.reserve,
+                                        curElem.reservAmount
+                                      )
+                                    }
+                                    type="button"
+                                    className="gry_btn"
+                                  >
+                                    Reserve off
+                                  </button>
+                                </div>
                               ) : null}
                               <Link
                                 to={

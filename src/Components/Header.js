@@ -29,6 +29,7 @@ function Header() {
       theme: "light",
     });
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -57,8 +58,16 @@ function Header() {
     navigate("/");
     window.location.reload(false);
   };
+
+  const handleBlur = (e) => {
+    setSowAutoCompleate(false);
+  };
+  const handleFocus = (e) => {
+    setSowAutoCompleate(true);
+  };
+
   return (
-    <div>
+    <>
       <header>
         <div className="container">
           <div className="row">
@@ -90,7 +99,7 @@ function Header() {
                     {/* <li onClick={handleShow} className="nav-item">
                         <Link className="nav-link">Submit a Vehicle</Link>
                       </li> */}
-                      <li
+                    <li
                       // onClick={() => setShowSearchModal(true)}
                       className="nav-item"
                       style={{ cursor: "pointer" }}
@@ -105,6 +114,9 @@ function Header() {
                           <input
                             type="text"
                             name="search"
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            autoComplete="off"
                             placeholder="Search..."
                             required
                           />
@@ -216,7 +228,7 @@ function Header() {
                         </Link>
                       )}
                     </li>
-                    
+
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -310,16 +322,16 @@ function Header() {
                           </Link>
                         </div>
                       </li> */}
-                       <li className="nav-item">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/submit" && "navActive"
-                        }`}
-                        to="/submit"
-                      >
-                        Submit a Vehicle
-                      </Link>
-                    </li>
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/submit" && "navActive"
+                          }`}
+                          to="/submit"
+                        >
+                          Submit a Vehicle
+                        </Link>
+                      </li>
 
                       <li className="nav-item">
                         <Link
@@ -517,7 +529,22 @@ function Header() {
         showForgPass={showForgPass}
         handleCloseForgPass={handleCloseForgPass}
       />
-    </div>
+      {sowAutoCompleate && (
+        <div
+          style={{
+            height: "20vh",
+            width: "20vh",
+            position: "fixed",
+            top: "20vh",
+            left: "50vh",
+            backgroundColor: "red",
+            zIndex: "1",
+          }}
+        >
+          kdjsalkfjlka
+        </div>
+      )}
+    </>
   );
 }
 

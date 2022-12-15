@@ -136,6 +136,7 @@ const VechilesRegistraion = () => {
   const [basicfact, setbasicfact] = useState({
     vin: "",
     displayInAuction: "",
+    auctionType:"",
     vechilesrace: "",
     ultiumdrive: "",
     Interstellar: "",
@@ -250,6 +251,8 @@ const VechilesRegistraion = () => {
   };
 
   const informationSubmitHandler = (e) => {
+    e.preventDefault();
+
     const {
       name,
       email,
@@ -271,6 +274,7 @@ const VechilesRegistraion = () => {
     const {
       vin,
       displayInAuction,
+      auctionType,
       vechilesrace,
       ultiumdrive,
       Interstellar,
@@ -321,13 +325,7 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    e.preventDefault();
-    if (
-      phone.trim().length >= 11 ||
-      errorMakeAndModal ||
-      errorBasicFact ||
-      errorDetais
-    ) {
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
       return setShowError(false);
     }
 
@@ -351,6 +349,7 @@ const VechilesRegistraion = () => {
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
         displayInAuction: displayInAuction,
+        // auctionType, // we have to add in db i have to suil sir
         km: odometer,
         kmacc: accurateField,
         odmeter: odometer,
@@ -422,6 +421,7 @@ const VechilesRegistraion = () => {
         setbasicfact({
           vin: "",
           displayInAuction: "",
+          auctionType:"",
           vechilesrace: "",
           ultiumdrive: "",
           Interstellar: "",
@@ -1007,7 +1007,9 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Do you want to submit for Auction?</label>
+                            <label>
+                              How would you want to list your vehicle?
+                            </label>
                             <select
                               value={basicfact.displayInAuction}
                               onChange={basicFactOnChange}
@@ -1015,11 +1017,30 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
+                              {/* <option selected disabled value="">
                                 Choose...
-                              </option>
-                              <option value="No">No</option>
-                              <option value="Yes">Yes</option>
+                              </option> */}
+                              <option value="No">Showroom</option>
+                              <option value="Yes">Auction</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <label>Auction type</label>
+                            <select
+                              value={basicfact.auctionType}
+                              onChange={basicFactOnChange}
+                              name="auctionType"
+                              className="field"
+                              required
+                            >
+                              {/* <option selected disabled value="">
+                                Auction type...
+                              </option> */}
+                              <option value="General">General listing</option>
+                              <option value="charity">For charity</option>
+                              <option value="Premium">Premium listing</option>
                             </select>
                           </div>
                         </div>
@@ -1752,17 +1773,15 @@ const VechilesRegistraion = () => {
                         {detailstab.reserve === "Yes" && (
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
-                              <label>Please provide reserve amount:</label>
-                              <input
+                              <FormInput
                                 value={detailsInfo.reserveAmount}
                                 onChange={detailsOnChange}
-                                type="text"
-                                maxLength={10}
-                                minLength={1}
                                 name="reserveAmount"
                                 placeholder="Enter"
-                                className="field"
-                                required
+                                errorMessage="Reserve amount should be 1-10 characters and shouldn't include any special character and alphabet!"
+                                label="Please provide reserve amount:"
+                                pattern="^[0-9]{1,12}$"
+                                required={true}
                               />
                             </div>
                           </div>
