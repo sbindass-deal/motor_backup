@@ -284,7 +284,6 @@ function CarRaffle() {
                   <div className="col-lg-7 col-md-7 col-sm-12">
                     <lable>Number of Tickets</lable>
                     <div className="ticketFom">
-
                       <div className="form-group">
                         <input
                           type="text"
@@ -297,6 +296,22 @@ function CarRaffle() {
                           maxLength={4}
                           id="validationCustom01"
                         />
+                        {/* <select
+                          class="form-select w-100"
+                          onChange={(e) => {
+                            setInputLotteryNumber(e.target.value);
+                          }}
+                          id="validationDefault04"
+                          required
+                        >
+                          <option selected disabled value="">
+                            Choose...
+                          </option>
+                          <option value="50">50</option>
+                          <option value="100">100</option>
+                          <option value="150">150</option>
+                          <option value="200">200</option>
+                        </select> */}
                       </div>
                       <div className="form-group lotryBtn">
                         <button
@@ -308,27 +323,26 @@ function CarRaffle() {
                         </button>
                       </div>
                     </div>
-                   
                   </div>
                   <div className="col-lg-5 col-md-5 col-sm-12">
-                   <table className="tikTable">
-                    <tr>
-                      <td>Price of 1 ticket</td>
-                      <td>$5</td>
-                    </tr>
-                    <tr>
-                      <td>Total ticket stock</td>
-                      <td>100</td>
-                    </tr>
-                    <tr>
-                      <td>Deadline to purchase ticket</td>
-                      <td>02-01-2023</td>
-                    </tr>
-                    <tr>
-                      <td>Lucky draw date</td>
-                      <td>05-01-2023</td>
-                    </tr>
-                   </table>
+                    <table className="tikTable">
+                      <tr>
+                        <td>Price of 1 ticket</td>
+                        <td>$5</td>
+                      </tr>
+                      <tr>
+                        <td>Total ticket stock</td>
+                        <td>100</td>
+                      </tr>
+                      <tr>
+                        <td>Deadline to purchase ticket</td>
+                        <td>02-01-2023</td>
+                      </tr>
+                      <tr>
+                        <td>Lucky draw date</td>
+                        <td>05-01-2023</td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -337,12 +351,8 @@ function CarRaffle() {
               <div className="card_Gray2 mt-5 mt-md-0 divSticky">
                 <div className="">
                   <div className="cardBorder">
-                  
                     <h6>My Tickets - {allLotaryApi.length}</h6>
-                   
 
-                   
-                   
                     <div className="myTicketRow">
                       <div className="myTicketCol">
                         {/* <div className="MT_ic">
@@ -480,7 +490,7 @@ function CarRaffle() {
             <h3 className="price__">Price : $2000</h3>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
-            <br/>
+            <br />
             <p>Choose Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">

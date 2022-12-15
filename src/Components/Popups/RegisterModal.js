@@ -69,7 +69,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       });
   };
   const onToken = (address) => {
-    alert("fdgfdg")
+    alert("fdgfdg");
     console.log(address);
   };
 
@@ -281,16 +281,22 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       </button>
                     )}
 
-                    {addUserInBid?userInput.name != "" && userInput.phone != "" && userInput.userName != "" && userInput.dealer != ""
-                    && userInput.password != ""? (<StripeCheckout
-                    stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                    token={onToken}
-                  />
-                ): <button type="submit" className="btn" disabled={true}>
-                Register
-              </button>: null
-                    
-                  }
+                    {addUserInBid ? (
+                      userInput.name != "" &&
+                      userInput.phone != "" &&
+                      userInput.userName != "" &&
+                      userInput.dealer != "" &&
+                      userInput.password != "" ? (
+                        <StripeCheckout
+                          stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                          token={onToken}
+                        />
+                      ) : (
+                        <button type="submit" className="btn" disabled={true}>
+                          Register
+                        </button>
+                      )
+                    ) : null}
                     {/* {  
                     addUserInBid ? userInput.name != null && userInput.phone != null && userInput.userName != null && userInput.dealer != null
                     && userInput.password != null ? (
