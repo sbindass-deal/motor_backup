@@ -324,19 +324,15 @@ function CarRaffle() {
                       </li>
                     </ul>
                     <div>
-                      <RWebShare
-                        data={{
-                          text: "Gas guzzlrs Share Reffer Link",
-                          url: `http://localhost:3000/carraffle/${coupen}`,
-                          title: "Gas guzzlrs",
+                      <button type="button"
+                        onClick={() => {
+                          axios.get(`http://3.83.96.16:8000/decrypt/1`)
+                            .then((res) => console.log(res))
+
                         }}
-                      // onClick={() => console.log("shared successfully!")}
-                      >
-                        {/* <button>Share on Web</button> */}
-                        <button type="button" className="gry_btn w-full">
-                          Share Reffer Link
-                        </button>
-                      </RWebShare>
+                        className="gry_btn w-full">
+                        Share Reffer Link
+                      </button>
                     </div>
 
                     {/* <button type="button" className="gry_btn w-full">
