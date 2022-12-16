@@ -5,10 +5,37 @@ import Message from "./Message";
 import Profile from "./Profile";
 import Seting from "./Seting";
 
+import AdminLeftNav from "./AdminLeftNav";
+
 const Admin = () => {
+  // const location = useLocation();
   return (
+    
+
     <>
-      <div className="row">
+    
+     <section className="ptb_80 pt_sm_50">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-4 col-lg-3">
+              <div className="card_Gray mb-5 mb-md-0">
+                <h5>My Account</h5>
+                <hr />
+                <AdminLeftNav/>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-8 col-lg-9">
+              <h3>Basic Info</h3>
+              <hr />
+             
+            </div>
+          </div>
+        </div>
+      </section>
+     
+    
+      {/* <div className="row">
         <div class="d-flex align-items-start">
           <div
             class="nav flex-column nav-pills me-3"
@@ -104,7 +131,7 @@ const Admin = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
