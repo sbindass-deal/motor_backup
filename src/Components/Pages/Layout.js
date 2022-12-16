@@ -49,8 +49,10 @@ import Admin from "./Dashboard/Admin";
 import AdminHome from "./Dashboard/AdminHome";
 import Cart from "./shopingStore/Cart";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 function Layout() {
+  const product = useSelector((state) => state.cartSlice);
   return (
     <>
       <BrowserRouter>
@@ -102,13 +104,15 @@ function Layout() {
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <Link
-          to="/cart"
-          className="btn btn-danger"
-          style={{ position: "fixed", top: "80vh", right: "10vh" }}
-        >
-          <ShoppingCartIcon />
-        </Link>
+        {product.products.length > 0 && (
+          <Link
+            to="/cart"
+            className="btn btn-danger"
+            style={{ position: "fixed", top: "80vh", right: "10vh" }}
+          >
+            <ShoppingCartIcon /> {product.products.length}
+          </Link>
+        )}
         <ToastContainer
           position="bottom-center"
           autoClose={5000}

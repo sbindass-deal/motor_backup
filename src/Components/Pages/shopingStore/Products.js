@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import img_01 from "../../../Assets/images/img-1.webp";
 
 const Products = ({ id, price, image, title }) => {
   return (
@@ -7,7 +8,7 @@ const Products = ({ id, price, image, title }) => {
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card_post">
           <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
-            <img src={image} />
+            <img src={image ? image : img_01} />
           </Link>
           <div class="card_postInfo pt-3">
             <h6>

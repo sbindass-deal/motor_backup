@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NotAvailable from "../../UI/NotAvailable";
 import SmallSpinner from "../../UI/SmallSpinner";
-// import img_01 from "../../../Assets/images/img-1.webp";
 import Products from "./Products";
 import StoreHero from "./StoreHero";
 
@@ -15,9 +14,9 @@ const Shop = () => {
     const fetchProductApi = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`https://fakestoreapi.com/products`);
+        const res = await axios.get(`${process.env.REACT_APP_URL}allproduct`);
         if (res.status === 200) {
-          setProducts(res.data);
+          setProducts(res.data.data);
         }
         setLoading(false);
       } catch (err) {
@@ -37,7 +36,7 @@ const Shop = () => {
               <div class="heroText shop">
                 <h3>G3</h3>
                 <h1>
-                  Gas Guzzlrs <span>G a r e</span>
+                  Gas Guzzlrs <span>G e a r</span>
                 </h1>
               </div>
             </div>
