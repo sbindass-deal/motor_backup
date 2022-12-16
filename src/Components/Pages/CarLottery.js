@@ -422,8 +422,10 @@ function CarRaffle() {
                     <div>
                       <button type="button"
                         onClick={() => {
-                          axios.get(`http://3.83.96.16:8000/decrypt/1`)
-                            .then((res) => console.log(res))
+                          axios.get(`http://3.83.96.16:8000/encrypted/1/20`)
+                            .then((res) => {
+                              // url/response
+                            })
 
                         }}
                         className="gry_btn w-full">
