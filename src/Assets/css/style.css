@@ -1468,3 +1468,48 @@ a.searchList {  border-bottom: 1px solid #f7931b38;}
 .iconSecT h5 { font-size: 14px; padding-top: 10px;}
 .iconSecT p { font-size: 17px; color: #f7931b; font-weight: 700;}
 .col-md-3.iconSecT { text-align: center;}
+.productImg { width: 10%; padding: 1px;}
+table.cartSection{ border: 1px solid #292727;}
+table.cartSection tr td,table.cartSection tr th { padding: 10px; border-bottom: 1px solid #292727; border-right: 1px solid #292727;}
+h2.title_combo.title_Center.casrt { padding-bottom: 35px;}
+button.removeBtn {
+  border: 1px solid #f7931b;
+  color: #f7931b;
+  background: transparent !important;
+  padding: 1px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+p.proName {
+  font-size: 16px;
+  color: #f7931b;
+  margin-bottom: 0;
+}
+p.size {
+  margin-bottom: 0;
+}
+table.cartSection.cartth tr th:first-child {
+  width: 70%;
+}
+
+.count span {
+  padding: 10px;
+}
+.count {
+  border: 1px solid #292727;
+  width: 50%;
+}
+button.addCountIcon {
+  background: #f7931b;
+  color: #fff;
+  padding: 1px 5px;
+  border: none;
+  text-align: right;
+  position: relative;
+  right: -11px;
+}
+button.addCountIcon.negtv {
+  position: relative;
+  left: 0;
+}
