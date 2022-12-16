@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { auth, authToken, showModalClose } from "../../redux/reducers/login";
+import { authToken, showModalClose } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../UI/FormInput";
+import SmallSpinner from "../UI/SmallSpinner";
 
 function LoginModal({ handleShowReg, handleShowForgPass }) {
+  const [loginLoading, setLoginLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassWord, setShowPassWord] = useState(false);
   const logingUser = useSelector((state) => state.login);
   const show = logingUser.show;
 
@@ -40,6 +43,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
 
   const handleApi = (e) => {
     e.preventDefault();
+    setLoginLoading(true);
     const url = process.env.REACT_APP_URL;
 
     axios
@@ -50,15 +54,15 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       .then((result) => {
         if (result.data.access_token) {
           dispatch(authToken(result.data.access_token));
-          if (result.data.user) {
-            dispatch(auth(result.data.user));
-          }
           notify("Login successfully");
           handleClose();
+          setLoginLoading(false);
+          window.location.reload(false);
         }
       })
       .catch((error) => {
         notify(error.message);
+        setLoginLoading(false);
       });
   };
 
@@ -113,17 +117,29 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   placeholder="Enter Password"
                   errorMessage="incorporate password!"
                   label="Password"
-                  type="password"
-                  pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                  type={showPassWord ? "text" : "password"}
+                  // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassWord(!showPassWord)}
+                >
+                  show
+                </button>
               </div>
 
               <div onClick={handlePasswordBtn} className="form-group">
                 <a href="javascript:void(0)">Forgot your password?</a>
               </div>
               <div className="form-group">
-                <button className="btn">Log In</button>
+                {loginLoading ? (
+                  <SmallSpinner />
+                ) : (
+                  <button button="submit" className="btn">
+                    Log In
+                  </button>
+                )}
               </div>
               <div className="form-group">
                 <p>

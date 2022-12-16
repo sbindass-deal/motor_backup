@@ -4,13 +4,16 @@ import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { Spinner } from "react-bootstrap";
+import SmallSpinner from "../UI/SmallSpinner";
+import { Link } from "react-router-dom";
 function Auctionlive() {
   const userId = useSelector((state) => state);
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [viewListActive, setViewListActive] = useState(false);
   const [loading, setLoader] = useState(true);
+  const [highlightWatch, setHighlightWatch] = useState(false);
   const fetchVehicleApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
@@ -19,7 +22,7 @@ function Auctionlive() {
         const filteredData = newData.filter(
           (item) => item.displayInAuction === "Yes"
         );
-
+        // const watchedData = newData.filter((item) => item.like > 0);
         setauctions(filteredData);
         setFilteredUsers(filteredData);
         setLoader(false);
@@ -32,7 +35,6 @@ function Auctionlive() {
   useEffect(() => {
     fetchVehicleApi();
   }, []);
-
   const getEndDate = (cal) => {
     let data = cal.split("T");
     let endDate = moment().format("YYYY-MM-DD");
@@ -43,7 +45,6 @@ function Auctionlive() {
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
-        userId: userId.login.user.id,
         vehicleId: id,
         date: new Date().toString(),
       })
@@ -56,6 +57,9 @@ function Auctionlive() {
         }
       });
   };
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
 
   return (
     <div>
@@ -81,25 +85,19 @@ function Auctionlive() {
                   <input
                     value={searchValue}
                     onChange={(e) => {
-                      setSearchValue(e.target.value);
-
+                      let value = e.target.value;
+                      setSearchValue(value);
                       setauctions(
                         filteredUsers
                           .filter(
                             (data) =>
                               data.make
                                 .toLowerCase()
-                                .includes(e.target.value) ||
-                              data.make
-                                .toUpperCase()
-                                .includes(e.target.value) ||
+                                .includes(value.toLowerCase()) ||
+                              data.year.includes(value) ||
                               data.model
                                 .toLowerCase()
-                                .includes(e.target.value) ||
-                              data.model
-                                .toUpperCase()
-                                .includes(e.target.value) ||
-                              data.year.toUpperCase().includes(e.target.value)
+                                .includes(value.toLowerCase())
                           )
                           .map((data) => data)
                       );
@@ -110,15 +108,31 @@ function Auctionlive() {
                   />
                 </li>
                 <li className="">
-                  <button type="button" className="gry_btn">
+                  <button
+                    onClick={() => setHighlightWatch(!highlightWatch)}
+                    type="button"
+                    className={`gry_btn ${highlightWatch && "active"}`}
+                  >
                     <i className="fa-solid fa-heart mr-2"></i> Watched
                   </button>
                 </li>
                 <li className="d-flex">
-                  <button type="button" className="gry_btn gridView active">
+                  <button
+                    onClick={() => setViewListActive(false)}
+                    type="button"
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
+                  >
                     <img src={icGrid} />
                   </button>
-                  <button type="button" className="gry_btn listView">
+                  <button
+                    onClick={() => setViewListActive(true)}
+                    type="button"
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
+                  >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
                 </li>
@@ -134,34 +148,38 @@ function Auctionlive() {
               </ul>
             </div>
           </div>
-          {loading ? (
-            <Spinner />
-          ) : (
-            <div className="row pt-4 row_gridList">
-              {data
-                .filter((data) => data.done === 1 && data.premium === 1)
-                .map((curElem) => {
-                  return (
-                    <div
-                      key={curElem.id}
-                      className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
-                    >
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
+          <div
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
+          >
+            {(data.length > 0 && highlightWatch
+              ? data.filter((item) => item.like > 0)
+              : data
+            )
+              .filter((data) => data.done === 1 && data.premium === 1)
+              .map((curElem) => {
+                return (
+                  <div
+                    key={curElem.id}
+                    className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
+                  >
+                    <div className="card_post">
+                      <div className="card_postImg">
+                        <button
+                          onClick={() => addFabrity(curElem.id)}
+                          type="button"
+                          className="watchedIc"
+                        >
+                          <i
+                            className={`fa-solid fa-star ${
+                              curElem.like >= 1 ? "faList" : ""
+                            }`}
+                          ></i>
+                        </button>
 
-                          <a href={`detail/${curElem.id}`}>
-                            <img
+                        <Link to={`/detail/${curElem.id}`}>
+                          {/* <img
                               src={
                                 curElem.stepOneImage === null ||
                                 curElem.stepOneImage === undefined ||
@@ -171,71 +189,80 @@ function Auctionlive() {
                                     curElem.stepOneImage
                               }
                               alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="card_postInfo">
-                          <h4>
-                            <a href={`detail/${curElem.id}`}>
-                              {curElem.make} {curElem.model}-{curElem.year}-
-                              {curElem.odmeter}
-                            </a>
-                          </h4>
-                          <ul
-                            className="labelList"
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
+                            /> */}
+                          <img
+                            loading="lazy"
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                             }}
-                          >
-                            <li className="w-auto">
-                              {curElem.currentAmount ? (
-                                <span>
-                                  <label>Current&nbsp;Bid:</label>
-                                  <br />${curElem.currentAmount.auctionAmmount}
-                                </span>
-                              ) : curElem.documentFee ? (
-                                <span>
-                                  <label>Documents fee:</label>
-                                  <br /> ${curElem.documentFee}
-                                </span>
-                              ) : null}
-                            </li>
-                            <li>
-                              {/* <span>{getEndDate(curElem.created_at)} </span> */}
-                              {/* <span>{curElem.EndTime}</span> */}
-                              {parseInt(
+                            alt={curElem.model}
+                          />
+                        </Link>
+                      </div>
+                      <div className="card_postInfo">
+                        <h4>
+                          <Link to={`/detail/${curElem.id}`}>
+                            {curElem.make} {curElem.model}-{curElem.year}-
+                            {curElem.odmeter}
+                          </Link>
+                        </h4>
+                        <ul
+                          className="labelList"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <li className="w-auto">
+                            {curElem.currentAmount ? (
+                              <span>
+                                <label>Current&nbsp;Bid:</label>
+                                <br />${curElem.currentAmount.auctionAmmount}
+                              </span>
+                            ) : curElem.documentFee ? (
+                              <span>
+                                <label>Opening Bid:</label>
+                                <br /> ${curElem.documentFee}
+                              </span>
+                            ) : null}
+                          </li>
+                          <li>
+                            {/* <span>{getEndDate(curElem.created_at)} </span> */}
+                            {/* <span>{curElem.EndTime}</span> */}
+
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() >
+                            900000 ? (
+                              <label>Upcomming Auction</label>
+                            ) : parseInt(
                                 new Date(curElem.EndTime).getTime(),
                                 10
                               ) -
                                 new Date().getTime() >
-                              7200000 ? (
-                                <label>Upcomming Auction</label>
-                              ) : parseInt(
-                                  new Date(curElem.EndTime).getTime(),
-                                  10
-                                ) -
-                                  new Date().getTime() >
-                                  0 &&
-                                parseInt(
-                                  new Date(curElem.EndTime).getTime(),
-                                  10
-                                ) -
-                                  new Date().getTime() <
-                                  7200000 ? (
-                                <label>Bid is live now</label>
-                              ) : (
-                                <label>Sold</label>
-                              )}
-                            </li>
-                          </ul>
-                        </div>
+                                0 &&
+                              parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                900000 ? (
+                              <label>Auction is live now</label>
+                            ) : (
+                              <label>Sold</label>
+                            )}
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                  );
-                })}
-            </div>
-          )}
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </section>
     </div>

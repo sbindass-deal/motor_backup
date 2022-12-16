@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
+import { async } from "q";
 
 function Detail() {
   const { id } = useParams();
@@ -48,11 +49,11 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-11-28 19:53:00").getTime()
+    new Date("2022-12-15, 19:53:00").getTime()
   );
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
-  const t = newTiem - now;
+  const t = parseInt(newTiem - now, 10);
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -144,13 +145,14 @@ function Detail() {
     }
   }, []);
 
-  const getVehicle = () => {
-    axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
+  const getVehicle = async () => {
+    await axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
       setAddVehicleUserId(res.data.data[0].userId);
       setVehicle(res.data.data[0]);
       // console.log("t", new Date(res.data.data[0].EndTime).getTime());
       // console.log("end", new Date(res.data.data[0].EndTime));
       setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
+      // console.log("api date", new Date(res.data.data[0].EndTime));
     });
   };
 
@@ -214,16 +216,16 @@ function Detail() {
                       <label>Current Bid:</label>{" "}
                       <span>
                         {amountprice ? (
-                          <span>USD ${amountprice}</span>
+                          <span> USD ${amountprice}</span>
                         ) : (
-                          <span>USD ${vehicle.documentFee} </span>
+                          <span> USD ${vehicle.documentFee} </span>
                         )}
                       </span>
                     </li>
                     <li>
-                      {t > 7200000 ? (
+                      {t > 900000 ? (
                         <span>Upcomming Auction</span>
-                      ) : t > 0 && t <= 7200000 ? (
+                      ) : t > 0 && t <= 900000 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
                           {days} days {hours} hours, {minutes} minutes,{" "}
@@ -234,7 +236,7 @@ function Detail() {
                       )}
                     </li>
                     {vehicle.reserve === "Yes" && (
-                      <li>
+                      <li className="reserved">
                         Reserve: <span>{vehicle.reserve}</span>
                       </li>
                     )}
@@ -263,23 +265,25 @@ function Detail() {
                       Watch
                     </a>
                   )}
-
                   {t <= 0 ? (
                     <a className="gry_btn active">
-                      Sold :{" "}
+                      {vehicle.reserve === "Yes" && vehicle.sold === "1"
+                        ? "High Bid"
+                        : "Sold"}{" "}
+                      :{" "}
                       {amountprice ? (
-                        <span>USD $ {amountprice}</span>
+                        <span> USD $ {amountprice}</span>
                       ) : (
-                        <span>USD $ {vehicle.documentFee} </span>
+                        <span> USD $ {vehicle.documentFee} </span>
                       )}
                     </a>
-                  ) : t >= 7200000 ? (
+                  ) : t >= 900000 ? (
                     <button type="button" className="gry_btn">
-                      Upcomming Auction
+                      Upcoming Auction
                     </button>
                   ) : (
                     <>
-                      {vehicle.sold === "1" && (
+                      {vehicle.canBid === "yes" && (
                         <button
                           type="button"
                           className="gry_btn active"
@@ -308,7 +312,8 @@ function Detail() {
             <div className="col-12 pb-3">
               <div className="postHero">
                 {vehicleImage.length > 0 ? (
-                  <img
+                  <>
+                    {/* <img
                     src={
                       process.env.REACT_APP_URL +
                       "/" +
@@ -317,7 +322,23 @@ function Detail() {
                       vehicleImage[0].imageName
                     }
                     alt=""
-                  />
+                  /> */}
+                    <img
+                      src={
+                        process.env.REACT_APP_URL +
+                        "/" +
+                        vehicleImage[0].imagePath +
+                        "/" +
+                        vehicleImage[0].imageName
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="details-images"
+                    />
+                  </>
                 ) : null}
               </div>
             </div>
@@ -637,16 +658,16 @@ function Detail() {
                         <label>Current Bid</label>
                         <div>
                           {amountprice ? (
-                            <span>USD${amountprice}</span>
+                            <span> USD${amountprice}</span>
                           ) : (
-                            <span>USD${vehicle.documentFee} </span>
+                            <span> USD${vehicle.documentFee} </span>
                           )}
                         </div>
                       </li>
                       <li>
-                        {t > 7200000 ? (
+                        {t > 900000 ? (
                           <span>Upcomming Auction</span>
-                        ) : t > 0 && t <= 7200000 ? (
+                        ) : t > 0 && t <= 900000 ? (
                           <span>
                             <label>Ends In:&nbsp;</label>
                             {days} days {hours} hours, {minutes} minutes,{" "}
@@ -670,20 +691,23 @@ function Detail() {
                         <label>Place Bid</label>
                         {t <= 0 ? (
                           <a className="gry_btn active">
-                            Sold :{" "}
+                            {vehicle.reserve === "Yes" && vehicle.sold === "1"
+                              ? "High Bid"
+                              : "Sold"}{" "}
+                            :{" "}
                             {amountprice ? (
-                              <span>USD $ {amountprice}</span>
+                              <span> USD $ {amountprice}</span>
                             ) : (
-                              <span>USD $ {vehicle.documentFee} </span>
+                              <span> USD $ {vehicle.documentFee} </span>
                             )}
                           </a>
-                        ) : t >= 7200000 ? (
+                        ) : t >= 900000 ? (
                           <button type="button" className="gry_btn">
                             Upcomming Auction
                           </button>
                         ) : (
                           <>
-                            {vehicle.sold === "1" && (
+                            {vehicle.canBid === "yes" && (
                               <button
                                 type="button"
                                 className="gry_btn active"
@@ -739,16 +763,18 @@ function Detail() {
                       {vehicleImage.length > 0
                         ? vehicleImage.map((curImg) => {
                             return (
-                              <img
-                                src={
-                                  process.env.REACT_APP_URL +
-                                  "/" +
-                                  curImg.imagePath +
-                                  "/" +
-                                  curImg.imageName
-                                }
-                                alt=""
-                              />
+                              <>
+                                <img
+                                  src={
+                                    process.env.REACT_APP_URL +
+                                    "/" +
+                                    curImg.imagePath +
+                                    "/" +
+                                    curImg.imageName
+                                  }
+                                  alt=""
+                                />
+                              </>
                             );
                           })
                         : null}

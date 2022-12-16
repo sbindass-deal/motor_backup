@@ -1,8 +1,10 @@
 import "./App.css";
-import '@rainbow-me/rainbowkit/styles.css';
+import "@rainbow-me/rainbowkit/styles.css";
 import "./Assets/css/bootstrap.min.css";
 import "./Assets/css/style.css";
+import "./Assets/css/carousel.css";
 import "./Assets/css/responsive.css";
+import "./Assets/css/lightMode.css";
 import Layout from "./Components/Pages/Layout";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -31,9 +33,10 @@ import {
   coinbaseWallet,
   imTokenWallet,
   trustWallet,
-  omniWallet
+  omniWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { useEffect } from "react";
 
 const bsc = {
   id: 56,
@@ -80,7 +83,7 @@ const connectors = connectorsForWallets([
       coinbaseWallet({ chains }),
       imTokenWallet({ chains }),
       trustWallet({ chains }),
-      omniWallet({ chains })
+      omniWallet({ chains }),
     ],
   },
 ]);
@@ -90,27 +93,48 @@ const client = createClient({
   connectors,
   provider,
 });
-
+const addBodyClass = (className) => document.body.classList.add(className);
+const removeBodyClass = (className) =>
+  document.body.classList.remove(className);
 function App() {
-  const logingUser = useSelector((state) => state.login);
-  axios.interceptors.request.use(
-    (req) => {
-      req.headers.Authorization = `Bearer ${logingUser.token}`;
+  const logingUser = useSelector((state) => state);
+  const className = logingUser.dayAndNightMode.mode ? "light" : "dark";
 
-      return req;
-    },
-    (err) => {
-      return Promise.reject(err);
+  useEffect(() => {
+    // Set up
+    className instanceof Array
+      ? className.map(addBodyClass)
+      : addBodyClass(className);
+
+    // Clean up
+    return () => {
+      className instanceof Array
+        ? className.map(removeBodyClass)
+        : removeBodyClass(className);
+    };
+  }, [className]);
+  useEffect(() => {
+    if (logingUser.login.token !== null) {
+      axios.interceptors.request.use(
+        (req) => {
+          req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+          return req;
+        },
+        (err) => {
+          return Promise.reject(err);
+        }
+      );
     }
-  );
+  }, [logingUser.login.token]);
 
   return (
-    <WagmiConfig client={client}>
-          <RainbowKitProvider theme={darkTheme()} chains={chains}>
-      <Layout />
-      </RainbowKitProvider>
-
-    </WagmiConfig>
+    <>
+      <WagmiConfig client={client}>
+        <RainbowKitProvider theme={darkTheme()} chains={chains}>
+          <Layout />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </>
   );
 }
 

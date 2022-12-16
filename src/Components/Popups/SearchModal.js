@@ -75,10 +75,17 @@ function SearchModal({ handleCloseModal, showSearchModal }) {
             </form>
             <div className="searchBody">
               {searchData.map((curElem, i) => {
-                return <div className="searchAuto" key={i}>
-                   <p className="searchName">{curElem.name}</p>
-                   <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
-                  </div>;
+                return (
+                  <div className="searchAuto" key={i}>
+                    <p className="searchName">{curElem.name}</p>
+                    <p className="desc">
+                      We conduct our registration and bidding online through our
+                      GG Software, an in house appl that manages a platform for
+                      auctions and payment processing. Learn more about how to
+                      create an account and register for our auctions.
+                    </p>
+                  </div>
+                );
               })}
             </div>
           </div>

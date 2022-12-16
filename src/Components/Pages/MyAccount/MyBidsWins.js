@@ -6,6 +6,7 @@ import car_01 from "../../../Assets/images/car_01.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyBidsWins() {
   const [data, setData] = useState([]);
@@ -44,7 +45,7 @@ function MyBidsWins() {
     const getChateMessageApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}getChat/${userId.login.user.id}/${vehicleId}`
+          `${process.env.REACT_APP_URL}getChat/${vehicleId}`
         );
         if (res.data.status === 200) {
           setChateApiData(res.data.data);
@@ -107,7 +108,7 @@ function MyBidsWins() {
                           <div className="">
                             <h6>{curElem.name}</h6>
                             <p>
-                              You have BID{" "}
+                              You have BID
                               <i className="fa-solid fa-dollar-sign"></i>
                               <span style={{ color: "#fff" }}>
                                 {curElem.auctionAmmount}
@@ -115,21 +116,37 @@ function MyBidsWins() {
                             </p>
                           </div>
                           <div className="pl-md-3 d-flex">
-                            <div className="mx-2">
-                              <button
-                                onClick={() => handleShow(curElem.id)}
-                                type="button"
-                                className="gry_btn"
-                              >
-                                <ChatIcon />
-                              </button>
-                            </div>
-                            <a
-                              href={`detail/${curElem.id}`}
+                            {/* {curElem.reserve === "Yes" && (
+                              <div className="mx-2">
+                                <button
+                                  onClick={() => handleShow(curElem.id)}
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  <ChatIcon />
+                                </button>
+                              </div>
+                            )} */}
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() <
+                              0 && curElem.reserve === "Yes" ? (
+                              <div className="mx-2">
+                                <button
+                                  onClick={() => handleShow(curElem.id)}
+                                  type="button"
+                                  className="gry_btn"
+                                >
+                                  <ChatIcon />
+                                </button>
+                              </div>
+                            ) : null}
+
+                            <Link
+                              to={`/detail/${curElem.id}`}
                               className="gry_btn"
                             >
                               <i className="fa-solid fa-eye mr-2"></i> View
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

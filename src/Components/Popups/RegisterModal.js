@@ -21,6 +21,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
     });
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
+  const [showPassWord, setShowPassWord] = useState(false);
+  const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(false);
   const [userInput, setUserInput] = useState({
     name: "",
@@ -67,6 +69,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       });
   };
   const onToken = (address) => {
+    alert("fdgfdg")
     console.log(address);
   };
 
@@ -145,6 +148,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
                 <div className="col-12 col-md-6">
                   <div className="form-group">
+                    <label htmlFor="">Are you a dealer?</label>
                     <select
                       value={userInput.dealer}
                       onChange={handleUserInput}
@@ -153,7 +157,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required
                     >
                       <option selected disabled value="">
-                        Are you a dealer?
+                        Choose...
                       </option>
                       <option>Yes</option>
                       <option>No</option>
@@ -168,10 +172,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     placeholder="Enter Password"
                     errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
                     label="Password"
-                    type="password"
+                    type={showPassWord ? "text" : "password"}
                     pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                     required={true}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassWord(!showPassWord)}
+                  >
+                    show
+                  </button>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
@@ -181,10 +191,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     placeholder="Enter Confirm Password"
                     errorMessage="Passwords don't match!"
                     label="Confirm Password"
-                    type="password"
+                    type={showCPassword ? "text" : "password"}
                     pattern={userInput.password}
                     required={true}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowCPassWord(!showCPassword)}
+                  >
+                    show
+                  </button>
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -264,12 +280,25 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         Register
                       </button>
                     )}
-                    {addUserInBid && (
+
+                    {addUserInBid?userInput.name != "" && userInput.phone != "" && userInput.userName != "" && userInput.dealer != ""
+                    && userInput.password != ""? (<StripeCheckout
+                    stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                    token={onToken}
+                  />
+                ): <button type="submit" className="btn" disabled={true}>
+                Register
+              </button>: null
+                    
+                  }
+                    {/* {  
+                    addUserInBid ? userInput.name != null && userInput.phone != null && userInput.userName != null && userInput.dealer != null
+                    && userInput.password != null ? (
                       <StripeCheckout
                         stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                         token={onToken}
                       />
-                    )}
+                    ):null:null} */}
                   </div>
                 </div>
                 <div className="col-12 col-md-12">

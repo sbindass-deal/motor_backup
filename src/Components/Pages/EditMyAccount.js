@@ -7,12 +7,6 @@ import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
 
 function EditMyAccount() {
-  const [userDetails, setUserDetails] = useState({
-    name: "",
-    username: "",
-    email: "",
-    phone: "",
-  });
   const url = process.env.REACT_APP_URL;
 
   const notify = (val) =>
@@ -28,32 +22,31 @@ function EditMyAccount() {
     });
 
   const [editUser, setEditUser] = useState({
-    name: userDetails.name,
-    userName: userDetails.username,
-    email: userDetails.email,
-    phone: userDetails.mobile,
+    name: "",
+    userName: "",
+    email: "",
+    phone: "",
   });
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
     setEditUser({ ...editUser, [Name]: Value });
   };
-  const fetchUserDetails = async () => {
-    try {
-      const res = await axios.get(`${url}user`);
-      const userLoginData = res.data.data;
-      setUserDetails(res.data.data);
-      setEditUser({
-        name: userLoginData.name,
-        userName: userLoginData.username,
-        email: userLoginData.email,
-        phone: userLoginData.mobile,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const res = await axios.get(`${url}user`);
+        const userLoginData = res.data.data;
+        setEditUser({
+          name: userLoginData.name,
+          userName: userLoginData.username,
+          email: userLoginData.email,
+          phone: userLoginData.mobile,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
     fetchUserDetails();
   }, []);
 
@@ -69,7 +62,7 @@ function EditMyAccount() {
         name: name,
       })
       .then((result) => {
-        notify("Edit Successfully!");
+        notify(result.data.message);
       })
       .catch((error) => {
         console.log(error);

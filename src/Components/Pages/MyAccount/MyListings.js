@@ -5,8 +5,10 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyListings() {
+  const logingUser = useSelector((state) => state);
   const [data, setData] = useState([]);
   const [chatMessage, setChatMessage] = useState("");
   const [chateApiData, setChateApiData] = useState([]);
@@ -26,13 +28,16 @@ function MyListings() {
     axios
       .get(process.env.REACT_APP_URL + `byUserVehicle`)
       .then((response) => {
-        setData(response.data.data);
+        console.log("hell22", response.data.data, response.data.status);
+        if (response.data.data && response.data.status === 200) {
+          setData(response.data.data);
+        }
         setVehicleLoding(false);
       })
       .catch((err) => {
         setVehicleLoding(false);
       });
-  }, []);
+  }, [logingUser.login.token]);
   const fetchResurveApi = (vId, resurve, resurveAmount) => {
     axios
       .post(process.env.REACT_APP_URL + "changeReserve", {
@@ -63,6 +68,14 @@ function MyListings() {
       }
     };
     getChateMessageApi();
+    const interVal = setInterval(() => {
+      if (show) {
+        getChateMessageApi();
+      }
+    }, 5000);
+    return () => {
+      clearInterval(interVal);
+    };
   }, [show]);
 
   const handleChatMessage = (e) => {
@@ -81,13 +94,16 @@ function MyListings() {
       });
   };
 
-  const handleSoldApi = (id) => {
+  const handleSoldApi = (id, userId) => {
     axios
       .post(process.env.REACT_APP_URL + "sold", {
         id: id,
         sold: 0,
+        userId,
       })
-      .then((res) => {});
+      .then((res) => {
+        window.location.reload(false);
+      });
   };
 
   if (vehicleLoding) {
@@ -136,33 +152,60 @@ function MyListings() {
                               src={
                                 process.env.REACT_APP_URL + curElem.stepOneImage
                               }
-                              alt={curElem.stepOneImage}
+                              class="img-fluid rounded-start w-100 "
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.make}
                             />
                           </div>
                           <div className="bidsInfo">
                             <div className="">
-                              <h6>{curElem.name}</h6>
-                              <p>{curElem.description}</p>
+                              <h6>
+                                {curElem.make} {curElem.model} {curElem.year}
+                              </h6>
+                              <p>
+                                {curElem.fuel} {curElem.odmeter}
+                              </p>
                               {curElem.bidding.map((curBid) => {
                                 return (
-                                  <p>High Bid:- {curBid.auctionAmmount}</p>
+                                  <p>
+                                    {curElem.reserve === "Yes"
+                                      ? "High Bid"
+                                      : "Current Bid"}
+                                    :- {curBid.auctionAmmount}
+                                  </p>
                                 );
                               })}
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {curElem.sold === "1" && (
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() => handleSoldApi(curElem.id)}
-                                    type="button"
-                                    className="gry_btn"
-                                  >
-                                    Sold
-                                  </button>
-                                </div>
-                              )}
-                              {curElem.reserve === "Yes" && (
+                              {curElem.reserve === "Yes" &&
+                                curElem.sold === "1" &&
+                                parseInt(
+                                  new Date(curElem.EndTime).getTime(),
+                                  10
+                                ) -
+                                  new Date().getTime() <
+                                  0 && (
+                                  <div className="mx-2">
+                                    <button
+                                      onClick={() =>
+                                        handleSoldApi(
+                                          curElem.id,
+                                          curElem.userId
+                                        )
+                                      }
+                                      type="button"
+                                      className="gry_btn"
+                                    >
+                                      Sell
+                                    </button>
+                                  </div>
+                                )}
+                              {/* {curElem.reserve === "Yes" ? (
                                 <>
                                   <div className="mx-2">
                                     <button
@@ -185,17 +228,66 @@ function MyListings() {
                                       type="button"
                                       className="gry_btn"
                                     >
-                                      {curElem.reserve}
+                                      Reserve off
                                     </button>
                                   </div>
                                 </>
-                              )}
-                              <a
-                                href={`detail/${curElem.id}`}
+                              ) : null} */}
+                              {parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                0 && curElem.reserve === "Yes" ? (
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() => handleShow(curElem.id)}
+                                    type="button"
+                                    className="gry_btn"
+                                  >
+                                    <ChatIcon />
+                                  </button>
+                                </div>
+                              ) : null}
+                              {parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                900000 &&
+                              parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() >
+                                0 &&
+                              curElem.reserve === "Yes" ? (
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() =>
+                                      fetchResurveApi(
+                                        curElem.id,
+                                        curElem.reserve,
+                                        curElem.reservAmount
+                                      )
+                                    }
+                                    type="button"
+                                    className="gry_btn"
+                                  >
+                                    Reserve off
+                                  </button>
+                                </div>
+                              ) : null}
+                              <Link
+                                to={
+                                  curElem.displayInAuction === "Yes"
+                                    ? `/detail/${curElem.id}`
+                                    : `/showroom/${curElem.id}`
+                                }
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -239,13 +331,21 @@ function MyListings() {
               overflow: "auto",
             }}
           >
-            <div className="col-12 py-2">
+            <div className="col-12 py-2 bg-secondary">
               {chateApiData.map((curElem, i) => {
                 return (
-                  <span key={i}>
-                    {curElem.message}
+                  <div key={i}>
+                    {curElem.userId === 2 ? (
+                      <div className="rounded px-2 d-flex justify-content-start p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
+                    ) : (
+                      <div className="rounded px-2 d-flex justify-content-end p-1 bg-light my-2">
+                        {curElem.message}
+                      </div>
+                    )}
                     <br />
-                  </span>
+                  </div>
                 );
               })}
             </div>

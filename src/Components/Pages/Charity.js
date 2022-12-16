@@ -9,12 +9,30 @@ import img_06 from '../../Assets/images/img_06.jpg'
 function Charity() {
   return (
     <div>
+
+
+        <section className="heroSection charity d-flex align-items-center">
+            <div className="container">
+            <div className="row">
+                <div className="col-12 col-lg-8 offset-lg-2">
+                <div className="heroText">
+                    <h1>Charity Auctions</h1>
+                    <p>Are you interested in benefitting a charity by offering
+                        a vehicle on BaT Auctions? We can do that!</p>
+                    <a href="#" className="btn">
+                    Notify me when one is listed</a>
+                    <a href="#" className="btn bg-dark">
+                    Have one? Sell yours here</a>                    
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
         <section className="ptb_80 pt_sm_50">
             <div className="container">
                 <div className="row">
-                    <div className="col-12 text-center pb_30">
-                        <h2 className="title_combo title_Center">Charity Auctions <span>710 AUCTIONS NOW LIVE</span></h2>
-                    </div>
+              
+                 
                     <div className="col-12">
                         <ul className="postTopOption">
                             <li className="post_search">

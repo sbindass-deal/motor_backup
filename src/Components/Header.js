@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import shibnobiMotors from "../Assets/images/transparent.png";
+import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
+import sunIcon from "../Assets/images/icons8-sun.svg";
+import smoonIcon from "../Assets/images/icons8-moon.svg";
 import ForgotPasswordModal from "./Popups/ForgotPasswordModal";
 import LoginModal from "./Popups/LoginModal";
 import RegisterModal from "./Popups/RegisterModal";
@@ -9,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authToken, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { changeMode } from "../redux/reducers/dayAndNightMode";
 
 function Header() {
   const location = useLocation();
@@ -26,9 +29,11 @@ function Header() {
       theme: "light",
     });
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const dispatch = useDispatch();
-  const logingUser = useSelector((state) => state.login);
+  const logingUser = useSelector((state) => state);
+  console.log("hello11", logingUser.dayAndNightMode.mode);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
@@ -51,16 +56,34 @@ function Header() {
     dispatch(authToken(null));
     notify("Logout successfully ! 😎🤐");
     navigate("/");
+    window.location.reload(false);
   };
+
+  const handleBlur = (e) => {
+    setSowAutoCompleate(false);
+  };
+  const handleFocus = (e) => {
+    setSowAutoCompleate(true);
+  };
+
   return (
-    <div>
+    <>
       <header>
         <div className="container">
           <div className="row">
             <div className="col-12">
               <nav className="navbar navbar-expand-md">
                 <Link className="navbar-brand" to="/">
-                  <img src={shibnobiMotors} alt="shibnobiMotors" />
+                  <img
+                    src={shibnobiMotors}
+                    alt="shibnobiMotors"
+                    className="darkLogo"
+                  />
+                  <img
+                    src={shibnobiMotorsW}
+                    alt="shibnobiMotors"
+                    className="whiteLogo"
+                  />
                 </Link>
                 <button
                   className="navbar-toggler navbar-toggler-right collapsed"
@@ -76,16 +99,41 @@ function Header() {
                     {/* <li onClick={handleShow} className="nav-item">
                         <Link className="nav-link">Submit a Vehicle</Link>
                       </li> */}
-                    <li className="nav-item">
+                    <li
+                      // onClick={() => setShowSearchModal(true)}
+                      className="nav-item"
+                      style={{ cursor: "pointer" }}
+                    >
                       <Link
-                        className={`nav-link ${
-                          location.pathname === "/submit" && "navActive"
-                        }`}
-                        to="/submit"
+                        className="nav-link"
+                        // to="javascript:void(0)"
+                        // data-toggle="modal"
+                        // data-target="#myModal"
                       >
-                        Submit a Vehicle
+                        <form className="searchForm">
+                          <input
+                            type="text"
+                            name="search"
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            autoComplete="off"
+                            placeholder="Search..."
+                            required
+                          />
+                          <button type="">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                        </form>
+                        {/* <div className="searchBody">
+                             <div className="searchAuto" >
+                              <p className="searchName">Nikhukki</p>
+                              <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
+                              </div>
+                        </div>
+                        <i className="fa-solid fa-magnifying-glass"></i> */}
                       </Link>
                     </li>
+
                     <li className="nav-item">
                       {/* <Link className="nav-link" to="/auction">
                         Auctions
@@ -113,7 +161,7 @@ function Header() {
                         </div>
                       </div>
                     </li>
-                    {/* {!logingUser.login ? (
+                    {/* {!logingUser.login.login ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           onClick={handleShow}
@@ -141,10 +189,9 @@ function Header() {
                         How its Works
                       </Link>
                     </li>
-                    {!logingUser.token ? (
+                    {!logingUser.login.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
-                          onClick={handleShow}
                           className="nav-link"
                           // to="javascript:void(0)"
                           // data-toggle="modal"
@@ -167,31 +214,32 @@ function Header() {
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
-                   
+
                     <li className="nav-item afterLogin">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/accountinfo" && "navActive"
-                        }`}
-                        to="/accountinfo"
-                      >
-                        <AccountCircleIcon /> <br />
-                        <span>{logingUser.user.username}</span>
-                      </Link>
+                      {logingUser.login.token && (
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/accountinfo" && "navActive"
+                          }`}
+                          to="/accountinfo"
+                        >
+                          <AccountCircleIcon /> <br />
+                          {/* <span>{logingUser.login.user.username}</span> */}
+                        </Link>
+                      )}
                     </li>
-                    <li
-                      onClick={() => setShowSearchModal(true)}
-                      className="nav-item"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <Link
-                        className="nav-link"
-                        // to="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#myModal"
+
+                    <li className="nav-item">
+                      <button
+                        className="sunMoonBtn"
+                        onClick={() => dispatch(changeMode())}
                       >
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                      </Link>
+                        {logingUser.dayAndNightMode.mode ? (
+                          <img src={sunIcon} />
+                        ) : (
+                          <img src={smoonIcon} />
+                        )}
+                      </button>
                     </li>
                   </ul>
                   <ul className="navbar-nav mobileOnly">
@@ -274,6 +322,16 @@ function Header() {
                           </Link>
                         </div>
                       </li> */}
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/submit" && "navActive"
+                          }`}
+                          to="/submit"
+                        >
+                          Submit a Vehicle
+                        </Link>
+                      </li>
 
                       <li className="nav-item">
                         <Link
@@ -424,7 +482,7 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          // to="https://store.shibnobi.com/"
+                          to="/shop"
                           // target={"_blank"}
                         >
                           Store
@@ -471,7 +529,15 @@ function Header() {
         showForgPass={showForgPass}
         handleCloseForgPass={handleCloseForgPass}
       />
-    </div>
+      {sowAutoCompleate && (
+        <div className="autoCom">
+          <a href="#" className="searchList">
+            <p className="title">Nikhil</p>
+            <p className="dec">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+          </a>
+        </div>
+      )}
+    </>
   );
 }
 

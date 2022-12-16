@@ -5,14 +5,13 @@ import axios from "axios";
 import { useState } from "react";
 
 function AccountInfo() {
-  const [userInfo, setUserinfo] = useState({
-    username: "",
-    email: " ",
-  });
+  const [userInfo, setUserinfo] = useState({});
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
-      if (res.data.data !== null || res.data.data !== undefined) {
+      if (res.data.data) {
         setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
       }
     });
   }, []);
