@@ -40,6 +40,7 @@ import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
 import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
+import AdminHome from "./Dashboard/AdminHome";
 
 function Layout() {
   return (
@@ -58,6 +59,7 @@ function Layout() {
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
+          <Route path="adminHome" element={<AdminHome />} />
           <Route
             path="carraffle/refferallink/:id"
             element={<ReffarallinkFile />}
