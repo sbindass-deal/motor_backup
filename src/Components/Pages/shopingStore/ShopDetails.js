@@ -11,8 +11,11 @@ import axios from "axios";
 import { useParams } from "react-router";
 import SmallSpinner from "../../UI/SmallSpinner";
 import NotAvailable from "../../UI/NotAvailable";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../../redux/reducers/cartSlice";
 const ShopDetails = () => {
   const id = useParams().id;
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -31,6 +34,10 @@ const ShopDetails = () => {
     };
     fetchProduct();
   }, [id]);
+
+  const handleProduct = () => {
+    dispatch(addProduct({ ...product, quantity: 1 }));
+  };
 
   return (
     <>
@@ -88,7 +95,7 @@ const ShopDetails = () => {
                   <option>2-3 Years </option>
                 </select>
               </div>
-              <button type="button" className="btn">
+              <button onClick={handleProduct} type="button" className="btn">
                 Add to Cart
               </button>
             </div>
