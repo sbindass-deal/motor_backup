@@ -1,13 +1,13 @@
 import React from "react";
-import img_01 from "../../Assets/images/img-1.webp";
-import img_02 from "../../Assets/images/img-2.webp";
-import img_03 from "../../Assets/images/img-3.webp";
-import img_04 from "../../Assets/images/img-4.png";
-import img_05 from "../../Assets/images/img-8.webp";
-import img_06 from "../../Assets/images/img-6.webp";
-import img_07 from "../../Assets/images/img-7.jpeg";
+import img_01 from "../../../Assets/images/img-1.webp";
+import img_02 from "../../../Assets/images/img-2.webp";
+import img_03 from "../../../Assets/images/img-3.webp";
+import img_04 from "../../../Assets/images/img-4.png";
+import img_05 from "../../../Assets/images/img-8.webp";
+import img_06 from "../../../Assets/images/img-6.webp";
+import img_07 from "../../../Assets/images/img-7.jpeg";
 
-import smoters_icon from "../../Assets/images/smoters-icon.png";
+import smoters_icon from "../../../Assets/images/smoters-icon.png";
 function Shop() {
   return (
     <>
@@ -16,7 +16,7 @@ function Shop() {
           <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
               <div class="heroText shop">
-               <h3>G3</h3>
+                <h3>G3</h3>
                 <h1>
                   Gas Guzzlrs <span>G a r e</span>
                 </h1>

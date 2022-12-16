@@ -34,11 +34,11 @@ import Charity from "./Charity";
 import { ToastContainer } from "react-toastify";
 import StoreDetails from "./StoreDetails";
 import Faq from "./Faq";
-import Shop from "./Shop";
+import Shop from "./shopingStore/Shop";
 import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
-import ShopDetails from "./ShopDetails";
+import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
 
 function Layout() {
