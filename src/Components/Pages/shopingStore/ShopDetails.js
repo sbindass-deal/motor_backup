@@ -24,7 +24,7 @@ const ShopDetails = () => {
           `${process.env.REACT_APP_URL}allproduct/${id}`
         );
         if (res.status === 200) {
-          setProduct(res.data.data[0]);
+          setProduct(res.data.data);
         }
         setLoading(false);
       } catch (err) {
