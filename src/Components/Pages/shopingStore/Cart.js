@@ -46,6 +46,45 @@ const Cart = () => {
           <div className="row">
             <div className="col-12 col-md-12 col-lg-12">
             <h2 class="title_combo title_Center casrt">My Cart</h2>
+            <div className="col-12 cartBody mb-5 card_Gray">
+              <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-12">
+                  <h5 className="cartTitle">Product</h5>
+                  <div className="cartImgSect">
+                    <img src={img_01}/>
+                    <h5>Navy 240Z Heavyweight Hoodie
+                      <span>Size - XS</span>
+                      <span>Color - Red</span>
+                      <button className="removeBtn">Remove</button>
+                    </h5>
+                  </div>
+                </div>
+                <div className="col-lg-2 col-md-2 col-sm-12">
+                  <h5 className="cartTitle">Price</h5>
+                  <div className="cartImgSect">
+                  <p>$50.00</p>
+                  </div>
+                </div>
+                <div className="col-lg-2 col-md-2 col-sm-12">
+                  <h5 className="cartTitle">Count</h5>
+                  <div className="cartImgSect">
+                    <div className="Count">
+                      <button className="addCountIcon negtv">-</button><span>2</span><button className="addCountIcon">+</button>
+                  </div>  
+                </div>
+                </div>
+                <div className="col-lg-2 col-md-2 col-sm-12">
+                  <h5 className="cartTitle">Total</h5>
+                  <div className="cartImgSect">
+                  <p>$50.00</p>
+                  </div>
+                </div>
+                
+              </div>
+             
+
+
+            </div>
             <div class="table-responsive">
               <table width={"100%"} className="cartSection cartth">
                 <tr>
@@ -67,7 +106,7 @@ const Cart = () => {
                   <td>$150</td>
                   <td>
                     <div className="count">
-                    <button className="addCountIcon negtv">-</button><span>2</span><button className="addCountIcon">+</button>
+                    
                     </div>
                     </td>
                   <td>$300</td>
