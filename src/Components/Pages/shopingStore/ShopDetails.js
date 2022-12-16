@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./Shopdetail.css";
-import img_05 from "../../../Assets/images/img-8.webp";
-import img_07 from "../../../Assets/images/img-7.jpeg";
 import img_01 from "../../../Assets/images/img-1.webp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,9 +20,11 @@ const ShopDetails = () => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}allproduct/${id}`
+        );
         if (res.status === 200) {
-          setProduct(res.data);
+          setProduct(res.data.data[0]);
         }
         setLoading(false);
       } catch (err) {
@@ -53,21 +53,21 @@ const ShopDetails = () => {
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src={product.image}
+                    src={img_01}
                     alt="First slide"
                   />
                 </Carousel.Item>
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src={product.image}
+                    src={img_01}
                     alt="Second slide"
                   />
                 </Carousel.Item>
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src={product.image}
+                    src={img_01}
                     alt="Third slide"
                   />
                 </Carousel.Item>
