@@ -228,7 +228,16 @@ function Header() {
                         </Link>
                       )}
                     </li>
-
+                    <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/admin" && "navActive"
+                        }`}
+                        to="/admin"
+                      >
+                        Admin
+                      </Link>
+                    </li>
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -533,7 +542,10 @@ function Header() {
         <div className="autoCom">
           <a href="#" className="searchList">
             <p className="title">Nikhil</p>
-            <p className="dec">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <p className="dec">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text.
+            </p>
           </a>
         </div>
       )}

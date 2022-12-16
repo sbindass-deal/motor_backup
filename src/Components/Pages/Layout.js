@@ -39,6 +39,7 @@ import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
 import ShopDetails from "./ShopDetails";
+import Admin from "./Dashboard/Admin";
 
 function Layout() {
   return (
@@ -87,6 +88,7 @@ function Layout() {
           <Route path="charity" element={<Charity />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/2" element={<ShopDetails />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer
