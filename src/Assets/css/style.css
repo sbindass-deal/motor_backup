@@ -1446,7 +1446,7 @@ video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
 
 
-.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 36%;  top: 60px;  padding: 10px;}
+.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 36%;  top: 60px;  padding: 10px; z-index: 1;}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
