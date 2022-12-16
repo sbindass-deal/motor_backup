@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  Link,
+} from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import Home from "./Home";
@@ -40,6 +46,8 @@ import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
 import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
+import Cart from "./shopingStore/Cart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function Layout() {
   return (
@@ -89,8 +97,16 @@ function Layout() {
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="admin" element={<Admin />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Link
+          to="/cart"
+          className="btn btn-danger"
+          style={{ position: "fixed", top: "80vh", right: "10vh" }}
+        >
+          <ShoppingCartIcon />
+        </Link>
         <ToastContainer
           position="bottom-center"
           autoClose={5000}
