@@ -12,15 +12,33 @@
 @media (min-width: 1500px) {}
 @media (max-width: 1366px) {
 	table.cartSection.cartth tr th:first-child {width: 66%;	}
+	
+	
 }
-@media (max-width: 1280px) {}
-@media (max-width: 1199px) {table.cartSection.cartth tr th:first-child {width: 60%;	}}
+@media (max-width: 1280px) {
+	a.navbar-brand {top: 17px;left: 22px;	}
+	.navbar-brand img {width: 135px;}
+	.navbar-nav .nav-link {	padding: 8px 12px !important;	}
+	.secondNavbar .navbar-nav:before {width: 82%;	}
+}
+@media (max-width: 1199px) {
+	table.cartSection.cartth tr th:first-child {width: 60%;	}
+	.toNv:before {width: 85%;}
+	
+	.searchForm input {	width: 300px;}
+
+
+}
 @media (max-width: 1024px) {
 	table.cartSection.cartth tr th:first-child {
 		width: 40%;
 	}
+	.navbar-nav .nav-link {padding: 8px 8px !important;	}
 }
 @media (max-width: 991px) {
+	.secondNavbar .navbar-nav:before {
+		width: 85%;
+	}
 	
 	h1 { font-size: 40px;}
 

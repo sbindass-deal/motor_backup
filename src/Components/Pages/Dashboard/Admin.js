@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AdminHome from "./AdminHome";
+import AdminHome from "./VehicleSubmission";
 import Message from "./Message";
 import Profile from "./Profile";
 import Seting from "./Seting";

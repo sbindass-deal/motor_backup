@@ -69,9 +69,9 @@ function Header() {
   return (
     <>
       <header>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-12">
+            <div className="col-md-12 p-0">
               <nav className="navbar navbar-expand-md">
                 <Link className="navbar-brand" to="/">
                   <img
@@ -189,7 +189,7 @@ function Header() {
                         How its Works
                       </Link>
                     </li>
-                    {!logingUser.login.token ? (
+                    {/* {!logingUser.login.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           className="nav-link"
@@ -197,7 +197,7 @@ function Header() {
                           // data-toggle="modal"
                           // data-target="#loginModal"
                         >
-                          Log In
+                          <i class="fa-solid fa-user-lock"></i>
                         </Link>
                       </li>
                     ) : (
@@ -208,36 +208,66 @@ function Header() {
                       >
                         <Link className="nav-link">Logout</Link>
                       </li>
-                    )}
+                    )} */}
                     {/* <li className="nav-item">
                       <Link className="nav-link" to="/">
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
 
+                  
+
                     <li className="nav-item afterLogin">
+                    <div className="dropdown">
+                      <AccountCircleIcon />
                       {logingUser.login.token && (
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/accountinfo" && "navActive"
-                          }`}
-                          to="/accountinfo"
-                        >
-                          <AccountCircleIcon /> <br />
-                          {/* <span>{logingUser.login.user.username}</span> */}
-                        </Link>
-                      )}
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/accountinfo" && "navActive"
+                            }`}
+                            to="/accountinfo"
+                          > My Account
+                             <br />
+                            {/* <span>{logingUser.login.user.username}</span> */}
+                          </Link>
+                        )}
+                        <div className="dropdown-content">
+                              {!logingUser.login.token ? (
+                                <li onClick={handleShow} className="nav-item">
+                                  <Link
+                                    className="nav-link"
+                                    // to="javascript:void(0)"
+                                    // data-toggle="modal"
+                                    // data-target="#loginModal"
+                                  >
+                                   Login
+                                  </Link>
+                                </li>
+                              ) : (
+                                <li
+                                  onClick={logout}
+                                  style={{ cursor: "pointer" }}
+                                  className="nav-item"
+                                >
+                                  <Link className="nav-link">Logout</Link>
+                                </li>
+                              )}
+
+                              <li className="nav-item">
+                                <Link
+                                  className={`nav-link ${
+                                    location.pathname === "/admin" && "navActive"
+                                  }`}
+                                  to="/admin"
+                                >
+                                  Admin
+                                </Link>
+                              </li>
+                        </div>
+                      </div>
+                      
                     </li>
-                    <li className="nav-item">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/admin" && "navActive"
-                        }`}
-                        to="/admin"
-                      >
-                        Admin
-                      </Link>
-                    </li>
+                    
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -306,7 +336,7 @@ function Header() {
                 </div>
               </nav>
             </div>
-            <div className="col-12 mobileOnlyHide">
+            <div className="col-md-12 mobileOnlyHide p-0">
               <nav className="navbar navbar-expand secondNavbar">
                 <div className="container-fluid">
                   <div
@@ -472,7 +502,7 @@ function Header() {
                           }}
                           to="/aboutshibnobi"
                         >
-                          About Gas guzzlrs
+                          About
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -495,8 +525,11 @@ function Header() {
                           // target={"_blank"}
                         >
                           Store
+
                         </Link>
+                        
                       </li>
+                      <li className="nav-item AddtCrt"><i class="fa-solid fa-cart-shopping"></i><span className="count">12</span></li>
 
                       <li className="nav-item dropdown d-none">
                         <Link

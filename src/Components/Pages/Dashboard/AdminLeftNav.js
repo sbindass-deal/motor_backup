@@ -9,12 +9,12 @@ function AdminLeftNav() {
         <ul class="sideBar__">
             <li>
                 <Link
-                        to="/adminHome"
+                        to="/vehicle-submission"
                         className={` ${
-                          location.pathname === "/adminHome" ? "active" : ""
+                          location.pathname === "/vehicle-submission" ? "active" : ""
                         } `}
                       >
-                        Account Info
+                        Vehicle submission
                 </Link>
             </li>
                     {/* <li>
@@ -29,30 +29,31 @@ function AdminLeftNav() {
                     </li> */}
             <li>
                 <Link
-                    className={` ${location.pathname === "/listing" ? "active" : ""} `}
-                    to="/listing"
+                    className={` ${location.pathname === "/raffleadmin" ? "active" : ""} `}
+                    to="/raffleadmin"
                 >
-                    My Listings
+                    Raffle
                 </Link>
             </li>
                     <li>
                       <Link
-                        className={` ${location.pathname === "/bidswins" ? "active" : ""} `}
-                        to="/bidswins"
+                        className={` ${location.pathname === "/merchandise" ? "active" : ""} `}
+                        to="/merchandise"
                       >
-                        My Bids & Wins
+                        Merchandise
                       </Link>
                     </li>
                     <li>
                       <Link
                         className={` ${
-                          location.pathname === "/myshipments" ? "active" : ""
+                          location.pathname === "/blog" ? "active" : ""
                         } `}
-                        to="/myshipments"
+                        to="/blog"
                       >
-                        My Shipments
+                        Blog
                       </Link>
                     </li>
+                   
                   </ul>
                 </div>
   )

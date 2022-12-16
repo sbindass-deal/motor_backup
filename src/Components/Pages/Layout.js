@@ -46,10 +46,13 @@ import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
 import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
-import AdminHome from "./Dashboard/AdminHome";
+import Blog from "./Dashboard/Blog";
+import VehicleSubmission from "./Dashboard/VehicleSubmission";
+import Merchandise from "./Dashboard/Merchandise"; 
 import Cart from "./shopingStore/Cart";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
+import RaffleAdmin from "./Dashboard/RaffleAdmin";
 
 function Layout() {
   const product = useSelector((state) => state.cartSlice);
@@ -69,7 +72,7 @@ function Layout() {
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
-          <Route path="adminHome" element={<AdminHome />} />
+          <Route path="vehicle-submission" element={<VehicleSubmission />} />
           <Route
             path="carraffle/refferallink/:id"
             element={<ReffarallinkFile />}
@@ -82,8 +85,11 @@ function Layout() {
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />
+          <Route path="merchandise" element={<Merchandise/>} />
           <Route path="accountinfo" element={<AccountInfo />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="raffleadmin" element={<RaffleAdmin />} />
+          <Route path="blog" element={<Blog />} />
           <Route path="listings" element={<MyListings />} />
           <Route path="bidswins" element={<MyBidsWins />} />
           <Route path="myshipments" element={<MyShipments />} />
