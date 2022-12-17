@@ -185,29 +185,20 @@ function CarRaffle() {
 
   return (
     <div>
-       <section className="carLottery d-flex align-items-center">
-            <div className="container-fluid">
-                <div className="heroText">
-                  <video 
-                    autoplay 
-                    loop 
-                    controls 
-                    id="myVideo" 
-                    poster={carraffle}>
-                    <source 
-                      src={Video} 
-                      type="video/mp4"/>
-                  </video>                 
-                </div>
-            </div>
-       </section>
+      <section className="carLottery d-flex align-items-center">
+        <div className="container-fluid">
+          <div className="heroText">
+            <video autoplay loop controls id="myVideo" poster={carraffle}>
+              <source src={Video} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
 
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-8">
-            
-             
               <div className="orangeCard mb-4">
                 <div className="row">
                   <div className="col-12 col-md-5">
@@ -327,33 +318,32 @@ function CarRaffle() {
                 <div className="row row_gap_5 ">
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticket}/>
-                      </div>
-                      <h5>Price of 1 ticket</h5>
-                      <p>$5</p>
+                      <img src={ticket} />
+                    </div>
+                    <h5>Price of 1 ticket</h5>
+                    <p>$5</p>
                   </div>
                   <div className="col-md-3 iconSecT">
-                  <div className="imgIco">
-                      <img src={ticketSocket}/>
-                      </div>
-                      <h5>Total ticket stock</h5>
-                      <p>100</p>
+                    <div className="imgIco">
+                      <img src={ticketSocket} />
+                    </div>
+                    <h5>Total ticket stock</h5>
+                    <p>100</p>
                   </div>
                   <div className="col-md-3 iconSecT">
-                  <div className="imgIco">
-                      <img src={weekly}/>
-                      </div>
-                      <h5>Deadline to purchase ticket</h5>
-                      <p>02-01-2023</p>
+                    <div className="imgIco">
+                      <img src={weekly} />
+                    </div>
+                    <h5>Deadline to purchase ticket</h5>
+                    <p>02-01-2023</p>
                   </div>
                   <div className="col-md-3 iconSecT">
-                  <div className="imgIco">
-                      <img src={weekly}/>
-                      </div>
-                      <h5>Lucky draw date</h5>
-                      <p>02-01-2023</p>
+                    <div className="imgIco">
+                      <img src={weekly} />
+                    </div>
+                    <h5>Lucky draw date</h5>
+                    <p>02-01-2023</p>
                   </div>
-
                 </div>
               </div>
 
@@ -367,7 +357,6 @@ function CarRaffle() {
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <lable>Number of Tickets</lable>
                     <div className="ticketFom">
-
                       <div className="form-group">
                         <input
                           type="text"
@@ -375,7 +364,7 @@ function CarRaffle() {
                           onChange={(e) => {
                             const value = e.target.value.replace(/\D/g, "");
                             setInputLotteryNumber(value);
-                            Placeholder="Number of Tickets "
+                            Placeholder = "Number of Tickets ";
                           }}
                           className="form-control"
                           maxLength={4}
@@ -392,9 +381,7 @@ function CarRaffle() {
                         </button>
                       </div>
                     </div>
-                   
                   </div>
-
                 </div>
               </div>
             </div>
@@ -402,12 +389,8 @@ function CarRaffle() {
               <div className="card_Gray2 mt-5 mt-md-0 divSticky">
                 <div className="">
                   <div className="cardBorder">
-                  
                     <h6>My Tickets - {allLotaryApi.length}</h6>
-                   
 
-                   
-                   
                     <div className="myTicketRow">
                       <div className="myTicketCol">
                         {/* <div className="MT_ic">
@@ -451,9 +434,11 @@ function CarRaffle() {
                       </li>
                     </ul>
                     <div>
-                      <button type="button"
+                      <button
+                        type="button"
                         onClick={() => {
-                          axios.get(`http://3.83.96.16:8000/encrypted/1/20`)
+                          axios
+                            .get(`http://3.83.96.16:8000/encrypted/1/20`)
                             .then((res) => {
                               setIsModalOpen(true)
                               // url/response
@@ -463,7 +448,8 @@ function CarRaffle() {
                             })
 
                         }}
-                        className="gry_btn w-full">
+                        className="gry_btn w-full"
+                      >
                         Share Reffer Link
                       </button>
                     </div>
@@ -559,7 +545,7 @@ function CarRaffle() {
             <h3 className="price__">Price : $2000</h3>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
-            <br/>
+            <br />
             <p>Choose Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">

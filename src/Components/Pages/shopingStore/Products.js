@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import img_01 from "../../../Assets/images/img-1.webp";
+import { addProduct } from "../../../redux/reducers/cartSlice";
 
-const Products = ({ id, price, image, title }) => {
+const Products = ({ id, price, image, title, curElem }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <div class="col-12 col-md-6 col-lg-4">
@@ -14,8 +17,21 @@ const Products = ({ id, price, image, title }) => {
             <h6>
               <Link to={`/shop/${id}`}>{title}</Link>
             </h6>
-            <ul class="priceDateList">
+            <ul
+              class="priceDateList"
+              style={{ justifyContent: "space-between" }}
+            >
               <li class="price__">${price}</li>
+              <li class="">
+                <button
+                  onClick={() =>
+                    dispatch(addProduct({ ...curElem, quantity: 1 }))
+                  }
+                  className="removeBtn"
+                >
+                  Add
+                </button>
+              </li>
             </ul>
           </div>
         </div>

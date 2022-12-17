@@ -48,14 +48,13 @@ import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
 import Blog from "./Dashboard/Blog";
 import VehicleSubmission from "./Dashboard/VehicleSubmission";
-import Merchandise from "./Dashboard/Merchandise"; 
+import Merchandise from "./Dashboard/Merchandise";
 import Cart from "./shopingStore/Cart";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useSelector } from "react-redux";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
+import Orders from "./Dashboard/Orders";
+import PaymentProcess from "./PaymentProcess";
 
 function Layout() {
-  const product = useSelector((state) => state.cartSlice);
   return (
     <>
       <BrowserRouter>
@@ -85,7 +84,7 @@ function Layout() {
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />
-          <Route path="merchandise" element={<Merchandise/>} />
+          <Route path="merchandise" element={<Merchandise />} />
           <Route path="accountinfo" element={<AccountInfo />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="raffleadmin" element={<RaffleAdmin />} />
@@ -109,16 +108,8 @@ function Layout() {
           <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/Orders" element={<Orders />} />
         </Routes>
-        {product.products.length > 0 && (
-          <Link
-            to="/cart"
-            className="btn btn-danger"
-            style={{ position: "fixed", top: "80vh", right: "10vh" }}
-          >
-            <ShoppingCartIcon /> {product.products.length}
-          </Link>
-        )}
         <ToastContainer
           position="bottom-center"
           autoClose={5000}

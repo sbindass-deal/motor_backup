@@ -15,7 +15,7 @@ function Blog() {
                 </div>
 
                 <div className="col-12 col-md-8 col-lg-9">
-                <h3>Merchandise</h3>
+                <h3>My Blogs</h3>
                 <hr />
                 <div class="card_Gray table-responsive merchant vehicleSub">
                     <table class="table table-striped">
@@ -30,20 +30,52 @@ function Blog() {
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">1</th>
-                        <td>
-                            <div className="cartImg">
-                                <img src={img_01}/>
-                            </div>
-                        </td>
-                        <td>Blog Name </td>
-                        <td>This 1962 Jaguar XKE is a left-hand-drive Series I coupe that was completed on June 7, 1962, and is said to have been sold new in California. It was moved to Michigan in 1987 and underwent a mechanical refurbishment by Eclectic Motorworks of Holland, Michigan, that was completed in 2020 before it was acquired by the selling dealer from its owner of 35 years in 2021.</td>
-                     
-                        <td className='actionBtn'>
-                            <button data-toggle="modal" data-target="#EditBlog"><i class="fa-solid fa-pencil"></i></button>
-                            <button><i class="fa-sharp fa-solid fa-plus"></i></button>
-                            <button><i class="fa-solid fa-trash-can"></i></button>  
-                        </td>
+                            <th scope="row">1</th>
+                            <td>
+                                <div className="cartImg">
+                                    <img src={img_01}/>
+                                </div>
+                            </td>
+                            <td>Blog Name </td>
+                            <td>This 1962 Jaguar XKE is a left-hand-drive Series I coupe that was completed on June 7, 1962, and is said to have been sold new in California. It was moved to Michigan in 1987 and underwent a mechanical refurbishment by Eclectic Motorworks of Holland, Michigan, that was completed in 2020 before it was acquired by the selling dealer from its owner of 35 years in 2021.</td>
+                        
+                            <td className='actionBtn'>
+                                <button data-toggle="modal" data-target="#EditBlog"><i class="fa-solid fa-pencil"></i></button>
+                                <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                                <button><i class="fa-solid fa-trash-can"></i></button>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>
+                                <div className="cartImg">
+                                    <img src={img_01}/>
+                                </div>
+                            </td>
+                            <td>Blog Name </td>
+                            <td>This 1962 Jaguar XKE is a left-hand-drive Series I coupe that was completed on June 7, 1962, and is said to have been sold new in California. It was moved to Michigan in 1987 and underwent a mechanical refurbishment by Eclectic Motorworks of Holland, Michigan, that was completed in 2020 before it was acquired by the selling dealer from its owner of 35 years in 2021.</td>
+                        
+                            <td className='actionBtn'>
+                                <button data-toggle="modal" data-target="#EditBlog"><i class="fa-solid fa-pencil"></i></button>
+                                <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                                <button><i class="fa-solid fa-trash-can"></i></button>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>
+                                <div className="cartImg">
+                                    <img src={img_01}/>
+                                </div>
+                            </td>
+                            <td>Blog Name </td>
+                            <td>This 1962 Jaguar XKE is a left-hand-drive Series I coupe that was completed on June 7, 1962, and is said to have been sold new in California. It was moved to Michigan in 1987 and underwent a mechanical refurbishment by Eclectic Motorworks of Holland, Michigan, that was completed in 2020 before it was acquired by the selling dealer from its owner of 35 years in 2021.</td>
+                        
+                            <td className='actionBtn'>
+                                <button data-toggle="modal" data-target="#EditBlog"><i class="fa-solid fa-pencil"></i></button>
+                                <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                                <button><i class="fa-solid fa-trash-can"></i></button>  
+                            </td>
                         </tr>
                         
                     

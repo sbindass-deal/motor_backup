@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import img_01 from "../../../Assets/images/img-1.webp";
-import { decreaseCart, increaseCart } from "../../../redux/reducers/cartSlice";
+import {
+  decreaseCart,
+  increaseCart,
+  removeFromCart,
+} from "../../../redux/reducers/cartSlice";
 
 const CartItem = ({ price, title, image, quantity, id }) => {
   const dispatch = useDispatch();
@@ -10,8 +14,8 @@ const CartItem = ({ price, title, image, quantity, id }) => {
       <tr>
         <td className="productImg">
           <div className="cartImg">
-          <img src={image ? image : img_01} />
-          </div>   
+            <img src={image ? image : img_01} />
+          </div>
         </td>
         <td>
           <p className="proName">{title}</p>
@@ -21,7 +25,12 @@ const CartItem = ({ price, title, image, quantity, id }) => {
           <p className="color">
             Color: <span>Red</span>
           </p>
-          <button className="removeBtn">Remove</button>
+          <button
+            onClick={() => dispatch(removeFromCart(id))}
+            className="removeBtn"
+          >
+            Remove
+          </button>
         </td>
         <td>${price}</td>
         <td>
@@ -42,17 +51,6 @@ const CartItem = ({ price, title, image, quantity, id }) => {
           </div>
         </td>
         <td>${quantity * price}</td>
-      </tr>
-      <tr>
-        <td colSpan="3"></td>
-        <td>Subtotal </td>
-        <td>$50.00</td>
-      </tr>
-      <tr className="right-align">
-        <td colSpan="5">
-          <button className="btn">Continue Shopping</button>
-          <button className="btn">Check Out</button>
-        </td>
       </tr>
     </>
   );

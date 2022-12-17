@@ -48,6 +48,17 @@ function AdminLeftNav() {
                     <li>
                       <Link
                         className={` ${
+                          location.pathname === "/Orders" ? "active" : ""
+                        } `}
+                        to="/Orders"
+                      >
+                        Orders
+                      </Link>
+                    </li>
+                   
+                    <li>
+                      <Link
+                        className={` ${
                           location.pathname === "/blog" ? "active" : ""
                         } `}
                         to="/blog"

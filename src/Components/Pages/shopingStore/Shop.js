@@ -64,6 +64,7 @@ const Shop = () => {
                       price={curElem.price}
                       image={curElem.image}
                       title={curElem.title}
+                      curElem={curElem}
                     />
                   );
                 })

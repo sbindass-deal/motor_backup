@@ -6,7 +6,6 @@ const cartSlice = createSlice({
     products: [],
     quantity: 0,
     total: 0,
-    tax: 0,
     payableAmount: 0,
   },
   reducers: {
@@ -43,14 +42,48 @@ const cartSlice = createSlice({
           parseInt(state.products[itemIndex].quantity, 10) + 1;
       }
     },
-
+    removeFromCart(state, action) {
+      const nextCartItems = state.products.filter(
+        (cartItem) => cartItem.id !== action.payload
+      );
+      state.products = nextCartItems;
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
     clearCart(state, action) {
       state.products = [];
       state.quantity = 0;
     },
+    getTotals(state, action) {
+      let { total, quantity, payableAmount } = state.products.reduce(
+        (cartTotal, products) => {
+          const { price, quantity } = products;
+          const itemTotal = price * quantity;
+          const totalAmount = itemTotal;
+          cartTotal.total += itemTotal;
+          cartTotal.quantity =
+            parseInt(cartTotal.quantity, 10) + parseInt(quantity, 10);
+          cartTotal.payableAmount += totalAmount;
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+          payableAmount: 0,
+        }
+      );
+      state.quantity = quantity;
+      state.total = total;
+      state.payableAmount = payableAmount.toFixed(2);
+    },
   },
 });
 
-export const { addProduct, clearCart, decreaseCart, increaseCart } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  clearCart,
+  decreaseCart,
+  increaseCart,
+  removeFromCart,
+  getTotals,
+} = cartSlice.actions;
 export default cartSlice.reducer;

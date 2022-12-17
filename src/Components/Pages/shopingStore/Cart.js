@@ -1,33 +1,53 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+import { clearCart } from "../../../redux/reducers/cartSlice";
 import NotAvailable from "../../UI/NotAvailable";
 import CartItem from "./CartItem";
-import img_01 from "../../../Assets/images/img_001.webp"
+// import img_01 from "../../../Assets/images/img_001.webp";
 
 const Cart = () => {
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
+  const dispatch = useDispatch();
+  const onToken = (token, addresses) => {
+    if (token !== null) {
+      navigate("/successpayment");
+    }
+    dispatch(clearCart());
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-12 col-lg-12">
-          
-            
-             
-              <h2 class="title_combo title_Center casrt">My Cart</h2>
-              <div class="table-responsive">
-                <table width={"100%"} className="cartSection cartth">
-                  <tr>
-                    <th scope="col" colspan="2">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                  </tr>
-                  {product.products.length <= 0 ? (
-                    <NotAvailable text="Cart is empty" />
-                  ) : (
-                    product.products.map((curElem) => {
+            {product.products.length <= 0 ? (
+              <NotAvailable text="Cart is empty" />
+            ) : (
+              <div className="col-12 col-md-12 col-lg-12">
+                <h2 class="title_combo title_Center casrt">My Cart</h2>
+                <div class="table-responsive">
+                  <table width={"100%"} className="cartSection cartth">
+                    <tr>
+                      <th scope="col" colspan="2">
+                        Product
+                      </th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity({product.quantity})</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                    {product.products.map((curElem) => {
                       return (
                         <CartItem
                           key={curElem.id}
@@ -38,15 +58,68 @@ const Cart = () => {
                           quantity={curElem.quantity}
                         />
                       );
-                    })
-                  )}
-                </table>
+                    })}
+                    <tr>
+                      <td colSpan="3"></td>
+                      <td>Subtotal </td>
+                      <td>${product.total}</td>
+                    </tr>
+                    <tr className="right-align">
+                      <td colSpan="5">
+                        <button
+                          onClick={() => dispatch(clearCart())}
+                          className="btn bg-danger"
+                        >
+                          Clear Cart
+                        </button>
+                        <Link to="/shop" className="btn">
+                          Continue Shopping
+                        </Link>
+                        <button onClick={() => handleShow()} className="btn">
+                          Check Out
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
-            
+            )}
           </div>
         </div>
-        </div>
       </section>
+      <Modal show={show} onHide={handleClose} className="payTPop">
+        <Modal.Header closebutton>
+          <Modal.Title>Payment Process</Modal.Title>
+          <button variant="secondary" onClick={handleClose}>
+            X
+          </button>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="processPy">
+            <h2>Model Name : 2021 BMW Nexon</h2>
+            <h3 className="price__">Price : $2000</h3>
+
+            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <br />
+            <p>Choose Payment Option:</p>
+            <div className="ress">
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
