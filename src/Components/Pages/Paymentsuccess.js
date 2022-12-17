@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Result } from "antd";
 import "./PaymentrSuccess.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Paymentsuccess = () => {
   const navigate = useNavigate();
   return (
@@ -12,12 +12,12 @@ const Paymentsuccess = () => {
             <h1>Thank you !</h1>
             <p>Thanks for subscribing to our news letter. </p>
             <p>you should receive a confirmation email soon </p>
-            <button onClick={navigate("/")} className="go-home">
+            <Link to="/" className="go-home">
               Go to home
-            </button>
-            <button onClick={navigate("/carraffle")} className="go-home">
+            </Link>
+            {/* <button onClick={navigate("/carraffle")} className="go-home">
               By more tickets
-            </button>
+            </button> */}
           </div>
           {/* <div className="footer-like">
       <p>Email not received?

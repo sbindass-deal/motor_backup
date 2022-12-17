@@ -1,13 +1,32 @@
-import React from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import NotAvailable from "../../UI/NotAvailable";
 import CartItem from "./CartItem";
 // import img_01 from "../../../Assets/images/img_001.webp";
 
 const Cart = () => {
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
+  const onToken = (token, addresses) => {
+    if (token !== null) {
+      navigate("/successpayment");
+    }
+    dispatch(clearCart());
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -25,7 +44,7 @@ const Cart = () => {
                         Product
                       </th>
                       <th scope="col">Price</th>
-                      <th scope="col">Quantity</th>
+                      <th scope="col">Quantity({product.quantity})</th>
                       <th scope="col">Total</th>
                     </tr>
                     {product.products.map((curElem) => {
@@ -43,7 +62,7 @@ const Cart = () => {
                     <tr>
                       <td colSpan="3"></td>
                       <td>Subtotal </td>
-                      <td>$50.00</td>
+                      <td>${product.total}</td>
                     </tr>
                     <tr className="right-align">
                       <td colSpan="5">
@@ -53,8 +72,12 @@ const Cart = () => {
                         >
                           Clear Cart
                         </button>
-                        <button className="btn">Continue Shopping</button>
-                        <button className="btn">Check Out</button>
+                        <Link to="/shop" className="btn">
+                          Continue Shopping
+                        </Link>
+                        <button onClick={() => handleShow()} className="btn">
+                          Check Out
+                        </button>
                       </td>
                     </tr>
                   </table>
@@ -64,6 +87,39 @@ const Cart = () => {
           </div>
         </div>
       </section>
+      <Modal show={show} onHide={handleClose} className="payTPop">
+        <Modal.Header closebutton>
+          <Modal.Title>Payment Process</Modal.Title>
+          <button variant="secondary" onClick={handleClose}>
+            X
+          </button>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="processPy">
+            <h2>Model Name : 2021 BMW Nexon</h2>
+            <h3 className="price__">Price : $2000</h3>
+
+            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <br />
+            <p>Choose Payment Option:</p>
+            <div className="ress">
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
