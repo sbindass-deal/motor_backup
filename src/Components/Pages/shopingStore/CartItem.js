@@ -10,8 +10,8 @@ const CartItem = ({ price, title, image, quantity, id }) => {
       <tr>
         <td className="productImg">
           <div className="cartImg">
-          <img src={image ? image : img_01} />
-          </div>   
+            <img src={image ? image : img_01} />
+          </div>
         </td>
         <td>
           <p className="proName">{title}</p>
@@ -42,17 +42,6 @@ const CartItem = ({ price, title, image, quantity, id }) => {
           </div>
         </td>
         <td>${quantity * price}</td>
-      </tr>
-      <tr>
-        <td colSpan="3"></td>
-        <td>Subtotal </td>
-        <td>$50.00</td>
-      </tr>
-      <tr className="right-align">
-        <td colSpan="5">
-          <button className="btn">Continue Shopping</button>
-          <button className="btn">Check Out</button>
-        </td>
       </tr>
     </>
   );

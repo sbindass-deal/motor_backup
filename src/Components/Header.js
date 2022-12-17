@@ -33,7 +33,6 @@ function Header() {
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
-  console.log("hello11", logingUser.dayAndNightMode.mode);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
@@ -215,59 +214,59 @@ function Header() {
                       </Link>
                     </li> */}
 
-                  
-
                     <li className="nav-item afterLogin">
-                    <div className="dropdown">
-                      <AccountCircleIcon />
-                      {logingUser.login.token && (
+                      <div className="dropdown">
+                        <AccountCircleIcon />
+                        {logingUser.login.token && (
                           <Link
                             className={`nav-link ${
-                              location.pathname === "/accountinfo" && "navActive"
+                              location.pathname === "/accountinfo" &&
+                              "navActive"
                             }`}
                             to="/accountinfo"
-                          > My Account
-                             <br />
+                          >
+                            {" "}
+                            My Account
+                            <br />
                             {/* <span>{logingUser.login.user.username}</span> */}
                           </Link>
                         )}
                         <div className="dropdown-content">
-                              {!logingUser.login.token ? (
-                                <li onClick={handleShow} className="nav-item">
-                                  <Link
-                                    className="nav-link"
-                                    // to="javascript:void(0)"
-                                    // data-toggle="modal"
-                                    // data-target="#loginModal"
-                                  >
-                                   Login
-                                  </Link>
-                                </li>
-                              ) : (
-                                <li
-                                  onClick={logout}
-                                  style={{ cursor: "pointer" }}
-                                  className="nav-item"
-                                >
-                                  <Link className="nav-link">Logout</Link>
-                                </li>
-                              )}
+                          {!logingUser.login.token ? (
+                            <li onClick={handleShow} className="nav-item">
+                              <Link
+                                className="nav-link"
+                                // to="javascript:void(0)"
+                                // data-toggle="modal"
+                                // data-target="#loginModal"
+                              >
+                                Login
+                              </Link>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={logout}
+                              style={{ cursor: "pointer" }}
+                              className="nav-item"
+                            >
+                              <Link className="nav-link">Logout</Link>
+                            </li>
+                          )}
 
-                              <li className="nav-item">
-                                <Link
-                                  className={`nav-link ${
-                                    location.pathname === "/admin" && "navActive"
-                                  }`}
-                                  to="/admin"
-                                >
-                                  Admin
-                                </Link>
-                              </li>
+                          <li className="nav-item">
+                            <Link
+                              className={`nav-link ${
+                                location.pathname === "/admin" && "navActive"
+                              }`}
+                              to="/admin"
+                            >
+                              Admin
+                            </Link>
+                          </li>
                         </div>
                       </div>
-                      
                     </li>
-                    
+
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -519,17 +518,18 @@ function Header() {
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          to="/shop"
-                          // target={"_blank"}
-                        >
+                        <Link className="nav-link" to="/shop">
                           Store
-
                         </Link>
-                        
                       </li>
-                      <li className="nav-item AddtCrt"><i class="fa-solid fa-cart-shopping"></i><span className="count">12</span></li>
+                      <li className="nav-item AddtCrt">
+                        <Link to="/cart">
+                          <i class="fa-solid fa-cart-shopping"></i>
+                          <span className="count">
+                            {logingUser.cartSlice.products.length}
+                          </span>
+                        </Link>
+                      </li>
 
                       <li className="nav-item dropdown d-none">
                         <Link
