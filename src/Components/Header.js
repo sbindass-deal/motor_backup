@@ -220,7 +220,10 @@ function Header() {
                     <li className="nav-item afterLogin">
                     <div className="dropdown">
                       <AccountCircleIcon />
-                      {logingUser.login.token && (
+                     
+                        <div className="dropdown-content">
+
+                        {logingUser.login.token && (
                           <Link
                             className={`nav-link ${
                               location.pathname === "/accountinfo" && "navActive"
@@ -231,7 +234,6 @@ function Header() {
                             {/* <span>{logingUser.login.user.username}</span> */}
                           </Link>
                         )}
-                        <div className="dropdown-content">
                               {!logingUser.login.token ? (
                                 <li onClick={handleShow} className="nav-item">
                                   <Link
