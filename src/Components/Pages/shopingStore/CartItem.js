@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import img_01 from "../../../Assets/images/img-1.webp";
-import { decreaseCart, increaseCart } from "../../../redux/reducers/cartSlice";
+import {
+  decreaseCart,
+  increaseCart,
+  removeFromCart,
+} from "../../../redux/reducers/cartSlice";
 
 const CartItem = ({ price, title, image, quantity, id }) => {
   const dispatch = useDispatch();
@@ -21,7 +25,12 @@ const CartItem = ({ price, title, image, quantity, id }) => {
           <p className="color">
             Color: <span>Red</span>
           </p>
-          <button className="removeBtn">Remove</button>
+          <button
+            onClick={() => dispatch(removeFromCart(id))}
+            className="removeBtn"
+          >
+            Remove
+          </button>
         </td>
         <td>${price}</td>
         <td>

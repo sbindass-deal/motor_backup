@@ -8,9 +8,7 @@ function RaffleAdmin() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
-              <div className="card_Gray mb-5 mb-md-0">
-                <h5>My Account</h5>
-                <hr />
+              <div className="card_Gray mb-5 mb-md-0">     
                 <AdminLeftNav/>
               </div>
             </div>

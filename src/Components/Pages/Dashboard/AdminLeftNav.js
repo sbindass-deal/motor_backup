@@ -6,6 +6,8 @@ function AdminLeftNav() {
     const location = useLocation();
     return (
     <div>
+       <h5>My Admin</h5>
+            <hr />
         <ul class="sideBar__">
             <li>
                 <Link

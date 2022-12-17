@@ -217,21 +217,21 @@ function Header() {
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
                         <AccountCircleIcon />
-                        {logingUser.login.token && (
-                          <Link
-                            className={`nav-link ${
-                              location.pathname === "/accountinfo" &&
-                              "navActive"
-                            }`}
-                            to="/accountinfo"
-                          >
-                            {" "}
-                            My Account
-                            <br />
-                            {/* <span>{logingUser.login.user.username}</span> */}
-                          </Link>
-                        )}
+
                         <div className="dropdown-content">
+                          {logingUser.login.token && (
+                            <Link
+                              className={`nav-link ${
+                                location.pathname === "/accountinfo" &&
+                                "navActive"
+                              }`}
+                              to="/accountinfo"
+                            >
+                              My Account
+                              <br />
+                              {/* <span>{logingUser.login.user.username}</span> */}
+                            </Link>
+                          )}
                           {!logingUser.login.token ? (
                             <li onClick={handleShow} className="nav-item">
                               <Link
@@ -253,16 +253,18 @@ function Header() {
                             </li>
                           )}
 
-                          <li className="nav-item">
-                            <Link
-                              className={`nav-link ${
-                                location.pathname === "/admin" && "navActive"
-                              }`}
-                              to="/admin"
-                            >
-                              Admin
-                            </Link>
-                          </li>
+                          {logingUser.login.token && (
+                            <li className="nav-item">
+                              <Link
+                                className={`nav-link ${
+                                  location.pathname === "/admin" && "navActive"
+                                }`}
+                                to="/admin"
+                              >
+                                Admin
+                              </Link>
+                            </li>
+                          )}
                         </div>
                       </div>
                     </li>
@@ -518,7 +520,15 @@ function Header() {
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/shop">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/shop" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/shop"
+                        >
                           Store
                         </Link>
                       </li>
@@ -526,7 +536,7 @@ function Header() {
                         <Link to="/cart">
                           <i class="fa-solid fa-cart-shopping"></i>
                           <span className="count">
-                            {logingUser.cartSlice.products.length}
+                            {logingUser.cartSlice.quantity}
                           </span>
                         </Link>
                       </li>

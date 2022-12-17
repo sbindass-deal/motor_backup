@@ -123,7 +123,6 @@ hr{border-color: #333;}
 .secondNavbar{padding: 6px 0px;}
 .secondNavbar .navbar-nav{width: 100% !important; justify-content: space-between;}
 .secondNavbar .navbar-nav .nav-link{font-size: 14px;}
-
 .navbarToggler{width: 28px; height: 2px; margin: 8px 0px; background: #fff; display: block; position: relative; transition: all 0.5s;}
 .navbarToggler:before{top: -8px;}
 .navbarToggler:after{bottom: -8px;}
@@ -1082,7 +1081,7 @@ header { height: 103px;border: 1px solid #333;}
 .toNv{position: relative;z-index: 1;}
 .secondNavbar .navbar-nav:before { background: #333333; content: ''; position: absolute; width: 75%; height: 100%; right: 0%; z-index: -1; border-top-left-radius: 50px;}
 .secondNavbar .navbar-nav {position: relative;  height: 43px;}
-a.navbar-brand { position: relative;top: 17px;left: -30px;}
+a.navbar-brand { position: relative;top: 17px;}
 
 li.nav-item.afterLogin span{animation: blink 1s linear infinite;}
 @keyframes blink{0%{opacity: 0;}50%{opacity: .5;}100%{opacity: 1;}}
@@ -1483,7 +1482,9 @@ button.addCountIcon.negtv { left: 0;}
 tr.right-align .btn { margin: 0px 5px;}
 tr.right-align { text-align: right;}
 .cartImg { height: 100px; width: 100px; overflow: hidden; display: flex; align-items: center; justify-content: center;}
-.vehicleSub .table td, .vehicleSub .table th { padding: 0.75rem; vertical-align: top; border-bottom: 1px solid #f7931b2b; color: #fff; border-top: 0px solid #dee2e6;}
+ .vehicleSub .table tr { padding: 0.75rem;  vertical-align: top; border-bottom: 1px solid #f7931b2b;  color: #fff; border-top: 0px solid #dee2e6;}    
+.table td, .table th { border-top: 0px solid #dee2e6 !important;}
+.table thead th {vertical-align: bottom; border-bottom: 0px solid #dee2e6;}
 td.actionBtn { text-align: right;}
 td.actionBtn button { background: #f7931b; color: #fff; padding: 5px 10px; border-radius: 100%; border: none; margin: 2px; text-align: right; font-size: small;}
 td.actionBtn { display: flex; justify-content: flex-end; padding: 1rem !important;}
@@ -1494,16 +1495,9 @@ li.nav-item.AddtCrt { top: 10px; position: relative; z-index: 0;}
 .secondNavbar .navbar-nav li.AddtCrt:hover { border-bottom: 0px !important;}
 li.nav-item.AddtCrt span.count { top: -10px; position: relative; background: #dc3545; padding: 2px 7px; border-radius: 50px; font-size: 13px;}
 .dropdown-content { right: -70px;}
-
 ul.navbar-nav { padding-right: 50px;}
-.secondNavbar .navbar-nav { top: 10px;}
-
-
-
-
-
-
-
+.secondNavbar .navbar-nav { top: 0;}
+a.navbar-brand {left: 20px;}
 
 
 

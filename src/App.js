@@ -7,7 +7,7 @@ import "./Assets/css/responsive.css";
 import "./Assets/css/lightMode.css";
 import Layout from "./Components/Pages/Layout";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   connectorsForWallets,
@@ -37,6 +37,7 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { useEffect } from "react";
+import { getTotals } from "./redux/reducers/cartSlice";
 
 const bsc = {
   id: 56,
@@ -96,8 +97,15 @@ const client = createClient({
 const addBodyClass = (className) => document.body.classList.add(className);
 const removeBodyClass = (className) =>
   document.body.classList.remove(className);
+
 function App() {
   const logingUser = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [logingUser.cartSlice.products]);
+
   const className = logingUser.dayAndNightMode.mode ? "light" : "dark";
 
   useEffect(() => {
