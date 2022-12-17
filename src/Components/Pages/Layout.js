@@ -53,6 +53,7 @@ import Cart from "./shopingStore/Cart";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
+import Orders from "./Dashboard/Orders";
 
 function Layout() {
   const product = useSelector((state) => state.cartSlice);
@@ -109,6 +110,8 @@ function Layout() {
           <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/Orders" element={<Orders />} />
+          
         </Routes>
         {product.products.length > 0 && (
           <Link
