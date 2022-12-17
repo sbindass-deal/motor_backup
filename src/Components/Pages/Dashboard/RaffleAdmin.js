@@ -45,6 +45,34 @@ function RaffleAdmin() {
                         <button><i class="fa-solid fa-trash-can"></i></button>  
                       </td>
                     </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Raffle name</td>
+                      <td>Lorem Ipsum is simply dummy text of the printing and..</td>
+                      <td>$5</td>
+                      <td>20</td>
+                      <td>12-01-2023</td>
+                      <td>15-01-2023</td>
+                      <td className='actionBtn'>
+                        <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
+                        <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                        <button><i class="fa-solid fa-trash-can"></i></button>  
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Raffle name</td>
+                      <td>Lorem Ipsum is simply dummy text of the printing and..</td>
+                      <td>$5</td>
+                      <td>20</td>
+                      <td>12-01-2023</td>
+                      <td>15-01-2023</td>
+                      <td className='actionBtn'>
+                        <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
+                        <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                        <button><i class="fa-solid fa-trash-can"></i></button>  
+                      </td>
+                    </tr>
                   
                   
                   </tbody>

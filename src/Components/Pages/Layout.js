@@ -51,6 +51,7 @@ import VehicleSubmission from "./Dashboard/VehicleSubmission";
 import Merchandise from "./Dashboard/Merchandise";
 import Cart from "./shopingStore/Cart";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
+import Orders from "./Dashboard/Orders";
 
 function Layout() {
   return (
@@ -106,6 +107,8 @@ function Layout() {
           <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/Orders" element={<Orders />} />
+          
         </Routes>
         <ToastContainer
           position="bottom-center"
