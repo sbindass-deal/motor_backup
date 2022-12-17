@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import AdminLeftNav from './AdminLeftNav';
 import img_01 from "../../../Assets/images/img_001.webp"
+import axios from "axios";
 function RaffleAdmin() {
+
+  const [showLotary, setShowLotary] = useState([]);
+  useEffect(()=>{
+    fetchLotaryApi();
+  },[])
+
+  const fetchLotaryApi = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + "getLotteryDetail"
+      );
+      if (response.data.data.length > 0) {
+        console.log("refral",showLotary)
+        setShowLotary(response.data.data);
+      } else {
+        console.log("Data is empty");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
         <section className="ptb_80 pt_sm_50">
@@ -15,6 +37,9 @@ function RaffleAdmin() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Raffle Admin</h3>
+              
+                
+             
               <hr />
               <div class="card_Gray table-responsive vehicleSub">
                 <table class="table table-striped">
@@ -31,48 +56,29 @@ function RaffleAdmin() {
                     </tr>
                   </thead>
                   <tbody>
+                    
+              
+                  { showLotary.length > 0 ? showLotary.map((data,index)=>(
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Raffle name</td>
-                      <td>Lorem Ipsum is simply dummy text of the printing and..</td>
-                      <td>$5</td>
-                      <td>20</td>
-                      <td>12-01-2023</td>
-                      <td>15-01-2023</td>
-                      <td className='actionBtn'>
-                        <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
-                        <button><i class="fa-sharp fa-solid fa-plus"></i></button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>  
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Raffle name</td>
-                      <td>Lorem Ipsum is simply dummy text of the printing and..</td>
-                      <td>$5</td>
-                      <td>20</td>
-                      <td>12-01-2023</td>
-                      <td>15-01-2023</td>
-                      <td className='actionBtn'>
-                        <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
-                        <button><i class="fa-sharp fa-solid fa-plus"></i></button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>  
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Raffle name</td>
-                      <td>Lorem Ipsum is simply dummy text of the printing and..</td>
-                      <td>$5</td>
-                      <td>20</td>
-                      <td>12-01-2023</td>
-                      <td>15-01-2023</td>
-                      <td className='actionBtn'>
-                        <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
-                        <button><i class="fa-sharp fa-solid fa-plus"></i></button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>  
-                      </td>
-                    </tr>
+                    <th scope="row">1</th>
+                    <td> {data.name}</td>
+                    <td>{data.description}</td>
+                    <td>{data.price}</td>
+                    <td>20</td>
+                    <td>{data.dealEndDate}</td>
+                    <td>15-01-2023</td>
+                    <td className='actionBtn'>
+                      <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
+                      <button><i class="fa-sharp fa-solid fa-plus"></i></button>
+                      <button><i class="fa-solid fa-trash-can"></i></button>  
+                    </td>
+                  </tr>
+                  )
+                 
+                    
+                    ) : null}
+                    
+                   
                   
                   
                   </tbody>

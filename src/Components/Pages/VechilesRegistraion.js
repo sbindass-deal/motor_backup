@@ -17,6 +17,7 @@ import CookiesSetting from "./CookiesSetting";
 
 import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
+import UploadMImages from "./UploadMImages";
 
 const VechilesRegistraion = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -34,6 +35,7 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
+  const [uploadmultipleImage,setuploadMulipleImage] = useState([]);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -48,6 +50,11 @@ const VechilesRegistraion = () => {
   const closeMoal = () => {
     setModalShow(false);
   };
+  const receiveMultipleImage=(data)=>{
+    console.log("image",JSON.stringify(data));
+    setuploadMulipleImage(data);
+    
+  }
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -128,7 +135,7 @@ const VechilesRegistraion = () => {
     dealership: "",
     soldvechiles: "",
     videolink: "",
-    file: "",
+    file: uploadmultipleImage,
   });
 
   // basic facts
@@ -614,6 +621,7 @@ const VechilesRegistraion = () => {
                       <div className="row">
                         <div className="col-12 pb-3">
                           <h5>What vehicle would you like to sell?</h5>
+                          <UploadMImages multipleimage={receiveMultipleImage} />
                         </div>
                       </div>
                       <div className="row row_gap_5">
@@ -920,7 +928,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="drag-area">
+                            <div className="drag-area d-none">
                               {/* <div className="icon">
                                 <i className="fas fa-cloud-upload-alt"></i>
                               </div> */}
@@ -1345,6 +1353,11 @@ const VechilesRegistraion = () => {
                                 multiple
                                 required
                               />
+
+
+                              <br />
+
+                              <UploadMImages />
                             </div>
                           </div>
                         </div>
