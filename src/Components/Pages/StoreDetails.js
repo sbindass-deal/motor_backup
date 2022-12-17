@@ -2,12 +2,16 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 import car_01 from "../../Assets/images/car_01.jpg";
 
 const StoreDetails = () => {
   const id = useParams().id;
+  
+  const navigate = useNavigate();
   const [vehicle, setVehicle] = useState({});
+  const[payment,setPayment]= useState(false)
   const fetchVehicle = async () => {
     try {
       const response = await axios.get(
@@ -24,6 +28,13 @@ const StoreDetails = () => {
   useEffect(() => {
     fetchVehicle();
   }, [id]);
+  const onToken = (token, addresses) => {
+    console.log(token, addresses);
+    alert("pqay success fully");
+    if (token !== null) {
+      navigate("/successpayment");
+    }
+  };
 
   return (
     <>
@@ -52,7 +63,12 @@ const StoreDetails = () => {
               class="img-fluid rounded-start w-100 "
               alt="details-img"
             /> */}
-            <button className="btn mt-20">Process Payment</button>
+           <StripeCheckout
+                  className="Btn btn mt-20 w-100"
+                  name="Process Payment"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                /> 
           </div>
           <div class="col-12 col-sm-12 col-md-7">
             <div class="card-body">

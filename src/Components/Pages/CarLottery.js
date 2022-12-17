@@ -16,7 +16,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useNavigate } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import CryptoJS from "crypto-js";
-
+import {useParams} from 'react-router-dom';
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
@@ -24,12 +24,17 @@ import StripeCheckout from "react-stripe-checkout";
 import Paymentsuccess from "./Paymentsuccess";
 import Video from "../../Assets/images/Introducing_video.mp4";
 import carraffle from "../../Assets/images/carraffle-bg.png";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 function CarRaffle() {
+  const { id } = useParams();
   const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [encryptedvalue, setEncryptedValue]=useState(null)
   const [show, setShow] = useState(false);
+  const [copied, setCopied]=useState(false);
+  const [newEncryptedvalue,setNewEncryptedValue]=useState(null)
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -43,6 +48,8 @@ function CarRaffle() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [modalShow, setModalShow] = useState(false);
   const [inputLotteryNumber, setInputLotteryNumber] = useState("");
   const [showLotary, setShowLotary] = useState({});
@@ -81,6 +88,20 @@ function CarRaffle() {
   const handleLogin = () => {
     dispatch(showModal());
   };
+
+ 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(
@@ -110,7 +131,16 @@ function CarRaffle() {
     }
   };
 
+  useEffect(()=>{
+    setNewEncryptedValue(window.location.pathname.replace("/carraffle/",""));
+    
+  },[newEncryptedvalue])
+
+
   useEffect(() => {
+
+   
+          
     fetchLotaryApi();
     const value = { earning: 5, total_reffaral: 15, lottery_id: showLotary.id };
     var ciphertext = CryptoJS.AES.encrypt(
@@ -136,6 +166,7 @@ function CarRaffle() {
       .post(process.env.REACT_APP_URL + "addTicket", {
         lottery_id: showLotary.id,
         qty: parseInt(inputLotteryNumber, 10),
+        enc:newEncryptedvalue,
       })
       .then((res) => {
         handleShow();
@@ -424,7 +455,11 @@ function CarRaffle() {
                         onClick={() => {
                           axios.get(`http://3.83.96.16:8000/encrypted/1/20`)
                             .then((res) => {
+                              setIsModalOpen(true)
                               // url/response
+                              console.log("encrypt",res)
+                              setEncryptedValue(res);
+                             
                             })
 
                         }}
@@ -447,6 +482,18 @@ function CarRaffle() {
           </div>
         </div>
       </section>
+
+      <Modal title="Basic Modal" show={isModalOpen} onOk={handleOk} onHide={handleCancel}>
+    <div style={{padding:12}}>
+    
+     {encryptedvalue != null ? <><p  onCopy={false} className="unselectable">{`http://localhost:3000/carraffle/${encryptedvalue.data}`}</p>
+        <CopyToClipboard text={`http://localhost:3000/carraffle/${encryptedvalue.data}`}
+          onCopy={() => setCopied(true)}>
+          <button className="gry_btn w-full">Copy to clipboard with button</button>
+        </CopyToClipboard></>
+        :"null"} 
+        </div>
+      </Modal>
       <Modal
         show={modalShow}
         onHide={closeMoal}
