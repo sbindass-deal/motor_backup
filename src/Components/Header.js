@@ -265,6 +265,19 @@ function Header() {
                               </Link>
                             </li>
                           )}
+                          {logingUser.login.token && (
+                            <li className="nav-item">
+                              <Link
+                                className={`nav-link ${
+                                  location.pathname === "/orders-cart" &&
+                                  "navActive"
+                                }`}
+                                to="/orders-cart"
+                              >
+                                My Orders
+                              </Link>
+                            </li>
+                          )}
                         </div>
                       </div>
                     </li>

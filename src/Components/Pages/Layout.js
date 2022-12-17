@@ -53,6 +53,8 @@ import Cart from "./shopingStore/Cart";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
 import Orders from "./Dashboard/Orders";
 import PaymentProcess from "./PaymentProcess";
+import OrderCart from "./shopingStore/OrderCart";
+import OrderCartDetails from "./shopingStore/OrderCartDetails";
 
 function Layout() {
   return (
@@ -108,7 +110,9 @@ function Layout() {
           <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/Orders" element={<Orders />} />
+          <Route path="Orders" element={<Orders />} />
+          <Route path="orders-cart" element={<OrderCart />} />
+          <Route path="orders-cart/:id" element={<OrderCartDetails />} />
         </Routes>
         <ToastContainer
           position="bottom-center"

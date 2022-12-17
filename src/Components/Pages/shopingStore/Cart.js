@@ -1,9 +1,11 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import axios from "axios";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import { toast } from "react-toastify";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import NotAvailable from "../../UI/NotAvailable";
 import CartItem from "./CartItem";
@@ -14,9 +16,21 @@ const Cart = () => {
   const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const onToken = (token, addresses) => {
     if (token !== null) {
-      navigate("/successpayment");
+      navigate("/orders-cart");
     }
     dispatch(clearCart());
   };
@@ -25,6 +39,24 @@ const Cart = () => {
   };
   const handleShow = () => {
     setShow(true);
+  };
+  const handleOrder = () => {
+    const items = product.products.map((curElem) => {
+      return { id: curElem.id, quantity: curElem.quantity };
+    });
+    axios
+      .post(`${process.env.REACT_APP_URL}addorder`, {
+        order_status: "New",
+        items,
+      })
+      .then((result) => {
+        if (result.status === 200) {
+          handleShow();
+        }
+      })
+      .catch((error) => {
+        notify(error.message);
+      });
   };
 
   return (
@@ -75,7 +107,7 @@ const Cart = () => {
                         <Link to="/shop" className="btn">
                           Continue Shopping
                         </Link>
-                        <button onClick={() => handleShow()} className="btn">
+                        <button onClick={handleOrder} className="btn">
                           Check Out
                         </button>
                       </td>
