@@ -55,25 +55,45 @@ import Orders from "./Dashboard/Orders";
 import PaymentProcess from "./PaymentProcess";
 import OrderCart from "./shopingStore/OrderCart";
 import OrderCartDetails from "./shopingStore/OrderCartDetails";
+import { useSelector } from "react-redux";
 
-function Layout() {
+const Layout = () => {
+  const logingUser = useSelector((state) => state);
+
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="listing" element={<MyListings />} />
+          {logingUser.login.token && (
+            <>
+              <Route path="cart" element={<Cart />} />
+              <Route
+                path="vehicle-submission"
+                element={<VehicleSubmission />}
+              />
+              <Route path="raffleadmin" element={<RaffleAdmin />} />
+              <Route path="merchandise" element={<Merchandise />} />
+              <Route path="Orders" element={<Orders />} />
+              <Route path="blog" element={<Blog />} />
+              <Route path="accountinfo" element={<AccountInfo />} />
+              <Route path="listing" element={<MyListings />} />
+              <Route path="bidswins" element={<MyBidsWins />} />
+              <Route path="myshipments" element={<MyShipments />} />
+              <Route path="orders-cart" element={<OrderCart />} />
+              <Route path="orders-cart/:id" element={<OrderCartDetails />} />
+            </>
+          )}
           <Route path="notification" element={<Notifications />} />
           <Route path="biding" element={<MyBidsWins />} />
           <Route path="works" element={<HowShibnobiMotorWorks />} />
-          <Route path="account" element={<AccountInfo />} />
+          {/* <Route path="account" element={<AccountInfo />} /> */}
           <Route path="gallary" element={<PhotoGallery />} />
           <Route path="submit" element={<SubmitaVehicle />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
-          <Route path="vehicle-submission" element={<VehicleSubmission />} />
           <Route
             path="carraffle/refferallink/:id"
             element={<ReffarallinkFile />}
@@ -86,14 +106,8 @@ function Layout() {
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />
-          <Route path="merchandise" element={<Merchandise />} />
-          <Route path="accountinfo" element={<AccountInfo />} />
           <Route path="notifications" element={<Notifications />} />
-          <Route path="raffleadmin" element={<RaffleAdmin />} />
-          <Route path="blog" element={<Blog />} />
           <Route path="listings" element={<MyListings />} />
-          <Route path="bidswins" element={<MyBidsWins />} />
-          <Route path="myshipments" element={<MyShipments />} />
           <Route path="carraffle" element={<CarRaffle />} />
           <Route path="carraffle/:coupon" element={<CarRaffle />} />
           <Route path="detail/:id" element={<Detail />} />
@@ -107,12 +121,8 @@ function Layout() {
           <Route path="charity" element={<Charity />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="cart" element={<Cart />} />
+          {/* <Route path="admin" element={<Admin />} /> */}
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="Orders" element={<Orders />} />
-          <Route path="orders-cart" element={<OrderCart />} />
-          <Route path="orders-cart/:id" element={<OrderCartDetails />} />
         </Routes>
         <ToastContainer
           position="bottom-center"
@@ -130,6 +140,6 @@ function Layout() {
       </BrowserRouter>
     </>
   );
-}
+};
 
 export default Layout;

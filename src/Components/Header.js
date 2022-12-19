@@ -257,9 +257,10 @@ function Header() {
                             <li className="nav-item">
                               <Link
                                 className={`nav-link ${
-                                  location.pathname === "/admin" && "navActive"
+                                  location.pathname === "/vehicle-submission" &&
+                                  "navActive"
                                 }`}
-                                to="/admin"
+                                to="/vehicle-submission"
                               >
                                 Admin
                               </Link>
@@ -545,14 +546,16 @@ function Header() {
                           Store
                         </Link>
                       </li>
-                      <li className="nav-item AddtCrt">
-                        <Link to="/cart">
-                          <i class="fa-solid fa-cart-shopping"></i>
-                          <span className="count">
-                            {logingUser.cartSlice.quantity}
-                          </span>
-                        </Link>
-                      </li>
+                      {logingUser.login.token && (
+                        <li className="nav-item AddtCrt">
+                          <Link to="/cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span className="count">
+                              {logingUser.cartSlice.quantity}
+                            </span>
+                          </Link>
+                        </li>
+                      )}
 
                       <li className="nav-item dropdown d-none">
                         <Link
