@@ -29,10 +29,9 @@ const Cart = () => {
     });
 
   const onToken = (token, addresses) => {
-    if (token !== null) {
-      navigate("/orders-cart");
-    }
+    navigate("/orders-cart");
     dispatch(clearCart());
+    notify("Order place successfully");
   };
   const handleClose = () => {
     setShow(false);
@@ -99,7 +98,10 @@ const Cart = () => {
                     <tr className="right-align">
                       <td colSpan="5">
                         <button
-                          onClick={() => dispatch(clearCart())}
+                          onClick={() => {
+                            dispatch(clearCart());
+                            notify("Cart Clear Successfully!");
+                          }}
                           className="btn bg-danger"
                         >
                           Clear Cart

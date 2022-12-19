@@ -56,6 +56,7 @@ import PaymentProcess from "./PaymentProcess";
 import OrderCart from "./shopingStore/OrderCart";
 import OrderCartDetails from "./shopingStore/OrderCartDetails";
 import { useSelector } from "react-redux";
+import ScrollTop from "../UI/ScrollTop";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -63,6 +64,7 @@ const Layout = () => {
   return (
     <>
       <BrowserRouter>
+        <ScrollTop />
         <Header />
         <Routes>
           <Route index element={<Home />} />

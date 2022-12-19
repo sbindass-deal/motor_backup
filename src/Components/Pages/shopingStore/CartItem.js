@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import img_01 from "../../../Assets/images/img-1.webp";
 import {
   decreaseCart,
@@ -9,6 +10,18 @@ import {
 
 const CartItem = ({ price, title, image, quantity, id }) => {
   const dispatch = useDispatch();
+  const notify = (val) =>
+    toast.warn(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   return (
     <>
       <tr>
@@ -26,7 +39,10 @@ const CartItem = ({ price, title, image, quantity, id }) => {
             Color: <span>Red</span>
           </p>
           <button
-            onClick={() => dispatch(removeFromCart(id))}
+            onClick={() => {
+              dispatch(removeFromCart(id));
+              notify("Item Removed Successfully");
+            }}
             className="removeBtn"
           >
             Remove

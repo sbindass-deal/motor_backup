@@ -30,7 +30,7 @@ function AccountInfo() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Basic Info</h3>
+              <h3>Account Info</h3>
               <hr />
               <ul className="labelList_">
                 <li>

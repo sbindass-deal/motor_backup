@@ -25,6 +25,7 @@ import Paymentsuccess from "./Paymentsuccess";
 import Video from "../../Assets/images/Introducing_video.mp4";
 import carraffle from "../../Assets/images/carraffle-bg.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "react-toastify";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -77,6 +78,18 @@ function CarRaffle() {
       clearInterval(interval);
     };
   }, [days, hours, minutes, seconds]);
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const closeMoal = () => {
     setModalShow(false);
@@ -390,7 +403,7 @@ function CarRaffle() {
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}
-                        <div className="MT_Count">10</div>
+                        {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
                           Total Amount $ &nbsp;
                           {showLotary.price &&
@@ -478,7 +491,13 @@ function CarRaffle() {
                 text={`http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle/${encryptedvalue.data}`}
                 onCopy={() => setCopied(true)}
               >
-                <button className="gry_btn w-full">
+                <button
+                  onClick={() => {
+                    notify("Copied successfully!");
+                    setIsModalOpen(false);
+                  }}
+                  className="gry_btn w-full"
+                >
                   Copy to clipboard with button
                 </button>
               </CopyToClipboard>

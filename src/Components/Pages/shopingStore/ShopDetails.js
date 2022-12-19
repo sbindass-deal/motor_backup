@@ -11,11 +11,24 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import NotAvailable from "../../UI/NotAvailable";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../redux/reducers/cartSlice";
+import { toast } from "react-toastify";
 const ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   useEffect(() => {
     const fetchProduct = async () => {
       setLoading(true);
@@ -37,6 +50,7 @@ const ShopDetails = () => {
 
   const handleProduct = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));
+    notify("Item Added Successfully");
   };
 
   return (

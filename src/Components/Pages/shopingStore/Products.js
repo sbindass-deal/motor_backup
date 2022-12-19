@@ -1,10 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import img_01 from "../../../Assets/images/img-1.webp";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 
 const Products = ({ id, price, image, title, curElem }) => {
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const dispatch = useDispatch();
   return (
     <>
@@ -24,9 +37,10 @@ const Products = ({ id, price, image, title, curElem }) => {
               <li class="price__">${price}</li>
               <li class="">
                 <button
-                  onClick={() =>
-                    dispatch(addProduct({ ...curElem, quantity: 1 }))
-                  }
+                  onClick={() => {
+                    dispatch(addProduct({ ...curElem, quantity: 1 }));
+                    notify("Item Added Successfully");
+                  }}
                   className="removeBtn"
                 >
                   Add
