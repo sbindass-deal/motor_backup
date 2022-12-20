@@ -113,7 +113,7 @@ function Auctionlive() {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i className="fa-solid fa-heart mr-2"></i> Watched
+                    <i className="fa-solid fa-heart mr-2"></i>
                   </button>
                 </li>
                 <li className="d-flex">
@@ -136,7 +136,7 @@ function Auctionlive() {
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
                 </li>
-                <li className="">
+                {/* <li className="">
                   <select className="post_select">
                     <option>Ending Soonest</option>
                     <option>Bid: Low to High</option>
@@ -144,7 +144,7 @@ function Auctionlive() {
                     <option>Ending Latest</option>
                     <option>Closest to postal code...</option>
                   </select>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

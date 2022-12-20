@@ -466,7 +466,9 @@ function CarRaffle() {
                         type="button"
                         onClick={() => {
                           axios
-                            .get(`http://3.83.96.16:8000/encrypted/1/20`)
+                            .get(
+                              `http://3.83.96.16:8000/encrypted/${showLotary.id}/20`
+                            )
                             .then((res) => {
                               setIsModalOpen(true);
                               // url/response

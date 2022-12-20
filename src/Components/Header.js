@@ -13,10 +13,26 @@ import { authToken, showModal, showModalClose } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
+import axios from "axios";
+import { useEffect } from "react";
+
+const data = [
+  { id: 1, name: "Sohan", desc: "sohan is a good boy" },
+  { id: 2, name: "Mohan", desc: "mohan is a good boy" },
+  { id: 3, name: "Lalu", desc: "lalu is a good boy" },
+  { id: 4, name: "Modi", desc: "modi is a good boy" },
+  { id: 5, name: "Sohan", desc: "sohan is a good boy" },
+  { id: 6, name: "Sohan", desc: "sohan is a good boy" },
+  { id: 7, name: "Sohan", desc: "sohan is a good boy" },
+  { id: 8, name: "Sohan", desc: "sohan is a good boy" },
+];
 
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState();
+  const [searchData, setSearchData] = useState(data);
+
   const notify = (val) =>
     toast.warn(val, {
       position: "bottom-center",
@@ -35,6 +51,27 @@ function Header() {
   const logingUser = useSelector((state) => state);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
+
+  const featchSearchApi = async (se) => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + `globalSearch/${searchValue}`
+      );
+      if (searchValue.trim().length <= 0) {
+        setSearchData(data);
+      } else {
+        setSearchData(response.data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSearch = (e) => {
+    const Value = e.target.value;
+    setSearchValue(Value);
+    featchSearchApi(Value);
+  };
 
   const handleClose = () => {
     dispatch(showModalClose());
@@ -113,13 +150,15 @@ function Header() {
                           <input
                             type="text"
                             name="search"
+                            value={searchValue}
+                            onChange={handleSearch}
                             onBlur={handleBlur}
                             onFocus={handleFocus}
                             autoComplete="off"
                             placeholder="Search..."
                             required
                           />
-                          <button type="">
+                          <button type="submit">
                             <i className="fa-solid fa-magnifying-glass"></i>
                           </button>
                         </form>
@@ -599,13 +638,14 @@ function Header() {
       />
       {sowAutoCompleate && (
         <div className="autoCom">
-          <a href="#" className="searchList">
-            <p className="title">Nikhil</p>
-            <p className="dec">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text.
-            </p>
-          </a>
+          {searchData.map((curElem) => {
+            return (
+              <a href="#" className="row searchList">
+                <p className="title">{curElem.name}</p>
+                <p className="dec">{curElem.desc}</p>
+              </a>
+            );
+          })}
         </div>
       )}
     </>

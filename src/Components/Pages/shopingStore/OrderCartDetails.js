@@ -55,9 +55,9 @@ const OrderCartDetails = () => {
                         </td>
                         <td>{2002342517}</td>
                         <td>xl</td>
-                        <td>2</td>
-                        <td>100</td>
-                        <td>$1,198,50</td>
+                        <td>{curElem.item_quantity}</td>
+                        <td>{curElem.item_price}</td>
+                        <td>${curElem.item_quantity * curElem.item_price}</td>
                       </tr>
                     );
                   })}

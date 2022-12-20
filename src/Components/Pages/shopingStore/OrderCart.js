@@ -46,7 +46,7 @@ const OrderCart = () => {
                     <th></th>
                     <th>Ourder Number</th>
                     <th>Order Date</th>
-                    <th>No. of Items</th>
+                    {/* <th>No. of Items</th> */}
                     <th>Order Status</th>
                     <th>Total Value</th>
                     <th>Action</th>
@@ -62,7 +62,7 @@ const OrderCart = () => {
                         <td>
                           {new Date(curElem.created_at).toLocaleDateString()}
                         </td>
-                        <td>2</td>
+                        {/* <td>2</td> */}
                         <td>Shipped</td>
                         <td>${curElem.amount}</td>
                         <td>
