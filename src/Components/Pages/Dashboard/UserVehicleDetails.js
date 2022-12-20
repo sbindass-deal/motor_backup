@@ -219,7 +219,7 @@ const UserVehicleDetails = () => {
                   <div className="col-12 col-sm-6 pt-4">
                     <h5>&nbsp;</h5>
                   </div>
-                  <button className="btn btn-warning">Approve</button>
+                  {/* <button className="btn btn-warning">Approve</button> */}
                 </div>
               </div>
             </div>

@@ -90,7 +90,7 @@ function Store() {
                     placeholder="Search for a make or model"
                   />
                 </li>
-                <li className="">
+                {/* <li className="">
                   <button
                     onClick={handleShow}
                     type="button"
@@ -100,8 +100,8 @@ function Store() {
                   >
                     <i className="fa-solid fa-filter mr-2"></i> Filters
                   </button>
-                </li>
-                <li className="">
+                </li> */}
+                {/* <li className="">
                   <select className="post_select">
                     <option selected disabled value="">
                       Choose...
@@ -111,7 +111,7 @@ function Store() {
                     <option>Price:High to low</option>
                     <option>Best Deals</option>
                   </select>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
