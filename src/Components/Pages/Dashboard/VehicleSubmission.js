@@ -89,9 +89,9 @@ function VehicleSubmission() {
                             <td>12:12:54</td>
                             <td>{data.year}</td>
                             <td>{data.make}</td>
-                            <td className="actionBtn">
+                            <td className="actionBtn vs">
                               {data.approved === "0" && (
-                                <button onClick={() => handleApprove(data.id)}>
+                                <button className="green" onClick={() => handleApprove(data.id)}>
                                   {/* <i class="fa-solid fa-pencil"></i> */}
                                   Approve
                                 </button>
