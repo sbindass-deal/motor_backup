@@ -1443,7 +1443,7 @@ table.tikTable tr td:first-child { color: #f7931b; position: relative;}
 .carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
 video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
-.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 36%;  top: 60px;  padding: 10px; z-index: 1;}
+.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: 60px;  padding: 10px; z-index: 1;}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
@@ -1498,11 +1498,8 @@ li.nav-item.AddtCrt span.count { top: -10px; position: relative; background: #dc
 ul.navbar-nav { padding-right: 50px;}
 .secondNavbar .navbar-nav { top: 0;}
 a.navbar-brand {left: 20px;}
-
-
-
-
-
-a.btn.btn-danger {
-  display: none;
-}
+td.actionBtn.vs button { border-radius: 5px;}
+td.actionBtn.vs .btn { padding: 6px 14px; font-size: 12px; font-weight: 100;border-radius: 5px;text-transform: unset; height: 30px; margin-top: 2px;}
+button.green { background-color: green !important;}
+a.btn.btn-danger { display: none;}
+h5.cardTitle { padding-top: 15px;}
