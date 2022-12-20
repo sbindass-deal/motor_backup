@@ -7,6 +7,8 @@ import car_04 from "../../Assets/images/car_04.jpg";
 import img_05 from "../../Assets/images/img_05.jpg";
 import img_06 from "../../Assets/images/img_06.jpg";
 import addBanner from "../../Assets/images/Mask-group.png";
+import ads_car_1 from "../../Assets/images/raffle-1.jpg";
+import ads_car_2 from "../../Assets/images/home-raffel.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -660,16 +662,31 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <section className="ptb_80 blogSection">
+     
+      <section className="ptb_80 blogPostText rf">
         <div className="container">
-          <div className="row">
-            <div className="col-12 text-center pb_30">
-              <img src={addBanner} className="addBanner" />
-            </div>
-          </div>
-        </div>
+        
+          <div className="row">  
+          <a href="/carraffle" className="full">
+              <div className="col-lg-6 col-sm-12 pb_30 rafSect">
+                <h2>Win this car !</h2>
+                <p>Win the car of your dreams</p>
+                <div className="price_">
+                  <p>Current BID: $126,888</p>
+                  <p>Ends In: 5 Days</p>
+                </div>
+                <button className="btn">Buy Tickets</button>
+              </div>
+              <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
+                <img src={ads_car_2} className="addBanner" />
+              </div> 
+              </a> 
+          </div >
+          
+        
+        </div>      
       </section>
+      
     </div>
   );
 }

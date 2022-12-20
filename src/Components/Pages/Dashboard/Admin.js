@@ -18,7 +18,7 @@ const Admin = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
-              <div className="card_Gray mb-5 mb-md-0">
+              <div className="card_Gray mb-5 mb-md-0 divSticky">
                 <AdminLeftNav/>
               </div>
             </div>

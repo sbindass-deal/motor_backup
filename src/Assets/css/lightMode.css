@@ -68,3 +68,5 @@ body.light{  background-color: #fff; color: #000;}
 }
 .light .autoCom { background: #ececec; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: 60px;  padding: 10px; z-index: 1;}
 .light .autoCom p.title { color: #f7931b;}
+.light .rafSect { background: #e0e0e0;
+}

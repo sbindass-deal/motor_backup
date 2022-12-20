@@ -1447,7 +1447,7 @@ video#myVideo { width: 100%;}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
-.imgIco img {  width: 41%;  text-align: center;}
+.imgIco img {  width: 56%;  text-align: center;}
 .imgIco {  width: 70px;  height: 70px;  background: #f7931b;  border-radius: 100px;  text-align: center;  display: flex;  align-items: center;  justify-content: center;  margin: 0 auto;}
 .iconSecT h5 { font-size: 14px; padding-top: 10px;}
 .iconSecT p { font-size: 17px; color: #f7931b; font-weight: 700;}
@@ -1503,3 +1503,36 @@ td.actionBtn.vs .btn { padding: 6px 14px; font-size: 12px; font-weight: 100;bord
 button.green { background-color: green !important;}
 a.btn.btn-danger { display: none;}
 h5.cardTitle { padding-top: 15px;}
+.rafSect p {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.rafSect .price_ p {
+  padding-right: 14px;
+}
+.rafSect .price_ {
+  display: flex;
+  margin-bottom: 30px;
+}
+.carBg { background-color: #f7931a;
+}
+.carBg img {
+  width: 70%;
+  padding: 40px;
+  position: relative;
+  top: 10px;
+  background-color: #f7931a;
+}
+.rafSect {
+  background: #222;
+  padding: 20px 50px;
+}
+
+.row.row_gap_5.ssss {
+  width: 71%;
+  margin: 0 auto;
+}
+a.full {
+  width: 100%;
+  display: flex;
+}

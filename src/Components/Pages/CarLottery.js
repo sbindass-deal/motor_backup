@@ -5,8 +5,10 @@ import ads_car_2 from "../../Assets/images/raffle-5.jpg";
 import ads_car_3 from "../../Assets/images/raffle-6.jpg";
 
 import ticket from "../../Assets/images/ticket-solid.svg";
-import ticketSocket from "../../Assets/images/clipboard-list-solid.svg";
-import weekly from "../../Assets/images/calendar-week-solid.svg";
+import ticketSocket from "../../Assets/images/doller-bundal.png";
+import weekly from "../../Assets/images/calander.png";
+import reword from "../../Assets/images/reword.png";
+
 
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal, Placeholder } from "react-bootstrap";
@@ -332,35 +334,35 @@ function CarRaffle() {
                     <div className="imgIco">
                       <img src={ticket} />
                     </div>
-                    <h5>Price at just</h5>
+                    <h5>Price at<br/> just</h5>
                     <p>$5</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={ticketSocket} />
                     </div>
-                    <h5>Total available</h5>
+                    <h5>Total<br/> available</h5>
                     <p>100</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={weekly} />
                     </div>
-                    <h5>Last date to purchase ticket</h5>
+                    <h5>Last date to <br/>purchase ticket</h5>
                     <p>02-01-2023</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={weekly} />
+                      <img src={reword} />
                     </div>
-                    <h5>Winner to be announced on </h5>
+                    <h5>Winner to be<br/> announced on </h5>
                     <p>02-01-2023</p>
                   </div>
                 </div>
               </div>
 
               <div className="card_Gray2">
-                <div className="row row_gap_5">
+                <div className="row row_gap_5 ssss">
                   {/* <div className="col-12 mb-3">
                     <h5>
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery

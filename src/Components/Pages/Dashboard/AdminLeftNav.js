@@ -5,7 +5,7 @@ import { Link,  useLocation, useNavigate } from "react-router-dom";
 function AdminLeftNav() {
     const location = useLocation();
     return (
-    <div>
+    <div className=''>
        <h5>My Admin</h5>
             <hr />
         <ul class="sideBar__">

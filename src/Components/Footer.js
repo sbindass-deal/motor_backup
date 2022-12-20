@@ -95,8 +95,8 @@ function Footer() {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
-                <Link to="/privacy">PRIVACY POLICY</Link>
-                <Link to="/termsandconditions">TERMS AND CONDITIONS</Link>
+                <Link to="/privacy">Privacy policy</Link>
+                <Link to="/termsandconditions">Terms and conditions</Link>
                 <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">

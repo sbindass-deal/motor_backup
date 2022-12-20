@@ -127,6 +127,10 @@ h5 {
 	button.sunMoonBtn {position: absolute;z-index: 999;border: 1px solid;background: transparent;padding: 7px;border-radius: 5px;border: none;top: -44px;left: 76%; }
 	.light button.sunMoonBtn {filter: brightness(0.5);}
 	.post-excerpt {padding: 0px 10px;text-align: justify; }
+	section.ptb_80.blogPostText.rf {text-align: center;}
+	.rafSect .price_ {justify-content: center;}
+	a.full {width: 100%; display: block;}
+	.blogPostText .btn {margin-top: 10px;margin-bottom: 20px;}
 }
 
 @media (max-width: 575px) {
