@@ -234,11 +234,16 @@ function Auctionlive() {
                           <li>
                             {/* <span>{getEndDate(curElem.created_at)} </span> */}
                             {/* <span>{curElem.EndTime}</span> */}
-
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                            {curElem.approved === "0" && (
+                              <label>Upcoming Auction</label>
+                            )}
+                            {curElem.approved === "1" && (
+                              <label>Auction is live now</label>
+                            )}
+                            {/* {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               new Date().getTime() >
                             900000 ? (
-                              <label>Upcomming Auction</label>
+                              <label>Upcoming Auction</label>
                             ) : parseInt(
                                 new Date(curElem.EndTime).getTime(),
                                 10
@@ -254,7 +259,10 @@ function Auctionlive() {
                               <label>Auction is live now</label>
                             ) : (
                               <label>Sold</label>
-                            )}
+                            )} */}
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              new Date().getTime() <=
+                              0 && <label>Sold</label>}
                           </li>
                         </ul>
                       </div>

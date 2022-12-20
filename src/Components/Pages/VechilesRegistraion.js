@@ -35,7 +35,7 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
-  const [uploadmultipleImage,setuploadMulipleImage] = useState([]);
+  const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -50,11 +50,10 @@ const VechilesRegistraion = () => {
   const closeMoal = () => {
     setModalShow(false);
   };
-  const receiveMultipleImage=(data)=>{
-    console.log("image",JSON.stringify(data));
+  const receiveMultipleImage = (data) => {
+    console.log("image", JSON.stringify(data));
     setuploadMulipleImage(data);
-    
-  }
+  };
   const handleAccessoriesChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -143,7 +142,7 @@ const VechilesRegistraion = () => {
   const [basicfact, setbasicfact] = useState({
     vin: "",
     displayInAuction: "",
-    auctionType:"",
+    auctionType: "",
     vechilesrace: "",
     ultiumdrive: "",
     Interstellar: "",
@@ -356,7 +355,7 @@ const VechilesRegistraion = () => {
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         vin,
         displayInAuction: displayInAuction,
-        // auctionType, // we have to add in db i have to suil sir
+        auctionType,
         km: odometer,
         kmacc: accurateField,
         odmeter: odometer,
@@ -428,7 +427,7 @@ const VechilesRegistraion = () => {
         setbasicfact({
           vin: "",
           displayInAuction: "",
-          auctionType:"",
+          auctionType: "",
           vechilesrace: "",
           ultiumdrive: "",
           Interstellar: "",
@@ -1353,7 +1352,6 @@ const VechilesRegistraion = () => {
                                 multiple
                                 required
                               />
-
 
                               <br />
 
