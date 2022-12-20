@@ -57,6 +57,7 @@ import OrderCart from "./shopingStore/OrderCart";
 import OrderCartDetails from "./shopingStore/OrderCartDetails";
 import { useSelector } from "react-redux";
 import ScrollTop from "../UI/ScrollTop";
+import UserVehicleDetails from "./Dashboard/UserVehicleDetails";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -85,6 +86,10 @@ const Layout = () => {
               <Route path="myshipments" element={<MyShipments />} />
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
+              <Route
+                path="vehicle-submission/:id"
+                element={<UserVehicleDetails />}
+              />
             </>
           )}
           <Route path="notification" element={<Notifications />} />

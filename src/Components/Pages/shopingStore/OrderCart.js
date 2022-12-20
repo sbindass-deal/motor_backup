@@ -10,7 +10,6 @@ import SmallSpinner from "../../UI/SmallSpinner";
 const OrderCart = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
-  const id = 1;
   useEffect(() => {
     const fetchOrders = async () => {
       setLoading(true);
@@ -59,18 +58,23 @@ const OrderCart = () => {
                         <td className="productImg">
                           <img src={img_01} />
                         </td>
-                        <td>2002342517</td>
-                        <td>14-02-2023</td>
+                        <td>{curElem.order_id}</td>
+                        <td>
+                          {new Date(curElem.created_at).toLocaleDateString()}
+                        </td>
                         <td>2</td>
                         <td>Shipped</td>
-                        <td>$1,198,50</td>
+                        <td>${curElem.amount}</td>
                         <td>
                           <button className="removeBtn" href="">
                             Cancel
                           </button>
                         </td>
                         <td>
-                          <Link to={`/orders-cart/${id}`} className="btn">
+                          <Link
+                            to={`/orders-cart/${curElem.order_id}`}
+                            className="btn"
+                          >
                             View
                           </Link>
                         </td>

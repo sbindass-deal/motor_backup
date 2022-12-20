@@ -32,6 +32,7 @@ function CarRaffle() {
   const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [reward, setReward] = useState([]);
   const [encryptedvalue, setEncryptedValue] = useState(null);
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -138,6 +139,10 @@ function CarRaffle() {
       } else {
         console.log("Data is empty");
       }
+      const filteredData = response.data.data.filter(
+        (item) => item.reward === "1"
+      );
+      setReward(filteredData);
     } catch (err) {
       console.log(err);
     }
@@ -327,28 +332,28 @@ function CarRaffle() {
                     <div className="imgIco">
                       <img src={ticket} />
                     </div>
-                    <h5>Price of 1 ticket</h5>
+                    <h5>Price at just</h5>
                     <p>$5</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={ticketSocket} />
                     </div>
-                    <h5>Total ticket stock</h5>
+                    <h5>Total available</h5>
                     <p>100</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={weekly} />
                     </div>
-                    <h5>Deadline to purchase ticket</h5>
+                    <h5>Last date to purchase ticket</h5>
                     <p>02-01-2023</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={weekly} />
                     </div>
-                    <h5>Lucky draw date</h5>
+                    <h5>Winner to be announced on </h5>
                     <p>02-01-2023</p>
                   </div>
                 </div>
@@ -413,6 +418,20 @@ function CarRaffle() {
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
+                  <div className="cardBorder">
+                    <h6>My Reward - {reward.length}</h6>
+
+                    <div className="myTicketRow">
+                      <div className="myTicketCol">
+                        {/* <div className="MT_ic">
+                          <img src={bi_ticket} />
+                        </div> */}
+                        {/* <div className="MT_Count">10</div> */}
+                      </div>
+                      {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
+                    </div>
+                  </div>
+
                   {/* 
                   <h6>My Winnings</h6>
                   <div className="myTicketCol">

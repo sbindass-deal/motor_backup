@@ -68,9 +68,9 @@ function RaffleAdmin() {
                     <td>{data.dealEndDate}</td>
                     <td>15-01-2023</td>
                     <td className='actionBtn'>
-                      <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
+                      {/* <button data-toggle="modal" data-target="#FiltersModal"><i class="fa-solid fa-pencil"></i></button>
                       <button><i class="fa-sharp fa-solid fa-plus"></i></button>
-                      <button><i class="fa-solid fa-trash-can"></i></button>  
+                      <button><i class="fa-solid fa-trash-can"></i></button>   */}
                     </td>
                   </tr>
                   )
