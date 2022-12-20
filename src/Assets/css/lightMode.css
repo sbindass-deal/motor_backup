@@ -35,7 +35,11 @@ body.light{  background-color: #fff; color: #000;}
 .light .searchBody { background: #fff;}
 .light .searchAuto { background: #f0f0f0;}
 .light .searchAuto:hover { background: #fff; border-bottom: 1px solid #ffc107; cursor: pointer;}
-.light .searchForm input { border-bottom: 1px #ffd6a5 solid; background-color: #ffff; color: #000;}
+.light .searchForm input {
+    border-bottom: 1px #fff solid;
+    background-color: #0000;
+    color: #fff;
+}
 .light .searchForm button { color: #000;}
 .light .navbarToggler:before,.light .navbarToggler:after {  background: #000;}
 .light .navbar-toggler.collapsed .navbarToggler { background-color: #000;}
