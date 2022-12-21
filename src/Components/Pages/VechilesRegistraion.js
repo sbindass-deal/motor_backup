@@ -17,7 +17,7 @@ import CookiesSetting from "./CookiesSetting";
 
 import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
-import UploadMImages from "./UploadMImages";
+// import UploadMImages from "./UploadMImages";
 
 const VechilesRegistraion = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -397,7 +397,7 @@ const VechilesRegistraion = () => {
         fuel,
         EndTime: EndDateTime.toString(),
         phone,
-        approved: 1,
+        approved: `${displayInAuction === "No" ? "1" : "0"}`,
         sold: 1,
       })
       .then((result) => {
@@ -620,7 +620,7 @@ const VechilesRegistraion = () => {
                       <div className="row">
                         <div className="col-12 pb-3">
                           <h5>What vehicle would you like to sell?</h5>
-                          <UploadMImages multipleimage={receiveMultipleImage} />
+                          {/* <UploadMImages multipleimage={receiveMultipleImage} /> */}
                         </div>
                       </div>
                       <div className="row row_gap_5">
@@ -927,7 +927,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="drag-area d-none">
+                            <div className="drag-area">
                               {/* <div className="icon">
                                 <i className="fas fa-cloud-upload-alt"></i>
                               </div> */}
@@ -1355,7 +1355,7 @@ const VechilesRegistraion = () => {
 
                               <br />
 
-                              <UploadMImages />
+                              {/* <UploadMImages /> */}
                             </div>
                           </div>
                         </div>

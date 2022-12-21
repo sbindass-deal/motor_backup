@@ -260,9 +260,9 @@ function Auctionlive() {
                             ) : (
                               <label>Sold</label>
                             )} */}
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                            {/* {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               new Date().getTime() <=
-                              0 && <label>Sold</label>}
+                              0 && <label>Sold</label>} */}
                           </li>
                         </ul>
                       </div>

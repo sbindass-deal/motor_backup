@@ -72,14 +72,6 @@ const Layout = () => {
           {logingUser.login.token && (
             <>
               <Route path="cart" element={<Cart />} />
-              <Route
-                path="vehicle-submission"
-                element={<VehicleSubmission />}
-              />
-              <Route path="raffleadmin" element={<RaffleAdmin />} />
-              <Route path="merchandise" element={<Merchandise />} />
-              <Route path="Orders" element={<Orders />} />
-              <Route path="blog" element={<Blog />} />
               <Route path="accountinfo" element={<AccountInfo />} />
               <Route path="listing" element={<MyListings />} />
               <Route path="bidswins" element={<MyBidsWins />} />
@@ -90,6 +82,19 @@ const Layout = () => {
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}
               />
+              {logingUser.login.admin && (
+                <>
+                  <Route
+                    path="vehicle-submission"
+                    element={<VehicleSubmission />}
+                  />
+                  <Route path="admin" element={<VehicleSubmission />} />
+                  <Route path="raffleadmin" element={<RaffleAdmin />} />
+                  <Route path="merchandise" element={<Merchandise />} />
+                  <Route path="Orders" element={<Orders />} />
+                  <Route path="blog" element={<Blog />} />
+                </>
+              )}
             </>
           )}
           <Route path="notification" element={<Notifications />} />
@@ -128,7 +133,6 @@ const Layout = () => {
           <Route path="charity" element={<Charity />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
-          {/* <Route path="admin" element={<Admin />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer

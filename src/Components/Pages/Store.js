@@ -185,7 +185,7 @@ function Store() {
                               <td>{curElem.fuel}</td>
                             </tr>
                             <tr>
-                              <td>Saller</td>
+                              <td>Seller</td>
                               <td>{curElem.name}</td>
                             </tr>
                           </tbody>

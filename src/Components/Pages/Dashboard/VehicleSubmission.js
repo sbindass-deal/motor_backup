@@ -96,15 +96,15 @@ function VehicleSubmission() {
                                   Approve
                                 </button>
                               )}
-                              {data.approved === "1" && (
+                              {/* {data.approved === "1" && (
                                 <button
                                   className="bg-danger"
                                   onClick={() => handleReject(data.id)}
                                 >
-                                  {/* <i class="fa-solid fa-pencil"></i> */}
+                                  <i class="fa-solid fa-pencil"></i>
                                   Reject
                                 </button>
-                              )}
+                              )} */}
                               {/* <button>
                                 <i class="fa-sharp fa-solid fa-plus"></i>
                               </button> */}

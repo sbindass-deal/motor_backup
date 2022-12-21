@@ -31,7 +31,7 @@ function MyAccountLeftNav() {
             className={` ${location.pathname === "/listing" ? "active" : ""} `}
             to="/listing"
           >
-            My Listings
+            Listings
           </Link>
         </li>
         <li>
@@ -39,7 +39,7 @@ function MyAccountLeftNav() {
             className={` ${location.pathname === "/bidswins" ? "active" : ""} `}
             to="/bidswins"
           >
-            My Bids & Wins
+            Bids & Wins
           </Link>
         </li>
         <li>
@@ -49,7 +49,7 @@ function MyAccountLeftNav() {
             } `}
             to="/myshipments"
           >
-            My Shipments
+            Shipments
           </Link>
         </li>
       </ul>
