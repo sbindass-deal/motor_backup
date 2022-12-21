@@ -657,11 +657,11 @@ const VechilesRegistraion = () => {
                               <option value="2017">2017</option>
                               <option value="2016">2016</option>
                               <option value="2015">2015</option>
-                              <option value="2019">2014</option>
-                              <option value="2018">2013</option>
-                              <option value="2017">2012</option>
-                              <option value="2016">2011</option>
-                              <option value="2015">2010</option>
+                              <option value="2014">2014</option>
+                              <option value="2013">2013</option>
+                              <option value="2012">2012</option>
+                              <option value="2011">2011</option>
+                              <option value="2010">2010</option>
                             </select>
                           </div>
                         </div>
@@ -722,7 +722,7 @@ const VechilesRegistraion = () => {
                           <div className="form-group">
                             <label>What city is the vehicle located in?</label>
 
-                            <select
+                            {/* <select
                               // value={namefield.city}
                               // onChange={handleNameField}
                               name="vechilelocation"
@@ -740,8 +740,8 @@ const VechilesRegistraion = () => {
                               ].map((curElem, i) => {
                                 return <option key={i}>{curElem}</option>;
                               })}
-                            </select>
-                            {/* <input
+                            </select> */}
+                            <input
                               value={namefield.city}
                               onChange={handleNameField}
                               type="text"
@@ -751,7 +751,7 @@ const VechilesRegistraion = () => {
                               placeholder="Enter"
                               className="field"
                               required
-                            /> */}
+                            />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
@@ -1027,8 +1027,8 @@ const VechilesRegistraion = () => {
                               {/* <option selected disabled value="">
                                 Choose...
                               </option> */}
-                              <option value="No">Showroom</option>
                               <option value="Yes">Auction</option>
+                              <option value="No">Showroom</option>
                             </select>
                           </div>
                         </div>

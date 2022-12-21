@@ -231,7 +231,7 @@ function Header() {
                         }`}
                         to="/works"
                       >
-                        How its Works
+                        How it Works
                       </Link>
                     </li>
                     {/* {!logingUser.login.token ? (
@@ -371,7 +371,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/">
-                        Features
+                        Featured
                       </Link>
                     </li>
                     <li className="nav-item">
@@ -482,7 +482,7 @@ function Header() {
                           }}
                           to="/feautres"
                         >
-                          Features
+                          Featured
                         </Link>
                       </li>
 
