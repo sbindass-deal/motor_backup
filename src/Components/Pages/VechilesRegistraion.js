@@ -320,7 +320,7 @@ const VechilesRegistraion = () => {
     // console.log("addEnd Time", d.toLocaleString());
     const handleDateTimeFormate = () => {
       let curDateAndTime = new Date();
-      curDateAndTime.setMinutes(curDateAndTime.getMinutes() + 20);
+      curDateAndTime.setMinutes(curDateAndTime.getDay() + 5);
       const formateDay = curDateAndTime.getDate();
       const formateMonth = curDateAndTime.getMonth() + 1;
       const formateYear = curDateAndTime.getFullYear();
@@ -667,7 +667,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>What make is this vehicle?</label>
+                            <label>what is your vehicle?</label>
                             <input
                               value={namefield.make}
                               onChange={handleNameField}
