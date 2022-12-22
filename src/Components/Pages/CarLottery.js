@@ -9,7 +9,6 @@ import ticketSocket from "../../Assets/images/doller-bundal.png";
 import weekly from "../../Assets/images/calander.png";
 import reword from "../../Assets/images/reword.png";
 
-
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal, Placeholder } from "react-bootstrap";
 import axios from "axios";
@@ -136,15 +135,19 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + `tickets/${showLotary.id}`
       );
-      if (response.data.data) {
-        setAllLotaryApi(response.data.data);
-      } else {
-        console.log("Data is empty");
-      }
+      // if (response.data.data) {
+      //   setAllLotaryApi(response.data.data);
+      // } else {
+      //   console.log("Data is empty");
+      // }
       const filteredData = response.data.data.filter(
+        (item) => item.reward !== "1"
+      );
+      setAllLotaryApi(filteredData);
+      const filteredRewardData = response.data.data.filter(
         (item) => item.reward === "1"
       );
-      setReward(filteredData);
+      setReward(filteredRewardData);
     } catch (err) {
       console.log(err);
     }
@@ -334,28 +337,40 @@ function CarRaffle() {
                     <div className="imgIco">
                       <img src={ticket} />
                     </div>
-                    <h5>Price at<br/> just</h5>
+                    <h5>
+                      Price at
+                      <br /> just
+                    </h5>
                     <p>$5</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={ticketSocket} />
                     </div>
-                    <h5>Total<br/> available</h5>
+                    <h5>
+                      Total
+                      <br /> available
+                    </h5>
                     <p>100</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={weekly} />
                     </div>
-                    <h5>Last date to <br/>purchase ticket</h5>
+                    <h5>
+                      Last date to <br />
+                      purchase ticket
+                    </h5>
                     <p>02-01-2023</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img src={reword} />
                     </div>
-                    <h5>Winner to be<br/> announced on </h5>
+                    <h5>
+                      Winner to be
+                      <br /> announced on{" "}
+                    </h5>
                     <p>02-01-2023</p>
                   </div>
                 </div>
@@ -372,7 +387,7 @@ function CarRaffle() {
                     <lable>Number of Tickets</lable>
                     <div className="ticketFom">
                       <div className="form-group">
-                        <input
+                        {/* <input
                           type="text"
                           value={inputLotteryNumber}
                           onChange={(e) => {
@@ -383,7 +398,24 @@ function CarRaffle() {
                           className="form-control"
                           maxLength={4}
                           id="validationCustom01"
-                        />
+                        /> */}
+                        <select
+                          value={inputLotteryNumber}
+                          onChange={(e) =>
+                            setInputLotteryNumber(e.target.value)
+                          }
+                          class="form-select w-100"
+                          id="validationCustom04"
+                          required
+                        >
+                          <option selected disabled value="">
+                            Choose...
+                          </option>
+                          <option value="100">100</option>
+                          <option value="200">200</option>
+                          <option value="300">300</option>
+                          <option value="400">400</option>
+                        </select>
                       </div>
                       <div className="form-group lotryBtn">
                         <button
@@ -420,19 +452,6 @@ function CarRaffle() {
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
-                  <div className="cardBorder">
-                    <h6>My Reward - {reward.length}</h6>
-
-                    <div className="myTicketRow">
-                      <div className="myTicketCol">
-                        {/* <div className="MT_ic">
-                          <img src={bi_ticket} />
-                        </div> */}
-                        {/* <div className="MT_Count">10</div> */}
-                      </div>
-                      {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
-                    </div>
-                  </div>
 
                   {/* 
                   <h6>My Winnings</h6>
@@ -458,7 +477,7 @@ function CarRaffle() {
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
-                        <div className="">12</div>
+                        <div className="">{reward.length}</div>
                       </li>
                     </ul>
                     <div>
