@@ -37,7 +37,6 @@ const VechilesRegistraion = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
 
-
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const notify = (val) =>
     toast.success(val, {
@@ -317,13 +316,13 @@ const VechilesRegistraion = () => {
       fuel,
     } = detailstab;
     const { uemail, iname, phone } = information;
-    let d = new Date();
+    // let d = new Date();
     // d.setHours(d.getHours() + 2);
-    d.setMinutes(d.getMinutes() + 20);
+    // d.setMinutes(d.getMinutes() + 20);
     // console.log("addEnd Time", d.toLocaleString());
     const handleDateTimeFormate = () => {
       let curDateAndTime = new Date();
-      curDateAndTime.setMinutes(curDateAndTime.getMinutes() + 20);
+      curDateAndTime.setDate(curDateAndTime.getDate() + 5);
       const formateDay = curDateAndTime.getDate();
       const formateMonth = curDateAndTime.getMonth() + 1;
       const formateYear = curDateAndTime.getFullYear();
@@ -554,7 +553,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                        reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -573,8 +572,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -593,8 +592,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -800,7 +799,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                        namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -916,9 +915,6 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
-
-
-
                           <div className="form-group">
                             <p>
                               Please upload photos of your vehicle using the box
@@ -941,20 +937,23 @@ const VechilesRegistraion = () => {
                               <span>OR</span> */}
                               {/* <button>Browse File</button> */}
 
-
-                              {
-                                Array.from(file).map((items) => {
-                                  return (
-                                    <span>
-                                      <img src={items ? URL.createObjectURL(items) : null} style={{ width: "70px", objectFit: "cover" }}
-                                      />
-
-                                    </span>
-                                  )
-                                })
-                              }
-
-
+                              {Array.from(file).map((items) => {
+                                return (
+                                  <span>
+                                    <img
+                                      src={
+                                        items
+                                          ? URL.createObjectURL(items)
+                                          : null
+                                      }
+                                      style={{
+                                        width: "70px",
+                                        objectFit: "cover",
+                                      }}
+                                    />
+                                  </span>
+                                );
+                              })}
 
                               <input
                                 style={{
@@ -992,7 +991,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1359,16 +1358,23 @@ const VechilesRegistraion = () => {
                               <span>OR</span> */}
                               {/* <button>Browse File</button> */}
 
-                              {
-                                Array.from(file1).map((items, i) => {
-                                  return (
-                                    <span key={i}>
-                                      <img src={items ? URL.createObjectURL(items) : null} style={{ width: "70px", objectFit: "cover" }}
-                                      />
-                                    </span>
-                                  )
-                                })
-                              }
+                              {Array.from(file1).map((items, i) => {
+                                return (
+                                  <span key={i}>
+                                    <img
+                                      src={
+                                        items
+                                          ? URL.createObjectURL(items)
+                                          : null
+                                      }
+                                      style={{
+                                        width: "70px",
+                                        objectFit: "cover",
+                                      }}
+                                    />
+                                  </span>
+                                );
+                              })}
 
                               <input
                                 style={{
@@ -1418,8 +1424,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1952,8 +1958,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
