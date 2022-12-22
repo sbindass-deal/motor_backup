@@ -48,7 +48,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
 
           {/* <!-- Modal body --> */}
           <div className="modal-body">
-            {/* <p>Please enter your username or email</p> */}
+            {/* <p>Please enter your email</p> */}
             <form onSubmit={handleApi}>
               <div className="form-group">
                 <FormInput
@@ -58,7 +58,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                   placeholder="Username or Email"
                   type="email"
                   errorMessage="It should be a valid email address!"
-                  label="Please enter your username or email"
+                  label="Please enter your email"
                   required={true}
                 />
               </div>
