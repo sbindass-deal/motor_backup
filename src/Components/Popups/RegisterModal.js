@@ -307,7 +307,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     <p className="m-0">
                       Already have an account?&nbsp;&nbsp;
                       <a
-                        onClick={() => dispatch(showModal())}
+                        onClick={() =>
+                          {
+                            handleCloseReg()
+                            dispatch(showModal())
+                          }
+                        }
                         href="javascript:void(0)"
                         data-dismiss="modal"
                         data-toggle="modal"

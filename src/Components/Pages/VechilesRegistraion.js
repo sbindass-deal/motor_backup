@@ -669,7 +669,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>What make is this vehicle?</label>
+                            <label>what is your vehicle?</label>
                             <input
                               value={namefield.make}
                               onChange={handleNameField}

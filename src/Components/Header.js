@@ -86,7 +86,10 @@ function Header() {
     dispatch(showModal());
   };
 
-  const handleCloseReg = () => setShowReg(false);
+  const handleCloseReg = () => {
+    setShowReg(false)
+    dispatch(showModalClose()) 
+  };
   const handleShowReg = () => setShowReg(true);
 
   const handleCloseForgPass = () => setShowForgPass(false);

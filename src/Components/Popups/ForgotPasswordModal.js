@@ -3,6 +3,8 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
   const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false);
@@ -18,10 +20,23 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
       .post(`${process.env.REACT_APP_URL}sendMail`, {
         email: email,
       })
-      .then((result) => {})
+      .then((result) => {
+        console.log(result)
+        notify(result)
+      })
       .catch((error) => {});
   };
-
+  const notify = (val) =>
+  toast.success(val, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
   return (
     // <!-- The forgotPasswordModal -->
     <Modal
@@ -48,7 +63,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
 
           {/* <!-- Modal body --> */}
           <div className="modal-body">
-            {/* <p>Please enter your username or email</p> */}
+            {/* <p>Please enter your email</p> */}
             <form onSubmit={handleApi}>
               <div className="form-group">
                 <FormInput
@@ -58,7 +73,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                   placeholder="Username or Email"
                   type="email"
                   errorMessage="It should be a valid email address!"
-                  label="Please enter your username or email"
+                  label="Please enter your registered email"
                   required={true}
                 />
               </div>
@@ -66,7 +81,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                 {forgotPasswordLoading ? (
                   <SmallSpinner />
                 ) : (
-                  <button type="submit" className="btn">
+                  <button type="submit" className="btn" >
                     Get New Password
                   </button>
                 )}
