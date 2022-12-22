@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
+import { Checkbox } from 'antd';
+
 import { useNavigate } from "react-router-dom";
 
 function LoginModal({ handleShowReg, handleShowForgPass }) {
@@ -87,10 +89,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     handleShowForgPass();
   };
   return (
-    <Modal
+    <Modal 
       show={show}
       onHide={handleClose}
-      className="modal fade"
+      className="modal fade" 
       id="loginModal"
       centered
     >
@@ -133,12 +135,13 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
-                <button
-                  type="button"
+                <Checkbox style={{color:"#F49D1A"}}
+                  
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-                  show
-                </button>
+                
+                  Show password
+                </Checkbox>
               </div>
 
               <div onClick={handlePasswordBtn} className="form-group">
@@ -148,7 +151,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 {loginLoading ? (
                   <SmallSpinner />
                 ) : (
-                  <button button="submit" className="btn">
+                  <button button="submit" className="btn ">
                     Log In
                   </button>
                 )}

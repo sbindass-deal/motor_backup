@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
+import { Checkbox } from 'antd'
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -176,12 +177,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                     required={true}
                   />
-                  <button
-                    type="button"
+                  <Checkbox
+                    type="button" style={{color:"#F49D1A"}}
                     onClick={() => setShowPassWord(!showPassWord)}
                   >
-                    show
-                  </button>
+                    Show password
+                  </Checkbox>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
@@ -195,12 +196,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={userInput.password}
                     required={true}
                   />
-                  <button
-                    type="button"
+                  <Checkbox style={{color:"#F49D1A"}}
+                    // type="button"
                     onClick={() => setShowCPassWord(!showCPassword)}
                   >
-                    show
-                  </button>
+                    Show password
+                  </Checkbox>
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
