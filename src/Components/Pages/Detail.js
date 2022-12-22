@@ -222,8 +222,8 @@ function Detail() {
                         )}
                       </span>
                     </li>
-                    {/* <li>
-                      {t > 900000 ? (
+                    <li>
+                      {/* {t > 900000 ? (
                         <span>Upcomming Auction</span>
                       ) : t > 0 && t <= 900000 ? (
                         <span>
@@ -233,9 +233,13 @@ function Detail() {
                         </span>
                       ) : (
                         <span> &nbsp;Time Out</span>
-                      )}
-                    </li> */}
-                    <li>Ends In: 5 days</li>
+                      )} */}
+                      <span>
+                        <label>Ends In:&nbsp;</label>
+                        {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
+                        seconds *
+                      </span>
+                    </li>
                     {vehicle.reserve === "Yes" && (
                       <li className="reserved">
                         Reserve: <span>{vehicle.reserve}</span>
@@ -560,7 +564,8 @@ function Detail() {
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
                       <li>
-                        <label htmlFor="">{vehicle.odmeter} Miles</label>
+                        Miles
+                        <label htmlFor="">{vehicle.odmeter}</label>
                       </li>
 
                       {vehicle.Interstellar === "Yes" && (
@@ -570,13 +575,15 @@ function Detail() {
                       )}
 
                       <li>
+                        Location:
                         <label htmlFor="">
-                          Location: {vehicle.city}, {vehicle.country}
+                          {vehicle.city}, {vehicle.country}
                         </label>
                       </li>
 
                       {vehicle.accessories !== "" && (
                         <li>
+                          Accessories
                           <label htmlFor=""> {vehicle.accessories}</label>
                         </li>
                       )}
@@ -590,11 +597,11 @@ function Detail() {
                         </li>
                       )}
 
-                      {vehicle.reserve === "Yes" && (
+                      {/* {vehicle.reserve === "Yes" && (
                         <li>
                           <label htmlFor=""> Reserve</label>
                         </li>
-                      )}
+                      )} */}
 
                       {vehicle.sizetires !== null && (
                         <li>
@@ -604,6 +611,7 @@ function Detail() {
                       )}
                       {vehicle.pickOne !== null && (
                         <li>
+                          Wheels
                           <label htmlFor="">{vehicle.pickOne}</label>
                         </li>
                       )}
@@ -612,12 +620,14 @@ function Detail() {
                         <label htmlFor="">{vehicle.km}</label>
                       </li> */}
                       <li>
-                        Brand <label htmlFor="">{vehicle.brandandmodel}</label>
+                        Tire Brand{" "}
+                        <label htmlFor="">{vehicle.brandandmodel}</label>
                       </li>
 
                       <li>
+                        Private Party or Dealer :
                         <label htmlFor="">
-                          Private Party or Dealer :{" "}
+                          {" "}
                           {vehicle.dealerId === "Yes"
                             ? "Dealer"
                             : "Privately owned"}{" "}
@@ -678,7 +688,7 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        {t > 900000 ? (
+                        {/* {t > 900000 ? (
                           <span>Upcomming Auction</span>
                         ) : t > 0 && t <= 900000 ? (
                           <span>
@@ -688,7 +698,12 @@ function Detail() {
                           </span>
                         ) : (
                           <span> &nbsp;Time Out</span>
-                        )}
+                        )} */}
+                        <span>
+                          <label>Ends In:&nbsp;</label>
+                          {days} days {hours} hours, {minutes} minutes,{" "}
+                          {seconds} seconds *
+                        </span>
                       </li>
                       {/* <li>
                         <label>Ends On</label>
@@ -733,24 +748,21 @@ function Detail() {
                         )}
                       </li> */}
                       <li>
-                        
                         {vehicle.approved === "1" &&
                         vehicle.canBid === "yes" ? (
-                         <>
-                         <label>Place Bid</label>
-                          <button
-                            type="button"
-                            className="gry_btn active"
-                            onClick={handleShow}
-                          >
-                            Place a bid
-                          </button>
-                         </>
+                          <>
+                            <label>Place Bid</label>
+                            <button
+                              type="button"
+                              className="gry_btn active"
+                              onClick={handleShow}
+                            >
+                              Place a bid
+                            </button>
+                          </>
                         ) : vehicle.approved === "1" &&
                           vehicle.canBid === "no" ? null : (
-                          <button type="button" className="gry_btn active">
-                            Upcoming Auction
-                          </button>
+                          <div>Upcoming Auction</div>
                         )}
                       </li>
                     </ul>
