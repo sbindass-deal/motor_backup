@@ -593,17 +593,17 @@ function Header() {
                           Store
                         </Link>
                       </li>
-                      {logingUser.login.token && (
+                      {logingUser.login.token &&  (
                         <li className="nav-item AddtCrt">
-                          <Link to="/cart">
+                          {logingUser.cartSlice.quantity!=0 ? <Link to="/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span className="count">
                               {logingUser.cartSlice.quantity}
                             </span>
-                          </Link>
+                          </Link> :""}
                         </li>
                       )}
-
+             
                       <li className="nav-item dropdown d-none">
                         <Link
                           className="nav-link"
