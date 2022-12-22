@@ -222,7 +222,7 @@ function Detail() {
                         )}
                       </span>
                     </li>
-                    <li>
+                    {/* <li>
                       {t > 900000 ? (
                         <span>Upcomming Auction</span>
                       ) : t > 0 && t <= 900000 ? (
@@ -234,7 +234,8 @@ function Detail() {
                       ) : (
                         <span> &nbsp;Time Out</span>
                       )}
-                    </li>
+                    </li> */}
+                    <li>Ends In: 5 days</li>
                     {vehicle.reserve === "Yes" && (
                       <li className="reserved">
                         Reserve: <span>{vehicle.reserve}</span>
@@ -246,7 +247,7 @@ function Detail() {
                   {/* <a href="#" className="gry_btn mr-2">
                     How it Works
                   </a> */}
-                  {vehicle.like === 1 ? (
+                  {/* {vehicle.like === 1 ? (
                     <a
                       style={{ cursor: "pointer" }}
                       onClick={() => addFabrity(id)}
@@ -293,6 +294,18 @@ function Detail() {
                         </button>
                       )}
                     </>
+                  )} */}
+                  {vehicle.approved === "1" && vehicle.canBid === "yes" ? (
+                    <button
+                      type="button"
+                      className="gry_btn active"
+                      onClick={handleShow}
+                    >
+                      Place a bid
+                    </button>
+                  ) : vehicle.approved === "1" &&
+                    vehicle.canBid === "no" ? null : (
+                    <div className="">Upcoming Auction</div>
                   )}
                   {/* <button
                     type="button"
@@ -687,7 +700,7 @@ function Detail() {
                         <label>Bids</label>
                         <div>{biding ? biding.length : 0}</div>
                       </li>
-                      <li>
+                      {/* <li>
                         <label>Place Bid</label>
                         {t <= 0 ? (
                           <a className="gry_btn active">
@@ -717,6 +730,27 @@ function Detail() {
                               </button>
                             )}
                           </>
+                        )}
+                      </li> */}
+                      <li>
+                        
+                        {vehicle.approved === "1" &&
+                        vehicle.canBid === "yes" ? (
+                         <>
+                         <label>Place Bid</label>
+                          <button
+                            type="button"
+                            className="gry_btn active"
+                            onClick={handleShow}
+                          >
+                            Place a bid
+                          </button>
+                         </>
+                        ) : vehicle.approved === "1" &&
+                          vehicle.canBid === "no" ? null : (
+                          <button type="button" className="gry_btn active">
+                            Upcoming Auction
+                          </button>
                         )}
                       </li>
                     </ul>
