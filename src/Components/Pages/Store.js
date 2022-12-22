@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import car_01 from "../../Assets/images/car_01.jpg";
 import SmallSpinner from "../UI/SmallSpinner";
@@ -35,6 +35,22 @@ function Store() {
   useEffect(() => {
     fetchStoreVehicleApi();
   }, []);
+  const style = {
+    height: 30,
+    border: "1px solid green",
+    margin: 6,
+    padding: 8,
+  };
+
+   const fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    // setTimeout(() => {
+    //   this.setState({
+    //     items: this.state.items.concat(Array.from({ length: 20 }))
+    //   });
+    // }, 1500);
+  };
 
   return (
     <>
@@ -90,28 +106,6 @@ function Store() {
                     placeholder="Search for a make or model"
                   />
                 </li>
-                {/* <li className="">
-                  <button
-                    onClick={handleShow}
-                    type="button"
-                    className="gry_btn"
-                    // data-toggle="modal"
-                    // data-target="#FiltersModal"
-                  >
-                    <i className="fa-solid fa-filter mr-2"></i> Filters
-                  </button>
-                </li> */}
-                {/* <li className="">
-                  <select className="post_select">
-                    <option selected disabled value="">
-                      Choose...
-                    </option>
-                    <option>Recently Sold</option>
-                    <option>Popular</option>
-                    <option>Price:High to low</option>
-                    <option>Best Deals</option>
-                  </select>
-                </li> */}
               </ul>
             </div>
           </div>
@@ -119,9 +113,15 @@ function Store() {
         </div>
       </section>
 
-      {loading ? (
+      {/* {loading ? (
         <SmallSpinner spin={true} />
-      ) : (
+      ) : ( */}
+      <InfiniteScroll
+        dataLength={filterData.length}
+        next={fetchMoreData}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+      >
         <section className="pt_40">
           <div className="container">
             <div className="row">
@@ -141,16 +141,6 @@ function Store() {
                         }
                         className="card_postImg card_postImg_200"
                       >
-                        {/* <img
-                          src={
-                            curElem.stepOneImage === null ||
-                            curElem.stepOneImage === undefined ||
-                            curElem.stepOneImage === ""
-                              ? car_01
-                              : process.env.REACT_APP_URL + curElem.stepOneImage
-                          }
-                          alt={curElem.make}
-                        /> */}
                         <img
                           src={process.env.REACT_APP_URL + curElem.stepOneImage}
                           onError={({ currentTarget }) => {
@@ -198,7 +188,9 @@ function Store() {
             </div>
           </div>
         </section>
-      )}
+      </InfiniteScroll>
+
+      {/* )} */}
     </>
   );
 }
