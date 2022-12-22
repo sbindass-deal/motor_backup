@@ -86,25 +86,31 @@ function VehicleSubmission() {
                             <th scope="row">{index + 1}</th>
                             {/* <td>{data.userId}</td> */}
                             <td>{data.name}</td>
-                            <td>12:12:54</td>
+                            <td>
+                              {new Date(data.updated_at).toLocaleDateString()}{" "}
+                              {new Date(data.updated_at).toLocaleTimeString()}
+                            </td>
                             <td>{data.year}</td>
                             <td>{data.make}</td>
                             <td className="actionBtn vs">
                               {data.approved === "0" && (
-                                <button className="green" onClick={() => handleApprove(data.id)}>
+                                <button
+                                  className="green"
+                                  onClick={() => handleApprove(data.id)}
+                                >
                                   {/* <i class="fa-solid fa-pencil"></i> */}
                                   Approve
                                 </button>
                               )}
-                              {data.approved === "1" && (
+                              {/* {data.approved === "1" && (
                                 <button
                                   className="bg-danger"
                                   onClick={() => handleReject(data.id)}
                                 >
-                                  {/* <i class="fa-solid fa-pencil"></i> */}
+                                  <i class="fa-solid fa-pencil"></i>
                                   Reject
                                 </button>
-                              )}
+                              )} */}
                               {/* <button>
                                 <i class="fa-sharp fa-solid fa-plus"></i>
                               </button> */}

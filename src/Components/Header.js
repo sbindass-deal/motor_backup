@@ -9,12 +9,18 @@ import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
-import { authToken, showModal, showModalClose } from "../redux/reducers/login";
+import {
+  authToken,
+  isAdmin,
+  showModal,
+  showModalClose,
+} from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
 import axios from "axios";
 import { useEffect } from "react";
+import { clearCart } from "../redux/reducers/cartSlice";
 
 const data = [
   { id: 1, name: "Sohan", desc: "sohan is a good boy" },
@@ -88,11 +94,12 @@ function Header() {
   const handleCloseModal = () => {
     setShowSearchModal(false);
   };
-  const logout = () => {
+  const logout = async () => {
     dispatch(authToken(null));
+    dispatch(isAdmin(null));
+    dispatch(clearCart());
     notify("Logout successfully ! 😎🤐");
     navigate("/");
-    window.location.reload(false);
   };
 
   const handleBlur = (e) => {
@@ -292,7 +299,7 @@ function Header() {
                             </li>
                           )}
 
-                          {logingUser.login.token && (
+                          {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
                               <Link
                                 className={`nav-link ${
@@ -305,19 +312,20 @@ function Header() {
                               </Link>
                             </li>
                           )}
-                          {logingUser.login.token && (
-                            <li className="nav-item">
-                              <Link
-                                className={`nav-link ${
-                                  location.pathname === "/orders-cart" &&
-                                  "navActive"
-                                }`}
-                                to="/orders-cart"
-                              >
-                                My Orders
-                              </Link>
-                            </li>
-                          )}
+                          {logingUser.login.token &&
+                            !logingUser.login.admin && (
+                              <li className="nav-item">
+                                <Link
+                                  className={`nav-link ${
+                                    location.pathname === "/orders-cart" &&
+                                    "navActive"
+                                  }`}
+                                  to="/orders-cart"
+                                >
+                                  My Orders
+                                </Link>
+                              </li>
+                            )}
                         </div>
                       </div>
                     </li>

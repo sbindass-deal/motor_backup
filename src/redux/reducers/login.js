@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: null,
   user: {},
+  admin: null,
   login: false,
   reg: false,
   show: false,
@@ -32,6 +33,9 @@ export const login = createSlice({
     showModalClose: (state, action) => {
       state.show = false;
     },
+    isAdmin: (state, action) => {
+      state.admin = action.payload;
+    },
   },
 });
 
@@ -42,6 +46,7 @@ export const {
   regBtn,
   showModal,
   showModalClose,
+  isAdmin,
 } = login.actions;
 
 export default login.reducer;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { authToken, showModalClose } from "../../redux/reducers/login";
+import { authToken, isAdmin, showModalClose } from "../../redux/reducers/login";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,8 +9,10 @@ import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
 import { Checkbox } from 'antd';
 
+import { useNavigate } from "react-router-dom";
 
 function LoginModal({ handleShowReg, handleShowForgPass }) {
+  const navigate = useNavigate();
   const [loginLoading, setLoginLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,9 +56,19 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        if (result.data.access_token) {
+        console.log(11, result.data.access_token);
+        console.log(11, result.data.type);
+        if (result.data.access_token && result.data.type === null) {
           dispatch(authToken(result.data.access_token));
           notify("Login successfully");
+          handleClose();
+          setLoginLoading(false);
+          window.location.reload(false);
+        } else if (result.data.access_token && result.data.type === "1") {
+          dispatch(authToken(result.data.access_token));
+          notify("Admin Login successfully");
+          dispatch(isAdmin(result.data.type));
+          navigate("/admin");
           handleClose();
           setLoginLoading(false);
           window.location.reload(false);
