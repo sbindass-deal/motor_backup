@@ -678,7 +678,7 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        {t > 900000 ? (
+                        {/* {t > 900000 ? (
                           <span>Upcomming Auction</span>
                         ) : t > 0 && t <= 900000 ? (
                           <span>
@@ -688,7 +688,12 @@ function Detail() {
                           </span>
                         ) : (
                           <span> &nbsp;Time Out</span>
-                        )}
+                        )} */}
+                        <span>
+                            <label>Ends In:&nbsp;</label>
+                            {days} days {hours} hours, {minutes} minutes,{" "}
+                            {seconds} seconds *
+                          </span>
                       </li>
                       {/* <li>
                         <label>Ends On</label>
