@@ -178,10 +178,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                   <Checkbox
-                    type="button" style={{color:"#F49D1A"}}
+                     style={{color:"#F49D1A"}}
                     onClick={() => setShowPassWord(!showPassWord)}
-                  >
-                    Show password
+                    >
+                    Show password 
                   </Checkbox>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
@@ -197,10 +197,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                   <Checkbox style={{color:"#F49D1A"}}
-                    // type="button"
+                    
                     onClick={() => setShowCPassWord(!showCPassword)}
                   >
-                    Show password
+                    Show password 
                   </Checkbox>
                 </div>
                 <div className="col-12 col-md-12">

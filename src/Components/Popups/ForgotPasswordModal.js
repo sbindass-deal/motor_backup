@@ -13,6 +13,17 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+  const notify = (val) =>
+  toast.success(val, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
   const handleApi = (e) => {
     e.preventDefault();
@@ -26,17 +37,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
       })
       .catch((error) => {});
   };
-  const notify = (val) =>
-  toast.success(val, {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
+ 
   return (
     // <!-- The forgotPasswordModal -->
     <Modal
