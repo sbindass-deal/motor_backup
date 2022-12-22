@@ -22,8 +22,9 @@ import FormInput from "../UI/FormInput";
 const VechilesRegistraion = () => {
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
-  const [file, setFile] = useState();
-  const [file1, setFile1] = useState();
+  const [file, setFile] = useState([]);
+
+  const [file1, setFile1] = useState([]);
   const [signinAggri, setSigninAggri] = useState();
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
@@ -35,6 +36,8 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
+
+
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const notify = (val) =>
     toast.success(val, {
@@ -551,7 +554,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -570,8 +573,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -590,8 +593,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -797,7 +800,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                        namefield.vehiclepast === "Yes" ? (
+                          namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -913,6 +916,9 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
+
+
+
                           <div className="form-group">
                             <p>
                               Please upload photos of your vehicle using the box
@@ -934,6 +940,22 @@ const VechilesRegistraion = () => {
                               {/* <header>Drag & Drop to Upload File</header>
                               <span>OR</span> */}
                               {/* <button>Browse File</button> */}
+
+
+                              {
+                                Array.from(file).map((items) => {
+                                  return (
+                                    <span>
+                                      <img src={items ? URL.createObjectURL(items) : null} style={{ width: "70px", objectFit: "cover" }}
+                                      />
+
+                                    </span>
+                                  )
+                                })
+                              }
+
+
+
                               <input
                                 style={{
                                   fontSize: "1.2rem",
@@ -970,7 +992,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1024,9 +1046,9 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             >
-                              {/* <option selected disabled value="">
+                              <option selected disabled value="">
                                 Choose...
-                              </option> */}
+                              </option>
                               <option value="Yes">Auction</option>
                               <option value="No">Showroom</option>
                             </select>
@@ -1336,6 +1358,18 @@ const VechilesRegistraion = () => {
                               {/* <header>Drag & Drop to Upload File</header>
                               <span>OR</span> */}
                               {/* <button>Browse File</button> */}
+
+                              {
+                                Array.from(file1).map((items, i) => {
+                                  return (
+                                    <span key={i}>
+                                      <img src={items ? URL.createObjectURL(items) : null} style={{ width: "70px", objectFit: "cover" }}
+                                      />
+                                    </span>
+                                  )
+                                })
+                              }
+
                               <input
                                 style={{
                                   border: "#EF6031",
@@ -1384,8 +1418,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1918,8 +1952,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
