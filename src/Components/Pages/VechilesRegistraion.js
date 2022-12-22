@@ -1046,9 +1046,9 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             >
-                              {/* <option selected disabled value="">
+                              <option selected disabled value="">
                                 Choose...
-                              </option> */}
+                              </option>
                               <option value="Yes">Auction</option>
                               <option value="No">Showroom</option>
                             </select>
