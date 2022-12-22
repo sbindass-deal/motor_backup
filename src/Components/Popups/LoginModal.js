@@ -140,7 +140,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
                 
-                  Show password
+                  Show password 
                 </Checkbox>
               </div>
 

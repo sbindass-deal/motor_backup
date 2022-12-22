@@ -197,11 +197,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                   <Checkbox style={{color:"#F49D1A"}}
-                    
                     onClick={() => setShowCPassWord(!showCPassword)}
-                  >
+                    >
                     Show password 
                   </Checkbox>
+                    
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
