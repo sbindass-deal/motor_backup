@@ -234,11 +234,13 @@ function Detail() {
                       ) : (
                         <span> &nbsp;Time Out</span>
                       )} */}
-                      <span>
-                        <label>Ends In:&nbsp;</label>
-                        {days} days {hours} hours, {minutes} minutes, {seconds}{" "}
-                        seconds *
-                      </span>
+                      {vehicle.approved === "1" && (
+                        <span>
+                          <label>Ends In:&nbsp;</label>
+                          {days} days {hours} hours, {minutes} minutes,{" "}
+                          {seconds} seconds *
+                        </span>
+                      )}
                     </li>
                     {vehicle.reserve === "Yes" && (
                       <li className="reserved">
@@ -699,11 +701,13 @@ function Detail() {
                         ) : (
                           <span> &nbsp;Time Out</span>
                         )} */}
-                        <span>
-                          <label>Ends In:&nbsp;</label>
-                          {days} days {hours} hours, {minutes} minutes,{" "}
-                          {seconds} seconds *
-                        </span>
+                        {vehicle.approved === "1" && t > 0 && (
+                          <span>
+                            <label>Ends In:&nbsp;</label>
+                            {days} days {hours} hours, {minutes} minutes,{" "}
+                            {seconds} seconds *
+                          </span>
+                        )}
                       </li>
                       {/* <li>
                         <label>Ends On</label>
