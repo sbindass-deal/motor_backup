@@ -1360,7 +1360,7 @@ const VechilesRegistraion = () => {
                               {/* <button>Browse File</button> */}
 
                               {
-                                Array.from(file1).map((items,i) => {
+                                Array.from(file1).map((items, i) => {
                                   return (
                                     <span key={i}>
                                       <img src={items ? URL.createObjectURL(items) : null} style={{ width: "70px", objectFit: "cover" }}
