@@ -12,6 +12,8 @@ function Store() {
   const [loading, setLoader] = useState(true);
   const [vehicleData, setVehicleData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [totalResult, setTotalResult] = useState(0);
+  const [page, setPage] = useState(0);
 
   const handleClose = () => {
     setShowModal(false);
@@ -21,10 +23,14 @@ function Store() {
   };
   const fetchStoreVehicleApi = async () => {
     try {
-      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-      const newData = response.data.data.reverse();
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
+      );
+      const newData = response.data.data;
+      setTotalResult(response.data.count);
       setVehicleData(newData);
       setFilterData(newData);
+      setPage(page + 0)
       setLoader(false);
     } catch (err) {
       console.log(err);
@@ -41,15 +47,25 @@ function Store() {
     margin: 6,
     padding: 8,
   };
+console.log("hello", page)
+  const fetchMoreData = async() => {
+    console.log(page, "hello")
 
-   const fetchMoreData = () => {
-    // a fake async api call like which sends
-    // 20 more records in 1.5 secs
-    // setTimeout(() => {
-    //   this.setState({
-    //     items: this.state.items.concat(Array.from({ length: 20 }))
-    //   });
-    // }, 1500);
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
+      );
+      const newData = await response.data.data;
+      setTotalResult(response.data.count);
+      setVehicleData(vehicleData.concat(newData));
+      setFilterData(filterData.concat(newData));
+      setPage(page + 10)
+
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+    }
   };
 
   return (
@@ -117,9 +133,9 @@ function Store() {
         <SmallSpinner spin={true} />
       ) : ( */}
       <InfiniteScroll
-        dataLength={filterData.length}
+        dataLength={totalResult}
         next={fetchMoreData}
-        hasMore={true}
+        hasMore={filterData.length !== totalResult}
         loader={<h4>Loading...</h4>}
       >
         <section className="pt_40">

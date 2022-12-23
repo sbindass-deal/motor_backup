@@ -58,6 +58,10 @@ import OrderCartDetails from "./shopingStore/OrderCartDetails";
 import { useSelector } from "react-redux";
 import ScrollTop from "../UI/ScrollTop";
 import UserVehicleDetails from "./Dashboard/UserVehicleDetails";
+import AddBlog from "./Dashboard/AddBlog";
+import OrderDetail from "./Dashboard/OrderDetails";
+import AddRaffle from "./Dashboard/AddRaffle";
+import EditRaffle from "./Dashboard/EditRaffle";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -90,9 +94,19 @@ const Layout = () => {
                   />
                   <Route path="admin" element={<VehicleSubmission />} />
                   <Route path="raffleadmin" element={<RaffleAdmin />} />
+                  <Route
+                    path="raffleadmin/add-raffel"
+                    element={<AddRaffle />}
+                  />
+                  <Route
+                    path="raffleadmin/edit-raffel/:id"
+                    element={<EditRaffle />}
+                  />
                   <Route path="merchandise" element={<Merchandise />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
+                  <Route path="admin/add-blog" element={<AddBlog />} />
+                  <Route path="orders-details/:id" element={<OrderDetail />} />
                 </>
               )}
             </>

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
-import { async } from "q";
 
 function Detail() {
   const { id } = useParams();

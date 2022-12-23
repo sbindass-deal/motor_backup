@@ -669,31 +669,29 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>what is your vehicle?</label>
-                            <input
+                            <FormInput
                               value={namefield.make}
                               onChange={handleNameField}
                               name="make"
-                              type="text"
-                              minLength={2}
-                              maxLength={31}
-                              className="field"
-                              required
+                              placeholder="Enter"
+                              errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
+                              label="what is your vehicle?"
+                              pattern="^[A-Za-z0-9 ]{3,16}$"
+                              required={true}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>What model is this vehicle?</label>
-                            <input
+                            <FormInput
                               value={namefield.model}
                               onChange={handleNameField}
-                              minLength={2}
-                              maxLength={31}
                               name="model"
-                              type="text"
-                              className="field"
-                              required
+                              placeholder="Enter"
+                              errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
+                              label="What model is this vehicle?"
+                              pattern="^[A-Za-z0-9 ]{3,16}$"
+                              required={true}
                             />
                           </div>
                         </div>
@@ -722,37 +720,15 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>What city is the vehicle located in?</label>
-
-                            {/* <select
-                              // value={namefield.city}
-                              // onChange={handleNameField}
-                              name="vechilelocation"
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Choose...
-                              </option>
-
-                              {countryData[
-                                namefield.vechilelocation
-                                  ? namefield.vechilelocation
-                                  : "Afghanistan"
-                              ].map((curElem, i) => {
-                                return <option key={i}>{curElem}</option>;
-                              })}
-                            </select> */}
-                            <input
+                            <FormInput
                               value={namefield.city}
                               onChange={handleNameField}
-                              type="text"
                               name="city"
-                              minLength={2}
-                              maxLength={31}
-                              placeholder="Enter"
-                              className="field"
-                              required
+                              placeholder="Enter city"
+                              errorMessage="This input field contain 3-16 characters and shouldn't include any special character or number"
+                              label="What city is the vehicle located in?"
+                              pattern="^[A-Za-z ]{3,16}$"
+                              required={true}
                             />
                           </div>
                         </div>
@@ -803,19 +779,15 @@ const VechilesRegistraion = () => {
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
-                                <label>
-                                  Please provide a link to the listing:
-                                </label>
-                                <input
+                                <FormInput
                                   value={namefield.providelink}
                                   onChange={handleNameField}
-                                  type="url"
-                                  minLength={2}
-                                  maxLength={200}
                                   name="providelink"
-                                  placeholder="Enter"
-                                  className="field"
-                                  required
+                                  type="url"
+                                  placeholder="Enter link"
+                                  errorMessage="Please provide valid link"
+                                  label="Please providea link to the listing:"
+                                  required={true}
                                 />
                               </div>
                             </div>
@@ -830,6 +802,7 @@ const VechilesRegistraion = () => {
                                   onChange={handleNameField}
                                   name="changedvechiles"
                                   className="field"
+                                  maxLength={50}
                                   required
                                 ></textarea>
                               </div>
@@ -1829,9 +1802,9 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 name="reserveAmount"
                                 placeholder="Enter"
-                                errorMessage="Reserve amount should be 1-10 characters and shouldn't include any special character and alphabet!"
+                                errorMessage="Reserve amount should be 1-9 characters and shouldn't include any special character and alphabet!"
                                 label="Please provide reserve amount:"
-                                pattern="^[0-9]{1,12}$"
+                                pattern="^[0-9]{1,9}$"
                                 required={true}
                               />
                             </div>
@@ -1866,21 +1839,17 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <label>
-                              What is the amount of the document fee that you
-                              will charge buyers above and beyond sale price and
-                              tax? (This will be printed in the listing.)
-                            </label>
-                            <input
+                            <FormInput
                               value={detailstab.documentFee}
                               onChange={detailsOnChange}
-                              type="text"
-                              minLength={1}
-                              maxLength={10}
                               name="documentFee"
                               placeholder="USD $"
-                              className="field"
-                              required
+                              errorMessage="Amount should be 1-9 characters and shouldn't include any special character and alphabet!"
+                              label="What is the amount of the document fee that you
+                              will charge buyers above and beyond sale price and
+                              tax? (This will be printed in the listing.)"
+                              pattern="^[0-9]{1,9}$"
+                              required={true}
                             />
                           </div>
                         </div>
