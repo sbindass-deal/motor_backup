@@ -3,10 +3,22 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import FormInput from "../../UI/FormInput";
+import moment from "moment/moment";
+import ms from 'ms';
+
 
 const EditRaffle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [minDate, setMinDate] = useState(null)
+
+  useEffect(()=>{
+    const minsec = ms('0d')
+    console.log('minsec',minsec);
+    const min_date = new Date(+new Date()-minsec);
+    setMinDate(moment(min_date).format('YYYY-MM-DD'));
+  },[])
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -69,70 +81,77 @@ const EditRaffle = () => {
             <div className="col-12 col-md-6">
               <label>Raffle Name</label>
               <div className="form-group">
-                <input
+                <FormInput
                   type="text"
                   value={raffle.name}
                   onChange={handleChange}
                   name="name"
                   className="field"
                   placeholder="1900"
-                  required
+                  errorMessage="use only alphabet no special character"
+                  required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
               <label>Price od 1 ticket</label>
               <div className="form-group">
-                <input
+                <FormInput
                   type="text"
                   value={raffle.price}
                   onChange={handleChange}
                   name="price"
                   className="field"
                   placeholder="2023"
-                  required
+                  errorMessage="use only numbers($)"
+                  required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
               <label>Total ticket stock</label>
               <div className="form-group">
-                <input
+                <FormInput
                   type="text"
                   value={raffle.stock}
                   onChange={handleChange}
                   name="stock"
                   className="field"
                   placeholder="2023"
-                  required
+                  errorMessage="use only numbers"
+                  required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Deadline to purchase ticket</label>
+              <label>Deadline to purchase date</label>
               <div className="form-group">
-                <input
-                  type="text"
+                <FormInput
+                  type="date"
+                  min={minDate}
                   value={raffle.dedline}
                   onChange={handleChange}
                   name="dedline"
                   className="field"
                   placeholder="Enter dedline"
-                  required
+                  errorMessage="successor date of current date"
+                  required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-12">
               <label>Lucky draw date</label>
               <div className="form-group">
-                <input
-                  type="text"
+                <FormInput
+                  type="date"
+                  min={minDate}
                   value={raffle.luckyDrawDate}
                   onChange={handleChange}
                   name="luckyDrawDate"
                   className="field"
                   placeholder="2023"
-                  required
+                  errorMessage="use only lucky draw date"
+                  required={true}
                 />
               </div>
             </div>

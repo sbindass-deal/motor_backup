@@ -531,7 +531,7 @@ function CarRaffle() {
                     </button> */}
                     <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
-                      purchased amount will go back to you
+                      purchased ticket will be shared with you 
                     </p>
                   </div>
                 </div>
