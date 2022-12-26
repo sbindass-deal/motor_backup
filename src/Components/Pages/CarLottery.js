@@ -37,6 +37,7 @@ function CarRaffle() {
   const [encryptedvalue, setEncryptedValue] = useState(null);
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [totalRafel, setTotalRafel] = useState();
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
@@ -58,16 +59,17 @@ function CarRaffle() {
   const [showLotary, setShowLotary] = useState({});
   const [allLotaryApi, setAllLotaryApi] = useState([]);
   const [showReadMore, setshowReadMore] = useState(false);
+  const [validUser, setValidUser] = useState(null);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [coupen, setCoupen] = useState("udshfjhfksh");
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-12-17 12:30:00").getTime()
+    new Date("2022-12-31 12:30:00").getTime()
   );
   const now = new Date().getTime();
-  const t = newTiem - now + 432000000;
+  const t = newTiem - now;
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -126,6 +128,8 @@ function CarRaffle() {
       } else {
         console.log("Data is empty");
       }
+      // console.log(11, response.data.data[0].dealEndDate);
+      setNewTiem(response.data.data[0].dealEndDate.getTime());
     } catch (err) {
       console.log(err);
     }
@@ -148,6 +152,8 @@ function CarRaffle() {
         (item) => item.reward === "1"
       );
       setReward(filteredRewardData);
+      // console.log(11,response.data.totalrefer)
+      setTotalRafel(response.data.totalrefer);
     } catch (err) {
       console.log(err);
     }
@@ -155,6 +161,7 @@ function CarRaffle() {
 
   useEffect(() => {
     setNewEncryptedValue(window.location.pathname.replace("/carraffle/", ""));
+    validateUser(newEncryptedvalue);
   }, [newEncryptedvalue]);
 
   useEffect(() => {
@@ -199,6 +206,20 @@ function CarRaffle() {
       navigate("/successpayment");
     }
   };
+  const validateUser = (newEncryptedvalue) => {
+    axios
+      .post(process.env.REACT_APP_URL + "validuser", {
+        enc: newEncryptedvalue,
+      })
+      .then((res) => {
+        // console.log(11, res.data.message);
+        setValidUser(res.data.message);
+      });
+  };
+
+  useEffect(() => {
+    validateUser();
+  }, []);
 
   return (
     <div>
@@ -341,7 +362,7 @@ function CarRaffle() {
                       Price at
                       <br /> just
                     </h5>
-                    <p>$5</p>
+                    <p>${showLotary.price}</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -351,7 +372,7 @@ function CarRaffle() {
                       Total
                       <br /> available
                     </h5>
-                    <p>100</p>
+                    <p>{showLotary.stock}</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -361,7 +382,10 @@ function CarRaffle() {
                       Last date to <br />
                       purchase ticket
                     </h5>
-                    <p>02-01-2023</p>
+                    <p>
+                      {showLotary.dealEndDate &&
+                        new Date(showLotary.dealEndDate).toDateString()}
+                    </p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -371,23 +395,28 @@ function CarRaffle() {
                       Winner to be
                       <br /> announced on{" "}
                     </h5>
-                    <p>02-01-2023</p>
+                    <p>
+                      {showLotary.drawdate &&
+                        new Date(showLotary.drawdate).toDateString()}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="card_Gray2">
-                <div className="row row_gap_5 ssss">
-                  {/* <div className="col-12 mb-3">
+              {validUser !== "Same user cannot use refer link!" && (
+                <div className="card_Gray2">
+                  <div className="row row_gap_5 ssss">
+                    {/* <div className="col-12 mb-3">
                     <h5>
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
-                  <div className="col-lg-12 col-md-12 col-sm-12">
-                    <lable>Number of Tickets</lable>
-                    <div className="ticketFom">
-                      <div className="form-group">
-                        {/* <input
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                      <lable>Number of Tickets</lable>
+
+                      <div className="ticketFom">
+                        <div className="form-group">
+                          {/* <input
                           type="text"
                           value={inputLotteryNumber}
                           onChange={(e) => {
@@ -399,37 +428,38 @@ function CarRaffle() {
                           maxLength={4}
                           id="validationCustom01"
                         /> */}
-                        <select
-                          value={inputLotteryNumber}
-                          onChange={(e) =>
-                            setInputLotteryNumber(e.target.value)
-                          }
-                          class="form-select w-100"
-                          id="validationCustom04"
-                          required
-                        >
-                          <option selected disabled value="">
-                            Choose...
-                          </option>
-                          <option value="100">100</option>
-                          <option value="200">200</option>
-                          <option value="300">300</option>
-                          <option value="400">400</option>
-                        </select>
-                      </div>
-                      <div className="form-group lotryBtn">
-                        <button
-                          type="button"
-                          className="btn"
-                          onClick={addTickets}
-                        >
-                          Make Payment
-                        </button>
+                          <select
+                            value={inputLotteryNumber}
+                            onChange={(e) =>
+                              setInputLotteryNumber(e.target.value)
+                            }
+                            class="form-select w-100"
+                            id="validationCustom04"
+                            required
+                          >
+                            <option selected disabled value="">
+                              Choose...
+                            </option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                          </select>
+                        </div>
+                        <div className="form-group lotryBtn">
+                          <button
+                            type="button"
+                            className="btn"
+                            onClick={addTickets}
+                          >
+                            Make Payment
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="col-12 col-md-4 col-lg-4 ">
               <div className="card_Gray2 mt-5 mt-md-0 divSticky">
@@ -473,7 +503,7 @@ function CarRaffle() {
                     <ul className="refferFriendList mt-3">
                       <li>
                         <div className="RF_title">Total Refferals</div>
-                        <div className="">5</div>
+                        <div className="">{totalRafel}</div>
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
@@ -491,7 +521,6 @@ function CarRaffle() {
                             .then((res) => {
                               setIsModalOpen(true);
                               // url/response
-                              console.log("encrypt", res);
                               setEncryptedValue(res);
                             });
                         }}
@@ -528,7 +557,7 @@ function CarRaffle() {
               <p
                 onCopy={false}
                 className="unselectable"
-              >{`http://localhost:3000/carraffle/${encryptedvalue.data}`}</p>
+              >{`http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle/${encryptedvalue.data}`}</p>
               <CopyToClipboard
                 text={`http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle/${encryptedvalue.data}`}
                 onCopy={() => setCopied(true)}

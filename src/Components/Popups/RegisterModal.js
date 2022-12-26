@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { showModal } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
-import { Checkbox } from 'antd'
+import { Checkbox } from "antd";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -61,16 +61,19 @@ function RegisterModal({ showReg, handleCloseReg }) {
         dealer,
       })
       .then((result) => {
-        handleCloseReg();
-        notify("Register Successfully!");
+        if (result.status === 200) {
+          handleCloseReg();
+          notify(result.data.message);
+        } else {
+          notify(result.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);
-        notify("Register fail somthing wrong please try again !");
+        notify(error);
       });
   };
   const onToken = (address) => {
-    alert("fdgfdg")
     console.log(address);
   };
 
@@ -178,10 +181,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                   <Checkbox
-                     style={{color:"#F49D1A"}}
+                    style={{ color: "#F49D1A" }}
                     onClick={() => setShowPassWord(!showPassWord)}
-                    >
-                    Show password 
+                  >
+                    Show password
                   </Checkbox>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
@@ -196,12 +199,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={userInput.password}
                     required={true}
                   />
-                  <Checkbox style={{color:"#F49D1A"}}
+                  <Checkbox
+                    style={{ color: "#F49D1A" }}
                     onClick={() => setShowCPassWord(!showCPassword)}
-                    >
-                    Show password 
+                  >
+                    Show password
                   </Checkbox>
-                    
                 </div>
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -282,16 +285,22 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       </button>
                     )}
 
-                    {addUserInBid?userInput.name != "" && userInput.phone != "" && userInput.userName != "" && userInput.dealer != ""
-                    && userInput.password != ""? (<StripeCheckout
-                    stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                    token={onToken}
-                  />
-                ): <button type="submit" className="btn" disabled={true}>
-                Register
-              </button>: null
-                    
-                  }
+                    {addUserInBid ? (
+                      userInput.name != "" &&
+                      userInput.phone != "" &&
+                      userInput.userName != "" &&
+                      userInput.dealer != "" &&
+                      userInput.password != "" ? (
+                        <StripeCheckout
+                          stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                          token={onToken}
+                        />
+                      ) : (
+                        <button type="submit" className="btn" disabled={true}>
+                          Register
+                        </button>
+                      )
+                    ) : null}
                     {/* {  
                     addUserInBid ? userInput.name != null && userInput.phone != null && userInput.userName != null && userInput.dealer != null
                     && userInput.password != null ? (
@@ -307,12 +316,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     <p className="m-0">
                       Already have an account?&nbsp;&nbsp;
                       <a
-                        onClick={() =>
-                          {
-                            handleCloseReg()
-                            dispatch(showModal())
-                          }
-                        }
+                        onClick={() => {
+                          handleCloseReg();
+                          dispatch(showModal());
+                        }}
                         href="javascript:void(0)"
                         data-dismiss="modal"
                         data-toggle="modal"
