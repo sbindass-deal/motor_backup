@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
-import { Checkbox } from 'antd';
+import { Checkbox } from "antd";
+import CryptoJS from "crypto-js";
 
 import { useNavigate } from "react-router-dom";
+import { incVal } from "../UI/globaleVar";
 
 function LoginModal({ handleShowReg, handleShowForgPass }) {
   const navigate = useNavigate();
@@ -47,6 +49,8 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
 
   const handleApi = (e) => {
     e.preventDefault();
+    // console.log(11, incVal(password))
+
     setLoginLoading(true);
     const url = process.env.REACT_APP_URL;
 
@@ -135,11 +139,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
-                <Checkbox style={{ color: "#F49D1A" }}
-
+                <Checkbox
+                  style={{ color: "#F49D1A" }}
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-
                   Show password
                 </Checkbox>
               </div>
@@ -151,7 +154,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 {loginLoading ? (
                   <SmallSpinner />
                 ) : (
-                  <button button="submit" className="btn w-100" >
+                  <button button="submit" className="btn w-100">
                     Log In
                   </button>
                 )}

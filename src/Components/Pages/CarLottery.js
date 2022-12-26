@@ -33,13 +33,11 @@ function CarRaffle() {
   const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [reward, setReward] = useState([]);
   const [encryptedvalue, setEncryptedValue] = useState(null);
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [totalRafel, setTotalRafel] = useState(0);
-  const [totalEarning, setTotalEarning] = useState(0);
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
+  const [setUserLotteryDetails, setSetUserLotteryDetails] = useState({});
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -140,8 +138,8 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + `tickets/${showLotary.id}`
       );
-      setTotalRafel(parseInt(response.data.totalrefer / 3));
-      setTotalEarning(parseInt(response.data.rewards / 3));
+      console.log(11, response.data);
+      setSetUserLotteryDetails(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -464,12 +462,13 @@ function CarRaffle() {
                         {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
                           Number of Tickets $ &nbsp;
-                          {allLotaryApi.length}
+                          {/* {allLotaryApi.length} */}
+                          {setUserLotteryDetails.data}
                         </div>
                         <div className="MT_Price">
                           Total Amount $ &nbsp;
                           {showLotary.price &&
-                            showLotary.price * allLotaryApi.length}
+                            showLotary.price * setUserLotteryDetails.data}
                         </div>
                       </div>
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
@@ -497,13 +496,12 @@ function CarRaffle() {
                       <li>
                         <div className="RF_title">Total Refferals</div>
                         <div className="">
-                          {/* sdfsdf{JSON.stringify(totalRafel)} */}
-                          {totalRafel}
+                          {setUserLotteryDetails.totalrefer / 3}
                         </div>
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
-                        <div className="">{totalEarning}</div>
+                        <div className="">{setUserLotteryDetails.rewards}</div>
                       </li>
                     </ul>
                     <div>
@@ -531,7 +529,7 @@ function CarRaffle() {
                     </button> */}
                     <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
-                      purchased ticket will be shared with you 
+                      purchased ticket will be shared with you
                     </p>
                   </div>
                 </div>
