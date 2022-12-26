@@ -37,7 +37,8 @@ function CarRaffle() {
   const [encryptedvalue, setEncryptedValue] = useState(null);
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [totalRafel, setTotalRafel] = useState();
+  const [totalRafel, setTotalRafel] = useState(0);
+  const [totalEarning, setTotalEarning] = useState(0);
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
@@ -121,7 +122,7 @@ function CarRaffle() {
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_URL + "getLotteryDetail"
+        process.env.REACT_APP_URL + "getLotteryDetailActive"
       );
       if (response.data.data.length > 0) {
         setShowLotary(response.data.data[0]);
@@ -139,21 +140,8 @@ function CarRaffle() {
       const response = await axios.get(
         process.env.REACT_APP_URL + `tickets/${showLotary.id}`
       );
-      // if (response.data.data) {
-      //   setAllLotaryApi(response.data.data);
-      // } else {
-      //   console.log("Data is empty");
-      // }
-      const filteredData = response.data.data.filter(
-        (item) => item.reward !== "1"
-      );
-      setAllLotaryApi(filteredData);
-      const filteredRewardData = response.data.data.filter(
-        (item) => item.reward === "1"
-      );
-      setReward(filteredRewardData);
-      // console.log(11,response.data.totalrefer)
-      setTotalRafel(response.data.totalrefer);
+      setTotalRafel(parseInt(response.data.totalrefer / 3));
+      setTotalEarning(parseInt(response.data.rewards / 3));
     } catch (err) {
       console.log(err);
     }
@@ -180,7 +168,6 @@ function CarRaffle() {
 
   const addTickets = () => {
     if (inputLotteryNumber <= 0) {
-      alert("Pleae add valid number");
       return;
     } else if (!logingUser.login.token) {
       handleLogin();
@@ -201,8 +188,8 @@ function CarRaffle() {
 
   const onToken = (token, addresses) => {
     console.log(token, addresses);
-    alert("pqay success fully");
     if (token !== null) {
+      addTickets();
       navigate("/successpayment");
     }
   };
@@ -465,14 +452,20 @@ function CarRaffle() {
               <div className="card_Gray2 mt-5 mt-md-0 divSticky">
                 <div className="">
                   <div className="cardBorder">
-                    <h6>My Tickets - {allLotaryApi.length}</h6>
-
+                    <h6>My Tickets</h6>
                     <div className="myTicketRow">
-                      <div className="myTicketCol">
+                      <div
+                        className="myTicketCol"
+                        style={{ display: "flex", flexDirection: "column" }}
+                      >
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}
                         {/* <div className="MT_Count">10</div> */}
+                        <div className="MT_Price">
+                          Number of Tickets $ &nbsp;
+                          {allLotaryApi.length}
+                        </div>
                         <div className="MT_Price">
                           Total Amount $ &nbsp;
                           {showLotary.price &&
@@ -503,11 +496,14 @@ function CarRaffle() {
                     <ul className="refferFriendList mt-3">
                       <li>
                         <div className="RF_title">Total Refferals</div>
-                        <div className="">{totalRafel}</div>
+                        <div className="">
+                          {/* sdfsdf{JSON.stringify(totalRafel)} */}
+                          {totalRafel}
+                        </div>
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
-                        <div className="">{reward.length}</div>
+                        <div className="">{totalEarning}</div>
                       </li>
                     </ul>
                     <div>
