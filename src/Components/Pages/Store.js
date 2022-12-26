@@ -135,7 +135,7 @@ console.log("hello", page)
       <InfiniteScroll
         dataLength={totalResult}
         next={fetchMoreData}
-        hasMore={filterData.length !== totalResult}
+        hasMore={true}
         loader={<h4>Loading...</h4>}
       >
         <section className="pt_40">
