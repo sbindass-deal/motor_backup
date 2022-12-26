@@ -89,10 +89,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     handleShowForgPass();
   };
   return (
-    <Modal 
+    <Modal
       show={show}
       onHide={handleClose}
-      className="modal fade" 
+      className="modal fade"
       id="loginModal"
       centered
     >
@@ -135,12 +135,12 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
-                <Checkbox style={{color:"#F49D1A"}}
-                  
+                <Checkbox style={{ color: "#F49D1A" }}
+
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-                
-                  Show password 
+
+                  Show password
                 </Checkbox>
               </div>
 
@@ -151,7 +151,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 {loginLoading ? (
                   <SmallSpinner />
                 ) : (
-                  <button button="submit" className="btn ">
+                  <button button="submit" className="btn w-100" >
                     Log In
                   </button>
                 )}
