@@ -20,7 +20,6 @@ import CryptoJS from "crypto-js";
 import { useParams } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { showModal } from "../../redux/reducers/login";
 import StripeCheckout from "react-stripe-checkout";
 import Paymentsuccess from "./Paymentsuccess";
 import Video from "../../Assets/images/Introducing_video.mp4";
@@ -28,6 +27,7 @@ import carraffle from "../../Assets/images/carraffle-bg.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import LoginModal from "../Popups/LoginModal";
+import { showModalLogin } from "../../redux/reducers/login";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -103,7 +103,7 @@ function CarRaffle() {
     setModalShow(true);
   };
   const handleLogin = () => {
-    dispatch(showModal());
+    dispatch(showModalLogin());
   };
 
   const showModal = () => {
@@ -188,8 +188,8 @@ function CarRaffle() {
   const onToken = (token, addresses) => {
     console.log(token, addresses);
     if (token !== null) {
-      addTickets();
       navigate("/successpayment");
+      addTickets();
     }
   };
   const validateUser = (newEncryptedvalue) => {
@@ -401,7 +401,7 @@ function CarRaffle() {
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <lable>Number of Tickets</lable>
 
-                      <div className="ticketFom">
+                      <form onSubmit={addTickets} className="ticketFom">
                         <div className="form-group">
                           {/* <input
                           type="text"
@@ -435,14 +435,13 @@ function CarRaffle() {
                         </div>
                         <div className="form-group lotryBtn">
                           <button
-                            type="button"
+                            type="submit"
                             className="btn"
-                            onClick={addTickets}
                           >
                             Make Payment
                           </button>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>

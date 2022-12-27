@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   authToken,
   isAdmin,
-  showModal,
+  showModalLogin,
   showModalClose,
 } from "../redux/reducers/login";
 import { toast } from "react-toastify";
@@ -83,12 +83,12 @@ function Header() {
     dispatch(showModalClose());
   };
   const handleShow = () => {
-    dispatch(showModal());
+    dispatch(showModalLogin());
   };
 
   const handleCloseReg = () => {
-    setShowReg(false)
-    dispatch(showModalClose()) 
+    setShowReg(false);
+    dispatch(showModalClose());
   };
   const handleShowReg = () => setShowReg(true);
 
@@ -596,17 +596,21 @@ function Header() {
                           Store
                         </Link>
                       </li>
-                      {logingUser.login.token &&  (
+                      {logingUser.login.token && (
                         <li className="nav-item AddtCrt">
-                          {logingUser.cartSlice.quantity!=0 ? <Link to="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span className="count">
-                              {logingUser.cartSlice.quantity}
-                            </span>
-                          </Link> :""}
+                          {logingUser.cartSlice.quantity != 0 ? (
+                            <Link to="/cart">
+                              <i class="fa-solid fa-cart-shopping"></i>
+                              <span className="count">
+                                {logingUser.cartSlice.quantity}
+                              </span>
+                            </Link>
+                          ) : (
+                            ""
+                          )}
                         </li>
                       )}
-             
+
                       <li className="nav-item dropdown d-none">
                         <Link
                           className="nav-link"

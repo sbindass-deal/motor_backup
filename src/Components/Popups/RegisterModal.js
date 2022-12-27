@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { showModal } from "../../redux/reducers/login";
+import { showModalLogin } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
 import { Checkbox } from "antd";
@@ -318,7 +318,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <a
                         onClick={() => {
                           handleCloseReg();
-                          dispatch(showModal());
+                          dispatch(showModalLogin());
                         }}
                         href="javascript:void(0)"
                         data-dismiss="modal"

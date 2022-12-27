@@ -27,7 +27,7 @@ export const login = createSlice({
     regBtn: (state, action) => {
       state.reg = true;
     },
-    showModal: (state, action) => {
+    showModalLogin: (state, action) => {
       state.show = true;
     },
     showModalClose: (state, action) => {
@@ -44,7 +44,7 @@ export const {
   auth,
   logoutUser,
   regBtn,
-  showModal,
+  showModalLogin,
   showModalClose,
   isAdmin,
 } = login.actions;
