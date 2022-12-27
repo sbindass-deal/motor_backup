@@ -55,7 +55,7 @@ const AddRaffle = () => {
         <form onSubmit={handleSubmit} className="p-md-5">
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
-              <label>Raffle Name</label>
+              <label>Raffle Name </label>
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -87,7 +87,7 @@ const AddRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Total ticket stock</label>
+              <label>Total ticket stock </label>
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -96,6 +96,7 @@ const AddRaffle = () => {
                   name="stock"
                   className="field"
                   placeholder="2023"
+                  pattern="^[0-9]{10,12}$"
                   errorMessage="only number"
                   required={true}
                 />

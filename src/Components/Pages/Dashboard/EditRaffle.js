@@ -11,14 +11,9 @@ import ms from 'ms';
 const EditRaffle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [minDate, setMinDate] = useState(null)
+  const minDate=moment(new Date(new Date()- ms('0d'))).format('YYYY-MM-DD')
 
-  useEffect(()=>{
-    const minsec = ms('0d')
-    console.log('minsec',minsec);
-    const min_date = new Date(+new Date()-minsec);
-    setMinDate(moment(min_date).format('YYYY-MM-DD'));
-  },[])
+  
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -30,6 +25,14 @@ const EditRaffle = () => {
   const handleChange = (e) => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
+
+  function AddPicture(e){
+    const url=window.URL.createObjectURL(e?.target?.files[0]);
+    console.log(window.URL)
+    const img=document.querySelector('img');
+    img.src=url;
+  }
+
   useEffect(() => {
     const fetchLottery = async () => {
       try {
@@ -159,12 +162,17 @@ const EditRaffle = () => {
             <div className="col-12 col-md-6">
               <label>Upload Photos</label>
               <div className="form-group">
+                <label>
+                  <img src="https://img.icons8.com/color/2x/car-roof-box.png" alt="" height={90} width={100} />
                 <input
+                  style={{height:"0px",width:"0px"}}
                   type="file"
-                  class="field"
-                  id="formFileMultiple"
+                  // class="field"
+                  // id="formFileMultiple"
+                  onChange={()=>AddPicture()}
                   multiple
                 />
+                </label>
               </div>
             </div>
             <div className="col-12 col-md-6">
