@@ -10,13 +10,15 @@ const StoreHero = ({ setSearchValue }) => {
               <ul class="postTopOption">
                 <li class="post_search">
                   <input
-                    onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
+                    onChange={(e) =>
+                      setSearchValue(e.target.value.toLowerCase())
+                    }
                     type="text"
                     name="search"
                     placeholder="Search Product by name..."
                   />
                 </li>
-                <li class="">
+                {/* <li class="">
                   <button
                     type="button"
                     class="gry_btn"
@@ -25,15 +27,15 @@ const StoreHero = ({ setSearchValue }) => {
                   >
                     <i class="fa-solid fa-filter mr-2"></i> Filters
                   </button>
-                </li>
-                <li class="">
+                </li> */}
+                {/* <li class="">
                   <select class="post_select">
                     <option>Recently Closed</option>
                     <option>Popular</option>
                     <option>Highest Bid</option>
                     <option>Oldest</option>
                   </select>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

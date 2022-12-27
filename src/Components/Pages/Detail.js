@@ -1011,7 +1011,7 @@ function Detail() {
                         required
                       />
                     </div>
-                    <div class="col-md-">
+                    <div class="col-md-12">
                       <label for="validationCustom01" class="form-label">
                         comment
                       </label>

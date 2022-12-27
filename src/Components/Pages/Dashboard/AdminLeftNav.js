@@ -65,6 +65,16 @@ function AdminLeftNav() {
             Blog
           </Link>
         </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-enquiry" ? "active" : ""
+            } `}
+            to="/admin-enquiry"
+          >
+            Enquiry
+          </Link>
+        </li>
       </ul>
     </div>
   );

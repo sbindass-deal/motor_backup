@@ -27,6 +27,7 @@ import Video from "../../Assets/images/Introducing_video.mp4";
 import carraffle from "../../Assets/images/carraffle-bg.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
+import LoginModal from "../Popups/LoginModal";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -211,8 +212,9 @@ function CarRaffle() {
       <section className="carLottery d-flex align-items-center">
         <div className="container-fluid">
           <div className="heroText">
-            <video autoplay loop controls id="myVideo" poster={carraffle}>
+            <video autoPlay muted id="myVideo" poster={carraffle} controls>
               <source src={Video} type="video/mp4" />
+              Your browser does not support the video tag.
             </video>
           </div>
         </div>

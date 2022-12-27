@@ -62,6 +62,7 @@ import AddBlog from "./Dashboard/AddBlog";
 import OrderDetail from "./Dashboard/OrderDetails";
 import AddRaffle from "./Dashboard/AddRaffle";
 import EditRaffle from "./Dashboard/EditRaffle";
+import Enquiry from "./Dashboard/Enquiry";
 import CheckoutDetails from "./shopingStore/CheckoutDetails";
 
 const Layout = () => {
@@ -108,6 +109,7 @@ const Layout = () => {
                   <Route path="blog" element={<Blog />} />
                   <Route path="admin/add-blog" element={<AddBlog />} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
+                  <Route path="admin-enquiry" element={<Enquiry />} />
                 </>
               )}
             </>
