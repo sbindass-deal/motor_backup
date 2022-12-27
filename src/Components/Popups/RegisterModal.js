@@ -7,6 +7,7 @@ import { showModalLogin } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
 import { Checkbox } from "antd";
+import { current } from "@reduxjs/toolkit";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -25,6 +26,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(false);
+
+console.log("####",addUserInBid)
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -76,6 +79,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const onToken = (address) => {
     console.log(address);
   };
+
 
   return (
     <Modal
@@ -213,11 +217,31 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         onChange={(e) => setAddUserInBid(e.target.checked)}
                         className="form-check-input"
                         type="checkbox"
+                        
                       />
-                      Do you want to bid?(Optional)
+                      i want the ability to bid on action?(Optional)
                     </label>
                   </div>
                 </div>
+
+               <div className="col-12">
+                {addUserInBid==true ?<label style={{color:"#FFB100"}}>Bring a Trailer requires a credit to bid</label>:""}
+                </div> 
+                <div className="col-6 col-sm" id="show">
+                    <div className="form-group">
+                      {addUserInBid==true ? <button type="submit" className="btn">
+                        paynow
+                      </button> :""}
+                    </div>
+                  </div>
+                  <div className="col-6 col-sm" id="show" >
+                    <div className="form-group">
+                      {addUserInBid==true ?
+                      <button type="submit" className="btn">
+                        paylater
+                      </button>:""}
+                    </div>
+                  </div>
 
                 {/* {
                   <>
@@ -283,14 +307,15 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <button type="submit" className="btn">
                         Register
                       </button>
+
                     )}
 
                     {addUserInBid ? (
                       userInput.name != "" &&
-                      userInput.phone != "" &&
-                      userInput.userName != "" &&
-                      userInput.dealer != "" &&
-                      userInput.password != "" ? (
+                        userInput.phone != "" &&
+                        userInput.userName != "" &&
+                        userInput.dealer != "" &&
+                        userInput.password != "" ? (
                         <StripeCheckout
                           stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                           token={onToken}
@@ -299,6 +324,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         <button type="submit" className="btn" disabled={true}>
                           Register
                         </button>
+
                       )
                     ) : null}
                     {/* {  
@@ -311,6 +337,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     ):null:null} */}
                   </div>
                 </div>
+
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <p className="m-0">

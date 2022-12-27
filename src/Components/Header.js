@@ -23,14 +23,14 @@ import { useEffect } from "react";
 import { clearCart } from "../redux/reducers/cartSlice";
 
 const data = [
-  { id: 1, name: "Sohan", desc: "sohan is a good boy" },
-  { id: 2, name: "Mohan", desc: "mohan is a good boy" },
-  { id: 3, name: "Lalu", desc: "lalu is a good boy" },
-  { id: 4, name: "Modi", desc: "modi is a good boy" },
-  { id: 5, name: "Sohan", desc: "sohan is a good boy" },
-  { id: 6, name: "Sohan", desc: "sohan is a good boy" },
-  { id: 7, name: "Sohan", desc: "sohan is a good boy" },
-  { id: 8, name: "Sohan", desc: "sohan is a good boy" },
+  { id: 1, name: "Submit a vehicle", desc: "sohan is a good boy" ,redirect:"/submit" },
+  { id: 2, name: "Showroom", desc: "mohan is a good boy" ,redirect:"/showroom" },
+  { id: 3, name: "Raffle", desc: "lalu is a good boy"   ,redirect:"/carraffle"},
+  { id: 4, name: "Feautres", desc: "modi is a good boy"   ,redirect:"feautres" },
+  { id: 5, name: "Charity Actions", desc: "sohan is a good boy" ,redirect:"/charity"},
+  { id: 6, name: "About", desc: "sohan is a good boy" ,redirect:"/aboutshibnobi"},
+  { id: 7, name: "Faq", desc: "sohan is a good boy" ,redirect:"/faq"},
+  { id: 8, name: "Store", desc: "sohan is a good boy" ,redirect:"/shop"},
 ];
 
 function Header() {
@@ -654,8 +654,9 @@ function Header() {
       {sowAutoCompleate && (
         <div className="autoCom">
           {searchData.map((curElem) => {
+            console.log(curElem.redirect)
             return (
-              <a href="#" className="row searchList">
+              <a href={curElem?.redirect} className="row searchList">
                 <p className="title">{curElem.name}</p>
                 <p className="dec">{curElem.desc}</p>
               </a>
