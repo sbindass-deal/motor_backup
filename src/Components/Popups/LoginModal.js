@@ -47,9 +47,23 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     setPassword(e.target.value);
   };
 
+  // const handleClick = () => {
+  //   const data = incVal(password)
+  //   axios
+  //     .post(`${process.env.REACT_APP_URL}/decryptnew`, {
+  //       enc:data
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+
   const handleApi = (e) => {
     e.preventDefault();
-    // console.log(11, incVal(password))
+    console.log(11, incVal(password));
 
     setLoginLoading(true);
     const url = process.env.REACT_APP_URL;
@@ -114,6 +128,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
             </button>
           </div>
           <div className="modal-body">
+          {/* <button onClick={handleClick} >click me</button> */}
             <form onSubmit={handleApi}>
               <div className="col-md-12">
                 <FormInput

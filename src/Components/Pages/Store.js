@@ -30,7 +30,7 @@ function Store() {
       setTotalResult(response.data.count);
       setVehicleData(newData);
       setFilterData(newData);
-      setPage(page + 0)
+      setPage(page + 10);
       setLoader(false);
     } catch (err) {
       console.log(err);
@@ -47,9 +47,9 @@ function Store() {
     margin: 6,
     padding: 8,
   };
-console.log("hello", page)
-  const fetchMoreData = async() => {
-    console.log(page, "hello")
+  console.log("hello", page);
+  const fetchMoreData = async () => {
+    console.log(page, "hello");
 
     try {
       const response = await axios.get(
@@ -59,7 +59,7 @@ console.log("hello", page)
       setTotalResult(response.data.count);
       setVehicleData(vehicleData.concat(newData));
       setFilterData(filterData.concat(newData));
-      setPage(page + 10)
+      setPage(page + 10);
 
       setLoader(false);
     } catch (err) {
@@ -133,10 +133,15 @@ console.log("hello", page)
         <SmallSpinner spin={true} />
       ) : ( */}
       <InfiniteScroll
-        dataLength={totalResult}
+        dataLength={filterData.length}
         next={fetchMoreData}
-        hasMore={true}
+        hasMore={totalResult !== filterData.length}
         loader={<h4>Loading...</h4>}
+        endMessage={
+          <p className="text-warning" style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
       >
         <section className="pt_40">
           <div className="container">
