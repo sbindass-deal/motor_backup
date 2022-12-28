@@ -95,7 +95,7 @@ const AddRaffle = () => {
                   onChange={handleChange}
                   name="stock"
                   className="field"
-                  placeholder="2023"
+                  placeholder="2023 enter"
                   pattern="^[0-9]{10,12}$"
                   errorMessage="only number"
                   required={true}

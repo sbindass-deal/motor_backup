@@ -125,7 +125,7 @@ const EditRaffle = () => {
                   onChange={handleChange}
                   name="name"
                   className="field"
-                  placeholder="1900"
+                  placeholder="Name of the Lottery"
                   errorMessage="use only alphabet no special character"
                   required={true}
                 />

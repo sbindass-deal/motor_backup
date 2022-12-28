@@ -20,8 +20,8 @@ function SubmitaVehicle() {
 
   return (
     <div>
-      <section className="pt_80">
-        <div className="container">
+      <section className="pt_80 ">
+        <div className="container col-md col-sm col-lg">
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
               <h2 className="title_combo title_Center">
@@ -152,11 +152,11 @@ function SubmitaVehicle() {
                   <h4>Premier</h4>
                   <div className="plan_Price" style={{display:"flex",justifyContent:"space-evenly"}}>
                     <div className="plan_Price">
-                    ${planthird} <span className="plan_Time">single listing with 30 days</span>
+                    ${planthird} <span className="plan_Time">5 listing with 30 days</span>
                     </div>
                     -
                     <div className="plan_Price">
-                    ${planthird} <span className="plan_Time">single listing with 30 days</span>
+                    ${planthird} <span className="plan_Time">5 listing with 30 days</span>
                     </div>
                   </div>
                 </div>
