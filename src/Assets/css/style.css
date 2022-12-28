@@ -1627,3 +1627,7 @@ span.plan_Time small {
   right: 8px;
   color: #f7931a;
 }
+
+.plan_card:hover span.plan_Time small {
+  color: #111 ;
+}

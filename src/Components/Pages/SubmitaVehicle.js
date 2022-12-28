@@ -110,7 +110,7 @@ function SubmitaVehicle() {
                     {/* ${plansecond}
                     <span className="plan_Time">Month</span> */}
                     <div className="dfk">
-                      $99
+                      $349
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                           <input
@@ -178,7 +178,7 @@ function SubmitaVehicle() {
                     {/* ${plansecond}
                     <span className="plan_Time">Month</span> */}
                     <div className="dfk">
-                      $99
+                      $549
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                           <input
