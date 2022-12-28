@@ -37,10 +37,10 @@ function Footer() {
                   <Link to="/shipping">Shipping</Link>
                 </li>
                 <li>
-                  <Link to="/feautres">Gas guzzlrs Features</Link>
+                  <Link to="/feautres">Gas Guzzlrs Features</Link>
                 </li>
                 <li>
-                  <Link to="/submit">Submit a Vehicle</Link>
+                  <Link to="/submit">List Your Vehicle</Link>
                 </li>
                 {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
                 {/* <li><Link to="#">Event Calendar</Link></li> */}
@@ -54,7 +54,7 @@ function Footer() {
                   <Link to="/getalerts">Get Alerts</Link>
                 </li>
                 <li>
-                  <Link to="/aboutshibnobi">About Gas guzzlrs</Link>
+                  <Link to="/aboutshibnobi">About Gas Guzzlrs</Link>
                 </li>
               </ul>
             </div>
@@ -100,7 +100,7 @@ function Footer() {
                 <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                <p>©2022 Gas guzzlrs Motors | All Rights Reserved.</p>
+                <p>©2022 Gas Guzzlrs Motors | All Rights Reserved.</p>
               </div>
             </div>
           </div>

@@ -63,7 +63,7 @@ const AddRaffle = () => {
                   onChange={handleChange}
                   name="name"
                   className="field"
-                  placeholder="1900"
+                  placeholder="Name of the Lottery"
 
                   errorMessage="no special character only use alphabet"
                   required={true}

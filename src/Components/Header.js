@@ -454,7 +454,7 @@ function Header() {
                           }`}
                           to="/submit"
                         >
-                          Submit a Vehicle
+                          List your vehicle
                         </Link>
                       </li>
 
@@ -468,7 +468,7 @@ function Header() {
                           }}
                           to="/showroom"
                         >
-                          Showroom
+                          Showrooms
                         </Link>
                       </li>
 
@@ -614,7 +614,7 @@ function Header() {
                           }}
                           to="/shop"
                         >
-                          Store
+                          Gear
                         </Link>
                       </li>
                       {logingUser.login.token && (
