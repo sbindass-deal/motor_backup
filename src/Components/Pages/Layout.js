@@ -84,6 +84,8 @@ const Layout = () => {
               <Route path="myshipments" element={<MyShipments />} />
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
+              <Route path="place-order" element={<CheckoutDetails />} />
+
               <Route
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}
@@ -110,6 +112,7 @@ const Layout = () => {
                   <Route path="admin/add-blog" element={<AddBlog />} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
                   <Route path="admin-enquiry" element={<Enquiry />} />
+
                 </>
               )}
             </>
@@ -150,7 +153,6 @@ const Layout = () => {
           <Route path="charity" element={<Charity />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
-          <Route path="place-order" element={<CheckoutDetails />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer

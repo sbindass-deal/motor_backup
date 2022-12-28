@@ -45,7 +45,7 @@ function SubmitaVehicle() {
                     </div>
                     -
                     <div className="plan_Price">
-                    ${planone} <span className="plan_Time">single listing</span>
+                    ${planone} <span className="plan_Time">5 listing</span>
                     </div>
 
 
@@ -101,7 +101,7 @@ function SubmitaVehicle() {
                     </div>
                     -
                     <div className="plan_Price">
-                    ${plansecond}<span className="plan_Time">single listing</span>
+                    ${plansecond}<span className="plan_Time">5 listing</span>
                     </div>
 
                   </div>
