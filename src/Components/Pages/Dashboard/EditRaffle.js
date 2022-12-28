@@ -11,7 +11,8 @@ const EditRaffle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const minDate = moment(new Date(new Date() - ms("0d"))).format("YYYY-MM-DD");
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState([]);
+  const [videoFile, setVideoFile] = useState([]);
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -55,10 +56,26 @@ const EditRaffle = () => {
 
   const uploadFileOne = async (vehicleId) => {
     for (let i = 0; i < file.length; i++) {
-      const url = process.env.REACT_APP_URL + "vehicle-image";
+      const url = process.env.REACT_APP_URL + "lottery-image";
       const formData = new FormData();
       formData.append("image", file[i]);
       formData.append("vehicleId", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+  const uploadFileVideo = async (vehicleId) => {
+    for (let i = 0; i < videoFile.length; i++) {
+      const url = process.env.REACT_APP_URL + "lottery-image";
+      const formData = new FormData();
+      formData.append("image", videoFile[i]);
+      formData.append("lotteryId", vehicleId);
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -83,8 +100,9 @@ const EditRaffle = () => {
         drawdate: raffle.dedline,
       })
       .then((response) => {
-        uploadFileOne(2);
         if (response.status === 200) {
+          uploadFileOne(id);
+          uploadFileVideo(id);
           navigate("/raffleadmin");
         }
       })
@@ -198,9 +216,16 @@ const EditRaffle = () => {
               <label>Upload Videos</label>
               <div className="form-group">
                 <input
+                  style={{
+                    fontSize: "1.2rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onChange={(e) => {
+                    setVideoFile(e.target.files);
+                  }}
+                  name="file"
                   type="file"
-                  class="field"
-                  id="formFileMultiple"
                   multiple
                 />
               </div>
