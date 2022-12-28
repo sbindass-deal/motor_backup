@@ -109,9 +109,10 @@ const Cart = () => {
                         <Link to="/shop" className="btn">
                           Continue Shopping
                         </Link>
-                        <button onClick={handleOrder} className="btn">
+                        
+                        <Link to="/place-order" onClick={handleOrder} className="btn">
                           Check Out
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   </table>

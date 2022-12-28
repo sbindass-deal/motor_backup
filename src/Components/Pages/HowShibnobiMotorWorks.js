@@ -28,7 +28,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                What makes Gas guzzlrs different?
+                What makes Gas Guzzlrs different?
               </h2>
             </div>
 

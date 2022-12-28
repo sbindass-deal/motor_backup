@@ -25,13 +25,13 @@ import { clearCart } from "../redux/reducers/cartSlice";
 const data = [
   {
     id: 1,
-    name: "Submit a vehicle",
+    name: "List Your Vehicle",
     desc: "sohan is a good boy",
     redirect: "/submit",
   },
   {
     id: 2,
-    name: "Showroom",
+    name: "Showrooms",
     desc: "mohan is a good boy",
     redirect: "/showroom",
   },
@@ -208,27 +208,21 @@ function Header() {
                         Auctions
                       </Link> */}
 
-                      <div className="dropdown">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/auctionlive" && "navActive"
-                          }`}
-                          to="#"
+                      <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/aboutshibnobi"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/aboutshibnobi"
                         >
-                          Auctions
+                          About
                         </Link>
-                        <div className="dropdown-content">
-                          <Link className="nav-link" to="/auctionlive">
-                            Live now
-                          </Link>
-                          {/* <Link className="nav-link" to="/auctionpremium">
-                            Premium
-                          </Link>
-                          <Link className="nav-link" to="/auctionresults">
-                            Resullt
-                          </Link> */}
-                        </div>
-                      </div>
+
+                     
                     </li>
                     {/* {!logingUser.login.login ? (
                       <li onClick={handleShow} className="nav-item">
@@ -410,7 +404,7 @@ function Header() {
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/">
-                        Gas guzzlrs
+                        Gas Guzzlrs
                       </Link>
                     </li>
                     <li className="nav-item">
@@ -454,7 +448,7 @@ function Header() {
                           }`}
                           to="/submit"
                         >
-                          List your vehicle
+                          List Your Vehicle
                         </Link>
                       </li>
 
@@ -577,19 +571,27 @@ function Header() {
                       </div>
 
                       <li className="nav-item">
+                      <div className="dropdown">
                         <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/aboutshibnobi"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/aboutshibnobi"
+                          className={`nav-link ${
+                            location.pathname === "/auctionlive" && "navActive"
+                          }`}
+                          to="#"
                         >
-                          About
+                          Auctions
                         </Link>
+                        <div className="dropdown-content">
+                          <Link className="" to="/auctionlive">
+                            Live now
+                          </Link>
+                          {/* <Link className="nav-link" to="/auctionpremium">
+                            Premium
+                          </Link>
+                          <Link className="nav-link" to="/auctionresults">
+                            Resullt
+                          </Link> */}
+                        </div>
+                      </div>
                       </li>
                       <li className="nav-item">
                         <Link

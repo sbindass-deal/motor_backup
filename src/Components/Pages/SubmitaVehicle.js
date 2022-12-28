@@ -4,10 +4,9 @@ import { useDispatch } from "react-redux";
 import { selectPlan } from "../../redux/reducers/submitvechilesReducer";
 
 function SubmitaVehicle() {
-  const [planone, setp1] = React.useState(99);
-  const [plansecond, setp2] = React.useState(34);
-  const [planthird, setp3] = React.useState(16);
-  const [planfour, setp4] = React.useState(22);
+  const [planone, setp1] = React.useState(0);
+  const [plansecond, setp2] = React.useState(0);
+  const [planthird, setp3] = React.useState(0);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -25,30 +24,41 @@ function SubmitaVehicle() {
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Pick your Listing Type!
+                Pick Your Listing Type!
               </h2>
               <p>
-                Gas guzzlrs the the best place to action your vechicle.Choose one of our many action see  to showease your vehicle the way you want. {" "}
+                Gas Guzzlrs the best place to auction your vehicle.<br/> Choose one of our many Auction Services to showease your vehicle the way you want. {" "}
                 <a href="#" className="link">
                   Click here
                 </a>
                 .
               </p>
             </div>
-            <div className="col-12 col-md-3 mb-4">
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Standard</h4>
-                  <div className="plan_Price" style={{display:"flex",justifyContent:"space-evenly"}}>
-                    <div className="plan_Price">
-                    ${planone} <span className="plan_Time">single listing</span>
+                  <div className="plan_Price">
+                    {/* ${planone} <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
                     </div>
-                    -
-                    <div className="plan_Price">
-                    ${planone} <span className="plan_Time">single listing</span>
-                    </div>
-
-
+                  
                   </div>
                 </div>
                 <div className="plan_cardBody">
@@ -67,7 +77,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT  VEHICLE 
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
@@ -91,19 +101,32 @@ function SubmitaVehicle() {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-3 mb-4">
+
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
-                  <h4>Pro</h4>
-                  <div className="plan_Price" style={{display:"flex",justifyContent:"space-evenly"}}>
-                    <div className="plan_Price">
-                    ${plansecond}<span className="plan_Time">single listing</span>
+                  <h4>Premiere</h4>
+                  <div className="plan_Price">
+                    {/* ${plansecond}
+                    <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $349
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
                     </div>
-                    -
-                    <div className="plan_Price">
-                    ${plansecond}<span className="plan_Time">single listing</span>
-                    </div>
-
                   </div>
                 </div>
                 <div className="plan_cardBody">
@@ -122,7 +145,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT   VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
@@ -146,17 +169,31 @@ function SubmitaVehicle() {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-3 mb-4">
-              <div className="plan_card plan_WhiteGlove">
+
+            <div className="col-lg-3 col-md-3 col-sm-12  mb-4">
+              <div className="plan_card plan_Plus pro">
                 <div className="plan_cardHead">
-                  <h4>Premier</h4>
-                  <div className="plan_Price" style={{display:"flex",justifyContent:"space-evenly"}}>
-                    <div className="plan_Price">
-                    ${planthird} <span className="plan_Time">single listing with 30 days</span>
-                    </div>
-                    -
-                    <div className="plan_Price">
-                    ${planthird} <span className="plan_Time">single listing with 30 days</span>
+                  <h4>Pro</h4>
+                  <div className="plan_Price">
+                    {/* ${plansecond}
+                    <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $549
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -176,19 +213,19 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT   VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
 
               <button
                 data-toggle="collapse"
-                data-target="#WHITEGLOVE_HIW"
+                data-target="#PLUS_HIW"
                 className="gry_btn HIW_BTN"
               >
                 How It Works
               </button>
-              <div id="WHITEGLOVE_HIW" className="collapse">
+              <div id="PLUS_HIW" className="collapse">
                 <ul className="HIW_list mt-4">
                   <li>Your submit your vehicle</li>
                   <li>We accept the ones that fit</li>
@@ -200,19 +237,32 @@ function SubmitaVehicle() {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-3 mb-4">
+            
+          
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
                   <h4>Exclusive</h4>
-                  <div className="plan_Price" style={{display:"flex",justifyContent:"space-evenly"}}>
-                    <div className="plan_Price">
-                    ${planfour} <span className="plan_Time">year</span>
+                  <div className="plan_Price">
+                    {/* ${planthird} <span className="plan_Time">Year</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
                     </div>
-                    -
-                   <div className="plan_Price">
-                   ${planfour} <span className="plan_Time">year</span>
- 
-                   </div>
                   </div>
                 </div>
                 <div className="plan_cardBody">
@@ -231,7 +281,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT   VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
