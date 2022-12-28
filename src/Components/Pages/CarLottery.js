@@ -165,7 +165,8 @@ function CarRaffle() {
     fetchLotaryApiAll();
   }, [showLotary.id, inputLotteryNumber]);
 
-  const addTickets = () => {
+  const addTickets = (e) => {
+    e.preventDefault();
     if (inputLotteryNumber <= 0) {
       return;
     } else if (!logingUser.login.token) {
@@ -255,14 +256,14 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          <img src={ads_car_1} alt="ads car" />
+                          <img src={ads_car_3} alt="ads car" />
                         </div>
                         <div
                           onClick={() => handleImageHow(2)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          <img src={ads_car_3} alt="ads car" />
+                          <img src={ads_car_1} alt="ads car" />
                         </div>
                       </div>
                     </div>
@@ -434,10 +435,7 @@ function CarRaffle() {
                           </select>
                         </div>
                         <div className="form-group lotryBtn">
-                          <button
-                            type="submit"
-                            className="btn"
-                          >
+                          <button type="submit" className="btn">
                             Make Payment
                           </button>
                         </div>
@@ -462,13 +460,14 @@ function CarRaffle() {
                         </div> */}
                         {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
-                          Number of Tickets $ &nbsp;
+                          Number of Tickets &nbsp;
                           {/* {allLotaryApi.length} */}
                           {setUserLotteryDetails.data}
                         </div>
                         <div className="MT_Price">
                           Total Amount $ &nbsp;
                           {showLotary.price &&
+                            setUserLotteryDetails.data &&
                             showLotary.price * setUserLotteryDetails.data}
                         </div>
                       </div>
@@ -497,7 +496,8 @@ function CarRaffle() {
                       <li>
                         <div className="RF_title">Total Refferals</div>
                         <div className="">
-                          {setUserLotteryDetails.totalrefer / 3}
+                          {setUserLotteryDetails.totalrefer &&
+                            setUserLotteryDetails.totalrefer / 3}
                         </div>
                       </li>
                       <li>
@@ -511,7 +511,7 @@ function CarRaffle() {
                         onClick={() => {
                           axios
                             .get(
-                              `http://3.83.96.16:8000/encrypted/${showLotary.id}/20`
+                              `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
                             )
                             .then((res) => {
                               setIsModalOpen(true);
@@ -598,7 +598,7 @@ function CarRaffle() {
             <Carousel.Item>
               <img
                 className="d-block w-100 img-fluid"
-                src={ads_car_1}
+                src={ads_car_2}
                 alt="First slide"
               />
               <Carousel.Caption></Carousel.Caption>
@@ -606,7 +606,7 @@ function CarRaffle() {
             <Carousel.Item>
               <img
                 className="d-block w-100 img-fluid"
-                src={ads_car_2}
+                src={ads_car_3}
                 alt="Second slide"
               />
 
@@ -615,7 +615,7 @@ function CarRaffle() {
             <Carousel.Item>
               <img
                 className="d-block w-100 img-fluid"
-                src={ads_car_3}
+                src={ads_car_1}
                 alt="Third slide"
               />
 

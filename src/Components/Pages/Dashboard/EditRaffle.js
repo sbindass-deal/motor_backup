@@ -5,15 +5,14 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
-import ms from 'ms';
-
+import ms from "ms";
 
 const EditRaffle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const minDate=moment(new Date(new Date()- ms('0d'))).format('YYYY-MM-DD')
-
-  
+  const minDate = moment(new Date(new Date() - ms("0d"))).format("YYYY-MM-DD");
+  const [file, setFile] = useState([]);
+  const [videoFile, setVideoFile] = useState([]);
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -26,11 +25,11 @@ const EditRaffle = () => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
 
-  function AddPicture(e){
-    const url=window.URL.createObjectURL(e?.target?.files[0]);
-    console.log(window.URL)
-    const img=document.querySelector('img');
-    img.src=url;
+  function AddPicture(e) {
+    const url = window.URL.createObjectURL(e?.target?.files[0]);
+    console.log(window.URL);
+    const img = document.querySelector("img");
+    img.src = url;
   }
 
   useEffect(() => {
@@ -55,6 +54,39 @@ const EditRaffle = () => {
     fetchLottery();
   }, [id]);
 
+  const uploadFileOne = async (vehicleId) => {
+    for (let i = 0; i < file.length; i++) {
+      const url = process.env.REACT_APP_URL + "lottery-image";
+      const formData = new FormData();
+      formData.append("image", file[i]);
+      formData.append("vehicleId", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+  const uploadFileVideo = async (vehicleId) => {
+    for (let i = 0; i < videoFile.length; i++) {
+      const url = process.env.REACT_APP_URL + "lottery-image";
+      const formData = new FormData();
+      formData.append("image", videoFile[i]);
+      formData.append("lotteryId", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -69,6 +101,8 @@ const EditRaffle = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          uploadFileOne(id);
+          uploadFileVideo(id);
           navigate("/raffleadmin");
         }
       })
@@ -76,6 +110,7 @@ const EditRaffle = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="container">
       <div className="row">
@@ -162,26 +197,35 @@ const EditRaffle = () => {
             <div className="col-12 col-md-6">
               <label>Upload Photos</label>
               <div className="form-group">
-                <label>
-                  <img src="https://img.icons8.com/color/2x/car-roof-box.png" alt="" height={90} width={100} />
                 <input
-                  style={{height:"0px",width:"0px"}}
+                  style={{
+                    fontSize: "1.2rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onChange={(e) => {
+                    setFile(e.target.files);
+                  }}
+                  name="file"
                   type="file"
-                  // class="field"
-                  // id="formFileMultiple"
-                  onChange={()=>AddPicture()}
                   multiple
                 />
-                </label>
               </div>
             </div>
             <div className="col-12 col-md-6">
               <label>Upload Videos</label>
               <div className="form-group">
                 <input
+                  style={{
+                    fontSize: "1.2rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onChange={(e) => {
+                    setVideoFile(e.target.files);
+                  }}
+                  name="file"
                   type="file"
-                  class="field"
-                  id="formFileMultiple"
                   multiple
                 />
               </div>
