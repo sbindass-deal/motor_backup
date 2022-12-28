@@ -12,3 +12,9 @@
     width: 100%;
     word-break: break-word;
   }
+
+  .navbar-brand img {
+    width: 231px !important;
+    position: relative;
+    z-index: 999 !important;
+}

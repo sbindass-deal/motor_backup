@@ -24,12 +24,10 @@ function SubmitaVehicle() {
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Submit your Listing Today!
+                Pick Your Listing Type!
               </h2>
               <p>
-                Gas guzzlrs is simply the best way to buy and sell the best cars
-                of all time. Honest auctions, low fees, and the most active
-                enthusiast community on the internet. Have questions?{" "}
+                Gas Guzzlrs the best place to auction your vehicle.<br/> Choose one of our many Auction Services to showease your vehicle the way you want. {" "}
                 <a href="#" className="link">
                   Click here
                 </a>
@@ -39,7 +37,7 @@ function SubmitaVehicle() {
             <div className="col-12 col-md-4 mb-4">
               <div className="plan_card">
                 <div className="plan_cardHead">
-                  <h4>classNameic</h4>
+                  <h4>Standard</h4>
                   <div className="plan_Price">
                     ${planone} <span className="plan_Time">Month</span>
                   </div>
@@ -60,7 +58,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT A VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
@@ -109,7 +107,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT A VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
@@ -136,7 +134,7 @@ function SubmitaVehicle() {
             <div className="col-12 col-md-4 mb-4">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
-                  <h4>White Glove</h4>
+                  <h4>Exclusive</h4>
                   <div className="plan_Price">
                     ${planthird} <span className="plan_Time">Year</span>
                   </div>
@@ -157,7 +155,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT A VEHICLE
+                    SUBMIT VEHICLE
                   </a>
                 </div>
               </div>
