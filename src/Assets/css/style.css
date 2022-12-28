@@ -1456,7 +1456,7 @@ table.tikTable tr td:first-child { color: #f7931b; position: relative;}
 .carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
 video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
-.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: 60px;  padding: 10px; z-index: 1;}
+.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: -40px;  padding: 10px; z-index: 1;}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
@@ -1630,4 +1630,17 @@ span.plan_Time small {
 
 .plan_card:hover span.plan_Time small {
   color: #111 ;
+}
+a.searchList {
+  border-bottom: 1px solid #f7931b38;
+  padding: 5px 25px;
+}
+.searchBg {
+  height: 100vh;
+  position: absolute;
+  background-color: #000000eb;
+  width: 100%;
+  margin: 0 auto;
+  left: 0;
+  z-index: 9999999;
 }
