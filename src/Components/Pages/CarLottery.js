@@ -39,6 +39,7 @@ function CarRaffle() {
   const [copied, setCopied] = useState(false);
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const [setUserLotteryDetails, setSetUserLotteryDetails] = useState({});
+  const [totalRaffrel, setTotalRaffrel] = useState(0)
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -141,6 +142,7 @@ function CarRaffle() {
       );
       console.log(11, response.data);
       setSetUserLotteryDetails(response.data);
+      setTotalRaffrel(response.data.totalrefer.length )
     } catch (err) {
       console.log(err);
     }
@@ -173,24 +175,36 @@ function CarRaffle() {
       handleLogin();
       return;
     }
-    axios
-      .post(process.env.REACT_APP_URL + "addTicket", {
-        lottery_id: showLotary.id,
-        qty: parseInt(inputLotteryNumber, 10),
-        enc: newEncryptedvalue,
-      })
-      .then((res) => {
-        handleShow();
-      });
-    setInputLotteryNumber("");
-    fetchLotaryApiAll();
+    handleShow();
+    // axios
+    //   .post(process.env.REACT_APP_URL + "addTicket", {
+    //     lottery_id: showLotary.id,
+    //     qty: parseInt(inputLotteryNumber, 10),
+    //     enc: newEncryptedvalue,
+    //   })
+    //   .then((res) => {
+    //     handleShow();
+    //   });
+    // setInputLotteryNumber("");
+    // fetchLotaryApiAll();
   };
 
   const onToken = (token, addresses) => {
     console.log(token, addresses);
     if (token !== null) {
       navigate("/successpayment");
-      addTickets();
+      // addTickets();
+      axios
+        .post(process.env.REACT_APP_URL + "addTicket", {
+          lottery_id: showLotary.id,
+          qty: parseInt(inputLotteryNumber, 10),
+          enc: newEncryptedvalue,
+        })
+        .then((res) => {
+          handleShow();
+        });
+      setInputLotteryNumber("");
+      fetchLotaryApiAll();
     }
   };
   const validateUser = (newEncryptedvalue) => {
@@ -460,12 +474,12 @@ function CarRaffle() {
                         </div> */}
                         {/* <div className="MT_Count">10</div> */}
                         <div className="MT_Price">
-                          Number of Tickets &nbsp;
+                          Number of Tickets-
                           {/* {allLotaryApi.length} */}
                           {setUserLotteryDetails.data}
                         </div>
                         <div className="MT_Price">
-                          Total Amount $ &nbsp;
+                          Total Amount-$
                           {showLotary.price &&
                             setUserLotteryDetails.data &&
                             showLotary.price * setUserLotteryDetails.data}
@@ -491,13 +505,12 @@ function CarRaffle() {
                   <hr />
 
                   <div className="cardBorder">
-                    <h5>Reffer Friend</h5>
+                    <h5>Refer Friend</h5>
                     <ul className="refferFriendList mt-3">
                       <li>
-                        <div className="RF_title">Total Refferals</div>
+                        <div className="RF_title">Total Referals</div>
                         <div className="">
-                          {setUserLotteryDetails.totalrefer &&
-                            setUserLotteryDetails.totalrefer / 3}
+                          {totalRaffrel}
                         </div>
                       </li>
                       <li>
@@ -521,7 +534,7 @@ function CarRaffle() {
                         }}
                         className="gry_btn w-full"
                       >
-                        Share Reffer Link
+                        Share Refer Link
                       </button>
                     </div>
 

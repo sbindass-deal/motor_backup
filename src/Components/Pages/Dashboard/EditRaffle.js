@@ -59,7 +59,7 @@ const EditRaffle = () => {
       const url = process.env.REACT_APP_URL + "lottery-image";
       const formData = new FormData();
       formData.append("image", file[i]);
-      formData.append("vehicleId", vehicleId);
+      formData.append("lottery_id", vehicleId);
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -75,7 +75,7 @@ const EditRaffle = () => {
       const url = process.env.REACT_APP_URL + "lottery-image";
       const formData = new FormData();
       formData.append("image", videoFile[i]);
-      formData.append("lotteryId", vehicleId);
+      formData.append("lottery_id", vehicleId);
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
