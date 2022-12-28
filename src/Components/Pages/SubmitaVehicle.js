@@ -34,12 +34,31 @@ function SubmitaVehicle() {
                 .
               </p>
             </div>
-            <div className="col-12 col-md-4 mb-4">
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Standard</h4>
                   <div className="plan_Price">
-                    ${planone} <span className="plan_Time">Month</span>
+                    {/* ${planone} <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
+                    </div>
+                  
                   </div>
                 </div>
                 <div className="plan_cardBody">
@@ -82,13 +101,32 @@ function SubmitaVehicle() {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-4 mb-4">
+
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
-                  <h4>Plus</h4>
+                  <h4>Premiere</h4>
                   <div className="plan_Price">
-                    ${plansecond}
-                    <span className="plan_Time">Month</span>
+                    {/* ${plansecond}
+                    <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="plan_cardBody">
@@ -131,12 +169,100 @@ function SubmitaVehicle() {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-4 mb-4">
+
+            <div className="col-lg-3 col-md-3 col-sm-12  mb-4">
+              <div className="plan_card plan_Plus pro">
+                <div className="plan_cardHead">
+                  <h4>Pro</h4>
+                  <div className="plan_Price">
+                    {/* ${plansecond}
+                    <span className="plan_Time">Month</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="plan_cardBody">
+                  <ul className="plan_point">
+                    <li>Lorem Ipsum is simply dummy text</li>
+                    <li>Printing and typesetting industry</li>
+                    <li>Lorem Ipsum has been the industry's</li>
+                    <li>Standard dummy text</li>
+                    <li>Lorem Ipsum is simply</li>
+                    <li>Type and scrambled</li>
+                  </ul>
+                </div>
+                <div className="plan_cardFooter">
+                  <a
+                    onClick={() => dispatch(selectPlan(planone))}
+                    href="vechiles"
+                    className="gry_btn"
+                  >
+                    SUBMIT VEHICLE
+                  </a>
+                </div>
+              </div>
+
+              <button
+                data-toggle="collapse"
+                data-target="#PLUS_HIW"
+                className="gry_btn HIW_BTN"
+              >
+                How It Works
+              </button>
+              <div id="PLUS_HIW" className="collapse">
+                <ul className="HIW_list mt-4">
+                  <li>Your submit your vehicle</li>
+                  <li>We accept the ones that fit</li>
+                  <li>You pay $499</li>
+                  <li>We write the auction listing</li>
+                  <li>You approve</li>
+                  <li>We schedule the listing</li>
+                  <li>Your Listing goes live</li>
+                </ul>
+              </div>
+            </div>
+            
+          
+            <div className="col-lg-3 col-md-3 col-sm-12 mb-4">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
                   <h4>Exclusive</h4>
                   <div className="plan_Price">
-                    ${planthird} <span className="plan_Time">Year</span>
+                    {/* ${planthird} <span className="plan_Time">Year</span> */}
+                    <div className="dfk">
+                      $99
+                      <div className="switch">
+                        <span className="plan_Time">Single Listing</span>
+                          <input
+                              className="react-switch-checkbox"
+                              id={`react-switch-new`}
+                              type="checkbox"
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={`react-switch-new`}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                          <span className="plan_Time">5 Listing <small>within 30 Days</small></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="plan_cardBody">

@@ -57,7 +57,7 @@ function MyShipments() {
                         <button type="button" className="gry_btn ml-2">
                           For any query you can contact on mail &nbsp; &nbsp;
                           <span className="text-warning">
-                            Xavier@gasguzzlrs.com
+                            xavier@gasguzzlrs.com
                           </span>
                         </button>
                       </div>
@@ -102,7 +102,7 @@ function MyShipments() {
                         <button type="button" className="gry_btn ml-2">
                           For any query you can contact on mail &nbsp; &nbsp;
                           <span className="text-warning">
-                            Xavier@gasguzzlrs.com
+                            xavier@gasguzzlrs.com
                           </span>
                         </button>
                       </div>
