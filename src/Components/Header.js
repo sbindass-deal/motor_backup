@@ -23,14 +23,34 @@ import { useEffect } from "react";
 import { clearCart } from "../redux/reducers/cartSlice";
 
 const data = [
-  { id: 1, name: "Submit a vehicle", desc: "sohan is a good boy" ,redirect:"/submit" },
-  { id: 2, name: "Showroom", desc: "mohan is a good boy" ,redirect:"/showroom" },
-  { id: 3, name: "Raffle", desc: "lalu is a good boy"   ,redirect:"/carraffle"},
-  { id: 4, name: "Feautres", desc: "modi is a good boy"   ,redirect:"feautres" },
-  { id: 5, name: "Charity Actions", desc: "sohan is a good boy" ,redirect:"/charity"},
-  { id: 6, name: "About", desc: "sohan is a good boy" ,redirect:"/aboutshibnobi"},
-  { id: 7, name: "Faq", desc: "sohan is a good boy" ,redirect:"/faq"},
-  { id: 8, name: "Store", desc: "sohan is a good boy" ,redirect:"/shop"},
+  {
+    id: 1,
+    name: "Submit a vehicle",
+    desc: "sohan is a good boy",
+    redirect: "/submit",
+  },
+  {
+    id: 2,
+    name: "Showroom",
+    desc: "mohan is a good boy",
+    redirect: "/showroom",
+  },
+  { id: 3, name: "Raffle", desc: "lalu is a good boy", redirect: "/carraffle" },
+  { id: 4, name: "Feautres", desc: "modi is a good boy", redirect: "feautres" },
+  {
+    id: 5,
+    name: "Charity Actions",
+    desc: "sohan is a good boy",
+    redirect: "/charity",
+  },
+  {
+    id: 6,
+    name: "About",
+    desc: "sohan is a good boy",
+    redirect: "/aboutshibnobi",
+  },
+  { id: 7, name: "Faq", desc: "sohan is a good boy", redirect: "/faq" },
+  { id: 8, name: "Store", desc: "sohan is a good boy", redirect: "/shop" },
 ];
 
 function Header() {
@@ -38,6 +58,7 @@ function Header() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState();
   const [searchData, setSearchData] = useState(data);
+  const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const notify = (val) =>
     toast.warn(val, {
@@ -51,7 +72,7 @@ function Header() {
       theme: "light",
     });
   const [showSearchModal, setShowSearchModal] = useState(false);
-  const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
+  // const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -106,7 +127,7 @@ function Header() {
   };
 
   const handleBlur = (e) => {
-    setSowAutoCompleate(false);
+    // setSowAutoCompleate(false);
   };
   const handleFocus = (e) => {
     setSowAutoCompleate(true);
@@ -652,16 +673,21 @@ function Header() {
         handleCloseForgPass={handleCloseForgPass}
       />
       {sowAutoCompleate && (
-        <div className="autoCom">
-          {searchData.map((curElem) => {
-            console.log(curElem.redirect)
-            return (
-              <a href={curElem?.redirect} className="row searchList">
-                <p className="title">{curElem.name}</p>
-                <p className="dec">{curElem.desc}</p>
-              </a>
-            );
-          })}
+        <div
+          onClick={() => setSowAutoCompleate(false)}
+          style={{ minHeight: "80vh", width: "100%" }}
+        >
+          <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
+            {searchData.map((curElem) => {
+              console.log(curElem.redirect);
+              return (
+                <Link to={curElem.redirect} className="row searchList">
+                  <p className="title">{curElem.name}</p>
+                  <p className="dec">{curElem.desc}</p>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       )}
     </>

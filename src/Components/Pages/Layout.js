@@ -150,7 +150,7 @@ const Layout = () => {
           <Route path="charity" element={<Charity />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
-          <Route path="place-order" element={<CheckoutDetails/>} />
+          <Route path="place-order" element={<CheckoutDetails />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <ToastContainer

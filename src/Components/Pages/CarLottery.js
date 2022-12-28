@@ -165,7 +165,8 @@ function CarRaffle() {
     fetchLotaryApiAll();
   }, [showLotary.id, inputLotteryNumber]);
 
-  const addTickets = () => {
+  const addTickets = (e) => {
+    e.preventDefault();
     if (inputLotteryNumber <= 0) {
       return;
     } else if (!logingUser.login.token) {
@@ -434,10 +435,7 @@ function CarRaffle() {
                           </select>
                         </div>
                         <div className="form-group lotryBtn">
-                          <button
-                            type="submit"
-                            className="btn"
-                          >
+                          <button type="submit" className="btn">
                             Make Payment
                           </button>
                         </div>
@@ -511,7 +509,7 @@ function CarRaffle() {
                         onClick={() => {
                           axios
                             .get(
-                              `http://3.83.96.16:8000/encrypted/${showLotary.id}/20`
+                              `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
                             )
                             .then((res) => {
                               setIsModalOpen(true);
