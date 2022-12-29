@@ -117,14 +117,13 @@ const EditRaffle = () => {
         <form onSubmit={handleSubmit} className="p-md-5">
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
-              <label>Raffle Name</label>
               <div className="form-group">
                 <FormInput
-                  type="text"
                   value={raffle.name}
                   onChange={handleChange}
                   name="name"
                   className="field"
+                  label="Raffle Name"
                   placeholder="Name of the Lottery"
                   errorMessage="use only alphabet no special character"
                   required={true}
@@ -132,7 +131,6 @@ const EditRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Price od 1 ticket</label>
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -141,28 +139,26 @@ const EditRaffle = () => {
                   name="price"
                   className="field"
                   placeholder="2023"
+                  pattern="^[0-9]{1,9}$"
+                  label="Price od 1 ticket"
                   errorMessage="use only numbers($)"
                   required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Total ticket stock</label>
-              <div className="form-group">
                 <FormInput
-                  type="text"
-                  value={raffle.stock}
-                  onChange={handleChange}
-                  name="stock"
-                  className="field"
-                  placeholder="2023"
-                  errorMessage="use only numbers"
-                  required={true}
-                />
-              </div>
+                    value={raffle.stock}
+                    onChange={handleChange}
+                    name="stock"
+                    placeholder="mention available ticket stock"
+                    errorMessage="This filed only contain number "
+                    label="Total ticket stock"
+                    pattern="^[0-9]{1,10}$"
+                    required={true}
+                  />
             </div>
             <div className="col-12 col-md-6">
-              <label>Deadline to purchase date</label>
               <div className="form-group">
                 <FormInput
                   type="date"
@@ -171,6 +167,7 @@ const EditRaffle = () => {
                   onChange={handleChange}
                   name="dedline"
                   className="field"
+                  label="Deadline to purchase date"
                   placeholder="Enter dedline"
                   errorMessage="successor date of current date"
                   required={true}
@@ -178,7 +175,6 @@ const EditRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-12">
-              <label>Lucky draw date</label>
               <div className="form-group">
                 <FormInput
                   type="date"
@@ -188,6 +184,7 @@ const EditRaffle = () => {
                   name="luckyDrawDate"
                   className="field"
                   placeholder="2023"
+                  label="Lucky draw date"
                   errorMessage="use only lucky draw date"
                   required={true}
                 />

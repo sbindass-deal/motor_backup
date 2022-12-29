@@ -1,4 +1,5 @@
 import React from 'react'
+import FormInput from '../../UI/FormInput';
 
 export default function CheckoutDetails() {
 
@@ -14,30 +15,30 @@ export default function CheckoutDetails() {
     <div className='container pt-5' style={{minHeight:"100vh"}}>
     <form class="row g-5 col-sm" onSubmit={inputHandle}>
   <div class="col-md-6">
-    <label for="validationDefault01" class="form-label">Name</label>
-    <input type="text" 
+    <FormInput 
     name="name"
     value={data.name}
     onChange={inputHandle}
-    class="form-control" id="validationDefault01" required/>
+    label="Name"
+    class="form-control" id="validationDefault01" required={true}/>
   </div>
   <div class="col-md-6">
-    <label for="validationDefault02" class="form-label">Email</label>
-    <input type="text" 
+    <FormInput
     name="email"
     value={data.email}
     onChange={inputHandle}
-
-    class="form-control" id="validationDefault02"  required/>
+    label="Email"
+    class="form-control" id="validationDefault02"  required={true}/>
   </div>
   <div class="col-md-6">
-    <label for="validationDefault03" class="form-label">Phone</label>
-    <input type="text"
+    <FormInput
     name="phone"
     value={data.phone}
     onChange={inputHandle}
-
-     class="form-control" id="validationDefault03" required />
+    label="Phone"
+    pattern="^[0-9]{1,10}$"
+    errorMessage="only use valid phone number"
+     class="form-control" id="validationDefault03" required={true} />
   </div>
   
   <div class="col-md-6">
@@ -65,14 +66,17 @@ export default function CheckoutDetails() {
     </select>
   </div>
   <div class="col-md-6">
-    <label for="validationDefault03" class="form-label">Pincode</label>
-    <input type="text"
+    <FormInput
     name="pincode"
     value={data.pincode}
     onChange={inputHandle}
-    class="form-control" id="validationDefault03" required />
+    label="Pincode"
+    pattern="^[0-9]{1,9}$"
+    errorMessage="only use valid pincode number"
+    class="form-control" id="validationDefault03" required={true} />
   </div>
   <div class="col-6">
+
     <button class="btn btn-primary mt-3" type='submit'>Place Order</button>
   </div>
 </form>

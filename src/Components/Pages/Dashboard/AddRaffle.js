@@ -55,7 +55,6 @@ const AddRaffle = () => {
         <form onSubmit={handleSubmit} className="p-md-5">
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
-              <label>Raffle Name </label>
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -64,7 +63,7 @@ const AddRaffle = () => {
                   name="name"
                   className="field"
                   placeholder="Name of the Lottery"
-
+                  label="Raffle Name"
                   errorMessage="no special character only use alphabet"
                   required={true}
                 />
@@ -72,54 +71,55 @@ const AddRaffle = () => {
                 
             </div>
             <div className="col-12 col-md-6">
-              <label>Price od 1 ticket</label>
               <div className="form-group">
                 <FormInput
-                  type="text"
                   value={raffle.price}
                   onChange={handleChange}
                   name="price"
                   className="field"
                   placeholder="2023"
+                  label="Price od 1 ticket"
+                  pattern="^[0-9]{1,10}$"
                   errorMessage="only number"
                   required={true}
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Total ticket stock </label>
-              <div className="form-group">
                 <FormInput
-                  type="text"
+                 
                   value={raffle.stock}
                   onChange={handleChange}
                   name="stock"
                   className="field"
-                  placeholder="2023 enter"
-                  pattern="^[0-9]{10,12}$"
-                  errorMessage="only number"
+                  placeholder="mention available ticket stock"
+                  label="Total ticket stock"
+                  pattern="^[0-9]{1,9}$"
+                  errorMessage="This filed only contain number"
                   required={true}
                 />
-              </div>
+              
             </div>
+              
             <div className="col-12 col-md-6">
-              <label>Deadline to purchase date</label>
               <div className="form-group">
-                <input
+                <FormInput
                   type="date"
                   min={minDate}
                   value={raffle.dedline}
                   onChange={handleChange}
                   name="dedline"
                   className="field"
+                  label="Deadline to purchase date"
                   placeholder="Enter dedline"
                   required
                   
                 />
               </div>
             </div>
+              
             <div className="col-12 col-md-12">
-              <label>Lucky draw date</label>
+             
               <div className="form-group">
                 <FormInput
                   type="date"
@@ -128,6 +128,7 @@ const AddRaffle = () => {
                   onChange={handleChange}
                   name="luckyDrawDate"
                   className="field"
+                  label="Lucky draw date"
                   placeholder="2023"
                   errorMessage="take only lucky draw date"
                   required={true}
@@ -136,11 +137,11 @@ const AddRaffle = () => {
             </div>
 
             <div className="col-12 col-md-6">
-              <label>Upload Photos</label>
               <div className="form-group">
                 <FormInput
                   type="file"
                   class="field"
+                  label="Upload Photos"
                   id="formFileMultiple"
                   multiple
                  
@@ -148,11 +149,11 @@ const AddRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <label>Upload Videos </label>
               <div className="form-group">
                 <FormInput
                   type="file"
                   class="field"
+                  label="Upload Videos"
                   id="formFileMultiple"
                   multiple
                 />
