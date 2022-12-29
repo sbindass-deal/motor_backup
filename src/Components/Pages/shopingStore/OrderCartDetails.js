@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import img_01 from "../../../Assets/images/img-1.webp";
 import SmallSpinner from "../../UI/SmallSpinner";
 
@@ -51,7 +51,7 @@ const OrderCartDetails = () => {
                     return (
                       <tr key={curElem.id}>
                         <td className="productImg">
-                          <img src={img_01} />
+                         <Link to={`/shop/${curElem.id}`}> <img src={img_01} /></Link>
                         </td>
                         <td>{2002342517}</td>
                         <td>xl</td>

@@ -231,7 +231,7 @@ const StoreDetails = () => {
                 </div>
                 <div class="col-md-12">
                   <label htmlFor="validationCustom01" class="form-label">
-                    
+                   Query or Description
                   </label>
                   <textarea
                     value={enqInput.comment}
