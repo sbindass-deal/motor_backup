@@ -1456,7 +1456,7 @@ table.tikTable tr td:first-child { color: #f7931b; position: relative;}
 .carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
 video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
-.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: 60px;  padding: 10px; z-index: 1;}
+.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: -40px;  padding: 10px; z-index: 1;}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
@@ -1548,4 +1548,99 @@ h5.cardTitle { padding-top: 15px;}
 a.full {
   width: 100%;
   display: flex;
+}
+.svg-inline--fa { height: 0.8em;}
+
+.plan_card.plan_Plus.pro h4 { background-color: #db0098;}
+.plan_card.plan_Plus.pro:hover:before {
+  background-color: #db0099;
+}
+.plan_card.pro:hover .plan_cardHead h4 {
+  background-color: #111 ;
+}
+
+.dfk {
+  display: block;
+}
+.tt {
+  display: flex;
+}
+
+
+.switch .react-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch .react-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 60px;
+  height: 29px;
+  background: #2e2c2c;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color .2s;
+  margin: 10px;
+}
+
+.switch .react-switch-label .react-switch-button {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 25px;
+  height: 25px;
+  border-radius: 45px;
+  transition: 0.2s;
+  background: #f7931b;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+.switch .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.switch .react-switch-label:active .react-switch-button {
+  width: 60px;
+}
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plan_cardHead .plan_Price .plan_Time {
+  width: 39%;
+  text-align: center !important;
+  margin: 0 auto;
+}
+span.plan_Time small {
+  position: absolute;
+  display: flex;
+  font-size: 10px;
+  text-align: center;
+  margin: 4px auto;
+  right: 8px;
+  color: #f7931a;
+}
+
+.plan_card:hover span.plan_Time small {
+  color: #111 ;
+}
+a.searchList {
+  border-bottom: 1px solid #f7931b38;
+  padding: 5px 25px;
+}
+.searchBg {
+  height: 100vh;
+  position: absolute;
+  background-color: #000000eb;
+  width: 100%;
+  margin: 0 auto;
+  left: 0;
+  z-index: 9999999;
 }

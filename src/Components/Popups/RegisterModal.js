@@ -287,7 +287,7 @@ console.log("####",addUserInBid)
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" />{" "}
-                      Sign me up for the Gas guzzlrs Daily Mail
+                      Sign me up for the Gas Guzzlrs Daily Mail
                     </label>
                   </div>
                 </div>

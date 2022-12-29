@@ -161,7 +161,7 @@ function Shipping() {
                   <p>
                     Every aspect of Bring a Trailer Shipping is managed through
                     our simple My Shipments page. Whether you’re buying on Gas
-                    guzzlrs Auctions or shipping a private vehicle,
+                    Guzzlrs Auctions or shipping a private vehicle,
                     everything—including tracking and payment—is in one place.
                   </p>
                   <br />

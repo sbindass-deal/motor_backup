@@ -88,6 +88,7 @@ h5 {
 	
 }
 @media (max-width: 767px) {
+	span.plan_Time small {right: 20px;}
 	.cartImgSect img {
 		width: 36%;
 		padding-right: 10px;
