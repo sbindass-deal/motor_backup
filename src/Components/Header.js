@@ -677,7 +677,7 @@ function Header() {
       {sowAutoCompleate && (
         <div
           onClick={() => setSowAutoCompleate(false)}
-          style={{ minHeight: "80vh", width: "100%" }}
+          className="searchBg"
         >
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
             {searchData.map((curElem) => {
