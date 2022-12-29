@@ -81,24 +81,24 @@ function BlogDetail() {
 						<div class="sidebarPost_Img">
                             <img src={Car_img}/>
                         </div>
-						<div class="sidebarPost_text">Event Coverage: BaT Alumni Gathering at The Shop in Dallas</div>
+						<div class="sidebarPost_text">Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in Dallas</div>
 					</div>
 					<div class="sidebarPost">
 						<a href="#">
 							<div class="sidebarPost_Img"><img src={Car_img}/></div>
-							<div class="sidebarPost_text">Event Coverage: BaT Alumni Gathering at The Shop in Dallas</div>
+							<div class="sidebarPost_text">Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in Dallas</div>
 						</a>
 					</div>
 					<div class="sidebarPost">
 						<a href="#">
 							<div class="sidebarPost_Img"><img src={Car_img}/></div>
-							<div class="sidebarPost_text">Event Coverage: BaT Alumni Gathering at The Shop in Dallas</div>
+							<div class="sidebarPost_text">Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in Dallas</div>
 						</a>
 					</div>
 					<div class="sidebarPost">
 						<a href="#">
 							<div class="sidebarPost_Img"><img src={Car_img}/></div>
-							<div class="sidebarPost_text">Event Coverage: BaT Alumni Gathering at The Shop in Dallas</div>
+							<div class="sidebarPost_text">Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in Dallas</div>
 						</a>
 					</div>
 
@@ -111,7 +111,7 @@ function BlogDetail() {
 					<h6>Feature Blogs</h6>
 					<ul class="sidebar_Event">
 						<li>
-							<a href="#">BaT Alumni Gathering: October 1 in conjunction with the Audrain Newport Concours &amp; Motor Week – REGISTRATION IS OPEN </a>
+							<a href="#">Gas Guzzlrs Alumni Gathering: October 1 in conjunction with the Audrain Newport Concours &amp; Motor Week – REGISTRATION IS OPEN </a>
 							<div class="event_date"> <i class="fa-solid fa-clock"></i>   October 1, 2022</div>
 						</li>
 						<li>

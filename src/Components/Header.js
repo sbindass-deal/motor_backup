@@ -491,6 +491,29 @@ function Header() {
                         )}
                       </li>
                       <li className="nav-item">
+                      <div className="dropdown">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/auctionlive" && "navActive"
+                          }`}
+                          to="#"
+                        >
+                          Auctions
+                        </Link>
+                        <div className="dropdown-content">
+                          <Link className="" to="/auctionlive">
+                            Live now
+                          </Link>
+                          {/* <Link className="nav-link" to="/auctionpremium">
+                            Premium
+                          </Link>
+                          <Link className="nav-link" to="/auctionresults">
+                            Resullt
+                          </Link> */}
+                        </div>
+                      </div>
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -570,29 +593,7 @@ function Header() {
                         </div>
                       </div>
 
-                      <li className="nav-item">
-                      <div className="dropdown">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/auctionlive" && "navActive"
-                          }`}
-                          to="#"
-                        >
-                          Auctions
-                        </Link>
-                        <div className="dropdown-content">
-                          <Link className="" to="/auctionlive">
-                            Live now
-                          </Link>
-                          {/* <Link className="nav-link" to="/auctionpremium">
-                            Premium
-                          </Link>
-                          <Link className="nav-link" to="/auctionresults">
-                            Resullt
-                          </Link> */}
-                        </div>
-                      </div>
-                      </li>
+                     
                       <li className="nav-item">
                         <Link
                           className="nav-link"
