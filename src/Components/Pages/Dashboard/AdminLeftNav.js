@@ -41,11 +41,11 @@ function AdminLeftNav() {
         <li>
           <Link
             className={` ${
-              location.pathname === "/merchandise" ? "active" : ""
+              location.pathname === "/gear-product" ? "active" : ""
             } `}
-            to="/merchandise"
+            to="/gear-product"
           >
-            Merchandise
+            Gear products
           </Link>
         </li>
         <li>
@@ -72,7 +72,7 @@ function AdminLeftNav() {
             } `}
             to="/admin-enquiry"
           >
-            Enquiry
+            Customer support
           </Link>
         </li>
       </ul>

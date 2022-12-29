@@ -39,7 +39,7 @@ function CarRaffle() {
   const [copied, setCopied] = useState(false);
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const [setUserLotteryDetails, setSetUserLotteryDetails] = useState({});
-  const [totalRaffrel, setTotalRaffrel] = useState(0)
+  const [totalRaffrel, setTotalRaffrel] = useState(0);
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -54,7 +54,7 @@ function CarRaffle() {
     setIndex(selectedIndex);
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [lotteryImage, setLotteryImage] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [inputLotteryNumber, setInputLotteryNumber] = useState("");
   const [showLotary, setShowLotary] = useState({});
@@ -142,7 +142,7 @@ function CarRaffle() {
       );
       console.log(11, response.data);
       setSetUserLotteryDetails(response.data);
-      setTotalRaffrel(response.data.totalrefer.length )
+      setTotalRaffrel(response.data.totalrefer.length);
     } catch (err) {
       console.log(err);
     }
@@ -222,6 +222,20 @@ function CarRaffle() {
     validateUser();
   }, []);
 
+  const fetchImage = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}/getAlllottery-image/16`
+      );
+      setLotteryImage(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchImage();
+  }, []);
+
   return (
     <div>
       <section className="carLottery d-flex align-items-center">
@@ -257,7 +271,7 @@ function CarRaffle() {
                         <li data-target="#adsSlide" data-slide-to="2"></li>
                       </ul>
 
-                      <div className="carousel-inner">
+                      {/* <div className="carousel-inner">
                         <div
                           onClick={() => handleImageHow(0)}
                           className="carousel-item active"
@@ -279,7 +293,31 @@ function CarRaffle() {
                         >
                           <img src={ads_car_1} alt="ads car" />
                         </div>
-                      </div>
+                      </div> */}
+                      <Carousel
+                        nextLabel=""
+                        prevLabel=""
+                        activeIndex={index}
+                        onSelect={handleSelect}
+                      >
+                        {lotteryImage.map((curElem) => {
+                          return (
+                            <Carousel.Item
+                              onClick={() => handleImageHow(0)}
+                              className="carousel-item"
+                              style={{ cursor: "pointer" }}
+                              key={curElem.id}
+                            >
+                              <img
+                                className="d-block w-100 img-fluid"
+                                src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                                alt="First slide"
+                              />
+                              <Carousel.Caption></Carousel.Caption>
+                            </Carousel.Item>
+                          );
+                        })}
+                      </Carousel>
                     </div>
                   </div>
                   <div className="col-12 col-md-7">
@@ -509,9 +547,7 @@ function CarRaffle() {
                     <ul className="refferFriendList mt-3">
                       <li>
                         <div className="RF_title">Total Referals</div>
-                        <div className="">
-                          {totalRaffrel}
-                        </div>
+                        <div className="">{totalRaffrel}</div>
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
@@ -522,15 +558,19 @@ function CarRaffle() {
                       <button
                         type="button"
                         onClick={() => {
-                          axios
-                            .get(
-                              `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
-                            )
-                            .then((res) => {
-                              setIsModalOpen(true);
-                              // url/response
-                              setEncryptedValue(res);
-                            });
+                          if (!logingUser.login.token) {
+                            handleLogin();
+                            return;
+                          } else {
+                            axios
+                              .get(
+                                `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
+                              )
+                              .then((res) => {
+                                setIsModalOpen(true);
+                                setEncryptedValue(res);
+                              });
+                          }
                         }}
                         className="gry_btn w-full"
                       >
@@ -608,32 +648,17 @@ function CarRaffle() {
             style={{ maxHeight: "67vh", width: "100%" }}
           /> */}
           <Carousel activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item>
-              <img
-                className="d-block w-100 img-fluid"
-                src={ads_car_2}
-                alt="First slide"
-              />
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100 img-fluid"
-                src={ads_car_3}
-                alt="Second slide"
-              />
-
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100 img-fluid"
-                src={ads_car_1}
-                alt="Third slide"
-              />
-
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
+            {lotteryImage.map((curElem) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100 img-fluid"
+                    src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                    alt="First slide"
+                  />
+                </Carousel.Item>
+              );
+            })}
           </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
@@ -647,8 +672,11 @@ function CarRaffle() {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2>Model Name : 2021 BMW Nexon</h2>
-            <h3 className="price__">Price : $2000</h3>
+            <h2>Lottery Name : {showLotary.name}</h2>
+            <h3 className="price__">
+              Price : ${" "}
+              {showLotary.price && showLotary.price * inputLotteryNumber}
+            </h3>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />
