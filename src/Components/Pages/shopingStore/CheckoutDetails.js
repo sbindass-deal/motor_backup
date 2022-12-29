@@ -28,6 +28,8 @@ export default function CheckoutDetails() {
     value={data.email}
     onChange={inputHandle}
     label="Email"
+    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+    errorMessage="please valid email"
     class="form-control" id="validationDefault02"  required={true}/>
   </div>
   <div class="col-md-6">
