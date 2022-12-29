@@ -65,6 +65,7 @@ import EditRaffle from "./Dashboard/EditRaffle";
 import Enquiry from "./Dashboard/Enquiry";
 import CheckoutDetails from "./shopingStore/CheckoutDetails";
 import AddGearProduct from "./Dashboard/AddGearProduct";
+import BlogDetail from "./BlogDetail";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -156,6 +157,7 @@ const Layout = () => {
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/blogdetail" element={<BlogDetail/>} />
         </Routes>
         <ToastContainer
           position="bottom-center"
