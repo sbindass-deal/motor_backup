@@ -29,7 +29,7 @@ const Enquiry = () => {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Orders list</h3>
+              <h3>Notifications</h3>
               <hr />
               <div class="card_Gray table-responsive merchant vehicleSub">
                 <table class="table table-striped">

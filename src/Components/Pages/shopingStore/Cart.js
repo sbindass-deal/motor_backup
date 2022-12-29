@@ -1,19 +1,12 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import axios from "axios";
-import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import NotAvailable from "../../UI/NotAvailable";
 import CartItem from "./CartItem";
-// import img_01 from "../../../Assets/images/img_001.webp";
 
 const Cart = () => {
-  const [show, setShow] = useState(false);
-  const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
   const notify = (val) =>
@@ -27,36 +20,6 @@ const Cart = () => {
       progress: undefined,
       theme: "light",
     });
-
-  const onToken = (token, addresses) => {
-    navigate("/orders-cart");
-    dispatch(clearCart());
-    notify("Order place successfully");
-  };
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-  };
-  const handleOrder = () => {
-    const items = product.products.map((curElem) => {
-      return { id: curElem.id, quantity: curElem.quantity };
-    });
-    axios
-      .post(`${process.env.REACT_APP_URL}addorder`, {
-        order_status: "New",
-        items,
-      })
-      .then((result) => {
-        if (result.status === 200) {
-          handleShow();
-        }
-      })
-      .catch((error) => {
-        notify(error.message);
-      });
-  };
 
   return (
     <>
@@ -109,8 +72,8 @@ const Cart = () => {
                         <Link to="/shop" className="btn">
                           Continue Shopping
                         </Link>
-                        
-                        <Link to="/place-order" onClick={handleOrder} className="btn">
+
+                        <Link to="/place-order" className="btn">
                           Check Out
                         </Link>
                       </td>
@@ -122,39 +85,6 @@ const Cart = () => {
           </div>
         </div>
       </section>
-      <Modal show={show} onHide={handleClose} className="payTPop">
-        <Modal.Header closebutton>
-          <Modal.Title>Payment Process</Modal.Title>
-          <button variant="secondary" onClick={handleClose}>
-            X
-          </button>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="processPy">
-            <h2>Model Name : 2021 BMW Nexon</h2>
-            <h3 className="price__">Price : $2000</h3>
-
-            {/* <small className="ticketCount">1 Ticket = $100</small> */}
-            <br />
-            <p>Choose Payment Option:</p>
-            <div className="ress">
-              <div className="ProcessPymt">
-                <ConnectButton></ConnectButton>
-
-                {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
-              </div>
-              <div>
-                <StripeCheckout
-                  className="Btn"
-                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                  token={onToken}
-                />
-              </div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
     </>
   );
 };

@@ -558,15 +558,19 @@ function CarRaffle() {
                       <button
                         type="button"
                         onClick={() => {
-                          axios
-                            .get(
-                              `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
-                            )
-                            .then((res) => {
-                              setIsModalOpen(true);
-                              // url/response
-                              setEncryptedValue(res);
-                            });
+                          if (!logingUser.login.token) {
+                            handleLogin();
+                            return;
+                          } else {
+                            axios
+                              .get(
+                                `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
+                              )
+                              .then((res) => {
+                                setIsModalOpen(true);
+                                setEncryptedValue(res);
+                              });
+                          }
                         }}
                         className="gry_btn w-full"
                       >

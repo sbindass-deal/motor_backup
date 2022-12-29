@@ -48,7 +48,7 @@ import ShopDetails from "./shopingStore/ShopDetails";
 import Admin from "./Dashboard/Admin";
 import Blog from "./Dashboard/Blog";
 import VehicleSubmission from "./Dashboard/VehicleSubmission";
-import Merchandise from "./Dashboard/Merchandise";
+import GearProduct from "./Dashboard/GearProducts";
 import Cart from "./shopingStore/Cart";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
 import Orders from "./Dashboard/Orders";
@@ -64,6 +64,7 @@ import AddRaffle from "./Dashboard/AddRaffle";
 import EditRaffle from "./Dashboard/EditRaffle";
 import Enquiry from "./Dashboard/Enquiry";
 import CheckoutDetails from "./shopingStore/CheckoutDetails";
+import AddGearProduct from "./Dashboard/AddGearProduct";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -106,7 +107,8 @@ const Layout = () => {
                     path="raffleadmin/edit-raffel/:id"
                     element={<EditRaffle />}
                   />
-                  <Route path="merchandise" element={<Merchandise />} />
+                  <Route path="gear-product" element={<GearProduct />} />
+                  <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
                   <Route path="admin/add-blog" element={<AddBlog />} />
