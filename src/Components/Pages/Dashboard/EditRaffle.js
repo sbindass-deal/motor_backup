@@ -147,16 +147,16 @@ const EditRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-                <FormInput
-                    value={raffle.stock}
-                    onChange={handleChange}
-                    name="stock"
-                    placeholder="mention available ticket stock"
-                    errorMessage="This filed only contain number "
-                    label="Total ticket stock"
-                    pattern="^[0-9]{1,10}$"
-                    required={true}
-                  />
+              <FormInput
+                value={raffle.stock}
+                onChange={handleChange}
+                name="stock"
+                placeholder="mention available ticket stock"
+                errorMessage="This filed only contain number "
+                label="Total ticket stock"
+                pattern="^[0-9]{1,10}$"
+                required={true}
+              />
             </div>
             <div className="col-12 col-md-6">
               <div className="form-group">
@@ -226,12 +226,6 @@ const EditRaffle = () => {
                   multiple
                 />
               </div>
-            </div>
-            <div className="col-md-12 mb-3">
-              <small>
-                (Accepted file types: jpg, jpeg, png, Max. file size: 10 MB,
-                Max. files: 200.)
-              </small>
             </div>
             <div className="col-12 col-md-12">
               <label>Description</label>

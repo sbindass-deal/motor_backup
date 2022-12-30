@@ -7,7 +7,6 @@ import { showModalLogin } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
 import { Checkbox } from "antd";
-import { current } from "@reduxjs/toolkit";
 import CardDetails from "./CardDetails";
 
 function RegisterModal({ showReg, handleCloseReg }) {
@@ -80,7 +79,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const onToken = (address) => {
     console.log(address);
   };
-
 
   return (
     <Modal
@@ -218,7 +216,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         onChange={(e) => setAddUserInBid(e.target.checked)}
                         className="form-check-input"
                         type="checkbox"
-
                       />
                       i want the ability to bid on action?(Optional)
                     </label>
@@ -226,7 +223,13 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
 
                 <div className="col-12">
-                  {addUserInBid == true ? <label style={{ color: "#FFB100" }}>Bring a Trailer requires a credit to bid</label> : ""}
+                  {addUserInBid == true ? (
+                    <label style={{ color: "#FFB100" }}>
+                      Bring a Trailer requires a credit to bid
+                    </label>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {/* <div className="col-6 col-sm" id="show">
                   <div className="form-group">
@@ -244,7 +247,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div> */}
                 <div className="col-12">
-                 {addUserInBid === true ? <CardDetails/> :""}
+                  {addUserInBid === true ? <CardDetails /> : ""}
                 </div>
 
                 {/* {
@@ -311,15 +314,14 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <button type="submit" className="btn">
                         Register
                       </button>
-
                     )}
 
                     {addUserInBid ? (
                       userInput.name != "" &&
-                        userInput.phone != "" &&
-                        userInput.userName != "" &&
-                        userInput.dealer != "" &&
-                        userInput.password != "" ? (
+                      userInput.phone != "" &&
+                      userInput.userName != "" &&
+                      userInput.dealer != "" &&
+                      userInput.password != "" ? (
                         <StripeCheckout
                           stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                           token={onToken}
@@ -328,7 +330,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         <button type="submit" className="btn" disabled={true}>
                           Register
                         </button>
-
                       )
                     ) : null}
                     {/* {  

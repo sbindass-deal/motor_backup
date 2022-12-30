@@ -89,7 +89,15 @@ export default function CheckoutDetails() {
 
   const handleOrder = (e) => {
     e.preventDefault();
-    handleShow();
+    if (getInputData.deliveryType === "cash on delivery") {
+      orderPlace();
+      getDeliveryAddress();
+      navigate("/orders-cart");
+      dispatch(clearCart());
+      notify("Order place successfully");
+    } else {
+      handleShow();
+    }
   };
 
   return (

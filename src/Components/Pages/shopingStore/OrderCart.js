@@ -14,11 +14,12 @@ const OrderCart = () => {
     const fetchOrders = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}getbyidorder/1`
-        );
+        const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
         if (res.data.status === 200 && res.data.data) {
-          setOrder(res.data.data);
+          const activeOrder = res.data.data.filter(
+            (item) => item.order_status === "New"
+          );
+          setOrder(activeOrder);
         }
         setLoading(false);
       } catch (err) {
@@ -36,6 +37,9 @@ const OrderCart = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}orderReject/${id}`
       );
+      if (res.status === 200) {
+        window.location.reload(false);
+      }
     } catch (err) {
       console.log(err);
     }

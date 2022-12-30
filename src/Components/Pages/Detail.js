@@ -115,7 +115,8 @@ function Detail() {
           } else {
             handleClose();
           }
-        });
+        })
+        .catch((err) => alert(err));
     }
   };
   const getComments = () => {
@@ -248,6 +249,25 @@ function Detail() {
                   </ul>
                 </div>
                 <div className="d-flex">
+                  {vehicle.like === 1 ? (
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addFabrity(id)}
+                      className="gry_btn mr-2 faList"
+                    >
+                      <i className="fa-solid fa-heart mr-2 "></i>
+                      Watch
+                    </a>
+                  ) : (
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addFabrity(id)}
+                      className="gry_btn mr-2"
+                    >
+                      <i className="fa-solid fa-heart mr-2 "></i>
+                      Watch
+                    </a>
+                  )}
                   {/* <a href="#" className="gry_btn mr-2">
                     How it Works
                   </a> */}

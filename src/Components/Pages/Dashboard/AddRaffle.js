@@ -4,18 +4,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
-import ms from 'ms';
+import ms from "ms";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
-  const [minDate, setMinDate] = useState(null)
+  const [minDate, setMinDate] = useState(null);
+  const [videoFile, setVideoFile] = useState([]);
+  const [file, setFile] = useState([]);
 
-  useEffect(()=>{
-    const minsec = ms('0d')
-    console.log('minsec',minsec);
-    const min_date = new Date(+new Date()-minsec);
-    setMinDate(moment(min_date).format('YYYY-MM-DD'));
-  },[])
+  useEffect(() => {
+    const minsec = ms("0d");
+    console.log("minsec", minsec);
+    const min_date = new Date(+new Date() - minsec);
+    setMinDate(moment(min_date).format("YYYY-MM-DD"));
+  }, []);
 
   const [raffle, setRaffle] = useState({
     name: "",
@@ -28,6 +30,39 @@ const AddRaffle = () => {
   const handleChange = (e) => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
+  const uploadFileOne = async (vehicleId) => {
+    for (let i = 0; i < file.length; i++) {
+      const url = process.env.REACT_APP_URL + "lottery-image";
+      const formData = new FormData();
+      formData.append("image", file[i]);
+      formData.append("lottery_id", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+  const uploadFileVideo = async (vehicleId) => {
+    for (let i = 0; i < videoFile.length; i++) {
+      const url = process.env.REACT_APP_URL + "lottery-image";
+      const formData = new FormData();
+      formData.append("image", videoFile[i]);
+      formData.append("lottery_id", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -42,6 +77,8 @@ const AddRaffle = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          uploadFileOne();
+          uploadFileVideo();
           navigate("/raffleadmin");
         }
       })
@@ -68,7 +105,6 @@ const AddRaffle = () => {
                   required={true}
                 />
               </div>
-                
             </div>
             <div className="col-12 col-md-6">
               <div className="form-group">
@@ -86,21 +122,19 @@ const AddRaffle = () => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-                <FormInput
-                 
-                  value={raffle.stock}
-                  onChange={handleChange}
-                  name="stock"
-                  className="field"
-                  placeholder="mention available ticket stock"
-                  label="Total ticket stock"
-                  pattern="^[0-9]{1,9}$"
-                  errorMessage="This filed only contain number"
-                  required={true}
-                />
-              
+              <FormInput
+                value={raffle.stock}
+                onChange={handleChange}
+                name="stock"
+                className="field"
+                placeholder="mention available ticket stock"
+                label="Total ticket stock"
+                pattern="^[0-9]{1,9}$"
+                errorMessage="This filed only contain number"
+                required={true}
+              />
             </div>
-              
+
             <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
@@ -113,13 +147,11 @@ const AddRaffle = () => {
                   label="Deadline to purchase date"
                   placeholder="Enter dedline"
                   required
-                  
                 />
               </div>
             </div>
-              
+
             <div className="col-12 col-md-12">
-             
               <div className="form-group">
                 <FormInput
                   type="date"
@@ -135,26 +167,38 @@ const AddRaffle = () => {
                 />
               </div>
             </div>
-
             <div className="col-12 col-md-6">
+              <label>Upload Photos</label>
               <div className="form-group">
-                <FormInput
+                <input
+                  style={{
+                    fontSize: "1.2rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onChange={(e) => {
+                    setFile(e.target.files);
+                  }}
+                  name="file"
                   type="file"
-                  class="field"
-                  label="Upload Photos"
-                  id="formFileMultiple"
                   multiple
-                 
                 />
               </div>
             </div>
             <div className="col-12 col-md-6">
+              <label>Upload Videos</label>
               <div className="form-group">
-                <FormInput
+                <input
+                  style={{
+                    fontSize: "1.2rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onChange={(e) => {
+                    setVideoFile(e.target.files);
+                  }}
+                  name="file"
                   type="file"
-                  class="field"
-                  label="Upload Videos"
-                  id="formFileMultiple"
                   multiple
                 />
               </div>
