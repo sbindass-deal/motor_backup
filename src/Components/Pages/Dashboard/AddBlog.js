@@ -54,6 +54,16 @@ const AddBlog = () => {
               </div>
             </div>
             <div className="col-12 ">
+              <label>image</label>
+              <div className="form-group">
+                <input
+                  type="file"
+                  className="field"
+                  placeholder="Product imge"
+                />
+              </div>
+            </div>
+            <div className="col-12 ">
               <label>Blog Description</label>
               <div className="form-group">
                 <textarea

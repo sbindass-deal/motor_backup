@@ -460,7 +460,7 @@ function Header() {
                           }}
                           to="/showroom"
                         >
-                          Showrooms
+                          Showroom
                         </Link>
                       </li>
 
@@ -497,7 +497,7 @@ function Header() {
                             }`}
                             to="#"
                           >
-                            Auctions
+                            Auction
                           </Link>
                           <div className="dropdown-content">
                             <Link className="" to="/auctionlive">
@@ -536,7 +536,7 @@ function Header() {
                           }}
                           to="/charity"
                         >
-                          Charity Auctions
+                          Charity Auction
                         </Link>
                       </li>
 

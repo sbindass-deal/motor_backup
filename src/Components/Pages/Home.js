@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [showBidOnSlide, setShowBidOnSlide] = useState([]);
@@ -144,9 +145,9 @@ function Home() {
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
                 <h1>WE ARE DEDICATED TO PARKING YOUR DREAM IN YOUR DRIVEWAY</h1>
-                <a href="#" className="btn">
-                  VIEW INVENTORY
-                </a>
+                <Link to="/showroom" className="btn">
+                  VIEW INVENTORY 
+                </Link>
               </div>
             </div>
           </div>
@@ -478,9 +479,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
               <h1 className="text-back">Find Your Dream Car</h1>
-              <a href="#" className="btn mt-2">
+              <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -491,9 +492,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
               <h1 className="text">Sell Your High Quality classNameic Car</h1>
-              <a href="#" className="btn mt-2">
+              <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY
-              </a>
+              </Link>
             </div>
           </div>
         </div>
