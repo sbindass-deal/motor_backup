@@ -672,7 +672,7 @@ function Home() {
                 <h2>Win this car !</h2>
                 <p>Win the car of your dreams</p>
                 <div className="price_">
-                  <p>Current BID: $126,888</p>
+
                   <p>Ends In: 5 Days</p>
                 </div>
                 <button className="btn">Buy Tickets</button>

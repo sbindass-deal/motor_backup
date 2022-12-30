@@ -489,6 +489,29 @@ function Header() {
                         )}
                       </li>
                       <li className="nav-item">
+                      <div className="dropdown">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/auctionlive" && "navActive"
+                          }`}
+                          to="#"
+                        >
+                          Auctions
+                        </Link>
+                        <div className="dropdown-content">
+                          <Link className="" to="/auctionlive">
+                            Live now
+                          </Link>
+                          {/* <Link className="nav-link" to="/auctionpremium">
+                            Premium
+                          </Link>
+                          <Link className="nav-link" to="/auctionresults">
+                            Resullt
+                          </Link> */}
+                        </div>
+                      </div>
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -568,6 +591,7 @@ function Header() {
                         </div>
                       </div>
 
+<<<<<<< HEAD
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
@@ -592,6 +616,9 @@ function Header() {
                           </div>
                         </div>
                       </li>
+=======
+                     
+>>>>>>> ec8d974b10a9e8c3333a32fd89be19d8b2886954
                       <li className="nav-item">
                         <Link
                           className="nav-link"
