@@ -104,7 +104,7 @@ function Auctionlive() {
                     }}
                     type="text"
                     name=""
-                    placeholder="Filter auctions for make, model, category…"
+                    placeholder="Search with make, model and year"
                   />
                 </li>
                 <li className="">

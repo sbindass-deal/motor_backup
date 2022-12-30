@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [showBidOnSlide, setShowBidOnSlide] = useState([]);
@@ -144,9 +145,9 @@ function Home() {
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
                 <h1>WE ARE DEDICATED TO PARKING YOUR DREAM IN YOUR DRIVEWAY</h1>
-                <a href="#" className="btn">
+                <Link to="/showroom" className="btn">
                   VIEW INVENTORY
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -159,20 +160,19 @@ function Home() {
             <div className="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
             </div>
-            
+
             <div className="col-12" style={{ height: "550px" }}>
-            <div className="nextArrow"  >
-              <span onClick={() => slide.current.slickPrev()}>
-                <span className="prev">Prev</span>
-              </span>
-              <span
-                onClick={() => slide.current.slickNext()}
-                style={{ marginLeft: 50 }}
-              >
-                <span className="next">Next</span>
-                
-              </span>
-            </div>
+              <div className="nextArrow">
+                <span onClick={() => slide.current.slickPrev()}>
+                  <span className="prev">Prev</span>
+                </span>
+                <span
+                  onClick={() => slide.current.slickNext()}
+                  style={{ marginLeft: 50 }}
+                >
+                  <span className="next">Next</span>
+                </span>
+              </div>
               <div className="featuredAuctions_Slide">
                 <Slider ref={slide} {...settings}>
                   <div>
@@ -478,9 +478,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
               <h1 className="text-back">Find Your Dream Car</h1>
-              <a href="#" className="btn mt-2">
+              <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -662,31 +662,26 @@ function Home() {
           </div>
         </div>
       </section>
-     
+
       <section className="ptb_80 blogPostText rf">
         <div className="container">
-        
-          <div className="row">  
-          <a href="/carraffle" className="full">
+          <div className="row">
+            <a href="/carraffle" className="full">
               <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                 <h2>Win this car !</h2>
                 <p>Win the car of your dreams</p>
                 <div className="price_">
-
                   <p>Ends In: 5 Days</p>
                 </div>
                 <button className="btn">Buy Tickets</button>
               </div>
               <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
                 <img src={ads_car_2} className="addBanner" />
-              </div> 
-              </a> 
-          </div >
-          
-        
-        </div>      
+              </div>
+            </a>
+          </div>
+        </div>
       </section>
-      
     </div>
   );
 }
