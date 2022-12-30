@@ -31,6 +31,15 @@ const OrderCart = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
+  const handleCancleOrder = async (id) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}orderReject/${id}`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <section className="ptb_80 pt_sm_50">
       <div className="container">
@@ -66,7 +75,11 @@ const OrderCart = () => {
                         <td>Shipped</td>
                         <td>${curElem.amount}</td>
                         <td>
-                          <button className="removeBtn" href="">
+                          <button
+                            onClick={() => handleCancleOrder(curElem.order_id)}
+                            className="removeBtn"
+                            href=""
+                          >
                             Cancel
                           </button>
                         </td>

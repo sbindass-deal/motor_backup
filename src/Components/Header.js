@@ -209,20 +209,18 @@ function Header() {
                       </Link> */}
 
                       <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/aboutshibnobi"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/aboutshibnobi"
-                        >
-                          About
-                        </Link>
-
-                     
+                        className="nav-link"
+                        style={{
+                          color: `${
+                            location.pathname === "/aboutshibnobi"
+                              ? "#EF6031"
+                              : ""
+                          }`,
+                        }}
+                        to="/aboutshibnobi"
+                      >
+                        About
+                      </Link>
                     </li>
                     {/* {!logingUser.login.login ? (
                       <li onClick={handleShow} className="nav-item">
@@ -571,27 +569,28 @@ function Header() {
                       </div>
 
                       <li className="nav-item">
-                      <div className="dropdown">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/auctionlive" && "navActive"
-                          }`}
-                          to="#"
-                        >
-                          Auctions
-                        </Link>
-                        <div className="dropdown-content">
-                          <Link className="" to="/auctionlive">
-                            Live now
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/auctionlive" &&
+                              "navActive"
+                            }`}
+                            to="#"
+                          >
+                            Auctions
                           </Link>
-                          {/* <Link className="nav-link" to="/auctionpremium">
+                          <div className="dropdown-content">
+                            <Link className="" to="/auctionlive">
+                              Live now
+                            </Link>
+                            {/* <Link className="nav-link" to="/auctionpremium">
                             Premium
                           </Link>
                           <Link className="nav-link" to="/auctionresults">
                             Resullt
                           </Link> */}
+                          </div>
                         </div>
-                      </div>
                       </li>
                       <li className="nav-item">
                         <Link
@@ -675,10 +674,7 @@ function Header() {
         handleCloseForgPass={handleCloseForgPass}
       />
       {sowAutoCompleate && (
-        <div
-          onClick={() => setSowAutoCompleate(false)}
-          className="searchBg"
-        >
+        <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
             {searchData.map((curElem) => {
               console.log(curElem.redirect);

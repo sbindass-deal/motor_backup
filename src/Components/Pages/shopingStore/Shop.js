@@ -54,7 +54,9 @@ const Shop = () => {
             ) : (
               products
                 .filter((item) =>
-                  item.title.toLowerCase().includes(searchValue)
+                  item.title
+                    ? item.title.toLowerCase().includes(searchValue)
+                    : item
                 )
                 .map((curElem) => {
                   return (

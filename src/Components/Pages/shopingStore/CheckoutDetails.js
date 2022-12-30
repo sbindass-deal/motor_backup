@@ -38,11 +38,11 @@ export default function CheckoutDetails() {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
 
-  const onToken = (token, addresses) => {
+  const orderPlace = async () => {
     const items = product.products.map((curElem) => {
       return { id: curElem.id, quantity: curElem.quantity };
     });
-    axios
+    await axios
       .post(`${process.env.REACT_APP_URL}addorder`, {
         order_status: "New",
         items,
@@ -55,9 +55,30 @@ export default function CheckoutDetails() {
       .catch((error) => {
         // notify(error.message);
       });
-    navigate("/orders-cart");
-    dispatch(clearCart());
-    notify("Order place successfully");
+  };
+
+  const getDeliveryAddress = async () => {
+    await axios
+      .post(`${process.env.REACT_APP_URL}addDeliveryAddress`, {
+        name: getInputData.name,
+        email: getInputData.email,
+        phone: getInputData.phone,
+        address: getInputData.address,
+        deliverytype: getInputData.deliveryType,
+        pincode: getInputData.pinCode,
+      })
+      .then((result) => {})
+      .catch((error) => {});
+  };
+
+  const onToken = (token, addresses) => {
+    if (token) {
+      orderPlace();
+      getDeliveryAddress();
+      navigate("/orders-cart");
+      dispatch(clearCart());
+      notify("Order place successfully");
+    }
   };
   const handleClose = () => {
     setShow(false);
