@@ -87,7 +87,7 @@ function Header() {
       if (searchValue.trim().length <= 0) {
         setSearchData(data);
       } else {
-        setSearchData(response.data.data);
+        // setSearchData(response.data.data);
       }
     } catch (err) {
       console.log(err);
@@ -489,27 +489,28 @@ function Header() {
                         )}
                       </li>
                       <li className="nav-item">
-                      <div className="dropdown">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/auctionlive" && "navActive"
-                          }`}
-                          to="#"
-                        >
-                          Auctions
-                        </Link>
-                        <div className="dropdown-content">
-                          <Link className="" to="/auctionlive">
-                            Live now
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/auctionlive" &&
+                              "navActive"
+                            }`}
+                            to="#"
+                          >
+                            Auctions
                           </Link>
-                          {/* <Link className="nav-link" to="/auctionpremium">
+                          <div className="dropdown-content">
+                            <Link className="" to="/auctionlive">
+                              Live now
+                            </Link>
+                            {/* <Link className="nav-link" to="/auctionpremium">
                             Premium
                           </Link>
                           <Link className="nav-link" to="/auctionresults">
                             Resullt
                           </Link> */}
+                          </div>
                         </div>
-                      </div>
                       </li>
                       <li className="nav-item">
                         <Link
@@ -591,34 +592,6 @@ function Header() {
                         </div>
                       </div>
 
-<<<<<<< HEAD
-                      <li className="nav-item">
-                        <div className="dropdown">
-                          <Link
-                            className={`nav-link ${
-                              location.pathname === "/auctionlive" &&
-                              "navActive"
-                            }`}
-                            to="#"
-                          >
-                            Auctions
-                          </Link>
-                          <div className="dropdown-content">
-                            <Link className="" to="/auctionlive">
-                              Live now
-                            </Link>
-                            {/* <Link className="nav-link" to="/auctionpremium">
-                            Premium
-                          </Link>
-                          <Link className="nav-link" to="/auctionresults">
-                            Resullt
-                          </Link> */}
-                          </div>
-                        </div>
-                      </li>
-=======
-                     
->>>>>>> ec8d974b10a9e8c3333a32fd89be19d8b2886954
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -704,7 +677,6 @@ function Header() {
         <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
             {searchData.map((curElem) => {
-              console.log(curElem.redirect);
               return (
                 <Link to={curElem.redirect} className="row searchList">
                   <p className="title">{curElem.name}</p>
