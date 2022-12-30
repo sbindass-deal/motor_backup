@@ -491,9 +491,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
               <h1 className="text">Sell Your High Quality classNameic Car</h1>
-              <a href="#" className="btn mt-2">
+              <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY
-              </a>
+              </Link>
             </div>
           </div>
         </div>
