@@ -1,90 +1,80 @@
 import React, { useState } from 'react'
-const CardDetails = () => {
-    const [inputValue, setInputValue]=useState({
-        name:"",
-        phone:"",
-        address:"",
-        zip:"",
-        country:"",
-        cardnumber:"",
-        month:"",
-        year:"",
-        cvc:"",
-        bat:""
-    
-    })
-    
-    const getInputField=(e)=>{
-        setInputValue({ ...inputValue, [e.target.name]: e.target.value })
-    }
-    const handleFormInput=(e)=>{
-        e.preventDefault();
-        console.log(inputValue)
+import FormInput from '../UI/FormInput'
 
-    }
+
+const CardDetails = ( {inputValue,getInputField}) => {
   return (
     <div className='container col-md col-sm p-3' style={{backgroundColor:"#000"}}>
 
-        <form class="row g-3 needs-validation"  onSubmit={handleFormInput} >
+        <div class="row g-3 needs-validation"   >
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip01" class="form-label">name <samal>(as it appears on your card)</samal></label>
-    <input type="text" 
+    <FormInput type="text" 
     class="form-control" 
     name='name'
     value={inputValue.name}
     onChange={getInputField}
-     required/>
+    label="name (as it appears on your card)"
+    errorMessage="use please vaild name"
+    pattern="^[A-Za-z ]{3,16}$"
+
+     required={true}/>
     
   </div>
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip02" class="form-label">Phone</label>
-    <input type="text" class="form-control"
+    <FormInput type="text" class="form-control"
     name='phone'
     value={inputValue.phone} 
     onChange={getInputField}
+label="Phone"
+errorMessage="use only valid phone number"
+pattern="^[0-9]{10,12}$"
+required={true}/>
 
-    required/>
     
   </div>
   <div class="col-md-12 position-relative">
-    <label for="validationTooltipUsername" class="form-label">Address</label>
-    <div class="input-group has-validation">
-      <input type="text" class="form-control" aria-describedby="validationTooltipUsernamePrepend"
+      <FormInput  class="form-control" 
       name='address'
       value={inputValue.address}
-    onChange={getInputField}
-
-      required/>
-      
-    </div>
+      onChange={getInputField}
+     label="Address"
+     errorMessage="use please valid address"
+      required={true}/>
   </div>
+
+      
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip03" class="form-label">Zip / Postal Code</label>
-    <input type="text" class="form-control"
+    <FormInput type="text" class="form-control"
     name='zip'
     value={inputValue.zip}
     onChange={getInputField}
-
-     required/>
+label="Zip / Postal Code"
+errorMessage="please vaild 16 digits zip code"
+pattern="^[0-9]{3,16}"
+     require={true}/>
     
   </div>
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip03" class="form-label">Country</label>
-    <input type="text" class="form-control" 
+    <FormInput type="text" class="form-control" 
     name='country'
     value={inputValue.country}
     onChange={getInputField}
-    required/>
+    label="Country"
+    errorMessage="use  vaild country"
+    pattern="^[A-Za-z ]{3,10}$"
+    required={true}/>
+
     
   </div>
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip03" class="form-label">Credit Card Number</label>
-    <input type="text" class="form-control"
+    <FormInput type="text" class="form-control"
     name='cardnumber'
     value={inputValue.cardnumber}
     onChange={getInputField}
-
-     required/>
+label="Credit Card Number"
+errorMessage="please vaild 16 digits card number"
+pattern='^[0-9]{6,16}$'
+     required={true}/>
    
   </div>
   <div class="col-md-6 position-relative">
@@ -130,12 +120,14 @@ const CardDetails = () => {
     
   </div> 
   <div class="col-md-12 position-relative">
-    <label for="validationTooltip03" class="form-label">CVC (3 or 4 digit code)</label> <br/>
-    <input type="text" class="form-control" 
+    <FormInput type="text" class="form-control" 
     name="cvc"
     value={inputValue.cvc}
     onChange={getInputField}
-    required/>
+    label="CVC (3 or 4 digit code)"
+    errorMessage="valid cvc number"
+    pattern="^[0-9]{3,4}$"
+    required={true}/>
   </div>
 
    
@@ -153,10 +145,8 @@ Where did you hear about BaT?</label>
     <option value="Google">Google </option>
     </select>
   </div>
-  <div class="col-12">
-    <button class="btn btn-primary mt-4" type="submit">Submit form</button>
-  </div>
-</form>
+  
+</div>
     </div>
   )
 }

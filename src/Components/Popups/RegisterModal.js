@@ -29,6 +29,25 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [addUserInBid, setAddUserInBid] = useState(false);
 
   // console.log("####", addUserInBid)
+  const [inputValue, setInputValue]=useState({
+    name:"",
+    phone:"",
+    address:"",
+    zip:"",
+    country:"",
+    cardnumber:"",
+    month:"",
+    year:"",
+    cvc:"",
+    bat:""
+
+})
+const getInputField=(e)=>{
+  e.preventDefault()
+    setInputValue({...inputValue, [e.target.name]: e.target.value })
+}
+
+
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -51,6 +70,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
   };
 
   const handleApi = (e) => {
+    console.log("true",inputValue)
     const { name, email, phone, userName, dealer, password, cPassword } =
       userInput;
     e.preventDefault();
@@ -228,52 +248,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12">
                   {addUserInBid == true ? <label style={{ color: "#FFB100" }}>Bring a Trailer requires a credit to bid</label> : ""}
                 </div>
-                {/* <div className="col-6 col-sm" id="show">
-                  <div className="form-group">
-                    {addUserInBid == true ? <button type="submit" className="btn">
-                      paynow
-                    </button> : ""}
-                  </div> 
-                </div>*/}
-                {/* <div className="col-6 col-sm" id="show" >
-                  <div className="form-group">
-                    {addUserInBid == true ?
-                      <button type="submit" className="btn">
-                        paylater
-                      </button> : ""}
-                  </div>
-                </div> */}
+               
                 <div className="col-12">
-                 {addUserInBid === true ? <CardDetails/> :""}
+                 {addUserInBid === true ? <CardDetails inputValue={inputValue}  getInputField = {getInputField} /> :""}
                 </div>
 
-                {/* {
-                  <>
-                    <div className="col-md-12 col-lg-6 col-sm-12">
-                      <FormInput
-                        value={cartInput.cartNumber}
-                        onChange={handleCartInput}
-                        name="cartNumber"
-                        placeholder="Enter Cart Number"
-                        errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
-                        label="Cart Number"
-                        pattern="^[A-Za-z ]{3,16}$"
-                        required={true}
-                      />
-                    </div>
-                    <div className="col-md-12 col-lg-6 col-sm-12">
-                      <FormInput
-                        value={cartInput.bankAccount}
-                        onChange={handleCartInput}
-                        name="bankAccount"
-                        placeholder="Enter Account Number"
-                        errorMessage="It should be a valid email address!"
-                        label="Account Number"
-                        required={true}
-                      />
-                    </div>
-                  </>
-                } */}
+               
 
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
