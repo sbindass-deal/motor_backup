@@ -153,9 +153,7 @@ Where did you hear about BaT?</label>
     <option value="Google">Google </option>
     </select>
   </div>
-  <div class="col-12">
-    <button class="btn btn-primary mt-4" type="submit">Submit form</button>
-  </div>
+  
 </form>
     </div>
   );
