@@ -1036,12 +1036,16 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             >
-                              {/* <option selected disabled value="">
+                              <option selected disabled value="">
                                 Auction type...
-                              </option> */}
-                              <option value="General">General listing</option>
-                              <option value="charity">For charity</option>
-                              <option value="Premium">Premium listing</option>
+                              </option>
+                              <option value="General listing">
+                                General listing
+                              </option>
+                              <option value="For charity">For charity</option>
+                              <option value="Premium listing">
+                                Premium listing
+                              </option>
                             </select>
                           </div>
                         </div>

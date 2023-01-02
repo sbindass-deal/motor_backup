@@ -12,9 +12,10 @@ function Auctionlive() {
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
-  const [loading, setLoader] = useState(true);
+  const [loading, setLoader] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
   const fetchVehicleApi = async () => {
+    setLoader(true);
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       if (response.data.status === 200 && response.data.data.length > 0) {
@@ -25,10 +26,11 @@ function Auctionlive() {
         // const watchedData = newData.filter((item) => item.like > 0);
         setauctions(filteredData);
         setFilteredUsers(filteredData);
-        setLoader(false);
       }
+      setLoader(false);
     } catch (err) {
       console.log(err);
+      setLoader(false);
     }
   };
 

@@ -28,25 +28,21 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [addUserInBid, setAddUserInBid] = useState(false);
 
   // console.log("####", addUserInBid)
-  const [inputValue, setInputValue]=useState({
-    name:"",
-    phone:"",
-    address:"",
-    zip:"",
-    country:"",
-    cardnumber:"",
-    month:"",
-    year:"",
-    cvc:"",
-    bat:""
-
-})
-const getInputField=(e)=>{
-  e.preventDefault()
-    setInputValue({...inputValue, [e.target.name]: e.target.value })
-}
-
-
+  const [inputValue, setInputValue] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    zip: "",
+    country: "",
+    cardnumber: "",
+    month: "",
+    year: "",
+    cvc: "",
+    hearAbout: "",
+  });
+  const getInputField = (e) => {
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  };
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -56,23 +52,16 @@ const getInputField=(e)=>{
     password: "",
     cPassword: "",
   });
-  const [cartInput, setCartInput] = useState({
-    cartNumber: "",
-    bankAccount: "",
-  });
-  const handleCartInput = (e) => {
-    setCartInput({ ...cartInput, [e.target.name]: e.target.value });
-  };
 
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
 
   const handleApi = (e) => {
-    console.log("true",inputValue)
+    e.preventDefault();
+
     const { name, email, phone, userName, dealer, password, cPassword } =
       userInput;
-    e.preventDefault();
     axios
       .post(`${url}users`, {
         email,
@@ -82,6 +71,17 @@ const getInputField=(e)=>{
         name,
         mobile: phone,
         dealer,
+        addUserInBid,
+        cardName: inputValue.name,
+        cardPhone: inputValue.phone,
+        cardAddress: inputValue.address,
+        cardZip: inputValue.zip,
+        cardCountry: inputValue.country,
+        cardNumber: inputValue.cardnumber,
+        cartMonth: inputValue.month,
+        cartYear: inputValue.year,
+        cartCvc: inputValue.cvc,
+        cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
         if (result.status === 200) {
@@ -92,13 +92,12 @@ const getInputField=(e)=>{
         }
       })
       .catch((error) => {
-        console.log(error);
         notify(error);
       });
   };
-  const onToken = (address) => {
-    console.log(address);
-  };
+  // const onToken = (address) => {
+  //   console.log(address);
+  // };
 
   return (
     <Modal
@@ -245,18 +244,23 @@ const getInputField=(e)=>{
                 <div className="col-12">
                   {addUserInBid == true ? (
                     <label style={{ color: "#FFB100" }}>
-                      Bring a Trailer requires a credit to bid
+                      Gas Guzzlrs requires a credit to bid
                     </label>
                   ) : (
                     ""
                   )}
                 </div>
-               
-                <div className="col-12">
-                 {addUserInBid === true ? <CardDetails inputValue={inputValue}  getInputField = {getInputField} /> :""}
-                </div>
 
-               
+                <div className="col-12">
+                  {addUserInBid === true ? (
+                    <CardDetails
+                      inputValue={inputValue}
+                      getInputField={getInputField}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
 
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -290,13 +294,11 @@ const getInputField=(e)=>{
 
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    {!addUserInBid && (
-                      <button type="submit" className="btn">
-                        Register
-                      </button>
-                    )}
+                    <button type="submit" className="btn">
+                      Register
+                    </button>
 
-                    {addUserInBid ? (
+                    {/* {addUserInBid ? (
                       userInput.name != "" &&
                       userInput.phone != "" &&
                       userInput.userName != "" &&
@@ -311,15 +313,7 @@ const getInputField=(e)=>{
                           Register
                         </button>
                       )
-                    ) : null}
-                    {/* {  
-                    addUserInBid ? userInput.name != null && userInput.phone != null && userInput.userName != null && userInput.dealer != null
-                    && userInput.password != null ? (
-                      <StripeCheckout
-                        stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                        token={onToken}
-                      />
-                    ):null:null} */}
+                    ) : null} */}
                   </div>
                 </div>
 

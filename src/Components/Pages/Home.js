@@ -535,9 +535,9 @@ function Home() {
                       2020 before it was acquired by the selling dealer from its
                       owner of 35 years in 2021.
                     </p>
-                    <a href="#" className="btn">
+                    <Link to="/blogdetail" className="btn">
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -573,9 +573,9 @@ function Home() {
                       2020 before it was acquired by the selling dealer from its
                       owner of 35 years in 2021.
                     </p>
-                    <a href="#" className="btn">
+                    <Link to="/blogdetail" className="btn">
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -608,9 +608,9 @@ function Home() {
                       2020 before it was acquired by the selling dealer from its
                       owner of 35 years in 2021.
                     </p>
-                    <a href="#" className="btn">
+                    <Link to="/blogdetail" className="btn">
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -645,17 +645,17 @@ function Home() {
                       2020 before it was acquired by the selling dealer from its
                       owner of 35 years in 2021.
                     </p>
-                    <a href="#" className="btn">
+                    <Link to="/blogdetail" className="btn">
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
               <div className="row">
                 <div className="col-12 text-center pt_40">
-                  <a href="#" className="btn">
+                  <Link to="/blogdetail" className="btn">
                     View More Blogs
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -115,7 +115,6 @@ const Layout = () => {
                   <Route path="admin/add-blog" element={<AddBlog />} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
                   <Route path="admin-enquiry" element={<Enquiry />} />
-
                 </>
               )}
             </>
@@ -157,7 +156,7 @@ const Layout = () => {
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/blogdetail" element={<BlogDetail/>} />
+          <Route path="blogdetail" element={<BlogDetail />} />
         </Routes>
         <ToastContainer
           position="bottom-center"

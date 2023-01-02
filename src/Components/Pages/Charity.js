@@ -1,165 +1,216 @@
-import React from 'react'
-import icGrid from '../../Assets/images/icGrid.svg'
-import img_01 from '../../Assets/images/img_01.jpg'
-import img_02 from '../../Assets/images/img_02.jpg'
-import img_03 from '../../Assets/images/img_03.jpg'
-import img_04 from '../../Assets/images/img_04.jpg'
-import img_05 from '../../Assets/images/img_05.jpg'
-import img_06 from '../../Assets/images/img_06.jpg'
-function Charity() {
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import icGrid from "../../Assets/images/icGrid.svg";
+import img_01 from "../../Assets/images/img_01.jpg";
+import NotAvailable from "../UI/NotAvailable";
+import ResultNotFound from "../UI/ResultNotFound";
+import SmallSpinner from "../UI/SmallSpinner";
+const Charity = () => {
+  const [vehicleData, setVehicleData] = useState([]);
+  const [setData, setSetData] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [viewListActive, setViewListActive] = useState(false);
+  const [highlightWatch, setHighlightWatch] = useState(false);
+
+  const fetchVehicleApi = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
+      if (response.data.status === 200 && response.data.data.length > 0) {
+        const newData = response.data.data.reverse();
+        const filteredData = newData.filter(
+          (item) =>
+            item.displayInAuction === "Yes" &&
+            item.auctionType === "For charity"
+        );
+        setVehicleData(filteredData);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchVehicleApi();
+  }, [setData]);
+  const addFabrity = (id) => {
+    axios
+      .post(process.env.REACT_APP_URL + "createLikes", {
+        vehicleId: id,
+        date: new Date().toString(),
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setSetData(!setData);
+        }
+      });
+  };
+
+  const filteredData = (
+    vehicleData.length > 0 && highlightWatch
+      ? vehicleData.filter((item) => item.like > 0)
+      : vehicleData
+  ).filter((item) =>
+    item.make
+      ? item.make.toLowerCase().includes(searchValue) ||
+        item.model.toLowerCase().includes(searchValue) ||
+        item.year.includes(searchValue)
+      : item
+  );
+
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
+
   return (
     <div>
-
-
-        <section className="heroSection charity d-flex align-items-center">
-            <div className="container">
+      <section className="heroSection charity d-flex align-items-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-lg-8 offset-lg-2">
+              <div className="heroText">
+                <h1>Charity Auctions</h1>
+                <p>
+                  Are you interested in benefitting a charity by offering a
+                  vehicle on BaT Auctions? We can do that!
+                </p>
+                {/* <a href="#" className="btn">
+                  Notify me when one is listed
+                </a>
+                <a href="#" className="btn bg-dark">
+                  Have one? Sell yours here
+                </a> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="ptb_80 pt_sm_50">
+        {vehicleData.length === 0 ? (
+          <NotAvailable text="Vehicle is not available!" />
+        ) : (
+          <div className="container">
             <div className="row">
-                <div className="col-12 col-lg-8 offset-lg-2">
-                <div className="heroText">
-                    <h1>Charity Auctions</h1>
-                    <p>Are you interested in benefitting a charity by offering
-                        a vehicle on BaT Auctions? We can do that!</p>
-                    <a href="#" className="btn">
-                    Notify me when one is listed</a>
-                    <a href="#" className="btn bg-dark">
-                    Have one? Sell yours here</a>                    
-                </div>
-                </div>
+              <div className="col-12">
+                <ul className="postTopOption">
+                  <li className="post_search">
+                    <input
+                      type="search"
+                      name="search"
+                      value={searchValue}
+                      onChange={(e) =>
+                        setSearchValue(e.target.value.toLowerCase())
+                      }
+                      placeholder="Filter auctions for make, model, category…"
+                    />
+                  </li>
+                  <li className="">
+                    <button
+                      onClick={() => setHighlightWatch(!highlightWatch)}
+                      type="button"
+                      className={`gry_btn ${highlightWatch && "active"}`}
+                    >
+                      <i className="fa-solid fa-heart mr-2"></i>
+                    </button>
+                  </li>
+                  <li className="d-flex">
+                    <button
+                      onClick={() => setViewListActive(false)}
+                      type="button"
+                      className={`gry_btn gridView ${
+                        !viewListActive ? "active" : ""
+                      }`}
+                    >
+                      <img src={icGrid} />
+                    </button>
+                    <button
+                      onClick={() => setViewListActive(true)}
+                      type="button"
+                      className={`gry_btn listView ${
+                        viewListActive ? "active" : ""
+                      }`}
+                    >
+                      <i className="fa-sharp fa-solid fa-list"></i>
+                    </button>
+                  </li>
+                  {/* <li className="">
+                  <select className="post_select">
+                    <option>Ending Soonest</option>
+                    <option>Bid: Low to High</option>
+                    <option>Bid: High to Low</option>
+                    <option>Ending Latest</option>
+                    <option>Closest to postal code...</option>
+                  </select>
+                </li> */}
+                </ul>
+              </div>
             </div>
-            </div>
-        </section>
-        <section className="ptb_80 pt_sm_50">
-            <div className="container">
-                <div className="row">
-              
-                 
-                    <div className="col-12">
-                        <ul className="postTopOption">
-                            <li className="post_search">
-                                <input type="text" name="" placeholder="Filter auctions for make, model, category…"/>
-                            </li>
-                            <li className="">
-                                <button type="button" className="gry_btn"><i className="fa-solid fa-heart mr-2"></i> Watched</button>
-                            </li>
-                            <li className="d-flex">
-                                <button type="button" className="gry_btn gridView active"><img src={icGrid}/></button>
-                                <button type="button" className="gry_btn listView"><i className="fa-sharp fa-solid fa-list"></i></button>
-                            </li>
-                            <li className="">
-                                <select className="post_select">
-                                    <option>Ending Soonest</option>
-                                    <option>Bid: Low to High</option>
-                                    <option>Bid: High to Low</option>
-                                    <option>Ending Latest</option>
-                                    <option>Closest to postal code...</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div className="row pt-4 row_gridList">
+            <div
+              className={`row pt-4 row_gridList ${
+                viewListActive && "activeListView"
+              }`}
+            >
+              {filteredData.length <= 0 ? (
+                <ResultNotFound text="Result not found! 🙄" />
+              ) : (
+                filteredData.map((curElem) => {
+                  return (
                     <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_01}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
+                      <div className="card_post">
+                        <div className="card_postImg">
+                          <button
+                            onClick={() => addFabrity(curElem.id)}
+                            type="button"
+                            className="watchedIc"
+                          >
+                            <i
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
+                            ></i>
+                          </button>
+                          <img src={img_01} />
                         </div>
-                    </div>
-                    <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_02}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
+                        <div className="card_postInfo">
+                          <h4>
+                            <a href="detail.html">
+                              {curElem.make}
+                              {curElem.model}
+                              {curElem.year}
+                            </a>
+                          </h4>
+                          <p>{curElem.description}</p>
+                          <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label>{" "}
+                              <span>${curElem.documentFee}</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label>{" "}
+                              <span>
+                                {curElem.EndTime &&
+                                  new Date(curElem.EndTime).toDateString()}
+                              </span>
+                            </li>
+                          </ul>
                         </div>
+                      </div>
                     </div>
-                    <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_03}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_04}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_05}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post">
-                            <div className="card_postImg">
-                                <button type="button" className="watchedIc"><i className="fa-solid fa-heart"></i></button>
-                                <img src={img_06}/>
-                            </div>
-                            <div className="card_postInfo">
-                                <h4><a href="detail.html">12k-Mile 2009 Aston Martin DBS 6-Speed</a></h4>
-                                <p>This 2009 Aston Martin DBS is finished in Casino Royale Metallic over a black leather and Alcantara interior and is powered by a 5.9-liter V12 mated to a six-speed manual transaxle and a limited-slip differential. Additional equipment includes front and rear parking sensors, 20” alloy wheels, carbon-ceramic brakes…</p>
-                                <ul className="labelList">
-                                    <li><label>Current Bid:</label> <span>$126,888</span></li>
-                                    <li><label>Ends In:</label> <span>5 days</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  );
+                })
+              )}
             </div>
-        </section>
+          </div>
+        )}
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Charity
+export default Charity;
