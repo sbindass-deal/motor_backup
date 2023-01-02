@@ -91,7 +91,7 @@ const UserVehicleDetails = () => {
       },
     ],
   };
-
+// console.log("vehicle##",vehicle)
 
   return (
     <div>
@@ -188,42 +188,246 @@ const UserVehicleDetails = () => {
                         </li>
 
                         <li>
-                          Interstellar <label htmlFor=""> Interstellar</label>
+                        vehicle finished in Interstellar White <label htmlFor=""> {vehicle.Interstellar}</label>
                         </li>
 
                         <li>
-                          <label htmlFor="">Location: delhi</label>
+                        city is the vehicle located in<label htmlFor="">{vehicle.city}</label>
+                        </li>
+                        <li>
+                        country is the vehicle currently located in<label htmlFor="">{vehicle.country}</label>
                         </li>
 
                         <li>
-                          <label htmlFor="">
-                            {" "}
-                            accessories {vehicle.accessories}
-                          </label>
+                        accessories are included in the sale<label htmlFor="">{vehicle.accessories} </label>
                         </li>
+                            
+                           
+                         
                         <li>
                           <label htmlFor="">vehicle details</label>
                         </li>
 
                         <li>
-                          Body Work <label htmlFor=""> Recently Painted</label>
+                        vehicle have any history of paint or bodywork <label htmlFor=""> {vehicle.bodywork}</label>
                         </li>
 
                         <li>
-                          <label htmlFor=""> Reserve {vehicle.reserve}</label>
+                        provide reserve amount<label htmlFor=""> Reserve {vehicle.reserve}</label>
                         </li>
 
                         <li>
-                          Size tires <label htmlFor="">{vehicle.sizetires}</label>
+                        size of tires are on the vehicle <label htmlFor="">{vehicle.sizetires}</label>
                         </li>
                         <li>
-                          <label htmlFor="">pickone</label>
+                        pickOne<label htmlFor="">{vehicle.pickOne}</label>
                         </li>
 
                         <li>
-                          Brand <label htmlFor="">brand</label>
+                        brand and model of tires are currently mounted <label htmlFor="">{vehicle.brandandmodel}</label>
                         </li>
-
+                        <li>
+                          createdAt <label htmlFor="">{vehicle.created_at}</label>
+                        </li>
+                        <li>
+                          current Amount <label htmlFor="">{vehicle.currentAmount}</label>
+                        </li>
+                        <li>
+                          Amount on document <label htmlFor="">{vehicle.ammountOnDocument}</label>
+                        </li>
+                        <li>
+                        amount of the document fee that you will charge buyers  <label htmlFor="">{vehicle.documentFee}</label>
+                        </li>
+                        <li>
+                          meter <label htmlFor="">{vehicle.km}</label>
+                        </li>
+                        <li>
+                        your vehicle <label htmlFor="">{vehicle.make}</label>
+                        </li>
+                        <li>
+                        model of vehicle <label htmlFor="">{vehicle.model}</label>
+                        </li>
+                        <li>
+                          Fuel Type <label htmlFor="">{vehicle.fuel}</label>
+                        </li>
+                        <li>
+                        current odometer reading <label htmlFor="">{vehicle.odmeter}</label>
+                        </li>
+                        <li>
+                          engineSize <label htmlFor="">{vehicle.engineSize}</label>
+                        </li>
+                        <li>
+                          OgEngine <label htmlFor="">{vehicle.ogEngine}</label>
+                        </li>
+                        <li>
+                        issues or problems does it currently have <label htmlFor="">{vehicle.issuesorproblems}</label>
+                        </li>
+                        <li>
+                        the interior upholstered in Jet Black and Light Gray leather <label htmlFor="">{vehicle.interior}</label>
+                        </li>
+                        <li>
+                           dealer Description <label htmlFor="">{vehicle.dealerDescription}</label>
+                        </li>
+                        <li>
+                          Dealer id: <label htmlFor="">{vehicle.dealerId}</label>
+                        </li>
+                        <li>
+                        name of your dealership: <label htmlFor="">{vehicle.dealerName}</label>
+                        </li>
+                        <li>
+                          Description <label htmlFor="">{vehicle.description}</label>
+                        </li>
+                        <li>
+                          displayInAuction <label htmlFor="">{vehicle.displayInAuction}</label>
+                        </li>
+                        <li>
+                          documentFee <label htmlFor="">{vehicle.documentFee}</label>
+                        </li>
+                        <li>
+                          Email <label htmlFor="">{vehicle.email}</label>
+                        </li>
+                        <li>
+                          hereFrom <label htmlFor="">{vehicle.hereFrom}</label>
+                        </li>
+                        <li>
+                          kmacc <label htmlFor="">{vehicle.kmacc}</label>
+                        </li>
+                        <li>
+                        provide link to the listing <label htmlFor="">{vehicle.link}</label>
+                        </li>
+                        <li>
+                          modificationOnTrck <label htmlFor="">{vehicle.modificationOnTruck}</label>
+                        </li>
+                        <li>
+                        modifications details<label htmlFor="">{vehicle.modificationstock}</label>
+                        </li>
+                        <li>
+                        list and describe services performed and when they were performed <label htmlFor="">{vehicle.moreDescription}</label>
+                        </li>
+                        <li>
+                           name <label htmlFor="">{vehicle.name}</label>
+                        </li>
+                        <li>
+                          other <label htmlFor="">{vehicle.other}</label>
+                        </li>
+                        <li>
+                          otherStatus <label htmlFor="">{vehicle.otherStatus}</label>
+                        </li>
+                        <li>
+                          otherTruckTitle <label htmlFor="">{vehicle.otherTrucktitle}</label>
+                        </li>
+                        <li>
+                        you have owned it <label htmlFor="">{vehicle.owned}</label>
+                        </li>
+                        <li>
+                          ownerDetail <label htmlFor="">{vehicle.ownerDetail}</label>
+                        </li>
+                        <li>
+                          pickOne <label htmlFor="">{vehicle.pickOne}</label>
+                        </li>
+                        <li>
+                          premium <label htmlFor="">{vehicle.premium}</label>
+                        </li>
+                        <li>
+                          reservAmount <label htmlFor="">{vehicle.reserveAmount}</label>
+                        </li>
+                        
+                        <li>
+                        rust details <label htmlFor="">{vehicle.rustDetails}</label>
+                        </li>
+                        <li>
+                        rust present on the vehicle <label htmlFor="">{vehicle.rustpresent}</label>
+                        </li>
+                        <li>
+                          servicesperformed <label htmlFor="">{vehicle.servicesperformed}</label>
+                        </li>
+                        <li>
+                          sizetires <label htmlFor="">{vehicle.sizetires}</label>
+                        </li>
+                        <li>
+                          sold <label htmlFor="">{vehicle.sold}</label>
+                        </li>
+                        <li>
+                          state <label htmlFor="">{vehicle.state}</label>
+                        </li>
+                        <li>
+                          stepFourImage <label htmlFor="">{vehicle.stepFourImage}</label>
+                        </li>
+                        <li>
+                          stepOneImage <label htmlFor="">{vehicle.stepOneImage}</label>
+                        </li>
+                        <li>
+                          stepThreeImage <label htmlFor="">{vehicle.stepThreeImage}</label>
+                        </li>
+                        <li>
+                          stepTwoImage <label htmlFor="">{vehicle.stepTwoImage}</label>
+                        </li>
+                        <li>
+                        vehicle title <label htmlFor="">{vehicle.title}</label>
+                        </li>
+                        <li>
+                        status of the title <label htmlFor="">{vehicle.titleStatus}</label>
+                        </li>
+                        <li>
+                          transmission <label htmlFor="">{vehicle.transmission}</label>
+                        </li>
+                        <li>
+                          truckDetails <label htmlFor="">{vehicle.truckDetails}</label>
+                        </li>
+                        <li>
+                        vehicle history, paint or bodywork <label htmlFor="">{vehicle.truckHistory}</label>
+                        </li>
+                        <li>
+                          truckfromnew <label htmlFor="">{vehicle.truckfromnew}</label>
+                        </li>
+                        <li>
+                          understand <label htmlFor="">{vehicle.understand}</label>
+                        </li>
+                        <li>
+                          understandCondition <label htmlFor="">{vehicle.understandCondition}</label>
+                        </li>
+                        <li>
+                          updatedAt <label htmlFor="">{vehicle.updated_at}</label>
+                        </li>
+                        <li>
+                          userId <label htmlFor="">{vehicle.userId}</label>
+                        </li>
+                        <li>
+                          View <label htmlFor="">{vehicle.View}</label>
+                        </li>
+                        <li>
+                        year of your vehicle <label htmlFor="">{vehicle.year}</label>
+                        </li>
+                        <li>
+                          EndTime <label htmlFor="">{vehicle.EndTime}</label>
+                        </li>
+                        <li>
+                          accept <label htmlFor="">{vehicle.accept}</label>
+                        </li>
+                        <li>
+                          acceptTerms <label htmlFor="">{vehicle.acceptTerms}</label>
+                        </li>
+                        <li>
+                          Approve <label htmlFor="">{vehicle.approved}</label>
+                        </li>
+                        <li>
+                        Auction type <label htmlFor="">{vehicle.auctionType}</label>
+                        </li>
+                        <li>
+                          Bat <label htmlFor="">{vehicle.bat}</label>
+                        </li>
+                        <li>
+                          Bat Description <label htmlFor="">{vehicle.batDescription}</label>
+                        </li>
+                        <li>
+                        vehicle being sold on consignment <label htmlFor="">{vehicle.consignment}</label>
+                        </li>
+                        <li>
+                          Detailvin <label htmlFor="">{vehicle.detailvin}</label>
+                        </li>
+                        <li>
+                          DeletedAt <label htmlFor="">{vehicle.deleted_at}</label>
+                        </li>
                         <li>
                           <label htmlFor="">
                             Private Party or Dealer :dealer

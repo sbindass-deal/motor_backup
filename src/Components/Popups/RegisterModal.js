@@ -303,7 +303,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       userInput.phone != "" &&
                       userInput.userName != "" &&
                       userInput.dealer != "" &&
-                      userInput.password != "" ? (
+                      userInput.password != "" 
+                      ? (
                         <StripeCheckout
                           stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                           token={onToken}
