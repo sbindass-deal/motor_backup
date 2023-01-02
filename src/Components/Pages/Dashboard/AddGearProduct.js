@@ -1,9 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 
 const AddGearProduct = () => {
+  const navigate = useNavigate();
+  const [file, setFile] = useState([]);
   const [getInputData, setGetInputData] = useState({
     name: "",
     category: "",
@@ -16,6 +19,23 @@ const AddGearProduct = () => {
   const handleOnChange = (e) => {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
+  const uploadFileOne = async (vehicleId) => {
+    for (let i = 0; i < file.length; i++) {
+      const url = process.env.REACT_APP_URL + "product-image";
+      const formData = new FormData();
+      formData.append("image", file[i]);
+      formData.append("lottery_id", vehicleId);
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      await axios.post(url, formData, config).then((response) => {
+        console.log(response.data);
+      });
+    }
+  };
+
   const handleApi = (e) => {
     e.preventDefault();
     axios
@@ -30,7 +50,8 @@ const AddGearProduct = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("Product added successfully");
+          // uploadFileOne(response.data.id);
+          navigate("/gear-product");
         }
       })
       .catch((error) => {
@@ -135,7 +156,7 @@ const AddGearProduct = () => {
                   rows="3"
                 ></textarea>
               </div>
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-12 col-md-6">
                 <label>Upload Photos</label>
                 <div className="form-group">
                   <input
@@ -143,6 +164,9 @@ const AddGearProduct = () => {
                       fontSize: "1.2rem",
                       textAlign: "center",
                       cursor: "pointer",
+                    }}
+                    onChange={(e) => {
+                      setFile(e.target.files);
                     }}
                     name="file"
                     type="file"
