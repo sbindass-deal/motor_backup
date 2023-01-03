@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 import img_01 from "../../../Assets/images/th.jpeg";
 
@@ -23,6 +23,23 @@ const UserVehicleDetails = () => {
   }
   const submitApprove=(e)=>{
     e.preventDefault();
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+        id:id,
+        approved:"approve" ,
+        desc1:descValue.description1,
+        desc2: descValue.description2,
+        
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          Navigate("/vehicle-submission");
+        }
+          
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 
     console.log("******",descValue)
 
@@ -43,8 +60,20 @@ const UserVehicleDetails = () => {
       console.log(err);
     }
   };
+  const fetchVehicleImage=async()=>{
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + "/vehicle-image/" + id
+        );
+        console.log("###>>>",response.data.data)
+      // setShowImage(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   useEffect(() => {
     fetchVehicleApi();
+    fetchVehicleImage();
   }, [id]);
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -218,9 +247,7 @@ const UserVehicleDetails = () => {
                             
                            
                          
-                        <li>
-                          <label htmlFor="">vehicle details</label>
-                        </li>
+                       
 
                         <li>
                         vehicle have any history of paint or bodywork <label htmlFor=""> {vehicle.bodywork}</label>
@@ -233,26 +260,28 @@ const UserVehicleDetails = () => {
                         <li>
                         size of tires are on the vehicle <label htmlFor="">{vehicle.sizetires}</label>
                         </li>
-                        <li>
-                        pickOne<label htmlFor="">{vehicle.pickOne}</label>
+                        
+                       
+                        {viewAll ? <div>
+                          <li>
+                          wheels are on the vehicle<label htmlFor="">{vehicle.pickOne}</label>
                         </li>
 
                         <li>
                         brand and model of tires are currently mounted <label htmlFor="">{vehicle.brandandmodel}</label>
                         </li>
-                        <li>
+                          <li>
                           createdAt <label htmlFor="">{vehicle.created_at}</label>
                         </li>
                         <li>
                           current Amount <label htmlFor="">{vehicle.currentAmount}</label>
                         </li>
+                        {/* <li>
+                           <label htmlFor="">{vehicle.ammountOnDocument}</label>
+                        </li> */}
                         <li>
-                          Amount on document <label htmlFor="">{vehicle.ammountOnDocument}</label>
+                        Amount on document <label htmlFor="">{vehicle.documentFee}</label>
                         </li>
-                        <li>
-                        amount of the document fee that you will charge buyers  <label htmlFor="">{vehicle.documentFee}</label>
-                        </li>
-                        {viewAll ? <div>
                         <li>
                           meter <label htmlFor="">{vehicle.km}</label>
                         </li>
@@ -268,12 +297,8 @@ const UserVehicleDetails = () => {
                         <li>
                         current odometer reading <label htmlFor="">{vehicle.odmeter}</label>
                         </li>
-                        <li>
-                          engineSize <label htmlFor="">{vehicle.engineSize}</label>
-                        </li>
-                        <li>
-                          OgEngine <label htmlFor="">{vehicle.ogEngine}</label>
-                        </li>
+                        
+                        
                         <li>
                         issues or problems does it currently have <label htmlFor="">{vehicle.issuesorproblems}</label>
                         </li>
@@ -290,7 +315,7 @@ const UserVehicleDetails = () => {
                         name of your dealership: <label htmlFor="">{vehicle.dealerName}</label>
                         </li>
                         <li>
-                          Description <label htmlFor="">{vehicle.description}</label>
+                          Description  <label htmlFor="">{vehicle.description}</label>
                         </li>
                         <li>
                           displayInAuction <label htmlFor="">{vehicle.displayInAuction}</label>
@@ -307,12 +332,8 @@ const UserVehicleDetails = () => {
                         <li>
                           kmacc <label htmlFor="">{vehicle.kmacc}</label>
                         </li>
-                        <li>
-                        provide link to the listing <label htmlFor="">{vehicle.link}</label>
-                        </li>
-                        <li>
-                          modificationOnTrck <label htmlFor="">{vehicle.modificationOnTruck}</label>
-                        </li>
+                       
+                        
                         <li>
                         modifications details<label htmlFor="">{vehicle.modificationstock}</label>
                         </li>
@@ -322,29 +343,21 @@ const UserVehicleDetails = () => {
                         <li>
                            name <label htmlFor="">{vehicle.name}</label>
                         </li>
-                        <li>
-                          other <label htmlFor="">{vehicle.other}</label>
-                        </li>
-                        <li>
-                          otherStatus <label htmlFor="">{vehicle.otherStatus}</label>
-                        </li>
-                        <li>
-                          otherTruckTitle <label htmlFor="">{vehicle.otherTrucktitle}</label>
-                        </li>
+                       
+                       
+                        
                         <li>
                         you have owned it <label htmlFor="">{vehicle.owned}</label>
                         </li>
                         <li>
                           ownerDetail <label htmlFor="">{vehicle.ownerDetail}</label>
                         </li>
-                        <li>
-                          pickOne <label htmlFor="">{vehicle.pickOne}</label>
-                        </li>
+                       
                         <li>
                           premium <label htmlFor="">{vehicle.premium}</label>
                         </li>
                         <li>
-                          reservAmount <label htmlFor="">{vehicle.reserveAmount}</label>
+                        provide reserve amount <label htmlFor="">{vehicle.reservAmount}</label>
                         </li>
                         
                         <li>
@@ -353,30 +366,16 @@ const UserVehicleDetails = () => {
                         <li>
                         rust present on the vehicle <label htmlFor="">{vehicle.rustpresent}</label>
                         </li>
-                        <li>
-                          servicesperformed <label htmlFor="">{vehicle.servicesperformed}</label>
-                        </li>
+                       
                         <li>
                           sizetires <label htmlFor="">{vehicle.sizetires}</label>
                         </li>
                         <li>
                           sold <label htmlFor="">{vehicle.sold}</label>
                         </li>
-                        <li>
-                          state <label htmlFor="">{vehicle.state}</label>
-                        </li>
-                        <li>
-                          stepFourImage <label htmlFor="">{vehicle.stepFourImage}</label>
-                        </li>
-                        <li>
-                          stepOneImage <label htmlFor="">{vehicle.stepOneImage}</label>
-                        </li>
-                        <li>
-                          stepThreeImage <label htmlFor="">{vehicle.stepThreeImage}</label>
-                        </li>
-                        <li>
-                          stepTwoImage <label htmlFor="">{vehicle.stepTwoImage}</label>
-                        </li>
+                       
+                        
+                       
                         <li>
                         vehicle title <label htmlFor="">{vehicle.title}</label>
                         </li>
@@ -384,7 +383,7 @@ const UserVehicleDetails = () => {
                         status of the title <label htmlFor="">{vehicle.titleStatus}</label>
                         </li>
                         <li>
-                          transmission <label htmlFor="">{vehicle.transmission}</label>
+                        provide link to the listing <label htmlFor="">{vehicle.transmission}</label>
                         </li>
                         <li>
                           truckDetails <label htmlFor="">{vehicle.truckDetails}</label>
@@ -392,12 +391,8 @@ const UserVehicleDetails = () => {
                         <li>
                         vehicle history, paint or bodywork <label htmlFor="">{vehicle.truckHistory}</label>
                         </li>
-                        <li>
-                          truckfromnew <label htmlFor="">{vehicle.truckfromnew}</label>
-                        </li>
-                        <li>
-                          understand <label htmlFor="">{vehicle.understand}</label>
-                        </li>
+                        
+                        
                         <li>
                           understandCondition <label htmlFor="">{vehicle.understandCondition}</label>
                         </li>
@@ -407,42 +402,30 @@ const UserVehicleDetails = () => {
                         <li>
                           userId <label htmlFor="">{vehicle.userId}</label>
                         </li>
-                        <li>
-                          View <label htmlFor="">{vehicle.View}</label>
-                        </li>
+                       
                         <li>
                         year of your vehicle <label htmlFor="">{vehicle.year}</label>
                         </li>
                         <li>
                           EndTime <label htmlFor="">{vehicle.EndTime}</label>
                         </li>
-                        <li>
-                          accept <label htmlFor="">{vehicle.accept}</label>
-                        </li>
+                        
                         <li>
                           acceptTerms <label htmlFor="">{vehicle.acceptTerms}</label>
                         </li>
-                        <li>
-                          Approve <label htmlFor="">{vehicle.approved}</label>
-                        </li>
+                        
                         <li>
                         Auction type <label htmlFor="">{vehicle.auctionType}</label>
                         </li>
-                        <li>
-                          Bat <label htmlFor="">{vehicle.bat}</label>
-                        </li>
-                        <li>
-                          Bat Description <label htmlFor="">{vehicle.batDescription}</label>
-                        </li>
+                       
+                        
                         <li>
                         vehicle being sold on consignment <label htmlFor="">{vehicle.consignment}</label>
                         </li>
                         <li>
                           Detailvin <label htmlFor="">{vehicle.detailvin}</label>
                         </li>
-                        <li>
-                          DeletedAt <label htmlFor="">{vehicle.deleted_at}</label>
-                        </li> 
+                       
                        
                         </div>:null}
                         <li>
