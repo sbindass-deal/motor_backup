@@ -11,7 +11,23 @@ import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 
+
 const UserVehicleDetails = () => {
+  const [viewAll,setViewAll]=useState(false)
+  const [descValue,setDescValue]=useState({
+    description1:"",
+    description2:""
+  })
+  const handleDescription=(e)=>{
+    setDescValue((pre)=>({...pre,[e.target.name]:e.target.value}))
+  }
+  const submitApprove=(e)=>{
+    e.preventDefault();
+
+    console.log("******",descValue)
+
+  }
+
   const slide = useRef(null);
   const { id } = useParams();
   const [vehicle, setVehicle] = useState({});
@@ -109,14 +125,14 @@ const UserVehicleDetails = () => {
           </div>
 
           <div className="row">
-            <div className="col-6">
-              <div className="postHero">
+            <div className="col-6 sticky-direction=up">
+              <div className="postHero ">
                 <img
                   src="https://tse4.mm.bing.net/th?id=OIP.vf11XywUrdCTiM2RtALitAHaFU&pid=Api&P=0"
                   alt="details-images"
                 />
               </div>
-            </div>
+            </div> 
             <div className="col-6 dropdownCol">
               <div className="dropdown mr-2">
                 <button
@@ -183,9 +199,7 @@ const UserVehicleDetails = () => {
                   <div className="card_Gray">
                       <h5 className="cardTitle">CAR INFORMATION</h5>
                       <ul className="bidList_ info_">
-                        <li>
-                          <label htmlFor="">40 Miles</label>
-                        </li>
+                       
 
                         <li>
                         vehicle finished in Interstellar White <label htmlFor=""> {vehicle.Interstellar}</label>
@@ -238,6 +252,7 @@ const UserVehicleDetails = () => {
                         <li>
                         amount of the document fee that you will charge buyers  <label htmlFor="">{vehicle.documentFee}</label>
                         </li>
+                        {viewAll ? <div>
                         <li>
                           meter <label htmlFor="">{vehicle.km}</label>
                         </li>
@@ -427,19 +442,45 @@ const UserVehicleDetails = () => {
                         </li>
                         <li>
                           DeletedAt <label htmlFor="">{vehicle.deleted_at}</label>
-                        </li>
+                        </li> 
+                       
+                        </div>:null}
                         <li>
                           <label htmlFor="">
                             Private Party or Dealer :dealer
                           </label>
                         </li>
                       </ul>
-                      <br/><br/>
-                      <button className="btn btn-warning">Approve</button>
+                      <div className="col-12 text-center">
+
+            <button className="btn btn-warning " onClick={()=>setViewAll(!viewAll)} > {viewAll ?"View Less" :"View All"}</button>
+            </div>    
+                    
                   </div>
+
               </div>
+              
+
+             
             </div>
-            
+            <div className="container">
+              <form  onSubmit={submitApprove}>
+              <div className="col-12 w-100">
+                <label>Description 1</label> <br/>
+
+                <textarea 
+                name="description1"
+                value={descValue.description1}
+                onChange={handleDescription}></textarea> <br/>
+                <label>Description 2</label> <br/>
+                <textarea 
+                name="description2"
+                value={descValue.description2}
+                onChange={handleDescription}></textarea> <br/>
+            <button className="btn btn-warning m-3" type="submit" >Approve</button>
+            </div>
+            </form></div>
+
             <div className="col-12">
              <h3>PHOTO GALLERY</h3>
              <div className="col-12">
