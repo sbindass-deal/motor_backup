@@ -169,7 +169,7 @@ const UserVehicleDetails = () => {
                   className="gry_btn"
                   data-toggle="dropdown"
                 >
-                  Make: make
+                  Make: {vehicle.make}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -183,10 +183,10 @@ const UserVehicleDetails = () => {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn"
+                  className="gry_btn "
                   data-toggle="dropdown"
                 >
-                  Model: model name
+                  Model:{vehicle.model}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -229,7 +229,9 @@ const UserVehicleDetails = () => {
                       <h5 className="cardTitle">CAR INFORMATION</h5>
                       <ul className="bidList_ info_">
                        
-
+                      <li>
+                        Vehicle Id:<label htmlFor="">{vehicle.id}</label>
+                        </li>
                         <li>
                         vehicle finished in Interstellar White <label htmlFor=""> {vehicle.Interstellar}</label>
                         </li>
@@ -300,7 +302,7 @@ const UserVehicleDetails = () => {
                         
                         
                         <li>
-                        issues or problems does it currently have <label htmlFor="">{vehicle.issuesorproblems}</label>
+                        you know about the history of the vehicle  <label htmlFor="">{vehicle.issuesorproblems}</label>
                         </li>
                         <li>
                         the interior upholstered in Jet Black and Light Gray leather <label htmlFor="">{vehicle.interior}</label>
@@ -327,7 +329,7 @@ const UserVehicleDetails = () => {
                           Email <label htmlFor="">{vehicle.email}</label>
                         </li>
                         <li>
-                          hereFrom <label htmlFor="">{vehicle.hereFrom}</label>
+                        issues or problems does it currently have <label htmlFor="">{vehicle.hereFrom}</label>
                         </li>
                         <li>
                           kmacc <label htmlFor="">{vehicle.kmacc}</label>
@@ -343,14 +345,18 @@ const UserVehicleDetails = () => {
                         <li>
                            name <label htmlFor="">{vehicle.name}</label>
                         </li>
-                       
-                       
+                        <li>
+                        modifications details <label htmlFor="">{vehicle.modificationOnTruck}</label>
+                        </li>
+                        <li>
+                        vehicle have any modifications from stock <label htmlFor="">{vehicle.modificationstock}</label>
+                        </li>
                         
                         <li>
                         you have owned it <label htmlFor="">{vehicle.owned}</label>
                         </li>
                         <li>
-                          ownerDetail <label htmlFor="">{vehicle.ownerDetail}</label>
+                        vehicle a race car or not otherwise registered for street use <label htmlFor="">{vehicle.ownerDetail}</label>
                         </li>
                        
                         <li>
@@ -376,17 +382,15 @@ const UserVehicleDetails = () => {
                        
                         
                        
+                       
                         <li>
-                        vehicle title <label htmlFor="">{vehicle.title}</label>
-                        </li>
-                        <li>
-                        status of the title <label htmlFor="">{vehicle.titleStatus}</label>
+                        status of the vehicle title <label htmlFor="">{vehicle.titleStatus}</label>
                         </li>
                         <li>
                         provide link to the listing <label htmlFor="">{vehicle.transmission}</label>
                         </li>
                         <li>
-                          truckDetails <label htmlFor="">{vehicle.truckDetails}</label>
+                        engineSize <label htmlFor="">{vehicle.engineSize}</label>
                         </li>
                         <li>
                         vehicle history, paint or bodywork <label htmlFor="">{vehicle.truckHistory}</label>
