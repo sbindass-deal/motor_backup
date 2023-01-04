@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NotAvailable from "../../UI/NotAvailable";
+import ResultNotFound from "../../UI/ResultNotFound";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Products from "./Products";
 import StoreHero from "./StoreHero";
@@ -27,13 +28,23 @@ const Shop = () => {
     fetchProductApi();
   }, []);
 
+  const filteredData =
+    products.length > 0
+      ? products.filter((item) =>
+          item.title ? item.title.toLowerCase().includes(searchValue) : item
+        )
+      : [];
+
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
   return (
     <>
-      <section class="shopHeroSection d-flex align-items-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-              <div class="heroText shop">
+      <section className="shopHeroSection d-flex align-items-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-lg-8 offset-lg-2">
+              <div className="heroText shop">
                 <h3>G3</h3>
                 <h1>
                   Gas Guzzlrs <span>G e a r</span>
@@ -44,21 +55,16 @@ const Shop = () => {
         </div>
       </section>
       <StoreHero setSearchValue={setSearchValue} />
-      <section class="pt_40 shopPg">
-        <div class="container">
-          <div class="row">
-            {loading ? (
-              <SmallSpinner spin={true} />
-            ) : products.length <= 0 ? (
-              <NotAvailable text="Product is not available" />
-            ) : (
-              products
-                .filter((item) =>
-                  item.title
-                    ? item.title.toLowerCase().includes(searchValue)
-                    : item
-                )
-                .map((curElem) => {
+      <section className="pt_40 shopPg">
+        <div className="container">
+          {products.length <= 0 ? (
+            <NotAvailable text="Product is not available" />
+          ) : (
+            <div className="row">
+              {filteredData.length <= 0 ? (
+                <ResultNotFound text="Result not found! 🙄" />
+              ) : (
+                filteredData.map((curElem) => {
                   return (
                     <Products
                       key={curElem.id}
@@ -70,15 +76,16 @@ const Shop = () => {
                     />
                   );
                 })
-            )}
-            {products.length > 0 && (
-              <div class="col-12 text-center">
-                <Link href="/shop" class="btn mt-4">
+              )}
+              {/* {products.length > 0 && (
+              <div className="col-12 text-center">
+                <Link href="/shop" className="btn mt-4">
                   View More
                 </Link>
               </div>
-            )}
-          </div>
+            )} */}
+            </div>
+          )}
         </div>
       </section>
     </>

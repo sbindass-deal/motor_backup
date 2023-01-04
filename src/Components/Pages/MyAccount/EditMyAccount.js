@@ -2,9 +2,10 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import FormInput from "../UI/FormInput";
+import CardDetails from "../../Popups/CardDetails";
+import FormInput from "../../UI/FormInput";
+import MyAccountLeftNav from "./MyAccountLeftNav";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
@@ -21,12 +22,29 @@ function EditMyAccount() {
       theme: "light",
     });
 
+  const [inputValue, setInputValue] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    zip: "",
+    country: "",
+    cardnumber: "",
+    month: "",
+    year: "",
+    cvc: "",
+    hearAbout: "",
+  });
+  const getInputField = (e) => {
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  };
+
   const [editUser, setEditUser] = useState({
     name: "",
     userName: "",
     email: "",
     phone: "",
   });
+  const [addUserInBid, setAddUserInBid] = useState(false);
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
@@ -43,6 +61,7 @@ function EditMyAccount() {
           email: userLoginData.email,
           phone: userLoginData.mobile,
         });
+        setAddUserInBid(userLoginData.bid);
       } catch (err) {
         console.log(err);
       }
@@ -60,6 +79,17 @@ function EditMyAccount() {
         username: userName,
         phone: phone,
         name: name,
+        addUserInBid,
+        cardName: inputValue.name,
+        cardPhone: inputValue.phone,
+        cardAddress: inputValue.address,
+        cardZip: inputValue.zip,
+        cardCountry: inputValue.country,
+        cardNumber: inputValue.cardnumber,
+        cartMonth: inputValue.month,
+        cartYear: inputValue.year,
+        cartCvc: inputValue.cvc,
+        cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
         notify(result.data.message);
@@ -79,25 +109,7 @@ function EditMyAccount() {
               <div className="card_Gray mb-5 mb-md-0">
                 <h5>My Account</h5>
                 <hr />
-                <ul className="sideBar__">
-                  <li>
-                    <Link to="/accountinfo" className="active">
-                      Account Info
-                    </Link>
-                  </li>
-                  {/* <li>
-                    <Link to="notifications">Notifications</Link>
-                  </li> */}
-                  <li>
-                    <Link to="/listings">My Listings</Link>
-                  </li>
-                  <li>
-                    <Link to="/bidswins">My Bids & Wins</Link>
-                  </li>
-                  <li>
-                    <Link to="/myshipments">My Shipments</Link>
-                  </li>
-                </ul>
+                <MyAccountLeftNav />
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
@@ -153,6 +165,24 @@ function EditMyAccount() {
                     />
                   </div>
                   <div className="col-12 col-md-12">
+                    <div className="form-group form-check">
+                      <label className="form-check-label">
+                        <input
+                          onChange={(e) => setAddUserInBid(e.target.checked)}
+                          className="form-check-input"
+                          checked={addUserInBid}
+                          type="checkbox"
+                          style={{ cursor: "pointer" }}
+                        />
+                        i want the ability to bid on action?(Optional)
+                      </label>
+                    </div>
+                    {addUserInBid && (
+                      <CardDetails
+                        inputValue={inputValue}
+                        getInputField={getInputField}
+                      />
+                    )}
                     <div className="form-group">
                       <button type="submit" className="gry_btn mt-3">
                         Save Changes
