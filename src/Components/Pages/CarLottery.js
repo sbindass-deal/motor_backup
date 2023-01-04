@@ -333,7 +333,7 @@ function CarRaffle() {
 
                       <div className="counterCol">
                         <h5 style={{ textAlign: "center" }}>
-                          Countdown to the next draw
+                          Countdown to the next draw 
                         </h5>
                         {t > 0 ? (
                           <div className="clockTimer" id="clockdiv">
