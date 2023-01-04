@@ -256,7 +256,7 @@ function SubmitaVehicle() {
                   <div className="plan_Price">
                     {/* ${planthird} <span className="plan_Time">Year</span> */}
                     <div className="dfk">
-                      $99
+                      <h3>Contact us</h3>
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                         <input

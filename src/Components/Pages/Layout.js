@@ -48,8 +48,8 @@ import Admin from "./Dashboard/Admin";
 import Blog from "./Dashboard/Blog";
 import VehicleSubmission from "./Dashboard/VehicleSubmission";
 import VehicleListing from "./Dashboard/VehicleListing";
-import VehicleListingDetails from './Dashboard/VehicleListingDetails';
-import AddListing from './Dashboard/AddListing'
+import VehicleListingDetails from "./Dashboard/VehicleListingDetails";
+import AddListing from "./Dashboard/AddListing";
 import GearProduct from "./Dashboard/GearProducts";
 import Cart from "./shopingStore/Cart";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
@@ -102,10 +102,19 @@ const Layout = () => {
                     element={<VehicleSubmission />}
                   />
                   <Route path="admin" element={<VehicleSubmission />} />
-                  <Route path="admin/vehicle-listing" element={<VehicleListing />} />
-                  <Route path="admin/vehicle-listing-details" element={<VehicleListingDetails />} />
-                  <Route path="admin/addVehicle-listing" element={<AddListing />} />
-                  
+                  <Route
+                    path="admin/vehicle-listing"
+                    element={<VehicleListing />}
+                  />
+                  <Route
+                    path="admin/vehicle-listing-details/:id"
+                    element={<VehicleListingDetails />}
+                  />
+                  <Route
+                    path="admin/addVehicle-listing"
+                    element={<AddListing />}
+                  />
+
                   <Route path="raffleadmin" element={<RaffleAdmin />} />
                   <Route
                     path="raffleadmin/add-raffel"
