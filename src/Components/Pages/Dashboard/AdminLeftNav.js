@@ -18,16 +18,16 @@ function AdminLeftNav() {
             Vehicle submission
           </Link>
         </li>
-        {/* <li>
+        <li>
                       <Link
                         className={` ${
-                          location.pathname === "/notifications" ? "active" : ""
+                          location.pathname === "/admin/vehicle-listing" ? "active" : ""
                         } `}
-                        to="/notifications"
+                        to="/admin/vehicle-listing"
                       >
-                        Notifications
+                        Vehicle Listing
                       </Link>
-                    </li> */}
+                    </li>
         <li>
           <Link
             className={` ${
