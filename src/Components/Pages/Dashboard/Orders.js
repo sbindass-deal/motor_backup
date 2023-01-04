@@ -34,6 +34,11 @@ function Orders() {
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Orders list</h3>
               <hr />
+              <ul className="postTopOption">
+                <li className="post_search">
+                  <input type="search" name="search" placeholder="Search…" />
+                </li>
+              </ul>
               <div class="card_Gray table-responsive merchant vehicleSub">
                 <table class="table table-striped">
                   <thead>
@@ -73,7 +78,12 @@ function Orders() {
                               {curElem.amount}
                             </td>
                             <td>
-                              <Link to={`/orders-details/${curElem.order_id}`} className="btn p-1">View</Link>
+                              <Link
+                                to={`/orders-details/${curElem.order_id}`}
+                                className="btn p-1"
+                              >
+                                View
+                              </Link>
                             </td>
                           </tr>
                         );

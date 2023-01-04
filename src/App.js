@@ -121,18 +121,16 @@ function App() {
         : removeBodyClass(className);
     };
   }, [className]);
-      axios.interceptors.request.use(
-        (req) => {
-          req.headers.Authorization = `Bearer ${logingUser.login.token}`;
-        return req;
-      },
-      (err) => {
-        return Promise.reject(err);
-      }
-    );
-  
-      
-          
+
+  axios.interceptors.request.use(
+    (req) => {
+      req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+      return req;
+    },
+    (err) => {
+      return Promise.reject(err);
+    }
+  );
 
   return (
     <>

@@ -14,13 +14,15 @@ import {
   isAdmin,
   showModalLogin,
   showModalClose,
+  reset,
 } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
 import axios from "axios";
-import { useEffect } from "react";
 import { clearCart } from "../redux/reducers/cartSlice";
+import { useEffect } from "react";
+import ResultNotFound from "./UI/ResultNotFound";
 
 const data = [
   {
@@ -56,8 +58,8 @@ const data = [
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState();
-  const [searchData, setSearchData] = useState(data);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchData, setSearchData] = useState([]);
   const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const notify = (val) =>
@@ -79,25 +81,27 @@ function Header() {
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
-  const featchSearchApi = async (se) => {
+  const featchSearchApi = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_URL + `globalSearch/${searchValue}`
+        process.env.REACT_APP_URL + `globalSearch`
       );
-      if (searchValue.trim().length <= 0) {
-        setSearchData(data);
-      } else {
-        // setSearchData(response.data.data);
+      if (response.data.vehicle.length >= 0) {
+        setSearchData(response.data.vehicle);
       }
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    featchSearchApi();
+  }, []);
+
   const handleSearch = (e) => {
-    const Value = e.target.value;
+    const Value = e.target.value.toLowerCase();
     setSearchValue(Value);
-    featchSearchApi(Value);
+    // featchSearchApi(Value);
   };
 
   const handleClose = () => {
@@ -118,12 +122,11 @@ function Header() {
   const handleCloseModal = () => {
     setShowSearchModal(false);
   };
-  const logout = async () => {
-    dispatch(authToken(null));
-    dispatch(isAdmin(null));
-    dispatch(clearCart());
+  const logout = () => {
+    dispatch(reset());
     notify("Logout successfully ! 😎🤐");
     navigate("/");
+    window.location.reload(false);
   };
 
   const handleBlur = (e) => {
@@ -132,6 +135,16 @@ function Header() {
   const handleFocus = (e) => {
     setSowAutoCompleate(true);
   };
+
+  const filteredData =
+    searchData &&
+    searchData.filter((item) =>
+      item.make
+        ? item.make.toLowerCase().includes(searchValue) ||
+          item.model.toLowerCase().includes(searchValue) ||
+          item.year.includes(searchValue)
+        : item
+    );
 
   return (
     <>
@@ -179,7 +192,7 @@ function Header() {
                       >
                         <form className="searchForm">
                           <input
-                            type="text"
+                            type="search"
                             name="search"
                             value={searchValue}
                             onChange={handleSearch}
@@ -676,14 +689,22 @@ function Header() {
       {sowAutoCompleate && (
         <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
-            {searchData.map((curElem) => {
-              return (
-                <Link to={curElem.redirect} className="row searchList">
-                  <p className="title">{curElem.name}</p>
-                  <p className="dec">{curElem.desc}</p>
-                </Link>
-              );
-            })}
+            {filteredData <= 0 ? (
+              <ResultNotFound text="Result not found! 🙄" />
+            ) : (
+              filteredData.map((curElem) => {
+                return (
+                  <div key={curElem.id}>
+                    {curElem.name && (
+                      <Link to="/showroom" className="row searchList">
+                        <p className="title">{curElem.make} &nbsp; </p>
+                        <p className="dec">{curElem.description}</p>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       )}

@@ -36,6 +36,14 @@ export const login = createSlice({
     isAdmin: (state, action) => {
       state.admin = action.payload;
     },
+    reset: (state, action) => {
+      state.token = null;
+      state.user = {};
+      state.admin = null;
+      state.login = false;
+      state.reg = false;
+      state.show = false;
+    },
   },
 });
 
@@ -47,6 +55,7 @@ export const {
   showModalLogin,
   showModalClose,
   isAdmin,
+  reset,
 } = login.actions;
 
 export default login.reducer;

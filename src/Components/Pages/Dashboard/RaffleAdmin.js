@@ -61,6 +61,11 @@ function RaffleAdmin() {
               </div>
 
               <hr />
+              <ul className="postTopOption">
+                <li className="post_search">
+                  <input type="search" name="search" placeholder="Search…" />
+                </li>
+              </ul>
               <div class="card_Gray table-responsive vehicleSub">
                 <table class="table table-striped">
                   <thead>

@@ -31,7 +31,6 @@ import AuctionResults from "./AuctionResults";
 // import CarLotry from "./CarLotry";
 import PrivacyPolicy from "./PrivacyNotice";
 import CarRaffle from "./CarLottery";
-import EditMyAccount from "./EditMyAccount";
 import VechilesRegistraion from "./VechilesRegistraion";
 import Auctionlive from "./Auctionlive";
 import AuctionPremium from "./AuctionPremium";
@@ -69,6 +68,7 @@ import Enquiry from "./Dashboard/Enquiry";
 import CheckoutDetails from "./shopingStore/CheckoutDetails";
 import AddGearProduct from "./Dashboard/AddGearProduct";
 import BlogDetail from "./BlogDetail";
+import EditMyAccount from "./MyAccount/EditMyAccount";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
