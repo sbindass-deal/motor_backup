@@ -1,8 +1,7 @@
 import React from "react";
 import Car_img from "../../Assets/images/img_05.jpg";
-import PhotoGallery from "../Pages/PhotoGallery";
 
-function BlogDetail() {
+const BlogDetail = () => {
   return (
     <section className="ptb_80 pt_sm_50">
       <div className="container">
@@ -88,7 +87,6 @@ function BlogDetail() {
                 panels, a clean Carfax report, and Ontario registration in the
                 name of the seller’s company.
               </p>
-              <PhotoGallery />
             </div>
           </div>
 
@@ -196,6 +194,6 @@ function BlogDetail() {
       </div>
     </section>
   );
-}
+};
 
 export default BlogDetail;

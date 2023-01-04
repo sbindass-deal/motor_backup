@@ -31,9 +31,9 @@ function SubmitaVehicle() {
                 Gas Guzzlrs the best place to auction your vehicle.
                 <br /> Choose one of our many Auction Services to showease your
                 vehicle the way you want.{" "}
-                <a href="#" className="link">
+                <Link to="/faq" className="link">
                   Click here
-                </a>
+                </Link>
                 .
               </p>
             </div>

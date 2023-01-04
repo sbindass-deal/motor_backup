@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import NotAvailable from "../../UI/NotAvailable";
 import ResultNotFound from "../../UI/ResultNotFound";
 import SmallSpinner from "../../UI/SmallSpinner";

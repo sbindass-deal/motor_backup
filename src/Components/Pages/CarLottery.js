@@ -28,6 +28,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import LoginModal from "../Popups/LoginModal";
 import { showModalLogin } from "../../redux/reducers/login";
+import NotAvailable from "../UI/NotAvailable";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -58,7 +59,6 @@ function CarRaffle() {
   const [modalShow, setModalShow] = useState(false);
   const [inputLotteryNumber, setInputLotteryNumber] = useState("");
   const [showLotary, setShowLotary] = useState({});
-  const [allLotaryApi, setAllLotaryApi] = useState([]);
   const [showReadMore, setshowReadMore] = useState(false);
   const [validUser, setValidUser] = useState(null);
   const [days, setDays] = useState();
@@ -67,7 +67,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2022-12-31 12:30:00").getTime()
+    new Date("2023-01-07 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -129,8 +129,7 @@ function CarRaffle() {
       } else {
         console.log("Data is empty");
       }
-      // console.log(11, response.data.data[0].dealEndDate);
-      setNewTiem(response.data.data[0].dealEndDate.getTime());
+      setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
     } catch (err) {
       console.log(err);
     }
@@ -249,29 +248,32 @@ function CarRaffle() {
         </div>
       </section>
 
-      <section className="ptb_80 pt_sm_50">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-md-8 col-lg-8">
-              <div className="orangeCard mb-4">
-                <div className="row">
-                  <div className="col-12 col-md-5">
-                    <div
-                      id="adsSlide"
-                      className="carousel slide"
-                      data-ride="carousel"
-                    >
-                      <ul className="carousel-indicators">
-                        <li
-                          data-target="#adsSlide"
-                          data-slide-to="0"
-                          className="active"
-                        ></li>
-                        <li data-target="#adsSlide" data-slide-to="1"></li>
-                        <li data-target="#adsSlide" data-slide-to="2"></li>
-                      </ul>
+      {t < 0 ? (
+        <NotAvailable text="Ticket is not available 😒" />
+      ) : (
+        <section className="ptb_80 pt_sm_50">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-8 col-lg-8">
+                <div className="orangeCard mb-4">
+                  <div className="row">
+                    <div className="col-12 col-md-5">
+                      <div
+                        id="adsSlide"
+                        className="carousel slide"
+                        data-ride="carousel"
+                      >
+                        <ul className="carousel-indicators">
+                          <li
+                            data-target="#adsSlide"
+                            data-slide-to="0"
+                            className="active"
+                          ></li>
+                          <li data-target="#adsSlide" data-slide-to="1"></li>
+                          <li data-target="#adsSlide" data-slide-to="2"></li>
+                        </ul>
 
-                      {/* <div className="carousel-inner">
+                        {/* <div className="carousel-inner">
                         <div
                           onClick={() => handleImageHow(0)}
                           className="carousel-item active"
@@ -294,36 +296,36 @@ function CarRaffle() {
                           <img src={ads_car_1} alt="ads car" />
                         </div>
                       </div> */}
-                      <Carousel
-                        nextLabel=""
-                        prevLabel=""
-                        activeIndex={index}
-                        onSelect={handleSelect}
-                      >
-                        {lotteryImage.map((curElem) => {
-                          return (
-                            <Carousel.Item
-                              onClick={() => handleImageHow(0)}
-                              className="carousel-item"
-                              style={{ cursor: "pointer" }}
-                              key={curElem.id}
-                            >
-                              <img
-                                className="d-block w-100 img-fluid"
-                                src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                                alt="First slide"
-                              />
-                              <Carousel.Caption></Carousel.Caption>
-                            </Carousel.Item>
-                          );
-                        })}
-                      </Carousel>
+                        <Carousel
+                          nextLabel=""
+                          prevLabel=""
+                          activeIndex={index}
+                          onSelect={handleSelect}
+                        >
+                          {lotteryImage.map((curElem) => {
+                            return (
+                              <Carousel.Item
+                                onClick={() => handleImageHow(0)}
+                                className="carousel-item"
+                                style={{ cursor: "pointer" }}
+                                key={curElem.id}
+                              >
+                                <img
+                                  className="d-block w-100 img-fluid"
+                                  src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                                  alt="First slide"
+                                />
+                                <Carousel.Caption></Carousel.Caption>
+                              </Carousel.Item>
+                            );
+                          })}
+                        </Carousel>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-7">
-                    <div className="" key={showLotary.id}>
-                      {/* <h5 className="m-0">Lottery Prize</h5> */}
-                      {/* <div className="lotteryPriceNumber">
+                    <div className="col-12 col-md-7">
+                      <div className="" key={showLotary.id}>
+                        {/* <h5 className="m-0">Lottery Prize</h5> */}
+                        {/* <div className="lotteryPriceNumber">
                         <div className="price_normal">${showLotary.price}</div>
                       </div>
                       <div className="mb-3">
@@ -331,132 +333,132 @@ function CarRaffle() {
                         Breakdown
                       </div> */}
 
-                      <div className="counterCol">
-                        <h5 style={{ textAlign: "center" }}>
-                          Countdown to the next draw 
-                        </h5>
-                        {t > 0 ? (
-                          <div className="clockTimer" id="clockdiv">
-                            <div className="timerBg">
-                              <span className="days" id="day">
-                                0{days}
-                              </span>
-                              <div className="smalltext">Days</div>
+                        <div className="counterCol">
+                          <h5 style={{ textAlign: "center" }}>
+                            Countdown to the next draw
+                          </h5>
+                          {t > 0 ? (
+                            <div className="clockTimer" id="clockdiv">
+                              <div className="timerBg">
+                                <span className="days" id="day">
+                                  0{days}
+                                </span>
+                                <div className="smalltext">Days</div>
+                              </div>
+                              <div className="timerBg">
+                                <span className="hours" id="hour">
+                                  {hours < 10 ? 0 : ""}
+                                  {hours}
+                                </span>
+                                <div className="smalltext">Hours</div>
+                              </div>
+                              <div className="timerBg">
+                                <span className="minutes" id="minute">
+                                  {minutes < 10 ? 0 : ""}
+                                  {minutes}
+                                </span>
+                                <div className="smalltext">Minutes</div>
+                              </div>
+                              <div className="timerBg">
+                                <span className="seconds" id="second">
+                                  {seconds < 10 ? 0 : ""}
+                                  {seconds}
+                                </span>
+                                <div className="smalltext">Seconds</div>
+                              </div>
                             </div>
-                            <div className="timerBg">
-                              <span className="hours" id="hour">
-                                {hours < 10 ? 0 : ""}
-                                {hours}
-                              </span>
-                              <div className="smalltext">Hours</div>
+                          ) : (
+                            <div className="clockTimer text-dark" id="clockdiv">
+                              Time up
                             </div>
-                            <div className="timerBg">
-                              <span className="minutes" id="minute">
-                                {minutes < 10 ? 0 : ""}
-                                {minutes}
-                              </span>
-                              <div className="smalltext">Minutes</div>
-                            </div>
-                            <div className="timerBg">
-                              <span className="seconds" id="second">
-                                {seconds < 10 ? 0 : ""}
-                                {seconds}
-                              </span>
-                              <div className="smalltext">Seconds</div>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="clockTimer text-dark" id="clockdiv">
-                            Time up
-                          </div>
-                        )}
+                          )}
 
-                        {showLotary.description ? (
-                          <p className="py-4">
-                            {showLotary.description && !showReadMore
-                              ? showLotary.description.substr(0, 100)
-                              : showLotary.description}
-                            <p
-                              type="text"
-                              onClick={() => setshowReadMore(!showReadMore)}
-                              className="rMore mt-3"
-                            >
-                              {showReadMore ? "Read Less" : "Read More"}
+                          {showLotary.description ? (
+                            <p className="py-4">
+                              {showLotary.description && !showReadMore
+                                ? showLotary.description.substr(0, 100)
+                                : showLotary.description}
+                              <p
+                                type="text"
+                                onClick={() => setshowReadMore(!showReadMore)}
+                                className="rMore mt-3"
+                              >
+                                {showReadMore ? "Read Less" : "Read More"}
+                              </p>
                             </p>
-                          </p>
-                        ) : (
-                          ""
-                        )}
+                          ) : (
+                            ""
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="card_Gray2 mb-4">
-                <div className="row row_gap_5 ">
-                  <div className="col-md-3 iconSecT">
-                    <div className="imgIco">
-                      <img src={ticket} />
+                <div className="card_Gray2 mb-4">
+                  <div className="row row_gap_5 ">
+                    <div className="col-md-3 iconSecT">
+                      <div className="imgIco">
+                        <img src={ticket} />
+                      </div>
+                      <h5>
+                        Price at
+                        <br /> just
+                      </h5>
+                      <p>${showLotary.price}</p>
                     </div>
-                    <h5>
-                      Price at
-                      <br /> just
-                    </h5>
-                    <p>${showLotary.price}</p>
-                  </div>
-                  <div className="col-md-3 iconSecT">
-                    <div className="imgIco">
-                      <img src={ticketSocket} />
+                    <div className="col-md-3 iconSecT">
+                      <div className="imgIco">
+                        <img src={ticketSocket} />
+                      </div>
+                      <h5>
+                        Total
+                        <br /> available
+                      </h5>
+                      <p>{showLotary.stock}</p>
                     </div>
-                    <h5>
-                      Total
-                      <br /> available
-                    </h5>
-                    <p>{showLotary.stock}</p>
-                  </div>
-                  <div className="col-md-3 iconSecT">
-                    <div className="imgIco">
-                      <img src={weekly} />
+                    <div className="col-md-3 iconSecT">
+                      <div className="imgIco">
+                        <img src={weekly} />
+                      </div>
+                      <h5>
+                        Last date to <br />
+                        purchase ticket
+                      </h5>
+                      <p>
+                        {showLotary.dealEndDate &&
+                          new Date(showLotary.dealEndDate).toDateString()}
+                      </p>
                     </div>
-                    <h5>
-                      Last date to <br />
-                      purchase ticket
-                    </h5>
-                    <p>
-                      {showLotary.dealEndDate &&
-                        new Date(showLotary.dealEndDate).toDateString()}
-                    </p>
-                  </div>
-                  <div className="col-md-3 iconSecT">
-                    <div className="imgIco">
-                      <img src={reword} />
+                    <div className="col-md-3 iconSecT">
+                      <div className="imgIco">
+                        <img src={reword} />
+                      </div>
+                      <h5>
+                        Winner to be
+                        <br /> announced on{" "}
+                      </h5>
+                      <p>
+                        {showLotary.drawdate &&
+                          new Date(showLotary.drawdate).toDateString()}
+                      </p>
                     </div>
-                    <h5>
-                      Winner to be
-                      <br /> announced on{" "}
-                    </h5>
-                    <p>
-                      {showLotary.drawdate &&
-                        new Date(showLotary.drawdate).toDateString()}
-                    </p>
                   </div>
                 </div>
-              </div>
 
-              {validUser !== "Same user cannot use refer link!" && (
-                <div className="card_Gray2">
-                  <div className="row row_gap_5 ssss">
-                    {/* <div className="col-12 mb-3">
+                {validUser !== "Same user cannot use refer link!" && (
+                  <div className="card_Gray2">
+                    <div className="row row_gap_5 ssss">
+                      {/* <div className="col-12 mb-3">
                     <h5>
                       <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                      <lable>Number of Tickets</lable>
+                      <div className="col-lg-12 col-md-12 col-sm-12">
+                        <lable>Number of Tickets</lable>
 
-                      <form onSubmit={addTickets} className="ticketFom">
-                        <div className="form-group">
-                          {/* <input
+                        <form onSubmit={addTickets} className="ticketFom">
+                          <div className="form-group">
+                            {/* <input
                           type="text"
                           value={inputLotteryNumber}
                           onChange={(e) => {
@@ -468,66 +470,66 @@ function CarRaffle() {
                           maxLength={4}
                           id="validationCustom01"
                         /> */}
-                          <select
-                            value={inputLotteryNumber}
-                            onChange={(e) =>
-                              setInputLotteryNumber(e.target.value)
-                            }
-                            class="form-select w-100"
-                            id="validationCustom04"
-                            required
-                          >
-                            <option selected disabled value="">
-                              Choose...
-                            </option>
-                            <option value="100">100</option>
-                            <option value="200">200</option>
-                            <option value="300">300</option>
-                            <option value="400">400</option>
-                          </select>
-                        </div>
-                        <div className="form-group lotryBtn">
-                          <button type="submit" className="btn">
-                            Make Payment
-                          </button>
-                        </div>
-                      </form>
+                            <select
+                              value={inputLotteryNumber}
+                              onChange={(e) =>
+                                setInputLotteryNumber(e.target.value)
+                              }
+                              class="form-select w-100"
+                              id="validationCustom04"
+                              required
+                            >
+                              <option selected disabled value="">
+                                Choose...
+                              </option>
+                              <option value="100">100</option>
+                              <option value="200">200</option>
+                              <option value="300">300</option>
+                              <option value="400">400</option>
+                            </select>
+                          </div>
+                          <div className="form-group lotryBtn">
+                            <button type="submit" className="btn">
+                              Make Payment
+                            </button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-            <div className="col-12 col-md-4 col-lg-4 ">
-              <div className="card_Gray2 mt-5 mt-md-0 divSticky">
-                <div className="">
-                  <div className="cardBorder">
-                    <h6>My Tickets</h6>
-                    <div className="myTicketRow">
-                      <div
-                        className="myTicketCol"
-                        style={{ display: "flex", flexDirection: "column" }}
-                      >
-                        {/* <div className="MT_ic">
+                )}
+              </div>
+              <div className="col-12 col-md-4 col-lg-4 ">
+                <div className="card_Gray2 mt-5 mt-md-0 divSticky">
+                  <div className="">
+                    <div className="cardBorder">
+                      <h6>My Tickets</h6>
+                      <div className="myTicketRow">
+                        <div
+                          className="myTicketCol"
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}
-                        {/* <div className="MT_Count">10</div> */}
-                        <div className="MT_Price">
-                          Number of Tickets-
-                          {/* {allLotaryApi.length} */}
-                          {setUserLotteryDetails.data}
+                          {/* <div className="MT_Count">10</div> */}
+                          <div className="MT_Price">
+                            Number of Tickets-
+                            {/* {allLotaryApi.length} */}
+                            {setUserLotteryDetails.data}
+                          </div>
+                          <div className="MT_Price">
+                            Total Amount-$
+                            {showLotary.price &&
+                              setUserLotteryDetails.data &&
+                              showLotary.price * setUserLotteryDetails.data}
+                          </div>
                         </div>
-                        <div className="MT_Price">
-                          Total Amount-$
-                          {showLotary.price &&
-                            setUserLotteryDetails.data &&
-                            showLotary.price * setUserLotteryDetails.data}
-                        </div>
+                        {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                       </div>
-                      {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
-                  </div>
 
-                  {/* 
+                    {/* 
                   <h6>My Winnings</h6>
                   <div className="myTicketCol">
                     <div className="MT_ic">
@@ -540,58 +542,61 @@ function CarRaffle() {
                     Claim
                   </button> */}
 
-                  <hr />
+                    <hr />
 
-                  <div className="cardBorder">
-                    <h5>Refer Friend</h5>
-                    <ul className="refferFriendList mt-3">
-                      <li>
-                        <div className="RF_title">Total Referals</div>
-                        <div className="">{totalRaffrel}</div>
-                      </li>
-                      <li>
-                        <div className="">Total Earnings</div>
-                        <div className="">{setUserLotteryDetails.rewards}</div>
-                      </li>
-                    </ul>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (!logingUser.login.token) {
-                            handleLogin();
-                            return;
-                          } else {
-                            axios
-                              .get(
-                                `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
-                              )
-                              .then((res) => {
-                                setIsModalOpen(true);
-                                setEncryptedValue(res);
-                              });
-                          }
-                        }}
-                        className="gry_btn w-full"
-                      >
-                        Share Refer Link
-                      </button>
-                    </div>
+                    <div className="cardBorder">
+                      <h5>Refer Friend</h5>
+                      <ul className="refferFriendList mt-3">
+                        <li>
+                          <div className="RF_title">Total Referals</div>
+                          <div className="">{totalRaffrel}</div>
+                        </li>
+                        <li>
+                          <div className="">Total Earnings</div>
+                          <div className="">
+                            {setUserLotteryDetails.rewards}
+                          </div>
+                        </li>
+                      </ul>
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (!logingUser.login.token) {
+                              handleLogin();
+                              return;
+                            } else {
+                              axios
+                                .get(
+                                  `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
+                                )
+                                .then((res) => {
+                                  setIsModalOpen(true);
+                                  setEncryptedValue(res);
+                                });
+                            }
+                          }}
+                          className="gry_btn w-full"
+                        >
+                          Share Refer Link
+                        </button>
+                      </div>
 
-                    {/* <button type="button" className="gry_btn w-full">
+                      {/* <button type="button" className="gry_btn w-full">
                       Copy Reffer al Link
                     </button> */}
-                    <p className="small mt-2">
-                      <i className="fa-solid fa-circle-info"></i> 3% of their
-                      purchased ticket will be shared with you
-                    </p>
+                      <p className="small mt-2">
+                        <i className="fa-solid fa-circle-info"></i> 3% of their
+                        purchased ticket will be shared with you
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Modal
         title="Basic Modal"

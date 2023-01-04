@@ -199,6 +199,7 @@ const AddRaffle = () => {
                   }}
                   name="file"
                   type="file"
+                  accept="video/mp4,video/x-m4v,video/*"
                   multiple
                 />
               </div>
