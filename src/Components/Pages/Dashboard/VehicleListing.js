@@ -56,7 +56,7 @@ const VehicleListing = () => {
                         <th scope="col">Price of single Listing</th>
                         <th scope="col">Price of 5 Listing</th>
                         <th scope="col" style={{ textAlign: "right" }}>
-                          View
+                          Action
                         </th>
                       </tr>
                     </thead>
@@ -77,6 +77,14 @@ const VehicleListing = () => {
                                   className="btn"
                                 >
                                   <i class="fa-solid fa-pencil"></i>
+                                </Link>
+                              </td>
+                              <td>
+                                <Link
+                                  to={``}
+                                  className="btn"
+                                >
+                                  <i class="fa-solid fa-trash-can"></i>
                                 </Link>
                               </td>
                             </tr>

@@ -33,7 +33,7 @@ function VehicleListingDetails() {
   return (
     <>
       <div className="container mt-3 d-flex justify-content-center">
-        <div className="col-md-10">
+        <div className="col-md-6">
           <form onSubmit={handleSubmit} className="p-md-5">
             <div className="row row_gap_5">
               <div className="col-12 col-md-12">

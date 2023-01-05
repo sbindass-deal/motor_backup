@@ -45,7 +45,15 @@ function Blog() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>My Blogs</h3>
+              <h3 className="d-flex" style={{justifyContent:"space-between"}}>My Blogs
+              < div>
+                
+              <Link to="/admin/add-blog" className="btn">
+                      <i class="fa-sharp fa-solid fa-plus"></i>
+                    </Link>
+                    
+              </div></h3>
+              
               <hr />
               <ul className="postTopOption">
                 <li className="post_search">
@@ -90,9 +98,7 @@ function Blog() {
                           </tr>
                         );
                       })}
-                    <Link to="/admin/add-blog" className="btn">
-                      <i class="fa-sharp fa-solid fa-plus"></i>
-                    </Link>
+                    
                   </tbody>
                 </table>
               </div>
