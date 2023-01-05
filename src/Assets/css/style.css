@@ -1657,3 +1657,11 @@ a.searchList {
   display: flex;
   align-items: center;
 }
+.Contact_info p {
+  margin-bottom: 5px;
+}
+.plan_card:before{  z-index: -1;}
+.plan_card:hover .plan_cardBody p{
+		color: #000 !important;
+		z-index: 999 !important;
+}
