@@ -767,7 +767,13 @@ body.lightTheme{background-color: #fff; color: #000;}
     position: relative;
 
 }
-
+.storeHeroSection.dealer {
+  padding: 50px 0px;
+  min-height: 500px;
+  background: url(../images/rrrr.png) center no-repeat;
+  background-size: cover;
+  position: relative;
+}
 .pagination{}
 .pagination .page-item{padding: 0px 2px;}
 .pagination .page-link{background-color: #111;
@@ -1600,68 +1606,74 @@ a.full {
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
-.switch .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
-  left: calc(100% - 2px);
-  transform: translateX(-100%);
-}
+.switch .react-switch-checkbox:checked + .react-switch-label .react-switch-button {  left: calc(100% - 2px); transform: translateX(-100%);}
 
-.switch .react-switch-label:active .react-switch-button {
-  width: 60px;
-}
-.switch {
+.switch .react-switch-label:active .react-switch-button {  width: 60px;}
+.switch { display: flex; justify-content: center; align-items: center;}
+.plan_cardHead .plan_Price .plan_Time {  width: 39%; text-align: center !important;  margin: 0 auto;}
+span.plan_Time small { position: absolute; display: flex; font-size: 10px; text-align: center; margin: 4px auto; right: 8px;  color: #f7931a;}
+
+.plan_card:hover span.plan_Time small {  color: #111 ;}
+a.searchList {  border-bottom: 1px solid #f7931b38;  padding: 5px 25px;}
+.searchBg { height: 100vh; position: absolute; background-color: #0000004c; width: 100%; margin: 0 auto; left: 0; z-index: 9999999;}
+
+.mainImg img { width: 100%; height: fit-content;}
+.mainImg { width: 100%; height: 400px; overflow: hidden; margin-bottom: 25px; display: flex; align-items: center;}
+.Contact_info p { margin-bottom: 5px;}
+.plan_card:before{  z-index: -1;}
+.plan_card:hover .plan_cardBody p{	color: #000 !important; z-index: 999 !important;}
+
+.featuredAuctions_Slide.delair .card_post { display: flex; align-items: center; justify-content: space-evenly !important;}
+.featuredAuctions_Slide.delair .card_postInfo { padding: 25px 20px;}
+.featuredAuctions_Slide.delair .nextArrow { bottom: 140px;}
+.featuredAuctions_Slide.delair .labelList li label { font-size: 19px;}
+.featuredAuctions_Slide.delair .labelList li span {font-size: 19px; color: #f7931a;}
+.featuredAuctions_Slide.delair .slick-slide { margin: 0 0px;}
+.featuredAuctions_Slide.delair .card_postInfo { width: 100%;}
+
+
+.Latest_B {
   display: flex;
+  height: 280px;
+  overflow: hidden;
   justify-content: center;
-  align-items: center;
 }
-.plan_cardHead .plan_Price .plan_Time {
-  width: 39%;
-  text-align: center !important;
-  margin: 0 auto;
+ul.img_sec li {
+  display: table;
+  line-height: 44px;
+  margin: 0;
+  padding: 0;
+  /* table-layout: fixed; */
+  width: 100%;
 }
-span.plan_Time small {
-  position: absolute;
-  display: flex;
-  font-size: 10px;
-  text-align: center;
-  margin: 4px auto;
-  right: 8px;
+.img_text a span {
+  border-bottom: 1px solid #efefef;
+  display: table-cell;
+  padding: 10px;
+}
+ul.img_text li.active a {
+  background: #262626;
   color: #f7931a;
 }
-
-.plan_card:hover span.plan_Time small {
-  color: #111 ;
-}
-a.searchList {
-  border-bottom: 1px solid #f7931b38;
-  padding: 5px 25px;
-}
-.searchBg {
-  height: 100vh;
-  position: absolute;
-  background-color: #0000004c;
-  width: 100%;
-  margin: 0 auto;
-  left: 0;
-  z-index: 9999999;
+ul.img_sec {
+  width: 50%;
+  margin-right: 10px;
 }
 
-.mainImg img {
+
+ul.img_sec li {
   width: 100%;
-  height: fit-content;
-}
-.mainImg {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  margin-bottom: 25px;
+  height: 300px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
-.Contact_info p {
-  margin-bottom: 5px;
+ul.img_sec li a img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
 }
-.plan_card:before{  z-index: -1;}
-.plan_card:hover .plan_cardBody p{
-		color: #000 !important;
-		z-index: 999 !important;
-}
+
+.dealer .postTopOption { background-color: #0000006b;}

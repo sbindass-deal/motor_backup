@@ -138,6 +138,11 @@ h5 {
 	.rafSect .price_ {justify-content: center;}
 	a.full {width: 100%; display: block;}
 	.blogPostText .btn {margin-top: 10px;margin-bottom: 20px;}
+	.featuredAuctions_Slide.delair .card_post {display: block;	}
+	ul.img_sec {width: 100%;margin-right: 10px;	}
+	section.ptb_80.mobileSpec {	margin-top: 250px;}
+	.nextArrow {position: absolute;	bottom: -298px;}
+	.Latest_B {	display: block;	height: 100%;}
 }
 
 @media (max-width: 575px) {
