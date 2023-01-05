@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
     const navigate = useNavigate()
+    const [file,setFile]=useState({})
   const [blogData, setBlogData] = useState({
     title: "",
     desc: "",
+    img:""
   });
   const handleChange = (e) => {
     setBlogData({ ...blogData, [e.target.name]: e.target.value });
@@ -16,21 +18,26 @@ const AddBlog = () => {
   const handleApi = (e) => {
     e.preventDefault();
     const url = process.env.REACT_APP_URL;
+    let formdata=new FormData();
+    formdata.append("image",file);
+    
 
     axios
-      .post(`${url}addblogs`, {
+      .post(`${url}addblogs `, {
         title: blogData.title,
         description: blogData.desc,
         likes: "",
         view: "",
+        image:blogData.img
       })
       .then((result) => {
+        console.log("####",result)
         if(result.status === 200){
             navigate("/blog")
         }
       })
       .catch((error) => {});
-    setBlogData({ title: "", desc: "" });
+    setBlogData({ title: "", desc: "" ,img:""});
     
   };
 
@@ -58,6 +65,11 @@ const AddBlog = () => {
               <div className="form-group">
                 <input
                   type="file"
+                  name="img"
+                  // value={blogData.img}
+                  onChange={(e)=>{
+                    setFile(e.target.files)
+                  }}
                   className="field"
                   placeholder="Product imge"
                 />
