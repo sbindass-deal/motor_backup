@@ -19,6 +19,8 @@ const SubmitaVehicle = () => {
   const [standardPlan, setStandardPlan] = useState(null);
   const [proPlan, setProPlan] = useState(null);
   const [premierPlan, setPremierPlan] = useState(null);
+  const [classifiedPlan, setClassifiedPlan] = useState(null)
+  const [showroomPlan, setShowroomPlan] = useState(null)
   const [showPayment, setShowPayment] = useState(false);
   const [planData, setPlanData] = useState({});
   const handleOnChange = (e) => {
@@ -74,6 +76,7 @@ const SubmitaVehicle = () => {
           const filteredPremier = res.data.data.find(
             (item) => item.planeName === "premiere"
           );
+          const filteredClassified = res.data.data.find((item) => item.planeName === "")
           setStandardPlan(filteredStandard);
           setProPlan(filteredPro);
           setPremierPlan(filteredPremier);
