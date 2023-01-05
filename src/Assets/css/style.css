@@ -1104,7 +1104,7 @@ a.navbar-brand { position: relative;top: 17px;}
 
 li.nav-item.afterLogin span{animation: blink 1s linear infinite;}
 @keyframes blink{0%{opacity: 0;}50%{opacity: .5;}100%{opacity: 1;}}
-.nextArrow { position: absolute; bottom: -20px; left: calc(50% - 165px);}
+.nextArrow { position: absolute; bottom: -32px; left: calc(50% - 165px);}
 
 .nextArrow span.prev:before {  background-image: url('../images/ArrowLeft.svg');  background-position: center left;  top: 5px; right: 15px;}
 .nextArrow span.next:after {  background-image: url('../images/ArrowRight.svg'); background-position: center right; top: 5px; right: -10px;}
@@ -1623,14 +1623,15 @@ a.searchList {  border-bottom: 1px solid #f7931b38;  padding: 5px 25px;}
 .plan_card:before{  z-index: -1;}
 .plan_card:hover .plan_cardBody p{	color: #000 !important; z-index: 999 !important;}
 
-.featuredAuctions_Slide.delair .card_post { display: flex; align-items: center; justify-content: space-evenly !important;}
+.featuredAuctions_Slide.delair .card_post { display: flex; align-items: center; justify-content: space-evenly !important;width: 70%;
+  margin: 0 auto;}
 .featuredAuctions_Slide.delair .card_postInfo { padding: 25px 20px;}
 .featuredAuctions_Slide.delair .nextArrow { bottom: 140px;}
 .featuredAuctions_Slide.delair .labelList li label { font-size: 19px;}
 .featuredAuctions_Slide.delair .labelList li span {font-size: 19px; color: #f7931a;}
 .featuredAuctions_Slide.delair .slick-slide { margin: 0 0px;}
 .featuredAuctions_Slide.delair .card_postInfo { width: 100%;}
-
+.featuredAuctions_Slide.delair .card_postImg { width: 500px; height: 320px;}
 
 .Latest_B {
   display: flex;
