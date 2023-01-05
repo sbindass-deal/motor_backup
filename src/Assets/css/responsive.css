@@ -28,6 +28,10 @@
 	table.cartSection.cartth tr th:first-child {width: 60%;	}
 	.toNv:before {width: 85%;}
 	.searchForm input {	width: 300px;}
+	.dfk h5 {font-size: 15px;}
+.plan_cardHead .plan_Price {font-size: 33px;}
+.plan_card { padding: 20px;}
+.plan_cardBody { min-height: 258px;}
 
 
 }
@@ -39,49 +43,34 @@
 	.navbar-brand img {	width: 180px !important;}
 	.secondNavbar .navbar-nav:before {width: 80%;	}
 	
+	
 }
 @media (max-width: 991px) {
-	.secondNavbar .navbar-nav:before {
-		width: 85%;
-	}
+	.secondNavbar .navbar-nav:before {	width: 85%;	}
 	
 	h1 { font-size: 40px;}
-
-h2 {
-  font-size: 30px;
-}
-
-h3 {
-  font-size: 24px;
-}
-
-h4 {
-  font-size: 20px;
-}
-
-h5 {
-  font-size: 18px;
-}
-	.navbar-nav .nav-link {
-    font-size: 14px;
-    padding: 8px 8px !important;
-}
-
-.activeListView .card_postInfo{    flex-wrap: wrap;
-    align-content: center;}
+h2 { font-size: 30px;}
+h3 {  font-size: 24px;}
+h4 { font-size: 20px;}
+h5 { font-size: 18px;}
+.navbar-nav .nav-link { font-size: 14px; padding: 8px 8px !important;}
+.activeListView .card_postInfo{ flex-wrap: wrap; align-content: center;}
 .activeListView .card_postInfo h4{width: 100%; padding-right: 0;}
-
 .sidebarPostRow {display: flex; flex-wrap: wrap;}
-.sidebarPost{    width: 50%; padding-left: 2px;
-    padding-right: 2px;}
-	
+.sidebarPost{    width: 50%; padding-left: 2px;   padding-right: 2px;}
+
 
 }
 @media (max-width: 860px) {
+	.dfk h5 {font-size: 15px;}
+.plan_cardHead .plan_Price {font-size: 33px;}
+.plan_card { padding: 20px;}
+.plan_cardBody { min-height: 258px;}
 	
 }
 @media (max-width: 768px) {}
 @media (min-width: 768px){
+	
 	.mobileOnly{display: none;}
 	.makes_Slide.arrowTop_Slide .card_post {width: 33.33%;}
 	ul.bidList_.info_ li {width: 50%;}
