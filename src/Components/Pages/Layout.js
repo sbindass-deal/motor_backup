@@ -69,6 +69,8 @@ import CheckoutDetails from "./shopingStore/CheckoutDetails";
 import AddGearProduct from "./Dashboard/AddGearProduct";
 import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
+import Dealer from "./dealer/Dealer";
+import DealerProfile from "./dealer/DealerProfile";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -152,12 +154,16 @@ const Layout = () => {
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
           {/* <Route path="showroom" element={<PhotoGallery />} /> */}
-          <Route path="showroom" element={<Store />} />
+          {/* <Route path="showroom" element={<Store />} /> */}
+          <Route path="showroom" element={<Dealer />} />
+          <Route path="dealerProfile" element={DealerProfile}/>
+
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="listings" element={<MyListings />} />
+          
           <Route path="carraffle" element={<CarRaffle />} />
           <Route path="carraffle/:coupon" element={<CarRaffle />} />
           <Route path="detail/:id" element={<Detail />} />
