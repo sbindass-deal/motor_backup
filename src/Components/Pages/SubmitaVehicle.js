@@ -66,14 +66,10 @@ function SubmitaVehicle() {
                   </div>
                 </div>
                 <div className="plan_cardBody">
-                  <ul className="plan_point">
-                    <li>Lorem Ipsum is simply dummy text</li>
-                    <li>Printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the industry's</li>
-                    <li>Standard dummy text</li>
-                    <li>Lorem Ipsum is simply</li>
-                    <li>Type and scrambled</li>
-                  </ul>
+                  <p>
+                    Our base package that gives you everything you need to sell you vehicle. You fill out our 
+                    questionnaire, provide us your pictures/video and we create a professional auction listing.
+                  </p>
                 </div>
                 <div className="plan_cardFooter">
                   <a
@@ -137,14 +133,8 @@ function SubmitaVehicle() {
                   </div>
                 </div>
                 <div className="plan_cardBody">
-                  <ul className="plan_point">
-                    <li>Lorem Ipsum is simply dummy text</li>
-                    <li>Printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the industry's</li>
-                    <li>Standard dummy text</li>
-                    <li>Lorem Ipsum is simply</li>
-                    <li>Type and scrambled</li>
-                  </ul>
+                  <p>Same as the Standard listing except we send out a professional photographer to take 
+                    pictures of your ride.</p>
                 </div>
                 <div className="plan_cardFooter">
                   <a
@@ -208,14 +198,10 @@ function SubmitaVehicle() {
                   </div>
                 </div>
                 <div className="plan_cardBody">
-                  <ul className="plan_point">
-                    <li>Lorem Ipsum is simply dummy text</li>
-                    <li>Printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the industry's</li>
-                    <li>Standard dummy text</li>
-                    <li>Lorem Ipsum is simply</li>
-                    <li>Type and scrambled</li>
-                  </ul>
+                  <p>
+                  Same as Pro but in addition the us taking professional pictures we also make 
+                  a professional video of your ride.
+                  </p>
                 </div>
                 <div className="plan_cardFooter">
                   <a
@@ -257,7 +243,7 @@ function SubmitaVehicle() {
                     {/* ${planthird} <span className="plan_Time">Year</span> */}
                     <div className="dfk">
                       <h3>Contact us</h3>
-                      <div className="switch">
+                      {/* <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                         <input
                           className="react-switch-checkbox"
@@ -273,19 +259,19 @@ function SubmitaVehicle() {
                         <span className="plan_Time">
                           5 Listing <small>within 30 Days</small>
                         </span>
-                      </div>
+                      </div> */}
+                      <div className="Contact_info">
+                        <p>+91 7276404909</p>
+                        <p>sales@gasguzzles.com</p>
+                      </div> 
                     </div>
                   </div>
                 </div>
                 <div className="plan_cardBody">
-                  <ul className="plan_point">
-                    <li>Lorem Ipsum is simply dummy text</li>
-                    <li>Printing and typesetting industry</li>
-                    <li>Lorem Ipsum has been the industry's</li>
-                    <li>Standard dummy text</li>
-                    <li>Lorem Ipsum is simply</li>
-                    <li>Type and scrambled</li>
-                  </ul>
+                 <p>
+                 If you have an extra special collector vehicle or an entire collection to sell. 
+                 We will take care of everything for you, we can even do a live auction for your ride.
+                 </p>
                 </div>
                 <div className="plan_cardFooter">
                   <a
@@ -293,7 +279,7 @@ function SubmitaVehicle() {
                     href="vechiles"
                     className="gry_btn"
                   >
-                    SUBMIT VEHICLE
+                    CONTACT US
                   </a>
                 </div>
               </div>
