@@ -379,7 +379,7 @@ function Dealer() {
                 <ul className="img_text">
                     <li className="active">
                         <a href="#" className="img_1">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
@@ -387,35 +387,35 @@ function Dealer() {
                     </li>
                     <li>
                         <a href="#" className="img_2">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" className="img_3">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" className="img_4">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" className="img_5">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" className="img_6">
-                            <span>No Reserve: 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                             <span>$8,600</span>
                             <span>3 days</span>
                         </a>
