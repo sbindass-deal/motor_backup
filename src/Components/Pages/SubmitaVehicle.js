@@ -153,7 +153,9 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardFooter">
                   {standardPlan ? (
-                    <button className="gry_btn">SUBMIT VEHICLE</button>
+                    <Link to="/vechiles" className="gry_btn">
+                      SUBMIT VEHICLE
+                    </Link>
                   ) : (
                     <button
                       onClick={() =>
@@ -483,7 +485,9 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardFooter">
                   {classifiedPlan ? (
-                    <button className="gry_btn">SUBMIT VEHICLE</button>
+                    <Link to="/vechiles" className="gry_btn">
+                      SUBMIT VEHICLE
+                    </Link>
                   ) : (
                     <button
                       onClick={() =>
@@ -562,7 +566,9 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardFooter">
                   {showroomPlan ? (
-                    <button className="gry_btn">SUBMIT VEHICLE</button>
+                    <Link to="/vechiles" className="gry_btn">
+                      SUBMIT VEHICLE
+                    </Link>
                   ) : (
                     <button
                       onClick={() =>
