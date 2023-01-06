@@ -16,6 +16,9 @@ import img_05 from "../../../Assets/images/img_05.jpg";
 import img_06 from "../../../Assets/images/img_06.jpg";
 import Img_01 from "../../../Assets/images/img_01.jpg";
 import Img_02 from "../../../Assets/images/img_02.jpg";
+import Img_w from "../../../Assets/images/wox.png";
+import Img_bmw from "../../../Assets/images/bmw.png";
+import Img_m from "../../../Assets/images/m.png";
 
 function Dealer() {
   const [showModal, setShowModal] = useState(false);
@@ -205,7 +208,8 @@ function Dealer() {
           </div>
           <div className="col-12 col-lg-12">
               <div className="heroText">
-                <h1>We have over 20 stores <br/>around the UK</h1>
+                <h1>We have over 20 stores around the UK</h1>
+                <h5>We help you find your dream car. Choose from our exclusive<br/> list of showrooms.</h5>
                 {/* <a href="#" className="btn">
                   VIEW INVENTORY
                 </a> */}
@@ -222,7 +226,7 @@ function Dealer() {
               <h2>Featured Dealer</h2>
             </div>
 
-            <div className="col-12" style={{ height: "400px" }}>
+            <div className="col-12" style={{  }}>
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
@@ -239,10 +243,10 @@ function Dealer() {
                   <div className="inner-slider">
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_01} alt="Img_01" />
+                        <img src={Img_w} alt="Img_w"/>
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>Dealer Name</h4>
                         <p>
                           This 2009 Aston Martin DBS is finished in Casino
                           Royale Metallic over a black leather and Alcantara
@@ -254,24 +258,24 @@ function Dealer() {
                           rear parking sensors, 20” alloy wheels, carbon-ceramic
                           brakes…
                         </p>
-                        <ul className="labelList">
+                        {/* <ul className="labelList">
                           <li>
                             <label>Current Bid:</label> <span>$126,888</span>
                           </li>
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
-                        </ul>
+                        </ul> */}
                       </div>
                     </div>
                   </div>
                   <div>
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_02} alt="Img_02" />
+                        <img src={Img_bmw} alt="Img_bmw" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>Dealer Name</h4>
                         <p>
                         This 2009 Aston Martin DBS is finished in Casino
                           Royale Metallic over a black leather and Alcantara
@@ -283,24 +287,24 @@ function Dealer() {
                           rear parking sensors, 20” alloy wheels, carbon-ceramic
                           brakes…
                         </p>
-                        <ul className="labelList">
+                        {/* <ul className="labelList">
                           <li>
                             <label>Current Bid:</label> <span>$126,888</span>
                           </li>
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
-                        </ul>
+                        </ul> */}
                       </div>
                     </div>
                   </div>
                   <div>
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_01} alt="Img_01" />
+                        <img src={Img_m} alt="Img_01" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>Dealer Name</h4>
                         <p>
                         This 2009 Aston Martin DBS is finished in Casino
                           Royale Metallic over a black leather and Alcantara
@@ -312,46 +316,18 @@ function Dealer() {
                           rear parking sensors, 20” alloy wheels, carbon-ceramic
                           brakes…
                         </p>
-                        <ul className="labelList">
+                        {/* <ul className="labelList">
                           <li>
                             <label>Current Bid:</label> <span>$126,888</span>
                           </li>
                           <li>
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
-                        </ul>
+                        </ul> */}
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="card_post">
-                      <div className="card_postImg">
-                        <img src={Img_02} alt="Img_02" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
-                        <p>
-                        This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes  Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
-                        </p>
-                        <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </Slider>
               </div>
             </div>
