@@ -66,7 +66,46 @@ body.light{  background-color: #fff; color: #000;}
     color: #000;
     border-top: 0px solid #dee2e6;
 }
-.light .autoCom { background: #ececec; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: 60px;  padding: 10px; z-index: 1;}
+.light .autoCom {
+    background: #ececec;
+    position: absolute;
+    width: 24.1%;
+    margin: 0 auto;
+    left: 54.8%;
+    top: -46px;
+    padding: 10px;
+    z-index: 1;
+}
 .light .autoCom p.title { color: #f7931b;}
 .light .rafSect { background: #e0e0e0;
+}
+.light .secondNavbar .navbar-nav {
+    top: -5px;
+}
+
+@media (max-width:1440px){
+    .light .autoCom {
+      
+        width: 27.7%;
+        margin: 0 auto;
+        left: 47.9%;
+        top: -46px;
+        
+    }
+}
+@media (max-width: 1366px){
+    .light .autoCom {
+        width: 29.5%;
+        margin: 0 auto;
+        left: 45%;
+        top: -47px;
+    }
+}
+@media (max-width: 1280px) {
+    .light .autoCom {
+        width: 31.5%;
+        margin: 0 auto;
+        left: 42.6%;
+        top: -47px;
+    }
 }

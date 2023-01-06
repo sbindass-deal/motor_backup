@@ -8,10 +8,19 @@
 	.container {max-width: 1370px;}
 	.sliderSec .carousel-inner { width: 100% !important;}
 	.searchBody { width: 35.2%;}
+	.autoCom {
+		
+		width: 28%;
+		margin: 0 auto;
+		left: 47.8%;
+		
+		
+	}
 }
 @media (min-width: 1500px) {}
 @media (max-width: 1366px) {
 	table.cartSection.cartth tr th:first-child {width: 66%;	}
+	.autoCom {width: 29.5%; left: 45%;}
 	
 	
 }
@@ -22,6 +31,10 @@
 	.secondNavbar .navbar-nav:before {width: 75%;	}
 	.secondNavbar .navbar-nav { top: 0px;}
 	.secondNavbar {padding: 5px 0px;}
+	.autoCom {
+		width: 31.5%;
+		left: 42.6%;
+	}
 
 }
 @media (max-width: 1199px) {
@@ -46,6 +59,10 @@
 	
 }
 @media (max-width: 991px) {
+	a.full {
+		width: 100%;
+		display: block;
+	}
 	.secondNavbar .navbar-nav:before {	width: 85%;	}
 	
 	h1 { font-size: 40px;}

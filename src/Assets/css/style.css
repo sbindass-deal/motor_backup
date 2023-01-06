@@ -1462,7 +1462,17 @@ table.tikTable tr td:first-child { color: #f7931b; position: relative;}
 .carLottery .heroText { bottom: 0; color: #f1f1f1; width: 100%; padding: 20px;}
 video#myVideo { width: 100%;}
 .carLottery .container-fluid, .carLottery .heroText { padding: 0;}
-.autoCom { background: black; position: absolute; width: 30%; margin: 0 auto; left: 45%;  top: -40px;  padding: 10px; z-index: 1;}
+
+.autoCom {
+  background: black;
+  position: absolute;
+  width: 24.1%;
+  margin: 0 auto;
+  left: 54.8%;
+  top: -46px;
+  padding: 10px;
+  z-index: 1;
+}
 p.title { font-size: 14px; color: #f7931b; text-transform: capitalize; margin-bottom: 0px; font-weight: 700;}
 p.dec {font-size: 12px;}
 a.searchList {  border-bottom: 1px solid #f7931b38;}
@@ -1515,7 +1525,7 @@ li.nav-item.AddtCrt { top: 10px; position: relative; z-index: 0;}
 li.nav-item.AddtCrt span.count { top: -10px; position: relative; background: #dc3545; padding: 2px 7px; border-radius: 50px; font-size: 13px;}
 .dropdown-content { right: -70px;}
 ul.navbar-nav { padding-right: 50px;}
-.secondNavbar .navbar-nav {top: -6px;}
+.secondNavbar .navbar-nav {top: 0px;}
 a.navbar-brand {left: 20px;}
 td.actionBtn.vs button { border-radius: 5px;}
 td.actionBtn.vs .btn { padding: 6px 14px; font-size: 12px; font-weight: 100;border-radius: 5px;text-transform: unset; height: 30px; margin-top: 2px;}
@@ -1682,3 +1692,12 @@ ul.img_sec li a img {
 .plan_cardBody { min-height: 195px;}
 .dfk h5 { padding-top: 7%;}
 .mt-50 { margin-top: 50px;}
+
+.toNv ul.navbar-nav.ml-auto {
+  position: relative;
+  right: 1%;
+}
+button.sunMoonBtn img {
+  width: 24px;
+  height: 24px;
+}
