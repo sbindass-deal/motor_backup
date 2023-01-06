@@ -1701,3 +1701,37 @@ button.sunMoonBtn img {
   width: 24px;
   height: 24px;
 }
+
+.dddd {
+  display: contents;
+}
+ul.navbar-nav.mNone {
+  display: none;
+}
+ul.navbar-nav.mobileOnly form.searchForm {
+  display: none;
+}
+.navbar-collapse.mobileOnly.collapse.show ul.navbar-nav.mobileOnly form.searchForm {
+  display: block;
+}
+.toNv ul.navbar-nav.ml-auto {
+  position: relative;
+  right: 1%;
+  display: flex;
+  justify-content: flex-end;
+}
+.dddd {
+  display: none;
+}
+.toNv {
+  position: relative;
+  z-index: 1;
+  width: 86%;
+}
+
+.light .nextArrow span.prev:before {filter: brightness(0.5);}
+.light .nextArrow span.next:after{filter: brightness(0.5);}
+.light ul.img_text a { color: #000;}
+.light .heroText h5 { color: #f7931b;}
+.mt-80 { margin-top: 80px;}
+

@@ -29,7 +29,7 @@ body.light{  background-color: #fff; color: #000;}
 .light .labelList li:first-child { border-right: 1px rgb(63 63 63 / 20%) solid;}
 .light img.darkLogo { display: none;}
 .light img.whiteLogo { display: block;}
-.light .secondNavbar {  top: -25px;}
+
 .light .accordion button.accordion-button.collapsed { background: transparent !important;}
 .light .searchForm input { background-color: #ffff;}
 .light .searchBody { background: #fff;}
@@ -79,9 +79,7 @@ body.light{  background-color: #fff; color: #000;}
 .light .autoCom p.title { color: #f7931b;}
 .light .rafSect { background: #e0e0e0;
 }
-.light .secondNavbar .navbar-nav {
-    top: -5px;
-}
+
 
 @media (max-width:1440px){
     .light .autoCom {

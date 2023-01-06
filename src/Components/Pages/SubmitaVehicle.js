@@ -430,7 +430,7 @@ const SubmitaVehicle = () => {
             </div>
           </div>
         </div>
-        <div className="container mt-50">
+        <div className="container mt-80">
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
               <h2 className="title_combo title_Center">Looking for More!</h2>
