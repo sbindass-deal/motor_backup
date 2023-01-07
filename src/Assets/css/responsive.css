@@ -10,6 +10,7 @@
 @media (max-width: 1600px) {
 	.toNv ul.navbar-nav.ml-auto {right: 6%;}
 	.autoCom {	width: calc(100% - 75.0%);	left: 46.6%;}
+	.payTPop .modal-content {width: calc(100% - 10%);}
 }
 
 @media (min-width: 1400px) {
@@ -41,18 +42,9 @@
 	.toNv .navbar-nav .nav-link {padding: 8px 18px ;	}
 	.toNv .navbar-nav .nav-link {padding: 8px 18px ;}
 
+	.autoCom {background: black;position: absolute;width: calc(100% - 72.2%);margin: 0 auto;left: 47.6%; top: 56px;	padding: 10px;	z-index: 1;	}
+	.modal-dialog{width: 600px;}
 	
-		.autoCom {
-			background: black;
-			position: absolute;
-			width: calc(100% - 72.2%);
-			margin: 0 auto;
-			left: 47.6%;
-			top: 56px;
-			padding: 10px;
-			z-index: 1;
-
-		}
 	
 }
 

@@ -75,29 +75,3 @@ body.light{  background-color: #fff; color: #000;}
 }
 
 
-@media (max-width:1440px){
-    .light .autoCom {
-      
-        width: 27.7%;
-        margin: 0 auto;
-        left: 47.9%;
-        top: -46px;
-        
-    }
-}
-@media (max-width: 1366px){
-    .light .autoCom {
-        width: 29.5%;
-        margin: 0 auto;
-        left: 45%;
-        top: -47px;
-    }
-}
-@media (max-width: 1280px) {
-    .light .autoCom {
-        width: 31.5%;
-        margin: 0 auto;
-        left: 42.6%;
-        top: -47px;
-    }
-}

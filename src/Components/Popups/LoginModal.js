@@ -117,7 +117,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header border-0">
-            <h4 className="modal-title">Log In</h4>
+          <div className="col-md-12">
+            <h4 className="modal-title ">Log In</h4>
+            </div>
             <button
               onClick={handleClose}
               type="button"
