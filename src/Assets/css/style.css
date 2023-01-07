@@ -3280,7 +3280,7 @@ label {
   border-radius: 10px;
   border: 1px solid #37230a;
   padding: 10px;
-  width: calc(100% - 33%);
+  width: calc(100% - 0%);
   margin: 0 auto;
 
 }
@@ -4282,7 +4282,7 @@ ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
 
 .secondNavbar ul{ padding: 7px 0;}
 
-.modal-dialog{ max-width: 100%!important; width: 65%;}
+.modal-dialog{ max-width: 100%!important; width: 750px;}
 
 .modal-title{ font-size: 38px;}
 
@@ -4297,6 +4297,12 @@ ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
 }
 .fp span{
   font-size: 14px;    font-family: 'Poppins', sans-serif;
+}
+
+select {
+  background-color: #fff !important;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 
