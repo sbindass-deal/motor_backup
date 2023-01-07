@@ -1002,15 +1002,16 @@ const VechilesRegistraion = () => {
                             />
                             
                           </div> */}
-                          <FormInput value={basicfact.vin}
-                              onChange={basicFactOnChange}
-                              name="vin"
-                              label="What is the VIN"
-                              placeholder="Enter VIN"
-                              errorMessage="Username should be 17 characters and shouldn't include any special character!"                              
-                              pattern="^[A-Za-z0-9]{17}$"
-                              required={true}
-                               />
+                          <FormInput
+                            value={basicfact.vin}
+                            onChange={basicFactOnChange}
+                            name="vin"
+                            label="What is the VIN"
+                            placeholder="Enter VIN"
+                            errorMessage="Username should be 17 characters and shouldn't include any special character!"
+                            pattern="^[A-Za-z0-9]{17}$"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
