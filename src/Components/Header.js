@@ -479,7 +479,7 @@ function Header() {
                         style={{
                           color: `${
                             location.pathname === "/aboutshibnobi"
-                              ? "#EF6031"
+                              ? "#000"
                               : ""
                           }`,
                         }}
@@ -891,7 +891,7 @@ function Header() {
       {sowAutoCompleate && (
         <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
-            {/* {filteredData <= 0 ? (
+            {filteredData <= 0 ? (
               <ResultNotFound text="Result not found! 🙄" />
             ) : (
               filteredData.map((curElem) => {
@@ -906,11 +906,11 @@ function Header() {
                   </div>
                 );
               })
-            )} */}
-            <NotAvailable
+            )}
+            {/* <NotAvailable
             className="dataNotFou"
             text="Hello"
-            />
+            /> */}
           </div>
         </div>
       )}

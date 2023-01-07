@@ -7,6 +7,10 @@
 		width: 33.33%;
 	}
 }
+@media (max-width: 1600px) {
+	.toNv ul.navbar-nav.ml-auto {right: 6%;}
+	.autoCom {	width: calc(100% - 75.0%);	left: 46.6%;}
+}
 
 @media (min-width: 1400px) {
 	.container {
@@ -20,32 +24,47 @@
 	.searchBody {
 		width: 35.2%;
 	}
+	.toNv .navbar-nav .nav-link {right: 5%;}
 
 }
 
 @media (max-width: 1440px) {
 
-	.modal-title {
-		font-size: 33px;
-	}
+	.modal-title {	font-size: 33px;	}
+
+	.autoCom {	width: 28%;	margin: 0 auto;	left: 47.8%;}
+
+	div#navbarNavDropdown {	width: 74%;	}
+
+	.toNv {	width: 60%;	}
+	.toNv .navbar-nav .nav-link {padding: 8px 18px ;	}
+	.toNv .navbar-nav .nav-link {padding: 8px 18px ;}
 
 	.autoCom {
-		width: 28%;
+		background: black;
+		position: absolute;
+		width: calc(100% - 75.9%);
 		margin: 0 auto;
 		left: 47.8%;
-	}
+		top: 56px;
+		padding: 10px;
+		z-index: 1;
+	  }
+		.autoCom {
+			background: black;
+			position: absolute;
+			width: calc(100% - 72.2%);
+			margin: 0 auto;
+			left: 47.6%;
+			top: 56px;
+			padding: 10px;
+			z-index: 1;
 
-	div#navbarNavDropdown {
-		width: 74%;
-
-	}
-
-	.toNv {
-		width: 60%;
-	}
+		}
+	
 }
 
-@media (min-width: 1500px) {}
+
 
 @media (max-width: 1366px) {
 	table.cartSection.cartth tr th:first-child {
@@ -71,7 +90,7 @@
 	}
 
 	.navbar-nav .nav-link {
-		padding: 8px 12px !important;
+		padding: 8px 12px ;
 	}
 
 	.secondNavbar .navbar-nav:before {
@@ -96,56 +115,32 @@
 	}
 
 	.toNv {
-		width: 60%;
+		width: 62%;
 	}
-
+	.toNv ul.navbar-nav.ml-auto {
+	
+		right: 4%;
+	
+	}
+	header {height: 114px;}
 
 }
 
 @media (max-width: 1199px) {
-	table.cartSection.cartth tr th:first-child {
-		width: 60%;
-	}
-
-	.toNv:before {
-		width: 85%;
-	}
-
-	.searchForm input {
-		width: 300px;
-	}
-
-	.dfk h5 {
-		font-size: 15px;
-	}
-
-	.plan_cardHead .plan_Price {
-		font-size: 33px;
-	}
-
-	.plan_card {
-		padding: 20px;
-	}
-
-	.plan_cardBody {
-		min-height: 258px;
-	}
-
-	.navbar-brand img {
-		width: 161px !important;
-	}
-
-	.secondNavbar .navbar-nav:before {
-		width: 82%;
-	}
-
-	.secondNavbar .navbar-nav {
-		top: 13px;
-	}
-
-	.searchForm input {
-		width: 100%;
-	}
+	table.cartSection.cartth tr th:first-child {width: 60%;	}
+	.toNv:before {	width: 85%;}
+	.searchForm input {	width: 300px;}
+	.dfk h5 {	font-size: 15px;}
+	.plan_cardHead .plan_Price {	font-size: 33px;}
+	.plan_card {padding: 20px;}
+	.plan_cardBody {min-height: 258px;	}
+	.navbar-brand img {	width: 161px !important;}
+	.secondNavbar .navbar-nav:before {	width: 82%;	}
+	.searchForm input {	width: 100%;}
+	header {height: 109px;	}
+	div#navbarNavDropdown {	width: 77%;	}
+	.searchForm {width: 345px;}
+	.autoCom {width: 33.5%; left: 38.6%; top: 54px;}
 
 }
 
@@ -321,6 +316,9 @@
 		/* display: contents; */
 		width: unset;
 		height: unset;
+	}
+	.mobile-mt-50 {
+		margin-bottom: 100px !important;
 	}
 }
 
