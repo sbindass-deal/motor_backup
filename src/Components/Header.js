@@ -23,6 +23,8 @@ import axios from "axios";
 import { clearCart } from "../redux/reducers/cartSlice";
 import { useEffect } from "react";
 import ResultNotFound from "./UI/ResultNotFound";
+import { NoFoodTwoTone } from "@mui/icons-material";
+import NotAvailable from "../Components/UI/NotAvailable"
 
 const data = [
   {
@@ -165,16 +167,267 @@ function Header() {
                     className="whiteLogo"
                   />
                 </Link>
-                <button
-                  className="navbar-toggler navbar-toggler-right collapsed"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navb"
-                >
-                  <span className="navbarToggler"></span>
-                </button>
+                <div className="dddd">
+                  <button
+                    className="navbar-toggler navbar-toggler-right collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navb"
+                  >
+                    <span className="navbarToggler"></span>
+                  </button>
 
-                <div className="collapse navbar-collapse toNv" id="navb">
+                  <div className="collapse navbar-collapse mobileOnly hidemenu" id="navb">
+                 
+                    <ul className="navbar-nav mobileOnly">
+                    <li
+                      // onClick={() => setShowSearchModal(true)}
+                      className="nav-item"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <Link
+                        className="nav-link"
+                        // to="javascript:void(0)"
+                        // data-toggle="modal"
+                        // data-target="#myModal"
+                      >
+                        <form className="searchForm">
+                          <input
+                            type="search"
+                            name="search"
+                            value={searchValue}
+                            onChange={handleSearch}
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            autoComplete="off"
+                            placeholder="Search..."
+                            required
+                          />
+                          <button type="submit">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                        </form>
+                        {/* <div className="searchBody">
+                             <div className="searchAuto" >
+                              <p className="searchName">Nikhukki</p>
+                              <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
+                              </div>
+                        </div>
+                        <i className="fa-solid fa-magnifying-glass"></i> */}
+                      </Link>
+                    </li>
+
+                    <li className="nav-item">
+                      {/* <Link className="nav-link" to="/auction">
+                        Auctions
+                      </Link> */}
+
+                      <Link
+                        className="nav-link"
+                        style={{
+                          color: `${
+                            location.pathname === "/aboutshibnobi"
+                              ? "#EF6031"
+                              : ""
+                          }`,
+                        }}
+                        to="/aboutshibnobi"
+                      >
+                        About
+                      </Link>
+                    </li>
+                    {/* {!logingUser.login.login ? (
+                      <li onClick={handleShow} className="nav-item">
+                        <Link
+                          onClick={handleShow}
+                          className="nav-link"
+                          to="javascript:void(0)"
+                        >
+                          Submit a Vehicle
+                        </Link>
+                      </li>
+                    ) : (
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/submit">
+                          Submit a Vehicle
+                        </Link>
+                      </li>
+                    )} */}
+
+                    <li className="nav-item">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/works" && "navActive"
+                        }`}
+                        to="/works"
+                      >
+                        How it Works
+                      </Link>
+                    </li>
+                    {/* {!logingUser.login.token ? (
+                      <li onClick={handleShow} className="nav-item">
+                        <Link
+                          className="nav-link"
+                          // to="javascript:void(0)"
+                          // data-toggle="modal"
+                          // data-target="#loginModal"
+                        >
+                          <i class="fa-solid fa-user-lock"></i>
+                        </Link>
+                      </li>
+                    ) : (
+                      <li
+                        onClick={logout}
+                        style={{ cursor: "pointer" }}
+                        className="nav-item"
+                      >
+                        <Link className="nav-link">Logout</Link>
+                      </li>
+                    )} */}
+                    {/* <li className="nav-item">
+                      <Link className="nav-link" to="/">
+                        <i className="fa-solid fa-star"></i>
+                      </Link>
+                    </li> */}
+
+                    <li className="nav-item afterLogin">
+                      <div className="dropdown">
+                        <AccountCircleIcon />
+
+                        <div className="dropdown-content">
+                          {logingUser.login.token && (
+                            <Link
+                              className={`nav-link ${
+                                location.pathname === "/accountinfo" &&
+                                "navActive"
+                              }`}
+                              to="/accountinfo"
+                            >
+                              My Account
+                              <br />
+                              {/* <span>{logingUser.login.user.username}</span> */}
+                            </Link>
+                          )}
+                          {!logingUser.login.token ? (
+                            <li onClick={handleShow} className="nav-item">
+                              <Link
+                                className="nav-link"
+                                // to="javascript:void(0)"
+                                // data-toggle="modal"
+                                // data-target="#loginModal"
+                              >
+                                Login
+                              </Link>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={logout}
+                              style={{ cursor: "pointer" }}
+                              className="nav-item"
+                            >
+                              <Link className="nav-link">Logout</Link>
+                            </li>
+                          )}
+
+                          {logingUser.login.token && logingUser.login.admin && (
+                            <li className="nav-item">
+                              <Link
+                                className={`nav-link ${
+                                  location.pathname === "/vehicle-submission" &&
+                                  "navActive"
+                                }`}
+                                to="/vehicle-submission"
+                              >
+                                Admin
+                              </Link>
+                            </li>
+                          )}
+                          {logingUser.login.token &&
+                            !logingUser.login.admin && (
+                              <li className="nav-item">
+                                <Link
+                                  className={`nav-link ${
+                                    location.pathname === "/orders-cart" &&
+                                    "navActive"
+                                  }`}
+                                  to="/orders-cart"
+                                >
+                                  My Orders
+                                </Link>
+                              </li>
+                            )}
+                        </div>
+                      </div>
+                    </li>
+
+                    <li className="nav-item">
+                      <button
+                        className="sunMoonBtn"
+                        onClick={() => dispatch(changeMode())}
+                      >
+                        {logingUser.dayAndNightMode.mode ? (
+                          <img src={sunIcon} />
+                        ) : (
+                          <img src={smoonIcon} />
+                        )}
+                      </button>
+                    </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Shipping
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Makes and Models
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Categories
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Get Alerts
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Charity Auctions
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Featured
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Event Calendar
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Car Raffle
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Gas Guzzlrs
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/">
+                          Gear Store
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+               
+
+                <div className="toNv" id="">
                   <ul className="navbar-nav ml-auto">
                     {/* <li onClick={handleShow} className="nav-item">
                         <Link className="nav-link">Submit a Vehicle</Link>
@@ -372,66 +625,15 @@ function Header() {
                       </button>
                     </li>
                   </ul>
-                  <ul className="navbar-nav mobileOnly">
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Shipping
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Makes and Models
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Categories
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Get Alerts
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Charity Auctions
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Featured
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Event Calendar
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Car Raffle
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Gas Guzzlrs
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        Gear Store
-                      </Link>
-                    </li>
-                  </ul>
+                 
                 </div>
               </nav>
             </div>
             <div className="col-md-12 mobileOnlyHide p-0">
               <nav className="navbar navbar-expand secondNavbar">
-                <div className="container-fluid">
+                <div className="container-fluid wrapper_second">
                   <div
-                    className="collapse navbar-collapse "
+                    className=""
                     id="navbarNavDropdown"
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">
@@ -689,7 +891,7 @@ function Header() {
       {sowAutoCompleate && (
         <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
-            {filteredData <= 0 ? (
+            {/* {filteredData <= 0 ? (
               <ResultNotFound text="Result not found! 🙄" />
             ) : (
               filteredData.map((curElem) => {
@@ -704,7 +906,11 @@ function Header() {
                   </div>
                 );
               })
-            )}
+            )} */}
+            <NotAvailable
+            className="dataNotFou"
+            text="Hello"
+            />
           </div>
         </div>
       )}

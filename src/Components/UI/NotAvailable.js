@@ -4,13 +4,8 @@ const NotAvailable = ({ text }) => {
   return (
     <>
       <div
-        className="container"
-        style={{
-          height: "80vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        className="container notAvailable"
+        
       >
         <div className="row">
           <h2>{text}</h2>
