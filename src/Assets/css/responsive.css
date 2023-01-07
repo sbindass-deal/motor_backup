@@ -30,7 +30,8 @@
 
 @media (max-width: 1440px) {
 
-	.modal-title {	font-size: 33px;	}
+	.modal-title {	font-size: 28px;	}
+	.processPy h2 {	font-size: 18px;}
 
 	.autoCom {	width: 28%;	margin: 0 auto;	left: 47.8%;}
 
@@ -114,6 +115,7 @@
 	
 	}
 	header {height: 114px;}
+	.modal-title {	font-size: 24px;}
 
 }
 
@@ -386,6 +388,15 @@
 }
 
 @media (max-width: 767px) {
+	.modal-title {
+		font-size: 18px;
+	}
+	.processPy h2 {
+		font-size: 15px;
+	}
+	.processPy .price__ {
+		font-size: 14px;
+	}
 	.mobileOnly form.searchForm {
 		width: 100%;
 	}
@@ -634,25 +645,14 @@
 		margin-top: 250px;
 	}
 
-	.featuredAuctions_Slide.delair .nextArrow {
-		bottom: -298px !important;
-	}
+	.featuredAuctions_Slide.delair .nextArrow {	bottom: -298px !important;	}
 
-	.Latest_B {
-		display: block;
-		height: 100%;
-	}
+	.Latest_B {	display: block;	height: 100%;}
 
-	.autoCom {
-		width: 100%;
-		margin: 0 auto;
-		left: 0;
-		top: 35px;
-	}
+	.autoCom {width: 100%;margin: 0 auto;	left: 0;top: 35px;}
 
-	h1 {
-		font-size: 2.5em;
-	}
+	h1 {font-size: 2.5em;}
+	.payTPop .modal-content {width: calc(80% - -67%);}
 }
 
 @media (max-width: 575px) {

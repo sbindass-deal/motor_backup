@@ -3076,10 +3076,7 @@ table.showroomCol tr td:last-child {
   margin: 0 auto;
 }
 
-.processPy {
-  text-align: center;
-  padding: 40px;
-}
+
 
 .ProcessPymt img {
   border: 1px solid #181818;
@@ -3090,7 +3087,7 @@ table.showroomCol tr td:last-child {
 }
 
 .processPy h2 {
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .searchBody {
@@ -3270,23 +3267,10 @@ label {
   margin: 5px;
 }
 
-.payTPop .modal-content {
-  border: 0px solid rgba(0, 0, 0, .2);
-  background: #000;
-  top: 90px;
-}
-
 .payTPop .modal-header {
   border-bottom: 1px solid #1b1b1b00;
 }
 
-.payTPop .modal-content {
-  border: 0px solid rgba(0, 0, 0, .2);
-  background: #000;
-  top: 90px;
-  box-shadow: 1px 1px 65px 0px #ffd7a738;
-  border-radius: 10px;
-}
 
 .payTPop .modal-content {
   border: 0px solid rgba(0, 0, 0, .2);
@@ -3296,11 +3280,14 @@ label {
   border-radius: 10px;
   border: 1px solid #37230a;
   padding: 10px;
+  width: calc(100% - 33%);
+  margin: 0 auto;
+
 }
 
 .processPy {
-  text-align: center;
-  padding: 40px;
+  text-align: left;
+  padding: 40px 0px;
   border-top: 1px solid #37230a;
 }
 
@@ -3416,7 +3403,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
 
 .ress {
   display: flex;
-  justify-content: center;
+  justify-content: unset;
   align-items: baseline;
 }
 
