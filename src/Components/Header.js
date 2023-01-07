@@ -177,7 +177,7 @@ function Header() {
                     <span className="navbarToggler"></span>
                   </button>
 
-                  <div className="collapse navbar-collapse mobileOnly" id="navb">
+                  <div className="collapse navbar-collapse mobileOnly hidemenu" id="navb">
                  
                     <ul className="navbar-nav mobileOnly">
                     <li
@@ -631,9 +631,9 @@ function Header() {
             </div>
             <div className="col-md-12 mobileOnlyHide p-0">
               <nav className="navbar navbar-expand secondNavbar">
-                <div className="container-fluid">
+                <div className="container-fluid wrapper_second">
                   <div
-                    className="collapse navbar-collapse "
+                    className=""
                     id="navbarNavDropdown"
                   >
                     <ul className="navbar-nav flex-wrap" id="nav">

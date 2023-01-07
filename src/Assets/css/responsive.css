@@ -1,226 +1,598 @@
 @media (min-width: 1200px) {
-	.container {max-width: 1170px;}
+	.container {
+		max-width: 1170px;
+	}
+
 	.makes_Slide.arrowTop_Slide .card_post {
 		width: 33.33%;
 	}
 }
+
 @media (min-width: 1400px) {
-	.container {max-width: 1370px;}
-	.sliderSec .carousel-inner { width: 100% !important;}
-	.searchBody { width: 35.2%;}
-	
+	.container {
+		max-width: 1370px;
+	}
+
+	.sliderSec .carousel-inner {
+		width: 100% !important;
+	}
+
+	.searchBody {
+		width: 35.2%;
+	}
+
 }
-@media (max-width: 1400px) {
-	
+
+@media (max-width: 1440px) {
+
+	.modal-title {
+		font-size: 33px;
+	}
+
 	.autoCom {
-		
 		width: 28%;
 		margin: 0 auto;
 		left: 47.8%;
-		
-		
+	}
+
+	div#navbarNavDropdown {
+		width: 74%;
+
+	}
+
+	.toNv {
+		width: 60%;
 	}
 }
+
 @media (min-width: 1500px) {}
+
 @media (max-width: 1366px) {
-	table.cartSection.cartth tr th:first-child {width: 66%;	}
-	.autoCom {width: 29.5%; left: 45%;}
-	
-	
+	table.cartSection.cartth tr th:first-child {
+		width: 66%;
+	}
+
+	.autoCom {
+		width: 29.5%;
+		left: 45%;
+	}
+
+
 }
+
 @media (max-width: 1280px) {
-	a.navbar-brand {top: 17px;left: 22px;	}
-	.navbar-brand img {width: 135px;}
-	.navbar-nav .nav-link {	padding: 8px 12px !important;	}
-	.secondNavbar .navbar-nav:before {width: 75%;	}
-	.secondNavbar .navbar-nav { top: 0px;}
-	.secondNavbar {padding: 5px 0px;}
+	a.navbar-brand {
+		top: 17px;
+		left: 22px;
+	}
+
+	.navbar-brand img {
+		width: 135px;
+	}
+
+	.navbar-nav .nav-link {
+		padding: 8px 12px !important;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 75%;
+	}
+
+	.secondNavbar .navbar-nav {
+		top: 0px;
+	}
+
+	.secondNavbar {
+		padding: 8px 0px;
+	}
+
 	.autoCom {
 		width: 31.5%;
 		left: 42.6%;
 	}
-	
+
+	div#navbarNavDropdown {
+		width: 72%;
+	}
+
+	.toNv {
+		width: 60%;
+	}
+
 
 }
+
 @media (max-width: 1199px) {
-	table.cartSection.cartth tr th:first-child {width: 60%;	}
-	.toNv:before {width: 85%;}
-	.searchForm input {	width: 300px;}
-	.dfk h5 {font-size: 15px;}
-.plan_cardHead .plan_Price {font-size: 33px;}
-.plan_card { padding: 20px;}
-.plan_cardBody { min-height: 258px;}
-.navbar-brand img {
-    width: 161px !important;}
+	table.cartSection.cartth tr th:first-child {
+		width: 60%;
+	}
+
+	.toNv:before {
+		width: 85%;
+	}
+
+	.searchForm input {
+		width: 300px;
+	}
+
+	.dfk h5 {
+		font-size: 15px;
+	}
+
+	.plan_cardHead .plan_Price {
+		font-size: 33px;
+	}
+
+	.plan_card {
+		padding: 20px;
+	}
+
+	.plan_cardBody {
+		min-height: 258px;
+	}
+
+	.navbar-brand img {
+		width: 161px !important;
+	}
+
 	.secondNavbar .navbar-nav:before {
 		width: 82%;
 	}
+
 	.secondNavbar .navbar-nav {
 		top: 13px;
 	}
+
 	.searchForm input {
 		width: 100%;
 	}
 
 }
+
+@media (max-width: 1080px) {
+	.navbarNavDropdown{
+		width: 75%;
+	}
+
+}
+
 @media (max-width: 1024px) {
 	.secondNavbar .navbar-nav {
 		top: 10px;
 	}
+
 	table.cartSection.cartth tr th:first-child {
 		width: 40%;
 	}
-	.navbar-nav .nav-link {padding: 8px 8px !important;	}
-	.navbar-brand img {	width: 180px !important;}
-	.secondNavbar .navbar-nav:before {width: 80%;	}
-	.mobileOnlyHide{display: block;}
-	
+
+	.navbar-nav .nav-link {
+		padding: 8px 8px !important;
+	}
+
+	.navbar-brand img {
+		width: 180px !important;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 80%;
+	}
+
+	.mobileOnlyHide {
+		display: block;
+	}
+
 }
+
+
+
 @media (max-width: 991px) {
 	a.full {
 		width: 100%;
 		display: block;
 	}
-	.secondNavbar .navbar-nav:before {	width: 85%;	}
-	
-	h1 { font-size: 40px;}
-h2 { font-size: 30px;}
-h3 {  font-size: 24px;}
-h4 { font-size: 20px;}
-h5 { font-size: 18px;}
-.navbar-nav .nav-link { font-size: 14px; padding: 8px 8px !important;}
-.activeListView .card_postInfo{ flex-wrap: wrap; align-content: center;}
-.activeListView .card_postInfo h4{width: 100%; padding-right: 0;}
-.sidebarPostRow {display: flex; flex-wrap: wrap;}
-.sidebarPost{    width: 50%; padding-left: 2px;   padding-right: 2px;}
-.navbar-expand-md .navbar-toggler {
-    display: block;
-    position: relative;
-    right: 20px;
-    top: 15px;
-}
-.toNv {  display: none;}
 
-ul.navbar-nav.mobileOnly { display: none;}
-.navbar-collapse.mobileOnly.collapse.show {
-    display: block;
-    position: absolute;
-    width: 100%;
-    background-color: #f79117;
-    height: 100vh;
-    top: 100px;
-    z-index: 999;
-    color: #fff;
-    left: 0;
+	.secondNavbar .navbar-nav:before {
+		width: 85%;
+	}
+
+	h1 {
+		font-size: 40px;
+	}
+
+	h2 {
+		font-size: 30px;
+	}
+
+	h3 {
+		font-size: 24px;
+	}
+
+	h4 {
+		font-size: 20px;
+	}
+
+	h5 {
+		font-size: 18px;
+	}
+
+	.navbar-nav .nav-link {
+		font-size: 14px;
+		padding: 8px 8px !important;
+	}
+
+	.activeListView .card_postInfo {
+		flex-wrap: wrap;
+		align-content: center;
+	}
+
+	.activeListView .card_postInfo h4 {
+		width: 100%;
+		padding-right: 0;
+	}
+
+	.sidebarPostRow {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.sidebarPost {
+		width: 50%;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+
+	.navbar-expand-md .navbar-toggler {
+		display: block;
+		position: relative;
+		right: 20px;
+		top: 15px;
+	}
+
+	.toNv {
+		display: none;
+	}
+
+	ul.navbar-nav.mobileOnly {
+		display: none;
+	}
+
+	.navbar-collapse.mobileOnly.collapse.show {
+		/* display: block; */
+		position: absolute;
+		width: 100%;
+		background-color: #f79117;
+		height: 100vh;
+		top: 100px;
+		z-index: 999;
+		color: #fff;
+		left: 0;
+		transform: translateY(0);
+	}
+
+	.mobileOnly {
+		display: block;
+	}
+
+	ul.navbar-nav.mNone {
+		display: block;
+	}
+
+	.dddd {
+		display: block;
+		margin-left: auto;
+	}
+
+	button.sunMoonBtn {
+		left: 87%;
+		top: -217px;
+	}
+
+	.light button.sunMoonBtn img {
+		width: 24px;
+		height: 24px;
+		filter: brightness(0.5);
+	}
+
+	.navbar-expand-md .navbar-nav {
+		width: 100%;
+	}
+
+	ul.navbar-nav {
+		padding-right: 0;
+	}
+
+	.mobileOnly form.searchForm {
+		width: 39%;
+	}
+
+	.navbar-collapse.mobileOnly.collapse.show .mobileOnly {
+		display: block;
+	}
+
+	.featuredAuctions_Slide.delair .card_post {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly !important;
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg {
+		/* display: contents; */
+		width: unset;
+		height: unset;
+	}
 }
-.mobileOnly {
-    display: block;
-}
-ul.navbar-nav.mNone {
-    display: block;
-}
-.dddd {
-	display: block;
-	margin-left: auto;
-  }
-  button.sunMoonBtn { left: 87%;  top: -217px;}
-  .light button.sunMoonBtn img {
-	width: 24px;
-	height: 24px;
-	filter: brightness(0.5);
-  }
-  .navbar-expand-md .navbar-nav { width: 100%;}
-  ul.navbar-nav { padding-right: 0;}
-  .mobileOnly form.searchForm {
-    width: 39%;
-}
-.navbar-collapse.mobileOnly.collapse.show .mobileOnly {
-    display: block;
-}
-.featuredAuctions_Slide.delair .card_post {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly !important;
-    width: 95%;
-    margin: 0 auto;
-}
-.featuredAuctions_Slide.delair .card_postImg {
-    display: contents;
-}
-}
+
 @media (max-width: 860px) {
-	.dfk h5 {font-size: 15px;}
-.plan_cardHead .plan_Price {font-size: 33px;}
-.plan_card { padding: 20px;}
-.plan_cardBody { min-height: 258px;}
-.mobileOnlyHide{display: none;}
+	.dfk h5 {
+		font-size: 15px;
+	}
 
-	
+	.plan_cardHead .plan_Price {
+		font-size: 33px;
+	}
+
+	.plan_card {
+		padding: 20px;
+	}
+
+	.plan_cardBody {
+		min-height: 258px;
+	}
+
+	.mobileOnlyHide {
+		display: none;
+	}
+
+	.heroText h1 {
+		font-size: 28px;
+		line-height: 36px;
+	}
+
+	.heroSection {
+		background-size: 113%;
+		background-position-y: -102px;
+	}
+
+	.card_postInfo h4 {
+		margin-bottom: 25px;
+	}
+
+	.nextArrow {
+		bottom: -80px;
+	}
+
+	.ptb_80 {
+		padding-top: 48px;
+		padding-bottom: 105px;
+	}
+
+	.blogSection {
+		padding-bottom: 30px;
+	}
+
 }
+
+.hidemenu {
+	transform: translateY(-120%);
+}
+
 @media (max-width: 768px) {}
-@media (min-width: 768px){
-	
-	.mobileOnly{display: block;}
-	.makes_Slide.arrowTop_Slide .card_post {width: 33.33%;}
-	ul.bidList_.info_ li {width: 50%;}
-	
+
+@media (min-width: 768px) {
+
+	.mobileOnly {
+		display: block;
+	}
+
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 33.33%;
+	}
+
+	ul.bidList_.info_ li {
+		width: 50%;
+	}
+
 }
+
 @media (max-width: 767px) {
 	.mobileOnly form.searchForm {
 		width: 100%;
 	}
+
 	.navbar-expand-md .navbar-toggler {
 		display: block;
 		position: relative;
-		
+
 		top: 8px;
 	}
+
 	.plan_cardBody {
 		min-height: auto;
 	}
-	span.plan_Time small {right: 20px;}
+
+	span.plan_Time small {
+		right: 20px;
+	}
+
 	.cartImgSect img {
 		width: 36%;
 		padding-right: 10px;
 	}
-	h1 { font-size: 34px;}
-	h2 { font-size: 28px;}
-	.scrollDownIc img { width: 22px;}
-	.copyRight p{margin-top: 15px;}
-	
-	.navbar-brand img{height: 40px;}
-	.arrowTop_Slide .slide-arrow{bottom: -30px; top: unset;}
-	.arrowTop_Slide .prev-arrow{left: calc(50% - 140px); }
-	.arrowTop_Slide .next-arrow{right: calc(50% - 140px);} 
-	.lightTheme .latestBids_Slide .prev-arrow {left: calc(50% - 55px);}
-	.lightTheme .latestBids_Slide .next-arrow {right: calc(50% - 55px);}
-	.title_combo{justify-content: center;}
-	.title_combo span{display: block; margin: 0; width: 100%; text-align: center; margin-top: 10px;}
-	.price__ { font-size: 20px;}
-	.card_postImg {height: 250px;}
-	.blogPost { height: 250px;} 
-	.btn{font-size: 14px; padding: 12px 25px;}
-	.bgHolder h1.text-back{color: #fff !important;}
-	.pt_sm_50{padding-top: 50px;}
-	.postTopOption{flex-wrap: wrap;}
-	.postHero {height: 250px;}
-	.sideBar__{display: flex; overflow: auto; padding-bottom: 8px;}
-	.sideBar__ li{white-space: nowrap; padding: 8px;}
-	.daily_mail {  padding: 30px 15px;}
-	.daily_mail_box button { position: inherit;}
-	.daily_mail input { padding: 22px 15px;  margin-bottom: 10px;}
-	.makes_Slide.arrowTop_Slide .card_post {width: 100%;}
-	ul.bidList_.info_ li {width: 100%;}
-	.toNv {  position: relative; z-index: 1;  padding-top: 40px;}
-	.toNv:before { content: ''; background: #f7931b; position: absolute; width: 100%; height: 70vh; right: 0; z-index: -2;  border-top-left-radius: 0px; top: 30px;}
-	a.navbar-brand { position: relative;  top: 17px;  left: 10px;}
-	.slick-slide { margin: 0 0px;}
-	.nextArrow { position: absolute; bottom: -39px;left: calc(50% - 145px);}
-	h1.animate-charcter {font-size: 115px !important;}
-	h1.animate-charcter span {font-size: 30px !important;}
-	img.carGif {width: 100%;}
-	.containerSec {height: 81vh;}
-	a.navbar-brand {top: 0;}
+
+	h1 {
+		font-size: 34px;
+	}
+
+	h2 {
+		font-size: 28px;
+	}
+
+	.scrollDownIc img {
+		width: 22px;
+	}
+
+	.copyRight p {
+		margin-top: 15px;
+	}
+
+	.navbar-brand img {
+		height: 40px;
+	}
+
+	.arrowTop_Slide .slide-arrow {
+		bottom: -30px;
+		top: unset;
+	}
+
+	.arrowTop_Slide .prev-arrow {
+		left: calc(50% - 140px);
+	}
+
+	.arrowTop_Slide .next-arrow {
+		right: calc(50% - 140px);
+	}
+
+	.lightTheme .latestBids_Slide .prev-arrow {
+		left: calc(50% - 55px);
+	}
+
+	.lightTheme .latestBids_Slide .next-arrow {
+		right: calc(50% - 55px);
+	}
+
+	.title_combo {
+		justify-content: center;
+	}
+
+	.title_combo span {
+		display: block;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.price__ {
+		font-size: 20px;
+	}
+
+	.card_postImg {
+		height: 250px;
+	}
+
+	.blogPost {
+		height: 250px;
+	}
+
+	.btn {
+		font-size: 14px;
+		padding: 12px 25px;
+	}
+
+	.bgHolder h1.text-back {
+		color: #fff !important;
+	}
+
+	.pt_sm_50 {
+		padding-top: 50px;
+	}
+
+	.postTopOption {
+		flex-wrap: wrap;
+	}
+
+	.postHero {
+		height: 250px;
+	}
+
+	.sideBar__ {
+		display: flex;
+		overflow: auto;
+		padding-bottom: 8px;
+	}
+
+	.sideBar__ li {
+		white-space: nowrap;
+		padding: 8px;
+	}
+
+	.daily_mail {
+		padding: 30px 15px;
+	}
+
+	.daily_mail_box button {
+		position: inherit;
+	}
+
+	.daily_mail input {
+		padding: 22px 15px;
+		margin-bottom: 10px;
+	}
+
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 100%;
+	}
+
+	ul.bidList_.info_ li {
+		width: 100%;
+	}
+
+	.toNv {
+		position: relative;
+		z-index: 1;
+		padding-top: 40px;
+	}
+
+	.toNv:before {
+		content: '';
+		background: #f7931b;
+		position: absolute;
+		width: 100%;
+		height: 70vh;
+		right: 0;
+		z-index: -2;
+		border-top-left-radius: 0px;
+		top: 30px;
+	}
+
+	a.navbar-brand {
+		position: relative;
+		top: 17px;
+		left: 10px;
+	}
+
+	.slick-slide {
+		margin: 0 0px;
+	}
+
+	.nextArrow {
+		position: absolute;
+		bottom: -39px;
+		left: calc(50% - 145px);
+	}
+
+	h1.animate-charcter {
+		font-size: 115px !important;
+	}
+
+	h1.animate-charcter span {
+		font-size: 30px !important;
+	}
+
+	img.carGif {
+		width: 100%;
+	}
+
+	.containerSec {
+		height: 81vh;
+	}
+
+	a.navbar-brand {
+		top: 0;
+	}
+
 	button.sunMoonBtn {
 		position: absolute;
 		z-index: 999;
@@ -232,63 +604,219 @@ ul.navbar-nav.mNone {
 		top: -79px;
 		left: 76%;
 	}
-	.light button.sunMoonBtn {filter: brightness(0.5);}
-	.post-excerpt {padding: 0px 10px;text-align: justify; }
-	section.ptb_80.blogPostText.rf {text-align: center;}
-	.rafSect .price_ {justify-content: center;}
-	a.full {width: 100%; display: block;}
-	.blogPostText .btn {margin-top: 10px;margin-bottom: 20px;}
-	.featuredAuctions_Slide.delair .card_post {display: block;	}
-	ul.img_sec {width: 100%;margin-right: 10px;	}
-	section.ptb_80.mobileSpec {	margin-top: 250px;}
-	.featuredAuctions_Slide.delair .nextArrow {bottom: -298px !important;}
-	.Latest_B {	display: block;	height: 100%;}
-	.autoCom {width: 100%;margin: 0 auto;left: 0;top: 35px;}
-	h1 {font-size: 2.5em;}
-}
 
-@media (max-width: 575px) {
-	.prev-arrow:before, .next-arrow:after{width: 50px;}
-	.prev-arrow,
-	.arrowTop_Slide .prev-arrow{left: calc(50% - 110px); }
-	.next-arrow,
-	.arrowTop_Slide .next-arrow{right: calc(50% - 110px);} 
-	.fLinks_row li {width: 50%;}
-    .heroCar:after,.heroCar:before{width: 400px; height: 400px;}
-	.heroBanner .heroText_2 { padding: 40px 20px 50px;}
-	.heroBanner .heroText_2 h3 br{display: none;}
-	.searchModal .modal-content {width: 90%;}
-	.bidList_ li label { min-width: 120px;}
-	.detailPostOption .d-flex{flex-wrap: wrap;}
-	.detailPostOption .gry_btn{margin-bottom: 5px;}
-	.bidList_ li{width: 100%; padding-right: 0px;}
-	.orderImg{width: 100%; height: 250px;}
-	.orderInfo{width: 100%; padding: 10px 0px;}
-	.orderStep {flex-wrap: wrap; margin-bottom: 15px;}
-	.orderStep li {text-align: left; width: 100%; padding: 0px 0px 10px 25px;}
-	.orderStep li:before{width: 3px; height: 100%; left: 6px;}
-	.orderStep li:last-child:before { width: 3px; display: none;}
-	.orderStep li:after{top: 0px; left: 8px;}
-	.orderStep li.active:last-child:after {top: 0px;}
-	
+	.light button.sunMoonBtn {
+		filter: brightness(0.5);
+	}
 
-}
-@media (max-width: 480px) {
-	.heroBanner .heroText_2 {padding: 40px 20px 100px;}
-	.postTopOption li:last-child,
-	.postTopOption li .post_select{width: 100%;}
-	.activeListView .card_postImg {width: 150px; height: 100px;}
-	.sidebarPost .sidebarPost_Img,
-	.imgGalleryRow .fancyCol, 
-	.videoGalleryRow .fancyCol {/*height: 120px;*/}
-	.orderImg{width: 100%; height: 150px;}
+	.post-excerpt {
+		padding: 0px 10px;
+		text-align: justify;
+	}
+
+	section.ptb_80.blogPostText.rf {
+		text-align: center;
+	}
+
+	.rafSect .price_ {
+		justify-content: center;
+	}
+
+	a.full {
+		width: 100%;
+		display: block;
+	}
+
+	.blogPostText .btn {
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+
+	.featuredAuctions_Slide.delair .card_post {
+		display: block;
+	}
+
+	ul.img_sec {
+		width: 100%;
+		margin-right: 10px;
+	}
+
+	section.ptb_80.mobileSpec {
+		margin-top: 250px;
+	}
+
+	.featuredAuctions_Slide.delair .nextArrow {
+		bottom: -298px !important;
+	}
+
+	.Latest_B {
+		display: block;
+		height: 100%;
+	}
+
+	.autoCom {
+		width: 100%;
+		margin: 0 auto;
+		left: 0;
+		top: 35px;
+	}
+
 	h1 {
 		font-size: 2.5em;
 	}
 }
+
+@media (max-width: 575px) {
+
+	.prev-arrow:before,
+	.next-arrow:after {
+		width: 50px;
+	}
+
+	.prev-arrow,
+	.arrowTop_Slide .prev-arrow {
+		left: calc(50% - 110px);
+	}
+
+	.next-arrow,
+	.arrowTop_Slide .next-arrow {
+		right: calc(50% - 110px);
+	}
+
+	.fLinks_row li {
+		width: 50%;
+	}
+
+	.heroCar:after,
+	.heroCar:before {
+		width: 400px;
+		height: 400px;
+	}
+
+	.heroBanner .heroText_2 {
+		padding: 40px 20px 50px;
+	}
+
+	.heroBanner .heroText_2 h3 br {
+		display: none;
+	}
+
+	.searchModal .modal-content {
+		width: 90%;
+	}
+
+	.bidList_ li label {
+		min-width: 120px;
+	}
+
+	.detailPostOption .d-flex {
+		flex-wrap: wrap;
+	}
+
+	.detailPostOption .gry_btn {
+		margin-bottom: 5px;
+	}
+
+	.bidList_ li {
+		width: 100%;
+		padding-right: 0px;
+	}
+
+	.orderImg {
+		width: 100%;
+		height: 250px;
+	}
+
+	.orderInfo {
+		width: 100%;
+		padding: 10px 0px;
+	}
+
+	.orderStep {
+		flex-wrap: wrap;
+		margin-bottom: 15px;
+	}
+
+	.orderStep li {
+		text-align: left;
+		width: 100%;
+		padding: 0px 0px 10px 25px;
+	}
+
+	.orderStep li:before {
+		width: 3px;
+		height: 100%;
+		left: 6px;
+	}
+
+	.orderStep li:last-child:before {
+		width: 3px;
+		display: none;
+	}
+
+	.orderStep li:after {
+		top: 0px;
+		left: 8px;
+	}
+
+	.orderStep li.active:last-child:after {
+		top: 0px;
+	}
+
+	.heroSection {
+		background-size: cover;
+		background-position-y: unset;
+	}
+
+	.heroText h1 {
+		font-size: 24px;
+	}
+
+	.card_postInfo h4 {
+		font-size: 17px;
+	}
+
+	.nextArrow {
+		bottom: -78px;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.heroBanner .heroText_2 {
+		padding: 40px 20px 100px;
+	}
+
+	.postTopOption li:last-child,
+	.postTopOption li .post_select {
+		width: 100%;
+	}
+
+	.activeListView .card_postImg {
+		width: 150px;
+		height: 100px;
+	}
+
+	.sidebarPost .sidebarPost_Img,
+	.imgGalleryRow .fancyCol,
+	.videoGalleryRow .fancyCol {
+		/*height: 120px;*/
+	}
+
+	.orderImg {
+		width: 100%;
+		height: 150px;
+	}
+
+	h1 {
+		font-size: 2.5em;
+	}
+}
+
 @media (max-width: 414px) {}
+
 @media (max-width: 375px) {
 	h1 {
-    font-size: 2.5em;
-}
+		font-size: 2.5em;
+	}
 }
