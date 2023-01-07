@@ -24,7 +24,8 @@ import { clearCart } from "../redux/reducers/cartSlice";
 import { useEffect } from "react";
 import ResultNotFound from "./UI/ResultNotFound";
 import { NoFoodTwoTone } from "@mui/icons-material";
-import NotAvailable from "../Components/UI/NotAvailable"
+import NotAvailable from "../Components/UI/NotAvailable";
+import Searchbar from "./UI/Searchbar";
 
 const data = [
   {
@@ -177,21 +178,23 @@ function Header() {
                     <span className="navbarToggler"></span>
                   </button>
 
-                  <div className="collapse navbar-collapse mobileOnly hidemenu" id="navb">
-                 
+                  <div
+                    className="collapse navbar-collapse mobileOnly hidemenu"
+                    id="navb"
+                  >
                     <ul className="navbar-nav mobileOnly">
-                    <li
-                      // onClick={() => setShowSearchModal(true)}
-                      className="nav-item"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <Link
-                        className="nav-link"
-                        // to="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#myModal"
+                      <li
+                        // onClick={() => setShowSearchModal(true)}
+                        className="nav-item"
+                        style={{ cursor: "pointer" }}
                       >
-                        <form className="searchForm">
+                        <Link
+                          className="nav-link"
+                          // to="javascript:void(0)"
+                          // data-toggle="modal"
+                          // data-target="#myModal"
+                        >
+                          {/* <form className="searchForm">
                           <input
                             type="search"
                             name="search"
@@ -206,37 +209,38 @@ function Header() {
                           <button type="submit">
                             <i className="fa-solid fa-magnifying-glass"></i>
                           </button>
-                        </form>
-                        {/* <div className="searchBody">
+                        </form> */}
+
+                          {/* <div className="searchBody">
                              <div className="searchAuto" >
                               <p className="searchName">Nikhukki</p>
                               <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
                               </div>
                         </div>
                         <i className="fa-solid fa-magnifying-glass"></i> */}
-                      </Link>
-                    </li>
+                        </Link>
+                      </li>
 
-                    <li className="nav-item">
-                      {/* <Link className="nav-link" to="/auction">
+                      <li className="nav-item">
+                        {/* <Link className="nav-link" to="/auction">
                         Auctions
                       </Link> */}
 
-                      <Link
-                        className="nav-link"
-                        style={{
-                          color: `${
-                            location.pathname === "/aboutshibnobi"
-                              ? "#EF6031"
-                              : ""
-                          }`,
-                        }}
-                        to="/aboutshibnobi"
-                      >
-                        About
-                      </Link>
-                    </li>
-                    {/* {!logingUser.login.login ? (
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/aboutshibnobi"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/aboutshibnobi"
+                        >
+                          About
+                        </Link>
+                      </li>
+                      {/* {!logingUser.login.login ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           onClick={handleShow}
@@ -254,17 +258,17 @@ function Header() {
                       </li>
                     )} */}
 
-                    <li className="nav-item">
-                      <Link
-                        className={`nav-link ${
-                          location.pathname === "/works" && "navActive"
-                        }`}
-                        to="/works"
-                      >
-                        How it Works
-                      </Link>
-                    </li>
-                    {/* {!logingUser.login.token ? (
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/works" && "navActive"
+                          }`}
+                          to="/works"
+                        >
+                          How it Works
+                        </Link>
+                      </li>
+                      {/* {!logingUser.login.token ? (
                       <li onClick={handleShow} className="nav-item">
                         <Link
                           className="nav-link"
@@ -284,94 +288,95 @@ function Header() {
                         <Link className="nav-link">Logout</Link>
                       </li>
                     )} */}
-                    {/* <li className="nav-item">
+                      {/* <li className="nav-item">
                       <Link className="nav-link" to="/">
                         <i className="fa-solid fa-star"></i>
                       </Link>
                     </li> */}
 
-                    <li className="nav-item afterLogin">
-                      <div className="dropdown">
-                        <AccountCircleIcon />
+                      <li className="nav-item afterLogin">
+                        <div className="dropdown">
+                          <AccountCircleIcon />
 
-                        <div className="dropdown-content">
-                          {logingUser.login.token && (
-                            <Link
-                              className={`nav-link ${
-                                location.pathname === "/accountinfo" &&
-                                "navActive"
-                              }`}
-                              to="/accountinfo"
-                            >
-                              My Account
-                              <br />
-                              {/* <span>{logingUser.login.user.username}</span> */}
-                            </Link>
-                          )}
-                          {!logingUser.login.token ? (
-                            <li onClick={handleShow} className="nav-item">
-                              <Link
-                                className="nav-link"
-                                // to="javascript:void(0)"
-                                // data-toggle="modal"
-                                // data-target="#loginModal"
-                              >
-                                Login
-                              </Link>
-                            </li>
-                          ) : (
-                            <li
-                              onClick={logout}
-                              style={{ cursor: "pointer" }}
-                              className="nav-item"
-                            >
-                              <Link className="nav-link">Logout</Link>
-                            </li>
-                          )}
-
-                          {logingUser.login.token && logingUser.login.admin && (
-                            <li className="nav-item">
+                          <div className="dropdown-content">
+                            {logingUser.login.token && (
                               <Link
                                 className={`nav-link ${
-                                  location.pathname === "/vehicle-submission" &&
+                                  location.pathname === "/accountinfo" &&
                                   "navActive"
                                 }`}
-                                to="/vehicle-submission"
+                                to="/accountinfo"
                               >
-                                Admin
+                                My Account
+                                <br />
+                                {/* <span>{logingUser.login.user.username}</span> */}
                               </Link>
-                            </li>
-                          )}
-                          {logingUser.login.token &&
-                            !logingUser.login.admin && (
-                              <li className="nav-item">
+                            )}
+                            {!logingUser.login.token ? (
+                              <li onClick={handleShow} className="nav-item">
                                 <Link
-                                  className={`nav-link ${
-                                    location.pathname === "/orders-cart" &&
-                                    "navActive"
-                                  }`}
-                                  to="/orders-cart"
+                                  className="nav-link"
+                                  // to="javascript:void(0)"
+                                  // data-toggle="modal"
+                                  // data-target="#loginModal"
                                 >
-                                  My Orders
+                                  Login
                                 </Link>
                               </li>
+                            ) : (
+                              <li
+                                onClick={logout}
+                                style={{ cursor: "pointer" }}
+                                className="nav-item"
+                              >
+                                <Link className="nav-link">Logout</Link>
+                              </li>
                             )}
-                        </div>
-                      </div>
-                    </li>
 
-                    <li className="nav-item">
-                      <button
-                        className="sunMoonBtn"
-                        onClick={() => dispatch(changeMode())}
-                      >
-                        {logingUser.dayAndNightMode.mode ? (
-                          <img src={sunIcon} />
-                        ) : (
-                          <img src={smoonIcon} />
-                        )}
-                      </button>
-                    </li>
+                            {logingUser.login.token &&
+                              logingUser.login.admin && (
+                                <li className="nav-item">
+                                  <Link
+                                    className={`nav-link ${
+                                      location.pathname ===
+                                        "/vehicle-submission" && "navActive"
+                                    }`}
+                                    to="/vehicle-submission"
+                                  >
+                                    Admin
+                                  </Link>
+                                </li>
+                              )}
+                            {logingUser.login.token &&
+                              !logingUser.login.admin && (
+                                <li className="nav-item">
+                                  <Link
+                                    className={`nav-link ${
+                                      location.pathname === "/orders-cart" &&
+                                      "navActive"
+                                    }`}
+                                    to="/orders-cart"
+                                  >
+                                    My Orders
+                                  </Link>
+                                </li>
+                              )}
+                          </div>
+                        </div>
+                      </li>
+
+                      <li className="nav-item">
+                        <button
+                          className="sunMoonBtn"
+                          onClick={() => dispatch(changeMode())}
+                        >
+                          {logingUser.dayAndNightMode.mode ? (
+                            <img src={sunIcon} />
+                          ) : (
+                            <img src={smoonIcon} />
+                          )}
+                        </button>
+                      </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/">
                           Shipping
@@ -425,7 +430,6 @@ function Header() {
                     </ul>
                   </div>
                 </div>
-               
 
                 <div className="toNv" id="">
                   <ul className="navbar-nav ml-auto">
@@ -443,7 +447,7 @@ function Header() {
                         // data-toggle="modal"
                         // data-target="#myModal"
                       >
-                        <form className="searchForm">
+                        {/* <form className="searchForm">
                           <input
                             type="search"
                             name="search"
@@ -458,7 +462,8 @@ function Header() {
                           <button type="submit">
                             <i className="fa-solid fa-magnifying-glass"></i>
                           </button>
-                        </form>
+                        </form> */}
+                        <Searchbar />
                         {/* <div className="searchBody">
                              <div className="searchAuto" >
                               <p className="searchName">Nikhukki</p>
@@ -478,9 +483,7 @@ function Header() {
                         className="nav-link"
                         style={{
                           color: `${
-                            location.pathname === "/aboutshibnobi"
-                              ? "#000"
-                              : ""
+                            location.pathname === "/aboutshibnobi" ? "#000" : ""
                           }`,
                         }}
                         to="/aboutshibnobi"
@@ -625,17 +628,13 @@ function Header() {
                       </button>
                     </li>
                   </ul>
-                 
                 </div>
               </nav>
             </div>
             <div className="col-md-12 mobileOnlyHide p-0">
               <nav className="navbar navbar-expand secondNavbar">
                 <div className="container-fluid wrapper_second">
-                  <div
-                    className=""
-                    id="navbarNavDropdown"
-                  >
+                  <div className="" id="navbarNavDropdown">
                     <ul className="navbar-nav flex-wrap" id="nav">
                       {/* <li className="nav-item">
                         <div className="dropdown">
@@ -888,7 +887,7 @@ function Header() {
         showForgPass={showForgPass}
         handleCloseForgPass={handleCloseForgPass}
       />
-      {sowAutoCompleate && (
+      {/* {sowAutoCompleate && (
         <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
           <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
             {filteredData <= 0 ? (
@@ -907,13 +906,10 @@ function Header() {
                 );
               })
             )}
-            {/* <NotAvailable
-            className="dataNotFou"
-            text="Hello"
-            /> */}
+            
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }
