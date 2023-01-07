@@ -172,9 +172,11 @@ hr {
 
 .navbar-nav .nav-link {
   font-size: 16px;
-  padding: 8px 15px !important;
+  padding: 8px 15px;
 }
-
+.toNv a.nav-link.navActive {
+  color: #000000 !important;
+}
 .secondNavbar {
   padding: 6px 0px;
 }
@@ -2914,8 +2916,9 @@ p.priceDateList span {
   color: #f7931a !important;
 }
 
-.secondNavbar .navbar-nav li:hover {
-  border-bottom: 5px solid #f7931a;
+
+
+.secondNavbar .navbar-nav li:hover a, .dropdown:hover .dropdown-content a{
   transition: 0.5s;
   color: #f7931a;
 }
@@ -3073,10 +3076,7 @@ table.showroomCol tr td:last-child {
   margin: 0 auto;
 }
 
-.processPy {
-  text-align: center;
-  padding: 40px;
-}
+
 
 .ProcessPymt img {
   border: 1px solid #181818;
@@ -3087,7 +3087,7 @@ table.showroomCol tr td:last-child {
 }
 
 .processPy h2 {
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .searchBody {
@@ -3267,23 +3267,10 @@ label {
   margin: 5px;
 }
 
-.payTPop .modal-content {
-  border: 0px solid rgba(0, 0, 0, .2);
-  background: #000;
-  top: 90px;
-}
-
 .payTPop .modal-header {
   border-bottom: 1px solid #1b1b1b00;
 }
 
-.payTPop .modal-content {
-  border: 0px solid rgba(0, 0, 0, .2);
-  background: #000;
-  top: 90px;
-  box-shadow: 1px 1px 65px 0px #ffd7a738;
-  border-radius: 10px;
-}
 
 .payTPop .modal-content {
   border: 0px solid rgba(0, 0, 0, .2);
@@ -3293,11 +3280,14 @@ label {
   border-radius: 10px;
   border: 1px solid #37230a;
   padding: 10px;
+  width: calc(100% - 33%);
+  margin: 0 auto;
+
 }
 
 .processPy {
-  text-align: center;
-  padding: 40px;
+  text-align: left;
+  padding: 40px 0px;
   border-top: 1px solid #37230a;
 }
 
@@ -3413,7 +3403,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
 
 .ress {
   display: flex;
-  justify-content: center;
+  justify-content: unset;
   align-items: baseline;
 }
 
@@ -3484,7 +3474,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
 .searchForm input {
   background-color: #00000000;
   border-bottom: 1px solid;
-  width: 400px;
+  min-width: 400px;
   font-size: 17px;
   padding: 0 10px;
 }
@@ -3581,17 +3571,18 @@ video#myVideo {
 .carLottery .heroText {
   padding: 0;
 }
-
 .autoCom {
   background: black;
   position: absolute;
-  width: 24.1%;
+  width: calc(100% - 79%);
   margin: 0 auto;
-  left: 54.8%;
-  top: -46px;
+  left: 54.1%;
+  top: 56px;
   padding: 10px;
   z-index: 1;
 }
+
+
 
 p.title {
   font-size: 14px;
@@ -4074,6 +4065,7 @@ a.searchList {
   margin: 0 auto;
   left: 0;
   z-index: 9999999;
+  top: 0;
 }
 
 .mainImg img {
@@ -4208,7 +4200,7 @@ ul.img_sec li a img {
 
 .toNv ul.navbar-nav.ml-auto {
   position: relative;
-  right: 1%;
+  right: 7%;
 }
 
 button.sunMoonBtn img {
@@ -4234,14 +4226,13 @@ ul.navbar-nav.mobileOnly form.searchForm {
 
 .toNv ul.navbar-nav.ml-auto {
   position: relative;
-  right: 1%;
+  right: 7%;
   display: flex;
   justify-content: flex-end;
 }
+.toNv .navbar-nav .nav-link { padding: 8px 35px;}
 
-.dddd {
-  display: none;
-}
+.dddd { display: none;}
 
 .toNv {
   /* position: relative;
@@ -4281,37 +4272,31 @@ ul.navbar-nav.mobileOnly form.searchForm {
 
 div#navbarNavDropdown {
   width: 80%;
-  background: black;
+  background: #333;
   display: flex;
   justify-content: flex-end;
+  border-top-left-radius: 50px;
 }
 
-ul#nav {
-  color: black;
-  width: 100% !important;
-  justify-content: space-evenly;
+ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
+
+.secondNavbar ul{ padding: 7px 0;}
+
+.modal-dialog{ max-width: 100%!important; width: 65%;}
+
+.modal-title{ font-size: 38px;}
+
+.modal-body label{ font-size: 18px;}
+
+.checRegistered{ font-size: 16px;}
+.toNv { border-top-left-radius: 50px;}
+.fp {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
-
-.secondNavbar ul{
-  padding: 7px 0;
-}
-
-.modal-dialog{
-  max-width: 100%!important;
-  width: 65%;
-}
-
-.modal-title{
-  font-size: 38px;
-}
-
-
-.modal-body label{
-  font-size: 18px;
-}
-
-.checRegistered{
-  font-size: 16px;
+.fp span{
+  font-size: 14px;    font-family: 'Poppins', sans-serif;
 }
 
 

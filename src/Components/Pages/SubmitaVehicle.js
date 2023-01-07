@@ -113,7 +113,7 @@ const SubmitaVehicle = () => {
                 </Link> */}
               </p>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Standard</h4>
@@ -195,7 +195,7 @@ const SubmitaVehicle = () => {
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4">
+            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus pro">
                 <div className="plan_cardHead">
                   <h4>Pro</h4>
@@ -277,7 +277,7 @@ const SubmitaVehicle = () => {
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>Premiere</h4>
@@ -359,7 +359,7 @@ const SubmitaVehicle = () => {
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
                   <h4>Exclusive</h4>
@@ -445,7 +445,7 @@ const SubmitaVehicle = () => {
             </div>
 
             <div className="col-lg-3"></div>
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Classified Ads</h4>
@@ -526,7 +526,7 @@ const SubmitaVehicle = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 ">
+            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>Showroom</h4>

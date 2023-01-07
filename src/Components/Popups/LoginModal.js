@@ -154,39 +154,45 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
-                <Checkbox
-                  style={{ color: "#F49D1A" }}
-                  onClick={() => setShowPassWord(!showPassWord)}
-                >
-                  Show password
-                </Checkbox>
+                </div>
+                <div className="col-md-12 fp">
+                  <Checkbox
+                    style={{ color: "#F49D1A" }}
+                    onClick={() => setShowPassWord(!showPassWord)}
+                  >
+                    Show password
+                  </Checkbox>
+              
+                  <div onClick={handlePasswordBtn} className="form-group">
+                    <a href="javascript:void(0)">Forgot your password?</a>
+                  </div>  
+                </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  {loginLoading ? (
+                    <SmallSpinner />
+                  ) : (
+                    <button button="submit" className="btn w-100">
+                      Log In
+                    </button>
+                  )}
+                </div>
               </div>
-
-              <div onClick={handlePasswordBtn} className="form-group">
-                <a href="javascript:void(0)">Forgot your password?</a>
-              </div>
-              <div className="form-group">
-                {loginLoading ? (
-                  <SmallSpinner />
-                ) : (
-                  <button button="submit" className="btn w-100">
-                    Log In
-                  </button>
-                )}
-              </div>
-              <div className="form-group">
-                <p className="checRegistered">
-                  Not registered with Gas Guzzlrs?
-                  <span onClick={handleRegister}>
-                    <a
-                      className="signup"
-                      style={{ marginLeft: "10px" }}
-                      href="javascript:void(0)"
-                    >
-                      Sign up
-                    </a>
-                  </span>
-                </p>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <p className="checRegistered">
+                    Not registered with Gas Guzzlrs?
+                    <span onClick={handleRegister}>
+                      <a
+                        className="signup"
+                        style={{ marginLeft: "10px" }}
+                        href="javascript:void(0)"
+                      >
+                        Sign up
+                      </a>
+                    </span>
+                  </p>
+                </div>
               </div>
             </form>
           </div>
