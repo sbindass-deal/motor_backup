@@ -40,16 +40,7 @@
 	.toNv .navbar-nav .nav-link {padding: 8px 18px ;	}
 	.toNv .navbar-nav .nav-link {padding: 8px 18px ;}
 
-	.autoCom {
-		background: black;
-		position: absolute;
-		width: calc(100% - 75.9%);
-		margin: 0 auto;
-		left: 47.8%;
-		top: 56px;
-		padding: 10px;
-		z-index: 1;
-	  }
+	
 		.autoCom {
 			background: black;
 			position: absolute;
