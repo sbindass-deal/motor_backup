@@ -73,5 +73,6 @@ body.light{  background-color: #fff; color: #000;}
 .light .autoCom p.title { color: #f7931b;}
 .light .rafSect { background: #e0e0e0;
 }
-
+.light .ant-select-dropdown { background-color: #fff;}
+.light .ant-select-item.ant-select-item-option{color: #000;}
 
