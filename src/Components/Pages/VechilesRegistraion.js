@@ -258,7 +258,7 @@ const VechilesRegistraion = () => {
     setInformation({ ...information, [Name]: Value });
   };
 
-  const informationSubmitHandler = (e) => {
+  const informationSubmitHandler = async (e) => {
     e.preventDefault();
 
     const {
@@ -987,7 +987,7 @@ const VechilesRegistraion = () => {
                     <form onSubmit={basicFactSubmitHandler} className="pt-3">
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
+                          {/* <div className="form-group">
                             <label>What is the VIN?</label>
                             <input
                               value={basicfact.vin}
@@ -1000,11 +1000,17 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             />
-                            <p className="small">
-                              *Please don't forget to include photos of the VIN
-                              during the photo upload process.
-                            </p>
-                          </div>
+                            
+                          </div> */}
+                          <FormInput value={basicfact.vin}
+                              onChange={basicFactOnChange}
+                              name="vin"
+                              label="What is the VIN"
+                              placeholder="Enter VIN"
+                              errorMessage="Username should be 17 characters and shouldn't include any special character!"                              
+                              pattern="^[A-Za-z0-9]{17}$"
+                              required={true}
+                               />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
