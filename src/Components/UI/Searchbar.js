@@ -16,14 +16,15 @@ const Searchbar = () => {
     setOptions(res);
   };
   return (
-    <AutoComplete
-      style={{
-        width: 200,
-      }}
-      onSearch={handleSearch}
-      placeholder="input here"
-      options={options}
-    />
+    <div className="searchX">
+        <AutoComplete
+          className="searchSec"
+          onSearch={handleSearch}
+          placeholder="Search.."
+          options={options}
+        />
+        <i className="fa-solid fa-magnifying-glass"></i>
+    </div>
   );
 };
 

@@ -4299,10 +4299,38 @@ ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
   font-size: 14px;    font-family: 'Poppins', sans-serif;
 }
 
-select {
+/* select {
   background-color: #fff !important;
   color: #fff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+} */
+.searchSec .ant-select-selector { min-width: 400px; background-color: transparent; border:none !important; border-bottom: 1px solid #fff !important; border-radius: 0px;}
+.searchSec .ant-select-selector { background-color: transparent !important;}
+.ant-select-dropdown { background-color: #111;}
+.ant-select-item.ant-select-item-option{color: #fff;}
+input.ant-select-selection-search-input {
+  color: #fff !important;
+}
+.searchSec .ant-select-selection-search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff !important;
+  opacity: 1; /* Firefox */
+}
+
+.searchSec .ant-select-selection-search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff !important;
+}
+
+.searchSec .ant-select-selection-search-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #fff !important;
+}
+
+.searchX svg.svg-inline--fa.fa-magnifying-glass {
+  right: 27px;
+  position: relative;
+}
+.searchX {
+  position: relative;
+  top: -3px;
 }
 
 

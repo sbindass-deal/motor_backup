@@ -183,42 +183,10 @@ function Header() {
                     id="navb"
                   >
                     <ul className="navbar-nav mobileOnly">
-                      <li
-                        // onClick={() => setShowSearchModal(true)}
-                        className="nav-item"
-                        style={{ cursor: "pointer" }}
+                      <li className="nav-item"
+                        // style={{ cursor: "pointer" }}
                       >
-                        <Link
-                          className="nav-link"
-                          // to="javascript:void(0)"
-                          // data-toggle="modal"
-                          // data-target="#myModal"
-                        >
-                          {/* <form className="searchForm">
-                          <input
-                            type="search"
-                            name="search"
-                            value={searchValue}
-                            onChange={handleSearch}
-                            onBlur={handleBlur}
-                            onFocus={handleFocus}
-                            autoComplete="off"
-                            placeholder="Search..."
-                            required
-                          />
-                          <button type="submit">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </form> */}
-
-                          {/* <div className="searchBody">
-                             <div className="searchAuto" >
-                              <p className="searchName">Nikhukki</p>
-                              <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
-                              </div>
-                        </div>
-                        <i className="fa-solid fa-magnifying-glass"></i> */}
-                        </Link>
+                        <Searchbar />
                       </li>
 
                       <li className="nav-item">
