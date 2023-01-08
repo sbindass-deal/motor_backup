@@ -4304,7 +4304,7 @@ ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
   color: #fff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 } */
-.searchSec .ant-select-selector { min-width: 400px; background-color: transparent; border: 1px solid;}
+.searchSec .ant-select-selector { min-width: 400px; background-color: transparent; border:none !important; border-bottom: 1px solid #fff !important; border-radius: 0px;}
 .searchSec .ant-select-selector { background-color: transparent !important;}
 .ant-select-dropdown { background-color: #111;}
 .ant-select-item.ant-select-item-option{color: #fff;}
