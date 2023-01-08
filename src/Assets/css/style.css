@@ -4311,6 +4311,18 @@ ul#nav { color: black; width: 100% !important; justify-content: space-evenly;}
 input.ant-select-selection-search-input {
   color: #fff !important;
 }
+.searchSec .ant-select-selection-search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff !important;
+  opacity: 1; /* Firefox */
+}
+
+.searchSec .ant-select-selection-search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff !important;
+}
+
+.searchSec .ant-select-selection-search-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #fff !important;
+}
 
 .searchX svg.svg-inline--fa.fa-magnifying-glass {
   right: 27px;

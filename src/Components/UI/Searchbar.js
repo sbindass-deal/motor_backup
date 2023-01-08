@@ -20,7 +20,7 @@ const Searchbar = () => {
         <AutoComplete
           className="searchSec"
           onSearch={handleSearch}
-          placeholder="input here"
+          placeholder="Search.."
           options={options}
         />
         <i className="fa-solid fa-magnifying-glass"></i>
