@@ -21,16 +21,7 @@ function VehicleSubmission() {
   useEffect(() => {
     fetchLotaryApi();
   }, []);
-  const handleApprove = async (id) => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicleApprove/${id}`
-      );
-      window.location.reload(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   const handleReject = async (id) => {
     try {
       const res = await axios.get(
@@ -79,6 +70,7 @@ function VehicleSubmission() {
                       <th scope="col" style={{ textAlign: "right" }}>
                         Action
                       </th>
+                      <th>status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,34 +90,26 @@ function VehicleSubmission() {
                             <td>{data.year}</td>
                             <td>{data.make}</td>
                             <td className="actionBtn vs">
-                              {data.approved === "0" && (
-                                <button
-                                  className="green"
-                                  onClick={() => handleApprove(data.id)}
+                              {data.status !== null || data.approved == 11 ? (
+                                <Link
+                                  to={`/vehicle-submission/${data.id}`}
+                                  className="btn"
                                 >
-                                  {/* <i class="fa-solid fa-pencil"></i> */}
-                                  Approve
-                                </button>
-                              )}
-                              {/* {data.approved === "1" && (
-                                <button
-                                  className="bg-danger"
-                                  onClick={() => handleReject(data.id)}
-                                >
-                                  <i class="fa-solid fa-pencil"></i>
+                                  {/* <i class="fa-solid fa-trash-can"></i> */}
                                   Reject
-                                </button>
-                              )} */}
-                              {/* <button>
-                                <i class="fa-sharp fa-solid fa-plus"></i>
-                              </button> */}
-                              <Link
-                                to={`/vehicle-submission/${data.id}`}
-                                className="btn"
-                              >
-                                {/* <i class="fa-solid fa-trash-can"></i> */}
-                                View
-                              </Link>
+                                </Link>
+                              ) : (
+                                <Link
+                                  to={`/vehicle-submission/${data.id}`}
+                                  className="btn"
+                                >
+                                  {/* <i class="fa-solid fa-trash-can"></i> */}
+                                  View
+                                </Link>
+                              )}
+                            </td>
+                            <td>
+                              <span>{data.status && data.status.title}</span>
                             </td>
                           </tr>
                         ))

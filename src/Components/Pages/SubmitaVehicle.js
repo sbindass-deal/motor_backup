@@ -32,7 +32,6 @@ const SubmitaVehicle = () => {
   const handleShowPayment = (data) => {
     setShowPayment(true);
     setPlanData(data);
-    console.log(data);
   };
 
   const handlePlan = () => {
@@ -152,7 +151,7 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {standardPlan ? (
+                  {/* {standardPlan ? (
                     <Link to="/vechiles" className="gry_btn">
                       SUBMIT VEHICLE
                     </Link>
@@ -170,7 +169,10 @@ const SubmitaVehicle = () => {
                     >
                       BUY PLAN
                     </button>
-                  )}
+                  )} */}
+                  <Link to="/vechiles" className="gry_btn">
+                    SUBMIT VEHICLE
+                  </Link>
                 </div>
               </div>
 
@@ -234,7 +236,7 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {proPlan ? (
+                  {/* {proPlan ? (
                     <Link to="/vechiles" className="gry_btn">
                       SUBMIT VEHICLE
                     </Link>
@@ -252,7 +254,10 @@ const SubmitaVehicle = () => {
                     >
                       BUY PLAN
                     </button>
-                  )}
+                  )} */}
+                  <Link to="/vechiles" className="gry_btn">
+                    SUBMIT VEHICLE
+                  </Link>
                 </div>
               </div>
 
@@ -316,7 +321,7 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {premierPlan ? (
+                  {/* {premierPlan ? (
                     <Link to="/vechiles" className="gry_btn">
                       SUBMIT VEHICLE
                     </Link>
@@ -334,7 +339,10 @@ const SubmitaVehicle = () => {
                     >
                       BUY PLAN
                     </button>
-                  )}
+                  )} */}
+                  <Link to="/vechiles" className="gry_btn">
+                    SUBMIT VEHICLE
+                  </Link>
                 </div>
               </div>
 
@@ -484,7 +492,7 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {classifiedPlan ? (
+                  {/* {classifiedPlan ? (
                     <Link to="/vechiles" className="gry_btn">
                       SUBMIT VEHICLE
                     </Link>
@@ -502,7 +510,10 @@ const SubmitaVehicle = () => {
                     >
                       BUY PLAN
                     </button>
-                  )}
+                  )} */}
+                  <Link to="/vechiles" className="gry_btn">
+                    SUBMIT VEHICLE
+                  </Link>
                 </div>
               </div>
 
@@ -565,7 +576,7 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {showroomPlan ? (
+                  {/* {showroomPlan ? (
                     <Link to="/vechiles" className="gry_btn">
                       SUBMIT VEHICLE
                     </Link>
@@ -584,7 +595,10 @@ const SubmitaVehicle = () => {
                     >
                       BUY PLAN
                     </button>
-                  )}
+                  )} */}
+                  <Link to="/vechiles" className="gry_btn">
+                    SUBMIT VEHICLE
+                  </Link>
                 </div>
               </div>
 

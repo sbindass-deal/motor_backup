@@ -17,11 +17,15 @@ import CookiesSetting from "./CookiesSetting";
 
 import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import StripeCheckout from "react-stripe-checkout";
 // import UploadMImages from "./UploadMImages";
 
 const VechilesRegistraion = () => {
+  const logingUser = useSelector((state) => state);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [file, setFile] = useState([]);
 
   const [file1, setFile1] = useState([]);
@@ -38,6 +42,20 @@ const VechilesRegistraion = () => {
   const [showError, setShowError] = useState(true);
 
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
+  const handleClosePayment = () => {
+    setShowPayment(false);
+  };
+  const handleShowPayment = (data) => {
+    setShowPayment(true);
+  };
+  const onToken = (token, addresses) => {
+    console.log(token, addresses);
+    if (token !== null) {
+      setShowPayment(false);
+      notify("Form submit successfully!");
+    }
+  };
+
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -333,9 +351,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
 
     axios
       .post(`${url}vehicles`, {
@@ -406,7 +424,7 @@ const VechilesRegistraion = () => {
         setSubmitLoading(false);
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
-        notify("Form submit successfully!");
+        handleShowPayment();
         setNamefield({
           name: "",
           email: "",
@@ -2050,6 +2068,41 @@ const VechilesRegistraion = () => {
           {amlPolicy ? <CookiesSetting /> : <TermsOfUse />}
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
+      </Modal>
+
+      <Modal show={showPayment} onHide={handleClosePayment} className="payTPop">
+        <Modal.Header>
+          <Modal.Title>Payment Process</Modal.Title>
+          <button variant="secondary" onClick={handleClosePayment}>
+            X
+          </button>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="processPy">
+            <h2> Name : user </h2>
+            <h3 className="price__"> Type : pro</h3>
+            <h3 className="price__">Price : $699</h3>
+
+            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <br />
+            <p>Choose Payment Option:</p>
+            <div className="ress">
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
       </Modal>
     </div>
   );

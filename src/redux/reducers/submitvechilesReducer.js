@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  vehicleData: [],
   step_one: false,
   step_two: false,
   step_three: false,
@@ -28,10 +29,19 @@ export const submitdetails = createSlice({
     selectPlan: (state, action) => {
       state.submitPlan = action.payload;
     },
+    storeVehicleData: (state, action) => {
+      state.vehicleData = action.payload;
+    },
   },
 });
 
-export const { step_one, step_two, step_three, contactinfosave, selectPlan } =
-  submitdetails.actions;
+export const {
+  step_one,
+  step_two,
+  step_three,
+  contactinfosave,
+  selectPlan,
+  storeVehicleData,
+} = submitdetails.actions;
 
 export default submitdetails.reducer;
