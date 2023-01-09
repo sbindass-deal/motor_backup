@@ -54,15 +54,10 @@
 
 
 @media (max-width: 1366px) {
-	table.cartSection.cartth tr th:first-child {
-		width: 66%;
-	}
-
-	.autoCom {
-		width: 29.5%;
-		left: 45%;
-	}
-
+	table.cartSection.cartth tr th:first-child {	width: 66%;}
+	.autoCom {	width: 29.5%;	left: 45%;	}
+	.featuredAuctions_Slide.delair .card_postImg.dlr {	width: 243px;	height: 152px;	}
+	.featuredAuctions_Slide.delair .card_postImg img {	object-fit: contain;}
 
 }
 
@@ -130,6 +125,7 @@
 	div#navbarNavDropdown {	width: 77%;	}
 	.searchForm {width: 345px;}
 	.autoCom {width: 33.5%; left: 38.6%; top: 54px;}
+	.featuredAuctions_Slide.delair .card_postImg.dlr {width: 85px; height: 102px;	}
 
 }
 
@@ -307,6 +303,8 @@
 	a.navbar-brand {top: 12px;left: 22px;	z-index: 0;	}
 	.mobileOnlyHide { display: none;	}
 	.navbar-collapse.mobileOnly.collapse.show {	padding-top: 20px;	padding-left: 2%;}
+	.featuredAuctions_Slide.delair .card_post {	display: block;}
+	
 }
 
 @media (max-width: 860px) {
@@ -386,6 +384,9 @@
 }
 
 @media (max-width: 767px) {
+
+	.featuredAuctions_Slide.delair .slick-list {	text-align: center;	}
+	.featuredAuctions_Slide.delair .card_postImg.dlr { margin: 0 auto;	}
 	.modal-title {
 		font-size: 18px;
 	}

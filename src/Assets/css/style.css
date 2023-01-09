@@ -4128,11 +4128,14 @@ a.searchList {
   width: 100%;
 }
 
-.featuredAuctions_Slide.delair .card_postImg {
-  width: 500px;
-  height: 320px;
-}
 
+.featuredAuctions_Slide.delair .card_post{
+  width: 100%;
+}
+.featuredAuctions_Slide.delair .card_postImg.dlr {
+  width: 190px;
+  height: 130px;
+}
 .Latest_B {
   display: flex;
   height: 280px;
@@ -4332,7 +4335,18 @@ input.ant-select-selection-search-input {
   position: relative;
   top: -3px;
 }
+.featuredAuctions_Slide.delair .card_postInfo h5 {
+  color: #fd8d10;
+}
 
+.topTile {
+  background: #000;
+  text-align: center;
+  padding: 20px 20px;
+  margin: 20px auto;
+}
+.topTile h5 {  font-size: 18px;}
+.topTile h5 a  { color: #fd8d10;}
 
 @media (max-width: 860px) {
 P{

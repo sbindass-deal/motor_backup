@@ -126,7 +126,7 @@ function Dealer() {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
     nextArrow: <SampleNextArrow />,
@@ -139,7 +139,7 @@ function Dealer() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -148,7 +148,7 @@ function Dealer() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 1,
         },
@@ -168,6 +168,9 @@ function Dealer() {
       <section className="storeHeroSection dealer align-items-center">
         <div className="container">
           <div className="row">
+            <div className="topTile">
+                <h5>New to Gas Guzzlrs? <a href="#">Learn how it works.</a></h5>
+            </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">
                 <li className="post_search">
@@ -226,7 +229,7 @@ function Dealer() {
               <h2>Featured Dealer</h2>
             </div>
 
-            <div className="col-12" style={{  }}>
+            <div className="col-12 ptb_80" style={{  }}>
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
@@ -242,21 +245,14 @@ function Dealer() {
                 <Slider ref={slide} {...settings}>
                   <div className="inner-slider">
                     <div className="card_post">
-                      <div className="card_postImg">
+                      <div className="card_postImg dlr">
                         <img src={Img_w} alt="Img_w"/>
                       </div>
                       <div className="card_postInfo">
-                        <h4>Dealer Name</h4>
+                        <h5>Dealer Name</h5>
                         <p>
                           This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes  Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                          Royale Metallic over a black.
                         </p>
                         {/* <ul className="labelList">
                           <li>
@@ -271,21 +267,14 @@ function Dealer() {
                   </div>
                   <div>
                     <div className="card_post">
-                      <div className="card_postImg">
+                      <div className="card_postImg dlr">
                         <img src={Img_bmw} alt="Img_bmw" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>Dealer Name</h4>
+                        <h5>Dealer Name</h5>
                         <p>
-                        This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes  Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                          This 2009 Aston Martin DBS is finished in Casino
+                          Royale Metallic over a black.
                         </p>
                         {/* <ul className="labelList">
                           <li>
@@ -300,21 +289,14 @@ function Dealer() {
                   </div>
                   <div>
                     <div className="card_post">
-                      <div className="card_postImg">
+                      <div className="card_postImg dlr">
                         <img src={Img_m} alt="Img_01" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>Dealer Name</h4>
+                        <h5>Dealer Name</h5>
                         <p>
-                        This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes  Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                          This 2009 Aston Martin DBS is finished in Casino
+                          Royale Metallic over a black.
                         </p>
                         {/* <ul className="labelList">
                           <li>
