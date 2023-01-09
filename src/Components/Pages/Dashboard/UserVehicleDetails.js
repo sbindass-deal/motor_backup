@@ -12,6 +12,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 
 const UserVehicleDetails = () => {
+  const { id } = useParams();
   const [viewAll, setViewAll] = useState(false);
   const [descValue, setDescValue] = useState({
     description1: "",
@@ -22,27 +23,38 @@ const UserVehicleDetails = () => {
   };
   const submitApprove = (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
-        id: id,
-        approved: "approve",
-        desc1: descValue.description1,
-        desc2: descValue.description2,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          Navigate("/vehicle-submission");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    console.log("******", descValue);
+    if (vehicle.approved === null) {
+      axios
+        .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+          approve: 1,
+          id,
+          desc1: descValue.description1,
+          desc2: descValue.description2,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      axios
+        .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+          approve: 11,
+          id,
+          desc1: descValue.description1,
+          desc2: descValue.description2,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 
   const slide = useRef(null);
-  const { id } = useParams();
   const [vehicle, setVehicle] = useState({});
   const fetchVehicleApi = async () => {
     try {
@@ -132,7 +144,6 @@ const UserVehicleDetails = () => {
       },
     ],
   };
-  // console.log("vehicle##",vehicle)
 
   return (
     <div>
@@ -499,7 +510,7 @@ const UserVehicleDetails = () => {
                   ></textarea>{" "}
                   <br />
                   <button className="btn btn-warning m-3" type="submit">
-                    Approve
+                    {vehicle.approved === null ? "Approve" : "Reject"}
                   </button>
                 </div>
               </form>
