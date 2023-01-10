@@ -85,7 +85,7 @@ function Home() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -127,7 +127,7 @@ function Home() {
               <h2>Featured Auctions</h2>
             </div>
 
-            <div className="col-12" style={{ height: "550px" }}>
+            <div className="col-12 slider_ht" >
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
