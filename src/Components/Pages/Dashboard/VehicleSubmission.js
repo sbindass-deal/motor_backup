@@ -29,7 +29,7 @@ function VehicleSubmission() {
       );
       window.location.reload(false);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
