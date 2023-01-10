@@ -188,10 +188,10 @@ function DealerProfile() {
             <div className="col-12 col-md-6">
               <img src={about_1} />
             </div>
-            <div className="col-12 col-md-6 d-flex align-items-center">
+            <div className="col-12 col-md-6 d-flex align-items-center mt-50">
               <div>
                 <h3>About Dealer</h3>
-                
+
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
