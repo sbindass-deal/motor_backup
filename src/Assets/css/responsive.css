@@ -104,14 +104,9 @@
 		right: 6%;
 	
 	}
-	header {height: 104px;}
+	header {height: 114px;}
 	.modal-title {	font-size: 24px;}
 	.searchSec .ant-select-selector {min-width: 332px;}
-	h2.title_combo{ font-size: 26px;}
-	.plan_cardHead h4 {font-size: 18px; padding: 13px 10px;}
-	.dfk { font-size: 26px;}
-	.switch .react-switch-label {width: 50px; height: 20px;}
-	.switch .react-switch-label .react-switch-button {width: 15px; height: 15px;}
 
 }
 
@@ -126,7 +121,7 @@
 	.navbar-brand img {	width: 161px !important;}
 	.secondNavbar .navbar-nav:before {	width: 82%;	}
 	.searchForm input {	width: 100%;}
-	header {height: 105px;	}
+	header {height: 109px;	}
 	div#navbarNavDropdown {	width: 77%;	}
 	.searchForm {width: 345px;}
 	.autoCom {width: 33.5%; left: 38.6%; top: 54px;}
@@ -426,11 +421,11 @@
 	}
 
 	h1 {
-		font-size: 30px;
+		font-size: 34px;
 	}
 
 	h2 {
-		font-size: 25px;
+		font-size: 28px;
 	}
 
 	.scrollDownIc img {
@@ -593,7 +588,10 @@
 		height: 81vh;
 	}
 
-	
+	a.navbar-brand {
+		top: 25px;
+		position: fixed;
+	}
 
 	button.sunMoonBtn {
 		position: absolute;
@@ -656,13 +654,6 @@
 	h1 {font-size: 2.5em;}
 	.payTPop .modal-content {width: calc(80% - -67%);}
 	.navbar-expand-md .navbar-toggler {	top: 22px;	}
-	h2.title_combo {font-size: 25px;}
-	h1.text, .bgHolder h1.text-back {
-		font-size: 28px;
-	}
-	.searchSec .ant-select-selector {
-		min-width: 354px;
-	}
 }
 
 @media (max-width: 575px) {
@@ -768,7 +759,7 @@
 	}
 
 	.heroText h1 {
-		font-size: 28px;
+		font-size: 24px;
 	}
 
 	.card_postInfo h4 {
@@ -776,7 +767,7 @@
 	}
 
 	.nextArrow {
-		bottom: -8px;
+		bottom: -78px;
 	}
 
 }
@@ -808,21 +799,14 @@
 	}
 
 	h1 {
-		font-size: 28px;
+		font-size: 2.5em;
 	}
 }
 
-@media (max-width: 414px) {
-
-}
+@media (max-width: 414px) {}
 
 @media (max-width: 375px) {
 	h1 {
-		font-size: 28px;
-	}
-}
-@media (min-width: 360px) {
-	h1 {
-		font-size: 28px;
+		font-size: 2.5em;
 	}
 }
