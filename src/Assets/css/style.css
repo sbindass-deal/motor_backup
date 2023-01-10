@@ -51,28 +51,28 @@ h6 {
 }
 
 h1 {
-  font-size: 44px;
+  font-size: 40px;
   font-weight: 700;
 }
 
 h2 {
-  font-size: 40px;
-}
-
-h3 {
   font-size: 30px;
 }
 
-h4 {
-  font-size: 24px;
+h3 {
+  font-size: 22px;
 }
 
-h5 {
+h4 {
   font-size: 20px;
 }
 
+h5 {
+  font-size: 18px;
+}
+
 h6 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 ul {
@@ -166,7 +166,7 @@ hr {
 
 
 .navbar {
-  padding: 10px 0px;
+  padding: 0px 0px 10px;
   justify-content: space-between;
 }
 
@@ -2099,6 +2099,13 @@ body.lightTheme {
   background-size: cover;
   position: relative;
 }
+.storeHeroSection.dealer.detail {
+  padding: 50px 0px;
+  min-height: 500px;
+  background: url(../images/dealer-d.png) center no-repeat;
+  background-size: cover;
+  position: relative;
+}
 
 .pagination {}
 
@@ -2780,7 +2787,7 @@ li.nav-item.afterLogin span {
 }
 
 header {
-  height: 116px;
+  height: 107px;
   border: 1px solid #333;
 }
 
@@ -4347,6 +4354,46 @@ input.ant-select-selection-search-input {
 }
 .topTile h5 {  font-size: 18px;}
 .topTile h5 a  { color: #fd8d10;}
+
+.galleryImgSect img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.gallery .col-4,.gallery .col-6, .gallery .col-12 {
+  margin: 0;
+  padding: 5px 5px;
+}
+.galleryImgSect {
+  width: 450px;
+  height: 350px;
+  overflow: hidden;
+}
+.col-12 .galleryImgSect {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+.verticle .galleryImgSect {
+  min-height: 710px;
+}
+
+:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.ant-select-focused:where(.css-dev-only-do-not-override-1hyej8k).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+  border-color: transparent !important;
+  border-bottom: 1px solid #fff !important;
+  box-shadow: 0 0 0 0px rgba(5, 145, 255, 0.1) !important;
+  border-inline-end-width: undefinedpx!important;
+  outline: 0;
+}
+
+.col-12.slider_ht {
+  height: 550px;
+}
 
 @media (max-width: 860px) {
 P{
