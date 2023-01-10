@@ -14,7 +14,6 @@ import car_03 from "../../../Assets/images/car_03.jpg";
 import car_04 from "../../../Assets/images/car_04.jpg";
 import img_05 from "../../../Assets/images/img_05.jpg";
 import img_06 from "../../../Assets/images/img_06.jpg";
-import Img_01 from "../../../Assets/images/img_01.jpg";
 import Img_02 from "../../../Assets/images/img_02.jpg";
 import Img_w from "../../../Assets/images/wox.png";
 import Img_bmw from "../../../Assets/images/bmw.png";
@@ -320,7 +319,7 @@ function Dealer() {
         </div>
       </section>
 
-      <section className="pt_80 mobileSpec" id="">
+      {/* <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
@@ -388,9 +387,7 @@ function Dealer() {
         <h2>More Inventory</h2>
       </div>
 
-      {/* {loading ? (
-        <SmallSpinner spin={true} />
-      ) : ( */}
+     
       <InfiniteScroll
         dataLength={filterData.length}
         next={fetchMoreData}
@@ -468,7 +465,7 @@ function Dealer() {
             </div>
           </div>
         </section>
-      </InfiniteScroll>
+      </InfiniteScroll> */}
 
       {/* )} */}
     </>

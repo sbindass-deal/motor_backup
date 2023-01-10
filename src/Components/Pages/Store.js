@@ -4,12 +4,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import car_01 from "../../Assets/images/car_01.jpg";
 import SmallSpinner from "../UI/SmallSpinner";
+import Dealer from "./dealer/Dealer";
 import FilteredModal from "./FilteredModal";
+import Img_01 from "../../Assets/images/img_01.jpg";
 
 function Store() {
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [loading, setLoader] = useState(true);
+  const [loading, setLoader] = useState(false);
   const [vehicleData, setVehicleData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
@@ -22,10 +24,9 @@ function Store() {
     setShowModal(true);
   };
   const fetchStoreVehicleApi = async () => {
+    setLoader(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
-      );
+      const response = await axios.get(`${process.env.REACT_APP_URL}vehicles`);
       const newData = response.data.data;
       setTotalResult(response.data.count);
       setVehicleData(newData);
@@ -47,92 +48,98 @@ function Store() {
     margin: 6,
     padding: 8,
   };
-  console.log("hello", page);
-  const fetchMoreData = async () => {
-    console.log(page, "hello");
+  // const fetchMoreData = async () => {
+  //   console.log(page, "hello");
 
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
-      );
-      const newData = await response.data.data;
-      setTotalResult(response.data.count);
-      setVehicleData(vehicleData.concat(newData));
-      setFilterData(filterData.concat(newData));
-      setPage(page + 10);
+  //   try {
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_URL}vehiclePagination/${page}`
+  //     );
+  //     const newData = await response.data.data;
+  //     setTotalResult(response.data.count);
+  //     setVehicleData(vehicleData.concat(newData));
+  //     setFilterData(filterData.concat(newData));
+  //     setPage(page + 10);
 
-      setLoader(false);
-    } catch (err) {
-      console.log(err);
-      setLoader(false);
-    }
-  };
+  //     setLoader(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //     setLoader(false);
+  //   }
+  // };
 
   return (
     <>
-      <section className="storeHeroSection d-flex align-items-center">
+      <Dealer />
+      <section className="pt_80 mobileSpec" id="">
         <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-8 offset-lg-2">
-              <div className="heroText">
-                <h1>We have over 20 stores around the UK</h1>
-                {/* <a href="#" className="btn">
-                  VIEW INVENTORY
-                </a> */}
-              </div>
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Just In Showroom!</h2>
             </div>
-          </div>
-        </div>
-      </section>
+            <div className="col-12 Latest_B ">
+              <ul className="img_sec">
+                <li>
+                  <a href="#" className="img_1">
+                    <img src={Img_01} />
+                  </a>
+                </li>
+              </ul>
 
-      <section className="pt_80 pt_sm_50">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <ul className="postTopOption">
-                <li className="post_search">
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    name="search"
-                    value={searchInputValue}
-                    onChange={(e) => {
-                      let value = e.target.value;
-                      setSearchInputValue(e.target.value);
-
-                      if (value === "") {
-                        setFilterData(vehicleData);
-                      } else {
-                        setFilterData(
-                          vehicleData
-                            .filter(
-                              (data) =>
-                                data.make.toLowerCase().includes(value) ||
-                                data.make.toUpperCase().includes(value) ||
-                                data.model.toLowerCase().includes(value) ||
-                                data.model.toUpperCase().includes(value) ||
-                                data.year.includes(value) ||
-                                data.name.toLowerCase().includes(value) ||
-                                data.name.toUpperCase().includes(value)
-                            )
-                            .map((data) => data)
-                        );
-                      }
-                    }}
-                    placeholder="Search for a make or model"
-                  />
+              <ul className="img_text">
+                <li className="active">
+                  <a href="#" className="img_1">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_2">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_3">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_4">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_5">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_6">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
-          <FilteredModal showModal={showModal} handleClose={handleClose} />
         </div>
       </section>
 
-      {/* {loading ? (
-        <SmallSpinner spin={true} />
-      ) : ( */}
-      <InfiniteScroll
+      <div className="col-12 text-center pt_80 pb_30">
+        <h2>More Inventory</h2>
+      </div>
+
+      {/* <InfiniteScroll
         dataLength={filterData.length}
         next={fetchMoreData}
         hasMore={totalResult !== filterData.length}
@@ -142,7 +149,10 @@ function Store() {
             <b>Yay! You have seen it all</b>
           </p>
         }
-      >
+      > */}
+      {loading ? (
+        <SmallSpinner spin={true} />
+      ) : (
         <section className="pt_40">
           <div className="container">
             <div className="row">
@@ -150,9 +160,11 @@ function Store() {
                 return (
                   <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
                     <div className="card_post store auction">
-                      {curElem.displayInAuction === "Yes" && (
+                      {curElem.displayInAuction === "Yes" ? (
                         <p className="forOction">For Auction</p>
-                      )}
+                      ) : curElem.displayInAuction === "classified" ? (
+                        <p className="forOction">Add</p>
+                      ) : null}
 
                       <Link
                         to={
@@ -209,9 +221,8 @@ function Store() {
             </div>
           </div>
         </section>
-      </InfiniteScroll>
-
-      {/* )} */}
+      )}
+      {/* </InfiniteScroll> */}
     </>
   );
 }
