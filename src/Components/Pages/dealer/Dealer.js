@@ -248,28 +248,31 @@ function Dealer() {
               <div className="featuredAuctions_Slide delair">
                 <Slider ref={slide} {...settings}>
                   <div className="inner-slider">
-                    <div className="card_post">
-                      <div className="card_postImg dlr">
-                        <img src={Img_w} alt="Img_w" />
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={Img_w} alt="Img_w" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>Dealer Name</h5>
+                          <p>
+                            This 2009 Aston Martin DBS is finished in Casino
+                            Royale Metallic over a black.
+                          </p>
+                          {/* <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label> <span>$126,888</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label> <span>5 days</span>
+                            </li>
+                          </ul> */}
+                        </div>
                       </div>
-                      <div className="card_postInfo">
-                        <h5>Dealer Name</h5>
-                        <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black.
-                        </p>
-                        {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                      </div>
-                    </div>
+                    </a>
                   </div>
                   <div>
+                  <a href="/dealerprofile">
                     <div className="card_post">
                       <div className="card_postImg dlr">
                         <img src={Img_bmw} alt="Img_bmw" />
@@ -290,8 +293,10 @@ function Dealer() {
                         </ul> */}
                       </div>
                     </div>
+                  </a>
                   </div>
                   <div>
+                  <a href="/dealerprofile">
                     <div className="card_post">
                       <div className="card_postImg dlr">
                         <img src={Img_m} alt="Img_01" />
@@ -312,6 +317,55 @@ function Dealer() {
                         </ul> */}
                       </div>
                     </div>
+                    </a>
+                  </div>
+                  <div>
+                  <a href="/dealerprofile">
+                    <div className="card_post">
+                      <div className="card_postImg dlr">
+                        <img src={Img_m} alt="Img_01" />
+                      </div>
+                      <div className="card_postInfo">
+                        <h5>Dealer Name</h5>
+                        <p>
+                          This 2009 Aston Martin DBS is finished in Casino
+                          Royale Metallic over a black.
+                        </p>
+                        {/* <ul className="labelList">
+                          <li>
+                            <label>Current Bid:</label> <span>$126,888</span>
+                          </li>
+                          <li>
+                            <label>Ends In:</label> <span>5 days</span>
+                          </li>
+                        </ul> */}
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                  <div>
+                  <a href="/dealerprofile">
+                    <div className="card_post">
+                      <div className="card_postImg dlr">
+                        <img src={Img_m} alt="Img_01" />
+                      </div>
+                      <div className="card_postInfo">
+                        <h5>Dealer Name</h5>
+                        <p>
+                          This 2009 Aston Martin DBS is finished in Casino
+                          Royale Metallic over a black.
+                        </p>
+                        {/* <ul className="labelList">
+                          <li>
+                            <label>Current Bid:</label> <span>$126,888</span>
+                          </li>
+                          <li>
+                            <label>Ends In:</label> <span>5 days</span>
+                          </li>
+                        </ul> */}
+                      </div>
+                    </div>
+                    </a>
                   </div>
                 </Slider>
               </div>
