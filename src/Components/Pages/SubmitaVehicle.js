@@ -31,7 +31,6 @@ const SubmitaVehicle = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getAllUserPlan`
         );
-        // console.log(11, res.data.data);
         if (res.data.data) {
           const filteredStandard = res.data.data.find(
             (item) => item.planeName === "standard"
