@@ -11,6 +11,7 @@ import Img_01 from "../../Assets/images/img_01.jpg";
 function Store() {
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [justInShowroom, setJustInShowroom] = useState([]);
   const [loading, setLoader] = useState(false);
   const [vehicleData, setVehicleData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -26,11 +27,14 @@ function Store() {
   const fetchStoreVehicleApi = async () => {
     setLoader(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}vehicles`);
-      const newData = response.data.data;
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehicle/unknowuser`
+      );
+      const newData = response.data.data.reverse();
       setTotalResult(response.data.count);
       setVehicleData(newData);
       setFilterData(newData);
+      setJustInShowroom(newData.slice(0, 7));
       setPage(page + 10);
       setLoader(false);
     } catch (err) {
@@ -67,6 +71,9 @@ function Store() {
   //     setLoader(false);
   //   }
   // };
+  const justInShowroomHoover = (data) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -87,42 +94,45 @@ function Store() {
               </ul>
 
               <ul className="img_text">
-                <li className="active">
+                <li
+                  onMouseOver={() => justInShowroomHoover("hello")}
+                  className="active"
+                >
                   <a href="#" className="img_1">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
                     <span>3 days</span>
                   </a>
                 </li>
-                <li>
+                <li onMouseOver={() => justInShowroomHoover("hello1")}>
                   <a href="#" className="img_2">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
                     <span>3 days</span>
                   </a>
                 </li>
-                <li>
+                <li onMouseOver={() => justInShowroomHoover("hello2")}>
                   <a href="#" className="img_3">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
                     <span>3 days</span>
                   </a>
                 </li>
-                <li>
+                <li onMouseOver={() => justInShowroomHoover("hello")}>
                   <a href="#" className="img_4">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
                     <span>3 days</span>
                   </a>
                 </li>
-                <li>
+                <li onMouseOver={() => justInShowroomHoover("hello")}>
                   <a href="#" className="img_5">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
                     <span>3 days</span>
                   </a>
                 </li>
-                <li>
+                <li onMouseOver={() => justInShowroomHoover("hello")}>
                   <a href="#" className="img_6">
                     <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
                     <span>$8,600</span>
@@ -163,27 +173,50 @@ function Store() {
                       {curElem.displayInAuction === "Yes" ? (
                         <p className="forOction">For Auction</p>
                       ) : curElem.displayInAuction === "classified" ? (
-                        <p className="forOction">Add</p>
+                        <p className="forOction">Ad</p>
                       ) : null}
 
-                      <Link
-                        to={
-                          curElem.displayInAuction === "Yes"
-                            ? `/detail/${curElem.id}`
-                            : `/showroom/${curElem.id}`
-                        }
-                        className="card_postImg card_postImg_200"
-                      >
-                        <img
-                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt={curElem.make}
-                        />
-                      </Link>
+                      {curElem.displayInAuction === "classified" ? (
+                        <a
+                          target="_blank"
+                          rel="noopener"
+                          href={curElem.externalLink}
+                          className="card_postImg card_postImg_200"
+                        >
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.make}
+                          />
+                        </a>
+                      ) : (
+                        <Link
+                          to={
+                            curElem.displayInAuction === "Yes"
+                              ? `/detail/${curElem.id}`
+                              : `/showroom/${curElem.id}`
+                          }
+                          className="card_postImg card_postImg_200"
+                        >
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.make}
+                          />
+                        </Link>
+                      )}
                       <div className="card_postInfo pt-3">
                         <h6 className="name_price">
                           <Link

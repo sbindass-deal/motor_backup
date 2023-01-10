@@ -17,7 +17,9 @@ function Auctionlive() {
   const fetchVehicleApi = async () => {
     setLoader(true);
     try {
-      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehicle/${"unknowuser"}`
+      );
       if (response.data.status === 200 && response.data.data.length > 0) {
         const newData = response.data.data.reverse();
         const filteredData = newData.filter(
