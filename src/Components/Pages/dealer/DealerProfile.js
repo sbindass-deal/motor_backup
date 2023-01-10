@@ -1,198 +1,351 @@
-import React from 'react'
-import Car_img from "../../../Assets/images/img_05.jpg";
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Link } from "react-router-dom";
+import car_01 from "../../../Assets/images/car_01.jpg";
+import SmallSpinner from "../../UI/SmallSpinner";
+import FilteredModal from "../FilteredModal";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
+import Img_01 from "../../../Assets/images/img_01.jpg";
+import about_1 from "../../../Assets/images/about-1.jpg";
+import Gallery_1 from "../../../Assets/images/g-1.png"
+import Gallery_2 from "../../../Assets/images/g-2.png"
+import Gallery_3 from "../../../Assets/images/g-3.png"
+import Gallery_4 from "../../../Assets/images/g-4.png"
+
+
+
+
 function DealerProfile() {
+  const [showModal, setShowModal] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState("");
+  const [loading, setLoader] = useState(true);
+  const [vehicleData, setVehicleData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [totalResult, setTotalResult] = useState(0);
+  const [page, setPage] = useState(0);
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  const handleShow = () => {
+    setShowModal(true);
+  };
+  const fetchStoreVehicleApi = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
+      );
+      const newData = response.data.data;
+      setTotalResult(response.data.count);
+      setVehicleData(newData);
+      setFilterData(newData);
+      setPage(page + 10);
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStoreVehicleApi();
+  }, []);
+  const style = {
+    height: 30,
+    border: "1px solid green",
+    margin: 6,
+    padding: 8,
+  };
+  console.log("hello", page);
+  const fetchMoreData = async () => {
+    console.log(page, "hello");
+
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}vehiclePagination/${page}`
+      );
+      const newData = await response.data.data;
+      setTotalResult(response.data.count);
+      setVehicleData(vehicleData.concat(newData));
+      setFilterData(filterData.concat(newData));
+      setPage(page + 10);
+
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+    }
+  };
+  const [showBidOnSlide, setShowBidOnSlide] = useState([]);
+
+  const fetchVehicles = async () => {
+    try {
+      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
+      const bidApiArr = response.data.data;
+      if (response.data.status === 200 && response.data.data.length > 0) {
+        setShowBidOnSlide(bidApiArr.slice(-4));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchVehicles();
+  }, []);
+
+  const slide = useRef(null);
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "red" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "green" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    // autoplay: true,
+    // speed: 10000,
+    // pauseOnHover: true,
+    // cssEase: "linear"
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <section className="ptb_80 pt_sm_50">
-      <div className="container">
-        <div className="row ">
-          <div className="col-9 pb-3">
-            <div className="mainImg">
-              <img src={Car_img} alt="details-images" />
-            </div>
-            <div className="blogInfo">
-              <h2 className="title_combo ">
-                Gas Guzzlrs Auction: 1984 Ferrari 512 BBi
-              </h2>
-              <ul className="post_labelList">
-                <li>
-                  <i className="fa-solid fa-clock"></i> September 13, 2022
-                </li>
-                <li>
-                  <i className="fa-solid fa-location-dot"></i> Italian
-                </li>
-                <li>
-                  <i className="fa-solid fa-comment-dots"></i> 14 Comments
-                </li>
-              </ul>
-            </div>
-            <div className="blogDesc">
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-3">
-            <div class="card_Gray pt-3 pb-3 sidebarPostRow">
-              <div class="sidebarPostHead">
-                <h6>Recent Blogs</h6>
+    <>
+      <section className="storeHeroSection dealer detail align-items-center">
+        <div className="container">
+          <div className="row">
+  
+          <div className="col-12 col-lg-12">
+              <div className="heroText">
+                <h1>We have over 20 stores around the UK</h1>
+                <h5>We help you find your dream car. Choose from our exclusive<br/> list of showrooms.</h5>
+                {/* <a href="#" className="btn">
+                  VIEW INVENTORY
+                </a> */}
               </div>
-
-              <div class="sidebarPost">
-                <div class="sidebarPost_Img">
-                  <img src={Car_img} />
-                </div>
-                <div class="sidebarPost_text">
-                  Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                  Dallas
-                </div>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
-
-              <div class="sidebarPostFooter text-center">
-                <a href="#" class="gry_btn w-full">
-                  More features
-                </a>
-              </div>
-            </div>
-
-            <div class="card_Gray mt-3 pt-3">
-              <h6>Feature Blogs</h6>
-              <ul class="sidebar_Event">
-                <li>
-                  <a href="#">
-                    Gas Guzzlrs Alumni Gathering: October 1 in conjunction with
-                    the Audrain Newport Concours &amp; Motor Week – REGISTRATION
-                    IS OPEN{" "}
-                  </a>
-                  <div class="event_date">
-                    {" "}
-                    <i class="fa-solid fa-clock"></i> October 1, 2022
-                  </div>
-                </li>
-                <li>
-                  <a href="#">
-                    20th Rallylegend 2022 Republic of San Marino, Italy
-                  </a>
-                  <div class="event_date">
-                    <i class="fa-solid fa-clock"></i> October 13 - 16, 2022
-                  </div>
-                </li>
-                <li>
-                  <a href="#">Targa Florio Classica – Palermo, Italy</a>
-                  <div class="event_date">
-                    <i class="fa-solid fa-clock"></i> October 13 - 16, 2022
-                  </div>
-                </li>
-                <li>
-                  <a href="#">Velocity Invitational</a>
-                  <div class="event_date">
-                    {" "}
-                    <i class="fa-solid fa-clock"></i> October 14 - 16, 2022
-                  </div>
-                </li>
-                <li>
-                  <a href="#">SoCal Vintage BMW</a>
-                  <div class="event_date">
-                    <i class="fa-solid fa-clock"></i> November 5, 2022
-                  </div>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="ptb_80" id="">
+        <div className="container">
+        <div className="row">
+            <div className="col-12 col-md-6">
+              <img src={about_1} />
+            </div>
+            <div className="col-12 col-md-6 d-flex align-items-center">
+              <div>
+                <h3>About Dealer</h3>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text.
+                </p>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </section>
+
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Gallery</h2>
+            </div>
+            <div className="col-12 gallery">
+                <div className="row">
+                  <div className="col-4 verticle">
+                    <div className="galleryImgSect">
+                      <img src={Gallery_1}/>
+                    </div> 
+                  </div>
+                  <div className="col-8">
+                    <div className="row">
+                      <div className="col-6">
+                        <div className="galleryImgSect">
+                          <img src={Gallery_2}/>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="galleryImgSect">
+                          <img src={Gallery_3}/>
+                        </div>
+                      </div>
+                      <div className="col-12 mt-50">
+                        <div className="galleryImgSect">
+                          <img src={Gallery_4}/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+            </div>
+            <div className="col-12" style={{textAlign: "center", margin:"20px auto"}}>
+              <a class="btn mt-2" href="/showroom">VIEW MORE</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <div className="col-12 text-center pt_80 pb_30">
+            <h2>More Inventory</h2>
       </div>
-    </section>
-  )
+      
+      {/* {loading ? (
+        <SmallSpinner spin={true} />
+      ) : ( */}
+      <InfiniteScroll
+        dataLength={filterData.length}
+        next={fetchMoreData}
+        hasMore={totalResult !== filterData.length}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p className="text-warning" style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        <section className="pt_40">
+          <div className="container">
+            <div className="row">
+              {filterData.map((curElem) => {
+                return (
+                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                    <div className="card_post store auction">
+                      {curElem.displayInAuction === "Yes" && (
+                        <p className="forOction">For Auction</p>
+                      )}
+
+                      <Link
+                        to={
+                          curElem.displayInAuction === "Yes"
+                            ? `/detail/${curElem.id}`
+                            : `/showroom/${curElem.id}`
+                        }
+                        className="card_postImg card_postImg_200"
+                      >
+                        <img
+                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt={curElem.make}
+                        />
+                      </Link>
+                      <div className="card_postInfo pt-3">
+                        <h6 className="name_price">
+                          <Link
+                            to={
+                              curElem.displayInAuction === "Yes"
+                                ? `/detail/${curElem.id}`
+                                : `/showroom/${curElem.id}`
+                            }
+                          >
+                            {curElem.make} {curElem.model} {curElem.year}
+                          </Link>
+                          <p className="price__">${curElem.documentFee}</p>
+                        </h6>
+                        <table className="showroomCol">
+                          <tbody>
+                            <tr>
+                              <td>Odometer Reading </td>
+                              <td>{curElem.odmeter}</td>
+                            </tr>
+                            <tr>
+                              <td>Fuel Type</td>
+                              <td>{curElem.fuel}</td>
+                            </tr>
+                            <tr>
+                              <td>Seller</td>
+                              <td>{curElem.name}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </InfiniteScroll>
+
+      {/* )} */}
+      
+    </>
+  );
 }
 
-export default DealerProfile
+export default DealerProfile;
