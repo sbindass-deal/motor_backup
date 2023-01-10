@@ -191,6 +191,7 @@ function DealerProfile() {
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
                 <h3>About Dealer</h3>
+                
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
