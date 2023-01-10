@@ -9,7 +9,7 @@ const initialState = {
   show: false,
 };
 
-export const login = createSlice({
+const login = createSlice({
   name: "auth",
   initialState,
   reducers: {

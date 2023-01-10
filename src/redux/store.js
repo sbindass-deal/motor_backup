@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import login from "./reducers/login";
 import dayAndNightMode from "./reducers/dayAndNightMode";
 import cartSlice from "./reducers/cartSlice";
+import planReducer from "./reducers/planReducer";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   login,
   dayAndNightMode,
   cartSlice,
+  planReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

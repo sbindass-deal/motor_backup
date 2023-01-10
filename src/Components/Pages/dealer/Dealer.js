@@ -169,7 +169,9 @@ function Dealer() {
         <div className="container">
           <div className="row">
             <div className="topTile">
-                <h5>New to Gas Guzzlrs? <a href="#">Learn how it works.</a></h5>
+              <h5>
+                New to Gas Guzzlrs? <a href="#">Learn how it works.</a>
+              </h5>
             </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">
@@ -210,15 +212,17 @@ function Dealer() {
             <FilteredModal showModal={showModal} handleClose={handleClose} />
           </div>
           <div className="col-12 col-lg-12">
-              <div className="heroText">
-                <h1>We have over 20 stores around the UK</h1>
-                <h5>We help you find your dream car. Choose from our exclusive<br/> list of showrooms.</h5>
-                {/* <a href="#" className="btn">
+            <div className="heroText">
+              <h1>We have over 20 stores around the UK</h1>
+              <h5>
+                We help you find your dream car. Choose from our exclusive
+                <br /> list of showrooms.
+              </h5>
+              {/* <a href="#" className="btn">
                   VIEW INVENTORY
                 </a> */}
-              </div>
             </div>
-          
+          </div>
         </div>
       </section>
 
@@ -229,7 +233,7 @@ function Dealer() {
               <h2>Featured Dealer</h2>
             </div>
 
-            <div className="col-12 ptb_80" style={{  }}>
+            <div className="col-12 ptb_80" style={{}}>
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
@@ -246,7 +250,7 @@ function Dealer() {
                   <div className="inner-slider">
                     <div className="card_post">
                       <div className="card_postImg dlr">
-                        <img src={Img_w} alt="Img_w"/>
+                        <img src={Img_w} alt="Img_w" />
                       </div>
                       <div className="card_postInfo">
                         <h5>Dealer Name</h5>
@@ -309,7 +313,6 @@ function Dealer() {
                       </div>
                     </div>
                   </div>
-                  
                 </Slider>
               </div>
             </div>
@@ -321,76 +324,70 @@ function Dealer() {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Just In showroom</h2>
+              <h2>Just In Showroom!</h2>
             </div>
-            <div className="col-12 Latest_B "> 
+            <div className="col-12 Latest_B ">
+              <ul className="img_sec">
+                <li>
+                  <a href="#" className="img_1">
+                    <img src={Img_01} />
+                  </a>
+                </li>
+              </ul>
 
-                <ul className="img_sec">
-                    <li >
-                        <a href="#" className="img_1">
-                            <img src={Img_01}/>
-                        </a>  
-                    </li>
-                    
-                </ul>
-
-                <ul className="img_text">
-                    <li className="active">
-                        <a href="#" className="img_1">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="#" className="img_2">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="img_3">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="img_4">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="img_5">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="img_6">
-                            <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
-                            <span>$8,600</span>
-                            <span>3 days</span>
-                        </a>
-                    </li>
-                </ul>
-
-
-                
+              <ul className="img_text">
+                <li className="active">
+                  <a href="#" className="img_1">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_2">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_3">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_4">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_5">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="img_6">
+                    <span> 22k-Mile 1974 Lincoln Continental Mark IV..</span>
+                    <span>$8,600</span>
+                    <span>3 days</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
-      
+
       <div className="col-12 text-center pt_80 pb_30">
-            <h2>More Inventory</h2>
+        <h2>More Inventory</h2>
       </div>
-      
+
       {/* {loading ? (
         <SmallSpinner spin={true} />
       ) : ( */}
@@ -474,7 +471,6 @@ function Dealer() {
       </InfiniteScroll>
 
       {/* )} */}
-      
     </>
   );
 }

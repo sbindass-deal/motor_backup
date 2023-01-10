@@ -107,7 +107,7 @@ function App() {
     dispatch(getTotals());
   }, [logingUser.cartSlice.products]);
 
-  const className = logingUser.dayAndNightMode.mode ? "light" : "dark";
+  const className = logingUser.dayAndNightMode.mode ? "dark" : "light";
 
   useEffect(() => {
     // Set up

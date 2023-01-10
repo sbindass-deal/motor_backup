@@ -23,6 +23,7 @@ import StripeCheckout from "react-stripe-checkout";
 
 const VechilesRegistraion = () => {
   const logingUser = useSelector((state) => state);
+  console.log(11, logingUser.planReducer.plan.listName);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -163,6 +164,7 @@ const VechilesRegistraion = () => {
     vin: "",
     displayInAuction: "",
     auctionType: "",
+    adWebsiteLink: "",
     vechilesrace: "",
     ultiumdrive: "",
     Interstellar: "",
@@ -301,6 +303,7 @@ const VechilesRegistraion = () => {
       vin,
       displayInAuction,
       auctionType,
+      adWebsiteLink,
       vechilesrace,
       ultiumdrive,
       Interstellar,
@@ -351,9 +354,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
 
     axios
       .post(`${url}vehicles`, {
@@ -376,6 +379,7 @@ const VechilesRegistraion = () => {
         vin,
         displayInAuction: displayInAuction,
         auctionType,
+        externalLink: adWebsiteLink,
         km: odometer,
         kmacc: accurateField,
         odmeter: odometer,
@@ -448,6 +452,7 @@ const VechilesRegistraion = () => {
           vin: "",
           displayInAuction: "",
           auctionType: "",
+          adWebsiteLink: "",
           vechilesrace: "",
           ultiumdrive: "",
           Interstellar: "",
@@ -1026,7 +1031,7 @@ const VechilesRegistraion = () => {
                             name="vin"
                             label="What is the VIN"
                             placeholder="Enter VIN"
-                            errorMessage="Username should be 17 characters and shouldn't include any special character!"
+                            errorMessage="VIN should be 17 characters and shouldn't include any special character!"
                             pattern="^[A-Za-z0-9]{17}$"
                             required={true}
                           />
@@ -1046,34 +1051,84 @@ const VechilesRegistraion = () => {
                               <option selected disabled value="">
                                 Choose...
                               </option>
-                              <option value="Yes">Auction</option>
-                              <option value="No">Showroom</option>
+                              <option
+                                value="Yes"
+                                disabled={
+                                  logingUser.planReducer.plan.listName ===
+                                  "classified"
+                                    ? true
+                                    : false
+                                }
+                              >
+                                Auction
+                              </option>
+                              <option
+                                value="No"
+                                disabled={
+                                  logingUser.planReducer.plan.listName ===
+                                  "classified"
+                                    ? true
+                                    : false
+                                }
+                              >
+                                Showroom
+                              </option>
+                              <option
+                                value="classified"
+                                disabled={
+                                  logingUser.planReducer.plan.listName ===
+                                  "classified"
+                                    ? false
+                                    : true
+                                }
+                              >
+                                Classified Ads
+                              </option>
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>Auction type</label>
-                            <select
-                              value={basicfact.auctionType}
-                              onChange={basicFactOnChange}
-                              name="auctionType"
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Auction type...
-                              </option>
-                              <option value="General listing">
-                                General listing
-                              </option>
-                              <option value="For charity">For charity</option>
-                              <option value="Premium listing">
-                                Premium listing
-                              </option>
-                            </select>
+
+                        {logingUser.planReducer.plan.listName ===
+                        "classified" ? (
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <FormInput
+                                value={basicfact.adWebsiteLink}
+                                onChange={basicFactOnChange}
+                                name="adWebsiteLink"
+                                type="url"
+                                placeholder="Enter link"
+                                errorMessage="Please provide valid link"
+                                label="Please provide your website link here"
+                                required={true}
+                              />
+                            </div>
                           </div>
-                        </div>
+                        ) : (
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <label>Auction type</label>
+                              <select
+                                value={basicfact.auctionType}
+                                onChange={basicFactOnChange}
+                                name="auctionType"
+                                className="field"
+                                required
+                              >
+                                <option selected disabled value="">
+                                  Auction type...
+                                </option>
+                                <option value="General listing">
+                                  General listing
+                                </option>
+                                <option value="For charity">For charity</option>
+                                <option value="Premium listing">
+                                  Premium listing
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        )}
 
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">

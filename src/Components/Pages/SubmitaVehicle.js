@@ -1,12 +1,12 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
+import { getPlan } from "../../redux/reducers/planReducer";
 
 const SubmitaVehicle = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [planChacked, setPlanChacked] = useState({
     standard: false,
@@ -21,41 +21,8 @@ const SubmitaVehicle = () => {
   const [premierPlan, setPremierPlan] = useState(null);
   const [classifiedPlan, setClassifiedPlan] = useState(null);
   const [showroomPlan, setShowroomPlan] = useState(null);
-  const [showPayment, setShowPayment] = useState(false);
-  const [planData, setPlanData] = useState({});
   const handleOnChange = (e) => {
     setPlanChacked({ ...planChacked, [e.target.name]: e.target.checked });
-  };
-  const handleClosePayment = () => {
-    setShowPayment(false);
-  };
-  const handleShowPayment = (data) => {
-    setShowPayment(true);
-    setPlanData(data);
-  };
-
-  const handlePlan = () => {
-    const { amount, list, valid, listName } = planData;
-    axios
-      .post(`${process.env.REACT_APP_URL}addUserPlan`, {
-        amount,
-        listing: list,
-        validDate: valid,
-        planeName: listName,
-      })
-      .then((response) => {
-        navigate("/vechiles");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const onToken = (token, addresses) => {
-    console.log(token, addresses);
-    if (token !== null) {
-      handlePlan();
-    }
   };
 
   useEffect(() => {
@@ -92,7 +59,6 @@ const SubmitaVehicle = () => {
     };
     fetchUserDetails();
   }, []);
-  console.log(11, standardPlan);
   return (
     <>
       <section className="pt_80">
@@ -106,17 +72,14 @@ const SubmitaVehicle = () => {
                 GasGuzzlrs the best place to auction your vehicle.
                 <br /> Choose one of our many Auction Services to showease your
                 vehicle the way you want.
-                {/* <Link to="/faq" className="link">
-                  Click here
-                </Link> */}
               </p>
             </div>
+            {/* standard plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Standard</h4>
                   <div className="plan_Price">
-                    {/* ${planone} <span className="plan_Time">Month</span> */}
                     <div className="dfk">
                       ${planChacked.standard ? 199 : 99}
                       <div className="switch">
@@ -150,37 +113,26 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {/* {standardPlan ? (
-                    <Link to="/vechiles" className="gry_btn">
-                      SUBMIT VEHICLE
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleShowPayment({
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        getPlan({
                           amount: planChacked.standard ? 199 : 99,
                           list: planChacked.standard ? 5 : 1,
                           valid: planChacked.standard ? 30 : 1,
                           listName: "standard",
                         })
-                      }
-                      className="gry_btn"
-                    >
-                      BUY PLAN
-                    </button>
-                  )} */}
-                  <Link to="/vechiles" className="gry_btn">
+                      );
+                      navigate("/vechiles");
+                    }}
+                    className="gry_btn"
+                  >
                     SUBMIT VEHICLE
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="classNameIC_HIW" className="collapse">
@@ -195,14 +147,12 @@ const SubmitaVehicle = () => {
                 </ul>
               </div>
             </div>
-
+            {/* pro plan */}
             <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus pro">
                 <div className="plan_cardHead">
                   <h4>Pro</h4>
                   <div className="plan_Price">
-                    {/* ${plansecond}
-                    <span className="plan_Time">Month</span> */}
                     <div className="dfk">
                       ${planChacked.pro ? 499 : 399}
                       <div className="switch">
@@ -235,37 +185,26 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {/* {proPlan ? (
-                    <Link to="/vechiles" className="gry_btn">
-                      SUBMIT VEHICLE
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleShowPayment({
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        getPlan({
                           amount: planChacked.pro ? 499 : 399,
                           list: planChacked.pro ? 5 : 1,
                           valid: planChacked.pro ? 30 : 1,
                           listName: "pro",
                         })
-                      }
-                      className="gry_btn"
-                    >
-                      BUY PLAN
-                    </button>
-                  )} */}
-                  <Link to="/vechiles" className="gry_btn">
+                      );
+                      navigate("/vechiles");
+                    }}
+                    className="gry_btn"
+                  >
                     SUBMIT VEHICLE
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="PLUS_HIW" className="collapse">
@@ -280,14 +219,12 @@ const SubmitaVehicle = () => {
                 </ul>
               </div>
             </div>
-
+            {/* premier plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>Premiere</h4>
                   <div className="plan_Price">
-                    {/* ${plansecond}
-                    <span className="plan_Time">Month</span> */}
                     <div className="dfk">
                       ${planChacked.premiere ? 699 : 599}
                       <div className="switch">
@@ -320,37 +257,26 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {/* {premierPlan ? (
-                    <Link to="/vechiles" className="gry_btn">
-                      SUBMIT VEHICLE
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleShowPayment({
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        getPlan({
                           amount: planChacked.premiere ? 699 : 599,
                           list: planChacked.premiere ? 5 : 1,
                           valid: planChacked.premiere ? 30 : 1,
                           listName: "premiere",
                         })
-                      }
-                      className="gry_btn"
-                    >
-                      BUY PLAN
-                    </button>
-                  )} */}
-                  <Link to="/vechiles" className="gry_btn">
+                      );
+                      navigate("/vechiles");
+                    }}
+                    className="gry_btn"
+                  >
                     SUBMIT VEHICLE
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="PLUS_HIW" className="collapse">
@@ -365,13 +291,12 @@ const SubmitaVehicle = () => {
                 </ul>
               </div>
             </div>
-
+            {/* exclusive plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
                   <h4>Exclusive</h4>
                   <div className="plan_Price">
-                    {/* ${planthird} <span className="plan_Time">Year</span> */}
                     <div className="dfk">
                       <h5>
                         {planChacked.exclusive
@@ -396,10 +321,6 @@ const SubmitaVehicle = () => {
                         </label>
                         <span className="plan_Time">Phone number</span>
                       </div>
-                      {/* <div className="Contact_info">
-                        <p>+91 7276404909</p>
-                        <p>sales@gasguzzles.com</p>
-                      </div>  */}
                     </div>
                   </div>
                 </div>
@@ -415,12 +336,7 @@ const SubmitaVehicle = () => {
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="WHITEGLOVE_HIW" className="collapse">
@@ -445,19 +361,15 @@ const SubmitaVehicle = () => {
                 GasGuzzlrs has got special offers for you.
                 <br /> Choose to list ads with us or purchase subscription to
                 have your own dedicated showroom fully manage by GasGuzzlrs.
-                {/* <Link to="/faq" className="link">
-                  Click here
-                </Link> */}
               </p>
             </div>
-
             <div className="col-lg-3"></div>
+            {/* classified plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card">
                 <div className="plan_cardHead">
                   <h4>Classified Ads</h4>
                   <div className="plan_Price">
-                    {/* ${planone} <span className="plan_Time">Month</span> */}
                     <div className="dfk">
                       ${planChacked.classified ? 899 : 799}
                       <div className="switch">
@@ -491,37 +403,26 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {/* {classifiedPlan ? (
-                    <Link to="/vechiles" className="gry_btn">
-                      SUBMIT VEHICLE
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleShowPayment({
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        getPlan({
                           amount: planChacked.classified ? 899 : 799,
                           list: planChacked.classified ? 5 : 1,
                           valid: planChacked.classified ? 30 : 1,
                           listName: "classified",
                         })
-                      }
-                      className="gry_btn"
-                    >
-                      BUY PLAN
-                    </button>
-                  )} */}
-                  <Link to="/vechiles" className="gry_btn">
+                      );
+                      navigate("/vechiles");
+                    }}
+                    className="gry_btn"
+                  >
                     SUBMIT VEHICLE
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="classNameIC_HIW" className="collapse">
@@ -536,13 +437,12 @@ const SubmitaVehicle = () => {
                 </ul>
               </div>
             </div>
+            {/* showroom plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>Showroom</h4>
                   <div className="plan_Price">
-                    {/* ${plansecond}
-                      <span className="plan_Time">Month</span> */}
                     <div className="dfk">
                       ${planChacked.showroom ? 1099 : 999}
                       <div className="switch">
@@ -575,38 +475,26 @@ const SubmitaVehicle = () => {
                   </p>
                 </div>
                 <div className="plan_cardFooter">
-                  {/* {showroomPlan ? (
-                    <Link to="/vechiles" className="gry_btn">
-                      SUBMIT VEHICLE
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleShowPayment({
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        getPlan({
                           amount: planChacked.showroom ? 699 : 599,
                           list: planChacked.showroom ? 5 : 1,
                           valid: planChacked.showroom ? 30 : 1,
                           listName: "showroom",
                         })
-                      }
-                      href="vechiles"
-                      className="gry_btn"
-                    >
-                      BUY PLAN
-                    </button>
-                  )} */}
-                  <Link to="/vechiles" className="gry_btn">
+                      );
+                      navigate("/vechiles");
+                    }}
+                    className="gry_btn"
+                  >
                     SUBMIT VEHICLE
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <Link
-                to="/works"
-                // data-toggle="collapse"
-                // data-target="#classNameIC_HIW"
-                className="gry_btn HIW_BTN"
-              >
+              <Link to="/works" className="gry_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="PLUS_HIW" className="collapse">
@@ -625,40 +513,6 @@ const SubmitaVehicle = () => {
           </div>
         </div>
       </section>
-      <Modal show={showPayment} onHide={handleClosePayment} className="payTPop">
-        <Modal.Header>
-          <Modal.Title>Payment Process</Modal.Title>
-          <button variant="secondary" onClick={handleClosePayment}>
-            X
-          </button>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="processPy">
-            <h2> Name : {planData.listName}</h2>
-            <h3 className="price__"> Type : {planData.list}</h3>
-            <h3 className="price__">Price : ${planData.amount}</h3>
-
-            {/* <small className="ticketCount">1 Ticket = $100</small> */}
-            <br />
-            <p>Choose Payment Option:</p>
-            <div className="ress">
-              <div className="ProcessPymt">
-                <ConnectButton></ConnectButton>
-
-                {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
-              </div>
-              <div>
-                <StripeCheckout
-                  className="Btn"
-                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-                  token={onToken}
-                />
-              </div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
     </>
   );
 };
