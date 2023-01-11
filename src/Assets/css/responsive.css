@@ -96,7 +96,7 @@
 		width: 72%;
 	}
 
-	
+
 	.toNv {
 		width: 62%;
 	}
@@ -390,7 +390,9 @@
 }
 
 @media (max-width: 767px) {
-
+.infoCar {
+    width: 100%;
+}
 	.featuredAuctions_Slide.delair .slick-list {	text-align: center;	}
 	.featuredAuctions_Slide.delair .card_postImg.dlr { margin: 0 auto;	}
 	.modal-title {

@@ -7,8 +7,14 @@ import SmallSpinner from "../UI/SmallSpinner";
 import Dealer from "./dealer/Dealer";
 import FilteredModal from "./FilteredModal";
 import Img_01 from "../../Assets/images/img_01.jpg";
+import { Modal } from "react-bootstrap";
 
 function Store() {
+
+  
+
+  
+
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [justInShowroom, setJustInShowroom] = useState([]);
@@ -17,6 +23,8 @@ function Store() {
   const [filterData, setFilterData] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [page, setPage] = useState(0);
+
+ 
 
   const handleClose = () => {
     setShowModal(false);
@@ -78,8 +86,10 @@ function Store() {
   return (
     <>
       <Dealer />
+      
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
+         
           <div className="row ">
             <div className="col-12 text-center pb_30">
               <h2>Just In Showroom!</h2>
@@ -93,7 +103,49 @@ function Store() {
                 </li>
               </ul>
 
-              <ul className="img_text">
+              <div className="infoCar">
+                <div className="table-responsive">
+                    <table className="" width={"100%"}>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                      <tr>
+                        <td> 22k-Mile 1974 Lincoln Continental Mark IV..</td>
+                        <td>$8,600</td>
+                        <td>3 days</td>
+                      </tr>
+                    </table>
+                  </div>
+              </div>
+
+              {/* <ul className="img_text">
                 <li
                   onMouseOver={() => justInShowroomHoover("hello")}
                   className="active"
@@ -139,7 +191,7 @@ function Store() {
                     <span>3 days</span>
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
@@ -256,6 +308,14 @@ function Store() {
         </section>
       )}
       {/* </InfiniteScroll> */}
+
+
+      {/* /**/ }
+
+
+
+      
+
     </>
   );
 }

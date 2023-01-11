@@ -20,7 +20,13 @@ import Img_w from "../../../Assets/images/wox.png";
 import Img_bmw from "../../../Assets/images/bmw.png";
 import Img_m from "../../../Assets/images/m.png";
 
+import logo_ku from "../../../Assets/images/logo-ku.png"
+import custombanner5 from "../../../Assets/images/custombanner5.webp"
+import rrm_logo from "../../../Assets/images/rrm-logo.png"
+import { Modal } from "react-bootstrap";
 function Dealer() {
+
+  const [filteredModal, setFilteredModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [loading, setLoader] = useState(true);
@@ -28,6 +34,13 @@ function Dealer() {
   const [filterData, setFilterData] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [page, setPage] = useState(0);
+
+  const handleFilteredModalClose = () => {
+    setFilteredModal(false)
+  }
+  const handleFilteredModalShow = () => {
+    setFilteredModal(true)
+  }
 
   const handleClose = () => {
     setShowModal(false);
@@ -207,6 +220,13 @@ function Dealer() {
                     placeholder="Search for a make or model"
                   />
                 </li>
+                <li className="">
+                  <button type="button" className="gry_btn" data-toggle="modal" data-target="#FiltersModal" onClick={handleFilteredModalShow}>
+                    <i className="fa-solid fa-filter mr-2"></i> 
+                    Filters
+                  </button>
+                  
+                </li>
               </ul>
             </div>
             <FilteredModal showModal={showModal} handleClose={handleClose} />
@@ -251,13 +271,14 @@ function Dealer() {
                     <a href="/dealerprofile">
                       <div className="card_post">
                         <div className="card_postImg dlr">
-                          <img src={Img_w} alt="Img_w" />
+                          <img src={logo_ku} alt="logo_ku" />
                         </div>
                         <div className="card_postInfo">
-                          <h5>Dealer Name</h5>
+                          <h5>Texans Auto Group</h5>
                           <p>
-                            This 2009 Aston Martin DBS is finished in Casino
-                            Royale Metallic over a black.
+                            At Texans Auto Group, when we say we have a ginormous selection of cars, we mean it. 
+                            We have an incredible selection of new, used and certified vehicles, which is why so 
+                            many customers choose us when they are looking for reliable used car dealerships in Cypress TX. 
                           </p>
                           {/* <ul className="labelList">
                             <li>
@@ -272,16 +293,16 @@ function Dealer() {
                     </a>
                   </div>
                   <div>
-                  <a href="/dealerprofile">
+                  <a href="https://www.texascarsdirect.com/">
                     <div className="card_post">
                       <div className="card_postImg dlr">
-                        <img src={Img_bmw} alt="Img_bmw" />
+                        <small>AD</small>
+                        <img src={custombanner5} alt="Img_bmw" />
                       </div>
                       <div className="card_postInfo">
-                        <h5>Dealer Name</h5>
+                        <h5>Texas Cars Direct</h5>
                         <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black.
+                        While we are happy to welcome you to our newly remodeled and distanced showroom-We are also providing additional safety measures to keep us all safe...from safely signing digital paperwork via email to delivering your vehicle right to your home or work!
                         </p>
                         {/* <ul className="labelList">
                           <li>
@@ -299,13 +320,13 @@ function Dealer() {
                   <a href="/dealerprofile">
                     <div className="card_post">
                       <div className="card_postImg dlr">
-                        <img src={Img_m} alt="Img_01" />
+                        <img src={rrm_logo} alt="Img_01" />
                       </div>
                       <div className="card_postInfo">
-                        <h5>Dealer Name</h5>
+                        <h5>Ruiz Ranch motors</h5>
                         <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black.
+                        With years of experience serving the area, our dealership is dedicated to offering high-quality, pre-owned vehicles to our customers.
+From the moment you walk through our door, we’re committed to providing you with a great car-buying experience.
                         </p>
                         {/* <ul className="labelList">
                           <li>
@@ -319,54 +340,7 @@ function Dealer() {
                     </div>
                     </a>
                   </div>
-                  <div>
-                  <a href="/dealerprofile">
-                    <div className="card_post">
-                      <div className="card_postImg dlr">
-                        <img src={Img_m} alt="Img_01" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h5>Dealer Name</h5>
-                        <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black.
-                        </p>
-                        {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                      </div>
-                    </div>
-                  </a>
-                  </div>
-                  <div>
-                  <a href="/dealerprofile">
-                    <div className="card_post">
-                      <div className="card_postImg dlr">
-                        <img src={Img_m} alt="Img_01" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h5>Dealer Name</h5>
-                        <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black.
-                        </p>
-                        {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                      </div>
-                    </div>
-                    </a>
-                  </div>
+                 
                 </Slider>
               </div>
             </div>
@@ -523,6 +497,116 @@ function Dealer() {
       </InfiniteScroll> */}
 
       {/* )} */}
+
+      <Modal
+      show={filteredModal}
+      onHide={handleFilteredModalClose}
+      className="modal fade"
+      id="loginModal"
+      centered
+    >
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+        <div className="modal-header border-0">
+              <h4 className="modal-title">Filters</h4>
+              <button
+                onClick={handleFilteredModalClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          <div className="modal-body">
+          {/* <button onClick={handleClick} >click me</button> */}
+          <form>
+            <div className="row row_gap_5">
+            <div className="col-12 col-md-12">
+                <label>Vin Number</label>
+                <div className="form-group">
+                  <input type="text" name="" className="field" placeholder="Vin Number"/>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>Vehicle Year</label>
+                <div className="form-group">
+                  <input type="text" name="" className="field" placeholder="1900"/>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>To</label>
+                <div className="form-group">
+                  <input type="text" name="" className="field" placeholder="2023"/>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>List Date</label>
+                <div className="form-group">
+                  <select className="field">
+                    <option>All Time</option>
+                    <option>7 Days</option>
+                    <option>Last Month</option>
+                    <option>Last Year</option>
+                    <option>Last 2 Year</option>
+                    <option>Last 5 Year</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>Result</label>
+                <div className="form-group">
+                  <select className="field">
+                    <option>All</option>
+                    <option>Sold Only</option>
+                    <option>Reserve Not Met</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>High Bid</label>
+                <div className="form-group">
+                  <select className="field">
+                    <option>No Min</option>
+                    <option>$5k</option>
+                    <option>#10k</option>
+                    <option>#15k</option>
+                    <option>#20k</option>
+                    <option>#25k</option>
+                    <option>#30k</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+                <label>To</label>
+                <div className="form-group">
+                  <select className="field">
+                    <option>No Max</option>
+                    <option>$5k</option>
+                    <option>#10k</option>
+                    <option>#15k</option>
+                    <option>#20k</option>
+                    <option>#25k</option>
+                    <option>#30k</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-12 col-md-12">
+                <label>Exclude Words / Models / Tags</label>
+                <div className="form-group">
+                  <input type="text" name="" className="field" placeholder="Enter"/>
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <button type="button" className="btn">Filters</button>
+            </div>
+          </form>
+            
+          </div>
+        </div>
+      </div>
+    </Modal>
     </>
   );
 }
