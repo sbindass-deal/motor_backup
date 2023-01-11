@@ -134,7 +134,9 @@ function App() {
   );
   const fetchAllVehicleData = async () => {
     try {
-      const res = await axios.get(process.env.REACT_APP_URL + "vehicles");
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}vehicle/unknowuser`
+      );
       const data = res.data.data;
       if (data) {
         dispatch(storeVehicleData(data));
