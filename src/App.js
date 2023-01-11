@@ -14,13 +14,7 @@ import {
   darkTheme,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import {
-  chain,
-  configureChains,
-  createClient,
-  useNetwork,
-  WagmiConfig,
-} from "wagmi";
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import {
   injectedWallet,
@@ -38,7 +32,7 @@ import {
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { useEffect } from "react";
 import { getTotals } from "./redux/reducers/cartSlice";
-import { storeVehicleData } from "./redux/reducers/submitvechilesReducer";
+import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
 
 const bsc = {
   id: 56,
@@ -99,7 +93,7 @@ const addBodyClass = (className) => document.body.classList.add(className);
 const removeBodyClass = (className) =>
   document.body.classList.remove(className);
 
-function App() {
+const App = () => {
   const logingUser = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -137,9 +131,8 @@ function App() {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}vehicle/unknowuser`
       );
-      const data = res.data.data;
-      if (data) {
-        dispatch(storeVehicleData(data));
+      if (res.data.data) {
+        dispatch(storeAllVehicle(res.data.data));
       }
     } catch (err) {
       console.log("err");
@@ -161,6 +154,6 @@ function App() {
       </WagmiConfig>
     </>
   );
-}
+};
 
 export default App;
