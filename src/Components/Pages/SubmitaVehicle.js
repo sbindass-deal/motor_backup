@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../redux/reducers/planReducer";
@@ -8,6 +9,7 @@ import { getPlan } from "../../redux/reducers/planReducer";
 const SubmitaVehicle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showAdModal, setShowAdModal] = useState(false);
   const [planChacked, setPlanChacked] = useState({
     standard: false,
     pro: false,
@@ -60,6 +62,10 @@ const SubmitaVehicle = () => {
     };
     fetchUserDetails();
   }, []);
+  useEffect(() => {
+    setShowAdModal(true);
+  }, []);
+
   return (
     <>
       <section className="pt_80">
@@ -439,7 +445,10 @@ const SubmitaVehicle = () => {
               </div>
             </div>
             {/* showroom plan */}
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
+            <div
+              id="addShowroom"
+              className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50"
+            >
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>Showroom</h4>
@@ -447,7 +456,7 @@ const SubmitaVehicle = () => {
                     <div className="dfk">
                       ${planChacked.showroom ? 1099 : 999}
                       <div className="switch">
-                        <span className="plan_Time">Single Ads</span>
+                        <span className="plan_Time">Monthly</span>
                         <input
                           className="react-switch-checkbox"
                           id={`react-switch-showroom`}
@@ -463,7 +472,7 @@ const SubmitaVehicle = () => {
                           <span className={`react-switch-button`} />
                         </label>
                         <span className="plan_Time">
-                          5 Ads <small>within 30 Days</small>
+                          Yearly <small>Unlimited</small>
                         </span>
                       </div>
                     </div>
@@ -514,6 +523,51 @@ const SubmitaVehicle = () => {
           </div>
         </div>
       </section>
+      <Modal
+        show={showAdModal}
+        onHide={() => setShowAdModal(false)}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <div className="col-md-12">
+                <h4 className="modal-title ">Pop up</h4>
+              </div>
+              <button
+                onClick={() => setShowAdModal(false)}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex
+                temporibus repudiandae ullam magnam, hic possimus cupiditate
+                odio omnis consequuntur quo? Eius sint nisi ipsa sapiente ad
+                corrupti deleniti rerum enim?
+              </p>
+              <div className="d-flex justify-content-between pt-5 ">
+                <a
+                  onClick={() => setShowAdModal(false)}
+                  href="#addShowroom"
+                  className="btn"
+                >
+                  button1
+                </a>
+                <button type="button" className="btn">
+                  button2
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
