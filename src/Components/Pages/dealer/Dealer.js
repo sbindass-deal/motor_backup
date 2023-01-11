@@ -233,7 +233,7 @@ function Dealer() {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h1>We have over 20 stores around the UK</h1>
+              <h1>We have over 200 dealers around the world</h1>
               <h5>
                 We help you find your dream car. Choose from our exclusive
                 <br /> list of showrooms.
@@ -522,12 +522,7 @@ From the moment you walk through our door, we’re committed to providing you wi
           {/* <button onClick={handleClick} >click me</button> */}
           <form>
             <div className="row row_gap_5">
-            <div className="col-12 col-md-12">
-                <label>Vin Number</label>
-                <div className="form-group">
-                  <input type="text" name="" className="field" placeholder="Vin Number"/>
-                </div>
-              </div>
+            
               <div className="col-12 col-md-6">
                 <label>Vehicle Year</label>
                 <div className="form-group">
