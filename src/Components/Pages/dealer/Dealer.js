@@ -222,7 +222,7 @@ function Dealer() {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h1>We have over 20 stores around the UK</h1>
+              <h1>We have over 200 dealers around the world</h1>
               <h5>
                 We help you find your dream car. Choose from our exclusive
                 <br /> list of showrooms.

@@ -116,19 +116,18 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
-          <div className="modal-header border-0">
-          <div className="col-md-12">
-            <h4 className="modal-title ">Log In</h4>
-            </div>
-            <button
-              onClick={handleClose}
-              type="button"
-              className="close"
-              data-dismiss="modal"
-            >
-              <i className="fa-solid fa-xmark"></i>
-            </button>
+        <div className="modal-header border-0">
+              <h4 className="modal-title">Log In</h4>
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
           </div>
+          
           <div className="modal-body">
           {/* <button onClick={handleClick} >click me</button> */}
             <form onSubmit={handleApi}>

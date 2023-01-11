@@ -109,6 +109,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div className="modal-content">
+        
           <div className="modal-header border-0">
             <h4 className="modal-title">Register</h4>
             <button

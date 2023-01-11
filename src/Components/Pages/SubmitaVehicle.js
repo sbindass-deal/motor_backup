@@ -532,10 +532,8 @@ const SubmitaVehicle = () => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header border-0">
-              <div className="col-md-12">
-                <h4 className="modal-title ">Pop up</h4>
-              </div>
+          <div className="modal-header border-0">
+              <h4 className="modal-title">If you are a Dealer?</h4>
               <button
                 onClick={() => setShowAdModal(false)}
                 type="button"
@@ -545,6 +543,7 @@ const SubmitaVehicle = () => {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
+            
             <div className="modal-body">
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex
@@ -552,16 +551,16 @@ const SubmitaVehicle = () => {
                 odio omnis consequuntur quo? Eius sint nisi ipsa sapiente ad
                 corrupti deleniti rerum enim?
               </p>
-              <div className="d-flex justify-content-between pt-5 ">
+              <div className="d-flex justify-content-between pt-5 popBtn">
                 <a
                   onClick={() => setShowAdModal(false)}
                   href="#addShowroom"
-                  className="btn"
+                  className="btn questionBtn"
                 >
-                  button1
+                  Continue
                 </a>
                 <button type="button" className="btn">
-                  button2
+                  Skip
                 </button>
               </div>
             </div>

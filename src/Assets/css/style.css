@@ -4435,6 +4435,32 @@ input.ant-select-selection-search-input {
 .infoCar table tr:hover {
   background: #3333333b;
 }
+.modal a.btn {
+  background: #f7931b;
+  color: #fff;
+}
+.popBtn .btn {
+  border-radius: 50px !important;
+  min-width: 160px;
+}
+.modal-header .close {
+  color: #fff;
+  background: #f7931a;
+  border-radius: 100%;
+  padding: 10px 16px;
+  opacity: 1 !important;
+  position: relative;
+  top: -40px;
+  left: 2%;
+  box-shadow: -8px 8px 31px -6px #ff941366;
+}
+.modal-dialog-scrollable .modal-content {
+  overflow: inherit;
+}
+.modal a.btn:hover {
+  background-color: #fff;
+  color: #f7931b;
+}
 
 @media (max-width: 860px) {
 P{
