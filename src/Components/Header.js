@@ -631,6 +631,30 @@ function Header() {
                           List Your Vehicle
                         </Link>
                       </li>
+                      <li className="nav-item">
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/auctionlive" &&
+                              "navActive"
+                            }`}
+                            to="#"
+                          >
+                            Auctions
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link className="" to="/auctionlive">
+                              Live now
+                            </Link>
+                            {/* <Link className="nav-link" to="/auctionpremium">
+                            Premium
+                          </Link>
+                          <Link className="nav-link" to="/auctionresults">
+                            Resullt
+                          </Link> */}
+                          </div>
+                        </div>
+                      </li>
 
                       <li className="nav-item">
                         <Link
@@ -642,7 +666,7 @@ function Header() {
                           }}
                           to="/showroom"
                         >
-                          Showroom
+                          Showrooms
                         </Link>
                       </li>
 
@@ -659,41 +683,18 @@ function Header() {
                             className="nav-link"
                             to="/carraffle"
                           >
-                            Raffle
+                            Raffles
                           </Link>
                         ) : (
                           <Link
                             // onClick={handleShow}
                             className="nav-link"
                           >
-                            Raffle
+                            Raffles
                           </Link>
                         )}
                       </li>
-                      <li className="nav-item">
-                        <div className="dropdown">
-                          <Link
-                            className={`nav-link ${
-                              location.pathname === "/auctionlive" &&
-                              "navActive"
-                            }`}
-                            to="#"
-                          >
-                            Auction
-                          </Link>
-                          <div className="dropdown-content">
-                            <Link className="" to="/auctionlive">
-                              Live now
-                            </Link>
-                            {/* <Link className="nav-link" to="/auctionpremium">
-                            Premium
-                          </Link>
-                          <Link className="nav-link" to="/auctionresults">
-                            Resullt
-                          </Link> */}
-                          </div>
-                        </div>
-                      </li>
+                      
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -718,7 +719,7 @@ function Header() {
                           }}
                           to="/charity"
                         >
-                          Charity Auction
+                          Charity Auctions
                         </Link>
                       </li>
 
@@ -784,7 +785,7 @@ function Header() {
                           }}
                           to="/faq"
                         >
-                          Faq
+                          FAQ
                         </Link>
                       </li>
                       <li className="nav-item">
