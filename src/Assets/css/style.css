@@ -4488,11 +4488,25 @@ img.g3Logo.W {
   font-size: 20px;
 }
 .bg-pop .modal-content {
-  background-image: url('../images/se4g.png');
+  /* background-image: url('../images/se4g.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  width: fit-content;
 }
+.bg-pop .modal-dialog {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+}
+.bg-pop .modal-header .close { top: -19px;}
+.ar .btn { margin: 5px;}
+
+.classifiedAdds .card_postImg { height: 150px;}
+.classifiedAdds .card_postInfo h4 { font-size: 14px;  font-weight: 300;}
+.classifiedAdds ul.labelList li { color: #f78c12;}
+.classifiedAdds ul.labelList li {  font-weight: 700;}
 
 
 @media (max-width: 860px) {

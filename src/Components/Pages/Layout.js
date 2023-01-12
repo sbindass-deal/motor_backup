@@ -71,6 +71,7 @@ import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
 import Dealer from "./dealer/Dealer";
 import DealerProfile from "./dealer/DealerProfile";
+import ClassifiedAddList from "./dealer/ClassifiedAddList"
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -157,6 +158,7 @@ const Layout = () => {
           <Route path="showroom" element={<Store />} />
           {/* <Route path="showroom" element={<Dealer />} /> */}
           <Route path="dealerProfile" element={<DealerProfile />} />
+          <Route path="classifiedaddlist" element={<ClassifiedAddList/>} />
 
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
