@@ -133,6 +133,8 @@ const App = () => {
       );
       if (res.data.data) {
         dispatch(storeAllVehicle(res.data.data));
+      } else {
+        dispatch(storeAllVehicle([]));
       }
     } catch (err) {
       console.log("err");

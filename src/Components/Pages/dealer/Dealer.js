@@ -598,7 +598,7 @@ function Dealer() {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category &&
+                        {category.year &&
                           category.year.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
@@ -617,7 +617,7 @@ function Dealer() {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category &&
+                        {category.make &&
                           category.make.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
@@ -636,7 +636,7 @@ function Dealer() {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category &&
+                        {category.model &&
                           category.model.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
@@ -655,7 +655,7 @@ function Dealer() {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category &&
+                        {category.state &&
                           category.state.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
@@ -674,7 +674,7 @@ function Dealer() {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category &&
+                        {category.city &&
                           category.city.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
