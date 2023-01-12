@@ -240,7 +240,7 @@ function CarRaffle() {
       <section className="carLottery d-flex align-items-center">
         <div className="container-fluid">
           <div className="heroText">
-            <video autoPlay muted id="myVideo" poster={carraffle} controls>
+            <video autoPlay muted id="myVideo"  controls>
               <source src={Video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
