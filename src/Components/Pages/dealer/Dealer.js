@@ -11,7 +11,10 @@ import custombanner5 from "../../../Assets/images/custombanner5.webp";
 import rrm_logo from "../../../Assets/images/rrm-logo.png";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { filterShowroomData } from "../../../redux/reducers/vehicleReducer";
+import {
+  clearShowroomFilter,
+  filterShowroomData,
+} from "../../../redux/reducers/vehicleReducer";
 function Dealer() {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -28,9 +31,25 @@ function Dealer() {
   const [filterInput, setFilterInput] = useState({
     year: "",
     make: "",
+    model: "",
+    state: "",
+    city: "",
   });
   const handleFilterInput = (e) => {
-    setFilterInput({ ...filterInput, [e.target.name]: e.target.value });
+    setFilterInput({
+      ...filterInput,
+      [e.target.name]: e.target.value.toLowerCase(),
+    });
+  };
+  const clearFilter = () => {
+    setFilterInput({
+      year: "",
+      make: "",
+      model: "",
+      state: "",
+      city: "",
+    });
+    // dispatch(clearShowroomFilter());
   };
   const handleFilterFormSubmit = (e) => {
     e.preventDefault();
@@ -190,6 +209,9 @@ function Dealer() {
               </h5>
             </div>
             <div className="col-12 col-lg-12">
+              <h4 className="text-center">
+                {logingUser.vehicleReducer.showroomData.length}
+              </h4>
               <ul className="postTopOption">
                 <li className="post_search">
                   <input
@@ -567,7 +589,7 @@ function Dealer() {
                           Choose...
                         </option>
                         {category &&
-                          category[0].map((curElem) => {
+                          category.year.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
                       </select>
@@ -586,7 +608,64 @@ function Dealer() {
                           Choose...
                         </option>
                         {category &&
-                          category[1].map((curElem) => {
+                          category.make.map((curElem) => {
+                            return <option>{curElem}</option>;
+                          })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>Model</label>
+                    <div className="form-group">
+                      <select
+                        name="model"
+                        value={filterInput.model}
+                        onChange={handleFilterInput}
+                        className="field"
+                      >
+                        <option selected disabled value="">
+                          Choose...
+                        </option>
+                        {category &&
+                          category.model.map((curElem) => {
+                            return <option>{curElem}</option>;
+                          })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>State</label>
+                    <div className="form-group">
+                      <select
+                        name="state"
+                        value={filterInput.state}
+                        onChange={handleFilterInput}
+                        className="field"
+                      >
+                        <option selected disabled value="">
+                          Choose...
+                        </option>
+                        {category &&
+                          category.state.map((curElem) => {
+                            return <option>{curElem}</option>;
+                          })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>City</label>
+                    <div className="form-group">
+                      <select
+                        name="city"
+                        value={filterInput.city}
+                        onChange={handleFilterInput}
+                        className="field"
+                      >
+                        <option selected disabled value="">
+                          Choose...
+                        </option>
+                        {category &&
+                          category.city.map((curElem) => {
                             return <option>{curElem}</option>;
                           })}
                       </select>
@@ -632,9 +711,12 @@ function Dealer() {
                     </div>
                   </div> */}
                 </div>
-                <div className="form-group">
+                <div className="form-group d-flex justify-content-between ">
                   <button type="submit" className="btn">
                     Filters
+                  </button>
+                  <button onClick={clearFilter} type="submit" className="btn">
+                    Clear Filters
                   </button>
                 </div>
               </form>
