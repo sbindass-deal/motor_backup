@@ -79,7 +79,7 @@ const Charity = () => {
                 <h1>Charity Auctions</h1>
                 <h5>
                   Are you interested in benefitting a charity by offering a
-                  vehicle on BaT Auctions? We can do that!
+                  vehicle on GasGuzzlrs Auctions? We can do that!
                 </h5>
                 {/* <a href="#" className="btn">
                   Notify me when one is listed

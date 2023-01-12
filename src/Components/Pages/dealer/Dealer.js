@@ -15,6 +15,7 @@ import {
   clearShowroomFilter,
   filterShowroomData,
 } from "../../../redux/reducers/vehicleReducer";
+import { Link } from "react-router-dom";
 function Dealer() {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -42,6 +43,7 @@ function Dealer() {
     });
   };
   const clearFilter = () => {
+    // dispatch(clearShowroomFilter());
     setFilterInput({
       year: "",
       make: "",
@@ -49,11 +51,18 @@ function Dealer() {
       state: "",
       city: "",
     });
-    // dispatch(clearShowroomFilter());
   };
   const handleFilterFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(filterShowroomData(filterInput));
+    if (
+      filterInput.year.trim().length > 0 ||
+      filterInput.make.trim().length > 0 ||
+      filterInput.model.trim().length > 0 ||
+      filterInput.state.trim().length > 0 ||
+      filterInput.city.trim().length > 0
+    ) {
+      // dispatch(filterShowroomData(filterInput))
+    }
     handleFilteredModalClose();
   };
 
@@ -166,7 +175,7 @@ function Dealer() {
     arrows: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    // autoplay: true,
+    autoplay: true,
     // speed: 10000,
     // pauseOnHover: true,
     // cssEase: "linear"
@@ -205,13 +214,10 @@ function Dealer() {
           <div className="row">
             <div className="topTile">
               <h5>
-                New to Gas Guzzlrs? <a href="#">Learn how it works.</a>
+                New to Gas Guzzlrs? <Link to="/works">Learn how it works.</Link>
               </h5>
             </div>
             <div className="col-12 col-lg-12">
-              <h4 className="text-center">
-                {logingUser.vehicleReducer.showroomData.length}
-              </h4>
               <ul className="postTopOption">
                 <li className="post_search">
                   <input
@@ -261,7 +267,7 @@ function Dealer() {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Featured Dealer</h2>
+              <h2>Featured Dealers</h2>
             </div>
 
             <div className="col-12 ptb_80" style={{}}>
@@ -307,7 +313,11 @@ function Dealer() {
                     </a>
                   </div>
                   <div>
-                    <a href="https://www.texascarsdirect.com/">
+                    <a
+                      target="_blank"
+                      rel="noopener"
+                      href="https://www.texascarsdirect.com/"
+                    >
                       <div className="card_post">
                         <div className="card_postImg dlr">
                           <small>AD</small>
