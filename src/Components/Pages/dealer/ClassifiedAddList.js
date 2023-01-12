@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import img_01 from "../../../Assets/images/img_01.jpg";
-import img_02 from "../../../Assets/images/img_02.jpg";
-import img_03 from "../../../Assets/images/img_03.jpg";
-import img_04 from "../../../Assets/images/img_04.jpg";
-import img_05 from "../../../Assets/images/img_05.jpg";
-import img_06 from "../../../Assets/images/img_06.jpg";
+import img_01 from "../../../Assets/images/classifiedAddImages/img-1.webp";
+import img_02 from "../../../Assets/images/classifiedAddImages/img-2.webp";
+import img_03 from "../../../Assets/images/classifiedAddImages/img-3.webp";
+import img_04 from "../../../Assets/images/classifiedAddImages/img-4.webp";
+import img_05 from "../../../Assets/images/classifiedAddImages/img-5.webp";
+import img_06 from "../../../Assets/images/classifiedAddImages/img-6.webp";
+import img_07 from "../../../Assets/images/classifiedAddImages/img-7.webp";
+import img_08 from "../../../Assets/images/classifiedAddImages/img-8.webp";
 
 function ClassifiedAddList() {
   const location = useLocation();
@@ -146,14 +148,14 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
-                          12k-Mile 2009 Aston Martin DBS
+                        <a href="#">
+                            2015 Audi Q7 PREMIUM PLUS
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$15,950</span>
                         </li>
                        
                       </ul>
@@ -168,14 +170,14 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
-                          12k-Mile 2009 Aston Martin DBS
+                        <a href="#">
+                            2010 Audi S5 PRESTIGE
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$33,950</span>
                         </li>
                        
                       </ul>
@@ -190,14 +192,14 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
-                          12k-Mile 2009 Aston Martin DBS
+                        <a href="#">
+                            2014 BMW M6 CONVERTIBLE
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$17,950</span>
                         </li>
                        
                       </ul>
@@ -212,14 +214,14 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
-                          12k-Mile 2009 Aston Martin DBS
+                        <a href="#">
+                            2019 Buick Encore PREFERRED
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$35,950</span>
                         </li>
                        
                       </ul>
@@ -234,14 +236,14 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
-                          12k-Mile 2009 Aston Martin DBS
+                        <a href="#">
+                            2015 Cadillac Escalade ESV LUXURY
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$36,950</span>
                         </li>
                        
                       </ul>
@@ -256,14 +258,58 @@ function ClassifiedAddList() {
                     </div>
                     <div class="card_postInfo">
                       <h4>
-                        <a href="detail.html">
+                        <a href="#">
+                            2016 Cadillac Escalade ESV
+                        </a>
+                      </h4>
+                     
+                      <ul class="labelList">
+                        <li>
+                          <label>Price:</label> <span>$17,450</span>
+                        </li>
+                       
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-3 pb-3">
+                  <div class="card_post">
+                    <div class="card_postImg">
+                      
+                      <img src={img_07} />
+                    </div>
+                    <div class="card_postInfo">
+                      <h4>
+                        <a href="#">
+                            2019 Chevrolet Equinox LS
+                        </a>
+                      </h4>
+                     
+                      <ul class="labelList">
+                        <li>
+                          <label>Price:</label> <span>$16,950</span>
+                        </li>
+                       
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-3 pb-3">
+                  <div class="card_post">
+                    <div class="card_postImg">
+                      
+                      <img src={img_08} />
+                    </div>
+                    <div class="card_postInfo">
+                      <h4>
+                        <a href="#">
                           12k-Mile 2009 Aston Martin DBS
                         </a>
                       </h4>
                      
                       <ul class="labelList">
                         <li>
-                          <label>Price:</label> <span>$126,888</span>
+                          <label>Price:</label> <span>$16,950</span>
                         </li>
                        
                       </ul>
