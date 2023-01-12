@@ -3416,7 +3416,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
 
 .shop img {
   animation-name: spin;
-  animation-duration: 5000ms;
+  /* animation-duration: 5000ms; */
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -4441,7 +4441,23 @@ input.ant-select-selection-search-input {
 }
 .popBtn .btn {
   border-radius: 50px !important;
-  min-width: 160px;
+  min-width: 342px;
+}
+img.g3Logo {
+  display: none;
+  width: 20%;
+  margin: 0 auto;
+}
+img.g3Logo.W {
+  display: block;
+  width: 20%;
+  margin: 0 auto;
+}
+.modal .popBtn a.btn {
+  background: #f7931b;
+  color: #fff;
+  padding: 15px;
+ 
 }
 .modal-header .close {
   color: #fff;
@@ -4461,6 +4477,23 @@ input.ant-select-selection-search-input {
   background-color: #fff;
   color: #f7931b;
 }
+.ar {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  padding: 10% 0px 16%;
+}
+
+.ar p {
+  font-size: 20px;
+}
+.bg-pop .modal-content {
+  background-image: url('../images/se4g.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 
 @media (max-width: 860px) {
 P{

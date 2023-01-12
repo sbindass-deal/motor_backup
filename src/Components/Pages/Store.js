@@ -92,7 +92,7 @@ function Store() {
          
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Just In Showroom!</h2>
+              <h2>Latest Bids</h2>
             </div>
             <div className="col-12 Latest_B ">
               <ul className="img_sec">

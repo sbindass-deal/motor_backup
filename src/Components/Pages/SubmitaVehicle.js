@@ -88,7 +88,7 @@ const SubmitaVehicle = () => {
                   <h4>Standard</h4>
                   <div className="plan_Price">
                     <div className="dfk">
-                      ${planChacked.standard ? 199 : 99}
+                      ${planChacked.standard ? 499 : 99}
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                         <input
@@ -124,7 +124,7 @@ const SubmitaVehicle = () => {
                     onClick={() => {
                       dispatch(
                         getPlan({
-                          amount: planChacked.standard ? 199 : 99,
+                          amount: planChacked.standard ? 499 : 99,
                           list: planChacked.standard ? 5 : 1,
                           valid: planChacked.standard ? 30 : 1,
                           listName: "standard",
@@ -161,7 +161,7 @@ const SubmitaVehicle = () => {
                   <h4>Pro</h4>
                   <div className="plan_Price">
                     <div className="dfk">
-                      ${planChacked.pro ? 499 : 399}
+                      ${planChacked.pro ? 1649 : 349}
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                         <input
@@ -196,7 +196,7 @@ const SubmitaVehicle = () => {
                     onClick={() => {
                       dispatch(
                         getPlan({
-                          amount: planChacked.pro ? 499 : 399,
+                          amount: planChacked.pro ? 1649 : 349,
                           list: planChacked.pro ? 5 : 1,
                           valid: planChacked.pro ? 30 : 1,
                           listName: "pro",
@@ -233,7 +233,7 @@ const SubmitaVehicle = () => {
                   <h4>Premiere</h4>
                   <div className="plan_Price">
                     <div className="dfk">
-                      ${planChacked.premiere ? 699 : 599}
+                      ${planChacked.premiere ? 2599 : 549}
                       <div className="switch">
                         <span className="plan_Time">Single Listing</span>
                         <input
@@ -268,7 +268,7 @@ const SubmitaVehicle = () => {
                     onClick={() => {
                       dispatch(
                         getPlan({
-                          amount: planChacked.premiere ? 699 : 599,
+                          amount: planChacked.premiere ?  2599 : 549,
                           list: planChacked.premiere ? 5 : 1,
                           valid: planChacked.premiere ? 30 : 1,
                           listName: "premiere",
@@ -307,8 +307,8 @@ const SubmitaVehicle = () => {
                     <div className="dfk">
                       <h5>
                         {planChacked.exclusive
-                          ? "68767898943"
-                          : "Example@gmail.com"}
+                          ? "1-817-221-8319"
+                          : "sales@gasguzzlrs.com"}
                       </h5>
                       <div className="switch">
                         <span className="plan_Time">Email</span>
@@ -526,14 +526,14 @@ const SubmitaVehicle = () => {
       <Modal
         show={showAdModal}
         onHide={() => setShowAdModal(false)}
-        className="modal fade"
+        className="modal fade bg-pop"
         id="loginModal"
         centered
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
           <div className="modal-header border-0">
-              <h4 className="modal-title">If you are a Dealer?</h4>
+              <h4 className="modal-title"> </h4>
               <button
                 onClick={() => setShowAdModal(false)}
                 type="button"
@@ -545,24 +545,24 @@ const SubmitaVehicle = () => {
             </div>
             
             <div className="modal-body">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex
-                temporibus repudiandae ullam magnam, hic possimus cupiditate
-                odio omnis consequuntur quo? Eius sint nisi ipsa sapiente ad
-                corrupti deleniti rerum enim?
-              </p>
-              <div className="d-flex justify-content-between pt-5 popBtn">
+             <div className="ar popBtn">
+             
+               
                 <a
                   onClick={() => setShowAdModal(false)}
                   href="#addShowroom"
                   className="btn questionBtn"
                 >
-                  Continue
+                  Are you an individual private seller ?
                 </a>
+            
+                
                 <button type="button" className="btn">
-                  Skip
+                Are you a dealer?
                 </button>
-              </div>
+              
+             </div>
+              
             </div>
           </div>
         </div>

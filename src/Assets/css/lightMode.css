@@ -78,3 +78,11 @@ body.light{  background-color: #fff; color: #000;}
 .light .ant-select-item.ant-select-item-option{color: #000;}
 .light .topTile { background: #fff;}
 
+.light img.g3Logo {
+    display: block;
+  }
+.light img.g3Logo.W {
+    display: none;
+  }
+  .light .heroText.shop h1{ color: #000;}
+
