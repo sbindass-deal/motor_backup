@@ -376,7 +376,7 @@ const VechilesRegistraion = () => {
         dealerId: dealer,
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
-        vin,
+        detailvin: vin,
         displayInAuction: displayInAuction,
         auctionType,
         externalLink: adWebsiteLink,

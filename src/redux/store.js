@@ -6,6 +6,7 @@ import login from "./reducers/login";
 import dayAndNightMode from "./reducers/dayAndNightMode";
 import cartSlice from "./reducers/cartSlice";
 import planReducer from "./reducers/planReducer";
+import vehicleReducer from "./reducers/vehicleReducer";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   dayAndNightMode,
   cartSlice,
   planReducer,
+  vehicleReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

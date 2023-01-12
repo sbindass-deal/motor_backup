@@ -1,31 +1,22 @@
 import axios from "axios";
 
 import React, { useEffect, useRef, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Link } from "react-router-dom";
-import car_01 from "../../../Assets/images/car_01.jpg";
-import SmallSpinner from "../../UI/SmallSpinner";
 import FilteredModal from "../FilteredModal";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import EastIcon from "@mui/icons-material/East";
-import WestIcon from "@mui/icons-material/West";
-import car_03 from "../../../Assets/images/car_03.jpg";
-import car_04 from "../../../Assets/images/car_04.jpg";
-import img_05 from "../../../Assets/images/img_05.jpg";
-import img_06 from "../../../Assets/images/img_06.jpg";
-import Img_02 from "../../../Assets/images/img_02.jpg";
-import Img_w from "../../../Assets/images/wox.png";
-import Img_bmw from "../../../Assets/images/bmw.png";
-import Img_m from "../../../Assets/images/m.png";
 
-import logo_ku from "../../../Assets/images/logo-ku.png"
-import custombanner5 from "../../../Assets/images/custombanner5.webp"
-import rrm_logo from "../../../Assets/images/rrm-logo.png"
+import logo_ku from "../../../Assets/images/logo-ku.png";
+import custombanner5 from "../../../Assets/images/custombanner5.webp";
+import rrm_logo from "../../../Assets/images/rrm-logo.png";
 import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { filterShowroomData } from "../../../redux/reducers/vehicleReducer";
 function Dealer() {
-
+  const dispatch = useDispatch();
+  const logingUser = useSelector((state) => state);
+  const category = logingUser.vehicleReducer.filterCategory;
+  console.log(category);
   const [filteredModal, setFilteredModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
@@ -34,13 +25,25 @@ function Dealer() {
   const [filterData, setFilterData] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [page, setPage] = useState(0);
+  const [filterInput, setFilterInput] = useState({
+    year: "",
+    make: "",
+  });
+  const handleFilterInput = (e) => {
+    setFilterInput({ ...filterInput, [e.target.name]: e.target.value });
+  };
+  const handleFilterFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(filterShowroomData(filterInput));
+    handleFilteredModalClose();
+  };
 
   const handleFilteredModalClose = () => {
-    setFilteredModal(false)
-  }
+    setFilteredModal(false);
+  };
   const handleFilteredModalShow = () => {
-    setFilteredModal(true)
-  }
+    setFilteredModal(true);
+  };
 
   const handleClose = () => {
     setShowModal(false);
@@ -195,37 +198,23 @@ function Dealer() {
                     name="search"
                     value={searchInputValue}
                     onChange={(e) => {
-                      let value = e.target.value;
-                      setSearchInputValue(e.target.value);
-
-                      if (value === "") {
-                        setFilterData(vehicleData);
-                      } else {
-                        setFilterData(
-                          vehicleData
-                            .filter(
-                              (data) =>
-                                data.make.toLowerCase().includes(value) ||
-                                data.make.toUpperCase().includes(value) ||
-                                data.model.toLowerCase().includes(value) ||
-                                data.model.toUpperCase().includes(value) ||
-                                data.year.includes(value) ||
-                                data.name.toLowerCase().includes(value) ||
-                                data.name.toUpperCase().includes(value)
-                            )
-                            .map((data) => data)
-                        );
-                      }
+                      let values = e.target.value.toLowerCase();
+                      setSearchInputValue(values);
                     }}
                     placeholder="Search for a make or model"
                   />
                 </li>
                 <li className="">
-                  <button type="button" className="gry_btn" data-toggle="modal" data-target="#FiltersModal" onClick={handleFilteredModalShow}>
-                    <i className="fa-solid fa-filter mr-2"></i> 
+                  <button
+                    type="button"
+                    className="gry_btn"
+                    data-toggle="modal"
+                    data-target="#FiltersModal"
+                    onClick={handleFilteredModalShow}
+                  >
+                    <i className="fa-solid fa-filter mr-2"></i>
                     Filters
                   </button>
-                  
                 </li>
               </ul>
             </div>
@@ -276,9 +265,12 @@ function Dealer() {
                         <div className="card_postInfo">
                           <h5>Texans Auto Group</h5>
                           <p>
-                            At Texans Auto Group, when we say we have a ginormous selection of cars, we mean it. 
-                            We have an incredible selection of new, used and certified vehicles, which is why so 
-                            many customers choose us when they are looking for reliable used car dealerships in Cypress TX. 
+                            At Texans Auto Group, when we say we have a
+                            ginormous selection of cars, we mean it. We have an
+                            incredible selection of new, used and certified
+                            vehicles, which is why so many customers choose us
+                            when they are looking for reliable used car
+                            dealerships in Cypress TX.
                           </p>
                           {/* <ul className="labelList">
                             <li>
@@ -293,18 +285,23 @@ function Dealer() {
                     </a>
                   </div>
                   <div>
-                  <a href="https://www.texascarsdirect.com/">
-                    <div className="card_post">
-                      <div className="card_postImg dlr">
-                        <small>AD</small>
-                        <img src={custombanner5} alt="Img_bmw" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h5>Texas Cars Direct</h5>
-                        <p>
-                        While we are happy to welcome you to our newly remodeled and distanced showroom-We are also providing additional safety measures to keep us all safe...from safely signing digital paperwork via email to delivering your vehicle right to your home or work!
-                        </p>
-                        {/* <ul className="labelList">
+                    <a href="https://www.texascarsdirect.com/">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <small>AD</small>
+                          <img src={custombanner5} alt="Img_bmw" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>Texas Cars Direct</h5>
+                          <p>
+                            While we are happy to welcome you to our newly
+                            remodeled and distanced showroom-We are also
+                            providing additional safety measures to keep us all
+                            safe...from safely signing digital paperwork via
+                            email to delivering your vehicle right to your home
+                            or work!
+                          </p>
+                          {/* <ul className="labelList">
                           <li>
                             <label>Current Bid:</label> <span>$126,888</span>
                           </li>
@@ -312,35 +309,37 @@ function Dealer() {
                             <label>Ends In:</label> <span>5 days</span>
                           </li>
                         </ul> */}
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                  </div>
-                  <div>
-                  <a href="/dealerprofile">
-                    <div className="card_post">
-                      <div className="card_postImg dlr">
-                        <img src={rrm_logo} alt="Img_01" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h5>Ruiz Ranch motors</h5>
-                        <p>
-                        With years of experience serving the area, our dealership is dedicated to offering high-quality, pre-owned vehicles to our customers.
-From the moment you walk through our door, we’re committed to providing you with a great car-buying experience.
-                        </p>
-                        {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                      </div>
-                    </div>
                     </a>
                   </div>
-                 
+                  <div>
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={rrm_logo} alt="Img_01" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>Ruiz Ranch motors</h5>
+                          <p>
+                            With years of experience serving the area, our
+                            dealership is dedicated to offering high-quality,
+                            pre-owned vehicles to our customers. From the moment
+                            you walk through our door, we’re committed to
+                            providing you with a great car-buying experience.
+                          </p>
+                          {/* <ul className="labelList">
+                          <li>
+                            <label>Current Bid:</label> <span>$126,888</span>
+                          </li>
+                          <li>
+                            <label>Ends In:</label> <span>5 days</span>
+                          </li>
+                        </ul> */}
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </Slider>
               </div>
             </div>
@@ -499,15 +498,15 @@ From the moment you walk through our door, we’re committed to providing you wi
       {/* )} */}
 
       <Modal
-      show={filteredModal}
-      onHide={handleFilteredModalClose}
-      className="modal fade"
-      id="loginModal"
-      centered
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-        <div className="modal-header border-0">
+        show={filteredModal}
+        onHide={handleFilteredModalClose}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
               <h4 className="modal-title">Filters</h4>
               <button
                 onClick={handleFilteredModalClose}
@@ -518,90 +517,131 @@ From the moment you walk through our door, we’re committed to providing you wi
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
-          <div className="modal-body">
-          {/* <button onClick={handleClick} >click me</button> */}
-          <form>
-            <div className="row row_gap_5">
-            
-              <div className="col-12 col-md-6">
-                <label>Vehicle Year</label>
-                <div className="form-group">
-                  <input type="text" name="" className="field" placeholder="1900"/>
+            <div className="modal-body">
+              {/* <button onClick={handleClick} >click me</button> */}
+              <form onSubmit={handleFilterFormSubmit}>
+                <div className="row row_gap_5">
+                  {/* <div className="col-12 col-md-12">
+                    <label>Vin Number</label>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name=""
+                        className="field"
+                        placeholder="Vin Number"
+                      />
+                    </div>
+                  </div> */}
+                  {/* <div className="col-12 col-md-6">
+                    <label>Vehicle Year</label>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name=""
+                        className="field"
+                        placeholder="1900"
+                      />
+                    </div>
+                  </div> */}
+                  {/* <div className="col-12 col-md-6">
+                    <label>To</label>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name=""
+                        className="field"
+                        placeholder="2023"
+                      />
+                    </div>
+                  </div> */}
+                  <div className="col-12 col-md-6">
+                    <label>Year</label>
+                    <div className="form-group">
+                      <select
+                        name="year"
+                        value={filterInput.year}
+                        onChange={handleFilterInput}
+                        className="field"
+                      >
+                        <option selected disabled value="">
+                          Choose...
+                        </option>
+                        {category &&
+                          category[0].map((curElem) => {
+                            return <option>{curElem}</option>;
+                          })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>Make</label>
+                    <div className="form-group">
+                      <select
+                        name="make"
+                        value={filterInput.make}
+                        onChange={handleFilterInput}
+                        className="field"
+                      >
+                        <option selected disabled value="">
+                          Choose...
+                        </option>
+                        {category &&
+                          category[1].map((curElem) => {
+                            return <option>{curElem}</option>;
+                          })}
+                      </select>
+                    </div>
+                  </div>
+                  {/* <div className="col-12 col-md-6">
+                    <label>High Bid</label>
+                    <div className="form-group">
+                      <select className="field">
+                        <option>No Min</option>
+                        <option>$5k</option>
+                        <option>#10k</option>
+                        <option>#15k</option>
+                        <option>#20k</option>
+                        <option>#25k</option>
+                        <option>#30k</option>
+                      </select>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-12 col-md-6">
+                    <label>To</label>
+                    <div className="form-group">
+                      <select className="field">
+                        <option>No Max</option>
+                        <option>$5k</option>
+                        <option>#10k</option>
+                        <option>#15k</option>
+                        <option>#20k</option>
+                        <option>#25k</option>
+                        <option>#30k</option>
+                      </select>
+                    </div>
+                  </div> */}
+                  {/* <div className="col-12 col-md-12">
+                    <label>Exclude Words / Models / Tags</label>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name=""
+                        className="field"
+                        placeholder="Enter"
+                      />
+                    </div>
+                  </div> */}
                 </div>
-              </div>
-              <div className="col-12 col-md-6">
-                <label>To</label>
                 <div className="form-group">
-                  <input type="text" name="" className="field" placeholder="2023"/>
+                  <button type="submit" className="btn">
+                    Filters
+                  </button>
                 </div>
-              </div>
-              <div className="col-12 col-md-6">
-                <label>List Date</label>
-                <div className="form-group">
-                  <select className="field">
-                    <option>All Time</option>
-                    <option>7 Days</option>
-                    <option>Last Month</option>
-                    <option>Last Year</option>
-                    <option>Last 2 Year</option>
-                    <option>Last 5 Year</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-12 col-md-6">
-                <label>Result</label>
-                <div className="form-group">
-                  <select className="field">
-                    <option>All</option>
-                    <option>Sold Only</option>
-                    <option>Reserve Not Met</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-12 col-md-6">
-                <label>High Bid</label>
-                <div className="form-group">
-                  <select className="field">
-                    <option>No Min</option>
-                    <option>$5k</option>
-                    <option>#10k</option>
-                    <option>#15k</option>
-                    <option>#20k</option>
-                    <option>#25k</option>
-                    <option>#30k</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-12 col-md-6">
-                <label>To</label>
-                <div className="form-group">
-                  <select className="field">
-                    <option>No Max</option>
-                    <option>$5k</option>
-                    <option>#10k</option>
-                    <option>#15k</option>
-                    <option>#20k</option>
-                    <option>#25k</option>
-                    <option>#30k</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-12 col-md-12">
-                <label>Exclude Words / Models / Tags</label>
-                <div className="form-group">
-                  <input type="text" name="" className="field" placeholder="Enter"/>
-                </div>
-              </div>
+              </form>
             </div>
-            <div className="form-group">
-              <button type="button" className="btn">Filters</button>
-            </div>
-          </form>
-            
           </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
     </>
   );
 }
