@@ -665,12 +665,10 @@
 	.payTPop .modal-content {width: calc(80% - -67%);}
 	.navbar-expand-md .navbar-toggler {	top: 22px;	}
 	h2.title_combo {font-size: 25px;}
-	h1.text, .bgHolder h1.text-back {
-		font-size: 28px;
-	}
-	.searchSec .ant-select-selector {
-		min-width: 354px;
-	}
+	h1.text, .bgHolder h1.text-back {font-size: 28px;}
+	.searchSec .ant-select-selector {min-width: 354px;}
+	.bg-pop .modal-content {width: min-content;}
+	.ar {display: block;}
 }
 
 @media (max-width: 575px) {
