@@ -4396,7 +4396,7 @@ input.ant-select-selection-search-input {
   height: 550px;
 }
 .card_postImg.dlr img {
-  background: aliceblue;
+  
 }
 
 .card_postImg.dlr .card_post {
@@ -4508,7 +4508,12 @@ img.g3Logo.W {
 .classifiedAdds ul.labelList li { color: #f78c12;}
 .classifiedAdds ul.labelList li {  font-weight: 700;}
 
-.ListDealer .card_postImg.dlr { height: 120px;}
+.ListDealer .card_postImg.dlr {
+  height: 139px;
+  border: 1px solid rgb(180, 180, 180);
+  padding: 10px;
+  background: white;
+}
 
 .ListDealer .card_postInfo h5{color: #f78c12;}
 nav.pgNtion { margin: 0 auto;}
