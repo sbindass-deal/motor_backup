@@ -271,25 +271,56 @@ function Dealer() {
             <FilteredModal showModal={showModal} handleClose={handleClose} />
             <div className="col-12 ptb_80 ListDealer" style={{}}>
               <div className="row">
-
-              
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                    <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={logo_ku} alt="logo_ku" />
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                      <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={logo_ku} alt="logo_ku" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texans Auto Group</h5>
+                            <p>
+                              At Texans Auto Group, when we say we have a
+                              ginormous selection of cars, we mean it. We have an
+                              incredible selection of new, used and certified
+                              vehicles, which is why so many customers choose us
+                              when they are looking for reliable used car
+                              dealerships in Cypress TX.
+                            </p>
+                            {/* <ul className="labelList">
+                              <li>
+                                <label>Current Bid:</label> <span>$126,888</span>
+                              </li>
+                              <li>
+                                <label>Ends In:</label> <span>5 days</span>
+                              </li>
+                            </ul> */}
+                          </div>
                         </div>
-                        <div className="card_postInfo">
-                          <h5>Texans Auto Group</h5>
-                          <p>
-                            At Texans Auto Group, when we say we have a
-                            ginormous selection of cars, we mean it. We have an
-                            incredible selection of new, used and certified
-                            vehicles, which is why so many customers choose us
-                            when they are looking for reliable used car
-                            dealerships in Cypress TX.
-                          </p>
-                          {/* <ul className="labelList">
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                  <a
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.texascarsdirect.com/"
+                      >
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <small>AD</small>
+                            <img src={custombanner5} alt="Img_bmw" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texas Cars Direct</h5>
+                            <p>
+                              While we are happy to welcome you to our newly
+                              remodeled and distanced showroom-We are also
+                              providing additional safety measures to keep us all
+                              safe...from safely signing digital paperwork via
+                              email to delivering your vehicle right to your home
+                              or work!
+                            </p>
+                            {/* <ul className="labelList">
                             <li>
                               <label>Current Bid:</label> <span>$126,888</span>
                             </li>
@@ -297,60 +328,54 @@ function Dealer() {
                               <label>Ends In:</label> <span>5 days</span>
                             </li>
                           </ul> */}
+                          </div>
                         </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                <a
-                      target="_blank"
-                      rel="noopener"
-                      href="https://www.texascarsdirect.com/"
-                    >
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <small>AD</small>
-                          <img src={custombanner5} alt="Img_bmw" />
+                  </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                      <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={logo_ku} alt="logo_ku" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texans Auto Group</h5>
+                            <p>
+                              At Texans Auto Group, when we say we have a
+                              ginormous selection of cars, we mean it. We have an
+                              incredible selection of new, used and certified
+                              vehicles, which is why so many customers choose us
+                              when they are looking for reliable used car
+                              dealerships in Cypress TX.
+                            </p>
+                            {/* <ul className="labelList">
+                              <li>
+                                <label>Current Bid:</label> <span>$126,888</span>
+                              </li>
+                              <li>
+                                <label>Ends In:</label> <span>5 days</span>
+                              </li>
+                            </ul> */}
+                          </div>
                         </div>
-                        <div className="card_postInfo">
-                          <h5>Texas Cars Direct</h5>
-                          <p>
-                            While we are happy to welcome you to our newly
-                            remodeled and distanced showroom-We are also
-                            providing additional safety measures to keep us all
-                            safe...from safely signing digital paperwork via
-                            email to delivering your vehicle right to your home
-                            or work!
-                          </p>
-                          {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                        </div>
-                      </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                    <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={logo_ku} alt="logo_ku" />
-                        </div>
-                        <div className="card_postInfo">
-                          <h5>Texans Auto Group</h5>
-                          <p>
-                            At Texans Auto Group, when we say we have a
-                            ginormous selection of cars, we mean it. We have an
-                            incredible selection of new, used and certified
-                            vehicles, which is why so many customers choose us
-                            when they are looking for reliable used car
-                            dealerships in Cypress TX.
-                          </p>
-                          {/* <ul className="labelList">
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                  <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={rrm_logo} alt="Img_01" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Ruiz Ranch motors</h5>
+                            <p>
+                              With years of experience serving the area, our
+                              dealership is dedicated to offering high-quality,
+                              pre-owned vehicles to our customers. From the moment
+                              you walk through our door, we’re committed to
+                              providing you with a great car-buying experience.
+                            </p>
+                            {/* <ul className="labelList">
                             <li>
                               <label>Current Bid:</label> <span>$126,888</span>
                             </li>
@@ -358,54 +383,60 @@ function Dealer() {
                               <label>Ends In:</label> <span>5 days</span>
                             </li>
                           </ul> */}
+                          </div>
                         </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={rrm_logo} alt="Img_01" />
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                      <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={logo_ku} alt="logo_ku" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texans Auto Group</h5>
+                            <p>
+                              At Texans Auto Group, when we say we have a
+                              ginormous selection of cars, we mean it. We have an
+                              incredible selection of new, used and certified
+                              vehicles, which is why so many customers choose us
+                              when they are looking for reliable used car
+                              dealerships in Cypress TX.
+                            </p>
+                            {/* <ul className="labelList">
+                              <li>
+                                <label>Current Bid:</label> <span>$126,888</span>
+                              </li>
+                              <li>
+                                <label>Ends In:</label> <span>5 days</span>
+                              </li>
+                            </ul> */}
+                          </div>
                         </div>
-                        <div className="card_postInfo">
-                          <h5>Ruiz Ranch motors</h5>
-                          <p>
-                            With years of experience serving the area, our
-                            dealership is dedicated to offering high-quality,
-                            pre-owned vehicles to our customers. From the moment
-                            you walk through our door, we’re committed to
-                            providing you with a great car-buying experience.
-                          </p>
-                          {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                        </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                    <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={logo_ku} alt="logo_ku" />
-                        </div>
-                        <div className="card_postInfo">
-                          <h5>Texans Auto Group</h5>
-                          <p>
-                            At Texans Auto Group, when we say we have a
-                            ginormous selection of cars, we mean it. We have an
-                            incredible selection of new, used and certified
-                            vehicles, which is why so many customers choose us
-                            when they are looking for reliable used car
-                            dealerships in Cypress TX.
-                          </p>
-                          {/* <ul className="labelList">
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                  <a
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.texascarsdirect.com/"
+                      >
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <small>AD</small>
+                            <img src={custombanner5} alt="Img_bmw" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texas Cars Direct</h5>
+                            <p>
+                              While we are happy to welcome you to our newly
+                              remodeled and distanced showroom-We are also
+                              providing additional safety measures to keep us all
+                              safe...from safely signing digital paperwork via
+                              email to delivering your vehicle right to your home
+                              or work!
+                            </p>
+                            {/* <ul className="labelList">
                             <li>
                               <label>Current Bid:</label> <span>$126,888</span>
                             </li>
@@ -413,60 +444,54 @@ function Dealer() {
                               <label>Ends In:</label> <span>5 days</span>
                             </li>
                           </ul> */}
+                          </div>
                         </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                <a
-                      target="_blank"
-                      rel="noopener"
-                      href="https://www.texascarsdirect.com/"
-                    >
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <small>AD</small>
-                          <img src={custombanner5} alt="Img_bmw" />
+                  </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                      <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={logo_ku} alt="logo_ku" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texans Auto Group</h5>
+                            <p>
+                              At Texans Auto Group, when we say we have a
+                              ginormous selection of cars, we mean it. We have an
+                              incredible selection of new, used and certified
+                              vehicles, which is why so many customers choose us
+                              when they are looking for reliable used car
+                              dealerships in Cypress TX.
+                            </p>
+                            {/* <ul className="labelList">
+                              <li>
+                                <label>Current Bid:</label> <span>$126,888</span>
+                              </li>
+                              <li>
+                                <label>Ends In:</label> <span>5 days</span>
+                              </li>
+                            </ul> */}
+                          </div>
                         </div>
-                        <div className="card_postInfo">
-                          <h5>Texas Cars Direct</h5>
-                          <p>
-                            While we are happy to welcome you to our newly
-                            remodeled and distanced showroom-We are also
-                            providing additional safety measures to keep us all
-                            safe...from safely signing digital paperwork via
-                            email to delivering your vehicle right to your home
-                            or work!
-                          </p>
-                          {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                        </div>
-                      </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                    <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={logo_ku} alt="logo_ku" />
-                        </div>
-                        <div className="card_postInfo">
-                          <h5>Texans Auto Group</h5>
-                          <p>
-                            At Texans Auto Group, when we say we have a
-                            ginormous selection of cars, we mean it. We have an
-                            incredible selection of new, used and certified
-                            vehicles, which is why so many customers choose us
-                            when they are looking for reliable used car
-                            dealerships in Cypress TX.
-                          </p>
-                          {/* <ul className="labelList">
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                  <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={rrm_logo} alt="Img_01" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Ruiz Ranch motors</h5>
+                            <p>
+                              With years of experience serving the area, our
+                              dealership is dedicated to offering high-quality,
+                              pre-owned vehicles to our customers. From the moment
+                              you walk through our door, we’re committed to
+                              providing you with a great car-buying experience.
+                            </p>
+                            {/* <ul className="labelList">
                             <li>
                               <label>Current Bid:</label> <span>$126,888</span>
                             </li>
@@ -474,65 +499,38 @@ function Dealer() {
                               <label>Ends In:</label> <span>5 days</span>
                             </li>
                           </ul> */}
+                          </div>
                         </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={rrm_logo} alt="Img_01" />
+                      </a>
+                </div>
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                      <a href="/dealerprofile">
+                        <div className="card_post">
+                          <div className="card_postImg dlr">
+                            <img src={logo_ku} alt="logo_ku" />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>Texans Auto Group</h5>
+                            <p>
+                              At Texans Auto Group, when we say we have a
+                              ginormous selection of cars, we mean it. We have an
+                              incredible selection of new, used and certified
+                              vehicles, which is why so many customers choose us
+                              when they are looking for reliable used car
+                              dealerships in Cypress TX.
+                            </p>
+                            {/* <ul className="labelList">
+                              <li>
+                                <label>Current Bid:</label> <span>$126,888</span>
+                              </li>
+                              <li>
+                                <label>Ends In:</label> <span>5 days</span>
+                              </li>
+                            </ul> */}
+                          </div>
                         </div>
-                        <div className="card_postInfo">
-                          <h5>Ruiz Ranch motors</h5>
-                          <p>
-                            With years of experience serving the area, our
-                            dealership is dedicated to offering high-quality,
-                            pre-owned vehicles to our customers. From the moment
-                            you walk through our door, we’re committed to
-                            providing you with a great car-buying experience.
-                          </p>
-                          {/* <ul className="labelList">
-                          <li>
-                            <label>Current Bid:</label> <span>$126,888</span>
-                          </li>
-                          <li>
-                            <label>Ends In:</label> <span>5 days</span>
-                          </li>
-                        </ul> */}
-                        </div>
-                      </div>
-                    </a>
-              </div>
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                    <a href="/dealerprofile">
-                      <div className="card_post">
-                        <div className="card_postImg dlr">
-                          <img src={logo_ku} alt="logo_ku" />
-                        </div>
-                        <div className="card_postInfo">
-                          <h5>Texans Auto Group</h5>
-                          <p>
-                            At Texans Auto Group, when we say we have a
-                            ginormous selection of cars, we mean it. We have an
-                            incredible selection of new, used and certified
-                            vehicles, which is why so many customers choose us
-                            when they are looking for reliable used car
-                            dealerships in Cypress TX.
-                          </p>
-                          {/* <ul className="labelList">
-                            <li>
-                              <label>Current Bid:</label> <span>$126,888</span>
-                            </li>
-                            <li>
-                              <label>Ends In:</label> <span>5 days</span>
-                            </li>
-                          </ul> */}
-                        </div>
-                      </div>
-                    </a>
-              </div>
+                      </a>
+                </div>
               </div>
             </div>
             <nav aria-label="Page navigation example " className="pgNtion">

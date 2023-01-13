@@ -4514,10 +4514,42 @@ img.g3Logo.W {
   padding: 10px;
   background: white;
 }
-
+.bidnW {
+  background-color: transparent;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 100;
+}
+.bidnW:hover {
+  background-color: transparent;
+  color: #f78c12;
+}
 .ListDealer .card_postInfo h5{color: #f78c12;}
 nav.pgNtion { margin: 0 auto;}
 
+
+.addSection .inner-slider .card_post {
+  display: flex;
+  align-items: center;
+  background: #090808;
+  padding: 10px;
+}
+.addSection .inner-slider .card_postImg.dlr {
+  padding-right: 20px;
+  height: 180px;
+}
+.addSection .card_postInfo h5 {
+  color: #f58b12;
+}
+.addSection .labelList li{border: none;}
+.addSection .inner-slider small {
+  position: absolute;
+  right: 30px;
+  bottom: 13px;
+}
+.addSection .inner-slider a {
+  background: #090808;
+}
 @media (max-width: 860px) {
 P{
   font-size: 13px;

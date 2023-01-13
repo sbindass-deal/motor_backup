@@ -12,13 +12,17 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Img_01 from "../../../Assets/images/img_01.jpg";
 import about_1 from "../../../Assets/images/about-1.jpg";
-import Gallery_1 from "../../../Assets/images/g-1.png"
-import Gallery_2 from "../../../Assets/images/g-2.png"
-import Gallery_3 from "../../../Assets/images/g-3.png"
-import Gallery_4 from "../../../Assets/images/g-4.png"
-
-
-
+import Gallery_1 from "../../../Assets/images/g-1.png";
+import Gallery_2 from "../../../Assets/images/g-2.png";
+import Gallery_3 from "../../../Assets/images/g-3.png";
+import Gallery_4 from "../../../Assets/images/g-4.png";
+import logo_ku from "../../../Assets/images/logo-ku.png";
+import custombanner5 from "../../../Assets/images/custombanner5.webp";
+import fordMustang from "../../../Assets/images/fordMustang.png";
+import Maskgroup1 from "../../../Assets/images/Maskgroup1.png";
+import web from "../../../Assets/images/1.webp";
+import web2 from "../../../Assets/images/2.webp";
+import ttttt from "../../../Assets/images/ttttt.png"
 
 function DealerProfile() {
   const [showModal, setShowModal] = useState(false);
@@ -168,11 +172,13 @@ function DealerProfile() {
       <section className="storeHeroSection dealer detail align-items-center">
         <div className="container">
           <div className="row">
-  
-          <div className="col-12 col-lg-12">
+            <div className="col-12 col-lg-12">
               <div className="heroText">
-                <h1>We have over 20 stores around the UK</h1>
-                <h5>We help you find your dream car. Choose from our exclusive<br/> list of showrooms.</h5>
+                <h1>Texan Auto Group</h1>
+                <h5>
+                  We help you find your dream car. Choose from our exclusive
+                  <br /> list of showrooms.
+                </h5>
                 {/* <a href="#" className="btn">
                   VIEW INVENTORY
                 </a> */}
@@ -182,9 +188,259 @@ function DealerProfile() {
         </div>
       </section>
 
-      <section className="ptb_80" id="">
+      <section className="pt_80 mobileSpec" id="">
         <div className="container">
-        <div className="row">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Gallery</h2>
+            </div>
+            <div className="col-12 gallery">
+              <div className="row">
+                <div className="col-4 verticle">
+                  <div className="galleryImgSect">
+                    <img src={Gallery_1} />
+                  </div>
+                </div>
+                <div className="col-8">
+                  <div className="row">
+                    <div className="col-6">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_2} />
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_3} />
+                      </div>
+                    </div>
+                    <div className="col-12 mt-50">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_4} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 gallery">
+              <div className="row">
+                <div className="col-4 verticle">
+                  <div className="galleryImgSect">
+                    <img src={Gallery_1} />
+                  </div>
+                </div>
+                <div className="col-8">
+                  <div className="row">
+                    <div className="col-6">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_2} />
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_3} />
+                      </div>
+                    </div>
+                    <div className="col-12 mt-50">
+                      <div className="galleryImgSect">
+                        <img src={Gallery_4} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-12"
+              style={{ textAlign: "center", margin: "20px auto" }}
+            >
+              <a class="btn mt-2" href="/showroom">
+                VIEW MORE
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Texan Auto Group Auctions</h2>
+            </div>
+            <div className="col-12">
+              <div className="col-12 ptb_80 ListDealer auctionBid" style={{}}>
+                <div className="row">
+                  <div className="col-lg-3 col-sm-12 inner-slider">
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={Maskgroup1} alt="Maskgroup1" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>Texans Auto Group</h5>
+
+                          <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label> <span>$126,888</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label> <span>5 days</span>
+                            </li>
+                          </ul>
+                          <button className="btn bidnW">
+                            Bid now <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="col-lg-3 col-sm-12 inner-slider">
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={fordMustang} alt="fordMustang" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>Ford Mustang</h5>
+
+                          <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label> <span>$156,488</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label> <span>12 days</span>
+                            </li>
+                          </ul>
+                          <button className="btn bidnW">
+                            Bid now <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="col-lg-3 col-sm-12 inner-slider">
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={web} alt="web" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>2022 Mercedes-Benz A</h5>
+
+                          <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label> <span>$38,888</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label> <span>25 days</span>
+                            </li>
+                          </ul>
+                          <button className="btn bidnW">
+                            Bid now <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="col-lg-3 col-sm-12 inner-slider">
+                    <a href="/dealerprofile">
+                      <div className="card_post">
+                        <div className="card_postImg dlr">
+                          <img src={web2} alt="web2" />
+                        </div>
+                        <div className="card_postInfo">
+                          <h5>2022 Mercedes-Benz S 580 4D</h5>
+
+                          <ul className="labelList">
+                            <li>
+                              <label>Current Bid:</label> <span>$80,888</span>
+                            </li>
+                            <li>
+                              <label>Ends In:</label> <span>25 days</span>
+                            </li>
+                          </ul>
+                          <button className="btn bidnW">
+                            Bid now <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Texan Auto Group Inventory</h2>
+            </div>
+          </div>
+          <div className="row addSection">
+            <div className="col-lg-6 col-sm-12 inner-slider">
+              <a href="/dealerprofile">
+                <div className="card_post">
+                  <div className="card_postImg dlr">
+                    <img src={Maskgroup1} alt="Maskgroup1" />
+                  </div>
+                  <div className="card_postInfo">
+                    <h5>Texans Auto Group</h5>
+
+                    <ul className="labelList">
+                      <li>
+                        <label>Current Bid:</label> <span>$126,888</span>
+                      </li>
+                      <li>
+                        <label>Ends In:</label> <span>5 days</span>
+                      </li>
+                    </ul>
+                    <button className="btn bidnW">
+                      Bid now <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </div>
+                  
+                </div>
+                <small>Guzzlrs AD</small>
+              </a>
+            </div>
+            <div className="col-lg-6 col-sm-12 inner-slider">
+              <a href="https://www.texascarsdirect.com/used-mercedes-benz-dallas-tx.html">
+                <div className="card_post">
+                  <div className="card_postImg dlr">
+                    <img src={ttttt} alt="ttttt" />
+                  </div>
+                  <div className="card_postInfo">
+                    <h5>2015 Audi Q7 </h5>
+
+                    <ul className="labelList">
+                      <li>
+                        <label>Current Bid:</label> <span>$126,888</span>
+                      </li>
+                      <li>
+                        <label>Ends In:</label> <span>5 days</span>
+                      </li>
+                    </ul>
+                    <button className="btn bidnW">
+                      Bid now <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <small>Dealer AD</small>
+              </a>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+
+      {/* <section className="ptb_80" id="">
+        <div className="container">
+          <div className="row">
             <div className="col-12 col-md-6">
               <img src={about_1} />
             </div>
@@ -212,55 +468,13 @@ function DealerProfile() {
               </div>
             </div>
           </div>
-         
         </div>
-      </section>
+      </section> */}
 
-      <section className="pt_80 mobileSpec" id="">
-        <div className="container">
-          <div className="row ">
-            <div className="col-12 text-center pb_30">
-              <h2>Gallery</h2>
-            </div>
-            <div className="col-12 gallery">
-                <div className="row">
-                  <div className="col-4 verticle">
-                    <div className="galleryImgSect">
-                      <img src={Gallery_1}/>
-                    </div> 
-                  </div>
-                  <div className="col-8">
-                    <div className="row">
-                      <div className="col-6">
-                        <div className="galleryImgSect">
-                          <img src={Gallery_2}/>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="galleryImgSect">
-                          <img src={Gallery_3}/>
-                        </div>
-                      </div>
-                      <div className="col-12 mt-50">
-                        <div className="galleryImgSect">
-                          <img src={Gallery_4}/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-            </div>
-            <div className="col-12" style={{textAlign: "center", margin:"20px auto"}}>
-              <a class="btn mt-2" href="/showroom">VIEW MORE</a>
-            </div>
-          </div>
-        </div>
-      </section>
-      
       <div className="col-12 text-center pt_80 pb_30">
-            <h2>More Inventory</h2>
+        <h2>More Inventory</h2>
       </div>
-      
+
       {/* {loading ? (
         <SmallSpinner spin={true} />
       ) : ( */}
@@ -344,7 +558,6 @@ function DealerProfile() {
       </InfiniteScroll>
 
       {/* )} */}
-      
     </>
   );
 }
