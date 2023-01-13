@@ -116,20 +116,20 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
-        <div className="modal-header border-0">
-              <h4 className="modal-title">Log In</h4>
-              <button
-                onClick={handleClose}
-                type="button"
-                className="close"
-                data-dismiss="modal"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </button>
+          <div className="modal-header border-0">
+            <h4 className="modal-title">Log In</h4>
+            <button
+              onClick={handleClose}
+              type="button"
+              className="close"
+              data-dismiss="modal"
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
           </div>
-          
+
           <div className="modal-body">
-          {/* <button onClick={handleClick} >click me</button> */}
+            {/* <button onClick={handleClick} >click me</button> */}
             <form onSubmit={handleApi}>
               <div className="col-md-12">
                 <FormInput
@@ -155,19 +155,19 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
+              </div>
+              <div className="col-md-12 fp">
+                <Checkbox
+                  style={{ color: "#F49D1A" }}
+                  onClick={() => setShowPassWord(!showPassWord)}
+                >
+                  Show password
+                </Checkbox>
+
+                <div onClick={handlePasswordBtn} className="form-group">
+                  <a href="javascript:void(0)">Forgot your password?</a>
                 </div>
-                <div className="col-md-12 fp">
-                  <Checkbox
-                    style={{ color: "#F49D1A" }}
-                    onClick={() => setShowPassWord(!showPassWord)}
-                  >
-                    Show password
-                  </Checkbox>
-              
-                  <div onClick={handlePasswordBtn} className="form-group">
-                    <a href="javascript:void(0)">Forgot your password?</a>
-                  </div>  
-                </div>
+              </div>
               <div className="col-md-12">
                 <div className="form-group">
                   {loginLoading ? (

@@ -145,14 +145,16 @@ function Detail() {
   }, []);
 
   const getVehicle = async () => {
-    await axios.get(process.env.REACT_APP_URL + "vehicle/" + id).then((res) => {
-      setAddVehicleUserId(res.data.data[0].userId);
-      setVehicle(res.data.data[0]);
-      // console.log("t", new Date(res.data.data[0].EndTime).getTime());
-      // console.log("end", new Date(res.data.data[0].EndTime));
-      setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
-      // console.log("api date", new Date(res.data.data[0].EndTime));
-    });
+    await axios
+      .post(process.env.REACT_APP_URL + "vehicleByID", { id: id })
+      .then((res) => {
+        setAddVehicleUserId(res.data.data[0].userId);
+        setVehicle(res.data.data[0]);
+        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+        // console.log("end", new Date(res.data.data[0].EndTime));
+        setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
+        // console.log("api date", new Date(res.data.data[0].EndTime));
+      });
   };
 
   //get images

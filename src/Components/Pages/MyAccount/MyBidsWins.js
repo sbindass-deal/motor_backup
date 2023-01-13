@@ -7,6 +7,8 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import StripeCheckout from "react-stripe-checkout";
 
 function MyBidsWins() {
   const [data, setData] = useState([]);
@@ -15,6 +17,7 @@ function MyBidsWins() {
   const [chateApiData, setChateApiData] = useState([]);
   const [show, setShow] = useState(false);
   const [vehicleId, setVehicleId] = useState();
+  const [showPayment, setShowPayment] = useState(false);
 
   const handleClose = () => {
     setChateApiData([]);
@@ -23,6 +26,31 @@ function MyBidsWins() {
   const handleShow = (id) => {
     setVehicleId(id);
     setShow(true);
+  };
+  const handleClosePayment = () => {
+    setShowPayment(false);
+  };
+  const handleShowPayment = (data) => {
+    setShowPayment(true);
+    setVehicleId(data);
+  };
+  const onToken = (token, addresses) => {
+    console.log(token, addresses);
+    if (token !== null) {
+      setShowPayment(false);
+      axios
+        .post(`${process.env.REACT_APP_URL}changeApproved`, {
+          approve: 7,
+          id: vehicleId,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // notify("Form submit successfully!");
+    }
   };
 
   useEffect(() => {
@@ -74,7 +102,7 @@ function MyBidsWins() {
   };
 
   return (
-    <div>
+    <>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
@@ -116,6 +144,14 @@ function MyBidsWins() {
                             </p>
                           </div>
                           <div className="pl-md-3 d-flex">
+                            <div className="mx-2">
+                              <button
+                                onClick={() => handleShowPayment(curElem.id)}
+                                className="gry_btn"
+                              >
+                                Pay now
+                              </button>
+                            </div>
                             {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button
@@ -211,7 +247,43 @@ function MyBidsWins() {
           </form>
         </Modal.Body>
       </Modal>
-    </div>
+
+      {/* Payment modal */}
+      <Modal show={showPayment} onHide={handleClosePayment} className="payTPop">
+        <Modal.Header>
+          <Modal.Title>Payment Process</Modal.Title>
+          <button variant="secondary" onClick={handleClosePayment}>
+            X
+          </button>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="processPy">
+            <h2> Name : user </h2>
+            <h3 className="price__">price</h3>
+            <h3 className="price__">amount</h3>
+
+            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <br />
+            <p>Choose Payment Option:</p>
+            <div className="ress">
+              <div className="ProcessPymt">
+                <ConnectButton></ConnectButton>
+
+                {/* <img src={Paypal} />
+              <img src={Stipe} /> */}
+              </div>
+              <div>
+                <StripeCheckout
+                  className="Btn"
+                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  token={onToken}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }
 

@@ -71,7 +71,8 @@ import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
 import Dealer from "./dealer/Dealer";
 import DealerProfile from "./dealer/DealerProfile";
-import ClassifiedAddList from "./dealer/ClassifiedAddList"
+import ClassifiedAddList from "./dealer/ClassifiedAddList";
+import SearchResult from "../UI/SearchResult";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -158,7 +159,7 @@ const Layout = () => {
           <Route path="showroom" element={<Store />} />
           {/* <Route path="showroom" element={<Dealer />} /> */}
           <Route path="dealerProfile" element={<DealerProfile />} />
-          <Route path="classifiedaddlist" element={<ClassifiedAddList/>} />
+          <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
 
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
@@ -181,6 +182,7 @@ const Layout = () => {
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="blogdetail" element={<BlogDetail />} />
+          <Route path="search/:name/:ser" element={<SearchResult />} />
         </Routes>
         <ToastContainer
           position="bottom-center"

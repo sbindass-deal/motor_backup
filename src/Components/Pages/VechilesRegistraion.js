@@ -23,7 +23,7 @@ import StripeCheckout from "react-stripe-checkout";
 
 const VechilesRegistraion = () => {
   const logingUser = useSelector((state) => state);
-  console.log(11, logingUser.planReducer.plan.listName);
+  console.log(11, logingUser.planReducer.plan);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -2135,8 +2135,17 @@ const VechilesRegistraion = () => {
         <Modal.Body>
           <div className="processPy">
             <h2> Name : user </h2>
-            <h3 className="price__"> Type : pro</h3>
-            <h3 className="price__">Price : $699</h3>
+            <h3 className="price__">
+              {" "}
+              Type :{" "}
+              {logingUser.planReducer.plan &&
+                logingUser.planReducer.plan.listName}
+            </h3>
+            <h3 className="price__">
+              Price : $
+              {logingUser.planReducer.plan &&
+                logingUser.planReducer.plan.amount}
+            </h3>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />

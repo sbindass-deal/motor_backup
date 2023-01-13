@@ -27,8 +27,8 @@ const Searchbar = () => {
               }}
             >
               <span>
-                <Link to="/showroom">
-                  {curElem.make} {curElem.model} {curElem.year}
+                <Link to={`/search/${curElem.make}/${query}`}>
+                  {curElem.make}
                 </Link>
               </span>
             </div>
@@ -45,11 +45,10 @@ const Searchbar = () => {
   return (
     <div className="searchX">
       <AutoComplete
-        dropdownMatchSelectWidth={252}
         style={{
           width: 300,
         }}
-        placeholder="Search.."
+        placeholder="Search..."
         options={options}
         onSelect={onSelect}
         onSearch={handleSearch}
