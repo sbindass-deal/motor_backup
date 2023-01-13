@@ -11,7 +11,6 @@ import {
   filterShowroomData,
 } from "../../redux/reducers/vehicleReducer";
 import { Modal } from "react-bootstrap";
-import NotAvailable from "../UI/NotAvailable";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const Store = () => {
         process.env.REACT_APP_URL + "/vehicle-image/" + id
       );
       setHowerImage(response.data.data);
-      console.log(response.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +32,6 @@ const Store = () => {
   useEffect(() => {
     handleHowerImage();
   }, []);
-  console.log(category);
   const [filteredModal, setFilteredModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [filterInput, setFilterInput] = useState({

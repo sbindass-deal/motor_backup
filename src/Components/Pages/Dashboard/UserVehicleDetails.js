@@ -23,7 +23,7 @@ const UserVehicleDetails = () => {
   };
   const submitApprove = (e) => {
     e.preventDefault();
-    if (vehicle.approved === null) {
+    if (vehicle.approved === null || vehicle.approved === "11") {
       axios
         .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
           approve: 1,
@@ -58,8 +58,9 @@ const UserVehicleDetails = () => {
   const [vehicle, setVehicle] = useState({});
   const fetchVehicleApi = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}vehicle/${id}`
+      const response = await axios.post(
+        process.env.REACT_APP_URL + "vehicleByID",
+        { id: id }
       );
       if (response.data.data) {
         setVehicle(response.data.data[0]);
@@ -510,7 +511,9 @@ const UserVehicleDetails = () => {
                   ></textarea>{" "}
                   <br />
                   <button className="btn btn-warning m-3" type="submit">
-                    {vehicle.approved === null ? "Approve" : "Reject"}
+                    {vehicle.approved === null || vehicle.approved === "11"
+                      ? "Approve"
+                      : "Reject"}
                   </button>
                 </div>
               </form>

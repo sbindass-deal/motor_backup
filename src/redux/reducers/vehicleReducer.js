@@ -50,14 +50,15 @@ const vehicleReducer = createSlice({
     },
     filterShowroomData: (state, action) => {
       const { year, make, model, state: states, city } = action.payload;
-      let newData = state.vehicleData.filter(
+      const newData = state.vehicleData.filter(
         (item) =>
-          (item.year && item.year.includes(year)) ||
-          (item.make && item.make.toLowerCase().includes(make)) ||
-          (item.model && item.model.toLowerCase().includes(model)) ||
-          (item.state && item.state.toLowerCase().includes(states)) ||
-          (item.city && item.city.toLowerCase().includes(city))
+          (item.year && item.year === year) ||
+          (item.make && item.make === make) ||
+          (item.model && item.model === model) ||
+          (item.state && item.state === states) ||
+          (item.city && item.city === city)
       );
+      console.log("showroom", newData);
       state.showroomData = newData;
     },
     clearShowroomFilter: (state, action) => {

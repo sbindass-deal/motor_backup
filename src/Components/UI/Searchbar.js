@@ -1,44 +1,61 @@
-import React, { useState } from "react";
 import { AutoComplete } from "antd";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Searchbar = () => {
-  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
 
   const [options, setOptions] = useState([]);
+  const searchResult = (query) =>
+    vehicleData
+      .filter(
+        (item) =>
+          (item.make && item.make.toLowerCase().includes(query)) ||
+          (item.year && item.year.toLowerCase().includes(query)) ||
+          (item.model && item.model.toLowerCase().includes(query))
+      )
+      .map((curElem, idx) => {
+        return {
+          // value: query,
+          label: (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <span>
+                <Link to={`/search/${curElem.make}/${query}`}>
+                  {curElem.make}
+                </Link>
+              </span>
+            </div>
+          ),
+        };
+      });
   const handleSearch = (value) => {
-    let res = [];
-    if (!value || value.indexOf("@") >= 0) {
-      res = [];
-    } else {
-      res = vehicleData
-        .filter((item) => item.make && item.make.toLowerCase().includes(value))
-        .map((curElem) => ({
-          value,
-          label: `${curElem.make} ${curElem.model} ${curElem.year}`,
-        }));
-    }
-    setOptions(res);
+    setOptions(value ? searchResult(value) : []);
   };
-  const onSelect = (data) => {
-    navigate("/showroom");
-    console.log(data);
+  const onSelect = (value) => {
+    console.log("onSelect", value);
   };
+
   return (
     <div className="searchX">
       <AutoComplete
-        className="searchSec"
-        onSearch={handleSearch}
-        onSelect={onSelect}
-        placeholder="Search.."
+        style={{
+          width: 300,
+        }}
+        placeholder="Search..."
         options={options}
-      />
+        onSelect={onSelect}
+        onSearch={handleSearch}
+        className="searchSec"
+      ></AutoComplete>
       <i className="fa-solid fa-magnifying-glass"></i>
     </div>
   );
 };
-
 export default Searchbar;
