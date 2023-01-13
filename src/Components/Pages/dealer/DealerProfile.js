@@ -25,6 +25,7 @@ import web2 from "../../../Assets/images/2.webp";
 import ttttt from "../../../Assets/images/ttttt.png"
 
 function DealerProfile() {
+  const [filteredModal, setFilteredModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [loading, setLoader] = useState(true);
@@ -32,6 +33,13 @@ function DealerProfile() {
   const [filterData, setFilterData] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [page, setPage] = useState(0);
+
+  const handleFilteredModalShow = () => {
+    setFilteredModal(true);
+  };
+  const handleFilteredModalClose = () => {
+    setFilteredModal(false);
+  };
 
   const handleClose = () => {
     setShowModal(false);
@@ -222,34 +230,7 @@ function DealerProfile() {
                 </div>
               </div>
             </div>
-            <div className="col-12 gallery">
-              <div className="row">
-                <div className="col-4 verticle">
-                  <div className="galleryImgSect">
-                    <img src={Gallery_1} />
-                  </div>
-                </div>
-                <div className="col-8">
-                  <div className="row">
-                    <div className="col-6">
-                      <div className="galleryImgSect">
-                        <img src={Gallery_2} />
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="galleryImgSect">
-                        <img src={Gallery_3} />
-                      </div>
-                    </div>
-                    <div className="col-12 mt-50">
-                      <div className="galleryImgSect">
-                        <img src={Gallery_4} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+         
             <div
               className="col-12"
               style={{ textAlign: "center", margin: "20px auto" }}
@@ -382,6 +363,36 @@ function DealerProfile() {
             </div>
           </div>
           <div className="row addSection">
+            <div className="col-12 col-lg-12 mb-50">
+              <ul className="postTopOption">
+                <li className="post_search">
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    name="search"
+                    value={searchInputValue}
+                    onChange={(e) => {
+                      let values = e.target.value.toLowerCase();
+                      setSearchInputValue(values);
+                    }}
+                    placeholder="Search for a make or model"
+                  />
+                </li>
+                <li className="">
+                  <button
+                    type="button"
+                    className="gry_btn"
+                    data-toggle="modal"
+                    data-target="#FiltersModal"
+                    onClick={handleFilteredModalShow}
+                  >
+                    <i className="fa-solid fa-filter mr-2"></i>
+                    Filters
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <FilteredModal showModal={showModal} handleClose={handleClose} />
             <div className="col-lg-6 col-sm-12 inner-slider">
               <a href="/dealerprofile">
                 <div className="card_post">

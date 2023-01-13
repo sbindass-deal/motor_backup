@@ -391,6 +391,17 @@
 }
 
 @media (max-width: 767px) {
+	button.btn.bidnW {	padding: 0;	}
+	.addSection .inner-slider .card_post {	display: block;	}
+	.auctionBid {padding: 0;	}
+	.addSection .inner-slider small {
+		position: absolute;
+		right: 24px;
+		bottom: 166px;
+		background: black;
+		padding: 5px 15px;
+	}
+	.addSection .inner-slider .card_postImg.dlr {padding-right: 0;}
 	.modal-dialog {	width: auto;}
 	.modal-header .close {top: -18px;  left: -1%;}
 	.fp {display: block;}

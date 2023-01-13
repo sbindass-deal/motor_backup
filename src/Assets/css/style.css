@@ -4549,7 +4549,17 @@ nav.pgNtion { margin: 0 auto;}
 }
 .addSection .inner-slider a {
   background: #090808;
+  width: 100%;
 }
+.addSection .inner-slider a .card_postInfo {
+  width: 60%;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+
+
 @media (max-width: 860px) {
 P{
   font-size: 13px;

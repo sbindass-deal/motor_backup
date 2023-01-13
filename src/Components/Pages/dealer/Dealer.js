@@ -9,6 +9,12 @@ import "slick-carousel/slick/slick-theme.css";
 import logo_ku from "../../../Assets/images/logo-ku.png";
 import custombanner5 from "../../../Assets/images/custombanner5.webp";
 import rrm_logo from "../../../Assets/images/rrm-logo.png";
+import Texas_Car_One_Logo6 from "../../../Assets/images/Texas_Car_One_Logo6.png"
+import txautodealer from "../../../Assets/images/txautodealer.png"
+import gggg from "../../../Assets/images/ddddd.webp"
+import New_Texas_Sales_Header_Logo from "../../../Assets/images/New_Texas_Sales_Header_Logo.png"
+
+
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -332,34 +338,7 @@ function Dealer() {
                         </div>
                   </a>
                 </div>
-                <div className="col-lg-4 col-sm-12 inner-slider">
-                      <a href="/dealerprofile">
-                        <div className="card_post">
-                          <div className="card_postImg dlr">
-                            <img src={logo_ku} alt="logo_ku" />
-                          </div>
-                          <div className="card_postInfo">
-                            <h5>Texans Auto Group</h5>
-                            <p>
-                              At Texans Auto Group, when we say we have a
-                              ginormous selection of cars, we mean it. We have an
-                              incredible selection of new, used and certified
-                              vehicles, which is why so many customers choose us
-                              when they are looking for reliable used car
-                              dealerships in Cypress TX.
-                            </p>
-                            {/* <ul className="labelList">
-                              <li>
-                                <label>Current Bid:</label> <span>$126,888</span>
-                              </li>
-                              <li>
-                                <label>Ends In:</label> <span>5 days</span>
-                              </li>
-                            </ul> */}
-                          </div>
-                        </div>
-                      </a>
-                </div>
+               
                 <div className="col-lg-4 col-sm-12 inner-slider">
                   <a href="/dealerprofile">
                         <div className="card_post">
@@ -387,47 +366,20 @@ function Dealer() {
                         </div>
                       </a>
                 </div>
-                <div className="col-lg-4 col-sm-12 inner-slider">
-                      <a href="/dealerprofile">
-                        <div className="card_post">
-                          <div className="card_postImg dlr">
-                            <img src={logo_ku} alt="logo_ku" />
-                          </div>
-                          <div className="card_postInfo">
-                            <h5>Texans Auto Group</h5>
-                            <p>
-                              At Texans Auto Group, when we say we have a
-                              ginormous selection of cars, we mean it. We have an
-                              incredible selection of new, used and certified
-                              vehicles, which is why so many customers choose us
-                              when they are looking for reliable used car
-                              dealerships in Cypress TX.
-                            </p>
-                            {/* <ul className="labelList">
-                              <li>
-                                <label>Current Bid:</label> <span>$126,888</span>
-                              </li>
-                              <li>
-                                <label>Ends In:</label> <span>5 days</span>
-                              </li>
-                            </ul> */}
-                          </div>
-                        </div>
-                      </a>
-                </div>
+               
                 <div className="col-lg-4 col-sm-12 inner-slider">
                   <a
                         target="_blank"
                         rel="noopener"
-                        href="https://www.texascarsdirect.com/"
+                        href="https://www.txautodealer.com/"
                       >
                         <div className="card_post">
                           <div className="card_postImg dlr">
                             <small>AD</small>
-                            <img src={custombanner5} alt="Img_bmw" />
+                            <img src={txautodealer} alt="Img_bmw" />
                           </div>
                           <div className="card_postInfo">
-                            <h5>Texas Cars Direct</h5>
+                            <h5>Txauto Dealer</h5>
                             <p>
                               While we are happy to welcome you to our newly
                               remodeled and distanced showroom-We are also
@@ -452,10 +404,10 @@ function Dealer() {
                       <a href="/dealerprofile">
                         <div className="card_post">
                           <div className="card_postImg dlr">
-                            <img src={logo_ku} alt="logo_ku" />
+                            <img src={gggg} alt="logo_ku" />
                           </div>
                           <div className="card_postInfo">
-                            <h5>Texans Auto Group</h5>
+                            <h5>crest cars</h5>
                             <p>
                               At Texans Auto Group, when we say we have a
                               ginormous selection of cars, we mean it. We have an
@@ -480,7 +432,7 @@ function Dealer() {
                   <a href="/dealerprofile">
                         <div className="card_post">
                           <div className="card_postImg dlr">
-                            <img src={rrm_logo} alt="Img_01" />
+                            <img src={New_Texas_Sales_Header_Logo} alt="Img_01" />
                           </div>
                           <div className="card_postInfo">
                             <h5>Ruiz Ranch motors</h5>
@@ -503,34 +455,7 @@ function Dealer() {
                         </div>
                       </a>
                 </div>
-                <div className="col-lg-4 col-sm-12 inner-slider">
-                      <a href="/dealerprofile">
-                        <div className="card_post">
-                          <div className="card_postImg dlr">
-                            <img src={logo_ku} alt="logo_ku" />
-                          </div>
-                          <div className="card_postInfo">
-                            <h5>Texans Auto Group</h5>
-                            <p>
-                              At Texans Auto Group, when we say we have a
-                              ginormous selection of cars, we mean it. We have an
-                              incredible selection of new, used and certified
-                              vehicles, which is why so many customers choose us
-                              when they are looking for reliable used car
-                              dealerships in Cypress TX.
-                            </p>
-                            {/* <ul className="labelList">
-                              <li>
-                                <label>Current Bid:</label> <span>$126,888</span>
-                              </li>
-                              <li>
-                                <label>Ends In:</label> <span>5 days</span>
-                              </li>
-                            </ul> */}
-                          </div>
-                        </div>
-                      </a>
-                </div>
+                
               </div>
             </div>
             <nav aria-label="Page navigation example " className="pgNtion">
