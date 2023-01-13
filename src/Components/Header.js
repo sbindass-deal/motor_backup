@@ -26,7 +26,7 @@ import ResultNotFound from "./UI/ResultNotFound";
 import { NoFoodTwoTone } from "@mui/icons-material";
 import NotAvailable from "../Components/UI/NotAvailable";
 import Searchbar from "./UI/Searchbar";
-
+import CloseIcon from "@mui/icons-material/Close";
 const data = [
   {
     id: 1,
@@ -64,6 +64,7 @@ function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
+  const [showNav, setShowNav] = useState(false);
 
   const notify = (val) =>
     toast.warn(val, {
@@ -168,32 +169,38 @@ function Header() {
                     className="whiteLogo"
                   />
                 </Link>
+                {/* mobile view start */}
                 <div className="dddd">
-                  <button
-                    className="navbar-toggler navbar-toggler-right collapsed"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navb"
-                  >
-                    <span className="navbarToggler"></span>
-                  </button>
+                  {showNav ? (
+                    <button
+                      className="navbar-toggler navbar-toggler-right"
+                      type="button"
+                      onClick={() => setShowNav(false)}
+                    >
+                      <span className="navbarToggler"></span>
+                    </button>
+                  ) : (
+                    <button
+                      className="navbar-toggler navbar-toggler-right collapsed"
+                      type="button"
+                      onClick={() => setShowNav(true)}
+                    >
+                      <span className="navbarToggler"></span>
+                    </button>
+                  )}
 
                   <div
-                    className="collapse navbar-collapse mobileOnly hidemenu"
+                    className={`${
+                      showNav ? "show" : ""
+                    } collapse navbar-collapse mobileOnly hidemenu`}
                     id="navb"
                   >
                     <ul className="navbar-nav mobileOnly">
-                      <li className="nav-item"
-                        // style={{ cursor: "pointer" }}
-                      >
+                      <li className="nav-item">
                         <Searchbar />
                       </li>
 
                       <li className="nav-item">
-                        {/* <Link className="nav-link" to="/auction">
-                        Auctions
-                      </Link> */}
-
                         <Link
                           className="nav-link"
                           style={{
@@ -204,35 +211,21 @@ function Header() {
                             }`,
                           }}
                           to="/aboutshibnobi"
+                          onClick={() => setShowNav(false)}
                         >
                           About
                         </Link>
                       </li>
-                      {/* {!logingUser.login.login ? (
-                      <li onClick={handleShow} className="nav-item">
-                        <Link
-                          onClick={handleShow}
-                          className="nav-link"
-                          to="javascript:void(0)"
-                        >
-                          Submit a Vehicle
-                        </Link>
-                      </li>
-                    ) : (
                       <li className="nav-item">
-                        <Link className="nav-link" to="/submit">
-                          Submit a Vehicle
-                        </Link>
-                      </li>
-                    )} */}
-                    <li className="nav-item">
                         <Link
                           className={`nav-link ${
-                            location.pathname === "/classifiedaddList" && "navActive"
+                            location.pathname === "/classifiedaddList" &&
+                            "navActive"
                           }`}
                           to="/classifiedaddList"
+                          onClick={() => setShowNav(false)}
                         >
-                          Classifieds 
+                          Classifieds
                         </Link>
                       </li>
 
@@ -242,36 +235,11 @@ function Header() {
                             location.pathname === "/works" && "navActive"
                           }`}
                           to="/works"
+                          onClick={() => setShowNav(false)}
                         >
                           How it Works
                         </Link>
                       </li>
-                      {/* {!logingUser.login.token ? (
-                      <li onClick={handleShow} className="nav-item">
-                        <Link
-                          className="nav-link"
-                          // to="javascript:void(0)"
-                          // data-toggle="modal"
-                          // data-target="#loginModal"
-                        >
-                          <i class="fa-solid fa-user-lock"></i>
-                        </Link>
-                      </li>
-                    ) : (
-                      <li
-                        onClick={logout}
-                        style={{ cursor: "pointer" }}
-                        className="nav-item"
-                      >
-                        <Link className="nav-link">Logout</Link>
-                      </li>
-                    )} */}
-                      {/* <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        <i className="fa-solid fa-star"></i>
-                      </Link>
-                    </li> */}
-
                       <li className="nav-item afterLogin">
                         <div className="dropdown">
                           <AccountCircleIcon />
@@ -284,26 +252,28 @@ function Header() {
                                   "navActive"
                                 }`}
                                 to="/accountinfo"
+                                onClick={() => setShowNav(false)}
                               >
                                 My Account
                                 <br />
-                                {/* <span>{logingUser.login.user.username}</span> */}
                               </Link>
                             )}
                             {!logingUser.login.token ? (
-                              <li onClick={handleShow} className="nav-item">
-                                <Link
-                                  className="nav-link"
-                                  // to="javascript:void(0)"
-                                  // data-toggle="modal"
-                                  // data-target="#loginModal"
-                                >
-                                  Login
-                                </Link>
+                              <li
+                                onClick={() => {
+                                  handleShow();
+                                  setShowNav(false);
+                                }}
+                                className="nav-item"
+                              >
+                                <Link className="nav-link">Login</Link>
                               </li>
                             ) : (
                               <li
-                                onClick={logout}
+                                onClick={() => {
+                                  logout();
+                                  setShowNav(false);
+                                }}
                                 style={{ cursor: "pointer" }}
                                 className="nav-item"
                               >
@@ -320,6 +290,7 @@ function Header() {
                                         "/vehicle-submission" && "navActive"
                                     }`}
                                     to="/vehicle-submission"
+                                    onClick={() => setShowNav(false)}
                                   >
                                     Admin
                                   </Link>
@@ -334,6 +305,7 @@ function Header() {
                                       "navActive"
                                     }`}
                                     to="/orders-cart"
+                                    onClick={() => setShowNav(false)}
                                   >
                                     My Orders
                                   </Link>
@@ -342,7 +314,7 @@ function Header() {
                           </div>
                         </div>
                       </li>
-
+                      {/* day and night mode start */}
                       <li className="nav-item">
                         <button
                           className="sunMoonBtn"
@@ -355,108 +327,179 @@ function Header() {
                           )}
                         </button>
                       </li>
+                      {/* day and night mode end */}
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Shipping
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/submit" && "navActive"
+                          }`}
+                          to="/submit"
+                          onClick={() => setShowNav(false)}
+                        >
+                          List Your Vehicle
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Makes and Models
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/auctionlive" &&
+                              "navActive"
+                            }`}
+                            to="#"
+                          >
+                            Auctions
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link
+                              className=""
+                              to="/auctionlive"
+                              onClick={() => setShowNav(false)}
+                            >
+                              Live now
+                            </Link>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/showroom" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/showroom"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Showrooms
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Categories
-                        </Link>
+                        {true ? (
+                          <Link
+                            style={{
+                              color: `${
+                                location.pathname === "/carraffle"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            className="nav-link"
+                            to="/carraffle"
+                            onClick={() => setShowNav(false)}
+                          >
+                            Raffles
+                          </Link>
+                        ) : (
+                          <Link className="nav-link">Raffles</Link>
+                        )}
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Get Alerts
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Charity Auctions
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/feautres" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/feautres"
+                          onClick={() => setShowNav(false)}
+                        >
                           Featured
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Event Calendar
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/charity" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/charity"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Charity Auctions
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Car Raffle
+                        <div className="dropdown">
+                          <Link
+                            className="nav-link"
+                            style={{
+                              color: `${
+                                location.pathname === "/shipping" ||
+                                location.pathname === "/myshipments"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            to="#"
+                            onClick={() => setShowNav(false)}
+                          >
+                            Shipping
+                          </Link>
+                          <div className="dropdown-content">
+                            <a
+                              href="https://www.iecstransport.com/"
+                              target="_blank"
+                              onClick={() => setShowNav(false)}
+                            >
+                              Get a quote
+                            </a>
+                            <a
+                              href="https://www.iecstransport.com/"
+                              target="_blank"
+                              onClick={() => setShowNav(false)}
+                            >
+                              My Shipment
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/faq" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/faq"
+                          onClick={() => setShowNav(false)}
+                        >
+                          FAQ
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Gas Guzzlrs
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                          Gear Store
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/shop" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/shop"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Gear
                         </Link>
                       </li>
                     </ul>
                   </div>
                 </div>
+                {/* mobile view end */}
 
                 <div className="toNv" id="">
                   <ul className="navbar-nav ml-auto">
-                    {/* <li onClick={handleShow} className="nav-item">
-                        <Link className="nav-link">Submit a Vehicle</Link>
-                      </li> */}
-                    <li
-                      // onClick={() => setShowSearchModal(true)}
-                      className="nav-item"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <Link
-                        className="nav-link"
-                        // to="javascript:void(0)"
-                        // data-toggle="modal"
-                        // data-target="#myModal"
-                      >
-                        {/* <form className="searchForm">
-                          <input
-                            type="search"
-                            name="search"
-                            value={searchValue}
-                            onChange={handleSearch}
-                            onBlur={handleBlur}
-                            onFocus={handleFocus}
-                            autoComplete="off"
-                            placeholder="Search..."
-                            required
-                          />
-                          <button type="submit">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </form> */}
+                    <li className="nav-item" style={{ cursor: "pointer" }}>
+                      <Link className="nav-link">
                         <Searchbar />
-                        {/* <div className="searchBody">
-                             <div className="searchAuto" >
-                              <p className="searchName">Nikhukki</p>
-                              <p className="desc">We conduct our registration and bidding online through our GG Software, an in house appl that manages a platform for auctions and payment processing. Learn more about how to create an account and register for our auctions.</p>
-                              </div>
-                        </div>
-                        <i className="fa-solid fa-magnifying-glass"></i> */}
                       </Link>
                     </li>
 
                     <li className="nav-item">
-                      {/* <Link className="nav-link" to="/auction">
-                        Auctions
-                      </Link> */}
-
                       <Link
                         className="nav-link"
                         style={{
@@ -469,23 +512,6 @@ function Header() {
                         About
                       </Link>
                     </li>
-                    {/* {!logingUser.login.login ? (
-                      <li onClick={handleShow} className="nav-item">
-                        <Link
-                          onClick={handleShow}
-                          className="nav-link"
-                          to="javascript:void(0)"
-                        >
-                          Submit a Vehicle
-                        </Link>
-                      </li>
-                    ) : (
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/submit">
-                          Submit a Vehicle
-                        </Link>
-                      </li>
-                    )} */}
 
                     <li className="nav-item">
                       <Link
@@ -497,31 +523,6 @@ function Header() {
                         How it Works
                       </Link>
                     </li>
-                    {/* {!logingUser.login.token ? (
-                      <li onClick={handleShow} className="nav-item">
-                        <Link
-                          className="nav-link"
-                          // to="javascript:void(0)"
-                          // data-toggle="modal"
-                          // data-target="#loginModal"
-                        >
-                          <i class="fa-solid fa-user-lock"></i>
-                        </Link>
-                      </li>
-                    ) : (
-                      <li
-                        onClick={logout}
-                        style={{ cursor: "pointer" }}
-                        className="nav-item"
-                      >
-                        <Link className="nav-link">Logout</Link>
-                      </li>
-                    )} */}
-                    {/* <li className="nav-item">
-                      <Link className="nav-link" to="/">
-                        <i className="fa-solid fa-star"></i>
-                      </Link>
-                    </li> */}
 
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
@@ -538,19 +539,11 @@ function Header() {
                             >
                               My Account
                               <br />
-                              {/* <span>{logingUser.login.user.username}</span> */}
                             </Link>
                           )}
                           {!logingUser.login.token ? (
                             <li onClick={handleShow} className="nav-item">
-                              <Link
-                                className="nav-link"
-                                // to="javascript:void(0)"
-                                // data-toggle="modal"
-                                // data-target="#loginModal"
-                              >
-                                Login
-                              </Link>
+                              <Link className="nav-link">Login</Link>
                             </li>
                           ) : (
                             <li
@@ -592,7 +585,7 @@ function Header() {
                         </div>
                       </div>
                     </li>
-
+                    {/* day and night mode start */}
                     <li className="nav-item">
                       <button
                         className="sunMoonBtn"
@@ -605,6 +598,7 @@ function Header() {
                         )}
                       </button>
                     </li>
+                    {/* day and night mode end */}
                   </ul>
                 </div>
               </nav>
@@ -614,23 +608,6 @@ function Header() {
                 <div className="container-fluid wrapper_second">
                   <div className="" id="navbarNavDropdown">
                     <ul className="navbar-nav flex-wrap" id="nav">
-                      {/* <li className="nav-item">
-                        <div className="dropdown">
-                          <Link
-                            className={`nav-link`}
-                            style={{
-                              color: `${
-                                location.pathname === "/makeamodel"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
-                            }}
-                            to="/makeamodel"
-                          >
-                            Makes and Models
-                          </Link>
-                        </div>
-                      </li> */}
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${
@@ -641,7 +618,7 @@ function Header() {
                           List Your Vehicle
                         </Link>
                       </li>
-                      
+
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
@@ -657,12 +634,6 @@ function Header() {
                             <Link className="" to="/auctionlive">
                               Live now
                             </Link>
-                            {/* <Link className="nav-link" to="/auctionpremium">
-                            Premium
-                          </Link>
-                          <Link className="nav-link" to="/auctionresults">
-                            Resullt
-                          </Link> */}
                           </div>
                         </div>
                       </li>
@@ -697,16 +668,10 @@ function Header() {
                             Raffles
                           </Link>
                         ) : (
-                          <Link
-                            // onClick={handleShow}
-                            className="nav-link"
-                          >
-                            Raffles
-                          </Link>
+                          <Link className="nav-link">Raffles</Link>
                         )}
                       </li>
 
-                      
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -735,22 +700,6 @@ function Header() {
                         </Link>
                       </li>
 
-                      {/* <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/getalerts"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/getalerts"
-                        >
-                          Get Alerts
-                        </Link>
-                      </li> */}
-
                       <div className="dropdown">
                         <Link
                           className="nav-link"
@@ -767,23 +716,18 @@ function Header() {
                           Shipping
                         </Link>
                         <div className="dropdown-content">
-                          {/* <Link className="nav-link" to="/shipping"> */}
                           <a
                             href="https://www.iecstransport.com/"
                             target="_blank"
                           >
                             Get a quote
                           </a>
-                          {/* </Link> */}
-                          {/* <Link className="nav-link" to="https://www.iecstransport.com/"> */}
                           <a
                             href="https://www.iecstransport.com/"
                             target="_blank"
                           >
                             My Shipment
                           </a>
-
-                          {/* </Link> */}
                         </div>
                       </div>
 
@@ -803,11 +747,12 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${
-                            location.pathname === "/classifiedaddList" && "navActive"
+                            location.pathname === "/classifiedaddList" &&
+                            "navActive"
                           }`}
                           to="/classifiedaddList"
                         >
-                          Classifieds 
+                          Classifieds
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -878,29 +823,6 @@ function Header() {
         showForgPass={showForgPass}
         handleCloseForgPass={handleCloseForgPass}
       />
-      {/* {sowAutoCompleate && (
-        <div onClick={() => setSowAutoCompleate(false)} className="searchBg">
-          <div onClick={() => setSowAutoCompleate(false)} className="autoCom">
-            {filteredData <= 0 ? (
-              <ResultNotFound text="Result not found! 🙄" />
-            ) : (
-              filteredData.map((curElem) => {
-                return (
-                  <div key={curElem.id}>
-                    {curElem.name && (
-                      <Link to="/showroom" className="row searchList">
-                        <p className="title">{curElem.make} &nbsp; </p>
-                        <p className="dec">{curElem.description}</p>
-                      </Link>
-                    )}
-                  </div>
-                );
-              })
-            )}
-            
-          </div>
-        </div>
-      )} */}
     </>
   );
 }
