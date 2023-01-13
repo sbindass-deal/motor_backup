@@ -225,6 +225,16 @@ function Header() {
                         </Link>
                       </li>
                     )} */}
+                    <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/classifiedaddList" && "navActive"
+                          }`}
+                          to="/classifiedaddList"
+                        >
+                          Classifieds 
+                        </Link>
+                      </li>
 
                       <li className="nav-item">
                         <Link
@@ -631,6 +641,7 @@ function Header() {
                           List Your Vehicle
                         </Link>
                       </li>
+                      
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
@@ -694,6 +705,7 @@ function Header() {
                           </Link>
                         )}
                       </li>
+
                       
                       <li className="nav-item">
                         <Link
@@ -786,6 +798,16 @@ function Header() {
                           to="/faq"
                         >
                           FAQ
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/classifiedaddList" && "navActive"
+                          }`}
+                          to="/classifiedaddList"
+                        >
+                          Classifieds 
                         </Link>
                       </li>
                       <li className="nav-item">
