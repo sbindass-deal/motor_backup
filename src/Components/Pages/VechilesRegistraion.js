@@ -125,19 +125,19 @@ const VechilesRegistraion = () => {
   };
 
   //year methods
-  const getCurrentYear = () => {
+  // const getCurrentYear = () => {
 
 
-    let year = new Date().getFullYear()  // returns the current year
-    for (let i = 0; i < 12; i++) {
-      console.log("vvv", year - parseInt([i]));
-      let resultData = year - parseInt([i])
-      return resultData;
-    }
+  //   let year = new Date().getFullYear()  // returns the current year
+  //   for (let i = 0; i < 12; i++) {
+  //     console.log("vvv", year - parseInt([i]));
+  //     let resultData = year - parseInt([i])
+  //     return resultData;
+  //   }
 
-  }
+  // }
 
-  getCurrentYear()
+  // getCurrentYear()
 
 
   const uploadFileTwo = async (vehicleId) => {
