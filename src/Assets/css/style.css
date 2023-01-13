@@ -4508,6 +4508,10 @@ img.g3Logo.W {
 .classifiedAdds ul.labelList li { color: #f78c12;}
 .classifiedAdds ul.labelList li {  font-weight: 700;}
 
+.ListDealer .card_postImg.dlr { height: 120px;}
+
+.ListDealer .card_postInfo h5{color: #f78c12;}
+nav.pgNtion { margin: 0 auto;}
 
 @media (max-width: 860px) {
 P{
