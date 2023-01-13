@@ -42,6 +42,8 @@ const VechilesRegistraion = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
 
+  const [previous15Year, setPrevious15Year] = useState([])
+
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const handleClosePayment = () => {
     setShowPayment(false);
@@ -121,6 +123,22 @@ const VechilesRegistraion = () => {
       });
     }
   };
+
+  //year methods
+  // const getCurrentYear = () => {
+
+
+  //   let year = new Date().getFullYear()  // returns the current year
+  //   for (let i = 0; i < 12; i++) {
+  //     console.log("vvv", year - parseInt([i]));
+  //     let resultData = year - parseInt([i])
+  //     return resultData;
+  //   }
+
+  // }
+
+  // getCurrentYear()
+
 
   const uploadFileTwo = async (vehicleId) => {
     for (let i = 0; i < file1.length; i++) {
@@ -576,7 +594,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -595,8 +613,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -615,8 +633,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -675,7 +693,8 @@ const VechilesRegistraion = () => {
                                 Choose...
                               </option>
                               <option value="2022">2022</option>
-                              <option value="2021">2021</option>
+
+                              {/* <option value="2021">2021</option>
                               <option value="2020">2020</option>
                               <option value="2019">2019</option>
                               <option value="2018">2018</option>
@@ -686,7 +705,7 @@ const VechilesRegistraion = () => {
                               <option value="2013">2013</option>
                               <option value="2012">2012</option>
                               <option value="2011">2011</option>
-                              <option value="2010">2010</option>
+                              <option value="2010">2010</option> */}
                             </select>
                           </div>
                         </div>
@@ -798,7 +817,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                        namefield.vehiclepast === "Yes" ? (
+                          namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -987,7 +1006,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1055,7 +1074,7 @@ const VechilesRegistraion = () => {
                                 value="Yes"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1066,7 +1085,7 @@ const VechilesRegistraion = () => {
                                 value="No"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1077,7 +1096,7 @@ const VechilesRegistraion = () => {
                                 value="classified"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? false
                                     : true
                                 }
@@ -1089,7 +1108,7 @@ const VechilesRegistraion = () => {
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
-                        "classified" ? (
+                          "classified" ? (
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <FormInput
@@ -1481,8 +1500,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -2011,8 +2030,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
