@@ -78,8 +78,8 @@ function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://www.tiktok.com/@gasguzzlrs">
-                    <i className="fa-brands fa-linkedin-in"></i> Tiktok
+                  <a target="_blank" href="#">
+                    <i className="fa-brands fa-linkedin-in"></i> Linkedin
                   </a>
                 </li>
                 <li>

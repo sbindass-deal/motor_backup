@@ -391,6 +391,7 @@
 }
 
 @media (max-width: 767px) {
+	
 	button.btn.bidnW {	padding: 0;	}
 	.addSection .inner-slider .card_post {	display: block;	}
 	.auctionBid {padding: 0;	}
@@ -681,6 +682,21 @@
 	.searchSec .ant-select-selector {min-width: 354px;}
 	.bg-pop .modal-content {width: min-content;}
 	.ar {display: block;}
+	.card_postImg img {
+		min-width: 100%;
+		min-height: auto;
+		object-fit: cover;
+	}
+	.auctionBid ul.labelList {
+		color: #fff;
+	}
+	.light .auctionBid ul.labelList {
+		color: #000;
+	}
+	.light .accordion button.accordion-button.collapsed {
+		text-align: left;
+	}
+	
 }
 
 @media (max-width: 575px) {
