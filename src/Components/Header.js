@@ -143,6 +143,8 @@ function Header() {
                     className="whiteLogo"
                   />
                 </Link>
+
+
                 {/* mobile view start */}
                 <div className="dddd">
                   {showNav ? (
@@ -170,61 +172,24 @@ function Header() {
                     id="navb"
                   >
                     <ul className="navbar-nav mobileOnly">
-                      <li className="nav-item">
+                      
+                      <li className="nav-item iconMb">
                         <Searchbar />
                       </li>
-
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/aboutshibnobi"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/aboutshibnobi"
-                          onClick={() => setShowNav(false)}
-                        >
-                          About
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
-                            "navActive"
-                          }`}
-                          to="/classifiedaddList"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Classifieds
-                        </Link>
-                      </li>
-
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/works" && "navActive"
-                          }`}
-                          to="/works"
-                          onClick={() => setShowNav(false)}
-                        >
-                          How it Works
-                        </Link>
-                      </li>
-                      <li className="nav-item afterLogin">
+                      <li className="nav-item afterLogin iconMb">
                         <div className="dropdown">
                           <AccountCircleIcon />
 
                           <div className="dropdown-content">
                             {logingUser.login.token && (
                               <Link
-                                className={`nav-link ${
-                                  location.pathname === "/accountinfo" &&
+                              className={`nav-link ${
+                                location.pathname === "/accountinfo" &&
                                   "navActive"
-                                }`}
+                                  ? "active"
+                                  : ""
+                              }`}
+                               
                                 to="/accountinfo"
                                 onClick={() => setShowNav(false)}
                               >
@@ -288,6 +253,60 @@ function Header() {
                           </div>
                         </div>
                       </li>
+
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/aboutshibnobi"
+                              ? "active"
+                              : ""
+                          }`}
+                          style={{
+                            color: `${
+                              location.pathname === "/aboutshibnobi"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/aboutshibnobi"
+                          onClick={() => setShowNav(false)}
+                        >
+                          About
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+
+                          className={`nav-link ${
+                            location.pathname === "/classifiedaddList" &&
+                            "navActive"
+                              ? "active"
+                              : ""
+                          }`}
+
+                        
+                          to="/classifiedaddList"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Classifieds
+                        </Link>
+                      </li>
+
+                      <li className="nav-item">
+                        <Link
+                         className={`nav-link ${
+                          location.pathname === "/works" && "navActive"
+                            ? "active"
+                            : ""
+                        }`}
+                         
+                          to="/works"
+                          onClick={() => setShowNav(false)}
+                        >
+                          How it Works
+                        </Link>
+                      </li>
+                     
                       {/* day and night mode start */}
                       <li className="nav-item">
                         <button
@@ -338,11 +357,7 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/showroom" ? "#EF6031" : ""
-                            }`,
-                          }}
+                         
                           to="/showroom"
                           onClick={() => setShowNav(false)}
                         >
@@ -352,13 +367,7 @@ function Header() {
                       <li className="nav-item">
                         {true ? (
                           <Link
-                            style={{
-                              color: `${
-                                location.pathname === "/carraffle"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
-                            }}
+                            
                             className="nav-link"
                             to="/carraffle"
                             onClick={() => setShowNav(false)}
@@ -372,11 +381,7 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/feautres" ? "#EF6031" : ""
-                            }`,
-                          }}
+                         
                           to="/feautres"
                           onClick={() => setShowNav(false)}
                         >
@@ -385,12 +390,8 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/charity" ? "#EF6031" : ""
-                            }`,
-                          }}
+                          className="nav-link "
+                          
                           to="/charity"
                           onClick={() => setShowNav(false)}
                         >
@@ -435,11 +436,11 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/faq" ? "#EF6031" : ""
-                            }`,
-                          }}
+                          // style={{
+                          //   color: `${
+                          //     location.pathname === "/faq" ? "#EF6031" : ""
+                          //   }`,
+                          // }}
                           to="/faq"
                           onClick={() => setShowNav(false)}
                         >
@@ -449,11 +450,11 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/shop" ? "#EF6031" : ""
-                            }`,
-                          }}
+                          // style={{
+                          //   color: `${
+                          //     location.pathname === "/shop" ? "#EF6031" : ""
+                          //   }`,
+                          // }}
                           to="/shop"
                           onClick={() => setShowNav(false)}
                         >
@@ -721,10 +722,16 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
-                            "navActive"
-                          }`}
+                        
+                        
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/classifiedaddList" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          
+                          
                           to="/classifiedaddList"
                         >
                           Classifieds

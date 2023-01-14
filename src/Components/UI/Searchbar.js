@@ -45,9 +45,7 @@ const Searchbar = () => {
   return (
     <div className="searchX">
       <AutoComplete
-        style={{
-          width: 300,
-        }}
+        
         placeholder="Search..."
         options={options}
         onSelect={onSelect}
