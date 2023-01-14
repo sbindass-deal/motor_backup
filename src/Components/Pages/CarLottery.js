@@ -67,7 +67,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2023-01-07 12:30:00").getTime()
+    new Date("2023-01-15 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -129,7 +129,7 @@ function CarRaffle() {
       } else {
         console.log("Data is empty");
       }
-      setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
+      // setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
     } catch (err) {
       console.log(err);
     }
@@ -332,7 +332,7 @@ function CarRaffle() {
                       </div> */}
 
                       <div className="counterCol">
-                        <h5 style={{ textAlign: "center" }}>
+                        <h5 >
                           Countdown to the next draw
                         </h5>
                         {t > 0 ? (
@@ -367,7 +367,7 @@ function CarRaffle() {
                           </div>
                         ) : (
                           <div className="clockTimer text-dark" id="clockdiv">
-                            Time up
+                            <h2 style={{textAlign:"center"}}>Time up</h2>
                           </div>
                         )}
 

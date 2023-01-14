@@ -120,7 +120,7 @@ function Auctionlive() {
                     <i className="fa-solid fa-heart mr-2"></i>
                   </button>
                 </li>
-                <li className="d-flex">
+                <li className="d-flex gv">
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
