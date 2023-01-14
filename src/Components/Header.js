@@ -27,36 +27,6 @@ import { NoFoodTwoTone } from "@mui/icons-material";
 import NotAvailable from "../Components/UI/NotAvailable";
 import Searchbar from "./UI/Searchbar";
 import CloseIcon from "@mui/icons-material/Close";
-const data = [
-  {
-    id: 1,
-    name: "List Your Vehicle",
-    desc: "sohan is a good boy",
-    redirect: "/submit",
-  },
-  {
-    id: 2,
-    name: "Showrooms",
-    desc: "mohan is a good boy",
-    redirect: "/showroom",
-  },
-  { id: 3, name: "Raffle", desc: "lalu is a good boy", redirect: "/carraffle" },
-  { id: 4, name: "Feautres", desc: "modi is a good boy", redirect: "feautres" },
-  {
-    id: 5,
-    name: "Charity Actions",
-    desc: "sohan is a good boy",
-    redirect: "/charity",
-  },
-  {
-    id: 6,
-    name: "About",
-    desc: "sohan is a good boy",
-    redirect: "/aboutshibnobi",
-  },
-  { id: 7, name: "Faq", desc: "sohan is a good boy", redirect: "/faq" },
-  { id: 8, name: "Store", desc: "sohan is a good boy", redirect: "/shop" },
-];
 
 function Header() {
   const location = useLocation();
@@ -157,7 +127,11 @@ function Header() {
           <div className="row">
             <div className="col-md-12 p-0">
               <nav className="navbar navbar-expand-md">
-                <Link className="navbar-brand" to="/">
+                <Link
+                  className="navbar-brand"
+                  to="/"
+                  onClick={() => setShowNav(false)}
+                >
                   <img
                     src={shibnobiMotors}
                     alt="shibnobiMotors"
@@ -435,7 +409,7 @@ function Header() {
                                   : ""
                               }`,
                             }}
-                            to="#"
+                            to="/shipping"
                             onClick={() => setShowNav(false)}
                           >
                             Shipping
@@ -712,6 +686,7 @@ function Header() {
                             }`,
                           }}
                           to="#"
+                          onClick={() => setShowNav(false)}
                         >
                           Shipping
                         </Link>
