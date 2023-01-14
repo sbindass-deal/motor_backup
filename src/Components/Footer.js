@@ -79,7 +79,7 @@ function Footer() {
                 </li>
                 <li>
                   <a target="_blank" href="#">
-                    <i className="fa-brands fa-linkedin-in"></i> Linkedin
+                    <i className="fa-brands fa-linkedin-in"></i> LinkedIn
                   </a>
                 </li>
                 <li>
