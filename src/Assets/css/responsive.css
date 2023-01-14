@@ -696,6 +696,20 @@
 	 .accordion button.accordion-button.collapsed {
 		text-align: left;
 	}
+	.form-group.lotryBtn button.btn {
+		padding: 10px;
+	}
+	.clockTimer .timerBg {
+		background: black;
+		margin: 3px;
+	}
+	.clockTimer #clockdiv>div {
+		display: inline-block;
+		padding: 0px 5px;
+		min-width: 72px;
+	}
+	.row.row_gap_5.ssss {width: 100%;}
+	li.d-flex.gv {display: none !important;}
 	
 }
 
