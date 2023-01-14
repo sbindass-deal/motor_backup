@@ -710,7 +710,24 @@
 	}
 	.row.row_gap_5.ssss {width: 100%;}
 	li.d-flex.gv {display: none !important;}
-	
+	.dropdown-content {
+		right: -89px;
+	}
+	a.nav-link.active {
+		color: #000 !important;
+	}
+	a.nav-link.navActive {
+		text-align: left !important;
+		color: #000;
+	}
+	.iconMb .dropdown-content {
+		left: 22px;
+	}
+	.modal-title {
+		font-size: 18px;
+		padding-left: 16px;
+		padding-bottom: 10px;
+	}
 }
 
 @media (max-width: 575px) {

@@ -86,3 +86,6 @@ body.light{  background-color: #fff; color: #000;}
   }
   .light .heroText.shop h1{ color: #000;}
 
+  .light .ant-select-item.ant-select-item-option a {
+    color: #000 ;
+}
