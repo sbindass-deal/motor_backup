@@ -67,7 +67,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2023-01-15 12:30:00").getTime()
+    new Date("2023-01-20 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -240,7 +240,7 @@ function CarRaffle() {
       <section className="carLottery d-flex align-items-center">
         <div className="container-fluid">
           <div className="heroText">
-            <video autoPlay muted id="myVideo"  controls>
+            <video autoPlay muted id="myVideo" controls>
               <source src={Video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -301,21 +301,21 @@ function CarRaffle() {
                       >
                         {/* {lotteryImage.map((curElem) => {
                           return ( */}
-                            <Carousel.Item
-                              onClick={() => handleImageHow(0)}
-                              className="carousel-item"
-                              style={{ cursor: "pointer" }}
-                              // key={curElem.id}
-                            >
-                              <img
-                                className="d-block w-100 img-fluid"
-                                // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                                src={ads_car_2}
-                                alt="First slide"
-                              />
-                              <Carousel.Caption></Carousel.Caption>
-                            </Carousel.Item>
-                          {/* );
+                        <Carousel.Item
+                          onClick={() => handleImageHow(0)}
+                          className="carousel-item"
+                          style={{ cursor: "pointer" }}
+                          // key={curElem.id}
+                        >
+                          <img
+                            className="d-block w-100 img-fluid"
+                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                            src={ads_car_2}
+                            alt="First slide"
+                          />
+                          <Carousel.Caption></Carousel.Caption>
+                        </Carousel.Item>
+                        {/* );
                         })} */}
                       </Carousel>
                     </div>
@@ -332,9 +332,7 @@ function CarRaffle() {
                       </div> */}
 
                       <div className="counterCol">
-                        <h5 >
-                          Countdown to the next draw
-                        </h5>
+                        <h5>Countdown to the next draw</h5>
                         {t > 0 ? (
                           <div className="clockTimer" id="clockdiv">
                             <div className="timerBg">
@@ -367,7 +365,7 @@ function CarRaffle() {
                           </div>
                         ) : (
                           <div className="clockTimer text-dark" id="clockdiv">
-                            <h2 style={{textAlign:"center"}}>Time up</h2>
+                            <h2 style={{ textAlign: "center" }}>Time up</h2>
                           </div>
                         )}
 

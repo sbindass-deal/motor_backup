@@ -28,7 +28,6 @@ function MyListings() {
     axios
       .get(process.env.REACT_APP_URL + `byUserVehicle`)
       .then((response) => {
-        console.log("hell22", response.data.data, response.data.status);
         if (response.data.data && response.data.status === 200) {
           setData(response.data.data);
         }

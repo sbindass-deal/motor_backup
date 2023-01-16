@@ -158,7 +158,7 @@ const Layout = () => {
           {/* <Route path="showroom" element={<PhotoGallery />} /> */}
           <Route path="showroom" element={<Store />} />
           {/* <Route path="showroom" element={<Dealer />} /> */}
-          <Route path="dealerProfile" element={<DealerProfile />} />
+          <Route path="dealerProfile/:id" element={<DealerProfile />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
 
           <Route path="showroom/:id" element={<StoreDetails />} />
