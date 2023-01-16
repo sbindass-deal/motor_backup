@@ -124,20 +124,19 @@ const VechilesRegistraion = () => {
     }
   };
 
-  //year methods
-  // const getCurrentYear = () => {
+  //Get past 15 year get year till now year?
+  const years = (startYear) => {
+    var currentYear = new Date().getFullYear(), years = [];
+    startYear = startYear || 1980;
+    while (startYear <= currentYear) {
+      years.push(startYear++);
+    }
+    return years;
+  }
+
+  // console.log(years(new Date().getFullYear() - 15).reverse());
 
 
-  //   let year = new Date().getFullYear()  // returns the current year
-  //   for (let i = 0; i < 12; i++) {
-  //     console.log("vvv", year - parseInt([i]));
-  //     let resultData = year - parseInt([i])
-  //     return resultData;
-  //   }
-
-  // }
-
-  // getCurrentYear()
 
 
   const uploadFileTwo = async (vehicleId) => {
@@ -692,20 +691,12 @@ const VechilesRegistraion = () => {
                               <option selected disabled value="">
                                 Choose...
                               </option>
-                              <option value="2022">2022</option>
-
-                              {/* <option value="2021">2021</option>
-                              <option value="2020">2020</option>
-                              <option value="2019">2019</option>
-                              <option value="2018">2018</option>
-                              <option value="2017">2017</option>
-                              <option value="2016">2016</option>
-                              <option value="2015">2015</option>
-                              <option value="2014">2014</option>
-                              <option value="2013">2013</option>
-                              <option value="2012">2012</option>
-                              <option value="2011">2011</option>
-                              <option value="2010">2010</option> */}
+                              {
+                                years(new Date().getFullYear() - 15).reverse().map((curVal) => {
+                                  return <option value={curVal}>
+                                    {curVal}
+                                  </option>
+                                })}
                             </select>
                           </div>
                         </div>
