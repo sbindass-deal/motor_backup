@@ -22,7 +22,7 @@ const Dealer = () => {
           <div className="row">
             <div className="topTile">
               <h5>
-                New to Gas Guzzlrs? <Link to="/works">Learn how it works.</Link>
+                New to GasGuzzlrs? <Link to="/works">Learn how it works.</Link>
               </h5>
             </div>
           </div>
