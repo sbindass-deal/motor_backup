@@ -14,10 +14,7 @@ const Faq = () => {
       </h2>
       <div className="row">
         <p className="text-center py-3 px-md-5">
-          We conduct our registration and bidding online through our GG
-          Software, an in house appl that manages a platform for auctions and
-          payment processing. Learn more about how to create an account and
-          register for our auctions.
+        We handle registration and bidding online via our GG Software, an in-house application that manages an auction platform and payment processing. Learn more about how to create an account and register for our auctions.
         </p>
 
         {/* <h4>Common Bidder Questions</h4> */}
@@ -31,7 +28,7 @@ const Faq = () => {
                   className="accordion-Faq"
                 >
                   <Accordion.Header>
-                    {i + 1} &nbsp; &nbsp; {curElem.que}
+                    <span><i class="fa fa-arrow-right"></i></span> &nbsp; &nbsp; {curElem.que}
                   </Accordion.Header>
                   <Accordion.Body className="pb-4">
                     {curElem.ans}

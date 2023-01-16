@@ -157,7 +157,7 @@ const Store = () => {
       </div>
       <section className="pt_40">
         <div className="container">
-          <div className="col-12 col-lg-12 py-2">
+          <div className="col-12 col-lg-12 padd-0">
             <h4 className="text-center">
               <span className="text-warning">{searchedData.length}</span> &nbsp;
               Vehicles

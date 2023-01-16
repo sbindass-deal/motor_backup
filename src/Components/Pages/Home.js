@@ -103,9 +103,14 @@ function Home() {
   return (
     <div>
       <section className="heroSection d-flex align-items-center">
-        <button type="button" className="scrollDownIc">
-          <img src={ic_scrollDown} alt="ic_scrollDown" />
-        </button>
+        <a type="button" className="scrollDownIc" href="#second">
+          {/* <img src={ic_scrollDown} alt="ic_scrollDown" /> */}
+          <span className="outer_cover">
+            <small className="upper"><i class="fa fa-angle-down"></i></small>
+            <small className="lower"><i class="fa fa-angle-down"></i></small>
+
+          </span>
+        </a>
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">

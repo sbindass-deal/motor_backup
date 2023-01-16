@@ -115,6 +115,10 @@
 	.switch .react-switch-label {width: 50px; height: 20px;}
 	.switch .react-switch-label .react-switch-button {width: 15px; height: 15px;}
 
+	.card_postInfo{
+		padding: 20px;
+	}
+
 }
 
 @media (max-width: 1199px) {
@@ -366,13 +370,25 @@
 		padding-bottom: 30px;
 	}
 
+	.row.row_gap_5.ssss{
+		width: 90%;
+	}
+
+	.card_postInfo{
+min-height: unset;
+	}
+
 }
 
 .hidemenu {
 	transform: translateY(-120%);
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+	.ar{
+		flex-direction: column;
+	}
+}
 
 @media (min-width: 768px) {
 
@@ -874,6 +890,10 @@
 
 	h1 {
 		font-size: 28px;
+	}
+
+	.video_section{
+		height: 55vh;
 	}
 }
 

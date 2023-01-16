@@ -236,16 +236,14 @@ function CarRaffle() {
   }, []);
 
   return (
-    <div>
-      <section className="carLottery d-flex align-items-center">
-        <div className="container-fluid">
-          <div className="heroText">
+    <>
+      <section className=" video_section d-flex align-items-center">
+        
             <video autoPlay muted id="myVideo"  controls>
               <source src={Video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          </div>
-        </div>
+  
       </section>
 
       <section className="ptb_80 pt_sm_50">
@@ -699,7 +697,7 @@ function CarRaffle() {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 }
 

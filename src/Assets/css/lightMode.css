@@ -11,7 +11,7 @@ body.light{  background-color: #fff; color: #000;}
 .light .fLinks a {color: #000;}
 .lght .heroText h1 {color: #fff;}
 .light .post_select { color: #000; padding: 8px; background-color: #ffffff;}
-.light .gry_btn { border: 1px #f7931b solid; background-color: #f7931b; color: #fff;}
+.light .gry_btn { border: 1px #cfcecd solid; background-color: #cfcecd; color: #fff;}
 .light .post_search input { border: 1px #cbcbcb solid; color: #000;}
 .light .card_post.store.auction { border: 1px solid #3331311c;}
 .light h6.name_price a,.light .card_postInfo a { color: black; text-transform: capitalize;}
@@ -76,7 +76,7 @@ body.light{  background-color: #fff; color: #000;}
 }
 .light .ant-select-dropdown { background-color: #fff;}
 .light .ant-select-item.ant-select-item-option{color: #000;}
-.light .topTile { background: #fff;}
+.light .topTile { }
 
 .light img.g3Logo {
     display: block;

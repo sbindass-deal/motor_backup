@@ -76,7 +76,7 @@ const SubmitaVehicle = () => {
                 Pick Your Listing Type!
               </h2>
               <p>
-                GasGuzzlrs the best place to auction your vehicle.
+                GasGuzzlrs is the best place to auction your vehicle.
                 <br /> Choose one of our many Auction Services to showease your
                 vehicle the way you want.
               </p>
@@ -114,9 +114,7 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardBody">
                   <p>
-                    Our base package that gives you everything you need to sell
-                    you vehicle. You fill out our questionnaire, provide us your
-                    pictures/video and we create a professional auction listing.
+                  Our base package gives you everything you need to sell your vehicle. You fill out our questionnaire, provide us with your pictures and video, and we create a professional auction listing.
                   </p>
                 </div>
                 <div className="plan_cardFooter">
@@ -333,9 +331,7 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardBody">
                   <p>
-                    If you have an extra special collector vehicle or an entire
-                    collection to sell. We will take care of everything for you,
-                    we can even do a live auction for your ride.
+                  If you have an extra-special collector vehicle or an entire collection to sell, We will take care of everything for you; we can even do a live auction for your ride.
                   </p>
                 </div>
                 <div className="plan_cardFooter">
