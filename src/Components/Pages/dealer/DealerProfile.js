@@ -7,7 +7,7 @@ import Gallery_3 from "../../../Assets/images/g-3.png";
 import Gallery_4 from "../../../Assets/images/g-4.png";
 import Inventory from "./Inventory";
 import DealerAuction from "./DealerAuction";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DealerVehicleList from "./DealerVehicleList";
 
 const DealerProfile = () => {
@@ -70,9 +70,9 @@ const DealerProfile = () => {
               className="col-12"
               style={{ textAlign: "center", margin: "20px auto" }}
             >
-              <a class="btn mt-2" href="/showroom">
+              <Link class="btn mt-2" t0="">
                 VIEW MORE
-              </a>
+              </Link>
             </div>
           </div>
         </div>
