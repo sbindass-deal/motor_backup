@@ -9,31 +9,15 @@ import RegisterModal from "./Popups/RegisterModal";
 import SearchModal from "./Popups/SearchModal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  authToken,
-  isAdmin,
-  showModalLogin,
-  showModalClose,
-  reset,
-} from "../redux/reducers/login";
+import { showModalLogin, showModalClose, reset } from "../redux/reducers/login";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
-import axios from "axios";
-import { clearCart } from "../redux/reducers/cartSlice";
-import { useEffect } from "react";
-import ResultNotFound from "./UI/ResultNotFound";
-import { NoFoodTwoTone } from "@mui/icons-material";
-import NotAvailable from "../Components/UI/NotAvailable";
 import Searchbar from "./UI/Searchbar";
-import CloseIcon from "@mui/icons-material/Close";
 
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
-  const [searchData, setSearchData] = useState([]);
-  const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
   const [showNav, setShowNav] = useState(false);
 
   const notify = (val) =>
@@ -48,35 +32,11 @@ function Header() {
       theme: "light",
     });
   const [showSearchModal, setShowSearchModal] = useState(false);
-  // const [sowAutoCompleate, setSowAutoCompleate] = useState(false);
 
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
-
-  const featchSearchApi = async () => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_URL + `globalSearch`
-      );
-      if (response.data.vehicle.length >= 0) {
-        setSearchData(response.data.vehicle);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    featchSearchApi();
-  }, []);
-
-  const handleSearch = (e) => {
-    const Value = e.target.value.toLowerCase();
-    setSearchValue(Value);
-    // featchSearchApi(Value);
-  };
 
   const handleClose = () => {
     dispatch(showModalClose());
@@ -103,23 +63,6 @@ function Header() {
     window.location.reload(false);
   };
 
-  const handleBlur = (e) => {
-    // setSowAutoCompleate(false);
-  };
-  const handleFocus = (e) => {
-    setSowAutoCompleate(true);
-  };
-
-  const filteredData =
-    searchData &&
-    searchData.filter((item) =>
-      item.make
-        ? item.make.toLowerCase().includes(searchValue) ||
-          item.model.toLowerCase().includes(searchValue) ||
-          item.year.includes(searchValue)
-        : item
-    );
-
   return (
     <>
       <header>
@@ -143,7 +86,6 @@ function Header() {
                     className="whiteLogo"
                   />
                 </Link>
-
 
                 {/* mobile view start */}
                 <div className="dddd">
@@ -172,7 +114,6 @@ function Header() {
                     id="navb"
                   >
                     <ul className="navbar-nav mobileOnly">
-                      
                       <li className="nav-item iconMb">
                         <Searchbar />
                       </li>
@@ -183,13 +124,12 @@ function Header() {
                           <div className="dropdown-content">
                             {logingUser.login.token && (
                               <Link
-                              className={`nav-link ${
-                                location.pathname === "/accountinfo" &&
+                                className={`nav-link ${
+                                  location.pathname === "/accountinfo" &&
                                   "navActive"
-                                  ? "active"
-                                  : ""
-                              }`}
-                               
+                                    ? "active"
+                                    : ""
+                                }`}
                                 to="/accountinfo"
                                 onClick={() => setShowNav(false)}
                               >
@@ -276,15 +216,12 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <Link
-
                           className={`nav-link ${
                             location.pathname === "/classifiedaddList" &&
                             "navActive"
                               ? "active"
                               : ""
                           }`}
-
-                        
                           to="/classifiedaddList"
                           onClick={() => setShowNav(false)}
                         >
@@ -294,19 +231,18 @@ function Header() {
 
                       <li className="nav-item">
                         <Link
-                         className={`nav-link ${
-                          location.pathname === "/works" && "navActive"
-                            ? "active"
-                            : ""
-                        }`}
-                         
+                          className={`nav-link ${
+                            location.pathname === "/works" && "navActive"
+                              ? "active"
+                              : ""
+                          }`}
                           to="/works"
                           onClick={() => setShowNav(false)}
                         >
                           How it Works
                         </Link>
                       </li>
-                     
+
                       {/* day and night mode start */}
                       <li className="nav-item">
                         <button
@@ -357,7 +293,6 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                         
                           to="/showroom"
                           onClick={() => setShowNav(false)}
                         >
@@ -367,7 +302,6 @@ function Header() {
                       <li className="nav-item">
                         {true ? (
                           <Link
-                            
                             className="nav-link"
                             to="/carraffle"
                             onClick={() => setShowNav(false)}
@@ -381,7 +315,6 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link"
-                         
                           to="/feautres"
                           onClick={() => setShowNav(false)}
                         >
@@ -391,7 +324,6 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className="nav-link "
-                          
                           to="/charity"
                           onClick={() => setShowNav(false)}
                         >
@@ -722,16 +654,14 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <Link
-                        
-                        
                           className="nav-link"
                           style={{
                             color: `${
-                              location.pathname === "/classifiedaddList" ? "#EF6031" : ""
+                              location.pathname === "/classifiedaddList"
+                                ? "#EF6031"
+                                : ""
                             }`,
                           }}
-                          
-                          
                           to="/classifiedaddList"
                         >
                           Classifieds
