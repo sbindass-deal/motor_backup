@@ -4650,14 +4650,14 @@ bottom: 0;
   padding: 0!important;
 }
 
-.card_post{
+.inner-slider .card_post{
   border:1px solid rgb(180, 180, 180);
   margin-bottom: 30px;
 }
 
-.card_postInfo{
+.inner-slider .card_postInfo{
   min-height: 233px;
-}
+} 
 
 .light .card_postInfo a:hover{
 color: #f7931b;
@@ -4678,6 +4678,12 @@ transform: scale(1.04);
 .light .gry_btn.active{
   background: #f7931a;
 }
+
+.plan_card .plan_cardHead{
+  min-height: 151px;
+}
+
+
 
 @media (max-width: 860px) {
 P{
