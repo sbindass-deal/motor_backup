@@ -10,23 +10,33 @@ import Inventory from "./dealer/Inventory";
 const Store = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
-  const vehicleData = logingUser.vehicleReducer.showroomData;
-  const [howerImage, setHowerImage] = useState({});
+  const vehicleData = logingUser.vehicleReducer.vehicleData;
+  const [latestBid, setLatestBid] = useState([]);
+  const [showImage, setShowImage] = useState(0);
 
-  const handleHowerImage = async (id = 1) => {
+  const handleLatestBid = async () => {
     try {
-      const response = await axios.get(
-        process.env.REACT_APP_URL + "/vehicle-image/" + id
-      );
-      setHowerImage(response.data.data);
+      const response = await axios.get(process.env.REACT_APP_URL + "lastBid");
+      setLatestBid(response.data.data);
+      if (response.data.data) {
+        const filteredData = vehicleData
+          .filter(
+            (item) =>
+              response.data.data.indexOf(item.id.toString()) !== -1 && item
+          )
+          .map((data) => data);
+        setLatestBid(filteredData);
+      } else {
+        setLatestBid([]);
+      }
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    handleHowerImage();
-  }, []);
-
+    handleLatestBid();
+  }, [vehicleData]);
+  console.log(1111, latestBid.length > 0 && latestBid[0].images[0]);
   return (
     <>
       <Dealer />
@@ -40,21 +50,25 @@ const Store = () => {
               <ul className="img_sec">
                 <li>
                   <Link to="/showroom" className="img_1">
-                    <img
-                      src={
-                        process.env.REACT_APP_URL +
-                        "/" +
-                        howerImage.imagePath +
-                        "/" +
-                        howerImage.imageName
-                      }
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src =
-                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                      }}
-                      alt={howerImage.make}
-                    />
+                    {latestBid.length > 0 && latestBid[showImage].images[0] ? (
+                      <img
+                        src={
+                          latestBid[showImage].images[showImage] &&
+                          `${process.env.REACT_APP_URL}/${latestBid[showImage].images[showImage].imagePath}/${latestBid[showImage].images[showImage].imageName}`
+                        }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src =
+                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        }}
+                        alt="Maskgroup1"
+                      />
+                    ) : (
+                      <img
+                        src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                        alt="Maskgroup1"
+                      />
+                    )}
                   </Link>
                 </li>
               </ul>
@@ -62,8 +76,8 @@ const Store = () => {
               <div className="infoCar">
                 <div className="table-responsive">
                   <table className="" width={"100%"}>
-                    {vehicleData.length > 0 &&
-                      vehicleData.slice(0, 7).map((curElem) => {
+                    {latestBid.length > 0 &&
+                      latestBid.map((curElem, i) => {
                         return (
                           <tr
                             style={{ cursor: "pointer" }}
@@ -74,6 +88,7 @@ const Store = () => {
                                   : `/showroom/${curElem.id}`
                               );
                             }}
+                            onMouseOver={() => setShowImage(i)}
                             key={curElem.id}
                           >
                             <td>

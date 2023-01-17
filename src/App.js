@@ -140,12 +140,26 @@ const App = () => {
       console.log("err");
     }
   };
+  const fetchAllLoginVehicleData = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}vehicles`);
+      if (res.data.data) {
+        dispatch(storeAllVehicle(res.data.data));
+      } else {
+        dispatch(storeAllVehicle([]));
+      }
+    } catch (err) {
+      console.log("err");
+    }
+  };
 
   useEffect(() => {
-    fetchAllVehicleData();
-  }, []);
-
-  console.log(11, logingUser.submitvechilesReducer.vehicleData);
+    if (logingUser.login.token) {
+      fetchAllLoginVehicleData();
+    } else {
+      fetchAllVehicleData();
+    }
+  }, [logingUser.login.token]);
 
   return (
     <>

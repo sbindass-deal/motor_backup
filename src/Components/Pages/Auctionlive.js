@@ -7,38 +7,23 @@ import { useSelector } from "react-redux";
 import SmallSpinner from "../UI/SmallSpinner";
 import { Link } from "react-router-dom";
 function Auctionlive() {
-  const userId = useSelector((state) => state);
+  const logingUser = useSelector((state) => state);
+  const vehicleData = logingUser.vehicleReducer.vehicleData;
+
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
   const [loading, setLoader] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
-  const fetchVehicleApi = async () => {
-    setLoader(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}vehicle/unknowuser`
-      );
-      if (response.data.status === 200 && response.data.data.length > 0) {
-        const newData = response.data.data.reverse();
-        const filteredData = newData.filter(
-          (item) => item.displayInAuction === "Yes"
-        );
-        // const watchedData = newData.filter((item) => item.like > 0);
-        setauctions(filteredData);
-        setFilteredUsers(filteredData);
-      }
-      setLoader(false);
-    } catch (err) {
-      console.log(err);
-      setLoader(false);
-    }
-  };
-
   useEffect(() => {
-    fetchVehicleApi();
-  }, []);
+    const filteredAuctionVehicle = vehicleData.filter(
+      (item) => item.displayInAuction === "Yes"
+    );
+    setauctions(filteredAuctionVehicle);
+    setFilteredUsers(filteredAuctionVehicle);
+  }, [vehicleData]);
+
   const getEndDate = (cal) => {
     let data = cal.split("T");
     let endDate = moment().format("YYYY-MM-DD");
@@ -57,7 +42,7 @@ function Auctionlive() {
         if (res.data.status === 200) {
           setauctions([]);
           setFilteredUsers([]);
-          fetchVehicleApi();
+          // fetchVehicleApi();
         }
       });
   };
@@ -183,29 +168,25 @@ function Auctionlive() {
                         </button>
 
                         <Link to={`/detail/${curElem.id}`}>
-                          {/* <img
+                          {curElem.images[0] ? (
+                            <img
                               src={
-                                curElem.stepOneImage === null ||
-                                curElem.stepOneImage === undefined ||
-                                curElem.stepOneImage === ""
-                                  ? img_01
-                                  : process.env.REACT_APP_URL +
-                                    curElem.stepOneImage
+                                curElem.images[0] &&
+                                `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
                               }
-                              alt=""
-                            /> */}
-                          <img
-                            loading="lazy"
-                            src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onError = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.model}
-                          />
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          ) : (
+                            <img
+                              src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                              alt="Maskgroup1"
+                            />
+                          )}
                         </Link>
                       </div>
                       <div className="card_postInfo">
@@ -236,37 +217,12 @@ function Auctionlive() {
                             ) : null}
                           </li>
                           <li>
-                            {/* <span>{getEndDate(curElem.created_at)} </span> */}
-                            {/* <span>{curElem.EndTime}</span> */}
                             {curElem.approved === "0" && (
                               <label>Upcoming Auction</label>
                             )}
                             {curElem.approved === "1" && (
                               <label>Auction is live now</label>
                             )}
-                            {/* {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              new Date().getTime() >
-                            900000 ? (
-                              <label>Upcoming Auction</label>
-                            ) : parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() >
-                                0 &&
-                              parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() <
-                                900000 ? (
-                              <label>Auction is live now</label>
-                            ) : (
-                              <label>Sold</label>
-                            )} */}
-                            {/* {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              new Date().getTime() <=
-                              0 && <label>Sold</label>} */}
                           </li>
                         </ul>
                       </div>

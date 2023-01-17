@@ -94,7 +94,7 @@ const Inventory = () => {
   return (
     <>
       <div className="col-12 text-center pt_80 pb_30">
-        <h2>More Inventory</h2>
+        <h2>All Vehicles</h2>
       </div>
       <section className="pt_40">
         <div className="container">

@@ -14,6 +14,7 @@ import WestIcon from "@mui/icons-material/West";
 const UserVehicleDetails = () => {
   const { id } = useParams();
   const [viewAll, setViewAll] = useState(false);
+  const [vehicleImage, setVehicleImage] = useState([]);
   const [descValue, setDescValue] = useState({
     description1: "",
     description2: "",
@@ -74,8 +75,7 @@ const UserVehicleDetails = () => {
       const response = await axios.get(
         process.env.REACT_APP_URL + "/vehicle-image/" + id
       );
-      console.log("###>>>", response.data.data);
-      // setShowImage(response.data.data);
+      setVehicleImage(response.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -165,8 +165,8 @@ const UserVehicleDetails = () => {
             <div className="col-6 sticky-direction=up">
               <div className="postHero ">
                 <img
-                  src="https://tse4.mm.bing.net/th?id=OIP.vf11XywUrdCTiM2RtALitAHaFU&pid=Api&P=0"
-                  alt="details-images"
+                  src={`${process.env.REACT_APP_URL}${vehicle.stepOneImage}`}
+                  alt={vehicle.make}
                 />
               </div>
             </div>
@@ -292,9 +292,7 @@ const UserVehicleDetails = () => {
                           current Amount{" "}
                           <label htmlFor="">{vehicle.currentAmount}</label>
                         </li>
-                        {/* <li>
-                           <label htmlFor="">{vehicle.ammountOnDocument}</label>
-                        </li> */}
+
                         <li>
                           Amount on document{" "}
                           <label htmlFor="">{vehicle.documentFee}</label>
@@ -547,69 +545,23 @@ const UserVehicleDetails = () => {
                   </span>
                 </div>
 
-                <div
-                  className="fore_Slide arrowTop_Slide"
-                  style={{ height: "350px" }}
-                >
-                  <Slider ref={slide} {...settings}>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_01" />
-                        </div>
+                <div class="card-group">
+                  {vehicleImage.map((curElem) => {
+                    return (
+                      <div class="card mx-1">
+                        <img
+                          class="card-img-top"
+                          src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt="Maskgroup1"
+                        />
                       </div>
-                    </div>
-
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_02" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_03" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_04" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_01" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_02" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_03" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card_post">
-                        <div className="card_postImg">
-                          <img src={img_01} alt="car_04" />
-                        </div>
-                      </div>
-                    </div>
-                  </Slider>
+                    );
+                  })}
                 </div>
               </div>
             </div>

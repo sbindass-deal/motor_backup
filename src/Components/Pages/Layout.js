@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import Home from "./Home";
@@ -17,18 +11,14 @@ import HowShibnobiMotorWorks from "./HowShibnobiMotorWorks";
 import PhotoGallery from "./PhotoGallery";
 import SubmitaVehicle from "./SubmitaVehicle";
 import MyShipments from "./MyAccount/MyShipments";
-import MakeAnModel from "./MakeAnModel";
 import Store from "./Store";
 import Features from "./Features";
 import Detail from "./Detail";
 import TermsOfUse from "./TermsOfUse";
-// import PrivacyNotice from "./PrivacyNotice";
 import AboutShibanobi from "./AboutShibanobi";
 import Shipping from "./Shipping";
 import CookiesSetting from "./CookiesSetting";
-// import SellYourVehicle from "./SellYourVehicle";
 import AuctionResults from "./AuctionResults";
-// import CarLotry from "./CarLotry";
 import PrivacyPolicy from "./PrivacyNotice";
 import CarRaffle from "./CarLottery";
 import VechilesRegistraion from "./VechilesRegistraion";
@@ -44,7 +34,6 @@ import NotFoundPage from "./NotFoundPage";
 import Paymentsuccess from "./Paymentsuccess";
 import ReffarallinkFile from "./ReffarallinkFile";
 import ShopDetails from "./shopingStore/ShopDetails";
-import Admin from "./Dashboard/Admin";
 import Blog from "./Dashboard/Blog";
 import VehicleSubmission from "./Dashboard/VehicleSubmission";
 import VehicleListing from "./Dashboard/VehicleListing";
@@ -54,7 +43,6 @@ import GearProduct from "./Dashboard/GearProducts";
 import Cart from "./shopingStore/Cart";
 import RaffleAdmin from "./Dashboard/RaffleAdmin";
 import Orders from "./Dashboard/Orders";
-import PaymentProcess from "./PaymentProcess";
 import OrderCart from "./shopingStore/OrderCart";
 import OrderCartDetails from "./shopingStore/OrderCartDetails";
 import { useSelector } from "react-redux";
@@ -69,7 +57,6 @@ import CheckoutDetails from "./shopingStore/CheckoutDetails";
 import AddGearProduct from "./Dashboard/AddGearProduct";
 import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
-import Dealer from "./dealer/Dealer";
 import DealerProfile from "./dealer/DealerProfile";
 import ClassifiedAddList from "./dealer/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
@@ -84,6 +71,7 @@ const Layout = () => {
         <Header />
         <Routes>
           <Route index element={<Home />} />
+          {/* After user Login start */}
           {logingUser.login.token && (
             <>
               <Route path="cart" element={<Cart />} />
@@ -99,6 +87,7 @@ const Layout = () => {
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}
               />
+              {/* Admin login start */}
               {logingUser.login.admin && (
                 <>
                   <Route
@@ -139,14 +128,14 @@ const Layout = () => {
               )}
             </>
           )}
+          {/* Admin login end */}
+          {/* After user login end */}
           <Route path="notification" element={<Notifications />} />
           <Route path="biding" element={<MyBidsWins />} />
           <Route path="works" element={<HowShibnobiMotorWorks />} />
-          {/* <Route path="account" element={<AccountInfo />} /> */}
           <Route path="gallary" element={<PhotoGallery />} />
           <Route path="submit" element={<SubmitaVehicle />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
-          {/* <Route path="makeamodel" element={<MakeAnModel />} /> */}
           <Route path="successpayment" element={<Paymentsuccess />} />
           <Route
             path="carraffle/refferallink/:id"
@@ -155,9 +144,7 @@ const Layout = () => {
           <Route path="aboutshibnobi" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
-          {/* <Route path="showroom" element={<PhotoGallery />} /> */}
           <Route path="showroom" element={<Store />} />
-          {/* <Route path="showroom" element={<Dealer />} /> */}
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
 

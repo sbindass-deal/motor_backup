@@ -4,11 +4,14 @@ import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
+import { useSelector } from "react-redux";
 
 function Detail() {
   const { id } = useParams();
+  const logingUser = useSelector((state) => state);
+  const vehicleDatas = logingUser.vehicleReducer.vehicleData;
+
   const [vehicle, setVehicle] = useState({});
-  const [vehicleImage, setVehicleImage] = useState([]);
   const [comments, setcomments] = useState([]);
   const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
@@ -20,7 +23,6 @@ function Detail() {
   const [bidComment, setBidComment] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
-  const [addVehicleUserId, setAddVehicleUserId] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   const [showImage, setShowImage] = useState([]);
   const handleSelect = (selectedIndex, e) => {
@@ -144,25 +146,18 @@ function Detail() {
     }
   }, []);
 
-  const getVehicle = async () => {
-    await axios
-      .post(process.env.REACT_APP_URL + "vehicleByID", { id: id })
-      .then((res) => {
-        setAddVehicleUserId(res.data.data[0].userId);
-        setVehicle(res.data.data[0]);
-        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
-        // console.log("end", new Date(res.data.data[0].EndTime));
-        setNewTiem(parseInt(new Date(res.data.data[0].EndTime).getTime(), 10));
-        // console.log("api date", new Date(res.data.data[0].EndTime));
-      });
-  };
-
-  //get images
-  const getVehicleImages = () => {
-    axios.get(process.env.REACT_APP_URL + "vehicle-image/" + id).then((res) => {
-      setVehicleImage(res.data.data);
-    });
-  };
+  useEffect(() => {
+    const filteredSingleVehicle = vehicleDatas.filter(
+      (item) => item.id === parseInt(id, 10)
+    );
+    setVehicle(filteredSingleVehicle[0]);
+    // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+    // console.log("end", new Date(res.data.data[0].EndTime));
+    setNewTiem(
+      parseInt(new Date(filteredSingleVehicle[0].EndTime).getTime(), 10)
+    );
+    // console.log("api date", new Date(res.data.data[0].EndTime));
+  }, [vehicleDatas, id]);
 
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
@@ -179,8 +174,6 @@ function Detail() {
   };
 
   React.useEffect(() => {
-    getVehicle();
-    getVehicleImages();
     getComments();
     getBidingDetails();
   }, []);
@@ -193,7 +186,6 @@ function Detail() {
       .then((res) => {
         if (res.data.status === 200) {
           setVehicle({});
-          getVehicle();
         }
         console.log(res);
       });
@@ -224,17 +216,6 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      {/* {t > 900000 ? (
-                        <span>Upcomming Auction</span>
-                      ) : t > 0 && t <= 900000 ? (
-                        <span>
-                          <label>Ends In:&nbsp;</label>
-                          {days} days {hours} hours, {minutes} minutes,{" "}
-                          {seconds} seconds *
-                        </span>
-                      ) : (
-                        <span> &nbsp;Time Out</span>
-                      )} */}
                       {vehicle.approved === "1" && (
                         <span>
                           <label>Ends In:&nbsp;</label>
@@ -270,57 +251,7 @@ function Detail() {
                       Watch
                     </a>
                   )}
-                  {/* <a href="#" className="gry_btn mr-2">
-                    How it Works
-                  </a> */}
-                  {/* {vehicle.like === 1 ? (
-                    <a
-                      style={{ cursor: "pointer" }}
-                      onClick={() => addFabrity(id)}
-                      className="gry_btn mr-2 faList"
-                    >
-                      <i className="fa-solid fa-heart mr-2 "></i>
-                      Watch
-                    </a>
-                  ) : (
-                    <a
-                      style={{ cursor: "pointer" }}
-                      onClick={() => addFabrity(id)}
-                      className="gry_btn mr-2"
-                    >
-                      <i className="fa-solid fa-heart mr-2 "></i>
-                      Watch
-                    </a>
-                  )}
-                  {t <= 0 ? (
-                    <a className="gry_btn active">
-                      {vehicle.reserve === "Yes" && vehicle.sold === "1"
-                        ? "High Bid"
-                        : "Sold"}{" "}
-                      :{" "}
-                      {amountprice ? (
-                        <span> USD $ {amountprice}</span>
-                      ) : (
-                        <span> USD $ {vehicle.documentFee} </span>
-                      )}
-                    </a>
-                  ) : t >= 900000 ? (
-                    <button type="button" className="gry_btn">
-                      Upcoming Auction
-                    </button>
-                  ) : (
-                    <>
-                      {vehicle.canBid === "yes" && (
-                        <button
-                          type="button"
-                          className="gry_btn active"
-                          onClick={handleShow}
-                        >
-                          Place a bid
-                        </button>
-                      )}
-                    </>
-                  )} */}
+
                   {vehicle.approved === "1" && vehicle.canBid === "yes" ? (
                     <button
                       type="button"
@@ -333,15 +264,6 @@ function Detail() {
                     vehicle.canBid === "no" ? null : (
                     <div className="">Upcoming Auction</div>
                   )}
-                  {/* <button
-                    type="button"
-                    className="gry_btn active"
-                    onClick={handleShow}
-                    // onClick={() => addBiding()}
-                    // onclick="smoothScroll(document.getElementById('placeBid_col'))"
-                  >
-                    Place a bid
-                  </button> */}
                 </div>
               </div>
             </div>
@@ -350,35 +272,20 @@ function Detail() {
           <div className="row pt-4">
             <div className="col-12 pb-3">
               <div className="postHero">
-                {vehicleImage.length > 0 ? (
-                  <>
-                    {/* <img
+                {vehicle.images && (
+                  <img
                     src={
-                      process.env.REACT_APP_URL +
-                      "/" +
-                      vehicleImage[0].imagePath +
-                      "/" +
-                      vehicleImage[0].imageName
+                      vehicle.images[0] &&
+                      `${process.env.REACT_APP_URL}/${vehicle.images[0].imagePath}/${vehicle.images[0].imageName}`
                     }
-                    alt=""
-                  /> */}
-                    <img
-                      src={
-                        process.env.REACT_APP_URL +
-                        "/" +
-                        vehicleImage[0].imagePath +
-                        "/" +
-                        vehicleImage[0].imageName
-                      }
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src =
-                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                      }}
-                      alt="details-images"
-                    />
-                  </>
-                ) : null}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onError = null;
+                      currentTarget.src =
+                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                    }}
+                    alt="Maskgroup1"
+                  />
+                )}
               </div>
             </div>
             <div className="col-12 dropdownCol">
@@ -449,137 +356,8 @@ function Detail() {
                 </div>
               </div>
 
-              {/* <div className="dropdown mr-2">
-                <button
-                  type="button"
-                  className="gry_btn dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  Origin: British
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div> */}
               <div className="dropdown">
-                {/* <button
-                  type="button"
-                  className="gry_btn dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  User: {vehicle.make}
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-lg-9 pt-4">
-              <p>{vehicle.moreDescription}</p>
-
-              <div className="mb-3">
-                {vehicleImage.length > 1 ? (
-                  <img
-                    src={
-                      process.env.REACT_APP_URL +
-                      "/" +
-                      vehicleImage[1].imagePath +
-                      "/" +
-                      vehicleImage[1].imageName
-                    }
-                    alt=""
-                  />
-                ) : null}
-              </div>
-
-              {/* <p>
-                The Senna was designed under the direction of McLaren
-                Automotive’s Rob Melville and built on the carmaker’s MonoCage
-                III carbon-fiber monocoque platform. This example is finished in
-                Graphite Grey with Paris Blue aerovanes. Equipment includes
-                front and rear parking sensors, a backup camera, a Formula
-                One-inspired roof scoop, front and side air intakes, rear air
-                louvers, a double-element rear diffuser, and an electronically
-                adjustable rear wing that also acts as an airbrake. Gorilla
-                Glass on the doors was installed by McLaren Toronto in April
-                2022, and the removed carbon-fiber panels are included in the
-                sale. Paint protection film has been applied to the exterior.
-              </p>
-
-              <div className="mb-3">
-                <img src={mclaren_senna_screen_shot} className="w-full" />
-              </div>
-
-              <p>
-                The 19″ front and 20″ center-lock wheels are mounted with 245/35
-                and 315/30 Pirelli P Zero Trofeo R tires. RaceActive Chassis
-                Control II was standard as were double-wishbone independent
-                suspension, adjustable damping and roll modes, multiple
-                stability-control modes, Variable Drift Control, Brake Steer,
-                and launch control. Stopping power is provided by Paris
-                Blue-finished six- and four-piston aluminum monobloc calipers
-                over 390mm carbon-ceramic rotors front and rear.
-              </p>
-
-              <div className="mb-3">
-                <img
-                  src={mclaren_senna_reshoot_3093_web_sscaled}
-                  className="w-full"
-                />
-              </div>
-
-              <p>
-                Twin-hinge dihedral doors open to reveal a cockpit that features
-                Touring-sized carbon-fiber bucket seats with black leather
-                upholstery. Additional equipment includes matte Carbon Black
-                Alcantara door sill trim, a glass upper rear bulkhead, blue
-                six-point harnesses, dual-zone climate control, a Bowers &
-                Wilkins seven-speaker audio system, and a portrait-oriented
-                infotainment system with Bluetooth, satellite radio
-                connectivity, and navigation.
-              </p>
-
-              <p>
-                The Carfax report lists no accidents or damage and shows
-                registration history in Montana, Indiana, Arizona, Oregon,
-                Wisconsin, and Ontario, Canada, from December 2018 to April
-                2022.
-              </p>
-              <p>
-                The car is registered in a province that does not issue titles
-                for vehicles. It is being sold on its registration.
-              </p> */}
-                <p className="py-4">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Expedita quod nemo ab, harum similique nulla autem unde quo
-                  eveniet minus, eaque libero provident dolorum ad. Harum
-                  possimus error consequatur quam. Molestiae beatae fuga
-                  consequatur provident est tempore quos sequi ut aliquam quasi
-                  impedit fugiat, repellendus cumque ad, quas corrupti natus
-                  laborum minima dolorum nobis cupiditate, aspernatur id
-                  reprehenderit necessitatibus. Iste? Quas, doloribus nesciunt
-                  pariatur dicta ex, impedit commodi illo consequuntur fugiat
-                  delectus sequi ducimus voluptatibus, sapiente aspernatur
-                  suscipit soluta dolorem officia non unde perspiciatis vel
-                  tenetur atque nostrum. Quisquam, similique. Rerum sed eius
-                  sint suscipit est repellendus exercitationem ad magnam velit
-                  porro numquam harum mollitia incidunt deserunt quaerat
-                  blanditiis error ut, repellat dignissimos fuga, dolor aliquid.
-                  Quisquam pariatur tempora eligendi? Obcaecati eius, quod
-                  expedita adipisci praesentium nisi quibusdam iure, quidem non
-                  assumenda rerum, placeat est minus vero enim dolorem mollitia.
-                </p>
+                <p className="py-4">{vehicle.desc1}</p>
 
                 <div className="pb_40" id="placeBid_col">
                   <div className="card_Gray">
@@ -619,12 +397,6 @@ function Detail() {
                         </li>
                       )}
 
-                      {/* {vehicle.reserve === "Yes" && (
-                        <li>
-                          <label htmlFor=""> Reserve</label>
-                        </li>
-                      )} */}
-
                       {vehicle.sizetires !== null && (
                         <li>
                           Size tires{" "}
@@ -638,9 +410,6 @@ function Detail() {
                         </li>
                       )}
 
-                      {/* <li>
-                        <label htmlFor="">{vehicle.km}</label>
-                      </li> */}
                       <li>
                         Tire Brand{" "}
                         <label htmlFor="">{vehicle.brandandmodel}</label>
@@ -656,45 +425,9 @@ function Detail() {
                         </label>
                       </li>
                     </ul>
-                    {/* <div className="bid_bottom">
-                    <div className="">
-                      <a href="#" className="mr-2">
-                        How bidding works
-                      </a>
-                      <a href="#">
-                        <i className="fa-solid fa-heart"></i> Watch auction
-                      </a>
-                    </div>
-                    <div className="">
-                      <ul className="bid_viewWatch">
-                        <li>28,657 views</li>
-                        <li>1,908 watchers</li>
-                      </ul>
-                    </div>
-                  </div> */}
                   </div>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Iusto vel omnis aliquam accusamus eveniet. Ipsa molestias
-                  totam, eligendi beatae id inventore nesciunt provident est sed
-                  in, impedit at ipsum mollitia! Ad corporis esse architecto cum
-                  placeat aspernatur tempore? Odit saepe harum repellat ut
-                  aspernatur, officia eius. Officiis veritatis earum quae, et
-                  eum nisi quis aut ducimus cum quisquam animi necessitatibus.
-                  Ab dolores, distinctio harum alias illum in nam quos, sed
-                  blanditiis dignissimos quasi. Incidunt repellendus ab, sunt
-                  quisquam neque tempora fugiat nesciunt commodi quo perferendis
-                  quod enim reprehenderit necessitatibus illum! Minus beatae
-                  maiores eos placeat consequuntur totam? Rerum ratione fugit
-                  nobis alias laboriosam, sunt atque. Quia voluptatem aliquam
-                  magni eveniet illum ad, autem odio ullam culpa voluptate nemo
-                  sint eligendi? Exercitationem optio qui nulla asperiores illo
-                  reiciendis quis iure, nesciunt amet illum assumenda eos quidem
-                  reprehenderit corporis molestias, odio modi quibusdam vero
-                  magnam expedita cupiditate laborum tenetur. Voluptatum, dolor
-                  reprehenderit!
-                </p>
+                <p>{vehicle.desc2}</p>
                 <div className="ptb_40" id="placeBid_col">
                   <div className="card_Gray">
                     <h5>BID ON THIS LISTING</h5>
@@ -710,17 +443,6 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        {/* {t > 900000 ? (
-                          <span>Upcomming Auction</span>
-                        ) : t > 0 && t <= 900000 ? (
-                          <span>
-                            <label>Ends In:&nbsp;</label>
-                            {days} days {hours} hours, {minutes} minutes,{" "}
-                            {seconds} seconds *
-                          </span>
-                        ) : (
-                          <span> &nbsp;Time Out</span>
-                        )} */}
                         {vehicle.approved === "1" && t > 0 && (
                           <span>
                             <label>Ends In:&nbsp;</label>
@@ -729,48 +451,12 @@ function Detail() {
                           </span>
                         )}
                       </li>
-                      {/* <li>
-                        <label>Ends On</label>
-                        <div>
-                          {moment().add(5, "days").format("LLL")}
-                        </div>
-                      </li> */}
+
                       <li>
                         <label>Bids</label>
                         <div>{biding ? biding.length : 0}</div>
                       </li>
-                      {/* <li>
-                        <label>Place Bid</label>
-                        {t <= 0 ? (
-                          <a className="gry_btn active">
-                            {vehicle.reserve === "Yes" && vehicle.sold === "1"
-                              ? "High Bid"
-                              : "Sold"}{" "}
-                            :{" "}
-                            {amountprice ? (
-                              <span> USD $ {amountprice}</span>
-                            ) : (
-                              <span> USD $ {vehicle.documentFee} </span>
-                            )}
-                          </a>
-                        ) : t >= 900000 ? (
-                          <button type="button" className="gry_btn">
-                            Upcomming Auction
-                          </button>
-                        ) : (
-                          <>
-                            {vehicle.canBid === "yes" && (
-                              <button
-                                type="button"
-                                className="gry_btn active"
-                                onClick={handleShow}
-                              >
-                                Place a bid
-                              </button>
-                            )}
-                          </>
-                        )}
-                      </li> */}
+
                       <li>
                         {vehicle.approved === "1" &&
                         vehicle.canBid === "yes" ? (
@@ -795,9 +481,6 @@ function Detail() {
                         <a href="#" className="mr-2">
                           How bidding works
                         </a>
-                        {/* <a href="#">
-                          <i className="fa-solid fa-heart"></i> Watch auction
-                        </a> */}
                       </div>
                       <div className="">
                         <ul className="bid_viewWatch">
@@ -808,74 +491,28 @@ function Detail() {
                     </div>
                   </div>
                 </div>
-                <div className="row row_gap_5 videoGalleryRow">
-                  {/* <div className="col-12 col-sm-6 pt-4">
-                  <h5>VIDEO GALLERY</h5>
-                  <div>
-                    <a
-                      href="https://youtu.be/J5kJcmHMvgs"
-                      data-fancybox="videoGallery"
-                      className="fancyCol"
-                    >
-                      <div className="playIc">
-                        <i className="fa-solid fa-play"></i>
-                      </div>
-                      <img src="images/2019_mclaren_senna_reshoot.webp" />
-                    </a>
-                    <a href="video-gallery.html" className="gry_btn mt-3">
-                      More Video
-                    </a>
-                  </div>
-                </div> */}
-                  <div className="col-12 col-sm-6 pt-4">
-                    <h5>PHOTO GALLERY</h5>
-                    <div className="fancyCol">
-                      {vehicleImage.length > 0
-                        ? vehicleImage.map((curImg) => {
-                            return (
-                              <>
-                                <img
-                                  src={
-                                    process.env.REACT_APP_URL +
-                                    "/" +
-                                    curImg.imagePath +
-                                    "/" +
-                                    curImg.imageName
-                                  }
-                                  alt=""
-                                />
-                              </>
-                            );
-                          })
-                        : null}
-                    </div>
-                    {/* <button
-                      onClick={() => handleImageHow(id)}
-                      type="button"
-                      className="gry_btn mt-3"
-                    >
-                      More Photos
-                    </button> */}
-                  </div>
-                  <div className="col-12 col-sm-6 pt-4">
-                    <h5>&nbsp;</h5>
-                    <div className="fancyCol">
-                      {vehicleImage.length > 0 ? (
-                        <img
-                          src={
-                            process.env.REACT_APP_URL +
-                            "/" +
-                            vehicleImage[0].imagePath +
-                            "/" +
-                            vehicleImage[0].imageName
-                          }
-                          alt=""
-                        />
-                      ) : null}
-                    </div>
+                <div className="container">
+                  <h5>PHOTO GALLERY</h5>
+                  <div class="card-group">
+                    {vehicle.images &&
+                      vehicle.images.map((curElem) => {
+                        return (
+                          <div class="card mx-1">
+                            <img
+                              class="card-img-top"
+                              src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
-
                 <div className="row pt-4">
                   <div className="col-12">
                     <h5>{comments.length} COMMENTS</h5>
@@ -995,7 +632,6 @@ function Detail() {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            {/* <!-- Modal Header --> */}
             <div className="modal-header border-0">
               <h4 className="modal-title">Place a bid</h4>
               <button
@@ -1008,7 +644,6 @@ function Detail() {
               </button>
             </div>
 
-            {/* <!-- Modal body --> */}
             <div className="modal-body">
               <form onSubmit={addBiding}>
                 <div className="row">

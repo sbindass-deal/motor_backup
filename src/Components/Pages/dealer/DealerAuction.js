@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const DealerAuction = ({ userId: id }) => {
+const DealerAuction = ({ userId: id, dealerName }) => {
   const [userVehicle, setUserVehicle] = useState([]);
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -23,7 +23,7 @@ const DealerAuction = ({ userId: id }) => {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Texan Auto Group Auctions</h2>
+              <h2>{dealerName} Auctions</h2>
             </div>
             <div className="col-12">
               <div className="col-12 ptb_80 ListDealer auctionBid" style={{}}>

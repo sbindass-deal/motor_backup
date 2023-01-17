@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Gallery_1 from "../../../Assets/images/g-1.png";
 import Gallery_2 from "../../../Assets/images/g-2.png";
 import Gallery_3 from "../../../Assets/images/g-3.png";
 import Gallery_4 from "../../../Assets/images/g-4.png";
-import Inventory from "./Inventory";
 import DealerAuction from "./DealerAuction";
 import { Link, useParams } from "react-router-dom";
 import DealerVehicleList from "./DealerVehicleList";
+import axios from "axios";
 
 const DealerProfile = () => {
   const { id } = useParams();
+  const [dealerData, setDealerData] = useState({});
+
+  useEffect(() => {
+    const fetchDealer = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}getuserDetailById`, {
+          id,
+        })
+        .then(function (response) {
+          if (response.data.data) {
+            setDealerData(response.data.data);
+          } else {
+            setDealerData({});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchDealer();
+  }, []);
 
   return (
     <>
@@ -20,7 +41,7 @@ const DealerProfile = () => {
           <div className="row">
             <div className="col-12 col-lg-12">
               <div className="heroText">
-                <h1>Texan Auto Group</h1>
+                <h1>{dealerData.name}</h1>
                 <h5>
                   We help you find your dream car. Choose from our exclusive
                   <br /> list of showrooms.
@@ -77,9 +98,8 @@ const DealerProfile = () => {
           </div>
         </div>
       </section>
-      <DealerAuction userId={id} />
-      <DealerVehicleList userId={id} />
-      <Inventory />
+      <DealerAuction dealerName={dealerData.name} userId={id} />
+      <DealerVehicleList dealerName={dealerData.name} userId={id} />
     </>
   );
 };

@@ -77,7 +77,7 @@ const SubmitaVehicle = () => {
               </h2>
               <p>
                 GasGuzzlrs is the best place to auction your vehicle.
-                <br /> Choose one of our many Auction Services to showease your
+                <br /> Choose one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
             </div>
@@ -114,7 +114,10 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardBody">
                   <p>
-                  Our base package gives you everything you need to sell your vehicle. You fill out our questionnaire, provide us with your pictures and video, and we create a professional auction listing.
+                    Our base package gives you everything you need to sell your
+                    vehicle. You fill out our questionnaire, provide us with
+                    your pictures and video, and we create a professional
+                    auction listing.
                   </p>
                 </div>
                 <div className="plan_cardFooter">
@@ -266,7 +269,7 @@ const SubmitaVehicle = () => {
                     onClick={() => {
                       dispatch(
                         getPlan({
-                          amount: planChacked.premiere ?  2599 : 549,
+                          amount: planChacked.premiere ? 2599 : 549,
                           list: planChacked.premiere ? 5 : 1,
                           valid: planChacked.premiere ? 30 : 1,
                           listName: "premiere",
@@ -331,7 +334,9 @@ const SubmitaVehicle = () => {
                 </div>
                 <div className="plan_cardBody">
                   <p>
-                  If you have an extra-special collector vehicle or an entire collection to sell, We will take care of everything for you; we can even do a live auction for your ride.
+                    If you have an extra-special collector vehicle or an entire
+                    collection to sell, We will take care of everything for you;
+                    we can even do a live auction for your ride.
                   </p>
                 </div>
                 <div className="plan_cardFooter">
@@ -528,7 +533,7 @@ const SubmitaVehicle = () => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-          <div className="modal-header border-0">
+            <div className="modal-header border-0">
               <h4 className="modal-title"> </h4>
               <button
                 onClick={() => setShowAdModal(false)}
@@ -539,11 +544,9 @@ const SubmitaVehicle = () => {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
-            
+
             <div className="modal-body">
-             <div className="ar popBtn">
-             
-               
+              <div className="ar popBtn">
                 <a
                   onClick={() => setShowAdModal(false)}
                   href="#addShowroom"
@@ -551,14 +554,11 @@ const SubmitaVehicle = () => {
                 >
                   Are you an individual private seller ?
                 </a>
-            
-                
+
                 <button type="button" className="btn">
-                Are you a dealer?
+                  Are you a dealer?
                 </button>
-              
-             </div>
-              
+              </div>
             </div>
           </div>
         </div>

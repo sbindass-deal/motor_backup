@@ -90,23 +90,13 @@ function VehicleSubmission() {
                             <td>{data.year}</td>
                             <td>{data.make}</td>
                             <td className="actionBtn vs">
-                              {data.status !== null || data.approved == 11 ? (
-                                <Link
-                                  to={`/vehicle-submission/${data.id}`}
-                                  className="btn"
-                                >
-                                  {/* <i class="fa-solid fa-trash-can"></i> */}
-                                  Reject
-                                </Link>
-                              ) : (
-                                <Link
-                                  to={`/vehicle-submission/${data.id}`}
-                                  className="btn"
-                                >
-                                  {/* <i class="fa-solid fa-trash-can"></i> */}
-                                  View
-                                </Link>
-                              )}
+                              <Link
+                                to={`/vehicle-submission/${data.id}`}
+                                className="btn"
+                              >
+                                {/* <i class="fa-solid fa-trash-can"></i> */}
+                                View
+                              </Link>
                             </td>
                             <td>
                               <span>{data.status && data.status.title}</span>

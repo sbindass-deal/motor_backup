@@ -2,44 +2,31 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import icGrid from "../../Assets/images/icGrid.svg";
 import img_01 from "../../Assets/images/img_01.jpg";
 import NotAvailable from "../UI/NotAvailable";
 import ResultNotFound from "../UI/ResultNotFound";
 import SmallSpinner from "../UI/SmallSpinner";
 const Charity = () => {
+  const logingUser = useSelector((state) => state);
+  const vehicleDatas = logingUser.vehicleReducer.vehicleData;
+
   const [vehicleData, setVehicleData] = useState([]);
   const [setData, setSetData] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
-
-  const fetchVehicleApi = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}vehicle/unknowuser`
-      );
-      if (response.data.status === 200 && response.data.data.length > 0) {
-        const newData = response.data.data.reverse();
-        const filteredData = newData.filter(
-          (item) =>
-            item.displayInAuction === "Yes" &&
-            item.auctionType === "For charity"
-        );
-        setVehicleData(filteredData);
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchVehicleApi();
-  }, [setData]);
+    const filteredData = vehicleDatas.filter(
+      (item) =>
+        item.displayInAuction === "Yes" && item.auctionType === "For charity"
+    );
+    setVehicleData(filteredData);
+  }, [vehicleData]);
+
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
@@ -177,7 +164,27 @@ const Charity = () => {
                               }`}
                             ></i>
                           </button>
-                          <img src={img_01} />
+                          <Link to={`/detail/${curElem.id}`}>
+                            {curElem.images[0] ? (
+                              <img
+                                src={
+                                  curElem.images[0] &&
+                                  `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            ) : (
+                              <img
+                                src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                alt="Maskgroup1"
+                              />
+                            )}
+                          </Link>
                         </div>
                         <div className="card_postInfo">
                           <h4>

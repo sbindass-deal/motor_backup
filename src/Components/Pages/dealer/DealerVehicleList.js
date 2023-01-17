@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Maskgroup1 from "../../../Assets/images/Maskgroup1.png";
-import ttttt from "../../../Assets/images/ttttt.png";
 
-const DealerVehicleList = ({ userId: id }) => {
+const DealerVehicleList = ({ userId: id, dealerName }) => {
   const [userVehicle, setUserVehicle] = useState([]);
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -24,7 +22,7 @@ const DealerVehicleList = ({ userId: id }) => {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Texan Auto Group Inventory</h2>
+              <h2>{dealerName} Inventory</h2>
             </div>
           </div>
           <div className="row addSection">
