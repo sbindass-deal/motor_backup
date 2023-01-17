@@ -904,7 +904,7 @@
 
 	.post-excerpt {
 		padding: 0px 10px;
-		text-align: justify;
+		text-align: left;
 	}
 
 	section.ptb_80.blogPostText.rf {
@@ -1050,6 +1050,9 @@
 		padding-left: 16px;
 		padding-bottom: 10px;
 	}
+	p.forOction {	right: 13px;}
+	.postTopOption {margin-bottom: 25px;}
+	.ptb_80 {padding-bottom: 35px;	}
 }
 
 @media (max-width: 575px) {
