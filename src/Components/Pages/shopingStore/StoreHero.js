@@ -46,7 +46,7 @@ const StoreHero = ({ setSearchValue }) => {
               <div class="modal-content">
                 {/* <!-- Modal Header --> */}
                 <div class="modal-header border-0">
-                  <h4 class="modal-title">Filters</h4>
+                  <h4 class="modal-title forg">Filters</h4>
                   <button type="button" class="close" data-dismiss="modal">
                     <i class="fa-solid fa-xmark"></i>
                   </button>

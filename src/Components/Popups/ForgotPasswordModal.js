@@ -51,7 +51,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
         <div className="modal-content">
           {/* <!-- Modal Header --> */}
           <div className="modal-header border-0">
-            <h4 className="modal-title forg">Forgot your password</h4>
+            <h4 className="modal-title">Forgot your password</h4>
             <button
               onClick={handleCloseForgPass}
               type="button"

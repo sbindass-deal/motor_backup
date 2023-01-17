@@ -1053,6 +1053,10 @@
 	p.forOction {	right: 13px;}
 	.postTopOption {margin-bottom: 25px;}
 	.ptb_80 {padding-bottom: 35px;	}
+	ul.postTopOption button.gry_btn{width: 100%;}
+	h4.modal-title.forg {
+		padding-left: 0;
+	}
 }
 
 @media (max-width: 575px) {
