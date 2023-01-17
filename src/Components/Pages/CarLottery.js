@@ -245,7 +245,7 @@ function CarRaffle() {
       </section>
 
       <section className="ptb_80 pt_sm_50">
-        <div className="container ml-0">
+        <div className="container ">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-8">
               <div className="orangeCard mb-4">
