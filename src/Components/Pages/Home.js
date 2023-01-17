@@ -68,8 +68,8 @@ function Home() {
     arrows: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    // autoplay: true,
-    // speed: 3000,
+    autoplay: true,
+    speed: 3000,
     // pauseOnHover: true,
     // cssEase: "linear"
     responsive: [
@@ -99,16 +99,19 @@ function Home() {
       },
     ],
   };
-  
+
   return (
     <div>
       <section className="heroSection d-flex align-items-center">
         <a type="button" className="scrollDownIc" href="#second">
           {/* <img src={ic_scrollDown} alt="ic_scrollDown" /> */}
           <span className="outer_cover">
-            <small className="upper"><i class="fa fa-angle-down"></i></small>
-            <small className="lower"><i class="fa fa-angle-down"></i></small>
-
+            <small className="upper">
+              <i class="fa fa-angle-down"></i>
+            </small>
+            <small className="lower">
+              <i class="fa fa-angle-down"></i>
+            </small>
           </span>
         </a>
         <div className="container">
@@ -132,7 +135,7 @@ function Home() {
               <h2>Featured Auctions</h2>
             </div>
 
-            <div className="col-12 slider_ht" >
+            <div className="col-12 slider_ht">
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
@@ -521,9 +524,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
-                    <h4>
-                      GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z
-                    </h4>
+                    <h4>GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
@@ -593,9 +594,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
-                    <h4>
-                      GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z
-                    </h4>
+                    <h4>GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
