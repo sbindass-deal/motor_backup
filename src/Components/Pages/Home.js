@@ -68,8 +68,8 @@ function Home() {
     arrows: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    // autoplay: true,
-    // speed: 3000,
+    autoplay: true,
+    speed: 3000,
     // pauseOnHover: true,
     // cssEase: "linear"
     responsive: [

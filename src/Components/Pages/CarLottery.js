@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import Paymentsuccess from "./Paymentsuccess";
 import Video from "../../Assets/images/Introducing_video.mp4";
-import carraffle from "../../Assets/images/carraffle-bg.png";
+import carraffle from "../../Assets/images/SUPER_SNAKE_GT500.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import LoginModal from "../Popups/LoginModal";
@@ -238,7 +238,7 @@ function CarRaffle() {
   return (
     <>
       <section className=" video_section d-flex align-items-center">
-        <video autoPlay muted id="myVideo" controls>
+        <video autoPlay muted="false" id="myVideo" controls poster={carraffle}>
           <source src={Video} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
