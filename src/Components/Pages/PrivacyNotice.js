@@ -13,7 +13,7 @@ function PrivacyPolicy() {
                 {/* <p>Last revised on: 6/25/2020</p> */}
                 {/* <p>Terms of Use</p> */}
                 <p>
-                  This Privacy Policy describes how store.Gas Guzzlrs.com (the
+                  This Privacy Policy describes how store.GasGuzzlrs.com (the
                   “Site” or “we”) collects, uses, and discloses your Personal
                   Information when you visit or make a purchase from the Site.
                 </p>
@@ -35,7 +35,7 @@ function PrivacyPolicy() {
                 </p>
                 <p></p>
                 <p>
-                  Gas Guzzlrs Inc, PO Box 0126, Walkersville MD 21793, United
+                  GasGuzzlrs Inc, PO Box 0126, Walkersville MD 21793, United
                   States
                 </p>
 

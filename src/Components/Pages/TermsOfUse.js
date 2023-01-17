@@ -16,9 +16,9 @@ function TermsOfUse() {
                 {/* <p>Terms of Use</p> */}
                 <p>
                   {" "}
-                  This website is operated by Gas Guzzlrs Essentials. Throughout
-                  the site, the terms “we”, “us” and “our” refer to Gas Guzzlrs
-                  Essentials. Gas Guzzlrs Essentials offers this website,
+                  This website is operated by GasGuzzlrs Essentials. Throughout
+                  the site, the terms “we”, “us” and “our” refer to GasGuzzlrs
+                  Essentials. GasGuzzlrs Essentials offers this website,
                   including all information, tools and services available from
                   this site to you, the user, conditioned upon your acceptance
                   of all terms, conditions, policies and notices stated here.{" "}
@@ -507,7 +507,7 @@ function TermsOfUse() {
 
                   <p>
                     {" "}
-                    In no case shall Gas Guzzlrs Essentials, our directors,
+                    In no case shall GasGuzzlrs Essentials, our directors,
                     officers, employees, affiliates, agents, contractors,
                     interns, suppliers, service providers or licensors be liable
                     for any injury, loss, claim, or any direct, indirect,
@@ -538,7 +538,7 @@ function TermsOfUse() {
                 <ul>
                   <p>
                     {" "}
-                    You agree to indemnify, defend and hold harmless Gas Guzzlrs
+                    You agree to indemnify, defend and hold harmless GasGuzzlrs
                     Essentials and our parent, subsidiaries, affiliates,
                     partners, officers, directors, agents, contractors,
                     licensors, service providers, subcontractors, suppliers,

@@ -12,7 +12,7 @@ const BlogDetail = () => {
             </div>
             <div className="blogInfo">
               <h2 className="title_combo ">
-                Gas Guzzlrs Auction: 1984 Ferrari 512 BBi
+                GasGuzzlrs Auction: 1984 Ferrari 512 BBi
               </h2>
               <ul className="post_labelList">
                 <li>
@@ -101,7 +101,7 @@ const BlogDetail = () => {
                   <img src={Car_img} />
                 </div>
                 <div class="sidebarPost_text">
-                  Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
+                  Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
                   Dallas
                 </div>
               </div>
@@ -111,7 +111,7 @@ const BlogDetail = () => {
                     <img src={Car_img} />
                   </div>
                   <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
+                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
                     Dallas
                   </div>
                 </a>
@@ -122,7 +122,7 @@ const BlogDetail = () => {
                     <img src={Car_img} />
                   </div>
                   <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
+                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
                     Dallas
                   </div>
                 </a>
@@ -133,7 +133,7 @@ const BlogDetail = () => {
                     <img src={Car_img} />
                   </div>
                   <div class="sidebarPost_text">
-                    Event Coverage: Gas Guzzlrs Alumni Gathering at The Shop in
+                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
                     Dallas
                   </div>
                 </a>
@@ -151,7 +151,7 @@ const BlogDetail = () => {
               <ul class="sidebar_Event">
                 <li>
                   <a href="#">
-                    Gas Guzzlrs Alumni Gathering: October 1 in conjunction with
+                    GasGuzzlrs Alumni Gathering: October 1 in conjunction with
                     the Audrain Newport Concours &amp; Motor Week – REGISTRATION
                     IS OPEN{" "}
                   </a>

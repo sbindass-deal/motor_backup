@@ -2862,17 +2862,31 @@ li.nav-item.afterLogin span {
 }
 
 .nextArrow span.prev:before {
-  background-image: url('../images/ArrowLeft.svg');
-  background-position: center left;
-  top: 5px;
-  right: 15px;
+  /* background-image: url('../images/ArrowLeft.svg'); */
+  font-family: "Font Awesome 5 Free";
+  content: "\f060"!important;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 700;
+  font-size: 25px;
+  left: 35px;
+  top: -8px;
+
+  /* top: 5px;
+  right: 15px; */
 }
 
 .nextArrow span.next:after {
-  background-image: url('../images/ArrowRight.svg');
-  background-position: center right;
-  top: 5px;
-  right: -10px;
+  font-family: "Font Awesome 5 Free";
+  content: "\f061"!important;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  top: -8px;
+  right: -23px;
+  font-size: 25px;
 }
 
 .nextArrow span.prev:before,
@@ -4566,7 +4580,13 @@ div#clockdiv {
 .mb-50 {
   margin-bottom: 50px;
 }
-
+.card_postInfo {
+  padding: 20px 10px;
+}
+.featuredAuctions_Slide .slick-slide {
+  margin-left: -8px;
+  padding: 10px;
+}
 #clockdiv {
   margin: 0 -9px !important;
 }
@@ -4683,8 +4703,62 @@ transform: scale(1.04);
   min-height: 151px;
 }
 
+#adsSlide .carousel-control-prev{
+  display: none!important;
+}
+
+#adsSlide .carousel-control-next{
+  display: none!important;
+}
 
 
+.orangeCard .carousel-indicators{
+  bottom: -24px!important;
+}
+
+.orangeCard .carousel-indicators button{
+display: none;
+}
+
+.myTicketCol{
+  flex-direction: column;
+  align-items: flex-start;
+  }
+
+  .plan_card .plan_cardFooter .gry_btn:hover{
+    /* background-color: #f7931b; */
+    /* border-color:#f7931b; */
+  }
+
+  .featuredAuctions_Slide .slick-slide{
+/* margin-left: -65px!important; */
+  }
+
+  /* .social_icons_wrapper{
+    display: flex;
+    justify-content: flex-end;
+  } */
+  
+
+
+  .light .activeListView .card_postInfo{
+    background-color: #f0f0f0;
+  }
+
+  .dark .activeListView .card_postInfo{
+    /* background-color: black; */
+  }
+
+  .auction_image{
+    position: relative;
+  }
+
+  .auction_image .watchedIc{
+    position: absolute ;
+    right: 0;
+    top: 0;
+
+  }
 @media (max-width: 860px) {
 P{
   font-size: 13px;
@@ -4697,5 +4771,3 @@ P{
     font-size: 12px;
   }
 }
-
-

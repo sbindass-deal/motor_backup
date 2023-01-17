@@ -154,7 +154,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
 
       <div class="col-md-12 position-relative">
         <label for="validationTooltip05" class="form-label">
-          Where did you hear about Gas Guzzlrs?
+          Where did you hear about GasGuzzlrs?
         </label>
         <select
           type="text"

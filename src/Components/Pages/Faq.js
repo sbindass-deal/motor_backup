@@ -9,7 +9,7 @@ const Faq = () => {
         Frequently Asked Questions
         <span style={{ textAlign: "center" }}>
           {" "}
-          Gas Guzzlrs makes it easy to register and bid.
+          GasGuzzlrs makes it easy to register and bid.
         </span>
       </h2>
       <div className="row">

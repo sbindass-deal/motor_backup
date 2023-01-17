@@ -113,7 +113,7 @@ function EditMyAccount() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Enter Your Gas Guzzlrs User Info</h3>
+              <h3>Enter Your GasGuzzlrs User Info</h3>
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">

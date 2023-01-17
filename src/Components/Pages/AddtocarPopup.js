@@ -11,7 +11,7 @@ function AddtocarPopup() {
           <table>
             <tr>
               <td>Product Name</td>
-              <td>Womens Gas Guzzlrs T Shirt</td>
+              <td>Womens GasGuzzlrs T Shirt</td>
             </tr>
             <tr>
               <td>Product Size</td>

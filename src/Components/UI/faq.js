@@ -35,7 +35,7 @@ const faq = [
     
     `,
     note: `Credit and debit cards can be used for purchases up to $10,000 per customer per sale.
-    Credit Card Payment Terms: Credit card payment by Visa, Mastercard, American Express and Discover is accepted at Gas Guzzlrs. Gag Guzzlrs reserves the right to hold purchases and/or titles for three business days on vehicles purchased with credit cards.
+    Credit Card Payment Terms: Credit card payment by Visa, Mastercard, American Express and Discover is accepted at GasGuzzlrs. Gag Guzzlrs reserves the right to hold purchases and/or titles for three business days on vehicles purchased with credit cards.
     `,
   },
   {
@@ -56,7 +56,7 @@ const faq = [
   {
     id: 8,
     que: `How long do I have to pick up my purchase from the seller?`,
-    ans: `Vehicles purchased must be picked up within 7 days from the sellers location. Arrangments can be made by Gas Guzzlrs to provide this service for you thru the GG Transport LINK.`,
+    ans: `Vehicles purchased must be picked up within 7 days from the sellers location. Arrangments can be made by GasGuzzlrs to provide this service for you thru the GG Transport LINK.`,
   },
   {
     id: 9,

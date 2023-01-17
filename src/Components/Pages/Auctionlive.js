@@ -155,38 +155,45 @@ function Auctionlive() {
                   >
                     <div className="card_post">
                       <div className="card_postImg">
-                        <button
-                          onClick={() => addFabrity(curElem.id)}
-                          type="button"
-                          className="watchedIc"
+                        <Link
+                          className="auction_image"
+                          to={`/detail/${curElem.id}`}
                         >
-                          <i
-                            className={`fa-solid fa-star ${
-                              curElem.like >= 1 ? "faList" : ""
-                            }`}
-                          ></i>
-                        </button>
+                          {/* <img
+      src={
+        curElem.stepOneImage === null ||
+        curElem.stepOneImage === undefined ||
+        curElem.stepOneImage === ""
+          ? img_01
+          : process.env.REACT_APP_URL +
+            curElem.stepOneImage
+      }
+      alt=""
+    /> */}
+                          <img
+                            loading="lazy"
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.model}
+                          />
 
-                        <Link to={`/detail/${curElem.id}`}>
-                          {curElem.images[0] ? (
-                            <img
-                              src={
-                                curElem.images[0] &&
-                                `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt="Maskgroup1"
-                            />
-                          ) : (
-                            <img
-                              src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                              alt="Maskgroup1"
-                            />
-                          )}
+                          <button
+                            onClick={() => addFabrity(curElem.id)}
+                            type="button"
+                            className="watchedIc"
+                          >
+                            <i
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
+                            ></i>
+                          </button>
                         </Link>
                       </div>
                       <div className="card_postInfo">

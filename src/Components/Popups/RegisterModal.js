@@ -245,7 +245,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12">
                   {addUserInBid == true ? (
                     <label style={{ color: "#FFB100" }}>
-                      Gas Guzzlrs requires a credit to bid
+                      GasGuzzlrs requires a credit to bid
                     </label>
                   ) : (
                     ""
@@ -279,7 +279,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" />{" "}
-                      Sign me up for the Gas Guzzlrs Daily Mail
+                      Sign me up for the GasGuzzlrs Daily Mail
                     </label>
                   </div>
                 </div>

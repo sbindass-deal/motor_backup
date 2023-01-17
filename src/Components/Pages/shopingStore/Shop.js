@@ -49,7 +49,7 @@ const Shop = () => {
                 <img className="g3Logo W" src={G3white} alt="G3"/>
                 <img className="g3Logo" src={G3} alt="G3"/>
                 {/* <h1>
-                  Gas Guzzlrs <span>G e a r</span>
+                  GasGuzzlrs <span>G e a r</span>
                 </h1> */}
               </div>
             </div>

@@ -316,7 +316,7 @@ function CarRaffle() {
                       </Carousel>
                     </div>
                   </div>
-                  <div className="col-12 col-md-7">
+                  <div className="col-12 col-md-7 pp-0">
                     <div className="" key={showLotary.id}>
                       {/* <h5 className="m-0">Lottery Prize</h5> */}
                       {/* <div className="lotteryPriceNumber">
@@ -499,7 +499,7 @@ function CarRaffle() {
                     <div className="myTicketRow">
                       <div
                         className="myTicketCol"
-                        style={{ display: "flex", flexDirection: "column" }}
+                        style={{ display: "flex" }}
                       >
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />

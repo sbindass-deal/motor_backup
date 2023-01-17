@@ -37,7 +37,7 @@ function Footer() {
                   <Link to="/shipping">Shipping</Link>
                 </li>
                 <li>
-                  <Link to="/feautres">Gas Guzzlrs Features</Link>
+                  <Link to="/feautres">GasGuzzlrs Features</Link>
                 </li>
                 <li>
                   <Link to="/submit">List Your Vehicle</Link>
@@ -54,7 +54,7 @@ function Footer() {
                   <Link to="/getalerts">Get Alerts</Link>
                 </li>
                 <li>
-                  <Link to="/aboutshibnobi">About Gas Guzzlrs</Link>
+                  <Link to="/aboutshibnobi">About GasGuzzlrs</Link>
                 </li>
               </ul>
             </div>
@@ -100,7 +100,7 @@ function Footer() {
                 <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                <p>©2022 Gas Guzzlrs | All Rights Reserved.</p>
+                <p>©2022 GasGuzzlrs | All Rights Reserved.</p>
               </div>
             </div>
           </div>

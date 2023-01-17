@@ -15,23 +15,12 @@ function AboutShibanobi() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
-                <h3>Our vision</h3>
+              <h3>Our vision</h3>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                auctions are designed to provide the best experience for buyers and sellers alike.
                 </p>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text.
+                The auction process starts with sellers submitting their cars through the website. We select the most interesting and work with the seller to compile a thorough listing for the vehicle. Auctions typically run for 7 days.
                 </p>
               </div>
             </div>
@@ -42,24 +31,14 @@ function AboutShibanobi() {
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
               <div>
-                <h3>Our mission</h3>
+              <h3>Our mission</h3>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                “To Provide a Fair, Respectful, and Efficient Service to all Customers, Everytime, All the Time.”
                 </p>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text.
+                With years of experience serving the area, our dealership is dedicated to offering high-quality, pre-owned vehicles to our customers.
                 </p>
+                <p>From the moment you walk through our door, we’re committed to providing you with a great car-buying experience. With our skilled sales staff and financing options, we’ll help you get the vehicle you want, at the great price you deserve.</p>
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>How Gas Guzzlrs Works</h1>
+                <h1>How GasGuzzlrs Works</h1>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                What makes Gas Guzzlrs different?
+                What makes GasGuzzlrs different?
               </h2>
             </div>
 
@@ -134,7 +134,7 @@ function HowShibnobiMotorWorks() {
                 <h3>How it will work for the giveway</h3>
                 <p style={{ lineHeight: "2rem" }}>
                   Every dollar amount spent or equivalent ( CRYPTO BUY IN ) on
-                  your favorite products in the Gas Guzzlrs store/ticket site
+                  your favorite products in the GasGuzzlrs store/ticket site
                   gives you the allotted amount of automatic entries for the
                   chance to WIN our current giveaway. All your entries are
                   calculated realtime for you to see in your personal account
@@ -163,7 +163,7 @@ function HowShibnobiMotorWorks() {
                   immediately provides us with the winner information in which
                   we will then upload to Youtube, Facebook, Instagram and
                   Twitter. Of course, the winner will FIRST be announced on the
-                  Gas Guzzlrs YouTube Channel
+                  GasGuzzlrs YouTube Channel
                 </p>
                 {/* <ul className="dotList">
                   <li>Lorem Ipsum has been the industry's standard</li>

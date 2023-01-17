@@ -19,7 +19,7 @@ const SmallSpinner = ({ spin }) => {
           </div>
         </div>
       ) : (
-        <Button className="btn btn-secondary " variant="primary" disabled>
+        <Button className="btn btn-secondary w-100" variant="primary" disabled>
           <Spinner
             as="span"
             animation="border"

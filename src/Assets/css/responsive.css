@@ -1,3 +1,4 @@
+
 @media (min-width: 1200px) {
 	.container {
 		max-width: 1170px;
@@ -273,6 +274,10 @@
 		width: 85px;
 		height: 102px;
 	}
+	.col-12.slider_ht {
+		height: 594px;
+	}
+	
 
 }
 
@@ -477,6 +482,47 @@
 
 	.plan_cardBody{
 		min-height: 175px;
+	  }
+
+	  #clockdiv>div{
+		width: 23%;
+	  }
+
+	  .clockTimer .timerBg{
+		margin: 5px;
+		padding: 11px 7px !important;
+		margin-top: 15px;
+	  }
+
+	  .pp-0{
+		padding: 0;
+		margin-left: -3px;
+	  }
+
+	  #clockdiv div>span{
+		font-size: 22px;
+	  }
+
+	  .smalltext{
+		font-size: 11px;
+	  }
+
+	  .cardBorder{
+		padding: 15px 11px;
+	  }
+
+	  .myTicketCol{
+		padding: 0;
+	  }
+
+	  .featuredAuctions_Slide .card_postInfo p{
+		font-size: 13px;
+	  }
+
+	  .featuredAuctions_Slide .card_postInfo h4{
+		font-size: 18px;
+		margin-bottom: 18px
+
 	  }
 
 }
