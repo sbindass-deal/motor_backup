@@ -78,6 +78,30 @@ const DealerList = () => {
               </div>
             </a>
           </div>
+          <div className="col-lg-4 col-sm-12 inner-slider">
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.ruizranchmotors.com/"
+            >
+              <div className="card_post">
+                <div className="card_postImg dlr">
+                  <small>AD</small>
+                  <img src={rrm_logo} alt="Img_bmw" />
+                </div>
+                <div className="card_postInfo">
+                  <h5>Ruiz Ranch Dealer</h5>
+                  <p>
+                    While we are happy to welcome you to our newly remodeled and
+                    distanced showroom-We are also providing additional safety
+                    measures to keep us all safe...from safely signing digital
+                    paperwork via email to delivering your vehicle right to your
+                    home or work!
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
           {dealerData.map((curElem) => {
             return (
               <div className="col-lg-4 col-sm-12 inner-slider">
