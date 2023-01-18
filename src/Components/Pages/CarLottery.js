@@ -21,8 +21,7 @@ import { useParams } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-import Paymentsuccess from "./Paymentsuccess";
-import carraffle from "../../Assets/images/carraffle-bg.png";
+import carraffle from "../../Assets/images/SUPER_SNAKE_GT500.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import { showModalLogin } from "../../redux/reducers/login";
@@ -235,13 +234,14 @@ function CarRaffle() {
   return (
     <>
       <section className=" video_section d-flex align-items-center">
-        <video id="myVideo" controls>
+        <video muted="false" id="myVideo" controls poster={carraffle}>
           <source
             src="https://s3.amazonaws.com/beta.gasguzzlrs.com/Introducing_video.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
         </video>
+
         {/* <iframe
           width="1263"
           height="480"

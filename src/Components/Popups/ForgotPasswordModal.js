@@ -66,6 +66,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
           <div className="modal-body">
             {/* <p>Please enter your email</p> */}
             <form onSubmit={handleApi}>
+            <div className="col-md-12">
               <div className="form-group">
                 <FormInput
                   value={email}
@@ -78,6 +79,8 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                   required={true}
                 />
               </div>
+              </div>
+              <div className="col-md-12">
               <div className="form-group">
                 {forgotPasswordLoading ? (
                   <SmallSpinner />
@@ -87,12 +90,15 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                   </button>
                 )}
               </div>
+              </div>
+              <div className="col-md-12">
               <div className="form-group">
                 <p>
                   Having trouble? Email us at{" "}
                   <a href="javascript:void(0)">Xavier@gasguzzlrs.com</a> with
                   any questions.
                 </p>
+              </div>
               </div>
             </form>
           </div>

@@ -610,7 +610,7 @@ function MakeAnModel() {
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 <div className="modal-header border-0">
-                  <h4 className="modal-title">Filters</h4>
+                  <h4 className="modal-title forg">Filters</h4>
                   <button type="button" className="close" data-dismiss="modal">
                     <i className="fa-solid fa-xmark"></i>
                   </button>

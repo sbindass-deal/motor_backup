@@ -85,7 +85,7 @@ const Dealer = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title">Filters</h4>
+              <h4 className="modal-title forg">Filters</h4>
               <button
                 onClick={handleFilteredModalClose}
                 type="button"
