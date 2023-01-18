@@ -1,11 +1,9 @@
 import React from "react";
-// import shibnobiMotors from '../Assets/images/shibnobiMotors.png'
-// import shibnobiMotors from "../Assets/images/moters-logo.png";
 import shibnobiMotors from "../Assets/images/transparent.png";
 import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
 import { Link } from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
   return (
     <div>
       <footer>
@@ -24,10 +22,10 @@ function Footer() {
                   className="whiteLogo"
                 />
               </Link>
-              <p>
+              {/* <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.{" "}
-              </p>
+              </p> */}
             </div>
             <div className="col-12 col-md-6 col-lg-7 pb-4">
               <h6>Useful links</h6>
@@ -54,7 +52,7 @@ function Footer() {
                   <Link to="/getalerts">Get Alerts</Link>
                 </li>
                 <li>
-                  <Link to="/aboutshibnobi">About GasGuzzlrs</Link>
+                  <Link to="/about">About GasGuzzlrs</Link>
                 </li>
               </ul>
             </div>
@@ -108,6 +106,6 @@ function Footer() {
       </footer>
     </div>
   );
-}
+};
 
 export default Footer;

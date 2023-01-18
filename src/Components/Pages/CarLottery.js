@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 
 import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 import ads_car_2 from "../../Assets/images/raffle-5.jpg";
@@ -22,13 +22,10 @@ import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import Paymentsuccess from "./Paymentsuccess";
-import Video from "../../Assets/images/Introducing_video.mp4";
 import carraffle from "../../Assets/images/carraffle-bg.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
-import LoginModal from "../Popups/LoginModal";
 import { showModalLogin } from "../../redux/reducers/login";
-import NotAvailable from "../UI/NotAvailable";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -238,10 +235,22 @@ function CarRaffle() {
   return (
     <>
       <section className=" video_section d-flex align-items-center">
-        <video autoPlay muted id="myVideo" controls>
-          <source src={Video} type="video/mp4" />
+        <video id="myVideo" controls>
+          <source
+            src="https://s3.amazonaws.com/beta.gasguzzlrs.com/Introducing_video.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
+        {/* <iframe
+          width="1263"
+          height="480"
+          src="https://s3.amazonaws.com/beta.gasguzzlrs.com/Introducing_video.mp4"
+          title="WELCOME TO GAS GUZZLRS"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe> */}
       </section>
 
       <section className="ptb_80 pt_sm_50">
@@ -497,10 +506,7 @@ function CarRaffle() {
                   <div className="cardBorder">
                     <h6>My Tickets</h6>
                     <div className="myTicketRow">
-                      <div
-                        className="myTicketCol"
-                        style={{ display: "flex" }}
-                      >
+                      <div className="myTicketCol" style={{ display: "flex" }}>
                         {/* <div className="MT_ic">
                           <img src={bi_ticket} />
                         </div> */}

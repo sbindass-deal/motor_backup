@@ -197,18 +197,14 @@ function Header() {
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${
-                            location.pathname === "/aboutshibnobi"
-                              ? "active"
-                              : ""
+                            location.pathname === "/about" ? "active" : ""
                           }`}
                           style={{
                             color: `${
-                              location.pathname === "/aboutshibnobi"
-                                ? "#EF6031"
-                                : ""
+                              location.pathname === "/about" ? "#EF6031" : ""
                             }`,
                           }}
-                          to="/aboutshibnobi"
+                          to="/about"
                           onClick={() => setShowNav(false)}
                         >
                           About
@@ -411,10 +407,10 @@ function Header() {
                         className="nav-link"
                         style={{
                           color: `${
-                            location.pathname === "/aboutshibnobi" ? "#000" : ""
+                            location.pathname === "/about" ? "#000" : ""
                           }`,
                         }}
-                        to="/aboutshibnobi"
+                        to="/about"
                       >
                         About
                       </Link>

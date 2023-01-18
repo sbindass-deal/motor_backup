@@ -141,7 +141,7 @@ const Layout = () => {
             path="carraffle/refferallink/:id"
             element={<ReffarallinkFile />}
           />
-          <Route path="aboutshibnobi" element={<AboutShibanobi />} />
+          <Route path="about" element={<AboutShibanobi />} />
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
           <Route path="showroom" element={<Store />} />
