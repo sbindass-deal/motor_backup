@@ -106,7 +106,13 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                           </button>
                         </div>
                       </div>
-                      <small>Guzzlrs AD</small>
+                      <small>
+                        {curElem.displayInAuction === "Yes"
+                          ? "For Auction"
+                          : curElem.displayInAuction === "classified"
+                          ? "Guzzlrs AD"
+                          : null}
+                      </small>
                     </Link>
                   </div>
                 );

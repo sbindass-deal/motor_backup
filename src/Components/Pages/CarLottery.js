@@ -427,7 +427,7 @@ function CarRaffle() {
                     </h5>
                     <p>
                       {showLotary.dealEndDate &&
-                        new Date(showLotary.dealEndDate).toDateString()}
+                        new Date(showLotary.dealEndDate).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="col-md-3 iconSecT">
@@ -440,7 +440,7 @@ function CarRaffle() {
                     </h5>
                     <p>
                       {showLotary.drawdate &&
-                        new Date(showLotary.drawdate).toDateString()}
+                        new Date(showLotary.drawdate).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

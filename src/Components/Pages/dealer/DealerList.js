@@ -108,16 +108,37 @@ const DealerList = () => {
                 <Link to={`/dealerprofile/${curElem.id}`}>
                   <div className="card_post">
                     <div className="card_postImg dlr">
-                      <img src="" alt="Logo is not available" />
+                      <img
+                        src={
+                          curElem.name === "Arizona"
+                            ? "https://img.321ignition.io/321ignition-v4-prod-images/public/60cca018bb49fd0046032134/common/logo.svg"
+                            : curElem.name === "Rishabh"
+                            ? "https://cdn07.carsforsale.com/dealerlogos/409625/Logo54641.cbfc901c.png"
+                            : curElem.name === "Camelback"
+                            ? "https://pictures.dealer.com/c/camelbacktoyotavtg/1040/4c37615117f663acda6453537ad699c6x.jpg?impolicy=downsize&h=240"
+                            : curElem.image
+                        }
+                        alt="Logo is not available"
+                      />
                     </div>
                     <div className="card_postInfo">
-                      <h5>{curElem.name}</h5>
+                      <h5>
+                        {curElem.name === "Arizona"
+                          ? "Arizona Car Sales"
+                          : curElem.name === "Rishabh"
+                          ? "USA AUTO INC"
+                          : curElem.name === "Camelback"
+                          ? "Camelback Toyota"
+                          : curElem.name}
+                      </h5>
                       <p>
-                        With years of experience serving the area, our
-                        dealership is dedicated to offering high-quality,
-                        pre-owned vehicles to our customers. From the moment you
-                        walk through our door, we’re committed to providing you
-                        with a great car-buying experience.
+                        {curElem.name === "Arizona"
+                          ? "With hundreds of vehicles from the top automakers globally, Arizona Car Sales is the place to go for great deals on used cars. Visit our location in Mesa, AZ, and be ready to drive home in your dream machine!"
+                          : curElem.name === "Rishabh"
+                          ? "At USA Auto Inc, we are dedicated to providing customers with the best vehicle buying experience. We are your number one source for quality used vehicle shopping. USA Auto Inc has extensive relationships with the dealer community."
+                          : curElem.name === "Camelback"
+                          ? "Camelback Toyota offers competitive pricing and a wide selection of new Toyota and used vehicles throughout the Phoenix area. Come experience the Camelback Toyota difference"
+                          : curElem.desc}
                       </p>
                     </div>
                   </div>
