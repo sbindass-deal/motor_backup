@@ -14,7 +14,6 @@ const Charity = () => {
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
 
   const [vehicleData, setVehicleData] = useState([]);
-  const [setData, setSetData] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
@@ -35,7 +34,7 @@ const Charity = () => {
       })
       .then((res) => {
         if (res.data.status === 200) {
-          setSetData(!setData);
+          window.location.reload(false);
         }
       });
   };

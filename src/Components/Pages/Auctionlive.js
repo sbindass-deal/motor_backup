@@ -38,11 +38,8 @@ function Auctionlive() {
         date: new Date().toString(),
       })
       .then((res) => {
-        // console.log("like", res.data.status);
         if (res.data.status === 200) {
-          setauctions([]);
-          setFilteredUsers([]);
-          // fetchVehicleApi();
+          window.location.reload(false);
         }
       });
   };
@@ -155,21 +152,21 @@ function Auctionlive() {
                   >
                     <div className="card_post">
                       <div className="card_postImg">
+                        <button
+                          onClick={() => addFabrity(curElem.id)}
+                          type="button"
+                          className="watchedIc"
+                        >
+                          <i
+                            className={`fa-solid fa-star ${
+                              curElem.like >= 1 ? "faList" : ""
+                            }`}
+                          ></i>
+                        </button>
                         <Link
                           className="auction_image"
                           to={`/detail/${curElem.id}`}
                         >
-                          {/* <img
-      src={
-        curElem.stepOneImage === null ||
-        curElem.stepOneImage === undefined ||
-        curElem.stepOneImage === ""
-          ? img_01
-          : process.env.REACT_APP_URL +
-            curElem.stepOneImage
-      }
-      alt=""
-    /> */}
                           <img
                             loading="lazy"
                             src={
@@ -182,18 +179,6 @@ function Auctionlive() {
                             }}
                             alt={curElem.model}
                           />
-
-                          <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
                         </Link>
                       </div>
                       <div className="card_postInfo">
