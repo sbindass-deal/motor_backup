@@ -29,6 +29,7 @@ import { showModalLogin } from "../../redux/reducers/login";
 function CarRaffle() {
   const { id } = useParams();
   const logingUser = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [encryptedvalue, setEncryptedValue] = useState(null);
@@ -37,6 +38,7 @@ function CarRaffle() {
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const [setUserLotteryDetails, setSetUserLotteryDetails] = useState({});
   const [totalRaffrel, setTotalRaffrel] = useState(0);
+  
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -307,7 +309,7 @@ function CarRaffle() {
                         {/* {lotteryImage.map((curElem) => {
                           return ( */}
                         <Carousel.Item
-                          onClick={() => handleImageHow(0)}
+                          // onClick={() => handleImageHow(0)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                           // key={curElem.id}
@@ -320,8 +322,35 @@ function CarRaffle() {
                           />
                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
-                        {/* );
-                        })} */}
+                    
+                       <Carousel.Item
+                          // onClick={() => handleImageHow(0)}
+                          className="carousel-item"
+                          style={{ cursor: "pointer" }}
+                          // key={curElem.id}
+                        >
+                          <img
+                            className="d-block w-100 img-fluid"
+                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                            src={ads_car_3}
+                            alt="First slide"
+                          />
+                          <Carousel.Caption></Carousel.Caption>
+                        </Carousel.Item>
+                      
+                        <Carousel.Item
+                          // onClick={() => handleImageHow(0)}
+                          className="carousel-item"
+                          style={{ cursor: "pointer" }}
+                          // key={curElem.id}
+                        >
+                          <img
+                            className="d-block w-100 img-fluid"
+                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                            src={ads_car_1}
+                            alt="First slide"
+                          />
+                        </Carousel.Item>
                       </Carousel>
                     </div>
                   </div>
@@ -459,18 +488,7 @@ function CarRaffle() {
 
                       <form onSubmit={addTickets} className="ticketFom">
                         <div className="form-group">
-                          {/* <input
-                          type="text"
-                          value={inputLotteryNumber}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/\D/g, "");
-                            setInputLotteryNumber(value);
-                            Placeholder = "Number of Tickets ";
-                          }}
-                          className="form-control"
-                          maxLength={4}
-                          id="validationCustom01"
-                        /> */}
+                         
                           <select
                             value={inputLotteryNumber}
                             onChange={(e) =>
@@ -506,44 +524,35 @@ function CarRaffle() {
                   <div className="cardBorder">
                     <h6>My Tickets</h6>
                     <div className="myTicketRow">
-                      <div className="myTicketCol" style={{ display: "flex" }}>
-                        {/* <div className="MT_ic">
-                          <img src={bi_ticket} />
-                        </div> */}
-                        {/* <div className="MT_Count">10</div> */}
-                        <div className="MT_Price">
-                          Number of Tickets-
-                          {/* {allLotaryApi.length} */}
-                          {setUserLotteryDetails.data}
+                      <div className="myTicketCol" style={{ display:"flex" }}>
+                       
+                        <div className="MT_Price ">
+                          Number of Tickets :
+                          {
+                           logingUser.login.token ==null ? 0: setUserLotteryDetails.data
+
+                          }
                         </div>
                         <div className="MT_Price">
                           Total Amount-$
-                          {showLotary.price &&
+                          {/* {logingUser.login.token ? : showLotary.price &&
                             setUserLotteryDetails.data &&
-                            showLotary.price * setUserLotteryDetails.data}
+                            showLotary.price * setUserLotteryDetails.data} */}
+                            {
+                           logingUser.login.token ==null ? 0:  (logingUser.login.token && showLotary.price && setUserLotteryDetails.data) && showLotary.price * setUserLotteryDetails.data 
+                            }
                         </div>
                       </div>
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
 
-                  {/* 
-                  <h6>My Winnings</h6>
-                  <div className="myTicketCol">
-                    <div className="MT_ic">
-                      <img src={bnbCoin.png} />
-                    </div>
-                    <div className="MT_Count">1000</div>
-                    <div className="MT_Price">$325,000</div>
-                  </div>
-                  <button type="button" className="gry_btn mt-2">
-                    Claim
-                  </button> */}
+                 
 
                   <hr />
 
                   <div className="cardBorder">
-                    <h5>Refer Friend</h5>
+                    <h5>Refer Friend </h5>
                     <ul className="refferFriendList mt-3">
                       <li>
                         <div className="RF_title">Total Referals</div>
@@ -551,7 +560,10 @@ function CarRaffle() {
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
-                        <div className="">{setUserLotteryDetails.rewards}</div>
+                        {
+                          logingUser.login.token ==null ?0: <div className=""> {setUserLotteryDetails.rewards}</div>
+
+                        }
                       </li>
                     </ul>
                     <div>
@@ -649,20 +661,24 @@ function CarRaffle() {
           /> */}
           <Carousel activeIndex={index} onSelect={handleSelect}>
             {lotteryImage.map((curElem) => {
+              console.log(2222,curElem)
               return (
                 <Carousel.Item>
                   <img
                     className="d-block w-100 img-fluid"
-                    src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                    // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                     alt="First slide"
                   />
                 </Carousel.Item>
+                
+
               );
             })}
           </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
+    {/* -----------------payment process--------------------   */}
       <Modal show={show} onHide={handleClose} className="payTPop">
         <Modal.Header closebutton>
           <Modal.Title>Payment Process</Modal.Title>
