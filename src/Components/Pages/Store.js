@@ -36,7 +36,6 @@ const Store = () => {
   useEffect(() => {
     handleLatestBid();
   }, [vehicleData]);
-  console.log(1111, latestBid.length > 0 && latestBid[0].images[0]);
   return (
     <>
       <Dealer />

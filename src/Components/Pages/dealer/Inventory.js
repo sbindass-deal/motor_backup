@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import {
   clearShowroomFilter,
   filterShowroomData,
@@ -12,25 +11,10 @@ import { Modal } from "react-bootstrap";
 
 const Inventory = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.showroomData;
   const category = logingUser.vehicleReducer.filterCategory;
-  const [howerImage, setHowerImage] = useState({});
-
-  const handleHowerImage = async (id = 1) => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_URL + "/vehicle-image/" + id
-      );
-      setHowerImage(response.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    handleHowerImage();
-  }, []);
+  console.log(11111, category);
   const [filteredModal, setFilteredModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [filterInput, setFilterInput] = useState({
@@ -253,7 +237,7 @@ const Inventory = () => {
                         </option>
                         {category.year &&
                           category.year.map((curElem) => {
-                            return <option>{curElem}</option>;
+                            return <option value={curElem}>{curElem}</option>;
                           })}
                       </select>
                     </div>
@@ -272,10 +256,11 @@ const Inventory = () => {
                         </option>
                         {category.make &&
                           category.make.map((curElem) => {
-                            return <option>{curElem}</option>;
+                            return <option value={curElem}>{curElem}</option>;
                           })}
                       </select>
                     </div>
+                    {console.log(11111, filterInput)}
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Model</label>
@@ -289,9 +274,9 @@ const Inventory = () => {
                         <option selected disabled value="">
                           Choose...
                         </option>
-                        {category.modal &&
+                        {category.model &&
                           category.model.map((curElem) => {
-                            return <option>{curElem}</option>;
+                            return <option value={curElem}>{curElem}</option>;
                           })}
                       </select>
                     </div>
@@ -310,7 +295,7 @@ const Inventory = () => {
                         </option>
                         {category.state &&
                           category.state.map((curElem) => {
-                            return <option>{curElem}</option>;
+                            return <option value={curElem}>{curElem}</option>;
                           })}
                       </select>
                     </div>
@@ -329,7 +314,7 @@ const Inventory = () => {
                         </option>
                         {category.city &&
                           category.city.map((curElem) => {
-                            return <option>{curElem}</option>;
+                            return <option value={curElem}>{curElem}</option>;
                           })}
                       </select>
                     </div>

@@ -27,7 +27,7 @@ const DealerList = () => {
 
   return (
     <>
-      <div className="col-12 ptb_80 ListDealer">
+      <div className="col-12 ListDealer">
         <div className="row">
           <div className="col-lg-4 col-sm-12 inner-slider">
             <a
@@ -148,7 +148,7 @@ const DealerList = () => {
           })}
         </div>
       </div>
-      <nav aria-label="Page navigation example " className="pgNtion">
+      {/* <nav aria-label="Page navigation example " className="pgNtion">
         <ul className="pagination">
           <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous">
@@ -178,7 +178,7 @@ const DealerList = () => {
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </>
   );
 };

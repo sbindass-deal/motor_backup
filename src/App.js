@@ -95,6 +95,7 @@ const removeBodyClass = (className) =>
 
 const App = () => {
   const logingUser = useSelector((state) => state);
+  const accessToken = useSelector((state) => state.login.token);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -154,12 +155,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (logingUser.login.token) {
+    if (accessToken !== null) {
       fetchAllLoginVehicleData();
     } else {
       fetchAllVehicleData();
     }
-  }, [logingUser.login.token]);
+  }, [accessToken]);
 
   return (
     <>

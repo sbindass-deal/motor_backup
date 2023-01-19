@@ -9,10 +9,15 @@ import DealerAuction from "./DealerAuction";
 import { Link, useParams } from "react-router-dom";
 import DealerVehicleList from "./DealerVehicleList";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const DealerProfile = () => {
   const { id } = useParams();
+  const logingUser = useSelector((state) => state);
+  const vehicleData = logingUser.vehicleReducer.vehicleData;
+
   const [dealerData, setDealerData] = useState({});
+  const [userVehicleImage, setUserVehicleImage] = useState([]);
 
   useEffect(() => {
     const fetchDealer = async () => {
@@ -32,6 +37,11 @@ const DealerProfile = () => {
         });
     };
     fetchDealer();
+
+    const filteredImage = vehicleData.filter(
+      (item) => item.userId === parseInt(id, 10)
+    );
+    setUserVehicleImage(filteredImage);
   }, []);
 
   return (

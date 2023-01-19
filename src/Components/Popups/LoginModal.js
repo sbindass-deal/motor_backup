@@ -74,8 +74,6 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        console.log(11, result.data.access_token);
-        console.log(11, result.data.type);
         if (result.data.access_token && result.data.type === null) {
           dispatch(authToken(result.data.access_token));
           notify("Login successfully");

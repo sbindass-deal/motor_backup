@@ -4,18 +4,19 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import car_01 from "../../Assets/images/car_01.jpg";
 import FormInput from "../UI/FormInput";
 
 const StoreDetails = () => {
-  const id = useParams().id;
+  const { id } = useParams();
+  const logingUser = useSelector((state) => state);
+  const vehicleData = logingUser.vehicleReducer.vehicleData;
 
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [vehicle, setVehicle] = useState({});
-  const [payment, setPayment] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [enqInput, setEnqInput] = useState({
     name: "",
@@ -38,24 +39,13 @@ const StoreDetails = () => {
   const handleOnChangeEnq = (e) => {
     setEnqInput({ ...enqInput, [e.target.name]: e.target.value });
   };
-  const fetchVehicle = async () => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_URL + "vehicle/" + id
-      );
-      const apiData = response.data.data;
-      if (response.data.status === 200 && apiData.length >= 0) {
-        setVehicle({ ...response.data.data[0] });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
-    fetchVehicle();
+    const filteredData = vehicleData.find(
+      (item) => item.id === parseInt(id, 10)
+    );
+    setVehicle(filteredData);
   }, [id]);
   const onToken = (token, addresses) => {
-    console.log(token, addresses);
     if (token !== null) {
       navigate("/successpayment");
     }
@@ -91,34 +81,21 @@ const StoreDetails = () => {
       <div className="container py-5 px-md-5 ">
         <div className="row">
           <div class="col-12 col-sm-12 col-md-5 storeDetail">
-            <img
-              src={process.env.REACT_APP_URL + vehicle.stepOneImage}
-              class="img-fluid rounded-start "
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null;
-                currentTarget.src =
-                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-              }}
-              alt={vehicle.make}
-            />
-
-            {/* <img
-              src={
-                vehicle.stepOneImage === null ||
-                vehicle.stepOneImage === undefined ||
-                vehicle.stepOneImage === ""
-                  ? car_01
-                  : process.env.REACT_APP_URL + vehicle.stepOneImage
-              }
-              class="img-fluid rounded-start "
-              alt="details-img"
-            /> */}
-            {/* <StripeCheckout
-              className="Btn btn mt-20"
-              name="Process Payment"
-              stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
-              token={onToken}
-            /> */}
+            {vehicle.images && (
+              <img
+                class="img-fluid rounded-start "
+                src={
+                  vehicle.images[0] &&
+                  `${process.env.REACT_APP_URL}/${vehicle.images[0].imagePath}/${vehicle.images[0].imageName}`
+                }
+                onError={({ currentTarget }) => {
+                  currentTarget.onError = null;
+                  currentTarget.src =
+                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                }}
+                alt={vehicle.make}
+              />
+            )}
             <button
               onClick={handleShowPayment}
               type="button"
@@ -137,8 +114,7 @@ const StoreDetails = () => {
           <div class="col-12 col-sm-12 col-md-7">
             <div class="card-body">
               <h5 class="card-title">
-                {vehicle.year} {vehicle.make} {vehicle.model}
-                2021 BMW Nexon
+                {vehicle.make} {vehicle.model} {vehicle.year}
               </h5>
               <div className="detailPageContent">
                 <table width={"100%"}>
@@ -231,7 +207,7 @@ const StoreDetails = () => {
                 </div>
                 <div class="col-md-12">
                   <label htmlFor="validationCustom01" class="form-label">
-                   Query or Description
+                    Query or Description
                   </label>
                   <textarea
                     value={enqInput.comment}
@@ -265,18 +241,15 @@ const StoreDetails = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2>Model Name : 2021 BMW Nexon</h2>
-            <h3 className="price__">Price : $2000</h3>
-
-            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <h2>
+              Model Name : {vehicle.make} {vehicle.model} {vehicle.year}
+            </h2>
+            <h3 className="price__">Price : ${vehicle.documentFee}</h3>
             <br />
             <p>Choose Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>
-
-                {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
               </div>
               <div>
                 <StripeCheckout

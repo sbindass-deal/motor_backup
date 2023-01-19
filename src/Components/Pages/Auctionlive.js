@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import icGrid from "../../Assets/images/icGrid.svg";
-import img_01 from "../../Assets/images/img_01.jpg";
 import axios from "axios";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import SmallSpinner from "../UI/SmallSpinner";
 import { Link } from "react-router-dom";
 function Auctionlive() {
   const logingUser = useSelector((state) => state);
@@ -43,9 +41,6 @@ function Auctionlive() {
         }
       });
   };
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
 
   return (
     <div>
@@ -168,18 +163,18 @@ function Auctionlive() {
                             }}
                             alt={curElem.model}
                           />
-                          <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
                         </Link>
+                        <button
+                          onClick={() => addFabrity(curElem.id)}
+                          type="button"
+                          className="watchedIc"
+                        >
+                          <i
+                            className={`fa-solid fa-star ${
+                              curElem.like >= 1 ? "faList" : ""
+                            }`}
+                          ></i>
+                        </button>
                       </div>
                       <div className="card_postInfo">
                         <h4>
