@@ -147,6 +147,7 @@ function Auctionlive() {
                   >
                     <div className="card_post">
                       <div className="card_postImg">
+                        <div className="list_wrapper">
                         <Link
                           className="auction_image"
                           to={`/detail/${curElem.id}`}
@@ -175,6 +176,7 @@ function Auctionlive() {
                             }`}
                           ></i>
                         </button>
+                        </div>
                       </div>
                       <div className="card_postInfo">
                         <h4>

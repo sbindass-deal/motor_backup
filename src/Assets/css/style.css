@@ -4759,6 +4759,29 @@ display: none;
     top: 0;
 
   }
+
+  .list_wrapper{
+    position: relative;
+  }
+
+  .list_wrapper .watchedIc{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+  }
+
+  .toNv ul.navbar-nav.ml-auto{
+    display: flex;
+    justify-content: space-between!important;
+    padding: 0 27px;
+    right: unset!important;
+  }
+
+  .secondNavbar .navbar-nav{
+    justify-content: space-between!important;
+    padding: 7px 18px;
+  }
 @media (max-width: 860px) {
 P{
   font-size: 13px;
