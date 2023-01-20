@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,9 @@ import { getPlan } from "../../redux/reducers/planReducer";
 const SubmitaVehicle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleScrollAd = useRef(null);
   const [showAdModal, setShowAdModal] = useState(false);
+  const [showAdShowroom, setShowAdShowroom] = useState(false);
   const [planChacked, setPlanChacked] = useState({
     standard: false,
     pro: false,
@@ -23,6 +25,17 @@ const SubmitaVehicle = () => {
   const [premierPlan, setPremierPlan] = useState(null);
   const [classifiedPlan, setClassifiedPlan] = useState(null);
   const [showroomPlan, setShowroomPlan] = useState(null);
+  const [userInfo, setUserinfo] = useState({});
+  // useEffect(() => {
+  //   axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+  //     if (res.data.data) {
+  //       setUserinfo(res.data.data);
+  //     } else {
+  //       setUserinfo(userInfo);
+  //     }
+  //   });
+  // }, []);
+
   const handleOnChange = (e) => {
     setPlanChacked({ ...planChacked, [e.target.name]: e.target.checked });
   };
@@ -62,6 +75,9 @@ const SubmitaVehicle = () => {
     };
     fetchUserDetails();
   }, []);
+  const goToAddCard = () => {
+    handleScrollAd.current.scrollIntoView({ behavior: "smooth", block: "end" });
+  };
   useEffect(() => {
     setShowAdModal(true);
   }, []);
@@ -361,168 +377,168 @@ const SubmitaVehicle = () => {
             </div>
           </div>
         </div>
-        <div className="container mt-80">
-          <div className="row">
-            <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
-              <h2 className="title_combo title_Center">Looking for More!</h2>
-              <p>
-                GasGuzzlrs has got special offers for you.
-                <br /> Choose to list ads with us or purchase subscription to
-                have your own dedicated showroom fully manage by GasGuzzlrs.
-              </p>
-            </div>
-            <div className="col-lg-3"></div>
-            {/* classified plan */}
-            <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
-              <div className="plan_card">
-                <div className="plan_cardHead">
-                  <h4>Classified Ads</h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.classified ? 899 : 799}
-                      <div className="switch">
-                        <span className="plan_Time">Single Ads</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-classified`}
-                          checked={planChacked.classified}
-                          onChange={handleOnChange}
-                          name="classified"
-                          type="checkbox"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-classified`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          5 Ads <small>within 30 Days</small>
-                        </span>
+        {showAdShowroom && (
+          <div ref={handleScrollAd} className="container mt-80">
+            <div className="row">
+              <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
+                <h2 className="title_combo title_Center">Looking for More!</h2>
+                <p>
+                  GasGuzzlrs has got special offers for you.
+                  <br /> Choose to list ads with us or purchase subscription to
+                  have your own dedicated showroom fully manage by GasGuzzlrs.
+                </p>
+              </div>
+              <div className="col-lg-3"></div>
+              {/* classified plan */}
+              <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
+                <div className="plan_card">
+                  <div className="plan_cardHead">
+                    <h4>Classified Ads</h4>
+                    <div className="plan_Price">
+                      <div className="dfk">
+                        ${planChacked.classified ? 899 : 799}
+                        <div className="switch">
+                          <span className="plan_Time">Single Ads</span>
+                          <input
+                            className="react-switch-checkbox"
+                            id={`react-switch-classified`}
+                            checked={planChacked.classified}
+                            onChange={handleOnChange}
+                            name="classified"
+                            type="checkbox"
+                          />
+                          <label
+                            className="react-switch-label"
+                            htmlFor={`react-switch-classified`}
+                          >
+                            <span className={`react-switch-button`} />
+                          </label>
+                          <span className="plan_Time">
+                            5 Ads <small>within 30 Days</small>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div className="plan_cardBody">
+                    <p>
+                      Our base package that gives you everything you need to
+                      sell you vehicle. You fill out our questionnaire, provide
+                      us your pictures/video and we create a professional
+                      auction listing.
+                    </p>
+                  </div>
+                  <div className="plan_cardFooter">
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          getPlan({
+                            amount: planChacked.classified ? 899 : 799,
+                            list: planChacked.classified ? 5 : 1,
+                            valid: planChacked.classified ? 30 : 1,
+                            listName: "classified",
+                          })
+                        );
+                        navigate("/vechiles");
+                      }}
+                      className="gry_btn"
+                    >
+                      SUBMIT VEHICLE
+                    </button>
+                  </div>
                 </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Our base package that gives you everything you need to sell
-                    you vehicle. You fill out our questionnaire, provide us your
-                    pictures/video and we create a professional auction listing.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.classified ? 899 : 799,
-                          list: planChacked.classified ? 5 : 1,
-                          valid: planChacked.classified ? 30 : 1,
-                          listName: "classified",
-                        })
-                      );
-                      navigate("/vechiles");
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="classNameIC_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $99</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
+                <Link to="/works" className="gry_btn HIW_BTN">
+                  How It Works
+                </Link>
+                <div id="classNameIC_HIW" className="collapse">
+                  <ul className="HIW_list mt-4">
+                    <li>Your submit your vehicle</li>
+                    <li>We accept the ones that fit</li>
+                    <li>You pay $99</li>
+                    <li>We write the auction listing</li>
+                    <li>You approve</li>
+                    <li>We schedule the listing</li>
+                    <li>Your Listing goes live</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            {/* showroom plan */}
-            <div
-              id="addShowroom"
-              className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50"
-            >
-              <div className="plan_card plan_Plus">
-                <div className="plan_cardHead">
-                  <h4>Showroom</h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.showroom ? 1099 : 999}
-                      <div className="switch">
-                        <span className="plan_Time">Monthly</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-showroom`}
-                          type="checkbox"
-                          checked={planChacked.showroom}
-                          onChange={handleOnChange}
-                          name="showroom"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-showroom`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          Yearly <small>Unlimited</small>
-                        </span>
+              {/* showroom plan */}
+              <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
+                <div className="plan_card plan_Plus">
+                  <div className="plan_cardHead">
+                    <h4>Showroom</h4>
+                    <div className="plan_Price">
+                      <div className="dfk">
+                        ${planChacked.showroom ? 1099 : 999}
+                        <div className="switch">
+                          <span className="plan_Time">Monthly</span>
+                          <input
+                            className="react-switch-checkbox"
+                            id={`react-switch-showroom`}
+                            type="checkbox"
+                            checked={planChacked.showroom}
+                            onChange={handleOnChange}
+                            name="showroom"
+                          />
+                          <label
+                            className="react-switch-label"
+                            htmlFor={`react-switch-showroom`}
+                          >
+                            <span className={`react-switch-button`} />
+                          </label>
+                          <span className="plan_Time">
+                            Yearly <small>Unlimited</small>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div className="plan_cardBody">
+                    <p>
+                      Same as Pro but in addition the us taking professional
+                      pictures we also make a professional video of your ride.
+                    </p>
+                  </div>
+                  <div className="plan_cardFooter">
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          getPlan({
+                            amount: planChacked.showroom ? 699 : 599,
+                            list: planChacked.showroom ? 5 : 1,
+                            valid: planChacked.showroom ? 30 : 1,
+                            listName: "showroom",
+                          })
+                        );
+                        navigate("/vechiles");
+                      }}
+                      className="gry_btn"
+                    >
+                      SUBMIT VEHICLE
+                    </button>
+                  </div>
                 </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Same as Pro but in addition the us taking professional
-                    pictures we also make a professional video of your ride.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.showroom ? 699 : 599,
-                          list: planChacked.showroom ? 5 : 1,
-                          valid: planChacked.showroom ? 30 : 1,
-                          listName: "showroom",
-                        })
-                      );
-                      navigate("/vechiles");
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="PLUS_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $499</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
+                <Link to="/works" className="gry_btn HIW_BTN">
+                  How It Works
+                </Link>
+                <div id="PLUS_HIW" className="collapse">
+                  <ul className="HIW_list mt-4">
+                    <li>Your submit your vehicle</li>
+                    <li>We accept the ones that fit</li>
+                    <li>You pay $499</li>
+                    <li>We write the auction listing</li>
+                    <li>You approve</li>
+                    <li>We schedule the listing</li>
+                    <li>Your Listing goes live</li>
+                  </ul>
+                </div>
               </div>
+              <div className="col-lg-3"></div>
             </div>
-            <div className="col-lg-3"></div>
           </div>
-        </div>
+        )}
       </section>
       <Modal
         show={showAdModal}
@@ -547,15 +563,25 @@ const SubmitaVehicle = () => {
 
             <div className="modal-body">
               <div className="ar popBtn">
-                <a
-                  onClick={() => setShowAdModal(false)}
-                  href="#addShowroom"
-                  className="btn questionBtn"
+                <button
+                  onClick={() => {
+                    setShowAdModal(false);
+                    setShowAdShowroom(false);
+                  }}
+                  className="btn"
                 >
-                  Are you an individual private seller ?
-                </a>
+                  Are you a private seller ?
+                </button>
 
-                <button type="button" className="btn">
+                <button
+                  onClick={() => {
+                    setShowAdModal(false);
+                    setShowAdShowroom(true);
+                    goToAddCard();
+                  }}
+                  type="button"
+                  className="btn"
+                >
                   Are you a dealer?
                 </button>
               </div>

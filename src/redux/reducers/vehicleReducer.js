@@ -64,10 +64,19 @@ const vehicleReducer = createSlice({
     clearShowroomFilter: (state, action) => {
       state.showroomData = state.vehicleData;
     },
+    clearData: (state, action) => {
+      state.vehicleData = [];
+      state.showroomData = [];
+      state.filterCategory = {};
+    },
   },
 });
 
-export const { storeAllVehicle, filterShowroomData, clearShowroomFilter } =
-  vehicleReducer.actions;
+export const {
+  storeAllVehicle,
+  filterShowroomData,
+  clearShowroomFilter,
+  clearData,
+} = vehicleReducer.actions;
 
 export default vehicleReducer.reducer;

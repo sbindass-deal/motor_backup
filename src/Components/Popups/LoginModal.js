@@ -79,7 +79,8 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           notify("Login successfully");
           handleClose();
           setLoginLoading(false);
-          window.location.reload(false);
+          // window.location.reload(false);
+          console.log(111, result.data);
         } else if (result.data.access_token && result.data.type === "1") {
           dispatch(authToken(result.data.access_token));
           notify("Admin Login successfully");

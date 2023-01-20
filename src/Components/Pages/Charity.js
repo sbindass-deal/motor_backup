@@ -2,19 +2,18 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import icGrid from "../../Assets/images/icGrid.svg";
-import img_01 from "../../Assets/images/img_01.jpg";
+import { clearData } from "../../redux/reducers/vehicleReducer";
 import NotAvailable from "../UI/NotAvailable";
 import ResultNotFound from "../UI/ResultNotFound";
-import SmallSpinner from "../UI/SmallSpinner";
 const Charity = () => {
+  const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
 
   const [vehicleData, setVehicleData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
@@ -34,6 +33,7 @@ const Charity = () => {
       })
       .then((res) => {
         if (res.data.status === 200) {
+          dispatch(clearData());
           window.location.reload(false);
         }
       });
@@ -50,10 +50,6 @@ const Charity = () => {
         item.year.includes(searchValue)
       : item
   );
-
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
 
   return (
     <div>
@@ -79,9 +75,7 @@ const Charity = () => {
         </div>
       </section>
       <section className="ptb_80 pt_sm_50">
-        {vehicleData.length === 0 ? (
-          <NotAvailable text="Vehicle is not available!" />
-        ) : (
+        {vehicleData.length > 0 && (
           <div className="container">
             <div className="row">
               <div className="col-12">

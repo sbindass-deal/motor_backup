@@ -38,7 +38,7 @@ function CarRaffle() {
   const [newEncryptedvalue, setNewEncryptedValue] = useState(null);
   const [setUserLotteryDetails, setSetUserLotteryDetails] = useState({});
   const [totalRaffrel, setTotalRaffrel] = useState(0);
-  
+
   const locallink = "http://localhost:3000/carraffle";
   const serverLink =
     "http://shibnobimotors.s3-website-us-east-1.amazonaws.com/carraffle";
@@ -65,7 +65,7 @@ function CarRaffle() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2023-01-20 12:30:00").getTime()
+    new Date("2023-01-25 12:30:00").getTime()
   );
   const now = new Date().getTime();
   const t = newTiem - now;
@@ -127,7 +127,7 @@ function CarRaffle() {
       } else {
         console.log("Data is empty");
       }
-      // setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
+      setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
     } catch (err) {
       console.log(err);
     }
@@ -322,8 +322,8 @@ function CarRaffle() {
                           />
                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
-                    
-                       <Carousel.Item
+
+                        <Carousel.Item
                           // onClick={() => handleImageHow(0)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
@@ -337,7 +337,7 @@ function CarRaffle() {
                           />
                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
-                      
+
                         <Carousel.Item
                           // onClick={() => handleImageHow(0)}
                           className="carousel-item"
@@ -488,7 +488,6 @@ function CarRaffle() {
 
                       <form onSubmit={addTickets} className="ticketFom">
                         <div className="form-group">
-                         
                           <select
                             value={inputLotteryNumber}
                             onChange={(e) =>
@@ -524,30 +523,29 @@ function CarRaffle() {
                   <div className="cardBorder">
                     <h6>My Tickets</h6>
                     <div className="myTicketRow">
-                      <div className="myTicketCol" style={{ display:"flex" }}>
-                       
+                      <div className="myTicketCol" style={{ display: "flex" }}>
                         <div className="MT_Price ">
                           Number of Tickets :
-                          {
-                           logingUser.login.token ==null ? 0: setUserLotteryDetails.data
-
-                          }
+                          {logingUser.login.token == null
+                            ? 0
+                            : setUserLotteryDetails.data}
                         </div>
                         <div className="MT_Price">
                           Total Amount-$
                           {/* {logingUser.login.token ? : showLotary.price &&
                             setUserLotteryDetails.data &&
                             showLotary.price * setUserLotteryDetails.data} */}
-                            {
-                           logingUser.login.token ==null ? 0:  (logingUser.login.token && showLotary.price && setUserLotteryDetails.data) && showLotary.price * setUserLotteryDetails.data 
-                            }
+                          {logingUser.login.token == null
+                            ? 0
+                            : logingUser.login.token &&
+                              showLotary.price &&
+                              setUserLotteryDetails.data &&
+                              showLotary.price * setUserLotteryDetails.data}
                         </div>
                       </div>
                       {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
-
-                 
 
                   <hr />
 
@@ -560,10 +558,14 @@ function CarRaffle() {
                       </li>
                       <li>
                         <div className="">Total Earnings</div>
-                        {
-                          logingUser.login.token ==null ?0: <div className=""> {setUserLotteryDetails.rewards}</div>
-
-                        }
+                        {logingUser.login.token == null ? (
+                          0
+                        ) : (
+                          <div className="">
+                            {" "}
+                            {setUserLotteryDetails.rewards}
+                          </div>
+                        )}
                       </li>
                     </ul>
                     <div>
@@ -661,7 +663,7 @@ function CarRaffle() {
           /> */}
           <Carousel activeIndex={index} onSelect={handleSelect}>
             {lotteryImage.map((curElem) => {
-              console.log(2222,curElem)
+              console.log(2222, curElem);
               return (
                 <Carousel.Item>
                   <img
@@ -670,15 +672,13 @@ function CarRaffle() {
                     alt="First slide"
                   />
                 </Carousel.Item>
-                
-
               );
             })}
           </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
-    {/* -----------------payment process--------------------   */}
+      {/* -----------------payment process--------------------   */}
       <Modal show={show} onHide={handleClose} className="payTPop">
         <Modal.Header closebutton>
           <Modal.Title>Payment Process</Modal.Title>

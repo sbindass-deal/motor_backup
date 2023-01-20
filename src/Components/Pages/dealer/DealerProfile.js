@@ -38,10 +38,17 @@ const DealerProfile = () => {
     };
     fetchDealer();
 
-    const filteredImage = vehicleData.filter(
-      (item) => item.userId === parseInt(id, 10)
-    );
-    setUserVehicleImage(filteredImage);
+    const vehicleDataAfterFilter = vehicleData
+      .filter((item) => item.userId === parseInt(id, 10))
+      .map((data) => data);
+
+    // create image array
+    let initialState = [];
+    vehicleDataAfterFilter.map((data) => {
+      initialState = [...data.images, ...initialState];
+    });
+
+    setUserVehicleImage(initialState);
   }, []);
 
   return (
@@ -72,24 +79,68 @@ const DealerProfile = () => {
               <div className="row">
                 <div className="col-4 verticle">
                   <div className="galleryImgSect">
-                    <img src={Gallery_1} />
+                    <img
+                      src={
+                        userVehicleImage[0] &&
+                        `${process.env.REACT_APP_URL}/${userVehicleImage[0].imagePath}/${userVehicleImage[0].imageName}`
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="Maskgroup1"
+                    />
                   </div>
                 </div>
                 <div className="col-8">
                   <div className="row">
                     <div className="col-6">
                       <div className="galleryImgSect">
-                        <img src={Gallery_2} />
+                        <img
+                          src={
+                            userVehicleImage[1] &&
+                            `${process.env.REACT_APP_URL}/${userVehicleImage[1].imagePath}/${userVehicleImage[1].imageName}`
+                          }
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt="Maskgroup1"
+                        />
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="galleryImgSect">
-                        <img src={Gallery_3} />
+                        <img
+                          src={
+                            userVehicleImage[2] &&
+                            `${process.env.REACT_APP_URL}/${userVehicleImage[2].imagePath}/${userVehicleImage[2].imageName}`
+                          }
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt="Maskgroup1"
+                        />
                       </div>
                     </div>
                     <div className="col-12 mt-50">
                       <div className="galleryImgSect">
-                        <img src={Gallery_4} />
+                        <img
+                          src={
+                            userVehicleImage[3] &&
+                            `${process.env.REACT_APP_URL}/${userVehicleImage[3].imagePath}/${userVehicleImage[3].imageName}`
+                          }
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt="Maskgroup1"
+                        />
                       </div>
                     </div>
                   </div>

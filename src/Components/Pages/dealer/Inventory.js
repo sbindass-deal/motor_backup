@@ -14,7 +14,6 @@ const Inventory = () => {
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.showroomData;
   const category = logingUser.vehicleReducer.filterCategory;
-  console.log(11111, category);
   const [filteredModal, setFilteredModal] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [filterInput, setFilterInput] = useState({
@@ -26,8 +25,8 @@ const Inventory = () => {
   });
   const handleFilterInput = (e) => {
     setFilterInput({
-      ...filterInput,
-      [e.target.name]: e.target.value.toLowerCase(),
+      filterInput,
+      [e.target.name]: e.target.value,
     });
   };
   const clearFilter = () => {
@@ -40,26 +39,20 @@ const Inventory = () => {
       city: "",
     });
   };
-  const handleFilterFormSubmit = (e) => {
-    e.preventDefault();
-    if (
-      filterInput.year.trim().length > 0 ||
-      filterInput.make.trim().length > 0 ||
-      filterInput.model.trim().length > 0 ||
-      filterInput.state.trim().length > 0 ||
-      filterInput.city.trim().length > 0
-    ) {
-      dispatch(filterShowroomData(filterInput));
-    }
-    handleFilteredModalClose();
-  };
-
   const handleFilteredModalClose = () => {
+    // debugger;
     setFilteredModal(false);
   };
   const handleFilteredModalShow = () => {
     setFilteredModal(true);
   };
+
+  const handleFilterFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(filterShowroomData({ ...filterInput }));
+    handleFilteredModalClose();
+  };
+
   useEffect(() => {
     dispatch(clearShowroomFilter());
   }, []);
@@ -233,7 +226,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose...
+                          Choose
                         </option>
                         {category.year &&
                           category.year.map((curElem) => {
@@ -252,15 +245,18 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose...
+                          Choose
                         </option>
                         {category.make &&
-                          category.make.map((curElem) => {
-                            return <option value={curElem}>{curElem}</option>;
+                          category.make.map((curElem, i) => {
+                            return (
+                              <option key={i} value={curElem}>
+                                {curElem}
+                              </option>
+                            );
                           })}
                       </select>
                     </div>
-                    {console.log(11111, filterInput)}
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Model</label>
@@ -272,7 +268,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose...
+                          Choose
                         </option>
                         {category.model &&
                           category.model.map((curElem) => {
@@ -291,7 +287,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose...
+                          Choose
                         </option>
                         {category.state &&
                           category.state.map((curElem) => {
@@ -310,7 +306,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose...
+                          Choose
                         </option>
                         {category.city &&
                           category.city.map((curElem) => {

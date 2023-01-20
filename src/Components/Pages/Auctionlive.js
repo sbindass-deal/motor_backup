@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import icGrid from "../../Assets/images/icGrid.svg";
 import axios from "axios";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-function Auctionlive() {
+import { clearData } from "../../redux/reducers/vehicleReducer";
+const Auctionlive = () => {
+  const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
 
@@ -12,7 +14,6 @@ function Auctionlive() {
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
-  const [loading, setLoader] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
   useEffect(() => {
     const filteredAuctionVehicle = vehicleData.filter(
@@ -37,13 +38,14 @@ function Auctionlive() {
       })
       .then((res) => {
         if (res.data.status === 200) {
+          dispatch(clearData());
           window.location.reload(false);
         }
       });
   };
 
   return (
-    <div>
+    <>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
@@ -148,34 +150,35 @@ function Auctionlive() {
                     <div className="card_post">
                       <div className="card_postImg">
                         <div className="list_wrapper">
-                        <Link
-                          className="auction_image"
-                          to={`/detail/${curElem.id}`}
-                        >
-                          <img
-                            loading="lazy"
-                            src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onError = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.model}
-                          />
-                        </Link>
-                        <button
-                          onClick={() => addFabrity(curElem.id)}
-                          type="button"
-                          className="watchedIc"
-                        >
-                          <i
-                            className={`fa-solid fa-star ${
-                              curElem.like >= 1 ? "faList" : ""
-                            }`}
-                          ></i>
-                        </button>
+                          <Link
+                            className="auction_image"
+                            to={`/detail/${curElem.id}`}
+                          >
+                            <img
+                              loading="lazy"
+                              src={
+                                process.env.REACT_APP_URL + curElem.stepOneImage
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.model}
+                            />
+                          </Link>
+
+                          <button
+                            onClick={() => addFabrity(curElem.id)}
+                            type="button"
+                            className="watchedIc"
+                          >
+                            <i
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
+                            ></i>
+                          </button>
                         </div>
                       </div>
                       <div className="card_postInfo">
@@ -222,8 +225,8 @@ function Auctionlive() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
-}
+};
 
 export default Auctionlive;

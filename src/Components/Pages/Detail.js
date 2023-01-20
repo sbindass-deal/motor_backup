@@ -4,10 +4,13 @@ import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showModalLogin } from "../../redux/reducers/login";
+import { toast } from "react-toastify";
 
 function Detail() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
 
@@ -76,8 +79,26 @@ function Detail() {
     setShow(false);
     window.location.reload(false);
   };
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleShow = () => {
-    setShow(true);
+    if (logingUser.login.token && vehicle.canBid === "yes") {
+      setShow(true);
+    } else if (logingUser.login.token && vehicle.canBid === "no") {
+      notify(`You are seller so you can't bid`);
+    } else {
+      dispatch(showModalLogin());
+    }
   };
   // let d = new Date();
   // // parseInt(d.setMinutes(d.getMinutes() + 5).toLocaleString(), 10);
@@ -224,10 +245,12 @@ function Detail() {
                         </span>
                       )}
                     </li>
-                    {vehicle.reserve === "Yes" && (
+                    {vehicle.reserve === "Yes" && vehicle.approved === "1" ? (
                       <li className="reserved">
                         Reserve: <span>{vehicle.reserve}</span>
                       </li>
+                    ) : (
+                      "Upcoming Auction"
                     )}
                   </ul>
                 </div>
@@ -252,7 +275,7 @@ function Detail() {
                     </a>
                   )}
 
-                  {vehicle.approved === "1" && vehicle.canBid === "yes" ? (
+                  {/* {vehicle.approved === "1" && vehicle.canBid === "yes" ? (
                     <button
                       type="button"
                       className="gry_btn active"
@@ -263,7 +286,15 @@ function Detail() {
                   ) : vehicle.approved === "1" &&
                     vehicle.canBid === "no" ? null : (
                     <div className="">Upcoming Auction</div>
-                  )}
+                  )} */}
+                  <button
+                    type="button"
+                    className="gry_btn active"
+                    onClick={handleShow}
+                    disabled={vehicle.approved !== "1" ? true : false}
+                  >
+                    Place a bid
+                  </button>
                 </div>
               </div>
             </div>
@@ -457,7 +488,7 @@ function Detail() {
                         <div>{biding ? biding.length : 0}</div>
                       </li>
 
-                      <li>
+                      {/* <li>
                         {vehicle.approved === "1" &&
                         vehicle.canBid === "yes" ? (
                           <>
@@ -471,10 +502,21 @@ function Detail() {
                             </button>
                           </>
                         ) : vehicle.approved === "1" &&
-                          vehicle.canBid === "no" ? null : (
+                          vehicle.canBid === "no" ? (
+                          "You are seller"
+                        ) : (
                           <div>Upcoming Auction</div>
                         )}
-                      </li>
+                      </li> */}
+                      {/* {logingUser.login.token} */}
+                      <button
+                        type="button"
+                        className="gry_btn active"
+                        onClick={handleShow}
+                        disabled={vehicle.approved !== "1" ? true : false}
+                      >
+                        Place a bid
+                      </button>
                     </ul>
                     <div className="bid_bottom">
                       <div className="">
