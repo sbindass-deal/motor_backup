@@ -30,6 +30,8 @@ const VechilesRegistraion = () => {
   const [file, setFile] = useState([]);
 
   const [file1, setFile1] = useState([]);
+
+  
   const [signinAggri, setSigninAggri] = useState();
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
@@ -48,6 +50,7 @@ const VechilesRegistraion = () => {
   const handleClosePayment = () => {
     setShowPayment(false);
   };
+
   const handleShowPayment = (data) => {
     setShowPayment(true);
   };
@@ -581,7 +584,7 @@ const VechilesRegistraion = () => {
                       onClick={handleMakeAndModalTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Make & Model
+                      Make & Model 
                     </a>
                     {!showError && errorMakeAndModal ? (
                       <span className="text-danger">
@@ -935,14 +938,7 @@ const VechilesRegistraion = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="drag-area">
-                              {/* <div className="icon">
-                                <i className="fas fa-cloud-upload-alt"></i>
-                              </div> */}
-                              {/* <header>Drag & Drop to Upload File</header>
-                              <span>OR</span> */}
-                              {/* <button>Browse File</button> */}
-
+                            <div className="">
                               {Array.from(file).map((items) => {
                                 return (
                                   <span>
@@ -953,8 +949,9 @@ const VechilesRegistraion = () => {
                                           : null
                                       }
                                       style={{
-                                        width: "70px",
+                                        width: "100px",
                                         objectFit: "cover",
+                                        padding:"15px"
                                       }}
                                     />
                                   </span>
@@ -965,10 +962,9 @@ const VechilesRegistraion = () => {
                                 style={{
                                   fontSize: "1.2rem",
                                   textAlign: "center",
-                                  cursor: "pointer",
                                 }}
                                 onChange={(e) => {
-                                  handleNameField(e);
+                                  // handleNameField(e);
                                   setFile(e.target.files);
                                 }}
                                 name="file"
@@ -976,6 +972,7 @@ const VechilesRegistraion = () => {
                                 required
                                 multiple
                               />
+                             
                             </div>
                           </div>
                         </div>
@@ -1459,8 +1456,8 @@ const VechilesRegistraion = () => {
                                 multiple
                                 required
                               />
-
-                              <br />
+                            
+                              
 
                               {/* <UploadMImages /> */}
                             </div>

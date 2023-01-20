@@ -641,7 +641,7 @@ function SellYourVehicle() {
                             <header>Drag & Drop to Upload File</header>
                             <span>OR</span>
                             <button>Browse File</button>
-                            <input type="file" hidden />
+                            <input type="file"  />
                           </div>
                         </div>
                       </div>
@@ -908,7 +908,7 @@ function SellYourVehicle() {
                             <header>Drag & Drop to Upload File</header>
                             <span>OR</span>
                             <button>Browse File</button>
-                            <input type="file" hidden />
+                            <input type="file"  />
                           </div>
                         </div>
                       </div>
