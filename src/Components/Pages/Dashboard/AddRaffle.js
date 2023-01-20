@@ -46,6 +46,7 @@ const AddRaffle = () => {
       });
     }
   };
+
   const uploadFileVideo = async (vehicleId) => {
     for (let i = 0; i < videoFile.length; i++) {
       const url = process.env.REACT_APP_URL + "lottery-image";
@@ -86,6 +87,23 @@ const AddRaffle = () => {
         console.log(error);
       });
   };
+  
+  const [image, setImage] = useState([])
+console.log(222,image)
+
+const uploadImg=async()=>{
+const res=await axios.post('')
+}
+  const inputRef = React.useRef();
+  const [videoSource, setVideoSource] = React.useState();
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    setVideoSource(url);
+  };
+
+  
   return (
     <div className="container">
       <div className="row">
@@ -167,41 +185,54 @@ const AddRaffle = () => {
                 />
               </div>
             </div>
+            {/* ---------------------img upload--keshav------------- */}
             <div className="col-12 col-md-6">
-              <label>Upload Photos</label>
+              <label>Upload Photos##########</label>
               <div className="form-group">
-                <input
-                  style={{
-                    fontSize: "1.2rem",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
+
+                {Array.from(image).map((items) => {
+                  return (
+                    <span>
+                      <img src={items ? URL.createObjectURL(items) : null} style={{ padding: "15px", objectFit: "cover", width: "90px" }} />
+                    </span>
+                  )
+                })}
+                <input type="file"
+                // controls
                   onChange={(e) => {
-                    setFile(e.target.files);
+                    setImage(e.target.files);
                   }}
-                  name="file"
-                  type="file"
                   multiple
                 />
+
+
               </div>
             </div>
+            {/* ---------------------video upload--keshav------------ */}
             <div className="col-12 col-md-6">
               <label>Upload Videos</label>
               <div className="form-group">
+
                 <input
-                  style={{
-                    fontSize: "1.2rem",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                  onChange={(e) => {
-                    setVideoFile(e.target.files);
-                  }}
-                  name="file"
+                  ref={inputRef}
+                  // className="VideoInput_input"
                   type="file"
-                  accept="video/mp4,video/x-m4v,video/*"
-                  multiple
+                  onChange={handleFileChange}
+                  accept=".mov,.mp4"
                 />
+
+                {videoSource && (
+                  <video
+                    // className="VideoInput_video"
+                    width="80%"
+                    height={100}
+                    controls
+                    src={videoSource}
+                  />
+                )}
+                {/* {!videoSource && <button onClick={handleChoose}>Choose</button>} */}
+
+                {/* {<div className="VideoInput_footer">{videoSource || "Nothing selectd"}</div>} */}
               </div>
             </div>
             <div className="col-md-12 mb-3">

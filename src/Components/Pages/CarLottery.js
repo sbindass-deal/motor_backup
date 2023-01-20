@@ -533,6 +533,7 @@ function CarRaffle() {
 
                           }
                         </div>
+                        
                         <div className="MT_Price">
                           Total Amount-$
                           {/* {logingUser.login.token ? : showLotary.price &&
