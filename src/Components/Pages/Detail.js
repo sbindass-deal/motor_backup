@@ -533,8 +533,8 @@ function Detail() {
                     </div>
                   </div>
                 </div>
-                <div className="container">
-                  <h5>PHOTO GALLERY</h5>
+                <div className=" phG">
+                  <h5>PHOTO GALLERY </h5>
                   <div class="card-group">
                     {vehicle.images &&
                       vehicle.images.map((curElem) => {

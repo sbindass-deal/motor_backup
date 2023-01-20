@@ -108,11 +108,11 @@ const Inventory = () => {
               </li>
             </ul>
           </div>
-          <div className="row">
+          <div className="row mt-50">
             {searchedData.map((curElem) => {
               return (
                 <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
-                  <div className="card_post Inventory auction">
+                  <div className="card_post Inventory auction ffff">
                     {curElem.displayInAuction === "Yes" ? (
                       <p className="forOction">For Auction</p>
                     ) : curElem.displayInAuction === "classified" ? (

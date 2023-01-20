@@ -3337,7 +3337,7 @@ p.forOction {
   background: #f7931b;
   width: 27%;
   position: absolute;
-  right: 0;
+  right: 12px;
   z-index: 1;
   top: 0;
   font-size: 12px;
@@ -4555,7 +4555,7 @@ nav.pgNtion { margin: 0 auto;}
 }
 .addSection .inner-slider .card_postImg.dlr {
   padding-right: 20px;
-  height: 180px;
+  height: 232px;
 }
 .addSection .card_postInfo h5 {
   color: #f58b12;
@@ -4563,8 +4563,10 @@ nav.pgNtion { margin: 0 auto;}
 .addSection .labelList li{border: none;}
 .addSection .inner-slider small {
   position: absolute;
-  right: 30px;
-  bottom: 13px;
+    right: 16px;
+    bottom: 31px;
+    background: #f89e25;
+    padding: 3px 26px;
 }
 .counterCol h2{ text-align: center !important;}
 .addSection .inner-slider a {
@@ -4763,6 +4765,26 @@ display: none;
   .list_wrapper{
     position: relative;
   }
+  .auctionBid .inner-slider .card_postInfo {
+    min-height: 121px;
+  }
+  .auctionBid .inner-slider .card_post {
+    border: 0px solid rgb(180, 180, 180);
+    margin-bottom: 30px;
+    box-shadow: 1px 0px 21px 11px #37373738;
+}.auctionBid .inner-slider .card_post {
+  border: 0px solid rgb(180, 180, 180);
+  margin-bottom: 30px;
+  box-shadow: 1px 0px 21px 11px #37373738;
+}
+.light .addSection .inner-slider .card_post{ background: #ffffff;}
+  .light .auctionBid .inner-slider .card_post {
+     border: 0px solid rgb(180, 180, 180); 
+    margin-bottom: 30px;
+    box-shadow: 1px -1px 15px 11px #f8f8f8;
+}
+  .light .auctionBid .card_postInfo ul.labelList {  color: #000; }
+  .light .auctionBid button.btn.bidnW {color: #000;}
 
   .list_wrapper .watchedIc{
     position: absolute;
@@ -4770,7 +4792,10 @@ display: none;
     top: 0;
     z-index: 999;
   }
-
+  .light .addSection .inner-slider .card_post,.light .addSection button.btn.bidnW {
+    color: #000;
+  }
+  
   .toNv ul.navbar-nav.ml-auto{
     display: flex;
     justify-content: space-between!important;
@@ -4778,10 +4803,55 @@ display: none;
     right: unset!important;
   }
 
+  .light .addSection .inner-slider a {
+    background: #f5eded00;
+    width: 100%;
+    color: #000;
+}
+
   .secondNavbar .navbar-nav{
     justify-content: space-between!important;
     padding: 7px 18px;
   }
+  .gallery .col-lg-12.col-md-12.mt-50 {
+    padding: 1px 5px;
+    margin-top: 0px;
+  }
+  .col-lg-4.col-mg-6.col-sm-12.verticle {
+    padding-right: 2px;
+  }
+  .ListDealer .inner-slider .card_post {
+    border: 0px solid rgb(180, 180, 180);
+    margin-bottom: 30px;
+    box-shadow: 1px 5px 35px 1px #373737;
+ }
+ .light .ListDealer .inner-slider .card_post {  box-shadow: 1px 5px 35px 1px #3737372b;}
+ .light .Latest_B {  background-color: #00000005;}
+ .card_post.Inventory.auction.ffff {
+    box-shadow: 1px 15px 156px 1px #a8a8a83d;
+    margin-bottom: 30px;
+ }
+ .Latest_B {
+  padding: 25px;
+  height: 350px;
+}
+.phG .card-group .card.mx-1 {
+  height: 350px;
+  overflow: hidden;
+  justify-content: center;
+}
+.phG .card-group .card.mx-1 img.card-img-top {
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+}
+.auction.ffff h6.name_price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.light .gry_btn {  background-color: #f7931a !important;}
+
 @media (max-width: 860px) {
 P{
   font-size: 13px;

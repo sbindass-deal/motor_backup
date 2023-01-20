@@ -27,7 +27,7 @@ const DealerList = () => {
 
   return (
     <>
-      <div className="col-12 ListDealer">
+      <div className="col-12 ListDealer mt-50">
         <div className="row">
           <div className="col-lg-4 col-sm-12 inner-slider">
             <a

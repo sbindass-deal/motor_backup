@@ -77,7 +77,7 @@ const DealerProfile = () => {
             </div>
             <div className="col-12 gallery">
               <div className="row">
-                <div className="col-4 verticle">
+                <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
                   <div className="galleryImgSect">
                     <img
                       src={
@@ -93,9 +93,9 @@ const DealerProfile = () => {
                     />
                   </div>
                 </div>
-                <div className="col-8">
+                <div className="col-lg-8 col-md-8 col-sm-12">
                   <div className="row">
-                    <div className="col-6">
+                    <div className="col-6 col-md-6 col-sm-12">
                       <div className="galleryImgSect">
                         <img
                           src={
@@ -111,7 +111,7 @@ const DealerProfile = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-6 col-md-6 col-sm-12">
                       <div className="galleryImgSect">
                         <img
                           src={
@@ -127,7 +127,7 @@ const DealerProfile = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-12 mt-50">
+                    <div className="col-lg-12 col-md-12  mt-50">
                       <div className="galleryImgSect">
                         <img
                           src={
