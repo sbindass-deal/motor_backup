@@ -33,9 +33,9 @@ h3.comQut {
 }
 
 .comingSoon h3.comQut {
-  font-size: 15px;
+  font-size: 27px;
+  line-height: 36px;
   padding-top: 30px;
-  line-height: 26px;
 }
 
 @media (max-width: 767px) {
