@@ -11,7 +11,7 @@ function AboutShibanobi() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6">
-              <img src={about_1} />
+              <img src={about_1} loading="lazy" />
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
@@ -27,7 +27,7 @@ function AboutShibanobi() {
           </div>
           <div className="row pt_80">
             <div className="col-12 col-md-6 order-md-1">
-              <img src={about_2} />
+              <img src={about_2} loading="lazy" />
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
               <div>
@@ -44,7 +44,7 @@ function AboutShibanobi() {
           </div>
           <div className="row pt_80">
             <div className="col-12 col-md-12">
-              <img src={about_3} />
+              <img src={about_3} loading="lazy" />
             </div>
             <div className="col-12 col-md-10 offset-md-1 pt_80 text-center">
               <h2>

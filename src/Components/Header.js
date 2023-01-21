@@ -79,11 +79,13 @@ function Header() {
                     src={shibnobiMotors}
                     alt="shibnobiMotors"
                     className="darkLogo"
+                    loading="lazy"
                   />
                   <img
                     src={shibnobiMotorsW}
                     alt="shibnobiMotors"
                     className="whiteLogo"
+                    loading="lazy"
                   />
                 </Link>
 
@@ -246,9 +248,9 @@ function Header() {
                           onClick={() => dispatch(changeMode())}
                         >
                           {logingUser.dayAndNightMode.mode ? (
-                            <img src={sunIcon} />
+                            <img src={sunIcon} loading="lazy" />
                           ) : (
-                            <img src={smoonIcon} />
+                              <img src={smoonIcon} loading="lazy" />
                           )}
                         </button>
                       </li>
@@ -495,9 +497,9 @@ function Header() {
                         onClick={() => dispatch(changeMode())}
                       >
                         {logingUser.dayAndNightMode.mode ? (
-                          <img src={sunIcon} />
+                          <img src={sunIcon} loading="lazy" />
                         ) : (
-                          <img src={smoonIcon} />
+                            <img src={smoonIcon} loading="lazy" />
                         )}
                       </button>
                     </li>

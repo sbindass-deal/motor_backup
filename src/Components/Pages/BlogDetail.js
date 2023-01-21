@@ -8,7 +8,7 @@ const BlogDetail = () => {
         <div className="row ">
           <div className="col-9 pb-3">
             <div className="mainImg">
-              <img src={Car_img} alt="details-images" />
+              <img src={Car_img} alt="details-images" loading="lazy" />
             </div>
             <div className="blogInfo">
               <h2 className="title_combo ">
@@ -98,7 +98,7 @@ const BlogDetail = () => {
 
               <div class="sidebarPost">
                 <div class="sidebarPost_Img">
-                  <img src={Car_img} />
+                  <img src={Car_img} loading="lazy" />
                 </div>
                 <div class="sidebarPost_text">
                   Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
@@ -108,7 +108,7 @@ const BlogDetail = () => {
               <div class="sidebarPost">
                 <a href="#">
                   <div class="sidebarPost_Img">
-                    <img src={Car_img} />
+                    <img src={Car_img} loading="lazy" />
                   </div>
                   <div class="sidebarPost_text">
                     Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
@@ -119,7 +119,7 @@ const BlogDetail = () => {
               <div class="sidebarPost">
                 <a href="#">
                   <div class="sidebarPost_Img">
-                    <img src={Car_img} />
+                    <img src={Car_img} loading="lazy" />
                   </div>
                   <div class="sidebarPost_text">
                     Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
@@ -130,7 +130,7 @@ const BlogDetail = () => {
               <div class="sidebarPost">
                 <a href="#">
                   <div class="sidebarPost_Img">
-                    <img src={Car_img} />
+                    <img src={Car_img} loading="lazy" />
                   </div>
                   <div class="sidebarPost_text">
                     Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
