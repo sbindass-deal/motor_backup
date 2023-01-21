@@ -68,7 +68,7 @@ function AuctionResults() {
                 </li>
                 <li className="d-flex">
                   <button type="button" className="gry_btn gridView active">
-                    <img src={icGrid} alt="" />
+                    <img src={icGrid} alt="" loading="lazy" />
                   </button>
                   <button type="button" className="gry_btn listView">
                     <i className="fa-sharp fa-solid fa-list"></i>
@@ -99,7 +99,7 @@ function AuctionResults() {
                       </button>
                       <a href="detail">
                         {" "}
-                        <img src={img_01} alt="" />
+                        <img src={img_01} alt=""  loading="lazy"/>
                       </a>
                     </div>
                     <div className="card_postInfo">
@@ -134,7 +134,7 @@ function AuctionResults() {
                       </button>
                       <a href={`detail/${data.id}`}>
                         {" "}
-                        <img src={img_01} alt="" />
+                        <img src={img_01} alt="" loading="lazy" />
                       </a>
                     </div>
                     <div className="card_postInfo">

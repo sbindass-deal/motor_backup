@@ -283,21 +283,21 @@ function CarRaffle() {
                           className="carousel-item active"
                           style={{ cursor: "pointer" }}
                         >
-                          <img src={ads_car_2} alt="ads car" />
+                          <img src={ads_car_2} alt="ads car"  loading="lazy"/>
                         </div>
                         <div
                           onClick={() => handleImageHow(1)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          <img src={ads_car_3} alt="ads car" />
+                          <img src={ads_car_3} alt="ads car"  loading="lazy"/>
                         </div>
                         <div
                           onClick={() => handleImageHow(2)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          <img src={ads_car_1} alt="ads car" />
+                          <img src={ads_car_1} alt="ads car"  loading="lazy"/>
                         </div>
                       </div> */}
                       <Carousel
@@ -318,6 +318,7 @@ function CarRaffle() {
                             className="d-block w-100 img-fluid"
                             // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                             src={ads_car_2}
+                            loading="lazy"
                             alt="First slide"
                           />
                           <Carousel.Caption></Carousel.Caption>
@@ -333,6 +334,7 @@ function CarRaffle() {
                             className="d-block w-100 img-fluid"
                             // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                             src={ads_car_3}
+                            loading="lazy"
                             alt="First slide"
                           />
                           <Carousel.Caption></Carousel.Caption>
@@ -348,6 +350,7 @@ function CarRaffle() {
                             className="d-block w-100 img-fluid"
                             // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                             src={ads_car_1}
+                            loading="lazy"
                             alt="First slide"
                           />
                         </Carousel.Item>
@@ -428,7 +431,7 @@ function CarRaffle() {
                 <div className="row row_gap_5 ">
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticket} />
+                      <img src={ticket} loading="lazy" />
                     </div>
                     <h5>
                       Price at
@@ -438,7 +441,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticketSocket} />
+                      <img src={ticketSocket} loading="lazy" />
                     </div>
                     <h5>
                       Total
@@ -448,7 +451,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={weekly} />
+                      <img src={weekly} loading="lazy" />
                     </div>
                     <h5>
                       Last date to <br />
@@ -461,7 +464,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={reword} />
+                      <img src={reword} loading="lazy" />
                     </div>
                     <h5>
                       Winner to be
@@ -671,6 +674,7 @@ function CarRaffle() {
                     className="d-block w-100 img-fluid"
                     // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                     alt="First slide"
+                    loading="lazy"
                   />
                 </Carousel.Item>
               );

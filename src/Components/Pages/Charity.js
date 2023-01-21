@@ -108,7 +108,7 @@ const Charity = () => {
                         !viewListActive ? "active" : ""
                       }`}
                     >
-                      <img src={icGrid} />
+                      <img src={icGrid} loading="lazy" />
                     </button>
                     <button
                       onClick={() => setViewListActive(true)}
@@ -160,6 +160,7 @@ const Charity = () => {
                           <Link to={`/detail/${curElem.id}`}>
                             {curElem.images[0] ? (
                               <img
+                                loading="lazy"
                                 src={
                                   curElem.images[0] &&
                                   `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
@@ -172,7 +173,8 @@ const Charity = () => {
                                 alt="Maskgroup1"
                               />
                             ) : (
-                              <img
+                                <img
+                                  loading="lazy"
                                 src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                                 alt="Maskgroup1"
                               />

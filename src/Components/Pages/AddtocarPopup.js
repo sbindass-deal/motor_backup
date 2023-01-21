@@ -7,7 +7,7 @@ function AddtocarPopup() {
       <div className="wrapper-2">
         <p className="Msg">Great choice! Added to your bag</p>
         <div className="productInfo">
-          <img src={img_01}/>
+            <img src={img_01} loading="lazy" />
           <table>
             <tr>
               <td>Product Name</td>

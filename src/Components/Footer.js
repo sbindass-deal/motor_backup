@@ -12,11 +12,13 @@ const Footer = () => {
             <div className="col-12 col-md-3 col-lg-3 pb-4">
               <Link to="/" className="mb-3">
                 <img
+                  loading="lazy"
                   src={shibnobiMotors}
                   alt="shibnobiMotors"
                   className="darkLogo"
                 />
                 <img
+                  loading="lazy"
                   src={shibnobiMotorsW}
                   alt="shibnobiMotors"
                   className="whiteLogo"
