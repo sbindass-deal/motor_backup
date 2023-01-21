@@ -102,7 +102,7 @@ const EditRaffle = () => {
       .then((response) => {
         if (response.status === 200) {
           uploadFileOne(id);
-          uploadFileVideo(id);
+          // uploadFileVideo(id);
           navigate("/raffleadmin");
         }
       })

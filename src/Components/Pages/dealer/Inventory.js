@@ -8,6 +8,7 @@ import {
   filterShowroomData,
 } from "../../../redux/reducers/vehicleReducer";
 import { Modal } from "react-bootstrap";
+import NotAvailable from "../../UI/NotAvailable";
 
 const Inventory = () => {
   const dispatch = useDispatch();
@@ -25,12 +26,11 @@ const Inventory = () => {
   });
   const handleFilterInput = (e) => {
     setFilterInput({
-      filterInput,
+      ...filterInput,
       [e.target.name]: e.target.value,
     });
   };
   const clearFilter = () => {
-    dispatch(clearShowroomFilter());
     setFilterInput({
       year: "",
       make: "",
@@ -38,9 +38,11 @@ const Inventory = () => {
       state: "",
       city: "",
     });
+    handleFilteredModalClose();
+
+    dispatch(clearShowroomFilter());
   };
   const handleFilteredModalClose = () => {
-    // debugger;
     setFilteredModal(false);
   };
   const handleFilteredModalShow = () => {
@@ -49,8 +51,9 @@ const Inventory = () => {
 
   const handleFilterFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(filterShowroomData({ ...filterInput }));
     handleFilteredModalClose();
+    console.log(1111, filterInput);
+    dispatch(filterShowroomData(filterInput));
   };
 
   useEffect(() => {
@@ -109,87 +112,95 @@ const Inventory = () => {
             </ul>
           </div>
           <div className="row mt-50">
-            {searchedData.map((curElem) => {
-              return (
-                <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
-                  <div className="card_post Inventory auction ffff">
-                    {curElem.displayInAuction === "Yes" ? (
-                      <p className="forOction">For Auction</p>
-                    ) : curElem.displayInAuction === "classified" ? (
-                      <p className="forOction">Ad</p>
-                    ) : null}
+            {searchedData.length === 0 ? (
+              <NotAvailable text="No Result Found" />
+            ) : (
+              searchedData.map((curElem) => {
+                return (
+                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                    <div className="card_post Inventory auction ffff">
+                      {curElem.displayInAuction === "Yes" ? (
+                        <p className="forOction">For Auction</p>
+                      ) : curElem.displayInAuction === "classified" ? (
+                        <p className="forOction">Ad</p>
+                      ) : null}
 
-                    {curElem.displayInAuction === "classified" ? (
-                      <a
-                        target="_blank"
-                        rel="noopener"
-                        href={curElem.externalLink}
-                        className="card_postImg card_postImg_200"
-                      >
-                        <img
-                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt={curElem.make}
-                        />
-                      </a>
-                    ) : (
-                      <Link
-                        to={
-                          curElem.displayInAuction === "Yes"
-                            ? `/detail/${curElem.id}`
-                            : `/showroom/${curElem.id}`
-                        }
-                        className="card_postImg card_postImg_200"
-                      >
-                        <img
-                          src={process.env.REACT_APP_URL + curElem.stepOneImage}
-                          onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt={curElem.make}
-                        />
-                      </Link>
-                    )}
-                    <div className="card_postInfo pt-3">
-                      <h6 className="name_price">
+                      {curElem.displayInAuction === "classified" ? (
+                        <a
+                          target="_blank"
+                          rel="noopener"
+                          href={curElem.externalLink}
+                          className="card_postImg card_postImg_200"
+                        >
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.make}
+                          />
+                        </a>
+                      ) : (
                         <Link
                           to={
                             curElem.displayInAuction === "Yes"
                               ? `/detail/${curElem.id}`
                               : `/showroom/${curElem.id}`
                           }
+                          className="card_postImg card_postImg_200"
                         >
-                          {curElem.make} {curElem.model} {curElem.year}
+                          <img
+                            src={
+                              process.env.REACT_APP_URL + curElem.stepOneImage
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.make}
+                          />
                         </Link>
-                        <p className="price__">${curElem.documentFee}</p>
-                      </h6>
-                      <table className="showroomCol">
-                        <tbody>
-                          <tr>
-                            <td>Odometer Reading </td>
-                            <td>{curElem.odmeter}</td>
-                          </tr>
-                          <tr>
-                            <td>Fuel Type</td>
-                            <td>{curElem.fuel}</td>
-                          </tr>
-                          <tr>
-                            <td>Seller</td>
-                            <td>{curElem.name}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      )}
+                      <div className="card_postInfo pt-3">
+                        <h6 className="name_price">
+                          <Link
+                            to={
+                              curElem.displayInAuction === "Yes"
+                                ? `/detail/${curElem.id}`
+                                : `/showroom/${curElem.id}`
+                            }
+                          >
+                            {curElem.make} {curElem.model} {curElem.year}
+                          </Link>
+                          <p className="price__">${curElem.documentFee}</p>
+                        </h6>
+                        <table className="showroomCol">
+                          <tbody>
+                            <tr>
+                              <td>Odometer Reading </td>
+                              <td>{curElem.odmeter}</td>
+                            </tr>
+                            <tr>
+                              <td>Fuel Type</td>
+                              <td>{curElem.fuel}</td>
+                            </tr>
+                            <tr>
+                              <td>Seller</td>
+                              <td>{curElem.name}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </section>
@@ -320,7 +331,7 @@ const Inventory = () => {
                   <button type="submit" className="btn">
                     Filters
                   </button>
-                  <button onClick={clearFilter} type="submit" className="btn">
+                  <button onClick={clearFilter} type="button" className="btn">
                     Clear Filters
                   </button>
                 </div>
