@@ -60,6 +60,7 @@ import EditMyAccount from "./MyAccount/EditMyAccount";
 import DealerProfile from "./dealer/DealerProfile";
 import ClassifiedAddList from "./dealer/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
+import ComingSoon from "./ComingSoon";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -170,6 +171,7 @@ const Layout = () => {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="blogdetail" element={<BlogDetail />} />
           <Route path="search/:name/:ser" element={<SearchResult />} />
+          <Route path="comingsoon" element={<ComingSoon />} />
         </Routes>
         <ToastContainer
           position="bottom-center"
