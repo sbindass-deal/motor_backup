@@ -69,6 +69,7 @@ export default function ProductSlider() {
           >
             <img
               className="d-block w-100 img-fluid shadow-1-strong rounded"
+              loading="lazy"
               src={car_01}
             />
           </button>
@@ -79,6 +80,7 @@ export default function ProductSlider() {
           >
             <img
               className="d-block w-100 img-fluid shadow-1-strong rounded"
+              loading="lazy"
               src={car_01}
             />
           </button>
@@ -89,6 +91,7 @@ export default function ProductSlider() {
           >
             <img
               className="d-block w-100 img-fluid shadow-1-strong rounded"
+              loading="lazy"
               src={car_01}
             />
           </button>

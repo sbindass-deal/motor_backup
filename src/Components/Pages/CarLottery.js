@@ -253,6 +253,7 @@ function CarRaffle() {
                         >
                           {showLotary.images && (
                             <img
+                              loading="lazy"
                               className="d-block w-100 img-fluid"
                               src={
                                 showLotary.images[0] &&
@@ -276,6 +277,7 @@ function CarRaffle() {
                         >
                           {showLotary.images && (
                             <img
+                              loading="lazy"
                               className="d-block w-100 img-fluid"
                               src={
                                 showLotary.images[1] &&
@@ -299,6 +301,7 @@ function CarRaffle() {
                         >
                           {showLotary.images && (
                             <img
+                              loading="lazy"
                               className="d-block w-100 img-fluid"
                               src={
                                 showLotary.images[2] &&
@@ -381,7 +384,7 @@ function CarRaffle() {
                 <div className="row row_gap_5 ">
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticket} />
+                      <img loading="lazy" src={ticket} />
                     </div>
                     <h5>
                       Price at
@@ -391,7 +394,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticketSocket} />
+                      <img loading="lazy" src={ticketSocket} />
                     </div>
                     <h5>
                       Total
@@ -401,7 +404,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={weekly} />
+                      <img loading="lazy" src={weekly} />
                     </div>
                     <h5>
                       Last date to <br />
@@ -414,7 +417,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={reword} />
+                      <img loading="lazy" src={reword} />
                     </div>
                     <h5>
                       Winner to be
@@ -433,7 +436,9 @@ function CarRaffle() {
                   <div className="row row_gap_5 ssss">
                     {/* <div className="col-12 mb-3">
                     <h5>
-                      <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
+                      <img
+                        loading="lazy"
+                       src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -607,6 +612,7 @@ function CarRaffle() {
         </Modal.Header>
         <Modal.Body>
           {/* <img
+          loading="lazy"
             src={showImage}
             alt=""
             style={{ maxHeight: "67vh", width: "100%" }}
@@ -614,6 +620,7 @@ function CarRaffle() {
           <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
               <img
+                loading="lazy"
                 className="d-block w-100 img-fluid"
                 // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
                 alt="First slide"
@@ -646,8 +653,12 @@ function CarRaffle() {
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>
 
-                {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
+                {/* <img
+                  loading="lazy"
+                 src={Paypal} />
+              <img
+                loading="lazy"
+               src={Stipe} /> */}
               </div>
               <div>
                 <StripeCheckout

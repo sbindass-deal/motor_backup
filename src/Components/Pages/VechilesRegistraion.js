@@ -31,7 +31,7 @@ const VechilesRegistraion = () => {
 
   const [file1, setFile1] = useState([]);
 
-  
+
   const [signinAggri, setSigninAggri] = useState();
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
@@ -110,21 +110,38 @@ const VechilesRegistraion = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
-  const uploadFileOne = async (vehicleId) => {
-    for (let i = 0; i < file.length; i++) {
-      const url = process.env.REACT_APP_URL + "vehicle-image";
-      const formData = new FormData();
-      formData.append("image", file[i]);
-      formData.append("vehicleId", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
+  const uploadFileOne = (vehicleId) => {
+    debugger;
+
+
+    (async () => {
+      for await (const file1 of file) {
+        const url = process.env.REACT_APP_URL + "vehicle-image";
+        const formData = new FormData();
+        formData.append("image", file1);
+        formData.append("vehicleId", vehicleId);
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const data = await axios.post(url, formData, config);
+      }
+    })();
+
+    // for (let i = 0; i < file.length; i++) {
+    //   const url = process.env.REACT_APP_URL + "vehicle-image";
+    //   const formData = new FormData();
+    //   formData.append("image", file[i]);
+    //   formData.append("vehicleId", vehicleId);
+    //   const config = {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   };
+    //   const data = await axios.post(url, formData, config);
+
+    // }
   };
 
   //Get past 15 year get year till now year?
@@ -143,20 +160,25 @@ const VechilesRegistraion = () => {
 
 
   const uploadFileTwo = async (vehicleId) => {
-    for (let i = 0; i < file1.length; i++) {
-      const url = process.env.REACT_APP_URL + "vehicle-image";
-      const formData = new FormData();
-      formData.append("image", file1[i]);
-      formData.append("vehicleId", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
+    debugger;
+
+    (async () => {
+      for await (const file11 of file1) {
+        const url = process.env.REACT_APP_URL + "vehicle-image";
+        const formData = new FormData();
+        formData.append("image", file11);
+        formData.append("vehicleId", vehicleId);
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const data = await axios.post(url, formData, config);
+      }
+    })();
+
+
+
   };
   const [namefield, setNamefield] = useState({
     name: "",
@@ -584,7 +606,7 @@ const VechilesRegistraion = () => {
                       onClick={handleMakeAndModalTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Make & Model 
+                      Make & Model
                     </a>
                     {!showError && errorMakeAndModal ? (
                       <span className="text-danger">
@@ -951,7 +973,7 @@ const VechilesRegistraion = () => {
                                       style={{
                                         width: "100px",
                                         objectFit: "cover",
-                                        padding:"15px"
+                                        padding: "15px"
                                       }}
                                     />
                                   </span>
@@ -972,7 +994,7 @@ const VechilesRegistraion = () => {
                                 required
                                 multiple
                               />
-                             
+
                             </div>
                           </div>
                         </div>
@@ -1456,8 +1478,8 @@ const VechilesRegistraion = () => {
                                 multiple
                                 required
                               />
-                            
-                              
+
+
 
                               {/* <UploadMImages /> */}
                             </div>

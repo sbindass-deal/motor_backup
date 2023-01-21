@@ -107,7 +107,7 @@ const Auctionlive = () => {
                       !viewListActive ? "active" : ""
                     }`}
                   >
-                    <img src={icGrid} />
+                    <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}

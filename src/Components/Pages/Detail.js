@@ -305,6 +305,7 @@ function Detail() {
               <div className="postHero">
                 {vehicle.images && (
                   <img
+                    loading="lazy"
                     src={
                       vehicle.images[0] &&
                       `${process.env.REACT_APP_URL}/${vehicle.images[0].imagePath}/${vehicle.images[0].imageName}`
@@ -541,6 +542,7 @@ function Detail() {
                         return (
                           <div class="card mx-1">
                             <img
+                              loading="lazy"
                               class="card-img-top"
                               src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
                               onError={({ currentTarget }) => {
@@ -597,6 +599,7 @@ function Detail() {
                         <div className="commentHead">
                           <div className="com_byPic">
                             <img
+                              loading="lazy"
                               src="https://pinnacle.works/wp-content/uploads/2022/06/dummy-image.jpg"
                               alt=""
                             />
@@ -648,6 +651,7 @@ function Detail() {
               return (
                 <Carousel.Item key={curElem.id}>
                   <img
+                    loading="lazy"
                     className="d-block w-100"
                     src={
                       process.env.REACT_APP_URL +
