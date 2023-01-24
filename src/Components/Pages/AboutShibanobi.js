@@ -13,9 +13,9 @@ function AboutShibanobi() {
             <div className="col-12 col-md-6">
               <img src={about_1} loading="lazy" />
             </div>
-            <div className="col-12 col-md-6 d-flex align-items-center">
+            <div className="col-12 col-md-6 d-flex align-items-center mission_section">
               <div>
-              <h3>Our vision</h3>
+              <h3 className="text_title">Our vision</h3>
                 <p>
                 auctions are designed to provide the best experience for buyers and sellers alike.
                 </p>
@@ -29,9 +29,9 @@ function AboutShibanobi() {
             <div className="col-12 col-md-6 order-md-1">
               <img src={about_2} loading="lazy" />
             </div>
-            <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
+            <div className="col-12 col-md-6 order-md-0 d-flex align-items-center mission_section">
               <div>
-              <h3>Our mission</h3>
+              <h3 className="text_title">Our mission</h3>
                 <p>
                 “To Provide a Fair, Respectful, and Efficient Service to all Customers, Everytime, All the Time.”
                 </p>
@@ -46,7 +46,7 @@ function AboutShibanobi() {
             <div className="col-12 col-md-12">
               <img src={about_3} loading="lazy" />
             </div>
-            <div className="col-12 col-md-10 offset-md-1 pt_80 text-center">
+            <div className="col-12 col-md-10 offset-md-1 pt_80 text-center ">
               <h2>
                 Our mission is to act as personal advisors to empower in your
                 car buying, selling and servicing needs.

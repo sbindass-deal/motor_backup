@@ -618,6 +618,11 @@
 
 @media (max-width: 767px) {
 
+
+	.text_title{
+		margin: 15px 0;
+	}
+
 	.plan_card .plan_cardHead{
 		min-height: unset;
 	}

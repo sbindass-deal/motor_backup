@@ -49,11 +49,7 @@ const SearchResult = () => {
           <div className="col-12 col-lg-12">
             <div className="heroText">
               <h5>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Consequuntur doloremque dignissimos rem ut ex nihil veniam
-                temporibus, nesciunt recusandae. Voluptates voluptate
-                exercitationem vitae dolores, cum rerum fuga corporis odio
-                explicabo.
+              The Ferrari HP15 2017 is a high performance four-wheel drive car that is powered by the latest Ferrari 488 Pista engine. Designed for championship-level racing, the Ferrari HP15 delivers superb acceleration, traction and handling in extreme conditions. It features an automatic gearbox, adjustable suspension system and high-impact structure for enhanced performance.
               </h5>
               <button
                 type="button"
@@ -63,7 +59,7 @@ const SearchResult = () => {
                   );
                   navigate("/");
                 }}
-                className="btn"
+                className="btn btn_change"
               >
                 Notify me
               </button>

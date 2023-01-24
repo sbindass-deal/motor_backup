@@ -4860,6 +4860,29 @@ display: none;
   margin-bottom: 15px;
 }
 
+.text_title{
+  font-size: 26px;
+  text-transform: capitalize;
+}
+
+.mission_section p{
+  font-size: 16px;
+}
+
+.storeHeroSection h5{
+  margin-bottom: 30px;
+  line-height: 31px;
+}
+
+.storeHeroSection .heroText{
+  padding: 8px 0
+}
+
+.btn_change{
+  border-radius: 30px!important;
+}
+
+
 @media (max-width: 860px) {
 P{
   font-size: 13px;

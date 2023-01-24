@@ -245,6 +245,9 @@ function CarRaffle() {
                         prevLabel=""
                         activeIndex={index}
                         onSelect={handleSelect}
+                        play={true}
+                        interval={2000}
+                        
                       >
                         <Carousel.Item
                           // onClick={() => handleImageHow(0)}

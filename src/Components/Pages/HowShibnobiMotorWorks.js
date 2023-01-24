@@ -98,29 +98,24 @@ function HowShibnobiMotorWorks() {
               <img src={HIW} alt="HIW" />
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
-              <div>
+            <div>
                 <h3>Submitting a Vehicle for Auction</h3>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text.
+                If you're looking to sell your car, get it ready for auction and see what you can get, you can sell your car for the highest price possible. Its fast, it's easy.
                 </p>
-                <h6>1. classNameic</h6>
+                <h6>1. Classic</h6>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                Make the introduction for you and write a compelling description of your item. Our car experts will help you sell faster and for a higher price.
                 </p>
                 <hr />
                 <h6>2. Plus Photography</h6>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                Bringing your car to life and unleashing its full potential is our passion. Enjoy the true value of your car by choosing to add ultra-sharp high resolution panoramic photographs as part of the listing process.
                 </p>
                 <hr />
                 <h6>3. White Glove Service</h6>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                We aim to deliver premium-quality customer service and workmanship, setting new customer experience standards for automotive industry.
                 </p>
               </div>
             </div>
@@ -178,14 +173,8 @@ function HowShibnobiMotorWorks() {
           <div className="row pt_80">
             <div className="col-12 col-md-8 offset-md-2 text-center">
               <h2>The Submission Process</h2>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
+              <p style={{ lineHeight: "2rem" }}>
+              The car auction submission process is designed to ensure that every submitted vehicle is properly cataloged and documented with photographs, video documentation and any other information necessary to accurately represent the vehicle description. The eAuction system will review your listing before it goes live on the auction site. After you submit it we will send you an email confirming that it has been received and may be ready for auction 24/7.</p>
             </div>
             <div className="col-12 col-md-12 mt-4">
               <img src={HIW2} alt="HIW2" />
