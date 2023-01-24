@@ -23,14 +23,17 @@ import StripeCheckout from "react-stripe-checkout";
 
 const VechilesRegistraion = () => {
   const logingUser = useSelector((state) => state);
-  console.log(11, logingUser.planReducer.plan);
+  const [showVidnModal, setShowVidnModal] = useState(false);
+  const handleVinClose = () => setShowVidnModal(false);
+  const handleVinShow = () => setShowVidnModal(true);
+
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
+  const [getVinNumber, setGetVinNumber] = useState("");
   const [file, setFile] = useState([]);
 
   const [file1, setFile1] = useState([]);
-
 
   const [signinAggri, setSigninAggri] = useState();
   const [detailsInfo, setDetailsInfo] = useState([]);
@@ -43,9 +46,6 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
-
-  const [previous15Year, setPrevious15Year] = useState([])
-
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const handleClosePayment = () => {
     setShowPayment(false);
@@ -111,9 +111,6 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   }, []);
   const uploadFileOne = (vehicleId) => {
-    debugger;
-
-
     (async () => {
       for await (const file1 of file) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
@@ -146,22 +143,18 @@ const VechilesRegistraion = () => {
 
   //Get past 15 year get year till now year?
   const years = (startYear) => {
-    var currentYear = new Date().getFullYear(), years = [];
+    var currentYear = new Date().getFullYear(),
+      years = [];
     startYear = startYear || 1980;
     while (startYear <= currentYear) {
       years.push(startYear++);
     }
     return years;
-  }
+  };
 
   // console.log(years(new Date().getFullYear() - 15).reverse());
 
-
-
-
   const uploadFileTwo = async (vehicleId) => {
-    debugger;
-
     (async () => {
       for await (const file11 of file1) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
@@ -176,9 +169,6 @@ const VechilesRegistraion = () => {
         const data = await axios.post(url, formData, config);
       }
     })();
-
-
-
   };
   const [namefield, setNamefield] = useState({
     name: "",
@@ -225,16 +215,6 @@ const VechilesRegistraion = () => {
     otherTruckTitle: "",
     otherStatus: "",
   });
-
-  //   const fetchCountryData = countryData.map((curVal) => {
-  //     return console.log(567, curVal)
-  //   })
-
-  //   useEffect(() => {
-  //     fetchCountryData()
-  // },[])
-
-  // details tabs
 
   const [detailstab, setDetailstab] = useState({
     detailvin: "",
@@ -584,8 +564,17 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   };
 
+  useEffect(() => {
+    handleVinShow();
+  }, []);
+
+  const validateVin = (e) => {
+    e.preventDefault();
+    handleVinClose();
+  };
+
   return (
-    <div>
+    <>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
@@ -618,7 +607,7 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                        reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -637,8 +626,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -657,8 +646,8 @@ const VechilesRegistraion = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -679,8 +668,8 @@ const VechilesRegistraion = () => {
                     <h3>Make & Model</h3>
                     <hr />
                     <h6>
-                      Think your vehicle should be sold via GasGuzzlrs
-                      Auctions? Please fill out the form below.
+                      Think your vehicle should be sold via GasGuzzlrs Auctions?
+                      Please fill out the form below.
                     </h6>
 
                     <form className="" onSubmit={handleNextSubmit}>
@@ -716,11 +705,12 @@ const VechilesRegistraion = () => {
                               <option selected disabled value="">
                                 Choose...
                               </option>
-                              {
-                                years(new Date().getFullYear() - 15).reverse().map((curVal) => {
-                                  return <option value={curVal}>
-                                    {curVal}
-                                  </option>
+                              {years(new Date().getFullYear() - 15)
+                                .reverse()
+                                .map((curVal) => {
+                                  return (
+                                    <option value={curVal}>{curVal}</option>
+                                  );
                                 })}
                             </select>
                           </div>
@@ -833,7 +823,7 @@ const VechilesRegistraion = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                        namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -973,7 +963,7 @@ const VechilesRegistraion = () => {
                                       style={{
                                         width: "100px",
                                         objectFit: "cover",
-                                        padding: "15px"
+                                        padding: "15px",
                                       }}
                                     />
                                   </span>
@@ -994,7 +984,6 @@ const VechilesRegistraion = () => {
                                 required
                                 multiple
                               />
-
                             </div>
                           </div>
                         </div>
@@ -1016,7 +1005,7 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1084,7 +1073,7 @@ const VechilesRegistraion = () => {
                                 value="Yes"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? true
                                     : false
                                 }
@@ -1095,7 +1084,7 @@ const VechilesRegistraion = () => {
                                 value="No"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? true
                                     : false
                                 }
@@ -1106,7 +1095,7 @@ const VechilesRegistraion = () => {
                                 value="classified"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? false
                                     : true
                                 }
@@ -1118,7 +1107,7 @@ const VechilesRegistraion = () => {
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
-                          "classified" ? (
+                        "classified" ? (
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <FormInput
@@ -1479,8 +1468,6 @@ const VechilesRegistraion = () => {
                                 required
                               />
 
-
-
                               {/* <UploadMImages /> */}
                             </div>
                           </div>
@@ -1510,8 +1497,8 @@ const VechilesRegistraion = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -2017,9 +2004,9 @@ const VechilesRegistraion = () => {
                               is below the reserve, GasGuzzlrs may choose (at
                               its sole discretion) to make up the difference. In
                               this case the vehicle will appear as sold at the
-                              below-reserve price and GasGuzzlrs will pay me
-                              the difference between the high bid and the
-                              reserve once the transaction is complete.
+                              below-reserve price and GasGuzzlrs will pay me the
+                              difference between the high bid and the reserve
+                              once the transaction is complete.
                             </label>
                           </div>
                         </div>
@@ -2040,8 +2027,8 @@ const VechilesRegistraion = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     <h3>Contact Info</h3>
                     <hr />
@@ -2197,7 +2184,53 @@ const VechilesRegistraion = () => {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+      <Modal
+        show={showVidnModal}
+        onHide={handleVinClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <button
+                onClick={handleVinClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={validateVin}>
+                <div className="row">
+                  <div className="col-12">
+                    <div className="form-group">
+                      <FormInput
+                        name="bid"
+                        value={getVinNumber}
+                        onChange={(e) => setGetVinNumber(e.target.value)}
+                        label="What is the VIN"
+                        placeholder="Enter VIN"
+                        errorMessage="VIN should be 17 characters and shouldn't include any special character!"
+                        pattern="^[A-Za-z0-9]{17}$"
+                        required={true}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12 d-flex justify-content-center pt-4 ">
+                    <button className="btn" type="submit">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 };
 

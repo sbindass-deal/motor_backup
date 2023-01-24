@@ -250,7 +250,7 @@ function Header() {
                           {logingUser.dayAndNightMode.mode ? (
                             <img src={sunIcon} loading="lazy" />
                           ) : (
-                              <img src={smoonIcon} loading="lazy" />
+                            <img src={smoonIcon} loading="lazy" />
                           )}
                         </button>
                       </li>
@@ -499,7 +499,7 @@ function Header() {
                         {logingUser.dayAndNightMode.mode ? (
                           <img src={sunIcon} loading="lazy" />
                         ) : (
-                            <img src={smoonIcon} loading="lazy" />
+                          <img src={smoonIcon} loading="lazy" />
                         )}
                       </button>
                     </li>

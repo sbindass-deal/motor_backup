@@ -120,7 +120,7 @@ const App = () => {
 
   axios.interceptors.request.use(
     (req) => {
-      req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+      req.headers = logingUser.login.token;
       return req;
     },
     (err) => {
@@ -169,7 +169,6 @@ const App = () => {
           <Layout />
         </RainbowKitProvider>
       </WagmiConfig>
-    
     </>
   );
 };

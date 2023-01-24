@@ -173,17 +173,6 @@ function CarRaffle() {
       return;
     }
     handleShow();
-    // axios
-    //   .post(process.env.REACT_APP_URL + "addTicket", {
-    //     lottery_id: showLotary.id,
-    //     qty: parseInt(inputLotteryNumber, 10),
-    //     enc: newEncryptedvalue,
-    //   })
-    //   .then((res) => {
-    //     handleShow();
-    //   });
-    // setInputLotteryNumber("");
-    // fetchLotaryApiAll();
   };
 
   const onToken = (token, addresses) => {
@@ -210,27 +199,12 @@ function CarRaffle() {
         enc: newEncryptedvalue,
       })
       .then((res) => {
-        // console.log(11, res.data.message);
         setValidUser(res.data.message);
       });
   };
 
   useEffect(() => {
     validateUser();
-  }, []);
-
-  const fetchImage = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}/getAlllottery-image/16`
-      );
-      setLotteryImage(res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    fetchImage();
   }, []);
 
   return (
@@ -243,16 +217,6 @@ function CarRaffle() {
           />
           Your browser does not support the video tag.
         </video>
-
-        {/* <iframe
-          width="1263"
-          height="480"
-          src="https://s3.amazonaws.com/beta.gasguzzlrs.com/Introducing_video.mp4"
-          title="WELCOME TO GAS GUZZLRS"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe> */}
       </section>
 
       <section className="ptb_80 pt_sm_50">
@@ -276,51 +240,33 @@ function CarRaffle() {
                         <li data-target="#adsSlide" data-slide-to="1"></li>
                         <li data-target="#adsSlide" data-slide-to="2"></li>
                       </ul>
-
-                      {/* <div className="carousel-inner">
-                        <div
-                          onClick={() => handleImageHow(0)}
-                          className="carousel-item active"
-                          style={{ cursor: "pointer" }}
-                        >
-                          <img src={ads_car_2} alt="ads car"  loading="lazy"/>
-                        </div>
-                        <div
-                          onClick={() => handleImageHow(1)}
-                          className="carousel-item"
-                          style={{ cursor: "pointer" }}
-                        >
-                          <img src={ads_car_3} alt="ads car"  loading="lazy"/>
-                        </div>
-                        <div
-                          onClick={() => handleImageHow(2)}
-                          className="carousel-item"
-                          style={{ cursor: "pointer" }}
-                        >
-                          <img src={ads_car_1} alt="ads car"  loading="lazy"/>
-                        </div>
-                      </div> */}
                       <Carousel
                         nextLabel=""
                         prevLabel=""
                         activeIndex={index}
                         onSelect={handleSelect}
                       >
-                        {/* {lotteryImage.map((curElem) => {
-                          return ( */}
                         <Carousel.Item
                           // onClick={() => handleImageHow(0)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
-                          // key={curElem.id}
                         >
-                          <img
-                            className="d-block w-100 img-fluid"
-                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                            src={ads_car_2}
-                            loading="lazy"
-                            alt="First slide"
-                          />
+                          {showLotary.images && (
+                            <img
+                              loading="lazy"
+                              className="d-block w-100 img-fluid"
+                              src={
+                                showLotary.images[0] &&
+                                `${process.env.REACT_APP_URL}/${showLotary.images[0].imagePath}/${showLotary.images[0].imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          )}
                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
 
@@ -328,15 +274,23 @@ function CarRaffle() {
                           // onClick={() => handleImageHow(0)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
-                          // key={curElem.id}
                         >
-                          <img
-                            className="d-block w-100 img-fluid"
-                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                            src={ads_car_3}
-                            loading="lazy"
-                            alt="First slide"
-                          />
+                          {showLotary.images && (
+                            <img
+                              loading="lazy"
+                              className="d-block w-100 img-fluid"
+                              src={
+                                showLotary.images[1] &&
+                                `${process.env.REACT_APP_URL}/${showLotary.images[1].imagePath}/${showLotary.images[1].imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          )}
                           <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
 
@@ -344,30 +298,29 @@ function CarRaffle() {
                           // onClick={() => handleImageHow(0)}
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
-                          // key={curElem.id}
                         >
-                          <img
-                            className="d-block w-100 img-fluid"
-                            // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                            src={ads_car_1}
-                            loading="lazy"
-                            alt="First slide"
-                          />
+                          {showLotary.images && (
+                            <img
+                              loading="lazy"
+                              className="d-block w-100 img-fluid"
+                              src={
+                                showLotary.images[2] &&
+                                `${process.env.REACT_APP_URL}/${showLotary.images[2].imagePath}/${showLotary.images[2].imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          )}
                         </Carousel.Item>
                       </Carousel>
                     </div>
                   </div>
                   <div className="col-12 col-md-7 pp-0">
                     <div className="" key={showLotary.id}>
-                      {/* <h5 className="m-0">Lottery Prize</h5> */}
-                      {/* <div className="lotteryPriceNumber">
-                        <div className="price_normal">${showLotary.price}</div>
-                      </div>
-                      <div className="mb-3">
-                        <i className="fa-solid fa-circle-info"></i> Lottery
-                        Breakdown
-                      </div> */}
-
                       <div className="counterCol">
                         <h5>Countdown to the next draw</h5>
                         {t > 0 ? (
@@ -431,7 +384,7 @@ function CarRaffle() {
                 <div className="row row_gap_5 ">
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticket} loading="lazy" />
+                      <img loading="lazy" src={ticket} />
                     </div>
                     <h5>
                       Price at
@@ -441,7 +394,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={ticketSocket} loading="lazy" />
+                      <img loading="lazy" src={ticketSocket} />
                     </div>
                     <h5>
                       Total
@@ -451,7 +404,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={weekly} loading="lazy" />
+                      <img loading="lazy" src={weekly} />
                     </div>
                     <h5>
                       Last date to <br />
@@ -464,7 +417,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
-                      <img src={reword} loading="lazy" />
+                      <img loading="lazy" src={reword} />
                     </div>
                     <h5>
                       Winner to be
@@ -483,7 +436,9 @@ function CarRaffle() {
                   <div className="row row_gap_5 ssss">
                     {/* <div className="col-12 mb-3">
                     <h5>
-                      <img src={bnb_coin} className="mr-2" /> Enter Car Lottery
+                      <img
+                        loading="lazy"
+                       src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -533,12 +488,9 @@ function CarRaffle() {
                             ? 0
                             : setUserLotteryDetails.data}
                         </div>
-                        
+
                         <div className="MT_Price">
                           Total Amount-$
-                          {/* {logingUser.login.token ? : showLotary.price &&
-                            setUserLotteryDetails.data &&
-                            showLotary.price * setUserLotteryDetails.data} */}
                           {logingUser.login.token == null
                             ? 0
                             : logingUser.login.token &&
@@ -547,7 +499,6 @@ function CarRaffle() {
                               showLotary.price * setUserLotteryDetails.data}
                         </div>
                       </div>
-                      {/* <div className="">1 Ticket = $ {showLotary.price}</div> */}
                     </div>
                   </div>
 
@@ -661,24 +612,20 @@ function CarRaffle() {
         </Modal.Header>
         <Modal.Body>
           {/* <img
+          loading="lazy"
             src={showImage}
             alt=""
             style={{ maxHeight: "67vh", width: "100%" }}
           /> */}
           <Carousel activeIndex={index} onSelect={handleSelect}>
-            {lotteryImage.map((curElem) => {
-              console.log(2222, curElem);
-              return (
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100 img-fluid"
-                    // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
-                    alt="First slide"
-                    loading="lazy"
-                  />
-                </Carousel.Item>
-              );
-            })}
+            <Carousel.Item>
+              <img
+                loading="lazy"
+                className="d-block w-100 img-fluid"
+                // src={`${process.env.REACT_APP_URL}${curElem.imagePath}/${curElem.imageName}`}
+                alt="First slide"
+              />
+            </Carousel.Item>
           </Carousel>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
@@ -706,8 +653,12 @@ function CarRaffle() {
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>
 
-                {/* <img src={Paypal} />
-              <img src={Stipe} /> */}
+                {/* <img
+                  loading="lazy"
+                 src={Paypal} />
+              <img
+                loading="lazy"
+               src={Stipe} /> */}
               </div>
               <div>
                 <StripeCheckout

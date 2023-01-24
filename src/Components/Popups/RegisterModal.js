@@ -49,6 +49,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     phone: "",
     userName: "",
     dealer: "",
+    dealerDescription: "",
     password: "",
     cPassword: "",
   });
@@ -60,8 +61,16 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const handleApi = (e) => {
     e.preventDefault();
 
-    const { name, email, phone, userName, dealer, password, cPassword } =
-      userInput;
+    const {
+      name,
+      email,
+      phone,
+      userName,
+      dealer,
+      dealerDescription,
+      password,
+      cPassword,
+    } = userInput;
     axios
       .post(`${url}users`, {
         email,
@@ -71,6 +80,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
         name,
         mobile: phone,
         dealer,
+        dealerDescription,
         addUserInBid,
         cardName: inputValue.name,
         cardPhone: inputValue.phone,
@@ -109,7 +119,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div className="modal-content">
-        
           <div className="modal-header border-0">
             <h4 className="modal-title">Register</h4>
             <button
@@ -186,11 +195,34 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <option selected disabled value="">
                         Choose...
                       </option>
-                      <option>Yes</option>
-                      <option>No</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
                     </select>
                   </div>
                 </div>
+
+                {userInput.dealer === "Yes" && (
+                  <div className="col-md-12 col-lg-12 col-sm-12">
+                    <div class="mb-3">
+                      <label
+                        htmlFor="exampleFormControlTextarea1"
+                        class="form-label"
+                      >
+                        Description
+                      </label>
+                      <textarea
+                        value={userInput.dealerDescription}
+                        onChange={handleUserInput}
+                        name="dealerDescription"
+                        placeholder="Enter Description"
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                )}
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
                     value={userInput.password}

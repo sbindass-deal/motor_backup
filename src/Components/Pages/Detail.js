@@ -1,51 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
-import Carousel from "react-bootstrap/Carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../redux/reducers/login";
 import { toast } from "react-toastify";
+import FormInput from "../UI/FormInput";
 
 function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
-
+  const moreImgRaf = useRef();
   const [vehicle, setVehicle] = useState({});
   const [comments, setcomments] = useState([]);
   const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
-  const [index, setIndex] = useState(0);
-
   //setInputComment
   const [inputcomment, setInputComment] = useState("");
   const [bidValue, setBidValue] = useState();
   const [bidComment, setBidComment] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
-  const [modalShow, setModalShow] = useState(false);
-  const [showImage, setShowImage] = useState([]);
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
-  const closeMoal = () => {
-    setModalShow(false);
-  };
-  const handleImageHow = async (id) => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_URL + "/vehicle-image/" + id
-      );
-      setShowImage(response.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-    setModalShow(true);
-  };
 
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
@@ -177,7 +155,6 @@ function Detail() {
     setNewTiem(
       parseInt(new Date(filteredSingleVehicle[0].EndTime).getTime(), 10)
     );
-    // console.log("api date", new Date(res.data.data[0].EndTime));
   }, [vehicleDatas, id]);
 
   const getBidingDetails = () => {
@@ -206,10 +183,13 @@ function Detail() {
       })
       .then((res) => {
         if (res.data.status === 200) {
-          setVehicle({});
+          window.location.reload(false);
         }
-        console.log(res);
       });
+  };
+
+  const handleMorePhoto = () => {
+    moreImgRaf.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
 
   return (
@@ -237,21 +217,28 @@ function Detail() {
                       </span>
                     </li>
                     <li>
-                      {vehicle.approved === "1" && (
+                      {vehicle.approved !== "1" ? (
+                        "Upcoming Auction"
+                      ) : vehicle.approved === "1" && t > 0 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
-                          {days} days {hours} hours, {minutes} minutes,{" "}
-                          {seconds} seconds *
+                          {days}days, {hours <= 9 && "0"}
+                          {hours}h : {minutes <= 9 && "0"}
+                          {minutes}m : {seconds <= 9 && "0"}
+                          {seconds}s
                         </span>
+                      ) : (
+                        "Auction Closed"
                       )}
                     </li>
-                    {vehicle.reserve === "Yes" && vehicle.approved === "1" ? (
-                      <li className="reserved">
-                        Reserve: <span>{vehicle.reserve}</span>
-                      </li>
-                    ) : (
-                      "Upcoming Auction"
-                    )}
+
+                    {vehicle.reserve === "Yes" &&
+                      vehicle.approved === "1" &&
+                      t > 0 && (
+                        <li className="reserved">
+                          Reserve: <span>{vehicle.reserve}</span>
+                        </li>
+                      )}
                   </ul>
                 </div>
                 <div className="d-flex">
@@ -275,23 +262,11 @@ function Detail() {
                     </a>
                   )}
 
-                  {/* {vehicle.approved === "1" && vehicle.canBid === "yes" ? (
-                    <button
-                      type="button"
-                      className="gry_btn active"
-                      onClick={handleShow}
-                    >
-                      Place a bid
-                    </button>
-                  ) : vehicle.approved === "1" &&
-                    vehicle.canBid === "no" ? null : (
-                    <div className="">Upcoming Auction</div>
-                  )} */}
                   <button
                     type="button"
                     className="gry_btn active"
                     onClick={handleShow}
-                    disabled={vehicle.approved !== "1" ? true : false}
+                    disabled={vehicle.approved !== "1" || t < 0 ? true : false}
                   >
                     Place a bid
                   </button>
@@ -371,7 +346,7 @@ function Detail() {
               </div>
               <div className="dropdown mr-2">
                 <button
-                  onClick={() => handleImageHow(id)}
+                  onClick={handleMorePhoto}
                   type="button"
                   className="gry_btn"
                 >
@@ -475,12 +450,19 @@ function Detail() {
                         </div>
                       </li>
                       <li>
-                        {vehicle.approved === "1" && t > 0 && (
+                        {vehicle.approved !== "1" ? (
+                          "Upcoming Auction"
+                        ) : vehicle.approved === "1" && t > 0 ? (
                           <span>
                             <label>Ends In:&nbsp;</label>
-                            {days} days {hours} hours, {minutes} minutes,{" "}
-                            {seconds} seconds *
+                            {days <= 9 && "0"}
+                            {days} days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
                           </span>
+                        ) : (
+                          "Auction Closed"
                         )}
                       </li>
 
@@ -488,33 +470,13 @@ function Detail() {
                         <label>Bids</label>
                         <div>{biding ? biding.length : 0}</div>
                       </li>
-
-                      {/* <li>
-                        {vehicle.approved === "1" &&
-                        vehicle.canBid === "yes" ? (
-                          <>
-                            <label>Place Bid</label>
-                            <button
-                              type="button"
-                              className="gry_btn active"
-                              onClick={handleShow}
-                            >
-                              Place a bid
-                            </button>
-                          </>
-                        ) : vehicle.approved === "1" &&
-                          vehicle.canBid === "no" ? (
-                          "You are seller"
-                        ) : (
-                          <div>Upcoming Auction</div>
-                        )}
-                      </li> */}
-                      {/* {logingUser.login.token} */}
                       <button
                         type="button"
                         className="gry_btn active"
                         onClick={handleShow}
-                        disabled={vehicle.approved !== "1" ? true : false}
+                        disabled={
+                          vehicle.approved !== "1" || t < 0 ? true : false
+                        }
                       >
                         Place a bid
                       </button>
@@ -536,7 +498,7 @@ function Detail() {
                 </div>
                 <div className=" phG">
                   <h5>PHOTO GALLERY </h5>
-                  <div class="card-group">
+                  <div ref={moreImgRaf} class="card-group">
                     {vehicle.images &&
                       vehicle.images.map((curElem) => {
                         return (
@@ -631,45 +593,6 @@ function Detail() {
         </div>
       </section>
       <Modal
-        show={modalShow}
-        onHide={closeMoal}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <Modal.Title id="contained-modal-title-vcenter">Image</Modal.Title>
-          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
-            X
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <Carousel activeIndex={index} onSelect={handleSelect}>
-            {showImage.map((curElem) => {
-              return (
-                <Carousel.Item key={curElem.id}>
-                  <img
-                    loading="lazy"
-                    className="d-block w-100"
-                    src={
-                      process.env.REACT_APP_URL +
-                      curElem.imagePath +
-                      curElem.imageName
-                    }
-                    alt={curElem.imageName}
-                  />
-                  <Carousel.Caption></Carousel.Caption>
-                </Carousel.Item>
-              );
-            })}
-          </Carousel>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
-
-      <Modal
         show={show}
         onHide={handleClose}
         className="modal fade"
@@ -689,43 +612,33 @@ function Detail() {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
-
             <div className="modal-body">
               <form onSubmit={addBiding}>
                 <div className="row">
-                  <div className="col-12 col-md-12">
+                  <div className="col-12 ">
                     <div className="form-group">
-                      <input
+                      <FormInput
                         value={bidValue}
-                        max={9999999999}
-                        min={0}
-                        onChange={(e) => {
-                          if (
-                            e.target.value.trim().length >= 10 ||
-                            e.target.value.trim().length < 0
-                          ) {
-                            return false;
-                          }
-                          handleBidInput(e);
-                        }}
-                        type="number"
-                        className="form-control"
+                        onChange={handleBidInput}
+                        name="bid"
                         placeholder="Please enter bid amount"
-                        required
+                        errorMessage="Amount should be 1-9 characters and shouldn't include any special character and alphabet!"
+                        label="Bid Amount"
+                        pattern="^[0-9]{1,12}$"
+                        required={true}
                       />
                     </div>
-                    <div class="col-md-12">
-                      <label for="validationCustom01" class="form-label">
-                        comment
-                      </label>
-                      <textarea
+                  </div>
+                  <div className="col-12">
+                    <div class="form-group">
+                      <FormInput
                         value={bidComment}
                         onChange={(e) => setBidComment(e.target.value)}
-                        class="form-control"
-                        id="bidCommetn"
-                        placeholder="Enter commemts"
-                        rows="3"
-                      ></textarea>
+                        name="comment"
+                        placeholder="Enter comment"
+                        label="comment"
+                        style={{ height: "15vh" }}
+                      />
                     </div>
                   </div>
                   <div className="col-12 d-flex justify-content-center pt-4 ">
