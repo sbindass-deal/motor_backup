@@ -54,38 +54,38 @@ const EditRaffle = () => {
     fetchLottery();
   }, [id]);
 
-  const uploadFileOne = async (vehicleId) => {
-    for (let i = 0; i < file.length; i++) {
-      const url = process.env.REACT_APP_URL + "lottery-image";
-      const formData = new FormData();
-      formData.append("image", file[i]);
-      formData.append("lottery_id", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
-  };
-  const uploadFileVideo = async (vehicleId) => {
-    for (let i = 0; i < videoFile.length; i++) {
-      const url = process.env.REACT_APP_URL + "lottery-image";
-      const formData = new FormData();
-      formData.append("image", videoFile[i]);
-      formData.append("lottery_id", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
-  };
+  // const uploadFileOne = async (vehicleId) => {
+  //   for (let i = 0; i < file.length; i++) {
+  //     const url = process.env.REACT_APP_URL + "lottery-image";
+  //     const formData = new FormData();
+  //     formData.append("image", file[i]);
+  //     formData.append("lottery_id", vehicleId);
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     };
+  //     await axios.post(url, formData, config).then((response) => {
+  //       console.log(response.data);
+  //     });
+  //   }
+  // };
+  // const uploadFileVideo = async (vehicleId) => {
+  //   for (let i = 0; i < videoFile.length; i++) {
+  //     const url = process.env.REACT_APP_URL + "lottery-image";
+  //     const formData = new FormData();
+  //     formData.append("image", videoFile[i]);
+  //     formData.append("lottery_id", vehicleId);
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     };
+  //     await axios.post(url, formData, config).then((response) => {
+  //       console.log(response.data);
+  //     });
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,18 +99,53 @@ const EditRaffle = () => {
         stock: raffle.stock,
         drawdate: raffle.dedline,
       })
-      .then((response) => {
+      .then(async (response) => {
         if (response.status === 200) {
-          uploadFileOne(id);
-          // uploadFileVideo(id);
-          navigate("/raffleadmin");
+          console.log("DATA", response.data)
+          uploadEditImage(response.data.id);
+          await videoUpload(response.data.id);
+          // navigate("/raffleadmin");
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const [editRaffleImage, setEditRaffleImage] = useState([])
 
+  const uploadEditImage = async (id) => {
+    const url = process.env.REACT_APP_URL + "lottery-image";
+    const formData = new FormData();
+    [...editRaffleImage]?.forEach((img) => formData.append("image", img))
+    formData.append("id", id)
+    await axios.post( url, formData)
+  }
+
+    
+  const [editRaffleVideo, setEditRaffleVideo] = useState([])
+  const [blobVideo, setBlobVideo] = useState("")
+  console.log("$$$$$$$", editRaffleVideo)
+  const videoUpload = async (id) => {
+    const url = process.env.REACT_APP_URL + "lottery-image";
+    const formData = new FormData();
+    formData.append("video", editRaffleVideo)
+    formData.append("id", id);
+    
+    await axios.post(url, formData)
+  }
+
+  const maxAllowedSize = 3 * 1024 * 1024;
+  const handleVideo = (event) => {
+    const file = event.target.files[0];
+    if (file.size > maxAllowedSize) {
+      alert("Video size must be less than 3 mb")
+      return
+    }
+
+    setEditRaffleVideo(file)
+    const url = URL.createObjectURL(file);
+    setBlobVideo(url)
+  }
   return (
     <div className="container">
       <div className="row">
@@ -194,14 +229,19 @@ const EditRaffle = () => {
             <div className="col-12 col-md-6">
               <label>Upload Photos</label>
               <div className="form-group">
+                {
+                  Array.from(editRaffleImage).map((item) => {
+                    return (
+                      <span>
+                        <img src={item ? URL.createObjectURL(item) : null} style={{ objectFit: "cover", padding: "15px", width: "85px" }} />
+                      </span>
+                    )
+                  })
+                }
                 <input
-                  style={{
-                    fontSize: "1.2rem",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
+
                   onChange={(e) => {
-                    setFile(e.target.files);
+                    setEditRaffleImage(e.target.files);
                   }}
                   name="file"
                   type="file"
@@ -213,18 +253,19 @@ const EditRaffle = () => {
               <label>Upload Videos</label>
               <div className="form-group">
                 <input
-                  style={{
-                    fontSize: "1.2rem",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                  onChange={(e) => {
-                    setVideoFile(e.target.files);
-                  }}
-                  name="file"
                   type="file"
+                  onChange={handleVideo}
+                  accept=".mov,.mp4"
+
                   multiple
                 />
+                {blobVideo && <video
+                  width="80%"
+                  height={100}
+                  controls
+                  src={blobVideo}
+                />
+                }
               </div>
             </div>
             <div className="col-12 col-md-12">

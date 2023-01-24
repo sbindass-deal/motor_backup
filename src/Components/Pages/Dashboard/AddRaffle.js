@@ -51,7 +51,7 @@ const AddRaffle = () => {
           console.log("@@@@@@@@@@@", response.data)
           uploadImage(response.data.vehicleId);
           await uploadFileVideo(response.data.vehicleId);
-          // navigate("/raffleadmin");
+          navigate("/raffleadmin");
         }
       })
       .catch((error) => {
@@ -70,7 +70,7 @@ const AddRaffle = () => {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    };
+    }
     const data = await axios.post(url, formData, config);
   }
 
@@ -198,6 +198,7 @@ const AddRaffle = () => {
                     </span>
                   )
                 })}
+
                 <input type="file"
                   // controls
                   onChange={(e) => {
