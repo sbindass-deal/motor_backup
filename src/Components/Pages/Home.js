@@ -9,6 +9,11 @@ import img_06 from "../../Assets/images/img_06.jpg";
 import addBanner from "../../Assets/images/Mask-group.png";
 import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 import ads_car_2 from "../../Assets/images/home-raffel.png";
+import Ferrari_512 from "../../Assets/images/1984_Ferrari_512_BBi.jpeg"
+import Nissan_Fairlady from "../../Assets/images/Nissan_Fairlady.jpeg"
+import manual_2dr_cpe from "../../Assets/images/manual-2dr-cpe.jpeg"
+import BMW_Z4_Roadste from "../../Assets/images/BMW-Z4-Roadster-Right-Front-Three-Quarter-153914.jpg"
+import ferrari_portofino from "../../Assets/images/2018-ferrari-portofino.jpg"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -155,7 +160,7 @@ function Home() {
                         <img src={Img_01} alt="Img_01" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>Aston Martin DBS 6-Speed</h4>
                         <p>
                           This 2009 Aston Martin DBS is finished in Casino
                           Royale Metallic over a black leather and Alcantara
@@ -179,18 +184,12 @@ function Home() {
                   <div>
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_02} alt="Img_02" />
+                        <img src={manual_2dr_cpe} alt="Img_02" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>2009 Aston Martin DBS, 6-SPEED MANUAL </h4>
                         <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                        With just over 13,600 miles and two owners from new, this is an excellent collector grade vehicle. New Tires have been mounted and a fresh oil change has been completed. This DBS is stunning and its V12 absolutely purrs. Early production DBS' were not available with premium sound and so as a dealer option, a premium Focal sound system was installed.
                         </p>
                         <ul className="labelList">
                           <li>
@@ -206,18 +205,14 @@ function Home() {
                   <div>
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_01} alt="Img_01" />
+                        <img src={BMW_Z4_Roadste} alt="Img_01" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>BMW Z4 Roadster Right Front Three Quarter</h4>
                         <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                        Comfort, luxury - Quiet, the look/feel of the interior is luxurious, top-notch quality
+                        Properly equipped - This 3 is well-endowed with new-age features, lots of tech bits
+
                         </p>
                         <ul className="labelList">
                           <li>
@@ -233,18 +228,12 @@ function Home() {
                   <div>
                     <div className="card_post">
                       <div className="card_postImg">
-                        <img src={Img_02} alt="Img_02" />
+                        <img src={ferrari_portofino} alt="Img_02" />
                       </div>
                       <div className="card_postInfo">
-                        <h4>12k-Mile 2009 Aston Martin DBS 6-Speed</h4>
+                        <h4>Ferrari</h4>
                         <p>
-                          This 2009 Aston Martin DBS is finished in Casino
-                          Royale Metallic over a black leather and Alcantara
-                          interior and is powered by a 5.9-liter V12 mated to a
-                          six-speed manual transaxle and a limited-slip
-                          differential. Additional equipment includes front and
-                          rear parking sensors, 20” alloy wheels, carbon-ceramic
-                          brakes…
+                        Throughout the entire the history of Ferrari, there have only been three other names of Italian locations associated with one of the marque’s famed supercars. The 550 Maranello (followed by the 575M Maranello), the 360 Modena, and the 599 GTB Fiorano…
                         </p>
                         <ul className="labelList">
                           <li>
@@ -483,7 +472,7 @@ function Home() {
               <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7">
                   <div className="blogPost">
-                    <img src={car_03} alt="car_03" />
+                    <img src={Ferrari_512} alt="car_03" />
                   </div>
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
@@ -491,10 +480,10 @@ function Home() {
                     <h4>GasGuzzlrs Auction: 1984 Ferrari 512 BBi</h4>
                     <ul className="post_labelList">
                       <li>
-                        <i className="fa-solid fa-clock"></i> September 13, 2022
+                        <i className="fa-solid fa-clock"></i> April 13, 2022
                       </li>
                       <li>
-                        <i className="fa-solid fa-location-dot"></i> Italian
+                        <i className="fa-solid fa-location-dot"></i> Texas
                       </li>
                       <li>
                         <i className="fa-solid fa-comment-dots"></i> 14 Comments
@@ -519,7 +508,7 @@ function Home() {
               <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7 order-md-1">
                   <div className="blogPost">
-                    <img src={car_04} alt="car_04" />
+                    <img src={Nissan_Fairlady} alt="car_04" />
                   </div>
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
@@ -530,20 +519,15 @@ function Home() {
                         <i className="fa-solid fa-clock"></i> September 13, 2022
                       </li>
                       <li>
-                        <i className="fa-solid fa-location-dot"></i> Italian
+                        <i className="fa-solid fa-location-dot"></i> Miami
                       </li>
                       <li>
                         <i className="fa-solid fa-comment-dots"></i> 14 Comments
                       </li>
                     </ul>
                     <p>
-                      This 1962 Jaguar XKE is a left-hand-drive Series I coupe
-                      that was completed on June 7, 1962, and is said to have
-                      been sold new in California. It was moved to Michigan in
-                      1987 and underwent a mechanical refurbishment by Eclectic
-                      Motorworks of Holland, Michigan, that was completed in
-                      2020 before it was acquired by the selling dealer from its
-                      owner of 35 years in 2021.
+                    The Datsun 240Z upended the sports car world when it arrived, offering closed-coupe comfort with six-cylinder performance beyond many European roadsters and coupes on the market. The Z’s performance, $3,500 price, and semi-exotic styling (for the time) made it an immediate hit. It would be the rare car enthusiast today who did not know how well the rest of the story went. Suffice to say, more than 50 years later, the Z is still with us and still impressing with the same attributes that made the original an instant legend.
+
                     </p>
                     <Link to="/blogdetail" className="btn">
                       Read More
@@ -551,7 +535,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <div className="row pb_30">
+
+              {/* <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7">
                   <div className="blogPost">
                     <img src={img_05} alt="img_05" />
@@ -620,7 +605,7 @@ function Home() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="row">
                 <div className="col-12 text-center pt_40">
                   <Link to="/blogdetail" className="btn">

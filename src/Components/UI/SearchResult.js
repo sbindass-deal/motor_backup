@@ -57,7 +57,7 @@ const SearchResult = () => {
                   );
                   navigate("/");
                 }}
-                className="btn"
+                className="btn btn_change"
               >
                 Notify me
               </button>

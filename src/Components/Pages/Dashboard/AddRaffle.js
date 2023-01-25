@@ -9,7 +9,7 @@ import ms from "ms";
 const AddRaffle = () => {
   const navigate = useNavigate();
   const [minDate, setMinDate] = useState(null);
-  const [videoFile, setVideoFile] = useState([]);
+  // const [videoFile, setVideoFile] = useState([]);
   const [file, setFile] = useState([]);
 
   useEffect(() => {
@@ -30,39 +30,9 @@ const AddRaffle = () => {
   const handleChange = (e) => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
-  const uploadFileOne = async (vehicleId) => {
-    for (let i = 0; i < file.length; i++) {
-      const url = process.env.REACT_APP_URL + "lottery-image";
-      const formData = new FormData();
-      formData.append("image", file[i]);
-      formData.append("lottery_id", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
-  };
 
-  const uploadFileVideo = async (vehicleId) => {
-    for (let i = 0; i < videoFile.length; i++) {
-      const url = process.env.REACT_APP_URL + "lottery-image";
-      const formData = new FormData();
-      formData.append("image", videoFile[i]);
-      formData.append("lottery_id", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
-  };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,10 +46,11 @@ const AddRaffle = () => {
         stock: raffle.stock,
         drawdate: raffle.dedline,
       })
-      .then((response) => {
+      .then(async (response) => {
         if (response.status === 200) {
-          uploadFileOne();
-          uploadFileVideo();
+          console.log("@@@@@@@@@@@", response.data)
+          uploadImage(response.data.vehicleId);
+          await uploadFileVideo(response.data.vehicleId);
           navigate("/raffleadmin");
         }
       })
@@ -89,21 +60,51 @@ const AddRaffle = () => {
   };
   
   const [image, setImage] = useState([])
-console.log(222,image)
 
-const uploadImg=async()=>{
-const res=await axios.post('')
-}
-  const inputRef = React.useRef();
-  const [videoSource, setVideoSource] = React.useState();
+  const uploadImage = async (vehicleId) => {
+    const url = process.env.REACT_APP_URL + "lottery-image";
+    const formData = new FormData();              
+    [...image]?.forEach((img) => formData.append("image", img))
+    formData.append("vehicleId", vehicleId);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+    const data = await axios.post(url, formData, config);
+  }
+
+  const maxAllowedSize = 3 * 1024 * 1024;
+  const [videoSource, setVideoSource] = React.useState([])
+  const [videoBlob, setVideoBlob] = React.useState("");
+
+  const uploadFileVideo = async (vehicleId) => {
+
+    console.log("###############", videoSource, vehicleId);
+
+    const url = process.env.REACT_APP_URL + "lottery-image";
+    const formData = new FormData();
+    formData.append("video", videoSource);
+    formData.append("id", vehicleId)
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+    const data = await axios.post(url, formData, config)
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    if(file.size > maxAllowedSize){
+      alert("Video size must be less than 3 mb")
+      return 
+    }
+    setVideoSource(file);
     const url = URL.createObjectURL(file);
-    setVideoSource(url);
+    setVideoBlob(url)
   };
 
-  
   return (
     <div className="container">
       <div className="row">
@@ -187,7 +188,7 @@ const res=await axios.post('')
             </div>
             {/* ---------------------img upload--keshav------------- */}
             <div className="col-12 col-md-6">
-              <label>Upload Photos##########</label>
+              <label>Upload Photos</label>
               <div className="form-group">
 
                 {Array.from(image).map((items) => {
@@ -197,8 +198,9 @@ const res=await axios.post('')
                     </span>
                   )
                 })}
+
                 <input type="file"
-                // controls
+                  // controls
                   onChange={(e) => {
                     setImage(e.target.files);
                   }}
@@ -214,25 +216,22 @@ const res=await axios.post('')
               <div className="form-group">
 
                 <input
-                  ref={inputRef}
-                  // className="VideoInput_input"
                   type="file"
                   onChange={handleFileChange}
                   accept=".mov,.mp4"
                 />
 
-                {videoSource && (
+                {videoBlob && (
                   <video
-                    // className="VideoInput_video"
                     width="80%"
                     height={100}
                     controls
-                    src={videoSource}
+                    src={videoBlob}
                   />
                 )}
-                {/* {!videoSource && <button onClick={handleChoose}>Choose</button>} */}
+              
 
-                {/* {<div className="VideoInput_footer">{videoSource || "Nothing selectd"}</div>} */}
+              
               </div>
             </div>
             <div className="col-md-12 mb-3">
@@ -264,6 +263,6 @@ const res=await axios.post('')
       </div>
     </div>
   );
-};
+}
 
 export default AddRaffle;
