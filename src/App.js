@@ -117,10 +117,16 @@ const App = () => {
         : removeBodyClass(className);
     };
   }, [className]);
+  // axios.interceptors.request.use(
+  //   (req) => {
+  //     req.headers.Authorization = `Bearer ${logingUser.login.token}`;
+  //     return req;
+  //   },
 
   axios.interceptors.request.use(
     (req) => {
-      req.headers = logingUser.login.token;
+      // console.log(111,req.url.includes("api.vehicledatabases.com"))
+      req.headers.Authorization = logingUser.login.token;
       return req;
     },
     (err) => {

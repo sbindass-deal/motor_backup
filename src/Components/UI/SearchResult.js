@@ -48,13 +48,7 @@ const SearchResult = () => {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h5>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Consequuntur doloremque dignissimos rem ut ex nihil veniam
-                temporibus, nesciunt recusandae. Voluptates voluptate
-                exercitationem vitae dolores, cum rerum fuga corporis odio
-                explicabo.
-              </h5>
+              <h5>{searchedData.moreDescription}</h5>
               <button
                 type="button"
                 onClick={() => {

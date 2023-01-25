@@ -173,8 +173,8 @@ const Charity = () => {
                                 alt="Maskgroup1"
                               />
                             ) : (
-                                <img
-                                  loading="lazy"
+                              <img
+                                loading="lazy"
                                 src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                                 alt="Maskgroup1"
                               />

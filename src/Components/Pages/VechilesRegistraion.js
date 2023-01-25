@@ -567,10 +567,27 @@ const VechilesRegistraion = () => {
   useEffect(() => {
     handleVinShow();
   }, []);
+  // get VIN details
 
   const validateVin = (e) => {
     e.preventDefault();
     handleVinClose();
+    const options = {
+      method: "GET",
+      url: "https://api.vehicledatabases.com/vin-decode/SAJWJ0FF3F8321657",
+      headers: {
+        "x-AuthKey": "ff1003dcaed74750a5370070efb780be",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   return (
