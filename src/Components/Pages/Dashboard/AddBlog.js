@@ -4,41 +4,42 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
-    const navigate = useNavigate()
-    const [file,setFile]=useState({})
+  const navigate = useNavigate();
+  const [file, setFile] = useState({});
   const [blogData, setBlogData] = useState({
     title: "",
     desc: "",
-    img:""
   });
   const handleChange = (e) => {
     setBlogData({ ...blogData, [e.target.name]: e.target.value });
   };
 
-  const handleApi = (e) => {
+  const handleApi = async (e) => {
     e.preventDefault();
-    const url = process.env.REACT_APP_URL;
-    let formdata=new FormData();
-    formdata.append("image",file);
-    
+    const url = `${process.env.REACT_APP_URL}addblogs`;
+    let formdata = new FormData();
+    formdata.append("image", file);
+    formdata.append("title", blogData.title);
+    formdata.append("description", blogData.desc);
+    formdata.append("likes", null);
+    formdata.append("view", null);
 
-    axios
-      .post(`${url}addblogs `, {
-        title: blogData.title,
-        description: blogData.desc,
-        likes: "",
-        view: "",
-        image:blogData.img
-      })
-      .then((result) => {
-        console.log("####",result)
-        if(result.status === 200){
-            navigate("/blog")
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios
+      .post(url, formdata, config)
+      .then((response) => {
+        if (response.status === 200) {
+          navigate("/blog");
         }
       })
-      .catch((error) => {});
-    setBlogData({ title: "", desc: "" ,img:""});
-    
+      .catch((error) => {
+        console.log(error);
+      });
+    setBlogData({ title: "", desc: "", img: "" });
   };
 
   return (
@@ -65,10 +66,9 @@ const AddBlog = () => {
               <div className="form-group">
                 <input
                   type="file"
-                  name="img"
-                  // value={blogData.img}
-                  onChange={(e)=>{
-                    setFile(e.target.files)
+                  name="image"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
                   }}
                   className="field"
                   placeholder="Product imge"
@@ -85,6 +85,7 @@ const AddBlog = () => {
                   name="desc"
                   placeholder="Description here"
                   required
+                  rows={11}
                 ></textarea>
               </div>
             </div>

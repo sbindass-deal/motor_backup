@@ -96,7 +96,29 @@ function RegisterModal({ showReg, handleCloseReg }) {
       .then((result) => {
         if (result.status === 200) {
           handleCloseReg();
-          notify(result.data.message);
+          notify("User Register successfully!");
+          setInputValue({
+            name: "",
+            phone: "",
+            address: "",
+            zip: "",
+            country: "",
+            cardnumber: "",
+            month: "",
+            year: "",
+            cvc: "",
+            hearAbout: "",
+          });
+          setUserInput({
+            name: "",
+            email: "",
+            phone: "",
+            userName: "",
+            dealer: "",
+            dealerDescription: "",
+            password: "",
+            cPassword: "",
+          });
         } else {
           notify(result.data.message);
         }

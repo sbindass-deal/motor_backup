@@ -502,7 +502,7 @@ function Detail() {
                     {vehicle.images &&
                       vehicle.images.map((curElem) => {
                         return (
-                          <div class="card mx-1">
+                          <div class="card mx-1 ">
                             <img
                               loading="lazy"
                               class="card-img-top"

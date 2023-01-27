@@ -1,10 +1,15 @@
 import { AutoComplete } from "antd";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { showResult } from "../../redux/reducers/dayAndNightMode";
 
 const Searchbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
+
+  const [searchText, setSearchText] = useState("");
   const vehicleData = logingUser.vehicleReducer.vehicleData;
 
   const [options, setOptions] = useState([]);
@@ -18,41 +23,57 @@ const Searchbar = () => {
       )
       .map((curElem, idx) => {
         return {
-          // value: query,
+          value: `${curElem.make}`,
           label: (
             <div
+              key={idx}
               style={{
                 display: "flex",
                 justifyContent: "space-between",
               }}
             >
-              <span>
-                <Link to={`/search/${curElem.make}/${query}`}>
-                  {curElem.make}
-                </Link>
-              </span>
+              <Link to="/search">{curElem.make}</Link>
             </div>
           ),
         };
       });
   const handleSearch = (value) => {
-    setOptions(value ? searchResult(value) : []);
+    const values = value.toLowerCase();
+    setOptions(value ? searchResult(values) : []);
   };
   const onSelect = (value) => {
-    console.log("onSelect", value);
+    console.log(1111, value, searchText);
+    setSearchText(value);
+    dispatch(showResult({ searchResult: value, searchKey: searchText }));
   };
 
   return (
     <div className="searchX">
       <AutoComplete
-        
         placeholder="Search..."
         options={options}
         onSelect={onSelect}
+        onChange={(e) => {
+          setSearchText(e);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            navigate("/search");
+          }
+        }}
         onSearch={handleSearch}
         className="searchSec"
       ></AutoComplete>
-      <i className="fa-solid fa-magnifying-glass"></i>
+      <Link
+        onClick={() => {
+          dispatch(
+            showResult({ searchResult: searchText, searchKey: searchText })
+          );
+        }}
+        to="/search"
+      >
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </Link>
     </div>
   );
 };

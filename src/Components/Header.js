@@ -678,20 +678,16 @@ function Header() {
                           Gear
                         </Link>
                       </li>
-                      {logingUser.login.token && (
-                        <li className="nav-item AddtCrt">
-                          {logingUser.cartSlice.quantity != 0 ? (
-                            <Link to="/cart">
-                              <i class="fa-solid fa-cart-shopping"></i>
-                              <span className="count">
-                                {logingUser.cartSlice.quantity}
-                              </span>
-                            </Link>
-                          ) : (
-                            ""
-                          )}
-                        </li>
-                      )}
+                      <li className="nav-item AddtCrt">
+                        {logingUser.cartSlice.quantity !== 0 ? (
+                          <Link to="/cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span className="count">
+                              {logingUser.cartSlice.quantity}
+                            </span>
+                          </Link>
+                        ) : null}
+                      </li>
 
                       <li className="nav-item dropdown d-none">
                         <Link

@@ -258,15 +258,16 @@ function CarRaffle() {
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              src={
-                                showLotary.images[0] &&
-                                `${process.env.REACT_APP_URL}/${showLotary.images[0].imagePath}/${showLotary.images[0].imageName}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
+                              src={ads_car_2}
+                              // src={
+                              //   showLotary.images[0] &&
+                              //   `${process.env.REACT_APP_URL}/${showLotary.images[0].imagePath}/${showLotary.images[0].imageName}`
+                              // }
+                              // onError={({ currentTarget }) => {
+                              //   currentTarget.onError = null;
+                              //   currentTarget.src =
+                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              // }}
                               alt="Maskgroup1"
                             />
                           )}
@@ -282,15 +283,16 @@ function CarRaffle() {
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              src={
-                                showLotary.images[1] &&
-                                `${process.env.REACT_APP_URL}/${showLotary.images[1].imagePath}/${showLotary.images[1].imageName}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
+                              // src={
+                              //   showLotary.images[1] &&
+                              //   `${process.env.REACT_APP_URL}/${showLotary.images[1].imagePath}/${showLotary.images[1].imageName}`
+                              // }
+                              // onError={({ currentTarget }) => {
+                              //   currentTarget.onError = null;
+                              //   currentTarget.src =
+                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              // }}
+                              src={ads_car_3}
                               alt="Maskgroup1"
                             />
                           )}
@@ -306,15 +308,16 @@ function CarRaffle() {
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              src={
-                                showLotary.images[2] &&
-                                `${process.env.REACT_APP_URL}/${showLotary.images[2].imagePath}/${showLotary.images[2].imageName}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
+                              src={ads_car_1}
+                              // src={
+                              //   showLotary.images[2] &&
+                              //   `${process.env.REACT_APP_URL}/${showLotary.images[2].imagePath}/${showLotary.images[2].imageName}`
+                              // }
+                              // onError={({ currentTarget }) => {
+                              //   currentTarget.onError = null;
+                              //   currentTarget.src =
+                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              // }}
                               alt="Maskgroup1"
                             />
                           )}

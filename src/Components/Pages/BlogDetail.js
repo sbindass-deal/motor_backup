@@ -1,92 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import Car_img from "../../Assets/images/img_05.jpg";
 
 const BlogDetail = () => {
+  const { id } = useParams();
+  const blogs = useSelector((state) => state.blogReducer.blogData);
+  const [blog, setBlog] = useState({});
+  useEffect(() => {
+    const filteredBlog = blogs.find((item) => item.id == id);
+    setBlog(filteredBlog);
+  }, [id]);
+
   return (
     <section className="ptb_80 pt_sm_50">
       <div className="container">
         <div className="row ">
           <div className="col-9 pb-3">
             <div className="mainImg">
-              <img src={Car_img} alt="details-images" loading="lazy" />
+              <img
+                src={`${process.env.REACT_APP_URL}${blog.image}`}
+                alt="details-images"
+                loading="lazy"
+              />
             </div>
             <div className="blogInfo">
-              <h2 className="title_combo ">
-                GasGuzzlrs Auction: 1984 Ferrari 512 BBi
-              </h2>
+              <h2 className="title_combo ">{blog.title}</h2>
               <ul className="post_labelList">
                 <li>
-                  <i className="fa-solid fa-clock"></i> September 13, 2022
+                  <i className="fa-solid fa-clock"></i>{" "}
+                  {blog.created_at && new Date(blog.created_at).toDateString()}
                 </li>
                 <li>
-                  <i className="fa-solid fa-location-dot"></i> Italian
+                  <i className="fa-solid fa-location-dot"></i> {blog.location}
                 </li>
                 <li>
-                  <i className="fa-solid fa-comment-dots"></i> 14 Comments
+                  <i className="fa-solid fa-comment-dots"></i> {blog.comment}{" "}
+                  Comments
                 </li>
               </ul>
             </div>
             <div className="blogDesc">
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
-              <p>
-                This 2019 McLaren Senna is #197 of 500 examples produced to
-                commemorate racing driver Ayrton Senna’s success with the
-                McLaren Formula 1 team and was delivered new to McLaren Chicago.
-                It was subsequently registered in several states before it was
-                purchased by the seller out of Wisconsin in 2022 and imported to
-                Canada. The carbon-fiber monocoque body is finished in Graphite
-                Grey with Paris Blue aerovanes, and power comes from a
-                twin-turbocharged 4.0-liter V8 paired with a seven-speed
-                dual-clutch automatic transaxle. Features include the McLaren
-                Track Telemetry package, front and rear parking sensors, a
-                back-up camera, a glass upper rear bulkhead, black leather
-                upholstery, Alcantara-trimmed side sills, and a Bowers & Wilkins
-                seven-speaker audio system. Gorilla Glass door panels were
-                installed by McLaren Toronto in April 2022. This Senna has 670
-                miles and is now offered at no reserve in Canada with a window
-                sticker copy, recent service records, removed carbon-fiber door
-                panels, a clean Carfax report, and Ontario registration in the
-                name of the seller’s company.
-              </p>
+              <p>{blog.description}</p>
             </div>
           </div>
 
@@ -95,49 +50,24 @@ const BlogDetail = () => {
               <div class="sidebarPostHead">
                 <h6>Recent Blogs</h6>
               </div>
-
-              <div class="sidebarPost">
-                <div class="sidebarPost_Img">
-                  <img src={Car_img} loading="lazy" />
-                </div>
-                <div class="sidebarPost_text">
-                  Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
-                  Dallas
-                </div>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} loading="lazy" />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} loading="lazy" />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
-              <div class="sidebarPost">
-                <a href="#">
-                  <div class="sidebarPost_Img">
-                    <img src={Car_img} loading="lazy" />
-                  </div>
-                  <div class="sidebarPost_text">
-                    Event Coverage: GasGuzzlrs Alumni Gathering at The Shop in
-                    Dallas
-                  </div>
-                </a>
-              </div>
+              {blogs &&
+                blogs.slice(0, 6).map((curElem) => {
+                  return (
+                    <Link
+                      class="sidebarPost"
+                      key={curElem.id}
+                      to={`/blogdetail/${curElem.id}`}
+                    >
+                      <div class="sidebarPost_Img">
+                        <img
+                          src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="sidebarPost_text">{curElem.title}</div>
+                    </Link>
+                  );
+                })}
 
               <div class="sidebarPostFooter text-center">
                 <a href="#" class="gry_btn w-full">
@@ -146,7 +76,7 @@ const BlogDetail = () => {
               </div>
             </div>
 
-            <div class="card_Gray mt-3 pt-3">
+            {/* <div class="card_Gray mt-3 pt-3">
               <h6>Feature Blogs</h6>
               <ul class="sidebar_Event">
                 <li>
@@ -188,7 +118,7 @@ const BlogDetail = () => {
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -204,34 +204,6 @@ function MyListings() {
                                     </button>
                                   </div>
                                 )}
-                              {/* {curElem.reserve === "Yes" ? (
-                                <>
-                                  <div className="mx-2">
-                                    <button
-                                      onClick={() => handleShow(curElem.id)}
-                                      type="button"
-                                      className="gry_btn"
-                                    >
-                                      <ChatIcon />
-                                    </button>
-                                  </div>
-                                  <div className="mx-2">
-                                    <button
-                                      onClick={() =>
-                                        fetchResurveApi(
-                                          curElem.id,
-                                          curElem.reserve,
-                                          curElem.reservAmount
-                                        )
-                                      }
-                                      type="button"
-                                      className="gry_btn"
-                                    >
-                                      Reserve off
-                                    </button>
-                                  </div>
-                                </>
-                              ) : null} */}
                               {parseInt(
                                 new Date(curElem.EndTime).getTime(),
                                 10

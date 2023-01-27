@@ -45,15 +45,18 @@ function Blog() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3 className="d-flex" style={{justifyContent:"space-between"}}>My Blogs
-              < div>
-                
-              <Link to="/admin/add-blog" className="btn">
-                      <i class="fa-sharp fa-solid fa-plus"></i>
-                    </Link>
-                    
-              </div></h3>
-              
+              <h3
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                My Blogs
+                <div>
+                  <Link to="/admin/add-blog" className="btn">
+                    <i class="fa-sharp fa-solid fa-plus"></i>
+                  </Link>
+                </div>
+              </h3>
+
               <hr />
               <ul className="postTopOption">
                 <li className="post_search">
@@ -66,8 +69,9 @@ function Blog() {
                     <tr>
                       <th scope="col">Id</th>
                       <th scope="col">Image </th>
-                      <th scope="col">Name</th>
+                      <th scope="col">Title</th>
                       <th scope="col">Description</th>
+                      <th scope="col">Created Date</th>
                       <th scope="col" style={{ textAlign: "right" }}>
                         Action
                       </th>
@@ -81,12 +85,19 @@ function Blog() {
                             <th scope="row">{i + 1}</th>
                             <td>
                               <div className="cartImg">
-                                <img src={img_01} />
+                                <img
+                                  src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                                />
                               </div>
                             </td>
                             <td>{curElem.title} </td>
                             <td>{curElem.description}</td>
-
+                            <td>
+                              {curElem.created_at &&
+                                new Date(
+                                  curElem.created_at
+                                ).toLocaleDateString()}
+                            </td>
                             <td className="actionBtn">
                               {/* <button data-toggle="modal" data-target="#EditBlog">
                               <i class="fa-solid fa-pencil"></i>
@@ -98,7 +109,6 @@ function Blog() {
                           </tr>
                         );
                       })}
-                    
                   </tbody>
                 </table>
               </div>

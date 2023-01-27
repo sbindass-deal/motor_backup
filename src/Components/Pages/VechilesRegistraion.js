@@ -110,6 +110,26 @@ const VechilesRegistraion = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
+
+//   const asyncUppercase = item =>
+//   new Promise(resolve =>
+//     setTimeout(
+//       () => resolve(item.toUpperCase()),
+//       Math.floor(Math.random() * 1000)
+//     )
+//   );
+
+// const uppercaseItems = async (vId) => {
+//   await file.forEach(async item => {
+//     const uppercaseItem = await asyncUppercase(item);
+//     console.log(uppercaseItem);
+//   });
+
+//   console.log('Items processed');
+// };
+
+// uppercaseItems("vId");
+
   const uploadFileOne = (vehicleId) => {
     (async () => {
       for await (const file1 of file) {
@@ -117,12 +137,13 @@ const VechilesRegistraion = () => {
         const formData = new FormData();
         formData.append("image", file1);
         formData.append("vehicleId", vehicleId);
+        const newImagedata = formData;
         const config = {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         };
-        const data = await axios.post(url, formData, config);
+        await axios.post(url, newImagedata, config);
       }
     })();
 
@@ -572,22 +593,22 @@ const VechilesRegistraion = () => {
   const validateVin = (e) => {
     e.preventDefault();
     handleVinClose();
-    const options = {
-      method: "GET",
-      url: "https://api.vehicledatabases.com/vin-decode/SAJWJ0FF3F8321657",
-      headers: {
-        "x-AuthKey": "ff1003dcaed74750a5370070efb780be",
-      },
-    };
+    // const options = {
+    //   method: "GET",
+    //   url: "https://api.vehicledatabases.com/vin-decode/SAJWJ0FF3F8321657",
+    //   headers: {
+    //     "x-AuthKey": "ff1003dcaed74750a5370070efb780be",
+    //   },
+    // };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
   };
 
   return (

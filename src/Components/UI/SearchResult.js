@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const SearchResult = () => {
   const navigate = useNavigate();
-  const { name, ser } = useParams();
   const logingUser = useSelector((state) => state);
+  const { searchResult: name, searchKey: ser } =
+    logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState({});
   const [relatedData, setRelatedData] = useState([]);
   const notify = (val) =>
@@ -21,7 +22,6 @@ const SearchResult = () => {
       progress: undefined,
       theme: "light",
     });
-
   useEffect(() => {
     const make = name.toLowerCase();
     const searchText = ser.toLowerCase();

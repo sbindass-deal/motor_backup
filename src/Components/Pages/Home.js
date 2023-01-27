@@ -9,11 +9,11 @@ import img_06 from "../../Assets/images/img_06.jpg";
 import addBanner from "../../Assets/images/Mask-group.png";
 import ads_car_1 from "../../Assets/images/raffle-1.jpg";
 import ads_car_2 from "../../Assets/images/home-raffel.png";
-import Ferrari_512 from "../../Assets/images/1984_Ferrari_512_BBi.jpeg"
-import Nissan_Fairlady from "../../Assets/images/Nissan_Fairlady.jpeg"
-import manual_2dr_cpe from "../../Assets/images/manual-2dr-cpe.jpeg"
-import BMW_Z4_Roadste from "../../Assets/images/BMW-Z4-Roadster-Right-Front-Three-Quarter-153914.jpg"
-import ferrari_portofino from "../../Assets/images/2018-ferrari-portofino.jpg"
+import Ferrari_512 from "../../Assets/images/1984_Ferrari_512_BBi.jpeg";
+import Nissan_Fairlady from "../../Assets/images/Nissan_Fairlady.jpeg";
+import manual_2dr_cpe from "../../Assets/images/manual-2dr-cpe.jpeg";
+import BMW_Z4_Roadste from "../../Assets/images/BMW-Z4-Roadster-Right-Front-Three-Quarter-153914.jpg";
+import ferrari_portofino from "../../Assets/images/2018-ferrari-portofino.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,24 +21,23 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { storeBlogData } from "../../redux/reducers/blogReducer";
 
 function Home() {
-  const [showBidOnSlide, setShowBidOnSlide] = useState([]);
-
-  const fetchVehicles = async () => {
-    try {
-      const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
-      const bidApiArr = response.data.data;
-      if (response.data.status === 200 && response.data.data.length > 0) {
-        setShowBidOnSlide(bidApiArr.slice(-4));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const dispatch = useDispatch();
+  const blogs = useSelector((state) => state.blogReducer.blogData);
 
   useEffect(() => {
-    fetchVehicles();
+    const fetchBlogs = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_URL}/getblogs`);
+        dispatch(storeBlogData(res.data.data));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchBlogs();
   }, []);
 
   const slide = useRef(null);
@@ -189,7 +188,13 @@ function Home() {
                       <div className="card_postInfo">
                         <h4>2009 Aston Martin DBS, 6-SPEED MANUAL </h4>
                         <p>
-                        With just over 13,600 miles and two owners from new, this is an excellent collector grade vehicle. New Tires have been mounted and a fresh oil change has been completed. This DBS is stunning and its V12 absolutely purrs. Early production DBS' were not available with premium sound and so as a dealer option, a premium Focal sound system was installed.
+                          With just over 13,600 miles and two owners from new,
+                          this is an excellent collector grade vehicle. New
+                          Tires have been mounted and a fresh oil change has
+                          been completed. This DBS is stunning and its V12
+                          absolutely purrs. Early production DBS' were not
+                          available with premium sound and so as a dealer
+                          option, a premium Focal sound system was installed.
                         </p>
                         <ul className="labelList">
                           <li>
@@ -210,9 +215,10 @@ function Home() {
                       <div className="card_postInfo">
                         <h4>BMW Z4 Roadster Right Front Three Quarter</h4>
                         <p>
-                        Comfort, luxury - Quiet, the look/feel of the interior is luxurious, top-notch quality
-                        Properly equipped - This 3 is well-endowed with new-age features, lots of tech bits
-
+                          Comfort, luxury - Quiet, the look/feel of the interior
+                          is luxurious, top-notch quality Properly equipped -
+                          This 3 is well-endowed with new-age features, lots of
+                          tech bits
                         </p>
                         <ul className="labelList">
                           <li>
@@ -233,7 +239,11 @@ function Home() {
                       <div className="card_postInfo">
                         <h4>Ferrari</h4>
                         <p>
-                        Throughout the entire the history of Ferrari, there have only been three other names of Italian locations associated with one of the marque’s famed supercars. The 550 Maranello (followed by the 575M Maranello), the 360 Modena, and the 599 GTB Fiorano…
+                          Throughout the entire the history of Ferrari, there
+                          have only been three other names of Italian locations
+                          associated with one of the marque’s famed supercars.
+                          The 550 Maranello (followed by the 575M Maranello),
+                          the 360 Modena, and the 599 GTB Fiorano…
                         </p>
                         <ul className="labelList">
                           <li>
@@ -469,43 +479,57 @@ function Home() {
               <h2>Latest Blogs</h2>
             </div>
             <div className="col-12 ">
-              <div className="row pb_30">
-                <div className="col-12 col-md-6 col-lg-7">
-                  <div className="blogPost">
-                    <img src={Ferrari_512} alt="car_03" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
-                  <div className="blogPostText">
-                    <h4>GasGuzzlrs Auction: 1984 Ferrari 512 BBi</h4>
-                    <ul className="post_labelList">
-                      <li>
-                        <i className="fa-solid fa-clock"></i> April 13, 2022
-                      </li>
-                      <li>
-                        <i className="fa-solid fa-location-dot"></i> Texas
-                      </li>
-                      <li>
-                        <i className="fa-solid fa-comment-dots"></i> 14 Comments
-                      </li>
-                    </ul>
-                    <p>
-                      This 1962 Jaguar XKE is a left-hand-drive Series I coupe
-                      that was completed on June 7, 1962, and is said to have
-                      been sold new in California. It was moved to Michigan in
-                      1987 and underwent a mechanical refurbishment by Eclectic
-                      Motorworks of Holland, Michigan, that was completed in
-                      2020 before it was acquired by the selling dealer from its
-                      owner of 35 years in 2021.
-                    </p>
-                    <Link to="/blogdetail" className="btn">
-                      Read More
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              {blogs &&
+                blogs.slice(0, 4).map((curElem, i) => {
+                  return (
+                    <div key={i} className="row pb_30">
+                      <div
+                        className={`order-md-${
+                          i % 2 === 0 ? 0 : 1
+                        } col-12 col-md-6 col-lg-7`}
+                      >
+                        <div className="blogPost">
+                          <img
+                            src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                            alt={curElem.title}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
+                        <div className="blogPostText">
+                          <h4>{curElem.title}</h4>
+                          <ul className="post_labelList">
+                            <li>
+                              <i className="fa-solid fa-clock"></i>{" "}
+                              {curElem.created_at &&
+                                new Date(curElem.created_at).toDateString()}
+                            </li>
+                            <li>
+                              <i className="fa-solid fa-location-dot"></i>{" "}
+                              {curElem.location}
+                            </li>
+                            <li>
+                              <i className="fa-solid fa-comment-dots"></i>{" "}
+                              {curElem.comment}
+                              Comments
+                            </li>
+                          </ul>
+                          <p>{curElem.description.substr(0, 500)}</p>
+                          {curElem.description.length > 500 && (
+                            <Link
+                              to={`/blogdetail/${curElem.id}`}
+                              className="btn"
+                            >
+                              Read More
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               {/* <!--row--> */}
-              <div className="row pb_30">
+              {/* <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7 order-md-1">
                   <div className="blogPost">
                     <img src={Nissan_Fairlady} alt="car_04" />
@@ -526,15 +550,23 @@ function Home() {
                       </li>
                     </ul>
                     <p>
-                    The Datsun 240Z upended the sports car world when it arrived, offering closed-coupe comfort with six-cylinder performance beyond many European roadsters and coupes on the market. The Z’s performance, $3,500 price, and semi-exotic styling (for the time) made it an immediate hit. It would be the rare car enthusiast today who did not know how well the rest of the story went. Suffice to say, more than 50 years later, the Z is still with us and still impressing with the same attributes that made the original an instant legend.
-
+                      The Datsun 240Z upended the sports car world when it
+                      arrived, offering closed-coupe comfort with six-cylinder
+                      performance beyond many European roadsters and coupes on
+                      the market. The Z’s performance, $3,500 price, and
+                      semi-exotic styling (for the time) made it an immediate
+                      hit. It would be the rare car enthusiast today who did not
+                      know how well the rest of the story went. Suffice to say,
+                      more than 50 years later, the Z is still with us and still
+                      impressing with the same attributes that made the original
+                      an instant legend.
                     </p>
                     <Link to="/blogdetail" className="btn">
                       Read More
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="row pb_30">
                 <div className="col-12 col-md-6 col-lg-7">
@@ -608,7 +640,7 @@ function Home() {
               </div> */}
               <div className="row">
                 <div className="col-12 text-center pt_40">
-                  <Link to="/blogdetail" className="btn">
+                  <Link to="/blogs" className="btn">
                     View More Blogs
                   </Link>
                 </div>

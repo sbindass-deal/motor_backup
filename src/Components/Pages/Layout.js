@@ -61,6 +61,7 @@ import DealerProfile from "./dealer/DealerProfile";
 import ClassifiedAddList from "./dealer/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
 import ComingSoon from "./ComingSoon";
+import Blogs from "./Blogs";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -75,7 +76,6 @@ const Layout = () => {
           {/* After user Login start */}
           {logingUser.login.token && (
             <>
-              <Route path="cart" element={<Cart />} />
               <Route path="accountinfo" element={<AccountInfo />} />
               <Route path="listing" element={<MyListings />} />
               <Route path="bidswins" element={<MyBidsWins />} />
@@ -131,6 +131,7 @@ const Layout = () => {
           )}
           {/* Admin login end */}
           {/* After user login end */}
+          <Route path="cart" element={<Cart />} />
           <Route path="notification" element={<Notifications />} />
           <Route path="biding" element={<MyBidsWins />} />
           <Route path="works" element={<HowShibnobiMotorWorks />} />
@@ -169,8 +170,9 @@ const Layout = () => {
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="blogdetail" element={<BlogDetail />} />
-          <Route path="search/:name/:ser" element={<SearchResult />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="blogdetail/:id" element={<BlogDetail />} />
+          <Route path="search" element={<SearchResult />} />
           <Route path="comingsoon" element={<ComingSoon />} />
         </Routes>
         <ToastContainer
