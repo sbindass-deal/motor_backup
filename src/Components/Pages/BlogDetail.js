@@ -19,7 +19,7 @@ const BlogDetail = () => {
           <div className="col-9 pb-3">
             <div className="mainImg">
               <img
-                src={`${process.env.REACT_APP_URL}${blog.image}`}
+                src={`${process.env.REACT_APP_URL}upload/blogs/${blog.image}`}
                 alt="details-images"
                 loading="lazy"
               />
@@ -60,7 +60,7 @@ const BlogDetail = () => {
                     >
                       <div class="sidebarPost_Img">
                         <img
-                          src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                          src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                           loading="lazy"
                         />
                       </div>
@@ -70,9 +70,9 @@ const BlogDetail = () => {
                 })}
 
               <div class="sidebarPostFooter text-center">
-                <a href="#" class="gry_btn w-full">
+                <Link to="/blogs" class="gry_btn w-full">
                   More features
-                </a>
+                </Link>
               </div>
             </div>
 

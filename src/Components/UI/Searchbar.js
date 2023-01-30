@@ -19,21 +19,24 @@ const Searchbar = () => {
         (item) =>
           (item.make && item.make.toLowerCase().includes(query)) ||
           (item.year && item.year.toLowerCase().includes(query)) ||
-          (item.model && item.model.toLowerCase().includes(query))
+          (item.model && item.model.toLowerCase().includes(query)) ||
+          (item.moreDescription &&
+            item.moreDescription.toLowerCase().includes(query))
       )
       .map((curElem, idx) => {
         return {
           value: `${curElem.make}`,
           label: (
-            <div
+            <Link
+              to="/search"
               key={idx}
               style={{
                 display: "flex",
                 justifyContent: "space-between",
               }}
             >
-              <Link to="/search">{curElem.make}</Link>
-            </div>
+              <span>{curElem.make}</span>
+            </Link>
           ),
         };
       });

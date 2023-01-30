@@ -6,7 +6,7 @@ import FormInput from "../../UI/FormInput";
 
 const AddGearProduct = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState({});
   const [getInputData, setGetInputData] = useState({
     name: "",
     category: "",
@@ -19,21 +19,19 @@ const AddGearProduct = () => {
   const handleOnChange = (e) => {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
-  const uploadFileOne = async (vehicleId) => {
-    for (let i = 0; i < file.length; i++) {
-      const url = process.env.REACT_APP_URL + "product-image";
-      const formData = new FormData();
-      formData.append("image", file[i]);
-      formData.append("lottery_id", vehicleId);
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      await axios.post(url, formData, config).then((response) => {
-        console.log(response.data);
-      });
-    }
+  const uplodeProductImg = async (productId) => {
+    const url = process.env.REACT_APP_URL + "product-image";
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("lottery_id", productId);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
+    });
   };
 
   const handleApi = (e) => {
@@ -50,7 +48,7 @@ const AddGearProduct = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          // uploadFileOne(response.data.id);
+          uplodeProductImg(response.data.id);
           navigate("/gear-product");
         }
       })
@@ -71,9 +69,9 @@ const AddGearProduct = () => {
                   onChange={handleOnChange}
                   value={getInputData.name}
                   placeholder="Enter Name"
-                  errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                  errorMessage="Name should be 2-80 characters and shouldn't include any special character or number!"
                   label="Name"
-                  pattern="^[A-Za-z ]{3,16}$"
+                  pattern="^[A-Za-z ]{2,80}$"
                   required={true}
                 />
               </div>
@@ -90,8 +88,8 @@ const AddGearProduct = () => {
                     <option selected disabled value="">
                       Choose...
                     </option>
-                    <option value="men">men</option>
-                    <option value="women">women</option>
+                    <option value="men">Car Accessories</option>
+                    <option value="women">Home and Living</option>
                   </select>
                 </div>
               </div>
@@ -166,11 +164,10 @@ const AddGearProduct = () => {
                       cursor: "pointer",
                     }}
                     onChange={(e) => {
-                      setFile(e.target.files);
+                      setFile(e.target.files[0]);
                     }}
                     name="file"
                     type="file"
-                    multiple
                   />
                 </div>
               </div>

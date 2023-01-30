@@ -111,24 +111,24 @@ const VechilesRegistraion = () => {
     dispatch(step_three(false));
   }, []);
 
-//   const asyncUppercase = item =>
-//   new Promise(resolve =>
-//     setTimeout(
-//       () => resolve(item.toUpperCase()),
-//       Math.floor(Math.random() * 1000)
-//     )
-//   );
+  //   const asyncUppercase = item =>
+  //   new Promise(resolve =>
+  //     setTimeout(
+  //       () => resolve(item.toUpperCase()),
+  //       Math.floor(Math.random() * 1000)
+  //     )
+  //   );
 
-// const uppercaseItems = async (vId) => {
-//   await file.forEach(async item => {
-//     const uppercaseItem = await asyncUppercase(item);
-//     console.log(uppercaseItem);
-//   });
+  // const uppercaseItems = async (vId) => {
+  //   await file.forEach(async item => {
+  //     const uppercaseItem = await asyncUppercase(item);
+  //     console.log(uppercaseItem);
+  //   });
 
-//   console.log('Items processed');
-// };
+  //   console.log('Items processed');
+  // };
 
-// uppercaseItems("vId");
+  // uppercaseItems("vId");
 
   const uploadFileOne = (vehicleId) => {
     (async () => {
@@ -397,9 +397,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
@@ -464,7 +464,7 @@ const VechilesRegistraion = () => {
         fuel,
         EndTime: EndDateTime.toString(),
         phone,
-        approved: `${displayInAuction === "No" ? "1" : "0"}`,
+        approved: `${displayInAuction === "No" ? null : "11"}`,
         sold: 1,
       })
       .then((result) => {
@@ -1271,7 +1271,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              What brand and model of tires are currently
+                              What brand and model of tyre are currently
                               mounted?
                             </label>
                             <input
@@ -1304,7 +1304,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              What size of tires are on the vehicle? *The size
+                              What size of tyre are on the vehicle? *The size
                               can be found on the tire sidewall.
                             </label>
                             <input
@@ -1670,13 +1670,19 @@ const VechilesRegistraion = () => {
                                 value={detailstab.modificationOnTrck}
                                 onChange={detailsOnChange}
                                 minLength={2}
-                                maxLength={100}
+                                maxLength={400}
                                 type="text"
                                 name="modificationOnTrck"
                                 placeholder="Enter modifications"
                                 className="field"
                                 required
                               />
+                              {detailstab.modificationOnTrck.trim().length >
+                                400 && (
+                                <span className="text-danger">
+                                  You Can entered maximum 1500 characters!
+                                </span>
+                              )}
                             </div>
                           )}
                         </div>
@@ -1771,11 +1777,17 @@ const VechilesRegistraion = () => {
                               value={detailstab.issuesorproblems}
                               onChange={detailsOnChange}
                               name="issuesorproblems"
-                              minLength={2}
-                              maxLength={100}
+                              minLength={1}
+                              maxLength={1500}
                               className="field"
                               required
                             ></textarea>
+                            {detailstab.issuesorproblems.trim().length >
+                              1500 && (
+                              <span className="text-danger">
+                                You Can entered maximum 1500 characters!
+                              </span>
+                            )}
                           </div>
                           <p>
                             Please list and describe services performed and when
@@ -1791,11 +1803,17 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="moreDescription"
                               className="field"
-                              minLength={2}
-                              maxLength={200}
-                              placeholder="Ex. June 2017: clutch replaced, May 2018: tires replaced and wheels refinished, September 2021: fluids and filters changed"
+                              minLength={1}
+                              maxLength={1500}
+                              placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
                             ></textarea>
+                            {detailstab.moreDescription.trim().length >
+                              1500 && (
+                              <span className="text-danger">
+                                You Can entered maximum 1500 characters!
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -1908,7 +1926,7 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="shibnobiabout"
                               minLength={2}
-                              maxLength={200}
+                              maxLength={1500}
                               className="field"
                               required
                             ></textarea>

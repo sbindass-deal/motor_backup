@@ -15,6 +15,7 @@ function Detail() {
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   const moreImgRaf = useRef();
   const [vehicle, setVehicle] = useState({});
+  const [showReadMore, setShowReadMore] = useState();
   const [comments, setcomments] = useState([]);
   const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
@@ -333,7 +334,7 @@ function Detail() {
 
               <div className="dropdown mr-2">
                 <button type="button" className="gry_btn">
-                  Era: {vehicle.year}
+                  Year: {vehicle.year}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -406,7 +407,7 @@ function Detail() {
 
                       {vehicle.sizetires !== null && (
                         <li>
-                          Size tires{" "}
+                          Tyre size
                           <label htmlFor="">{vehicle.sizetires}</label>
                         </li>
                       )}
@@ -418,8 +419,16 @@ function Detail() {
                       )}
 
                       <li>
-                        Tire Brand{" "}
+                        Tyre Brand{" "}
                         <label htmlFor="">{vehicle.brandandmodel}</label>
+                      </li>
+                      <li>
+                        Fuel Type
+                        <label htmlFor="">{vehicle.fuel}</label>
+                      </li>
+                      <li>
+                        Seller
+                        <label htmlFor="">{vehicle.name}</label>
                       </li>
 
                       <li>
@@ -431,6 +440,33 @@ function Detail() {
                             : "Privately owned"}{" "}
                         </label>
                       </li>
+                      {vehicle.moreDescription ? (
+                        <li>
+                          Description
+                          <label htmlFor="">
+                            {vehicle.moreDescription.length > 20 &&
+                            !showReadMore ? (
+                              <span>
+                                {vehicle.moreDescription.substr(0, 20)}...
+                              </span>
+                            ) : (
+                              vehicle.moreDescription
+                            )}
+                            <button
+                              type="text"
+                              onClick={() => setShowReadMore(!showReadMore)}
+                              className="btn mx-2 p-1"
+                            >
+                              {showReadMore &&
+                              vehicle.moreDescription.length > 20
+                                ? "Read Less"
+                                : "Read More"}
+                            </button>
+                          </label>
+                        </li>
+                      ) : (
+                        ""
+                      )}
                     </ul>
                   </div>
                 </div>

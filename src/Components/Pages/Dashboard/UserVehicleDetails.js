@@ -492,33 +492,45 @@ const UserVehicleDetails = () => {
               </div>
             </div>
             <div className="container">
-              <form onSubmit={submitApprove}>
-                <div className="col-12 w-100">
-                  <label>Description 1</label> <br />
-                  <textarea
-                    name="description1"
-                    value={descValue.description1}
-                    onChange={handleDescription}
-                  ></textarea>{" "}
-                  <br />
-                  <label>Description 2</label> <br />
-                  <textarea
-                    name="description2"
-                    value={descValue.description2}
-                    onChange={handleDescription}
-                  ></textarea>{" "}
-                  <br />
-                  <button className="btn btn-warning m-3" type="submit">
-                    {vehicle.approved === null || vehicle.approved === "11"
-                      ? "Approve"
-                      : "Reject"}
-                  </button>
+              <div className="row">
+                <div className="col-md-12 w-100 py-4">
+                  <form onSubmit={submitApprove}>
+                    <label>Description 1</label> <br />
+                    <textarea
+                      name="description1"
+                      value={descValue.description1}
+                      onChange={handleDescription}
+                      minLength={2}
+                      maxLength={1500}
+                      className="col-md-12"
+                      rows={4}
+                    ></textarea>{" "}
+                    <br />
+                    <label>Description 2</label> <br />
+                    <textarea
+                      name="description2"
+                      value={descValue.description2}
+                      onChange={handleDescription}
+                      minLength={2}
+                      maxLength={2000}
+                      className="col-md-12"
+                      rows={4}
+                    ></textarea>{" "}
+                    <br />
+                    <div className="text-center my-4">
+                      <button className="btn btn-warning m-3" type="submit">
+                        {vehicle.approved === null || vehicle.approved === "11"
+                          ? "Approve"
+                          : "Reject"}
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
 
             <div className="col-12">
-              <h3>PHOTO GALLERY</h3>
+              <h3 className="my-4">PHOTO GALLERY</h3>
               <div className="col-12">
                 <div
                   style={{

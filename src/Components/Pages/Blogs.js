@@ -24,7 +24,7 @@ const Blogs = () => {
                     >
                       <div className="blogPost">
                         <img
-                          src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                          src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                           alt={curElem.title}
                         />
                       </div>
@@ -44,8 +44,7 @@ const Blogs = () => {
                           </li>
                           <li>
                             <i className="fa-solid fa-comment-dots"></i>{" "}
-                            {curElem.comment}
-                            Comments
+                            {curElem.comment}&nbsp;Comments
                           </li>
                         </ul>
                         <p>{curElem.description.substr(0, 500)}</p>

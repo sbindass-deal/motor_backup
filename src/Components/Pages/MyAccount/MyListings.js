@@ -250,11 +250,7 @@ function MyListings() {
                                 </div>
                               ) : null}
                               <Link
-                                to={
-                                  curElem.displayInAuction === "Yes"
-                                    ? `/detail/${curElem.id}`
-                                    : `/showroom/${curElem.id}`
-                                }
+                                to={`/vehicle/${curElem.id}`}
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View

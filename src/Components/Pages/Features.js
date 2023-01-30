@@ -153,8 +153,8 @@ const Features = () => {
                                 alt="Maskgroup1"
                               />
                             ) : (
-                                <img
-                                  loading="lazy"
+                              <img
+                                loading="lazy"
                                 src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                                 alt="Maskgroup1"
                               />
@@ -164,12 +164,12 @@ const Features = () => {
                         <div className="card_postInfo">
                           <h4>
                             <a href="detail.html">
-                              {curElem.make}
-                              {curElem.model}
+                              {curElem.make} &nbsp;
+                              {curElem.model} &nbsp;
                               {curElem.year}
                             </a>
                           </h4>
-                          <p>{curElem.description}</p>
+                          <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
                             <li>
                               <label>Current Bid:</label>{" "}

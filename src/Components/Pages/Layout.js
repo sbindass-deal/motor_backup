@@ -62,6 +62,7 @@ import ClassifiedAddList from "./dealer/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
 import ComingSoon from "./ComingSoon";
 import Blogs from "./Blogs";
+import VehicleRegistered from "./MyAccount/VehicleRegistered";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -83,7 +84,7 @@ const Layout = () => {
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
-
+              <Route path="vehicle/:id" element={<VehicleRegistered />} />
               <Route
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}

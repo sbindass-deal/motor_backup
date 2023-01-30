@@ -86,7 +86,7 @@ function Blog() {
                             <td>
                               <div className="cartImg">
                                 <img
-                                  src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                                  src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                                 />
                               </div>
                             </td>

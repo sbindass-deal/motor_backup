@@ -26,55 +26,70 @@ const SearchResult = () => {
     const make = name.toLowerCase();
     const searchText = ser.toLowerCase();
     const filteredData = logingUser.vehicleReducer.vehicleData.filter(
-      (item) => item.make && item.make.toLowerCase().includes(searchText)
+      (item) =>
+        (item.make && item.make.toLowerCase().includes(searchText)) ||
+        (item.year && item.year.toLowerCase().includes(searchText)) ||
+        (item.model && item.model.toLowerCase().includes(searchText)) ||
+        (item.moreDescription &&
+          item.moreDescription.toLowerCase().includes(searchText))
     );
-    const searchedResult = logingUser.vehicleReducer.vehicleData.find(
+    const searchedResult = logingUser.vehicleReducer.vehicleData.filter(
       (item) => item.make && item.make.toLowerCase().includes(make)
     );
-    setSearchedData(searchedResult);
+    setSearchedData(searchedResult.length > 0 ? searchedResult[0] : {});
     setRelatedData(filteredData);
   }, [name, ser]);
-
   return (
     <>
       <section className="storeHeroSection dealer align-items-center">
-        <div className="container">
-          <div className="row">
-            <div className="topTile">
-              <h5>
-                {searchedData.make} {searchedData.model} {searchedData.year}
-              </h5>
+        {relatedData.length === 0 ? (
+          <h3 className="text-center text-warning pt-5 mt-5">
+            Result not found.
+          </h3>
+        ) : (
+          <div className="container">
+            <div className="row">
+              <div className="topTile">
+                <h5>
+                  {searchedData.make || relatedData[0].make}{" "}
+                  {/* {searchedData.model || relatedData[0].model}{" "}
+                  {searchedData.year || relatedData[0].year} */}
+                </h5>
+              </div>
             </div>
-          </div>
-          <div className="col-12 col-lg-12">
-            <div className="heroText">
-              <h5>{searchedData.moreDescription}</h5>
-              <button
-                type="button"
-                onClick={() => {
-                  notify(
-                    "Thank you for your interest! We will notify you as soon as your model is listed."
-                  );
-                  navigate("/");
-                }}
-                className="btn btn_change"
-              >
-                Notify me
-              </button>
+            <div className="col-12 col-lg-12">
+              <div className="heroText">
+                <h5>
+                  {searchedData.moreDescription ||
+                    relatedData[0].moreDescription}
+                </h5>
+                <button
+                  type="button"
+                  onClick={() => {
+                    notify(
+                      "Thank you for your interest! We will notify you as soon as your model is listed."
+                    );
+                    navigate("/");
+                  }}
+                  className="btn btn_change"
+                >
+                  Notify me
+                </button>
 
-              <Link
-                className="btn ml-2"
-                to={
-                  searchedData.displayInAuction === "Yes"
-                    ? `/detail/${searchedData.id}`
-                    : `/showroom/${searchedData.id}`
-                }
-              >
-                Have one?
-              </Link>
+                <Link
+                  className="btn ml-2"
+                  to={
+                    searchedData.displayInAuction === "Yes"
+                      ? `/detail/${searchedData.id}`
+                      : `/showroom/${searchedData.id}`
+                  }
+                >
+                  Have one?
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
 
       <section className="pt_40">

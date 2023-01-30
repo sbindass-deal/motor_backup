@@ -26,8 +26,10 @@ import { storeBlogData } from "../../redux/reducers/blogReducer";
 
 function Home() {
   const dispatch = useDispatch();
-  const blogs = useSelector((state) => state.blogReducer.blogData);
-
+  const data = useSelector((state) => state);
+  const blogs = data.blogReducer.blogData;
+  const vehicleData = data.vehicleReducer.vehicleData;
+  const [sliderData, setSliderData] = useState([]);
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -38,6 +40,14 @@ function Home() {
       }
     };
     fetchBlogs();
+  }, []);
+  useEffect(() => {
+    const filteredAuctionVehicle = vehicleData.filter(
+      (item) =>
+        item.displayInAuction === "Yes" &&
+        item.auctionType === "Premium listing"
+    );
+    setSliderData(filteredAuctionVehicle);
   }, []);
 
   const slide = useRef(null);
@@ -75,7 +85,7 @@ function Home() {
     autoplay: true,
     speed: 3000,
     // pauseOnHover: true,
-    // cssEase: "linear"
+    // cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -153,7 +163,63 @@ function Home() {
               </div>
               <div className="featuredAuctions_Slide">
                 <Slider ref={slide} {...settings}>
-                  <div>
+                  {sliderData &&
+                    sliderData.map((curElem) => {
+                      return (
+                        <Link to={`/detail/${curElem.id}`}>
+                          {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                            parseInt(new Date().getTime(), 10) >
+                            0 && (
+                            <div key={curElem.id}>
+                              <div className="card_post">
+                                <div className="card_postImg">
+                                  <img
+                                    src={
+                                      process.env.REACT_APP_URL +
+                                      curElem.stepOneImage
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt="Img_01"
+                                  />
+                                </div>
+                                <div className="card_postInfo">
+                                  <h4>
+                                    {curElem.make} {curElem.model}{" "}
+                                    {curElem.year}
+                                  </h4>
+                                  <p>{curElem.moreDescription}</p>
+                                  <ul className="labelList">
+                                    <li>
+                                      <label>Current Bid:</label>{" "}
+                                      <span>
+                                        $
+                                        {curElem.currentAmount
+                                          ? curElem.currentAmount.auctionAmmount
+                                          : curElem.documentFee}
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <label>Ends In:</label>{" "}
+                                      <span>
+                                        {curElem.EndTime &&
+                                          new Date(
+                                            curElem.EndTime
+                                          ).toDateString()}
+                                      </span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  {/* <div>
                     <div className="card_post">
                       <div className="card_postImg">
                         <img src={Img_01} alt="Img_01" />
@@ -206,8 +272,8 @@ function Home() {
                         </ul>
                       </div>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="card_post">
                       <div className="card_postImg">
                         <img src={BMW_Z4_Roadste} alt="Img_01" />
@@ -255,7 +321,7 @@ function Home() {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </Slider>
               </div>
             </div>
@@ -463,7 +529,7 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
-              <h1 className="text">Sell Your High Quality classNameic Car</h1>
+              <h1 className="text">Sell Your High Quality classic Car</h1>
               <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY
               </Link>
@@ -490,7 +556,7 @@ function Home() {
                       >
                         <div className="blogPost">
                           <img
-                            src={`${process.env.REACT_APP_URL}${curElem.image}`}
+                            src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                             alt={curElem.title}
                           />
                         </div>
@@ -510,8 +576,7 @@ function Home() {
                             </li>
                             <li>
                               <i className="fa-solid fa-comment-dots"></i>{" "}
-                              {curElem.comment}
-                              Comments
+                              {curElem.comment}&nbsp;Comments
                             </li>
                           </ul>
                           <p>{curElem.description.substr(0, 500)}</p>

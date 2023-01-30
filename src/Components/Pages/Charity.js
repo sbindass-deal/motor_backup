@@ -189,7 +189,7 @@ const Charity = () => {
                               {curElem.year}
                             </a>
                           </h4>
-                          <p>{curElem.description}</p>
+                          <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
                             <li>
                               <label>Current Bid:</label>{" "}
