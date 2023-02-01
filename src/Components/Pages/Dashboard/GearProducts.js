@@ -1,27 +1,12 @@
 import React from "react";
 import AdminLeftNav from "./AdminLeftNav";
-import img_01 from "../../../Assets/images/img-1.webp";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function GearProducts() {
-  const [products, setProducts] = useState([]);
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}allproduct`);
-      if (res.status === 200 && res.data.data) {
-        setProducts(res.data.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const data = useSelector((state) => state);
+  const products = data.gearReducer.gearData;
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
@@ -77,7 +62,10 @@ function GearProducts() {
                           <th scope="row">{i + 1}</th>
                           <td>
                             <div className="cartImg">
-                              <img src={img_01} />
+                              <img
+                                src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
+                                alt={curElem.title}
+                              />
                             </div>
                           </td>
                           <td>{curElem.title}</td>
@@ -86,12 +74,15 @@ function GearProducts() {
                           <td>{curElem.size}</td>
                           <td>{curElem.category}</td>
                           <td className="actionBtn">
-                            <button
-                              data-toggle="modal"
-                              data-target="#MerchandiseEdit"
-                            >
-                              <i class="fa-solid fa-pencil"></i>
-                            </button>
+                            <Link to={`/gear-product/${curElem.id}`}>
+                              <button
+                                data-toggle="modal"
+                                data-target="#MerchandiseEdit"
+                              >
+                                <i class="fa-solid fa-pencil"></i>
+                              </button>
+                            </Link>
+
                             {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
                             <button onClick={() => handleDelete(curElem.id)}>
                               <i class="fa-solid fa-trash-can"></i>

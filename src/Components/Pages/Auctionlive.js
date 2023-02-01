@@ -9,7 +9,6 @@ const Auctionlive = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
-
   const [data, setauctions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);

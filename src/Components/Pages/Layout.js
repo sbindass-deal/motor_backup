@@ -63,6 +63,7 @@ import SearchResult from "../UI/SearchResult";
 import ComingSoon from "./ComingSoon";
 import Blogs from "./Blogs";
 import VehicleRegistered from "./MyAccount/VehicleRegistered";
+import EditGearProduct from "./Dashboard/EditGearProduct";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -120,6 +121,10 @@ const Layout = () => {
                     element={<EditRaffle />}
                   />
                   <Route path="gear-product" element={<GearProduct />} />
+                  <Route
+                    path="gear-product/:id"
+                    element={<EditGearProduct />}
+                  />
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />

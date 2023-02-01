@@ -888,7 +888,7 @@ const VechilesRegistraion = () => {
                                   onChange={handleNameField}
                                   name="changedvechiles"
                                   className="field"
-                                  maxLength={50}
+                                  maxLength={200}
                                   required
                                 ></textarea>
                               </div>
@@ -966,7 +966,7 @@ const VechilesRegistraion = () => {
                               value={namefield.videolink}
                               onChange={handleNameField}
                               minLength={2}
-                              maxLength={200}
+                              maxLength={500}
                               name="videolink"
                               className="field"
                               required
@@ -1778,7 +1778,7 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="issuesorproblems"
                               minLength={1}
-                              maxLength={1500}
+                              maxLength={2000}
                               className="field"
                               required
                             ></textarea>
@@ -1804,7 +1804,7 @@ const VechilesRegistraion = () => {
                               name="moreDescription"
                               className="field"
                               minLength={1}
-                              maxLength={1500}
+                              maxLength={2000}
                               placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
                             ></textarea>
@@ -1926,7 +1926,7 @@ const VechilesRegistraion = () => {
                               onChange={detailsOnChange}
                               name="shibnobiabout"
                               minLength={2}
-                              maxLength={1500}
+                              maxLength={2000}
                               className="field"
                               required
                             ></textarea>

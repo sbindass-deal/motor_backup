@@ -1,13 +1,19 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 
-const AddGearProduct = () => {
-  const navigate = useNavigate();
-  const [file, setFile] = useState({});
+const EditGearProduct = () => {
+  const { id } = useParams();
+  const data = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
+  const products = data.gearReducer.gearData;
+
+  const navigate = useNavigate();
+  const [file, setFile] = useState([]);
+  const [showImage, setShowImage] = useState(null);
   const [getInputData, setGetInputData] = useState({
     name: "",
     category: "",
@@ -21,10 +27,50 @@ const AddGearProduct = () => {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    const filteredData = products.find((item) => item.id == id);
+    console.log(11111, filteredData);
+    setGetInputData({
+      name: filteredData.title,
+      category: filteredData.category,
+      price: filteredData.price,
+      stock: filteredData.stocks,
+      size: filteredData.size,
+      color: filteredData.color,
+      desc: filteredData.description,
+    });
+    setShowImage(filteredData.image);
+  }, [id]);
+  const updateImage = async (prodId) => {
+    const url = `${process.env.REACT_APP_URL}updateproductImage`;
+
+    let formdata = new FormData();
+    formdata.append("image", file[0]);
+    formdata.append("id", prodId);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios
+      .post(url, formdata, config)
+      .then((response) => {
+        if (response.status === 200) {
+          navigate("/gear-product");
+          window.location.reload(false);
+        }
+      })
+      .catch((error) => {
+        navigate("/gear-product");
+        window.location.reload(false);
+      });
+  };
   const handleApi = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const url = `${process.env.REACT_APP_URL}addproduct`;
+
+    const url = `${process.env.REACT_APP_URL}updateproduct/${id}`;
     let formdata = new FormData();
     formdata.append("title", getInputData.name);
     formdata.append("price", getInputData.price);
@@ -33,7 +79,6 @@ const AddGearProduct = () => {
     formdata.append("stocks", getInputData.stock);
     formdata.append("color", getInputData.color);
     formdata.append("size", getInputData.size);
-    formdata.append("image", file);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -44,12 +89,21 @@ const AddGearProduct = () => {
       .post(url, formdata, config)
       .then((response) => {
         if (response.status === 200) {
-          navigate("/gear-product");
-          window.location.reload(false);
+          if (file.length > 0) {
+            updateImage(id);
+          } else {
+            navigate("/gear-product");
+            window.location.reload(false);
+          }
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (file.length > 0) {
+          updateImage(id);
+        } else {
+          navigate("/gear-product");
+          window.location.reload(false);
+        }
       });
   };
   return (
@@ -157,8 +211,16 @@ const AddGearProduct = () => {
                 )}
               </div>
               <div className="col-12 col-md-6">
-                <label>Upload Photos</label>
-                <div className="form-group">
+                <label>Update Photos</label>
+                {file.length === 0 && (
+                  <div class="position-relative py-4 py-md-1">
+                    <img
+                      src={`${process.env.REACT_APP_URL}upload/products/${showImage}`}
+                      alt="Product image"
+                    />
+                  </div>
+                )}
+                <div className="form-group my-4">
                   <input
                     style={{
                       fontSize: "1.2rem",
@@ -166,11 +228,10 @@ const AddGearProduct = () => {
                       cursor: "pointer",
                     }}
                     onChange={(e) => {
-                      setFile(e.target.files[0]);
+                      setFile(e.target.files);
                     }}
                     name="file"
                     type="file"
-                    required
                   />
                 </div>
               </div>
@@ -191,4 +252,4 @@ const AddGearProduct = () => {
   );
 };
 
-export default AddGearProduct;
+export default EditGearProduct;

@@ -33,6 +33,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { useEffect } from "react";
 import { getTotals } from "./redux/reducers/cartSlice";
 import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
+import { storeGearData } from "./redux/reducers/gearReducer";
 
 const bsc = {
   id: 56,
@@ -167,6 +168,20 @@ const App = () => {
       fetchAllVehicleData();
     }
   }, [accessToken]);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}allproduct`);
+      if (res.status === 200 && res.data.data) {
+        dispatch(storeGearData(res.data.data));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>

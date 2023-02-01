@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import img_01 from "../../../Assets/images/img-1.webp";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 
 const Products = ({ id, price, image, title, curElem }) => {
@@ -24,7 +23,10 @@ const Products = ({ id, price, image, title, curElem }) => {
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card_post">
           <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
-            <img src={image ? image : img_01} />
+            <img
+              src={`${process.env.REACT_APP_URL}upload/products/${image}`}
+              alt={title}
+            />
           </Link>
           <div class="card_postInfo pt-3">
             <h6>

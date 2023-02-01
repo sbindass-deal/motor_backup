@@ -8,6 +8,7 @@ import cartSlice from "./reducers/cartSlice";
 import planReducer from "./reducers/planReducer";
 import vehicleReducer from "./reducers/vehicleReducer";
 import blogReducer from "./reducers/blogReducer";
+import gearReducer from "./reducers/gearReducer";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   planReducer,
   vehicleReducer,
   blogReducer,
+  gearReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

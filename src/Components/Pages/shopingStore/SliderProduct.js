@@ -6,7 +6,7 @@ import img_07 from "../../../Assets/images/img-7.jpeg";
 import img_01 from "../../../Assets/images/img-1.webp";
 import img_02 from "../../../Assets/images/img-2.webp";
 import img_03 from "../../../Assets/images/img-3.webp";
-
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +14,9 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 
 const SliderProduct = () => {
+  const data = useSelector((state) => state);
+  const products = data.gearReducer.gearData;
+
   const slide = useRef(null);
 
   function SampleNextArrow(props) {
@@ -46,10 +49,10 @@ const SliderProduct = () => {
     arrows: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    // autoplay: true,
-    // speed: 10000,
-    // pauseOnHover: true,
-    // cssEase: "linear"
+    autoplay: true,
+    speed: 3000,
+    pauseOnHover: true,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,

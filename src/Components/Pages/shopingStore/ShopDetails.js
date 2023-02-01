@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
 import "./Shopdetail.css";
-import img_01 from "../../../Assets/images/img-1.webp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SliderProduct from "./SliderProduct";
@@ -63,29 +61,10 @@ const ShopDetails = () => {
         ) : (
           <div className="row">
             <div className="col-md-6 sliderSec ">
-              <Carousel slide={false}>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={img_01}
-                    alt="First slide"
-                  />
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={img_01}
-                    alt="Second slide"
-                  />
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={img_01}
-                    alt="Third slide"
-                  />
-                </Carousel.Item>
-              </Carousel>
+              <img
+                src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
+                alt={product.title}
+              />
             </div>
             <div className="col-md-6 rightSec">
               <h5 className="catagories">{product.category}</h5>
@@ -98,16 +77,8 @@ const ShopDetails = () => {
               </p>
 
               <div className="sizeColor">
-                <select className="color">
-                  <option>Select Color</option>
-                  <option>Black</option>
-                  <option>Red </option>
-                </select>
-                <select className="size">
-                  <option>Select Size</option>
-                  <option>2-3 Years </option>
-                  <option>2-3 Years </option>
-                </select>
+                <div className="sizeColor">Category:- {product.category}</div>
+                <div className="size">Size:- {product.size}</div>
               </div>
               <button onClick={handleProduct} type="button" className="btn">
                 Add to Cart
