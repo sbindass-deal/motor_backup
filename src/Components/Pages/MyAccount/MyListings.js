@@ -105,6 +105,19 @@ function MyListings() {
       });
   };
 
+  const handleDeleteVehicle = (vId) => {
+    axios
+      .delete(`${process.env.REACT_APP_URL}deleteVehicle/${vId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.reload(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   if (vehicleLoding) {
     return (
       <div
@@ -253,8 +266,14 @@ function MyListings() {
                                 to={`/vehicle/${curElem.id}`}
                                 className="gry_btn"
                               >
-                                <i className="fa-solid fa-eye mr-2"></i> View
+                                <i class="fa-solid fa-pencil"></i>
                               </Link>
+                              <button
+                                onClick={() => handleDeleteVehicle(curElem.id)}
+                                className="gry_btn ml-2"
+                              >
+                                <i class="fa-solid fa-trash-can"></i>
+                              </button>
                             </div>
                           </div>
                         </div>

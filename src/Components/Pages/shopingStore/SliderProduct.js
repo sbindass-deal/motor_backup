@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
+import { Link } from "react-router-dom";
 
 const SliderProduct = () => {
   const data = useSelector((state) => state);
@@ -122,25 +123,36 @@ const SliderProduct = () => {
                 style={{ height: "350px" }}
               >
                 <Slider ref={slide} {...settings}>
-                  <div>
-                    <div className="card_post">
-                      <div className="card_postImg">
-                        <img src={img_01} alt="car_01" />
-                      </div>
-                      <div className="card_postInfo">
-                        <h5>
-                          <a href="#">New Make, Model, and Category Pages</a>
-                        </h5>
-                        <ul className="priceDateList">
-                          <li className="Date__">
-                            <i className="fa-solid fa-clock"></i> 5 days
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  {products.map((curElem) => {
+                    return (
+                      <Link to={`/shop/${curElem.id}`} key={curElem.id}>
+                        <div className="card_post">
+                          <div className="card_postImg">
+                            <img
+                              src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
+                              alt="car_01"
+                            />
+                          </div>
+                          <div className="card_postInfo">
+                            <h5>
+                              <a href="#">{curElem.title}</a>
+                            </h5>
+                            <ul className="priceDateList">
+                              <li className="Date__">
+                                <i className="fa-solid fa-clock"></i>{" "}
+                                {curElem.updated_at &&
+                                  new Date(
+                                    curElem.updated_at
+                                  ).toLocaleDateString()}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
 
-                  <div>
+                  {/* <div>
                     <div className="card_post">
                       <div className="card_postImg">
                         <img src={img_02} alt="car_02" />
@@ -260,7 +272,7 @@ const SliderProduct = () => {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </Slider>
               </div>
             </div>

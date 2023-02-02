@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import img_01 from "../../../Assets/images/th.jpeg";
 
@@ -10,9 +10,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
+import { toast } from "react-toastify";
 
 const UserVehicleDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [viewAll, setViewAll] = useState(false);
   const [vehicleImage, setVehicleImage] = useState([]);
   const [descValue, setDescValue] = useState({
@@ -22,6 +24,19 @@ const UserVehicleDetails = () => {
   const handleDescription = (e) => {
     setDescValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const submitApprove = (e) => {
     e.preventDefault();
     if (vehicle.approved === null || vehicle.approved === "11") {
@@ -33,7 +48,11 @@ const UserVehicleDetails = () => {
           desc2: descValue.description2,
         })
         .then(function (response) {
-          console.log(response);
+          if (response.status === 200) {
+            notify("Vehicle approved successfully!");
+            navigate("/vehicle-submission");
+            window.location.reload(false);
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -47,7 +66,11 @@ const UserVehicleDetails = () => {
           desc2: descValue.description2,
         })
         .then(function (response) {
-          console.log(response);
+          if (response.status === 200) {
+            notify("Vehicle rejected successfully!");
+            navigate("/vehicle-submission");
+            window.location.reload(false);
+          }
         })
         .catch(function (error) {
           console.log(error);
