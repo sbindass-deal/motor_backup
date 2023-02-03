@@ -4882,6 +4882,10 @@ display: none;
   border-radius: 30px!important;
 }
 
+.slick-track{
+  display: flex!important;
+}
+
 
 @media (max-width: 860px) {
 P{
