@@ -173,18 +173,27 @@ function Home() {
                             <div key={curElem.id}>
                               <div className="card_post">
                                 <div className="card_postImg">
-                                  <img
-                                    src={
-                                      process.env.REACT_APP_URL +
-                                      curElem.stepOneImage
-                                    }
-                                    onError={({ currentTarget }) => {
-                                      currentTarget.onerror = null;
-                                      currentTarget.src =
-                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                    }}
-                                    alt="Img_01"
-                                  />
+                                  {curElem.images[0] ? (
+                                    <img
+                                      loading="lazy"
+                                      src={
+                                        curElem.images[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                  ) : (
+                                    <img
+                                      loading="lazy"
+                                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                      alt="Maskgroup1"
+                                    />
+                                  )}
                                 </div>
                                 <div className="card_postInfo">
                                   <h4>

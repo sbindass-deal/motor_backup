@@ -13,6 +13,7 @@ function Detail() {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
+  // console.log(11111,logingUser.login.admin )
   const moreImgRaf = useRef();
   const [vehicle, setVehicle] = useState({});
   const [showReadMore, setShowReadMore] = useState();
@@ -71,10 +72,20 @@ function Detail() {
     });
 
   const handleShow = () => {
-    if (logingUser.login.token && vehicle.canBid === "yes") {
-      setShow(true);
-    } else if (logingUser.login.token && vehicle.canBid === "no") {
+    if (logingUser.login.admin === "1") {
+      notify(`You are admin so you can't bid`);
+    } else if (
+      logingUser.login.token !== "1" &&
+      logingUser.login.token !== null &&
+      vehicle.canBid === "no"
+    ) {
       notify(`You are seller so you can't bid`);
+    } else if (
+      logingUser.login.token !== "1" &&
+      logingUser.login.token !== null &&
+      vehicle.canBid === "yes"
+    ) {
+      setShow(true);
     } else {
       dispatch(showModalLogin());
     }

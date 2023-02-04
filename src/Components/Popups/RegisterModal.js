@@ -153,7 +153,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
             </button>
           </div>
           <div className="modal-body">
-            <form onSubmit={handleApi}>
+            <form onSubmit={handleApi} autocomplete="off">
               <div className="row">
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   {" "}

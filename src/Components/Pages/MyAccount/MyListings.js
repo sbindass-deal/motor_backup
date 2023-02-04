@@ -25,17 +25,21 @@ function MyListings() {
   };
 
   useEffect(() => {
-    const fetchData = async() => {
-      try{
-        const res = await axios.get(process.env.REACT_APP_URL + `user`)
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(process.env.REACT_APP_URL + `user`);
         if (res.data.data) {
-          const filteredVehicle = vehicleData.filter((item) => item.userId === res.data.data.id)
+          const filteredVehicle = vehicleData.filter(
+            (item) => item.userId === res.data.data.id
+          );
           // setData(filteredVehicle)
-          console.log(1111, filteredVehicle)
+          console.log(1111, filteredVehicle);
         }
-      }catch(err){console.log(err)}
-    }
-    fetchData()
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -175,7 +179,7 @@ function MyListings() {
                       return (
                         <div key={curElem.id} className="bidsListRow">
                           <div className="bidsImg">
-                            {/* <img
+                            <img
                               loading="lazy"
                               src={
                                 curElem.images &&
@@ -187,18 +191,6 @@ function MyListings() {
                                   "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                               }}
                               alt="Maskgroup1"
-                            /> */}
-                            <img
-                              src={
-                                process.env.REACT_APP_URL + curElem.stepOneImage
-                              }
-                              class="img-fluid rounded-start w-100 "
-                              onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt={curElem.make}
                             />
                           </div>
                           <div className="bidsInfo">

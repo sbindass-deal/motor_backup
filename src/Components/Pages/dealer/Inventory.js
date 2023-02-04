@@ -132,17 +132,27 @@ const Inventory = () => {
                           href={curElem.externalLink}
                           className="card_postImg card_postImg_200"
                         >
-                          <img
-                            src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.make}
-                          />
+                          {curElem.images[0] ? (
+                            <img
+                              loading="lazy"
+                              src={
+                                curElem.images[0] &&
+                                `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          ) : (
+                            <img
+                              loading="lazy"
+                              src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                              alt="Maskgroup1"
+                            />
+                          )}
                         </a>
                       ) : (
                         <Link
@@ -153,17 +163,27 @@ const Inventory = () => {
                           }
                           className="card_postImg card_postImg_200"
                         >
-                          <img
-                            src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.make}
-                          />
+                          {curElem.images[0] ? (
+                            <img
+                              loading="lazy"
+                              src={
+                                curElem.images[0] &&
+                                `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          ) : (
+                            <img
+                              loading="lazy"
+                              src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                              alt="Maskgroup1"
+                            />
+                          )}
                         </Link>
                       )}
                       <div className="card_postInfo pt-3">

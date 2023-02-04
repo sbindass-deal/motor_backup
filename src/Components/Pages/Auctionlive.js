@@ -153,20 +153,28 @@ const Auctionlive = () => {
                             className="auction_image"
                             to={`/detail/${curElem.id}`}
                           >
-                            <img
-                              loading="lazy"
-                              src={
-                                process.env.REACT_APP_URL + curElem.stepOneImage
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt={curElem.model}
-                            />
+                            {curElem.images[0] ? (
+                              <img
+                                loading="lazy"
+                                src={
+                                  curElem.images[0] &&
+                                  `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            ) : (
+                              <img
+                                loading="lazy"
+                                src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                alt="Maskgroup1"
+                              />
+                            )}
                           </Link>
-
                           <button
                             onClick={() => addFabrity(curElem.id)}
                             type="button"

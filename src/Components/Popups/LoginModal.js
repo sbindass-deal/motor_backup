@@ -88,6 +88,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           handleClose();
           setLoginLoading(false);
           window.location.reload(false);
+        } else {
+          notify("Something wrong");
+          setLoginLoading(false);
         }
       })
       .catch((error) => {
@@ -128,7 +131,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
 
           <div className="modal-body">
             {/* <button onClick={handleClick} >click me</button> */}
-            <form onSubmit={handleApi}>
+            <form onSubmit={handleApi} autocomplete="off">
               <div className="col-md-12">
                 <FormInput
                   value={email}
