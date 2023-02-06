@@ -9,7 +9,8 @@ import FormInput from "../UI/FormInput";
 import SmallSpinner from "../UI/SmallSpinner";
 import { Checkbox } from "antd";
 import CryptoJS from "crypto-js";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import { incVal } from "../UI/globaleVar";
 
@@ -130,7 +131,6 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           </div>
 
           <div className="modal-body">
-            {/* <button onClick={handleClick} >click me</button> */}
             <form onSubmit={handleApi} autocomplete="off">
               <div className="col-md-12">
                 <FormInput
@@ -158,13 +158,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                 />
               </div>
               <div className="col-md-12 fp">
-                <Checkbox
-                  style={{ color: "#F49D1A" }}
-                  onClick={() => setShowPassWord(!showPassWord)}
-                >
-                  Show password
-                </Checkbox>
-
+                <div onClick={() => setShowPassWord(!showPassWord)}>
+                  {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </div>
                 <div onClick={handlePasswordBtn} className="form-group">
                   <a href="javascript:void(0)">Forgot your password?</a>
                 </div>
@@ -183,14 +179,14 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
               <div className="col-md-12">
                 <div className="form-group">
                   <p className="checRegistered">
-                    Not registered with Gas Guzzlrs?
+                    Do you want to Sign Up with Gas Guzzlrs?
                     <span onClick={handleRegister}>
                       <a
                         className="signup"
                         style={{ marginLeft: "10px" }}
                         href="javascript:void(0)"
                       >
-                        Sign up
+                        Sign Up
                       </a>
                     </span>
                   </p>

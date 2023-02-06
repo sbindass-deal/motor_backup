@@ -28,6 +28,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(false);
+  const [acceptTearms, setAcceptTearms] = useState(true);
+  const [signInTeams, setSignInTeams] = useState(true);
 
   // console.log("####", addUserInBid)
   const [inputValue, setInputValue] = useState({
@@ -98,7 +100,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       .then((result) => {
         if (result.status === 200) {
           handleCloseReg();
-          notify("User Register successfully!");
+          notify("User Sign Up successfully!");
           setInputValue({
             name: "",
             phone: "",
@@ -144,7 +146,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header border-0">
-            <h4 className="modal-title">Register</h4>
+            <h4 className="modal-title">Sign Up</h4>
             <button
               onClick={handleCloseReg}
               type="button"
@@ -205,28 +207,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                 </div>
-                {userInput.dealer === "Yes" && (
-                  <div className="col-md-12 col-lg-12 col-sm-12">
-                    <div class="mb-3">
-                      <label
-                        htmlFor="exampleFormControlTextarea1"
-                        class="form-label"
-                      >
-                        Description
-                      </label>
-                      <textarea
-                        value={userInput.dealerDescription}
-                        onChange={handleUserInput}
-                        name="dealerDescription"
-                        placeholder="Enter Description"
-                        class="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="3"
-                        required
-                      ></textarea>
-                    </div>
-                  </div>
-                )}
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
                     value={userInput.password}
@@ -239,7 +219,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                     required={true}
                   />
-
                   <div onClick={() => setShowPassWord(!showPassWord)}>
                     {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </div>
@@ -278,7 +257,28 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </select>
                   </div>
                 </div>
-
+                {userInput.dealer === "Yes" && (
+                  <div className="col-md-12 col-lg-12 col-sm-12">
+                    <div class="mb-3">
+                      <label
+                        htmlFor="exampleFormControlTextarea1"
+                        class="form-label"
+                      >
+                        Description
+                      </label>
+                      <textarea
+                        value={userInput.dealerDescription}
+                        onChange={handleUserInput}
+                        name="dealerDescription"
+                        placeholder="Enter Description"
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                )}
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
@@ -319,6 +319,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <input
                         className="form-check-input"
                         type="checkbox"
+                        value={acceptTearms}
+                        onChange={(e) => setAcceptTearms(e.target.checked)}
+                        checked={acceptTearms}
                         required
                       />{" "}
                       I accept the Terms of Use and Privacy Notice
@@ -328,7 +331,13 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
-                      <input className="form-check-input" type="checkbox" />{" "}
+                      <input
+                        value={signInTeams}
+                        onChange={(e) => setSignInTeams(e.target.checked)}
+                        checked={signInTeams}
+                        className="form-check-input"
+                        type="checkbox"
+                      />{" "}
                       Sign me up for the Gas Guzzlrs Daily Mail
                     </label>
                   </div>
@@ -346,7 +355,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12 col-md-12">
                   <div className="form-group">
                     <button type="submit" className="btn">
-                      Register
+                      Sign Up
                     </button>
 
                     {/* {addUserInBid ? (
@@ -362,7 +371,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         />
                       ) : (
                         <button type="submit" className="btn" disabled={true}>
-                          Register
+                          Sign Up
                         </button>
                       )
                     ) : null} */}

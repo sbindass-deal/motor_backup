@@ -174,7 +174,7 @@ function MyListings() {
               <hr />
               <div className="row">
                 <div className="col-12">
-                  {data.length > 0 ? (
+                  {false ? (
                     data.map((curElem) => {
                       return (
                         <div key={curElem.id} className="bidsListRow">
@@ -310,8 +310,15 @@ function MyListings() {
                         justifyContent: "center",
                       }}
                     >
-                      <div className="row">
+                      <div
+                        className="row"
+                        style={{ display: "flex", flexDirection: "column" }}
+                      >
                         <h3>You have not listed any vehicle</h3>
+                        <br />
+                        <Link to="/submit" className="btn">
+                          List your vehicle
+                        </Link>
                       </div>
                     </div>
                   )}
