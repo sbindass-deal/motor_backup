@@ -611,7 +611,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
-                    <h4>GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
+                    <h4>Gas Guzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
@@ -650,7 +650,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
                   <div className="blogPostText">
-                    <h4>GasGuzzlrs Auction: 1984 Ferrari 512 BBi</h4>
+                    <h4>Gas Guzzlrs Auction: 1984 Ferrari 512 BBi</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022
@@ -685,7 +685,7 @@ function Home() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center order-md-0">
                   <div className="blogPostText">
-                    <h4>GasGuzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
+                    <h4>Gas Guzzlrs Auction: 50-Years-Owned 1972 Datsun 240Z</h4>
                     <ul className="post_labelList">
                       <li>
                         <i className="fa-solid fa-clock"></i> September 13, 2022

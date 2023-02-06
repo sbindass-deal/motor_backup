@@ -622,7 +622,7 @@ const VehicleRegistered = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 text-center pb-4">
-              <h2>Sell your vehicle with GasGuzzlrs Auctions!</h2>
+              <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
             </div>
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
@@ -711,8 +711,8 @@ const VehicleRegistered = () => {
                     <h3>Make & Model</h3>
                     <hr />
                     <h6>
-                      Think your vehicle should be sold via GasGuzzlrs Auctions?
-                      Please fill out the form below.
+                      Think your vehicle should be sold via Gas Guzzlrs
+                      Auctions? Please fill out the form below.
                     </h6>
 
                     <form className="" onSubmit={handleNextSubmit}>
@@ -847,7 +847,7 @@ const VehicleRegistered = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
-                              Has this vehicle been listed on GasGuzzlrs in the
+                              Has this vehicle been listed on Gas Guzzlrs in the
                               past?
                             </label>
                             <select
@@ -886,7 +886,7 @@ const VehicleRegistered = () => {
                               <div className="form-group">
                                 <label>
                                   What has changed on this vehicle since it was
-                                  last listed on GasGuzzlrs?
+                                  last listed on Gas Guzzlrs?
                                 </label>
                                 <textarea
                                   value={namefield.changedvechiles}
@@ -1010,7 +1010,6 @@ const VehicleRegistered = () => {
                                   </span>
                                 );
                               })}
-
                               <input
                                 style={{
                                   fontSize: "1.2rem",
@@ -1858,7 +1857,7 @@ const VehicleRegistered = () => {
 
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Where did you hear about GasGuzzlrs?</label>
+                            <label>Where did you hear about Gas Guzzlrs?</label>
                             <select
                               value={detailstab.shibnobi}
                               onChange={detailsOnChange}
@@ -1870,13 +1869,13 @@ const VehicleRegistered = () => {
                                 Choose...
                               </option>
                               <option value="referred">
-                                Referred by a GasGuzzlrs member
+                                Referred by a Gas Guzzlrs member
                               </option>
                               <option value="facebook">Facebook</option>
                               <option value="google">Google</option>
                               <option value="instagram">Instagram</option>
                               <option value="longtime">
-                                I'm a long time GasGuzzlrs Reader
+                                I'm a long time Gas Guzzlrs Reader
                               </option>
                               <option value="repeat">Repeat seller</option>
                               <option value="other">Other</option>
@@ -1977,7 +1976,7 @@ const VehicleRegistered = () => {
                                 className="form-check-input"
                                 type="checkbox"
                               />
-                              Sign me up for the GasGuzzlrs Daily Mail
+                              Sign me up for the Gas Guzzlrs Daily Mail
                             </label>
                           </div>
                         </div>

@@ -16,7 +16,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>How GasGuzzlrs Works</h1>
+                <h1>How Gas Guzzlrs Works</h1>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                What makes GasGuzzlrs different?
+                What makes Gas Guzzlrs different?
               </h2>
             </div>
 
@@ -98,24 +98,33 @@ function HowShibnobiMotorWorks() {
               <img src={HIW} alt="HIW" />
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
-            <div>
+              <div>
                 <h3>Submitting a Vehicle for Auction</h3>
                 <p>
-                If you're looking to sell your car, get it ready for auction and see what you can get, you can sell your car for the highest price possible. Its fast, it's easy.
+                  If you're looking to sell your car, get it ready for auction
+                  and see what you can get, you can sell your car for the
+                  highest price possible. Its fast, it's easy.
                 </p>
                 <h6>1. Classic</h6>
                 <p>
-                Make the introduction for you and write a compelling description of your item. Our car experts will help you sell faster and for a higher price.
+                  Make the introduction for you and write a compelling
+                  description of your item. Our car experts will help you sell
+                  faster and for a higher price.
                 </p>
                 <hr />
                 <h6>2. Plus Photography</h6>
                 <p>
-                Bringing your car to life and unleashing its full potential is our passion. Enjoy the true value of your car by choosing to add ultra-sharp high resolution panoramic photographs as part of the listing process.
+                  Bringing your car to life and unleashing its full potential is
+                  our passion. Enjoy the true value of your car by choosing to
+                  add ultra-sharp high resolution panoramic photographs as part
+                  of the listing process.
                 </p>
                 <hr />
                 <h6>3. White Glove Service</h6>
                 <p>
-                We aim to deliver premium-quality customer service and workmanship, setting new customer experience standards for automotive industry.
+                  We aim to deliver premium-quality customer service and
+                  workmanship, setting new customer experience standards for
+                  automotive industry.
                 </p>
               </div>
             </div>
@@ -129,7 +138,7 @@ function HowShibnobiMotorWorks() {
                 <h3>How it will work for the giveway</h3>
                 <p style={{ lineHeight: "2rem" }}>
                   Every dollar amount spent or equivalent ( CRYPTO BUY IN ) on
-                  your favorite products in the GasGuzzlrs store/ticket site
+                  your favorite products in the Gas Guzzlrs store/ticket site
                   gives you the allotted amount of automatic entries for the
                   chance to WIN our current giveaway. All your entries are
                   calculated realtime for you to see in your personal account
@@ -158,7 +167,7 @@ function HowShibnobiMotorWorks() {
                   immediately provides us with the winner information in which
                   we will then upload to Youtube, Facebook, Instagram and
                   Twitter. Of course, the winner will FIRST be announced on the
-                  GasGuzzlrs YouTube Channel
+                  Gas Guzzlrs YouTube Channel
                 </p>
                 {/* <ul className="dotList">
                   <li>Lorem Ipsum has been the industry's standard</li>
@@ -174,7 +183,15 @@ function HowShibnobiMotorWorks() {
             <div className="col-12 col-md-8 offset-md-2 text-center">
               <h2>The Submission Process</h2>
               <p style={{ lineHeight: "2rem" }}>
-              The car auction submission process is designed to ensure that every submitted vehicle is properly cataloged and documented with photographs, video documentation and any other information necessary to accurately represent the vehicle description. The eAuction system will review your listing before it goes live on the auction site. After you submit it we will send you an email confirming that it has been received and may be ready for auction 24/7.</p>
+                The car auction submission process is designed to ensure that
+                every submitted vehicle is properly cataloged and documented
+                with photographs, video documentation and any other information
+                necessary to accurately represent the vehicle description. The
+                eAuction system will review your listing before it goes live on
+                the auction site. After you submit it we will send you an email
+                confirming that it has been received and may be ready for
+                auction 24/7.
+              </p>
             </div>
             <div className="col-12 col-md-12 mt-4">
               <img src={HIW2} alt="HIW2" />

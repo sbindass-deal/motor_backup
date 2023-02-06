@@ -81,7 +81,7 @@ const BlogDetail = () => {
               <ul class="sidebar_Event">
                 <li>
                   <a href="#">
-                    GasGuzzlrs Alumni Gathering: October 1 in conjunction with
+                    Gas Guzzlrs Alumni Gathering: October 1 in conjunction with
                     the Audrain Newport Concours &amp; Motor Week – REGISTRATION
                     IS OPEN{" "}
                   </a>

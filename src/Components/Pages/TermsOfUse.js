@@ -16,9 +16,9 @@ function TermsOfUse() {
                 {/* <p>Terms of Use</p> */}
                 <p>
                   {" "}
-                  This website is operated by GasGuzzlrs Essentials. Throughout
-                  the site, the terms “we”, “us” and “our” refer to GasGuzzlrs
-                  Essentials. GasGuzzlrs Essentials offers this website,
+                  This website is operated by Gas Guzzlrs Essentials. Throughout
+                  the site, the terms “we”, “us” and “our” refer to Gas Guzzlrs
+                  Essentials. Gas Guzzlrs Essentials offers this website,
                   including all information, tools and services available from
                   this site to you, the user, conditioned upon your acceptance
                   of all terms, conditions, policies and notices stated here.{" "}
@@ -166,9 +166,7 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <h2>
-                    SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
-                  </h2>
+                  <h2>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</h2>
                 </p>
                 <ul>
                   <p>
@@ -192,9 +190,7 @@ function TermsOfUse() {
                   </p>
                 </ul>
                 <p>
-                  <h2>
-                    SECTION 5 - PRODUCTS OR SERVICES (if applicable)
-                  </h2>
+                  <h2>SECTION 5 - PRODUCTS OR SERVICES (if applicable)</h2>
                 </p>
                 <ul>
                   <p>
@@ -401,9 +397,7 @@ function TermsOfUse() {
                 </ul>
 
                 <p>
-                  <h2>
-                    SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS
-                  </h2>
+                  <h2>SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS</h2>
                 </p>
 
                 <ul>
@@ -507,7 +501,7 @@ function TermsOfUse() {
 
                   <p>
                     {" "}
-                    In no case shall GasGuzzlrs Essentials, our directors,
+                    In no case shall Gas Guzzlrs Essentials, our directors,
                     officers, employees, affiliates, agents, contractors,
                     interns, suppliers, service providers or licensors be liable
                     for any injury, loss, claim, or any direct, indirect,
@@ -538,7 +532,7 @@ function TermsOfUse() {
                 <ul>
                   <p>
                     {" "}
-                    You agree to indemnify, defend and hold harmless GasGuzzlrs
+                    You agree to indemnify, defend and hold harmless Gas Guzzlrs
                     Essentials and our parent, subsidiaries, affiliates,
                     partners, officers, directors, agents, contractors,
                     licensors, service providers, subcontractors, suppliers,

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 const CardDetails = ({ getInputField, inputValue }) => {
-
   return (
     <div
       className="container col-md col-sm p-3"
@@ -154,7 +153,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
 
       <div class="col-md-12 position-relative">
         <label for="validationTooltip05" class="form-label">
-          Where did you hear about GasGuzzlrs?
+          Where did you hear about Gas Guzzlrs?
         </label>
         <select
           type="text"

@@ -177,7 +177,7 @@ const SliderProduct = () => {
                       <div className="card_postInfo">
                         <h5>
                           <a href="#">
-                            New Inventory in the GasGuzzlrs Gear Store!
+                            New Inventory in the Gas Guzzlrs Gear Store!
                           </a>
                         </h5>
                         <ul className="priceDateList">

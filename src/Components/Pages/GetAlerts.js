@@ -24,10 +24,10 @@ const GetAlerts = () => {
               className="text title_combo title_Center"
               style={{ color: "#fff" }}
             >
-              GasGuzzlrs Daily Mail
+              Gas Guzzlrs Daily Mail
             </h2>
             <p className="title_combo title_Center" style={{ color: "#fff" }}>
-              All the most relevant new content on GasGuzzlrs at 5am Pacific
+              All the most relevant new content on Gas Guzzlrs at 5am Pacific
               each day, including:
             </p>
 
@@ -100,7 +100,7 @@ const GetAlerts = () => {
                   <img src={premium} />
                 </div>
                 <div className="card_icBody">
-                  <h4>GasGuzzlrs Premium Listings</h4>
+                  <h4>Gas Guzzlrs Premium Listings</h4>
                   <p>
                     Each Premium listing is sent to you as soon as the auction
                     goes live.
@@ -142,7 +142,7 @@ const GetAlerts = () => {
                   closes.
                 </li>
                 <li>
-                  Well email you if the vehicle is listed again on GasGuzzlrs.
+                  Well email you if the vehicle is listed again on Gas Guzzlrs.
                 </li>
               </ul>
               <a className="btn" href="#">

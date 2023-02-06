@@ -37,7 +37,7 @@ const Footer = () => {
                   <Link to="/shipping">Shipping</Link>
                 </li>
                 <li>
-                  <Link to="/feautres">GasGuzzlrs Features</Link>
+                  <Link to="/feautres">Gas Guzzlrs Features</Link>
                 </li>
                 <li>
                   <Link to="/submit">List Your Vehicle</Link>
@@ -54,7 +54,7 @@ const Footer = () => {
                   <Link to="/getalerts">Get Alerts</Link>
                 </li>
                 <li>
-                  <Link to="/about">About GasGuzzlrs</Link>
+                  <Link to="/about">About Gas Guzzlrs</Link>
                 </li>
               </ul>
             </div>
@@ -64,7 +64,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    href="https://www.facebook.com/GasGuzzlrs/"
+                    href="https://www.facebook.com/Gas Guzzlrs/"
                   >
                     <i className="fa-brands fa-facebook"></i> Facebook
                   </a>
@@ -72,7 +72,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    href="https://www.instagram.com/gasguzzlrs/"
+                    href="https://www.instagram.com/Gas Guzzlrs/"
                   >
                     <i className="fa-brands fa-instagram"></i> Instagram
                   </a>
@@ -83,7 +83,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://twitter.com/GasGuzzlrs">
+                  <a target="_blank" href="https://twitter.com/Gas Guzzlrs">
                     <i className="fa-brands fa-twitter"></i> Twitter
                   </a>
                 </li>
@@ -100,7 +100,7 @@ const Footer = () => {
                 <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                <p>©2022 GasGuzzlrs | All Rights Reserved.</p>
+                <p>©2022 Gas Guzzlrs | All Rights Reserved.</p>
               </div>
             </div>
           </div>

@@ -8,6 +8,8 @@ import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
 import { Checkbox } from "antd";
 import CardDetails from "./CardDetails";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const notify = (val) =>
@@ -203,26 +205,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                 </div>
-
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <label htmlFor="">Are you a dealer?</label>
-                    <select
-                      value={userInput.dealer}
-                      onChange={handleUserInput}
-                      name="dealer"
-                      className="field"
-                      required
-                    >
-                      <option selected disabled value="">
-                        Choose...
-                      </option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-                </div>
-
                 {userInput.dealer === "Yes" && (
                   <div className="col-md-12 col-lg-12 col-sm-12">
                     <div class="mb-3">
@@ -257,12 +239,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                     required={true}
                   />
-                  <Checkbox
-                    style={{ color: "#F49D1A" }}
-                    onClick={() => setShowPassWord(!showPassWord)}
-                  >
-                    Show password
-                  </Checkbox>
+
+                  <div onClick={() => setShowPassWord(!showPassWord)}>
+                    {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <FormInput
@@ -276,13 +256,29 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={userInput.password}
                     required={true}
                   />
-                  <Checkbox
-                    style={{ color: "#F49D1A" }}
-                    onClick={() => setShowCPassWord(!showCPassword)}
-                  >
-                    Show password
-                  </Checkbox>
+                  <div onClick={() => setShowCPassWord(!showCPassword)}>
+                    {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  </div>
                 </div>
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <label htmlFor="">Are you a dealer?</label>
+                    <select
+                      value={userInput.dealer}
+                      onChange={handleUserInput}
+                      name="dealer"
+                      className="field"
+                      required
+                    >
+                      <option selected disabled value="">
+                        Choose
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
@@ -299,7 +295,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 <div className="col-12">
                   {addUserInBid == true ? (
                     <label style={{ color: "#FFB100" }}>
-                      GasGuzzlrs requires a credit to bid
+                      Gas Guzzlrs requires a credit to bid
                     </label>
                   ) : (
                     ""
@@ -333,7 +329,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input className="form-check-input" type="checkbox" />{" "}
-                      Sign me up for the GasGuzzlrs Daily Mail
+                      Sign me up for the Gas Guzzlrs Daily Mail
                     </label>
                   </div>
                 </div>

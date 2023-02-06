@@ -92,7 +92,7 @@ const SubmitaVehicle = () => {
                 Pick Your Listing Type!
               </h2>
               <p>
-                GasGuzzlrs is the best place to auction your vehicle.
+                Gas Guzzlrs is the best place to auction your vehicle.
                 <br /> Choose one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
@@ -325,7 +325,7 @@ const SubmitaVehicle = () => {
                       <h5>
                         {planChacked.exclusive
                           ? "1-817-221-8319"
-                          : "sales@gasguzzlrs.com"}
+                          : "sales@Gas Guzzlrs.com"}
                       </h5>
                       <div className="switch">
                         <span className="plan_Time">Email</span>
@@ -383,9 +383,9 @@ const SubmitaVehicle = () => {
               <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
                 <h2 className="title_combo title_Center">Looking for More!</h2>
                 <p>
-                  GasGuzzlrs has got special offers for you.
+                  Gas Guzzlrs has got special offers for you.
                   <br /> Choose to list ads with us or purchase subscription to
-                  have your own dedicated showroom fully manage by GasGuzzlrs.
+                  have your own dedicated showroom fully manage by Gas Guzzlrs.
                 </p>
               </div>
               <div className="col-lg-3"></div>

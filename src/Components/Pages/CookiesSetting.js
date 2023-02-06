@@ -15,7 +15,7 @@ function CookiesSetting() {
                 <p>Last revised on: 11/09/2022</p>
                 <p>Terms of Use</p>
                 <p>
-                  GasGuzzlrs, Inc. (individually and collectively, the
+                  Gas Guzzlrs, Inc. (individually and collectively, the
                   “Company”), incorporated under the laws of the State of Texas
                   offers services through an internet-enabled peer-to-peer
                   (“P2P”) marketplace for the purchase and sale of digital
@@ -47,7 +47,7 @@ function CookiesSetting() {
 
                 <p>
                   Using a risk based approach as part of KYC & AML Compliance,
-                  GasGuzzlrs has taken the following measures:
+                  Gas Guzzlrs has taken the following measures:
                 </p>
 
                 {/* <p><h2>Highlights</h2></p>
@@ -114,7 +114,7 @@ function CookiesSetting() {
 
                 <ui>
                   <li>
-                    GasGuzzlrs fully cooperates with all OFAC, Specially
+                    Gas Guzzlrs fully cooperates with all OFAC, Specially
                     Designated Nationals (SDN) and Blocked persons sanctions
                     lists.
                   </li>
@@ -124,11 +124,11 @@ function CookiesSetting() {
 
                 <ul>
                   <li>
-                    Where GasGuzzlrs has provided you with a translation of the
+                    Where Gas Guzzlrs has provided you with a translation of the
                     English language version of this policy, then you agree that
                     the translation is provided for your convenience only and
                     that the English language versions of the policy will govern
-                    your relationship with GasGuzzlrs. If there is any
+                    your relationship with Gas Guzzlrs. If there is any
                     contradiction between what the English language version of
                     the policy says and what a translation says, then the
                     English language version shall control.

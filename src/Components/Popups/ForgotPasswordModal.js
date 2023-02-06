@@ -14,16 +14,16 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
     setEmail(e.target.value);
   };
   const notify = (val) =>
-  toast.success(val, {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleApi = (e) => {
     e.preventDefault();
@@ -32,12 +32,12 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
         email: email,
       })
       .then((result) => {
-        console.log(result)
-        notify(result)
+        console.log(result);
+        notify(result);
       })
       .catch((error) => {});
   };
- 
+
   return (
     // <!-- The forgotPasswordModal -->
     <Modal
@@ -66,39 +66,39 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
           <div className="modal-body">
             {/* <p>Please enter your email</p> */}
             <form onSubmit={handleApi}>
-            <div className="col-md-12">
-              <div className="form-group">
-                <FormInput
-                  value={email}
-                  onChange={handleEmail}
-                  name="email"
-                  placeholder="Username or Email"
-                  type="email"
-                  errorMessage="It should be a valid email address!"
-                  label="Please enter your registered email"
-                  required={true}
-                />
-              </div>
+              <div className="col-md-12">
+                <div className="form-group">
+                  <FormInput
+                    value={email}
+                    onChange={handleEmail}
+                    name="email"
+                    placeholder="Username or Email"
+                    type="email"
+                    errorMessage="It should be a valid email address!"
+                    label="Please enter your registered email"
+                    required={true}
+                  />
+                </div>
               </div>
               <div className="col-md-12">
-              <div className="form-group">
-                {forgotPasswordLoading ? (
-                  <SmallSpinner />
-                ) : (
-                  <button type="submit" className="btn" >
-                    Get New Password
-                  </button>
-                )}
-              </div>
+                <div className="form-group">
+                  {forgotPasswordLoading ? (
+                    <SmallSpinner />
+                  ) : (
+                    <button type="submit" className="btn">
+                      Get New Password
+                    </button>
+                  )}
+                </div>
               </div>
               <div className="col-md-12">
-              <div className="form-group">
-                <p>
-                  Having trouble? Email us at{" "}
-                  <a href="javascript:void(0)">Xavier@gasguzzlrs.com</a> with
-                  any questions.
-                </p>
-              </div>
+                <div className="form-group">
+                  <p>
+                    Having trouble? Email us at{" "}
+                    <a href="javascript:void(0)">Xavier@Gas Guzzlrs.com</a> with
+                    any questions.
+                  </p>
+                </div>
               </div>
             </form>
           </div>

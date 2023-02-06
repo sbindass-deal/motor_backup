@@ -214,7 +214,7 @@ function CarRaffle() {
       <section className=" video_section d-flex align-items-center">
         <video muted="false" id="myVideo" controls poster={carraffle}>
           <source
-            src="https://s3.amazonaws.com/beta.gasguzzlrs.com/Introducing_video.mp4"
+            src="https://s3.amazonaws.com/beta.Gas Guzzlrs.com/Introducing_video.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
