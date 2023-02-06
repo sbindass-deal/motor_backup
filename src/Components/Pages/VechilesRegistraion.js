@@ -26,16 +26,13 @@ const VechilesRegistraion = () => {
   const [showVidnModal, setShowVidnModal] = useState(false);
   const handleVinClose = () => setShowVidnModal(false);
   const handleVinShow = () => setShowVidnModal(true);
-
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [getVinNumber, setGetVinNumber] = useState("");
   const [file, setFile] = useState([]);
-
   const [file1, setFile1] = useState([]);
-
-  const [signinAggri, setSigninAggri] = useState();
+  const [signinAggri, setSigninAggri] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
   const [understandCondition, setUnderstandCondition] = useState(true);
@@ -197,7 +194,7 @@ const VechilesRegistraion = () => {
     year: "",
     make: "",
     model: "",
-    vechilelocation: "",
+    vechilelocation: "United State",
     city: "",
     sale: "",
     link: "",
@@ -274,6 +271,22 @@ const VechilesRegistraion = () => {
     const Name = e.target.name;
     setNamefield({ ...namefield, [Name]: Value });
   };
+
+  // User account information api
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+      if (res.data.data) {
+        const data = res.data.data;
+        setInformation({
+          uemail: data.email,
+          username: data.username,
+          password: "",
+          iname: data.name,
+          phone: data.mobile,
+        });
+      }
+    });
+  }, []);
 
   const handleNextSubmit = (e) => {
     e.preventDefault();
@@ -794,12 +807,14 @@ const VechilesRegistraion = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
+                              <option value="United State">United State</option>
 
                               {counryData.map((curElem, i) => {
-                                return <option key={i}>{curElem.name}</option>;
+                                return (
+                                  <option value={curElem.name} key={i}>
+                                    {curElem.name}
+                                  </option>
+                                );
                               })}
                             </select>
                           </div>
@@ -895,7 +910,7 @@ const VechilesRegistraion = () => {
                             </div>
                           </>
                         ) : null}
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Are you a dealer?</label>
                             <select
@@ -935,7 +950,7 @@ const VechilesRegistraion = () => {
                           </div>
                         ) : (
                           ""
-                        )}
+                        )} */}
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
@@ -1169,7 +1184,7 @@ const VechilesRegistraion = () => {
                                 required
                               >
                                 <option selected disabled value="">
-                                  Auction type...
+                                  Auction type
                                 </option>
                                 <option value="General listing">
                                   General listing
@@ -1495,7 +1510,10 @@ const VechilesRegistraion = () => {
                                 }}
                                 onChange={(e) => {
                                   basicFactOnChange(e);
-                                  setFile1( prevState => [...prevState, ...e.target.files]);
+                                  setFile1((prevState) => [
+                                    ...prevState,
+                                    ...e.target.files,
+                                  ]);
                                 }}
                                 name="files"
                                 type="file"
@@ -2139,9 +2157,10 @@ const VechilesRegistraion = () => {
                             <label className="form-check-label">
                               <input
                                 name="checkbox"
-                                value="aggri"
+                                value={signinAggri}
                                 onChange={signInChange}
                                 className="form-check-input"
+                                checked={signinAggri}
                                 type="checkbox"
                               />
                               Sign me up for the GasGuzzlrs Daily Mail

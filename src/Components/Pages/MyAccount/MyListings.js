@@ -178,7 +178,7 @@ function MyListings() {
               >
                 <h3>My Listing</h3>
                 <Link to="/submit" className="gry_btn px-3">
-                  Add new listing
+                  + Add new listing
                 </Link>
               </div>
               {/* </div> */}

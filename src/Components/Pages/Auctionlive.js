@@ -216,11 +216,21 @@ const Auctionlive = () => {
                             ) : null}
                           </li>
                           <li>
-                            {curElem.approved === "0" && (
+                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
+                              parseInt(new Date().getTime(), 10) >
+                              0 && curElem.approved === "1" ? (
+                              <label>Auction Open</label>
+                            ) : parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                parseInt(new Date().getTime(), 10) >
+                                0 &&
+                              (curElem.approved === null ||
+                                curElem.approved === "11") ? (
                               <label>Upcoming Auction</label>
-                            )}
-                            {curElem.approved === "1" && (
-                              <label>Auction is live now</label>
+                            ) : (
+                              <label>Auction Closed</label>
                             )}
                           </li>
                         </ul>

@@ -211,7 +211,7 @@ function Detail() {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                {vehicle.make}-{vehicle.model}-{vehicle.year}-{vehicle.odmeter}
+                {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
             </div>
             <div className="col-12">

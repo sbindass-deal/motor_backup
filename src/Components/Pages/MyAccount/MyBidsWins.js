@@ -126,10 +126,18 @@ function MyBidsWins() {
                       <div key={curElem.id} className="bidsListRow">
                         <div className="bidsImg">
                           <img
+                            loading="lazy"
                             src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
+                              curElem.images && curElem.images[0]
+                                ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                             }
-                            alt={curElem.stepOneImage}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt="Maskgroup1"
                           />
                         </div>
                         <div className="bidsInfo">
