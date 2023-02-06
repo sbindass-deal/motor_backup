@@ -145,7 +145,7 @@ const Charity = () => {
                   return (
                     <div className="col-12 col-md-6 pb-3">
                       <div className="card_post">
-                        <div className="card_postImg">
+                        <div className="card_postImg car_image">
                           <button
                             onClick={() => addFabrity(curElem.id)}
                             type="button"

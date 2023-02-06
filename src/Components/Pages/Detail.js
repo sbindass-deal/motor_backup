@@ -378,7 +378,7 @@ function Detail() {
               <div className="dropdown">
                 <p className="py-4">{vehicle.desc1}</p>
 
-                <div className="pb_40" id="placeBid_col">
+                <div className="" id="placeBid_col">
                   <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
@@ -466,7 +466,7 @@ function Detail() {
                             <button
                               type="text"
                               onClick={() => setShowReadMore(!showReadMore)}
-                              className="btn mx-2 p-1"
+                              className="btn read_more p-1"
                             >
                               {showReadMore &&
                               vehicle.moreDescription.length > 20

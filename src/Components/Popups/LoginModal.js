@@ -144,7 +144,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   required={true}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-12 eye_arrange">
                 <FormInput
                   value={password}
                   onChange={handlePassword}
@@ -156,11 +156,13 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
-              </div>
-              <div className="col-md-12 fp">
-                <div onClick={() => setShowPassWord(!showPassWord)}>
+
+                <div className="eye_child eye_login" onClick={() => setShowPassWord(!showPassWord)}>
                   {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </div>
+              </div>
+              <div className="col-md-12 fp">
+
                 <div onClick={handlePasswordBtn} className="form-group">
                   <a href="javascript:void(0)">Forgot your password?</a>
                 </div>

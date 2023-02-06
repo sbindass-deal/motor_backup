@@ -2,8 +2,8 @@ import React from "react";
 const CardDetails = ({ getInputField, inputValue }) => {
   return (
     <div
-      className="container col-md col-sm p-3"
-      style={{ backgroundColor: "#000" }}
+      className="container col-md col-sm p-3 backgroun_register"
+     
     >
       <div class="col-md-12 position-relative">
         <label for="validationTooltip01" class="form-label">
