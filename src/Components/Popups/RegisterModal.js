@@ -271,7 +271,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required
                     >
                       <option selected disabled value="">
-                        Choose
+                        Select
                       </option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>

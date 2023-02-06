@@ -711,7 +711,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -725,7 +725,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -739,7 +739,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -754,7 +754,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -826,7 +826,7 @@ function SellYourVehicle() {
                               selected="selected"
                               className="gf_placeholder"
                             >
-                              Choose
+                              Select
                             </option>
                             <option value="the seller's name">
                               Titled in my name
@@ -849,7 +849,7 @@ function SellYourVehicle() {
                           <label>What is the status of the title?</label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="clean">Clean</option>
                             <option value="rebuilt">Rebuilt</option>
@@ -882,7 +882,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -955,7 +955,7 @@ function SellYourVehicle() {
                           <label>What is the VIN?</label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -970,7 +970,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -982,7 +982,7 @@ function SellYourVehicle() {
                           <label>Is there any rust present on the truck?</label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -996,7 +996,7 @@ function SellYourVehicle() {
                           </label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -1193,7 +1193,7 @@ function SellYourVehicle() {
                           <label>Do you want a reserve?</label>
                           <select className="field">
                             <option value="" selected="selected">
-                              Choose
+                              Select
                             </option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
@@ -1275,7 +1275,7 @@ function SellYourVehicle() {
                               type="checkbox"
                             />{" "}
                             I understand that if the final bid for my vehicle is
-                            below the reserve, Gas Guzzlrs may choose (at its
+                            below the reserve, Gas Guzzlrs may Select (at its
                             sole discretion) to make up the difference. In this
                             case the vehicle will appear as sold at the
                             below-reserve price and Gas Guzzlrs will pay me the

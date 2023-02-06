@@ -160,7 +160,7 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
-                <h3>How we will choose the winner</h3>
+                <h3>How we will Select the winner</h3>
                 <p style={{ lineHeight: "2rem" }}>
                   At the completion of the contest, a regulated 3rd party
                   contest agent conducts a computer randomized drawing and

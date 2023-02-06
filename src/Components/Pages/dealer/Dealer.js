@@ -30,7 +30,7 @@ const Dealer = () => {
             <div className="heroText">
               <h1>We have over 200 dealers around the world</h1>
               <h5>
-                We help you find your dream car. Choose from our exclusive
+                We help you find your dream car. Select from our exclusive
                 <br /> list of showrooms.
               </h5>
             </div>
@@ -101,7 +101,7 @@ const Dealer = () => {
                     <div className="form-group">
                       <select name="year" className="field">
                         <option selected disabled value="">
-                          Choose...
+                          Select
                         </option>
                         <option>2022</option>;
                       </select>
@@ -112,7 +112,7 @@ const Dealer = () => {
                     <div className="form-group">
                       <select name="make" className="field">
                         <option selected disabled value="">
-                          Choose...
+                          Select
                         </option>
                         <option>Audi</option>;
                       </select>
@@ -123,7 +123,7 @@ const Dealer = () => {
                     <div className="form-group">
                       <select name="model" className="field">
                         <option selected disabled value="">
-                          Choose...
+                          Select
                         </option>
                         <option>tata</option>;
                       </select>
@@ -134,7 +134,7 @@ const Dealer = () => {
                     <div className="form-group">
                       <select name="state" className="field">
                         <option selected disabled value="">
-                          Choose...
+                          Select
                         </option>
                         <option>delhi</option>;
                       </select>
@@ -145,7 +145,7 @@ const Dealer = () => {
                     <div className="form-group">
                       <select name="city" className="field">
                         <option selected disabled value="">
-                          Choose...
+                          Select
                         </option>
                         <option>new delhi</option>;
                       </select>
@@ -400,7 +400,7 @@ export default Dealer;
 //             <div className="heroText">
 //               <h1>We have over 200 dealers around the world</h1>
 //               <h5>
-//                 We help you find your dream car. Choose from our exclusive
+//                 We help you find your dream car. Select from our exclusive
 //                 <br /> list of showrooms.
 //               </h5>
 //               {/* <a href="#" className="btn">
@@ -461,7 +461,7 @@ export default Dealer;
 //                           At Texans Auto Group, when we say we have a ginormous
 //                           selection of cars, we mean it. We have an incredible
 //                           selection of new, used and certified vehicles, which
-//                           is why so many customers choose us when they are
+//                           is why so many customers Select us when they are
 //                           looking for reliable used car dealerships in Cypress
 //                           TX.
 //                         </p>
@@ -582,7 +582,7 @@ export default Dealer;
 //                           At Texans Auto Group, when we say we have a ginormous
 //                           selection of cars, we mean it. We have an incredible
 //                           selection of new, used and certified vehicles, which
-//                           is why so many customers choose us when they are
+//                           is why so many customers Select us when they are
 //                           looking for reliable used car dealerships in Cypress
 //                           TX.
 //                         </p>
@@ -847,7 +847,7 @@ export default Dealer;
 //                         className="field"
 //                       >
 //                         <option selected disabled value="">
-//                           Choose...
+//                           Select
 //                         </option>
 //                         {category.year &&
 //                           category.year.map((curElem) => {
@@ -866,7 +866,7 @@ export default Dealer;
 //                         className="field"
 //                       >
 //                         <option selected disabled value="">
-//                           Choose...
+//                           Select
 //                         </option>
 //                         {category.make &&
 //                           category.make.map((curElem) => {
@@ -885,7 +885,7 @@ export default Dealer;
 //                         className="field"
 //                       >
 //                         <option selected disabled value="">
-//                           Choose...
+//                           Select
 //                         </option>
 //                         {category.model &&
 //                           category.model.map((curElem) => {
@@ -904,7 +904,7 @@ export default Dealer;
 //                         className="field"
 //                       >
 //                         <option selected disabled value="">
-//                           Choose...
+//                           Select
 //                         </option>
 //                         {category.state &&
 //                           category.state.map((curElem) => {
@@ -923,7 +923,7 @@ export default Dealer;
 //                         className="field"
 //                       >
 //                         <option selected disabled value="">
-//                           Choose...
+//                           Select
 //                         </option>
 //                         {category.city &&
 //                           category.city.map((curElem) => {

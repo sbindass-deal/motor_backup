@@ -53,7 +53,7 @@ const Searchbar = () => {
   return (
     <div className="searchX">
       <AutoComplete
-        placeholder="Search..."
+        placeholder="Search"
         options={options}
         onSelect={onSelect}
         onChange={(e) => {

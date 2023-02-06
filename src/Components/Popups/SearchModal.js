@@ -66,7 +66,7 @@ function SearchModal({ handleCloseModal, showSearchModal }) {
                 onChange={onChangeHandler}
                 type="text"
                 name="search"
-                placeholder="Search..."
+                placeholder="Search"
                 required
               />
               <button type="submit">

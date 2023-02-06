@@ -60,7 +60,7 @@ const DealerProfile = () => {
               <div className="heroText">
                 <h1>{dealerData.name}</h1>
                 <h5>
-                  We help you find your dream car. Choose from our exclusive
+                  We help you find your dream car. Select from our exclusive
                   <br /> list of showrooms.
                 </h5>
               </div>

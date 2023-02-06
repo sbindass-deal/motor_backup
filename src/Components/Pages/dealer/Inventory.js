@@ -257,7 +257,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose
+                          Select
                         </option>
                         {category.year &&
                           category.year.map((curElem) => {
@@ -276,7 +276,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose
+                          Select
                         </option>
                         {category.make &&
                           category.make.map((curElem, i) => {
@@ -299,7 +299,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose
+                          Select
                         </option>
                         {category.model &&
                           category.model.map((curElem) => {
@@ -318,7 +318,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose
+                          Select
                         </option>
                         {category.state &&
                           category.state.map((curElem) => {
@@ -337,7 +337,7 @@ const Inventory = () => {
                         className="field"
                       >
                         <option selected disabled value="">
-                          Choose
+                          Select
                         </option>
                         {category.city &&
                           category.city.map((curElem) => {

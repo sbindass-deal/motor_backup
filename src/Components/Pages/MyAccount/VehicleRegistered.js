@@ -746,7 +746,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               {years(new Date().getFullYear() - 15)
                                 .reverse()
@@ -800,7 +800,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
 
                               {counryData.map((curElem, i) => {
@@ -837,7 +837,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -858,7 +858,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -911,7 +911,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -954,7 +954,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -1087,7 +1087,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option
                                 value="Yes"
@@ -1182,7 +1182,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1202,7 +1202,7 @@ const VehicleRegistered = () => {
                               required={true}
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1222,7 +1222,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1243,7 +1243,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1318,7 +1318,7 @@ const VehicleRegistered = () => {
                                 value=""
                                 className="gf_placeholder"
                               >
-                                Choose...
+                                Select
                               </option>
                               <option value="the seller's name">
                                 Titled in my name
@@ -1365,7 +1365,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="clean">Clean</option>
                               <option value="rebuilt">Rebuilt</option>
@@ -1421,7 +1421,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1530,7 +1530,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1568,7 +1568,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1602,7 +1602,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Electric">Electric</option>
                               <option value="CNG">CNG</option>
@@ -1625,7 +1625,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1831,7 +1831,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1866,7 +1866,7 @@ const VehicleRegistered = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="referred">
                                 Referred by a Gas Guzzlrs member

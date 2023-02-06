@@ -741,7 +741,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               {years(new Date().getFullYear() - 15)
                                 .reverse()
@@ -795,7 +795,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
 
                               {counryData.map((curElem, i) => {
@@ -832,7 +832,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -853,7 +853,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -906,7 +906,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -949,7 +949,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option>Yes</option>
                               <option>No</option>
@@ -1102,7 +1102,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option
                                 value="Yes"
@@ -1197,7 +1197,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1217,7 +1217,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1237,7 +1237,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1258,7 +1258,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1333,7 +1333,7 @@ const VechilesRegistraion = () => {
                                 value=""
                                 className="gf_placeholder"
                               >
-                                Choose...
+                                Select
                               </option>
                               <option value="the seller's name">
                                 Titled in my name
@@ -1380,7 +1380,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="clean">Clean</option>
                               <option value="rebuilt">Rebuilt</option>
@@ -1440,7 +1440,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1559,7 +1559,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1597,7 +1597,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -1631,7 +1631,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="Electric">Electric</option>
                               <option value="CNG">CNG</option>
@@ -1654,7 +1654,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1940,7 +1940,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
@@ -1974,7 +1974,7 @@ const VechilesRegistraion = () => {
                               required
                             >
                               <option selected disabled value="">
-                                Choose...
+                                Select
                               </option>
                               <option value="referred">
                                 Referred by a Gas Guzzlrs member
@@ -2054,7 +2054,7 @@ const VechilesRegistraion = () => {
                                 required
                               />{" "}
                               I understand that if the final bid for my vehicle
-                              is below the reserve, Gas Guzzlrs may choose (at
+                              is below the reserve, Gas Guzzlrs may Select (at
                               its sole discretion) to make up the difference. In
                               this case the vehicle will appear as sold at the
                               below-reserve price and Gas Guzzlrs will pay me
@@ -2218,7 +2218,7 @@ const VechilesRegistraion = () => {
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />
-            <p>Choose Payment Option:</p>
+            <p>Select Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>

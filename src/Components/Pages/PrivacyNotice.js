@@ -760,7 +760,7 @@ function PrivacyPolicy() {
 
                   <p>
                     Most browsers automatically accept cookies, but you can
-                    choose whether or not to accept cookies through your browser
+                    Select whether or not to accept cookies through your browser
                     controls, often found in your browser’s “Tools” or
                     “Preferences” menu. For more information on how to modify
                     your browser settings or how to block, manage or filter

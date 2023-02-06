@@ -173,7 +173,7 @@ export default function CheckoutDetails() {
               required
             >
               <option selected disabled value="">
-                Choose...
+                Select
               </option>
               <option value="cash on delivery">cash on delivery</option>
               <option value="online pay">online pay</option>
@@ -211,7 +211,7 @@ export default function CheckoutDetails() {
             <h2>Model Name : 2021 BMW Nexon</h2>
             <h3 className="price__">Price : $2000</h3>
             <br />
-            <p>Choose Payment Option:</p>
+            <p>Select Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>

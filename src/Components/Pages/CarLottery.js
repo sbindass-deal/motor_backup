@@ -463,7 +463,7 @@ function CarRaffle() {
                             required
                           >
                             <option selected disabled value="">
-                              Choose...
+                              Select
                             </option>
                             <option value="100">100</option>
                             <option value="200">200</option>
@@ -655,7 +655,7 @@ function CarRaffle() {
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />
-            <p>Choose Payment Option:</p>
+            <p>Select Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>

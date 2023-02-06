@@ -246,7 +246,7 @@ const StoreDetails = () => {
             </h2>
             <h3 className="price__">Price : ${vehicle.documentFee}</h3>
             <br />
-            <p>Choose Payment Option:</p>
+            <p>Select Payment Option:</p>
             <div className="ress">
               <div className="ProcessPymt">
                 <ConnectButton></ConnectButton>

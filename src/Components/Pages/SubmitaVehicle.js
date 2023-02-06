@@ -93,7 +93,7 @@ const SubmitaVehicle = () => {
               </h2>
               <p>
                 Gas Guzzlrs is the best place to auction your vehicle.
-                <br /> Choose one of our many Auction Services to showcase your
+                <br /> Select one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
             </div>
@@ -384,7 +384,7 @@ const SubmitaVehicle = () => {
                 <h2 className="title_combo title_Center">Looking for More!</h2>
                 <p>
                   Gas Guzzlrs has got special offers for you.
-                  <br /> Choose to list ads with us or purchase subscription to
+                  <br /> Select to list ads with us or purchase subscription to
                   have your own dedicated showroom fully manage by Gas Guzzlrs.
                 </p>
               </div>

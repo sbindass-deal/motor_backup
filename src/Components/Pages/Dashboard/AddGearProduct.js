@@ -81,7 +81,7 @@ const AddGearProduct = () => {
                     required
                   >
                     <option selected disabled value="">
-                      Choose...
+                      Select
                     </option>
                     <option value="Car Accessories">Car Accessories</option>
                     <option value="Home and Living">Home and Living</option>

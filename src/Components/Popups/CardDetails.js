@@ -99,7 +99,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
           required
         >
           <option selected disabled value="">
-            Choose...
+            Select
           </option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -122,7 +122,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
           required
         >
           <option selected disabled value="">
-            Choose...
+            Select
           </option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>
