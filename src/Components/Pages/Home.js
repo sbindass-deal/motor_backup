@@ -732,7 +732,10 @@ function Home() {
                 <h2>Win this car !</h2>
                 <p>Win the car of your dreams</p>
                 <div className="price_">
-                  <p>Ends In: 5 Days</p>
+                  <p>
+                    Ends In:{" "}
+                    {new Date(data.lotteryReducer.date).toLocaleDateString()}
+                  </p>
                 </div>
                 <button className="btn">Buy Tickets</button>
               </div>

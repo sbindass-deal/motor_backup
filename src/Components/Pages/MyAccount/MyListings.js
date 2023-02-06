@@ -182,8 +182,9 @@ function MyListings() {
                             <img
                               loading="lazy"
                               src={
-                                curElem.images &&
-                                `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                curElem.images && curElem.images[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                  : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;

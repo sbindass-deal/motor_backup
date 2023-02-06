@@ -25,6 +25,7 @@ import carraffle from "../../Assets/images/SUPER_SNAKE_GT500.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import { showModalLogin } from "../../redux/reducers/login";
+import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -128,6 +129,7 @@ function CarRaffle() {
         console.log("Data is empty");
       }
       setNewTiem(new Date(response.data.data[0].dealEndDate).getTime());
+      dispatch(lotteryExpDate(response.data.data[0].dealEndDate));
     } catch (err) {
       console.log(err);
     }
@@ -247,7 +249,6 @@ function CarRaffle() {
                         onSelect={handleSelect}
                         play={true}
                         interval={2000}
-                        
                       >
                         <Carousel.Item
                           // onClick={() => handleImageHow(0)}

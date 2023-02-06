@@ -963,19 +963,17 @@ const VehicleRegistered = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <label>
-                              Please provide any links to videos (Youtube or
-                              Vimeo) here:
-                            </label>
-                            <textarea
+                            <FormInput
                               value={namefield.videolink}
                               onChange={handleNameField}
-                              minLength={2}
-                              maxLength={500}
                               name="videolink"
-                              className="field"
-                              required
-                            ></textarea>
+                              type="url"
+                              placeholder="Enter link"
+                              errorMessage="Please provide valid link"
+                              label="Please provide any links to videos (Youtube or
+                              Video) here:"
+                              required={true}
+                            />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -1024,7 +1022,7 @@ const VehicleRegistered = () => {
                                 }}
                                 name="file"
                                 type="file"
-                                multiple
+                                accept="image/png, image/jpeg"
                               />
                             </div>
                           </div>
@@ -1963,9 +1961,9 @@ const VehicleRegistered = () => {
                             onChange={informationOnChange}
                             name="phone"
                             placeholder="Enter phone number"
-                            errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
+                            errorMessage="Phone number should be 10-20 characters and shouldn't include any special character and alphabet!"
                             label="Phone"
-                            pattern="^[0-9]{10,12}$"
+                            pattern="^[0-9]{10,20}$"
                             required={true}
                           />
                         </div>

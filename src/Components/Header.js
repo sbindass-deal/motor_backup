@@ -263,7 +263,7 @@ function Header() {
                           to="/submit"
                           onClick={() => setShowNav(false)}
                         >
-                          List Your Vehicle
+                          List Your Vehicles
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -520,7 +520,7 @@ function Header() {
                           }`}
                           to="/submit"
                         >
-                          List Your Vehicle
+                          List Your Vehicles
                         </Link>
                       </li>
 
