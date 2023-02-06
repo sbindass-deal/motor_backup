@@ -30,9 +30,28 @@ function AccountInfo() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Account Info</h3>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <h3>Account Info</h3>
+                <Link to="/editmyaccount" className="gry_btn px-3">
+                  Edit
+                </Link>
+              </div>
               <hr />
               <ul className="labelList_">
+                <li>
+                  <div className="labelList_label">Username</div>
+                  <div className="labelList_text">{userInfo.username}</div>
+                </li>
+                <li>
+                  <div className="labelList_label">Phone</div>
+                  <div className="labelList_text">{userInfo.mobile}</div>
+                </li>
                 <li>
                   <div className="labelList_label">Email Address</div>
                   <div className="labelList_text">
@@ -41,17 +60,10 @@ function AccountInfo() {
                   </div>
                 </li>
                 <li>
-                  <div className="labelList_label">Username</div>
-                  <div className="labelList_text">{userInfo.username}</div>
-                </li>
-                <li>
                   <div className="labelList_label">Password</div>
                   <div className="labelList_text">****************</div>
                 </li>
               </ul>
-              <Link to="/editmyaccount" className="gry_btn mt-3">
-                Edit My Account Info
-              </Link>
             </div>
           </div>
         </div>

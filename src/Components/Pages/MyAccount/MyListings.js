@@ -168,13 +168,24 @@ function MyListings() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <div class="FlexCol">
-                <h3>My Account</h3>
+              {/* <div class="FlexCol"> */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <h3>My Listing</h3>
+                <Link to="/submit" className="gry_btn px-3">
+                  Add new listing
+                </Link>
               </div>
+              {/* </div> */}
               <hr />
               <div className="row">
                 <div className="col-12">
-                  {false ? (
+                  {data.length > 0 ? (
                     data.map((curElem) => {
                       return (
                         <div key={curElem.id} className="bidsListRow">
@@ -310,15 +321,8 @@ function MyListings() {
                         justifyContent: "center",
                       }}
                     >
-                      <div
-                        className="row"
-                        style={{ display: "flex", flexDirection: "column" }}
-                      >
+                      <div className="row">
                         <h3>You have not listed any vehicle</h3>
-                        <br />
-                        <Link to="/submit" className="btn">
-                          List your vehicle
-                        </Link>
                       </div>
                     </div>
                   )}
