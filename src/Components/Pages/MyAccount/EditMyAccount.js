@@ -157,7 +157,7 @@ function EditMyAccount() {
                       value={editUser.phone}
                       onChange={handleEditOnChange}
                       name="phone"
-                      placeholder="Enter phone number"
+                      placeholder="Enter Phone Number"
                       errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
                       label="Phone"
                       pattern="^[0-9]{10,12}$"

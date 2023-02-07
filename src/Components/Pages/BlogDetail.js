@@ -16,7 +16,7 @@ const BlogDetail = () => {
     <section className="ptb_80 pt_sm_50">
       <div className="container">
         <div className="row ">
-          <div className="col-9 pb-3">
+          <div className="col-sm-9 col-12 pb-3">
             <div className="mainImg">
               <img
                 src={`${process.env.REACT_APP_URL}upload/blogs/${blog.image}`}

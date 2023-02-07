@@ -200,30 +200,36 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     value={userInput.phone}
                     onChange={handleUserInput}
                     name="phone"
-                    placeholder="Enter phone number"
+                    placeholder="Enter Phone Number"
                     errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
                     label="Phone"
                     pattern="^[0-9]{10,12}$"
                     required={true}
                   />
                 </div>
-                <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput
-                    value={userInput.password}
-                    onChange={handleUserInput}
-                    name="password"
-                    placeholder="Enter Password"
-                    errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
-                    label="Password"
-                    type={showPassWord ? "text" : "password"}
-                    pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
-                    required={true}
-                  />
-                  <div onClick={() => setShowPassWord(!showPassWord)}>
-                    {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
+                  <div className="aa">
+
+                    <FormInput
+                      value={userInput.password}
+                      onChange={handleUserInput}
+                      name="password"
+                      placeholder="Enter Password"
+                      errorMessage="Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
+                      label="Password"
+                      type={showPassWord ? "text" : "password"}
+                      pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                      required={true}
+                    />
+                    <div className="eye_child" onClick={() => setShowCPassWord(!showCPassword)}>
+                      {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </div>
+
                   </div>
+
+
                 </div>
-                <div className="col-md-12 col-lg-6 col-sm-12">
+                <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <FormInput
                     value={userInput.cPassword}
                     onChange={handleUserInput}
@@ -235,7 +241,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={userInput.password}
                     required={true}
                   />
-                  <div onClick={() => setShowCPassWord(!showCPassword)}>
+                  <div className="eye_child" onClick={() => setShowCPassWord(!showCPassword)}>
                     {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </div>
                 </div>

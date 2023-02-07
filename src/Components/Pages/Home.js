@@ -570,7 +570,7 @@ function Home() {
                           />
                         </div>
                       </div>
-                      <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
+                      <div className="col-12 col-md-6 col-lg-5 d-flex">
                         <div className="blogPostText">
                           <h4>{curElem.title}</h4>
                           <ul className="post_labelList">

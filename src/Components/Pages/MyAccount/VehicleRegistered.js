@@ -1959,7 +1959,7 @@ const VehicleRegistered = () => {
                             value={information.phone}
                             onChange={informationOnChange}
                             name="phone"
-                            placeholder="Enter phone number"
+                            placeholder="Enter Phone Number"
                             errorMessage="Phone number should be 10-20 characters and shouldn't include any special character and alphabet!"
                             label="Phone"
                             pattern="^[0-9]{10,20}$"
