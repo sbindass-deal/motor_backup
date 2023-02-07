@@ -32,6 +32,11 @@ const Products = ({ id, price, image, title, curElem }) => {
             <h6>
               <Link to={`/shop/${id}`}>{title}</Link>
             </h6>
+            <p>{curElem.description.substr(0, 80)}...</p>
+            <div className="sizeColor">
+              <div className="sizeColor">Category: {curElem.category}</div>
+              <div className="size">Size: {curElem.size}</div>
+            </div>
             <ul
               class="priceDateList"
               style={{ justifyContent: "space-between" }}

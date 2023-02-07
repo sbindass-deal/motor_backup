@@ -113,7 +113,7 @@ function EditMyAccount() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Enter Your Gas Guzzlrs User Info</h3>
+              <h3>Account Info</h3>
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">
@@ -177,12 +177,12 @@ function EditMyAccount() {
                         i want the ability to bid on action?(Optional)
                       </label>
                     </div>
-                    {addUserInBid && (
+                    {/* {addUserInBid && (
                       <CardDetails
                         inputValue={inputValue}
                         getInputField={getInputField}
                       />
-                    )}
+                    )} */}
                     <div className="form-group">
                       <button type="submit" className="gry_btn mt-3">
                         Save Changes

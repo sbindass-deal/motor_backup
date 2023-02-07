@@ -8,7 +8,17 @@ import {
   removeFromCart,
 } from "../../../redux/reducers/cartSlice";
 
-const CartItem = ({ price, title, image, quantity, id }) => {
+const CartItem = ({
+  price,
+  title,
+  image,
+  quantity,
+  id,
+  color,
+  size,
+  description,
+  stocks,
+}) => {
   const dispatch = useDispatch();
   const notify = (val) =>
     toast.warn(val, {
@@ -27,16 +37,20 @@ const CartItem = ({ price, title, image, quantity, id }) => {
       <tr>
         <td className="productImg">
           <div className="cartImg">
-            <img src={image ? image : img_01} />
+            <img
+              src={`${process.env.REACT_APP_URL}upload/products/${image}`}
+              alt="car_01"
+            />
           </div>
         </td>
         <td>
           <p className="proName">{title}</p>
+          <p>{description.substr(0, 80)}...</p>
           <p className="size">
-            Size: <span>XS</span>
+            Size: <span>{size}</span>
           </p>
           <p className="color">
-            Color: <span>Red</span>
+            Color: <span>{color}</span>
           </p>
           <button
             onClick={() => {
@@ -48,8 +62,8 @@ const CartItem = ({ price, title, image, quantity, id }) => {
             Remove
           </button>
         </td>
-        <td>${price}</td>
-        <td>
+        <td className="text-center">${price}</td>
+        <td className="text-center">
           <div className="count">
             <button
               onClick={() => dispatch(decreaseCart(id))}
@@ -59,14 +73,20 @@ const CartItem = ({ price, title, image, quantity, id }) => {
             </button>
             <span>{quantity}</span>
             <button
-              onClick={() => dispatch(increaseCart(id))}
+              onClick={() => {
+                if (stocks > quantity) {
+                  dispatch(increaseCart(id));
+                } else {
+                  notify("You reached maximum limit");
+                }
+              }}
               className="addCountIcon"
             >
               +
             </button>
           </div>
         </td>
-        <td>${quantity * price}</td>
+        <td className="text-center">${quantity * price}</td>
       </tr>
     </>
   );

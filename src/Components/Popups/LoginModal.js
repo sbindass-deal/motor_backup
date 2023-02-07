@@ -119,7 +119,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header border-0">
-            <h4 className="modal-title">Log In</h4>
+            <h4 className="modal-title">Login</h4>
             <button
               onClick={handleClose}
               type="button"
@@ -139,7 +139,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   name="email"
                   placeholder="Enter Email"
                   type="email"
-                  errorMessage="It should be a valid email address!"
+                  errorMessage="Please enter valid email address"
                   label="Email"
                   required={true}
                 />
@@ -150,21 +150,23 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   onChange={handlePassword}
                   name="password"
                   placeholder="Enter Password"
-                  errorMessage="incorporate password!"
+                  errorMessage="Password cannot be empty or incorrect"
                   label="Password"
                   type={showPassWord ? "text" : "password"}
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
                 />
 
-                <div className="eye_child eye_login" onClick={() => setShowPassWord(!showPassWord)}>
+                <div
+                  className="eye_child eye_login"
+                  onClick={() => setShowPassWord(!showPassWord)}
+                >
                   {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </div>
               </div>
               <div className="col-md-12 fp">
-
                 <div onClick={handlePasswordBtn} className="form-group">
-                  <a href="javascript:void(0)">Forgot your password?</a>
+                  <a href="javascript:void(0)">Forgot Password?</a>
                 </div>
               </div>
               <div className="col-md-12">
@@ -173,7 +175,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                     <SmallSpinner />
                   ) : (
                     <button button="submit" className="btn w-100">
-                      Log In
+                      Login
                     </button>
                   )}
                 </div>
@@ -181,7 +183,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
               <div className="col-md-12">
                 <div className="form-group">
                   <p className="checRegistered">
-                    Do you want to Sign Up with Gas Guzzlrs?
+                    Don't have an account ?
                     <span onClick={handleRegister}>
                       <a
                         className="signup"

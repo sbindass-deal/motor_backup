@@ -170,8 +170,22 @@ const VechilesRegistraion = () => {
     return years;
   };
 
-  // console.log(years(new Date().getFullYear() - 15).reverse());
-
+  const handleMultipleImgUpload = (vehicleId) => {
+    let formData = new FormData();
+    formData.append("vehicleId", vehicleId);
+    Array.from(file1).forEach((item) => {
+      formData.append("image", item);
+    });
+    const url = `${process.env.REACT_APP_URL}vehicle-image`;
+    axios
+      .post(url, formData)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const uploadFileTwo = async (vehicleId) => {
     (async () => {
       for await (const file11 of file1) {
@@ -1482,24 +1496,25 @@ const VechilesRegistraion = () => {
                               {/* <header>Drag & Drop to Upload File</header>
                               <span>OR</span> */}
                               {/* <button>Browse File</button> */}
-
-                              {Array.from(file1).map((items, i) => {
-                                return (
-                                  <span key={i}>
-                                    <img
-                                      src={
-                                        items
-                                          ? URL.createObjectURL(items)
-                                          : null
-                                      }
-                                      style={{
-                                        width: "70px",
-                                        objectFit: "cover",
-                                      }}
-                                    />
-                                  </span>
-                                );
-                              })}
+                              <div className="row">
+                                {Array.from(file1).map((items, i) => {
+                                  return (
+                                    <span key={i} className="px-1">
+                                      <img
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "70px",
+                                          objectFit: "cover",
+                                        }}
+                                      />
+                                    </span>
+                                  );
+                                })}
+                              </div>
 
                               <input
                                 style={{

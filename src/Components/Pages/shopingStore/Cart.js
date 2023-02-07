@@ -34,12 +34,18 @@ const Cart = () => {
                 <div class="table-responsive">
                   <table width={"100%"} className="cartSection cartth">
                     <tr>
-                      <th scope="col" colspan="2">
+                      <th className="text-center" scope="col" colspan="2">
                         Product
                       </th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Quantity({product.quantity})</th>
-                      <th scope="col">Total</th>
+                      <th className="text-center" scope="col">
+                        Price
+                      </th>
+                      <th className="text-center" scope="col">
+                        Quantity({product.quantity})
+                      </th>
+                      <th className="text-center" scope="col">
+                        Total
+                      </th>
                     </tr>
                     {product.products.map((curElem) => {
                       return (
@@ -50,10 +56,14 @@ const Cart = () => {
                           title={curElem.title}
                           image={curElem.image}
                           quantity={curElem.quantity}
+                          color={curElem.color}
+                          size={curElem.size}
+                          description={curElem.description}
+                          stocks={curElem.stocks}
                         />
                       );
                     })}
-                    <tr>
+                    <tr className="text-center">
                       <td colSpan="3"></td>
                       <td>Subtotal </td>
                       <td>${product.total}</td>

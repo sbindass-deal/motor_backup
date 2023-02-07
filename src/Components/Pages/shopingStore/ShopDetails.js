@@ -77,9 +77,10 @@ const ShopDetails = () => {
               </p>
 
               <div className="sizeColor">
-                <div className="sizeColor">Category:- {product.category}</div>
-                <div className="size">Size:- {product.size}</div>
+                <div className="sizeColor">Category: {product.category}</div>
+                <div className="size">Size: {product.size}</div>
               </div>
+              <p className="product_dec">Stock: {product.stocks}</p>
               <button onClick={handleProduct} type="button" className="btn">
                 Add to Cart
               </button>

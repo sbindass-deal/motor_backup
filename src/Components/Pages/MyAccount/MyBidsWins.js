@@ -18,6 +18,17 @@ function MyBidsWins() {
   const [show, setShow] = useState(false);
   const [vehicleId, setVehicleId] = useState();
   const [showPayment, setShowPayment] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState({});
+  const [userInfo, setUserinfo] = useState({});
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
+      }
+    });
+  }, []);
 
   const handleClose = () => {
     setChateApiData([]);
@@ -30,9 +41,10 @@ function MyBidsWins() {
   const handleClosePayment = () => {
     setShowPayment(false);
   };
-  const handleShowPayment = (data) => {
+  const handleShowPayment = (data, amount) => {
     setShowPayment(true);
     setVehicleId(data);
+    setPaymentDetails({ data: data, amount: amount });
   };
   const onToken = (token, addresses) => {
     console.log(token, addresses);
@@ -115,7 +127,7 @@ function MyBidsWins() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>My Bids & Win</h3>
+                <h3>My Bids & Wins</h3>
               </div>
               <hr />
 
@@ -144,17 +156,23 @@ function MyBidsWins() {
                           <div className="">
                             <h6>{curElem.name}</h6>
                             <p>
-                              You have BID
-                              <i className="fa-solid fa-dollar-sign"></i>
+                              Your BID&nbsp;
                               <span style={{ color: "#fff" }}>
                                 {curElem.auctionAmmount}
                               </span>
+                              &nbsp;
+                              <i className="fa-solid fa-dollar-sign"></i>
                             </p>
                           </div>
                           <div className="pl-md-3 d-flex">
                             <div className="mx-2">
                               <button
-                                onClick={() => handleShowPayment(curElem.id)}
+                                onClick={() =>
+                                  handleShowPayment(
+                                    curElem.id,
+                                    curElem.auctionAmmount
+                                  )
+                                }
                                 className="gry_btn"
                               >
                                 Pay now
@@ -266,10 +284,8 @@ function MyBidsWins() {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2> Name : user </h2>
-            <h3 className="price__">price</h3>
-            <h3 className="price__">amount</h3>
-
+            <h2> Name : {userInfo.name} </h2>
+            <h3 className="price__">price: {paymentDetails.amount}</h3>
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />
             <p>Select Payment Option:</p>
