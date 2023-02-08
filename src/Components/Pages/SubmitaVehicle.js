@@ -156,7 +156,7 @@ const SubmitaVehicle = () => {
                 </div>
               </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
+              <Link to="/works" className="works_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="classNameIC_HIW" className="collapse">
@@ -228,7 +228,7 @@ const SubmitaVehicle = () => {
                 </div>
               </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
+              <Link to="/works" className="works_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="PLUS_HIW" className="collapse">
@@ -300,7 +300,7 @@ const SubmitaVehicle = () => {
                 </div>
               </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
+              <Link to="/works" className="works_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="PLUS_HIW" className="collapse">
@@ -360,7 +360,7 @@ const SubmitaVehicle = () => {
                 </div>
               </div>
 
-              <Link to="/works" className="gry_btn HIW_BTN">
+              <Link to="/works" className="works_btn HIW_BTN">
                 How It Works
               </Link>
               <div id="WHITEGLOVE_HIW" className="collapse">

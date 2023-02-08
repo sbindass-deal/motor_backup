@@ -537,7 +537,7 @@ function Home() {
       <section className="ptb_80 bgHolder bgImg02 d-flex align-items-center">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-8 col-lg-6 col-xl-5 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
+            <div className="col-12 col-md-8 col-lg-6 col-xl-6 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
               <h1 className="text">Sell Your High Quality classic Car</h1>
               <Link to="/showroom" className="btn mt-2">
                 VIEW INVENTORY

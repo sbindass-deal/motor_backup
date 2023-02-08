@@ -317,6 +317,7 @@ img.addBanner {
 .btn:hover {
   background-color: #fff;
   color: #f7931a;
+  border: 1px solid #f7931a;
 }
 
 .btn:focus {
@@ -341,7 +342,7 @@ img.addBanner {
 
 .card_postImg {
   width: 100%;
-  height: 300px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -815,7 +816,8 @@ footer h6:before {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: #111;
+  background-color: #292a2d;
+  padding: 20px;
 }
 
 .postTopOption li {
@@ -831,7 +833,7 @@ footer h6:before {
   color: #fff;
   background-color: transparent;
   padding: 8px;
-  border: 1px #333 solid;
+  border: 1px #949292 solid
 }
 
 .gry_btn {
@@ -1008,7 +1010,7 @@ footer h6:before {
   width: 100%;
   margin: 0px;
   color: #f7931a;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .bid_bottom {
@@ -2715,6 +2717,7 @@ ailSection {
 
 ul.bidList_.info_ li {
   width: 33.33%;
+  font-size: 16px;
 }
 
 ul.bidList_.info_ li.fulwdth {
@@ -4282,7 +4285,7 @@ ul.navbar-nav.mobileOnly form.searchForm {
 .toNv {
   /* position: relative;
   z-index: 1; */
-  width: 57%;
+  width: 60%;
   background: orange;
   padding: 7px 0px;
 }
@@ -5126,17 +5129,14 @@ html {
 }
 
 .postHero {
-  height: 75vh;
+  height: 90vh;
+}
+.dark .dropdown:hover .dropdown-content a {
+  /* background-color: black !important; */
 }
 
-.dark .secondNavbar .navbar-nav li:hover a,.dark
-.dropdown:hover .dropdown-content a {
-  background-color: black !important;
-}
-
-.light .secondNavbar .navbar-nav li:hover a,.light
-.dropdown:hover .dropdown-content a {
-  background-color: white !important;
+.light .dropdown:hover .dropdown-content a {
+  /* background-color: white !important; */
 }
 
 
@@ -5177,4 +5177,76 @@ font-size: 15px!important;
   background-color: white;
   color: black;
   transition: 1s;
+}
+
+.afterLogin .dropdown-content{
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.dark .dropdown-content{
+  background: black!important;
+}
+
+.light .dropdown-content{
+  background: white!important;
+}
+
+.light .works_btn{
+  background-color: #ffa500;
+  padding: 10px 24px;
+  text-align: center;
+  border: 1px solid #ffa500;
+
+}
+
+.light .works_btn:hover{
+  background: white;
+  border: 1px solid #ffa500;
+}
+
+.dark .works_btn{
+  background-color: #ffa500;
+  padding: 10px 24px;
+  text-align: center;
+}
+
+.dark .works_btn:hover{
+  background: black;
+  border: 1px solid #ffa500;
+}
+
+.card_postImg a{
+  width: 100%;
+  height: 100%;
+}
+
+.bid_bottom a{
+  color: #ffa500;
+  font-size: 14px;
+}
+
+.bid_viewWatch li{
+  font-size: 14px;
+}
+
+
+.dropdownCol .gry_btn{
+  padding: 4px 38px;
+  height: auto;
+  border-radius: 5px;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.read_more{
+  padding: 10px 23px!important;
+  text-transform: capitalize;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sideBar__ li a{
+  color: #ffa500!important;
+  font-size: 15px;
 }
