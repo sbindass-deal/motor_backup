@@ -14,7 +14,6 @@ const DealerList = () => {
     const fetchDealer = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}userdealer`);
-        console.log(111, res.data.users);
         if (res.data.users && res.data.status) {
           setDealerData(res.data.users);
         }

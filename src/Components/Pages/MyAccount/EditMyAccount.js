@@ -5,11 +5,12 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import CardDetails from "../../Popups/CardDetails";
 import FormInput from "../../UI/FormInput";
+import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
-
+  const [loading, setLoading] = useState(false);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -69,33 +70,26 @@ function EditMyAccount() {
     fetchUserDetails();
   }, []);
 
-  const handleApi = (e) => {
+  const handleApi = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const { name, userName, phone, email } = editUser;
 
-    axios
-      .post(`${url}users`, {
-        email: email,
-        username: userName,
-        phone: phone,
+    await axios
+      .post(`${url}userUpdate`, {
         name: name,
-        addUserInBid,
-        cardName: inputValue.name,
-        cardPhone: inputValue.phone,
-        cardAddress: inputValue.address,
-        cardZip: inputValue.zip,
-        cardCountry: inputValue.country,
-        cardNumber: inputValue.cardnumber,
-        cartMonth: inputValue.month,
-        cartYear: inputValue.year,
-        cartCvc: inputValue.cvc,
-        cartHearAbout: inputValue.hearAbout,
+        email: email,
+        mobile: phone,
+        username: userName,
       })
       .then((result) => {
         notify(result.data.message);
+        setLoading(false);
+        window.location.reload(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
         notify("Edit fail somthing wrong please try again !");
       });
   };
@@ -123,9 +117,9 @@ function EditMyAccount() {
                       onChange={handleEditOnChange}
                       name="name"
                       placeholder="Enter Name"
-                      errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                      errorMessage="Name should be 3-31 characters and shouldn't include any special character or number!"
                       label="Name"
-                      pattern="^[A-Za-z ]{3,16}$"
+                      pattern="^[A-Za-z ]{3,31}$"
                       required={true}
                     />
                   </div>
@@ -146,9 +140,9 @@ function EditMyAccount() {
                       onChange={handleEditOnChange}
                       name="userName"
                       placeholder="Enter Username"
-                      errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                      errorMessage="Username should be 3-20 characters and shouldn't include any special character!"
                       label="Username"
-                      pattern="^[A-Za-z0-9]{3,16}$"
+                      pattern="^[A-Za-z0-9@! ]{3,20}$"
                       required={true}
                     />
                   </div>
@@ -159,13 +153,13 @@ function EditMyAccount() {
                       name="phone"
                       placeholder="Enter Phone Number"
                       errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
-                      label="Phone"
+                      label="Phone number"
                       pattern="^[0-9]{10,12}$"
                       required={true}
                     />
                   </div>
                   <div className="col-12 col-md-12">
-                    <div className="form-group form-check">
+                    {/* <div className="form-group form-check">
                       <label className="form-check-label">
                         <input
                           onChange={(e) => setAddUserInBid(e.target.checked)}
@@ -176,7 +170,7 @@ function EditMyAccount() {
                         />
                         i want the ability to bid on action?(Optional)
                       </label>
-                    </div>
+                    </div> */}
                     {/* {addUserInBid && (
                       <CardDetails
                         inputValue={inputValue}
@@ -184,9 +178,15 @@ function EditMyAccount() {
                       />
                     )} */}
                     <div className="form-group">
-                      <button type="submit" className="gry_btn mt-3">
-                        Save Changes
-                      </button>
+                      {loading ? (
+                        <button type="button" className="gry_btn mt-3">
+                          Loading...
+                        </button>
+                      ) : (
+                        <button type="submit" className="gry_btn mt-3">
+                          Save Changes
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -1,11 +1,10 @@
 import React from "react";
+import FormInput from "../UI/FormInput";
+
 const CardDetails = ({ getInputField, inputValue }) => {
   return (
-    <div
-      className="container col-md col-sm p-3 backgroun_register"
-     
-    >
-      <div class="col-md-12 position-relative">
+    <div className="container col-md col-sm p-3 backgroun_register">
+      {/* <div class="col-md-12 position-relative">
         <label for="validationTooltip01" class="form-label">
           name <samal>(as it appears on your card)</samal>
         </label>
@@ -17,8 +16,8 @@ const CardDetails = ({ getInputField, inputValue }) => {
           onChange={getInputField}
           required
         />
-      </div>
-      <div class="col-md-12 position-relative">
+      </div> */}
+      {/* <div class="col-md-12 position-relative">
         <label for="validationTooltip02" class="form-label">
           Phone
         </label>
@@ -30,7 +29,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
           onChange={getInputField}
           required
         />
-      </div>
+      </div> */}
       <div class="col-md-12 position-relative">
         <label for="validationTooltipUsername" class="form-label">
           Address
@@ -88,7 +87,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
       </div>
       <div class="col-md-6 position-relative">
         <label for="validationTooltip04" class="form-label">
-          Expiration
+          Expiry
         </label>{" "}
         <br />
         <select
@@ -137,7 +136,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
         </select>
       </div>
       <div class="col-md-12 position-relative">
-        <label for="validationTooltip03" class="form-label">
+        {/* <label for="validationTooltip03" class="form-label">
           CVC (3 or 4 digit code)
         </label>{" "}
         <br />
@@ -148,10 +147,20 @@ const CardDetails = ({ getInputField, inputValue }) => {
           value={inputValue.cvc}
           onChange={getInputField}
           required
+        /> */}
+        <FormInput
+          value={inputValue.cvc}
+          onChange={getInputField}
+          name="cvc"
+          placeholder="Enter cvv"
+          errorMessage="CVV should be 3 characters and shouldn't include any special character and alphabet!"
+          label="cvv"
+          pattern="^[0-9]{3}$"
+          required={true}
         />
       </div>
 
-      <div class="col-md-12 position-relative">
+      {/* <div class="col-md-12 position-relative">
         <label for="validationTooltip05" class="form-label">
           Where did you hear about Gas Guzzlrs?
         </label>
@@ -167,7 +176,7 @@ const CardDetails = ({ getInputField, inputValue }) => {
           <option value="instagram">instagram </option>
           <option value="Google">Google </option>
         </select>
-      </div>
+      </div> */}
     </div>
   );
 };

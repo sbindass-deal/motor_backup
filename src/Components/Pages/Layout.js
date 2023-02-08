@@ -64,6 +64,10 @@ import ComingSoon from "./ComingSoon";
 import Blogs from "./Blogs";
 import VehicleRegistered from "./MyAccount/VehicleRegistered";
 import EditGearProduct from "./Dashboard/EditGearProduct";
+import VehicleAdsList from "./Dashboard/ads/VehicleAdsList";
+import DealerListFeature from "./Dashboard/ads/DealerListFeature";
+import AddDealer from "./Dashboard/ads/AddDealer";
+import AddVehicleAds from "./Dashboard/ads/AddVehicleAds";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -130,6 +134,16 @@ const Layout = () => {
                   <Route path="blog" element={<Blog />} />
                   <Route path="admin/add-blog" element={<AddBlog />} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
+                  <Route path="admin-dealer" element={<DealerListFeature />} />
+                  <Route path="admin-vehicle-ad" element={<VehicleAdsList />} />
+                  <Route
+                    path="admin-dealer/add-dealer"
+                    element={<AddDealer />}
+                  />
+                  <Route
+                    path="admin-vehicle-ad/add-vehicle-ads"
+                    element={<AddVehicleAds />}
+                  />
                   <Route path="admin-enquiry" element={<Enquiry />} />
                 </>
               )}

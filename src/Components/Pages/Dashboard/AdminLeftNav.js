@@ -68,6 +68,26 @@ function AdminLeftNav() {
         <li>
           <Link
             className={` ${
+              location.pathname === "/admin-dealer" ? "active" : ""
+            } `}
+            to="/admin-dealer"
+          >
+            Dealer List
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-vehicle-ad" ? "active" : ""
+            } `}
+            to="/admin-vehicle-ad"
+          >
+            Ad Vehicle List
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` ${
               location.pathname === "/admin-enquiry" ? "active" : ""
             } `}
             to="/admin-enquiry"

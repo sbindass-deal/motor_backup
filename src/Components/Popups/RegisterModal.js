@@ -27,7 +27,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const dispatch = useDispatch();
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
-  const [addUserInBid, setAddUserInBid] = useState(false);
+  const [addUserInBid, setAddUserInBid] = useState(true);
   const [acceptTearms, setAcceptTearms] = useState(true);
   const [signInTeams, setSignInTeams] = useState(true);
 
@@ -177,9 +177,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     value={userInput.email}
                     onChange={handleUserInput}
                     name="email"
-                    placeholder="Enter Email"
+                    placeholder="Enter Email address"
                     errorMessage="It should be a valid email address!"
-                    label="Email"
+                    label="Email address"
                     required={true}
                   />
                 </div>
@@ -201,15 +201,14 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     onChange={handleUserInput}
                     name="phone"
                     placeholder="Enter Phone Number"
-                    errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
-                    label="Phone"
-                    pattern="^[0-9]{10,12}$"
+                    errorMessage="Phone number should be 10-20 characters and shouldn't include any special character and alphabet!"
+                    label="Phone Number"
+                    pattern="^[0-9]{10,20}$"
                     required={true}
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <div className="aa">
-
                     <FormInput
                       value={userInput.password}
                       onChange={handleUserInput}
@@ -221,13 +220,17 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                       required={true}
                     />
-                    <div className="eye_child" onClick={() => setShowCPassWord(!showCPassword)}>
-                      {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    <div
+                      className="eye_child"
+                      onClick={() => setShowPassWord(!showPassWord)}
+                    >
+                      {showPassWord ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
                     </div>
-
                   </div>
-
-
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <FormInput
@@ -241,7 +244,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     pattern={userInput.password}
                     required={true}
                   />
-                  <div className="eye_child" onClick={() => setShowCPassWord(!showCPassword)}>
+                  <div
+                    className="eye_child"
+                    onClick={() => setShowCPassWord(!showCPassword)}
+                  >
                     {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </div>
                 </div>
@@ -285,28 +291,6 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </div>
                   </div>
                 )}
-                <div className="col-12 col-md-12">
-                  <div className="form-group form-check">
-                    <label className="form-check-label">
-                      <input
-                        onChange={(e) => setAddUserInBid(e.target.checked)}
-                        className="form-check-input"
-                        type="checkbox"
-                      />
-                      i want the ability to bid on action?(Optional)
-                    </label>
-                  </div>
-                </div>
-
-                <div className="col-12">
-                  {addUserInBid == true ? (
-                    <label style={{ color: "#FFB100" }}>
-                      Gas Guzzlrs requires a credit to bid
-                    </label>
-                  ) : (
-                    ""
-                  )}
-                </div>
 
                 <div className="col-12">
                   {addUserInBid === true ? (
@@ -318,6 +302,42 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     ""
                   )}
                 </div>
+
+                <div className="col-12 col-md-12">
+                  <div className="form-group form-check">
+                    <label className="form-check-label">
+                      <input
+                      value={addUserInBid}
+                        onChange={(e) => setAddUserInBid(e.target.checked)}
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={addUserInBid}
+                      />
+                      i want the ability to bid on action?(Optional)
+                    </label>
+                  </div>
+                </div>
+
+                {/* <div className="col-12">
+                  {addUserInBid == true ? (
+                    <label style={{ color: "#FFB100" }}>
+                      I want the ability to bid on action?
+                    </label>
+                  ) : (
+                    ""
+                  )}
+                </div> */}
+
+                {/* <div className="col-12">
+                  {addUserInBid === true ? (
+                    <CardDetails
+                      inputValue={inputValue}
+                      getInputField={getInputField}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div> */}
 
                 <div className="col-12 col-md-12">
                   <div className="form-group form-check">
@@ -398,7 +418,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         data-toggle="modal"
                         data-target="#loginModal"
                       >
-                        Log in
+                        Login
                       </a>
                     </p>
                   </div>
