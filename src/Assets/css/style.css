@@ -3675,14 +3675,14 @@ a.searchList {
 }
 
 table.cartSection {
-  border: 1px solid #292727;
+  border: 1px solid #757171;
 }
 
 table.cartSection tr td,
 table.cartSection tr th {
   padding: 10px;
-  border-bottom: 1px solid #292727;
-  border-right: 1px solid #292727;
+  border-bottom: 1px solid #757171;
+  border-right: 1px solid #757171;
 }
 
 h2.title_combo.title_Center.casrt {
@@ -5066,7 +5066,7 @@ html {
 }
 
 .light .toNv a.nav-link.navActive {
-  color: white !important;
+  color: black !important;
 }
 
 .card-group {
@@ -5131,6 +5131,7 @@ html {
 .postHero {
   height: 90vh;
 }
+
 .dark .dropdown:hover .dropdown-content a {
   /* background-color: black !important; */
 }
@@ -5140,7 +5141,7 @@ html {
 }
 
 
-.eye_arrange{
+.eye_arrange {
   position: relative;
 }
 
@@ -5150,12 +5151,12 @@ html {
   top: 46%;
 }
 
-.eye_login{
-  top: 55%!important;
+.eye_login {
+  top: 55% !important;
 }
 
-input[type=file]{
-font-size: 15px!important;
+input[type=file] {
+  font-size: 15px !important;
 }
 
 .dark input[type=file]::file-selector-button {
@@ -5179,20 +5180,20 @@ font-size: 15px!important;
   transition: 1s;
 }
 
-.afterLogin .dropdown-content{
+.afterLogin .dropdown-content {
   border-radius: 12px;
   padding: 3px;
 }
 
-.dark .dropdown-content{
-  background: black!important;
+.dark .dropdown-content {
+  background: black !important;
 }
 
-.light .dropdown-content{
-  background: white!important;
+.light .dropdown-content {
+  background: white !important;
 }
 
-.light .works_btn{
+.light .works_btn {
   background-color: #ffa500;
   padding: 10px 24px;
   text-align: center;
@@ -5200,38 +5201,38 @@ font-size: 15px!important;
 
 }
 
-.light .works_btn:hover{
+.light .works_btn:hover {
   background: white;
   border: 1px solid #ffa500;
 }
 
-.dark .works_btn{
+.dark .works_btn {
   background-color: #ffa500;
   padding: 10px 24px;
   text-align: center;
 }
 
-.dark .works_btn:hover{
+.dark .works_btn:hover {
   background: black;
   border: 1px solid #ffa500;
 }
 
-.card_postImg a{
+.card_postImg a {
   width: 100%;
   height: 100%;
 }
 
-.bid_bottom a{
+.bid_bottom a {
   color: #ffa500;
   font-size: 14px;
 }
 
-.bid_viewWatch li{
+.bid_viewWatch li {
   font-size: 14px;
 }
 
 
-.dropdownCol .gry_btn{
+.dropdownCol .gry_btn {
   padding: 4px 38px;
   height: auto;
   border-radius: 5px;
@@ -5239,14 +5240,59 @@ font-size: 15px!important;
   text-transform: capitalize;
 }
 
-.read_more{
-  padding: 10px 23px!important;
+.read_more {
+  padding: 10px 23px !important;
   text-transform: capitalize;
   font-size: 13px;
   font-weight: 500;
 }
 
-.sideBar__ li a{
+/* .sideBar__ li a{
   color: #ffa500!important;
   font-size: 15px;
+} */
+
+.sideBar__ .active {
+  color: #ffa500 !important;
+}
+
+.light .shopPg .card_post {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  margin-bottom: 30px;
+}
+
+.dark .shopPg .card_post {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  margin-bottom: 30px;
+}
+
+.light .orange_btn {
+  border: 1px #f7931b solid;
+  background-color: #f7931b;
+  color: #fff;
+  text-transform: capitalize;
+      padding: 9px 30px;
+}
+
+.light .orange_btn:hover {
+  background: white;
+  color: black;
+
+}
+
+.dark .orange_btn {
+  border: 1px #f7931b solid;
+  background-color: #f7931b;
+  color: #fff;
+  text-transform: capitalize;
+      padding: 9px 30px;
+
+}
+
+.dark .orange_btn:hover {
+  background: black;
+  color: white;
+
 }
