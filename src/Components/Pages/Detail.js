@@ -596,7 +596,7 @@ function Detail() {
                         ></textarea>
                       </div>
                       <div className="form-group">
-                        <button type="submit" className="gry_btn">
+                        <button type="submit" className="orange_btn">
                           Submit
                         </button>
                       </div>

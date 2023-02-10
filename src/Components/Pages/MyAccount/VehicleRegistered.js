@@ -1034,7 +1034,7 @@ const VehicleRegistered = () => {
                         </div>
                         <div className="col-12"></div>
                         <div className="col-12 col-sm-12 col-md-12">
-                          <button type="submit" className="gry_btn">
+                          <button type="submit" className="orange_btn">
                             NEXT
                           </button>
                         </div>
@@ -1493,7 +1493,7 @@ const VehicleRegistered = () => {
                           >
                             BACK
                           </button>
-                          <button type="submit" className="gry_btn">
+                          <button type="submit" className="orange_btn">
                             NEXT
                           </button>
                         </div>
@@ -1907,7 +1907,7 @@ const VehicleRegistered = () => {
                           >
                             BACK
                           </button>
-                          <button type="submit" className="gry_btn">
+                          <button type="submit" className="orange_btn">
                             NEXT
                           </button>
                         </div>
