@@ -25,6 +25,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     });
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
+  const [file, setFile] = useState([]);
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(true);
@@ -50,6 +51,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
+    title: "",
     phone: "",
     userName: "",
     dealer: "",
@@ -60,6 +62,30 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+
+  const uploadLogo = async (uId) => {
+    const url = `${process.env.REACT_APP_URL}dealer_regi`;
+    let formData = new FormData();
+    formData.append("title", userInput.title);
+    formData.append("id", uId);
+    formData.append("logo", file[0]);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    await axios
+      .post(url, formData, config)
+      .then((response) => {
+        console.log(response);
+        notify(response.data.message);
+        window.location.reload(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleApi = (e) => {
@@ -98,9 +124,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
         cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
-        if (result.status === 200) {
+        if (result.data.status === 200 && dealer === "No") {
           handleCloseReg();
-          notify("User Sign Up successfully!");
+          notify(result.data.message);
           setInputValue({
             name: "",
             phone: "",
@@ -123,9 +149,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
             password: "",
             cPassword: "",
           });
+        } else if (result.data.status === 200 && dealer === "Yes") {
+          uploadLogo(result.data.user_id, result.data.message);
         } else {
           notify(result.data.message);
         }
+        console.log(1111, result);
       })
       .catch((error) => {
         notify(error);
@@ -166,9 +195,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     onChange={handleUserInput}
                     name="name"
                     placeholder="Enter Name"
-                    errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                    errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
                     label="Name"
-                    pattern="^[A-Za-z ]{3,16}$"
+                    pattern="^[A-Za-z ]{3,30}$"
                     required={true}
                   />
                 </div>
@@ -189,9 +218,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     onChange={handleUserInput}
                     name="userName"
                     placeholder="Enter Username"
-                    errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                    errorMessage="Username should be 3-30 characters and shouldn't include any special character!"
                     label="Username"
-                    pattern="^[A-Za-z0-9]{3,16}$"
+                    pattern="^[A-Za-z0-9]{3,30}$"
                     required={true}
                   />
                 </div>
@@ -271,23 +300,72 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 {userInput.dealer === "Yes" && (
                   <div className="col-md-12 col-lg-12 col-sm-12">
-                    <div class="mb-3">
-                      <label
-                        htmlFor="exampleFormControlTextarea1"
-                        class="form-label"
-                      >
-                        Description
-                      </label>
+                    <FormInput
+                      value={userInput.title}
+                      onChange={handleUserInput}
+                      name="title"
+                      errorMessage="Title should be 2-60 characters and shouldn't include any special character or number!"
+                      pattern="^[A-Za-z ]{2,60}$"
+                      placeholder="Enter title"
+                      label="Title"
+                      required={true}
+                    />
+                  </div>
+                )}
+                {userInput.dealer === "Yes" && (
+                  <div className="col-12 col-sm-12 col-md-12">
+                    <div className="form-group">
+                      <label>Description</label>
                       <textarea
                         value={userInput.dealerDescription}
                         onChange={handleUserInput}
                         name="dealerDescription"
                         placeholder="Enter Description"
-                        class="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="3"
+                        className="field"
+                        maxLength={200}
                         required
                       ></textarea>
+                    </div>
+                  </div>
+                )}
+                {userInput.dealer === "Yes" && (
+                  <div className="col-12 col-sm-12 col-md-12">
+                    <div className="form-group">
+                      <label>Dealer logo</label>
+                      <div className="drag-area">
+                        <div className="row">
+                          {Array.from(file).map((items, i) => {
+                            return (
+                              <span key={i} className="px-1">
+                                <img
+                                  src={
+                                    items ? URL.createObjectURL(items) : null
+                                  }
+                                  style={{
+                                    width: "70px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              </span>
+                            );
+                          })}
+                        </div>
+
+                        <input
+                          style={{
+                            border: "#EF6031",
+                            fontSize: "1.2rem",
+                            textAlign: "center",
+                            cursor: "pointer",
+                          }}
+                          onChange={(e) => {
+                            setFile(e.target.files);
+                          }}
+                          name="files"
+                          type="file"
+                          required
+                        />
+                      </div>
                     </div>
                   </div>
                 )}
@@ -307,7 +385,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input
-                      value={addUserInBid}
+                        value={addUserInBid}
                         onChange={(e) => setAddUserInBid(e.target.checked)}
                         className="form-check-input"
                         type="checkbox"

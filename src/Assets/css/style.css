@@ -5246,7 +5246,10 @@ font-size: 15px!important;
   font-weight: 500;
 }
 
-.sideBar__ li a{
+/* .sideBar__ li a{
   color: #ffa500!important;
   font-size: 15px;
+} */
+.sideBar__ .active{
+  color: #ffa500!important;
 }

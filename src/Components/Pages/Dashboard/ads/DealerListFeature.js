@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminLeftNav from "../AdminLeftNav";
+import axios from "axios";
 
 const DealerListFeature = () => {
+  const [dealerData, setDealerData] = useState([]);
+
+  useEffect(() => {
+    const fetchDealer = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}get_all_dealers`
+        );
+        setDealerData([...res.data.featured_dealer]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchDealer();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}destroy_dealer_featured/${id}`
+      );
+      if (res.data.status === 200) {
+        window.location.reload(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div>
@@ -32,33 +62,66 @@ const DealerListFeature = () => {
                     <thead>
                       <tr>
                         <th scope="col">Sn.n</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Image</th>
+
+                        <th scope="col">Title</th>
                         <th scope="col">Description </th>
-                        <th scope="col">Price of single Listing</th>
-                        <th scope="col">Price of 5 Listing</th>
+                        {/* <th scope="col">Price of single Listing</th>
+                        <th scope="col">Price of 5 Listing</th> */}
                         <th scope="col" style={{ textAlign: "right" }}>
                           Action
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>id</td>
-                        <td>name</td>
-                        <td>price</td>
-                        <td>Amount</td>
-                        <td>List</td>
-                        <td>
-                          <Link to={``} className="btn">
-                            <i class="fa-solid fa-pencil"></i>
-                          </Link>
-                        </td>
-                        <td>
-                          <Link to={``} className="btn">
-                            <i class="fa-solid fa-trash-can"></i>
-                          </Link>
-                        </td>
-                      </tr>
+                      {dealerData &&
+                        dealerData.map((curElem, i) => {
+                          return (
+                            <tr key={curElem.id}>
+                              <td>{i + 1}</td>
+                              <td>
+                                {curElem.image && (
+                                  <img
+                                    loading="lazy"
+                                    style={{
+                                      maxWidth: "100px",
+                                      maxHeight: "100px",
+                                    }}
+                                    src={
+                                      curElem.image[0] &&
+                                      `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt={curElem.name}
+                                  />
+                                )}
+                              </td>
+                              <td>
+                                {curElem.image && curElem.image[0]?.title}
+                              </td>
+                              <td>{curElem.dealerDescription}</td>
+                              {/* <td>Amount</td>
+                              <td>List</td> */}
+                              <td>
+                                <div className="btn">
+                                  <i class="fa-solid fa-pencil"></i>
+                                </div>
+                              </td>
+                              <td>
+                                <div
+                                  onClick={() => handleDelete(curElem.id)}
+                                  className="btn"
+                                >
+                                  <i class="fa-solid fa-trash-can"></i>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </table>
                 </div>

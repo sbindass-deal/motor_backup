@@ -13,10 +13,10 @@ const DealerList = () => {
   useEffect(() => {
     const fetchDealer = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}userdealer`);
-        if (res.data.users && res.data.status) {
-          setDealerData(res.data.users);
-        }
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}get_all_dealers`
+        );
+        setDealerData([...res.data.featured_dealer, ...res.data.user_dealer]);
       } catch (err) {
         console.log(err);
       }
@@ -101,50 +101,38 @@ const DealerList = () => {
               </div>
             </a>
           </div>
-          {dealerData.map((curElem) => {
-            return (
-              <div className="col-lg-4 col-sm-12 inner-slider">
-                <Link to={`/dealerprofile/${curElem.id}`}>
-                  <div className="card_post">
-                    <div className="card_postImg dlr">
-                      <img
-                        src={
-                          curElem.name === "Arizona"
-                            ? "https://img.321ignition.io/321ignition-v4-prod-images/public/60cca018bb49fd0046032134/common/logo.svg"
-                            : curElem.name === "USA AUTO INC"
-                            ? "https://cdn07.carsforsale.com/dealerlogos/409625/Logo54641.cbfc901c.png"
-                            : curElem.name === "Camelback"
-                            ? "https://pictures.dealer.com/c/camelbacktoyotavtg/1040/4c37615117f663acda6453537ad699c6x.jpg?impolicy=downsize&h=240"
-                            : curElem.image
-                        }
-                        alt="Logo is not available"
-                      />
+          {dealerData.length > 0 &&
+            dealerData.map((curElem) => {
+              return (
+                <div className="col-lg-4 col-sm-12 inner-slider">
+                  <Link to={`/dealerprofile/${curElem.id}`}>
+                    <div className="card_post">
+                      <div className="card_postImg dlr">
+                        {curElem.image && (
+                          <img
+                            loading="lazy"
+                            src={
+                              curElem.image[0] &&
+                              `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src =
+                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            }}
+                            alt={curElem.name}
+                          />
+                        )}
+                      </div>
+                      <div className="card_postInfo">
+                        <h5>{curElem.image && curElem.image[0]?.title}</h5>
+                        <p>{curElem.dealerDescription}</p>
+                      </div>
                     </div>
-                    <div className="card_postInfo">
-                      <h5>
-                        {curElem.name === "Arizona"
-                          ? "Arizona Car Sales"
-                          : curElem.name === "USA AUTO INC"
-                          ? "USA AUTO INC"
-                          : curElem.name === "Camelback"
-                          ? "Camelback Toyota"
-                          : curElem.name}
-                      </h5>
-                      <p>
-                        {curElem.name === "Arizona"
-                          ? "With hundreds of vehicles from the top automakers globally, Arizona Car Sales is the place to go for great deals on used cars. Visit our location in Mesa, AZ, and be ready to drive home in your dream machine!"
-                          : curElem.name === "USA AUTO INC"
-                          ? "At USA Auto Inc, we are dedicated to providing customers with the best vehicle buying experience. We are your number one source for quality used vehicle shopping. USA Auto Inc has extensive relationships with the dealer community."
-                          : curElem.name === "Camelback"
-                          ? "Camelback Toyota offers competitive pricing and a wide selection of new Toyota and used vehicles throughout the Phoenix area. Come experience the Camelback Toyota difference"
-                          : curElem.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
       {/* <nav aria-label="Page navigation example " className="pgNtion">
