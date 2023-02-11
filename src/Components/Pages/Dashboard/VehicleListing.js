@@ -40,8 +40,8 @@ const VehicleListing = () => {
                   style={{ justifyContent: "space-between" }}
                 >
                   <h3>Listing Plan </h3>
-                  <Link to="/admin/addVehicle-listing" className="btn">
-                    Add Listing
+                  <Link to="/admin/addVehicle-listing" className="orange_btn">
+                    + Add Listing
                   </Link>
                 </div>
 

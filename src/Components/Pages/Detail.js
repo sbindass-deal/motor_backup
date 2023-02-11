@@ -311,7 +311,7 @@ function Detail() {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn"
+                  className="orange_btn"
                   data-toggle="dropdown"
                 >
                   Make: {vehicle.make}
@@ -328,7 +328,7 @@ function Detail() {
               <div className="dropdown mr-2">
                 <button
                   type="button"
-                  className="gry_btn"
+                  className="orange_btn"
                   data-toggle="dropdown"
                 >
                   Model: {vehicle.model}
@@ -344,7 +344,7 @@ function Detail() {
               </div>
 
               <div className="dropdown mr-2">
-                <button type="button" className="gry_btn">
+                <button type="button" className="orange_btn">
                   Year: {vehicle.year}
                 </button>
                 <div className="dropdown-menu">
@@ -360,7 +360,7 @@ function Detail() {
                 <button
                   onClick={handleMorePhoto}
                   type="button"
-                  className="gry_btn"
+                  className="orange_btn"
                 >
                   More Photos
                 </button>

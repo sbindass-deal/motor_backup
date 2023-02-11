@@ -55,8 +55,8 @@ function RaffleAdmin() {
                 style={{ justifyContent: "space-between" }}
               >
                 <h3>Raffle Admin</h3>
-                <Link to="/raffleadmin/add-raffel" className="btn">
-                  Add raffle
+                <Link to="/raffleadmin/add-raffel" className="orange_btn">
+                 + Add raffle
                 </Link>
               </div>
 
@@ -66,13 +66,13 @@ function RaffleAdmin() {
                   <input type="search" name="search" placeholder="Search…" />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive vehicleSub">
+              <div class="card_Gray table-responsive vehicleSub raffle">
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th scope="col">Sn.n</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Description </th>
+                      <th scope="col" className="description">Description </th>
                       <th scope="col">Price of 1 ticket</th>
                       <th scope="col">Total ticket stock</th>
                       <th scope="col">Deadline to purchase ticket</th>
@@ -93,11 +93,11 @@ function RaffleAdmin() {
                             <td>20</td>
                             <td>{data.dealEndDate}</td>
                             <td>15-01-2023</td>
-                            <td className="actionBtn p-1">
+                            <td className="actionBtn">
                               {/* {data.active && ( */}
                               <button
                                 onClick={() => approveLottery(data.id)}
-                                className={`"btn p-1" ${
+                                className={`${
                                   data.active === "1"
                                     ? ""
                                     : "bg-light text-dark"
@@ -107,7 +107,7 @@ function RaffleAdmin() {
                               </button>
                               <Link
                                 to={`/raffleadmin/edit-raffel/${data.id}`}
-                                className="btn"
+                                className=""
                               >
                                 <i class="fa-solid fa-pencil"></i>
                               </Link>

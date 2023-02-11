@@ -3862,20 +3862,24 @@ td.actionBtn {
 }
 
 td.actionBtn button {
+  
   background: #f7931b;
   color: #fff;
-  padding: 5px 10px;
-  border-radius: 100%;
+  padding: 2px 6px;
+  border-radius: 12px;
   border: none;
   margin: 2px;
   text-align: right;
-  font-size: small;
+  font-size: 12px;
+  margin: 0 8px;
+
 }
 
 td.actionBtn {
   display: flex;
   justify-content: flex-end;
   padding: 1rem !important;
+  align-items: center;
 }
 
 td.actionBtn {
@@ -5292,6 +5296,43 @@ input[type=file] {
 }
 
 .dark .orange_btn:hover {
+  background: black;
+  color: white;
+
+}
+
+.raffle table{
+  font-size: 12px;
+}
+
+.raffle table .description{
+  width: 30%;
+}
+
+.light .orange_btn_small:hover {
+  border: 1px #f7931b solid;
+  background-color: #f7931b;
+  color: #fff;
+  text-transform: capitalize;
+      padding: 9px 30px;
+}
+
+.light .orange_btn_small:hover:hover {
+  background: white;
+  color: black;
+
+}
+
+.dark .orange_btn_small:hover {
+  border: 1px #f7931b solid;
+  background-color: #f7931b;
+  color: #fff;
+  text-transform: capitalize;
+      padding: 9px 30px;
+
+}
+
+.dark .orange_btn_small:hover:hover {
   background: black;
   color: white;
 
