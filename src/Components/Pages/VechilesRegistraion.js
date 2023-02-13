@@ -1041,11 +1041,17 @@ const VechilesRegistraion = () => {
                                   textAlign: "center",
                                 }}
                                 onChange={(e) => {
-                                  // handleNameField(e);
-                                  setFile(e.target.files);
+                                  if (e.target.files[0].size <= 2000000) {
+                                    return setFile(e.target.files);
+                                  } else {
+                                    notify(
+                                      "Image is too large pleae choose another image"
+                                    );
+                                  }
                                 }}
                                 name="file"
                                 type="file"
+                                accept="image/gif, image/jpeg, image/png, image/jpg"
                                 required
                               />
                             </div>
@@ -1054,7 +1060,7 @@ const VechilesRegistraion = () => {
                         <div className="col-12">
                           <p className="small">
                             Accepted file types: jpg, jpeg, png, Max. file size:
-                            10 MB, Max. files: 200.
+                            2 MB
                           </p>
                         </div>
                         <div className="col-12"></div>

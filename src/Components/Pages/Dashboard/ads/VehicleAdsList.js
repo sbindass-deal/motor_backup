@@ -20,9 +20,9 @@ const VehicleAdsList = () => {
                   className="d-flex"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Ad Vehicle List </h3>
+                  <h3>Classified Vehicle List </h3>
                   <Link to="/admin-vehicle-ad/add-vehicle-ads" className="btn">
-                    Add Vehicle
+                    Classified Vehicle
                   </Link>
                 </div>
 

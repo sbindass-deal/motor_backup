@@ -82,7 +82,7 @@ function AdminLeftNav() {
             } `}
             to="/admin-vehicle-ad"
           >
-            Ad Vehicle List
+            Classified Vehicle List
           </Link>
         </li>
         <li>

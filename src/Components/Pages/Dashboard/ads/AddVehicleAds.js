@@ -1,8 +1,10 @@
-import { Description } from "@ethersproject/properties";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../../../UI/FormInput";
 
 const AddVehicleAds = () => {
+  const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [getInputFieldData, setGetInputFieldData] = useState({
     make: "",
@@ -17,9 +19,104 @@ const AddVehicleAds = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleImg = async (vId) => {
+    const url = `${process.env.REACT_APP_URL}vehicle-image`;
+    let formData = new FormData();
+    formData.append("image", file[0]);
+    formData.append("vehicleId", vId);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios
+      .post(url, formData, config)
+      .then((response) => {
+        if (response.status === 200) {
+          navigate("/admin-dealer");
+          window.location.reload(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(1111, getInputFieldData);
+
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles`, {
+        name: "Admin",
+        email: "",
+        premium: "",
+        userId: "",
+        year: getInputFieldData.year,
+        make: getInputFieldData.make,
+        description: "",
+        model: getInputFieldData.model,
+        owned: "",
+        country: "",
+        city: "",
+        consignment: "",
+        dealerName: "",
+        dealerId: "",
+        dealerDescription: "",
+        ownerDetail: "",
+        detailvin: "",
+        displayInAuction: "classified",
+        auctionType: "",
+        externalLink: getInputFieldData.url,
+        km: "",
+        kmacc: "",
+        odmeter: "",
+        ogEngine: "",
+        transmission: getInputFieldData.url,
+        title: "",
+        other: "",
+        titleStatus: "",
+        engineSize: "",
+        stepOneImage: "",
+        stepTwoImage: "",
+        ste: "",
+        link: "",
+        accessories: "",
+        truckDetails: "",
+        moreDescription: getInputFieldData.description,
+        reserve: "No",
+        reservAmount: "",
+        hereFrom: "",
+        ammountOnDocument: "",
+        documentFee: "",
+        Interstellar: "",
+        pickOne: "",
+        interior: "",
+        brandandmodel: "",
+        understandCondition: "",
+        acceptTerms: "",
+        sizetires: "",
+        bodywork: "",
+        rustpresent: "",
+        modificationstock: "",
+        issuesorproblems: "",
+        status: "", // db me check karni h
+        otherTruckTitle: "",
+        otherStatus: "",
+        truckHistory: "",
+        rustDetails: "",
+        modificationOnTruck: "",
+        fuel: "",
+        EndTime: null,
+        phone: "",
+        approved: null,
+        sold: 1,
+      })
+      .then(function (response) {
+        handleImg(response.data.id);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div
@@ -28,7 +125,7 @@ const AddVehicleAds = () => {
     >
       <div className="row">
         <div className="col-12 text-center pb-5">
-          <h2>Classified ads</h2>
+          <h2>Classified vehicle</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="row row_gap_5">

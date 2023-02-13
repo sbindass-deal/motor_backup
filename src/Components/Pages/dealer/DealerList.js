@@ -125,7 +125,7 @@ const DealerList = () => {
                         )}
                       </div>
                       <div className="card_postInfo">
-                        <h5>{curElem.image && curElem.image[0]?.title}</h5>
+                        <h5>{curElem.title}</h5>
                         <p>{curElem.dealerDescription}</p>
                       </div>
                     </div>
