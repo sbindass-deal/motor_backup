@@ -56,7 +56,7 @@ function RaffleAdmin() {
               >
                 <h3>Raffle Admin</h3>
                 <Link to="/raffleadmin/add-raffel" className="orange_btn">
-                 + Add raffle
+                  + Add raffle
                 </Link>
               </div>
 
@@ -70,9 +70,11 @@ function RaffleAdmin() {
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Sn.n</th>
+                      <th scope="col">S.no</th>
                       <th scope="col">Name</th>
-                      <th scope="col" className="description">Description </th>
+                      <th scope="col" className="description">
+                        Description{" "}
+                      </th>
                       <th scope="col">Price of 1 ticket</th>
                       <th scope="col">Total ticket stock</th>
                       <th scope="col">Deadline to purchase ticket</th>

@@ -19,9 +19,11 @@ import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
+import { useNavigate } from "react-router-dom";
 // import UploadMImages from "./UploadMImages";
 
 const VechilesRegistraion = () => {
+  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const [showVidnModal, setShowVidnModal] = useState(false);
   const handleVinClose = () => setShowVidnModal(false);
@@ -29,7 +31,7 @@ const VechilesRegistraion = () => {
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
-  const [getVinNumber, setGetVinNumber] = useState("");
+  const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
   const [signinAggri, setSigninAggri] = useState(true);
@@ -43,6 +45,7 @@ const VechilesRegistraion = () => {
   const [errorBasicFact, setErrorBasicFact] = useState(true);
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
+  const [vinDetails, setVinDetails] = useState({});
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const handleClosePayment = () => {
     setShowPayment(false);
@@ -617,9 +620,9 @@ const VechilesRegistraion = () => {
   }, []);
   // get VIN details
 
-  const validateVin = (e) => {
+  const validateVin = async (e) => {
     e.preventDefault();
-    handleVinClose();
+    console.log(111, getVinNumber);
     // const options = {
     //   method: "GET",
     //   url: "https://api.vehicledatabases.com/vin-decode/SAJWJ0FF3F8321657",
@@ -636,7 +639,101 @@ const VechilesRegistraion = () => {
     //   .catch(function (error) {
     //     console.error(error);
     //   });
+
+    // const options = {
+    //   method: 'GET',
+    //   url: 'https://auto.dev/api/vin/ZPBUA1ZL9KLA00848',
+    //   params: {apikey: 'ZrQEPSkKcm9zaGFubWlzaHJhNjEzNEBnbWFpbC5jb20='},
+    //   headers: {
+    //     Authorization: `Bearer`  }
+    // };
+
+    // axios.request(options).then(function (response) {
+    // 	console.log(response.data);
+    // }).catch(function (error) {
+    // 	console.error(error);
+    // });
+    try {
+      const req = await axios(
+        `https://api.gasguzzlrs.com/test_vin/${getVinNumber}`
+      );
+      if (req.data.status) {
+        notify(req.data.message);
+      } else {
+        setVinDetails(req.data);
+        handleVinClose();
+        console.log(1111, req.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+  useEffect(() => {
+    setNamefield({
+      name: "",
+      email: "",
+      year: `${vinDetails.years && vinDetails?.years[0]?.year}`,
+      make: vinDetails?.make?.name,
+      model: vinDetails?.model?.name,
+      vechilelocation: "United State",
+      city: "",
+      sale: "",
+      link: "",
+      vehiclepast: "",
+      providelink: "",
+      changedvechiles: "",
+      dealer: "",
+      dealership: "",
+      soldvechiles: "",
+      videolink: "",
+      file: uploadmultipleImage,
+    });
+    setbasicfact({
+      vin: getVinNumber,
+      displayInAuction: "",
+      auctionType: "",
+      adWebsiteLink: "",
+      vechilesrace: "",
+      ultiumdrive: "",
+      Interstellar: "",
+      interior: "",
+      brandandmodel: "",
+      sizetires: "",
+      trucktitled: "",
+      other: "",
+      status: "",
+      km: "",
+      wheels: "",
+      kmacc: "",
+      odometer: "",
+      accurateField: "",
+      files: "",
+      otherTruckTitle: "",
+      otherStatus: "",
+    });
+    setDetailstab({
+      detailvin: "",
+      bodywork: "",
+      rustpresent: "",
+      modificationstock: "",
+      truckfromnew: "",
+      servicesperformed: "",
+      issuesorproblems: "",
+      moreDescription: "",
+      reserve: "",
+      reserveAmount: "",
+      shibnobiabout: "",
+      rtmember: "",
+      shibnobi: "",
+      documentFee: "",
+      accept: "",
+      understand: "",
+      truckHistory: "",
+      rustDetails: "",
+      modificationOnTrck: "",
+      fuel: vinDetails?.engine?.fuelType,
+    });
+  }, [vinDetails]);
 
   return (
     <>
@@ -745,7 +842,7 @@ const VechilesRegistraion = () => {
                         </div>
                       </div>
                       <div className="row row_gap_5">
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <FormInput
                             value={namefield.name}
                             onChange={handleNameField}
@@ -756,7 +853,7 @@ const VechilesRegistraion = () => {
                             pattern="^[A-Za-z ]{3,16}$"
                             required={true}
                           />
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
@@ -788,7 +885,7 @@ const VechilesRegistraion = () => {
                               name="make"
                               placeholder="Enter"
                               errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
-                              label="what is your vehicle?"
+                              label="what make is your vehicle?"
                               pattern="^[A-Za-z0-9 ]{3,16}$"
                               required={true}
                             />
@@ -1660,24 +1757,16 @@ const VechilesRegistraion = () => {
                           )}
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
-                            <label>Fuel Type</label>
-                            <select
-                              name="fuel"
-                              value={detailstab.fuel}
-                              onChange={detailsOnChange}
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Select
-                              </option>
-                              <option value="Electric">Electric</option>
-                              <option value="CNG">CNG</option>
-                              <option value="Petrol">Petrol</option>
-                              <option value="Diesel">Diesel</option>
-                            </select>
-                          </div>
+                          <FormInput
+                            name="fuel"
+                            value={detailstab.fuel}
+                            onChange={detailsOnChange}
+                            placeholder="Enter fuel type"
+                            errorMessage="Fuel type should be 2 to 60 character!"
+                            label="Fuel Type"
+                            pattern="^[A-Za-z(),.;@! ]{2,60}$"
+                            required={true}
+                          />
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -2291,7 +2380,8 @@ const VechilesRegistraion = () => {
           <div className="modal-content">
             <div className="modal-header border-0">
               <button
-                onClick={handleVinClose}
+                // onClick={handleVinClose}
+                onClick={() => navigate(-1)}
                 type="button"
                 className="close"
                 data-dismiss="modal"

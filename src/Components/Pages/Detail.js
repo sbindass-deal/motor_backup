@@ -290,12 +290,12 @@ function Detail() {
           <div className="row pt-4">
             <div className="col-12 pb-3">
               <div className="postHero">
-                {vehicle.images && (
+                {vehicle?.images && (
                   <img
                     loading="lazy"
                     src={
-                      vehicle.images[0] &&
-                      `${process.env.REACT_APP_URL}/${vehicle.images[0].imagePath}/${vehicle.images[0].imageName}`
+                      vehicle?.images[0] &&
+                      `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;

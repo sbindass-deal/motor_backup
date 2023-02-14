@@ -50,7 +50,7 @@ const VehicleListing = () => {
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">Sn.n</th>
+                        <th scope="col">S.no</th>
                         <th scope="col">Name</th>
                         <th scope="col">Description </th>
                         <th scope="col">Price of single Listing</th>
@@ -80,10 +80,7 @@ const VehicleListing = () => {
                                 </Link>
                               </td>
                               <td>
-                                <Link
-                                  to={``}
-                                  className="btn"
-                                >
+                                <Link to={``} className="btn">
                                   <i class="fa-solid fa-trash-can"></i>
                                 </Link>
                               </td>

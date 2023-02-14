@@ -280,7 +280,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </div>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="col-md-12 col-lg-6 col-sm-12">
                   <div className="form-group">
                     <label htmlFor="">Are you a dealer?</label>
                     <select
@@ -299,7 +299,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div>
                 {userInput.dealer === "Yes" && (
-                  <div className="col-md-12 col-lg-12 col-sm-12">
+                  <div className="col-md-12 col-lg-6 col-sm-12">
                     <FormInput
                       value={userInput.title}
                       onChange={handleUserInput}

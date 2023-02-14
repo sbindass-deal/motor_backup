@@ -61,7 +61,7 @@ const DealerListFeature = () => {
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">Sn.n</th>
+                        <th scope="col">S.no</th>
                         <th scope="col">Image</th>
 
                         <th scope="col">Title</th>
@@ -107,14 +107,18 @@ const DealerListFeature = () => {
                               {/* <td>Amount</td>
                               <td>List</td> */}
                               <td>
-                                <div className="btn">
+                                <div
+                                  className="p-2"
+                                  style={{ cursor: "pointer" }}
+                                >
                                   <i class="fa-solid fa-pencil"></i>
                                 </div>
                               </td>
                               <td>
                                 <div
                                   onClick={() => handleDelete(curElem.id)}
-                                  className="btn"
+                                  className="p-2"
+                                  style={{ cursor: "pointer" }}
                                 >
                                   <i class="fa-solid fa-trash-can"></i>
                                 </div>
