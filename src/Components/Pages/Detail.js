@@ -345,7 +345,7 @@ function Detail() {
 
               <div className="dropdown mr-2">
                 <button type="button" className="orange_btn">
-                  Year: {vehicle.year}
+                  Era: {vehicle.year}
                 </button>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -379,7 +379,7 @@ function Detail() {
                 <p className="py-4">{vehicle.desc1}</p>
 
                 <div className="" id="placeBid_col">
-                  <div className="card_Gray">
+                  {/* <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
                       <li>
@@ -479,7 +479,324 @@ function Detail() {
                         ""
                       )}
                     </ul>
-                  </div>
+                  </div> */}
+                  <div className="pb_40" id="placeBid_col">
+                <div className="card_Gray">
+                  <h5 className="cardTitle">CAR INFORMATION</h5>
+                  <ul className="bidList_ info_">
+
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          type="button"
+                          data-toggle="dropdown"
+                        >
+                          Make: {vehicle.make}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          
+                          data-toggle="dropdown"
+                        >
+                          Model:{vehicle.model}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          type="button"
+                        >
+                          Era: {vehicle.year}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+
+
+                    <li>
+                      Vehicle Id:<label htmlFor="">{vehicle.id}</label>
+                    </li>
+                    <li>
+                      vehicle finished in Interstellar White{" "}
+                      <label htmlFor=""> {vehicle.Interstellar}</label>
+                    </li>
+
+                    <li>
+                      city is the vehicle located in
+                      <label htmlFor="">{vehicle.city}</label>
+                    </li>
+                    <li>
+                      country is the vehicle currently located in
+                      <label htmlFor="">{vehicle.country}</label>
+                    </li>
+
+                    <li>
+                      accessories are included in the sale
+                      <label htmlFor="">{vehicle.accessories} </label>
+                    </li>
+
+                    <li>
+                      vehicle have any history of paint or bodywork{" "}
+                      <label htmlFor=""> {vehicle.bodywork}</label>
+                    </li>
+
+                    <li>
+                      provide reserve amount
+                      <label htmlFor=""> Reserve {vehicle.reserve}</label>
+                    </li>
+
+                    <li>
+                      size of tires are on the vehicle{" "}
+                      <label htmlFor="">{vehicle.sizetires}</label>
+                    </li>
+
+                    {true ? (
+                      <div>
+                        <li>
+                          wheels are on the vehicle
+                          <label htmlFor="">{vehicle.pickOne}</label>
+                        </li>
+
+                        <li>
+                          brand and model of tires are currently mounted{" "}
+                          <label htmlFor="">{vehicle.brandandmodel}</label>
+                        </li>
+                        <li>
+                          createdAt{" "}
+                          <label htmlFor="">{vehicle.created_at}</label>
+                        </li>
+                        <li>
+                          current Amount{" "}
+                          <label htmlFor="">{vehicle.currentAmount}</label>
+                        </li>
+
+                        <li>
+                          Amount on document{" "}
+                          <label htmlFor="">{vehicle.documentFee}</label>
+                        </li>
+                        <li>
+                          meter <label htmlFor="">{vehicle.km}</label>
+                        </li>
+                        <li>
+                          your vehicle <label htmlFor="">{vehicle.make}</label>
+                        </li>
+                        <li>
+                          model of vehicle{" "}
+                          <label htmlFor="">{vehicle.model}</label>
+                        </li>
+                        <li>
+                          Fuel Type <label htmlFor="">{vehicle.fuel}</label>
+                        </li>
+                        <li>
+                          current odometer reading{" "}
+                          <label htmlFor="">{vehicle.odmeter}</label>
+                        </li>
+
+                        <li>
+                          you know about the history of the vehicle{" "}
+                          <label htmlFor="">{vehicle.issuesorproblems}</label>
+                        </li>
+                        <li>
+                          the interior upholstered in Jet Black and Light Gray
+                          leather <label htmlFor="">{vehicle.interior}</label>
+                        </li>
+                        <li>
+                          dealer Description{" "}
+                          <label htmlFor="">{vehicle.dealerDescription}</label>
+                        </li>
+                        <li>
+                          Dealer id:{" "}
+                          <label htmlFor="">{vehicle.dealerId}</label>
+                        </li>
+                        <li>
+                          name of your dealership:{" "}
+                          <label htmlFor="">{vehicle.dealerName}</label>
+                        </li>
+                        <li>
+                          Description{" "}
+                          <label htmlFor="">{vehicle.description}</label>
+                        </li>
+                        <li>
+                          displayInAuction{" "}
+                          <label htmlFor="">{vehicle.displayInAuction}</label>
+                        </li>
+                        <li>
+                          documentFee{" "}
+                          <label htmlFor="">{vehicle.documentFee}</label>
+                        </li>
+                        <li>
+                          Email <label htmlFor="">{vehicle.email}</label>
+                        </li>
+                        <li>
+                          issues or problems does it currently have{" "}
+                          <label htmlFor="">{vehicle.hereFrom}</label>
+                        </li>
+                        <li>
+                          kmacc <label htmlFor="">{vehicle.kmacc}</label>
+                        </li>
+
+                        <li>
+                          modifications details
+                          <label htmlFor="">{vehicle.modificationstock}</label>
+                        </li>
+                        <li>
+                          list and describe services performed and when they
+                          were performed{" "}
+                          <label htmlFor="">{vehicle.moreDescription}</label>
+                        </li>
+                        <li>
+                          name <label htmlFor="">{vehicle.name}</label>
+                        </li>
+                        <li>
+                          modifications details{" "}
+                          <label htmlFor="">
+                            {vehicle.modificationOnTruck}
+                          </label>
+                        </li>
+                        <li>
+                          vehicle have any modifications from stock{" "}
+                          <label htmlFor="">{vehicle.modificationstock}</label>
+                        </li>
+
+                        <li>
+                          you have owned it{" "}
+                          <label htmlFor="">{vehicle.owned}</label>
+                        </li>
+                        <li>
+                          vehicle a race car or not otherwise registered for
+                          street use{" "}
+                          <label htmlFor="">{vehicle.ownerDetail}</label>
+                        </li>
+
+                        <li>
+                          premium <label htmlFor="">{vehicle.premium}</label>
+                        </li>
+                        <li>
+                          provide reserve amount{" "}
+                          <label htmlFor="">{vehicle.reservAmount}</label>
+                        </li>
+
+                        <li>
+                          rust details{" "}
+                          <label htmlFor="">{vehicle.rustDetails}</label>
+                        </li>
+                        <li>
+                          rust present on the vehicle{" "}
+                          <label htmlFor="">{vehicle.rustpresent}</label>
+                        </li>
+
+                        <li>
+                          sizetires{" "}
+                          <label htmlFor="">{vehicle.sizetires}</label>
+                        </li>
+                        <li>
+                          sold <label htmlFor="">{vehicle.sold}</label>
+                        </li>
+
+                        <li>
+                          status of the vehicle title{" "}
+                          <label htmlFor="">{vehicle.titleStatus}</label>
+                        </li>
+                        <li>
+                          provide link to the listing{" "}
+                          <label htmlFor="">{vehicle.transmission}</label>
+                        </li>
+                        <li>
+                          engineSize{" "}
+                          <label htmlFor="">{vehicle.engineSize}</label>
+                        </li>
+                        <li>
+                          vehicle history, paint or bodywork{" "}
+                          <label htmlFor="">{vehicle.truckHistory}</label>
+                        </li>
+
+                        <li>
+                          understandCondition{" "}
+                          <label htmlFor="">
+                            {vehicle.understandCondition}
+                          </label>
+                        </li>
+                        <li>
+                          updatedAt{" "}
+                          <label htmlFor="">{vehicle.updated_at}</label>
+                        </li>
+                        <li>
+                          userId <label htmlFor="">{vehicle.userId}</label>
+                        </li>
+
+                        <li>
+                          year of your vehicle{" "}
+                          <label htmlFor="">{vehicle.year}</label>
+                        </li>
+                        <li>
+                          EndTime <label htmlFor="">{vehicle.EndTime}</label>
+                        </li>
+
+                        <li>
+                          acceptTerms{" "}
+                          <label htmlFor="">{vehicle.acceptTerms}</label>
+                        </li>
+
+                        <li>
+                          Auction type{" "}
+                          <label htmlFor="">{vehicle.auctionType}</label>
+                        </li>
+
+                        <li>
+                          vehicle being sold on consignment{" "}
+                          <label htmlFor="">{vehicle.consignment}</label>
+                        </li>
+                        <li>
+                          Detailvin{" "}
+                          <label htmlFor="">{vehicle.detailvin}</label>
+                        </li>
+                      </div>
+                    ) : null}
+                    <li>
+                      <label htmlFor="">Private Party or Dealer :dealer</label>
+                    </li>
+                  </ul>
+                  {/* <div className="col-12 text-center">
+                    <button
+                      className="btn btn-warning "
+                      onClick={() => setViewAll(!viewAll)}
+                    >
+                      {" "}
+                      {viewAll ? "View Less" : "View All"}
+                    </button>
+                  </div> */}
+                </div>
+              </div>
+
                 </div>
                 <p>{vehicle.desc2}</p>
                 <div className="ptb_40" id="placeBid_col">
@@ -568,7 +885,7 @@ function Detail() {
                 </div>
                 <div className="row pt-4">
                   <div className="col-12">
-                    <h5>{comments.length} COMMENTS</h5>
+                    <h5>COMMENTS</h5>
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();

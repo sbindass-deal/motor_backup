@@ -135,7 +135,7 @@ const VechilesRegistraion = () => {
       for await (const file1 of file) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", file1);
+        formData.append("image[]", file1);
         formData.append("vehicleId", vehicleId);
         const newImagedata = formData;
         const config = {
@@ -428,9 +428,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
@@ -858,13 +858,12 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
                               value={basicfact.vin}
-                              onChange={(e) =>{
-                                if(e.target.value.trim().length === 17){
-                                  validateVin(e.target.value.trim())
-                                  
+                              onChange={(e) => {
+                                if (e.target.value.trim().length === 17) {
+                                  validateVin(e.target.value.trim());
                                 }
-                                basicFactOnChange(e)
-                                }}
+                                basicFactOnChange(e);
+                              }}
                               name="vin"
                               label="What is the VIN"
                               placeholder="Enter VIN"
@@ -917,9 +916,9 @@ const VechilesRegistraion = () => {
                                 onChange={handleNameField}
                                 name="model"
                                 placeholder="Enter"
-                                errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
+                                // errorMessage="This input field contain 1-16 characters and shouldn't include any special character"
                                 label="What model is this vehicle?"
-                                pattern="^[A-Za-z0-9 ]{3,16}$"
+                                // pattern="^[A-Za-z0-9 ]{1,16}$"
                                 required={true}
                               />
                             </div>
@@ -1216,8 +1215,9 @@ const VechilesRegistraion = () => {
 
                       <form onSubmit={basicFactSubmitHandler} className="pt-3">
                         <div className="row row_gap_5">
-                          {false &&<div className="col-12 col-sm-12 col-md-6">
-                            {/* <div className="form-group">
+                          {false && (
+                            <div className="col-12 col-sm-12 col-md-6">
+                              {/* <div className="form-group">
                             <label>What is the VIN?</label>
                             <input
                               value={basicfact.vin}
@@ -1232,7 +1232,7 @@ const VechilesRegistraion = () => {
                             />
                             
                           </div> */}
-                            {/* <FormInput
+                              {/* <FormInput
                               value={basicfact.vin}
                               onChange={basicFactOnChange}
                               name="vin"
@@ -1242,7 +1242,8 @@ const VechilesRegistraion = () => {
                               pattern="^[A-Za-z0-9]{17}$"
                               required={true}
                             /> */}
-                          </div>}
+                            </div>
+                          )}
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>
