@@ -78,9 +78,9 @@ const SubmitaVehicle = () => {
   const goToAddCard = () => {
     handleScrollAd.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
-  useEffect(() => {
-    setShowAdModal(true);
-  }, []);
+  // useEffect(() => {
+  //   setShowAdModal(true);
+  // }, []);
 
   return (
     <>
