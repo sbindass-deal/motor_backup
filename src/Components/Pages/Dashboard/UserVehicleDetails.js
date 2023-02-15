@@ -168,7 +168,7 @@ const UserVehicleDetails = () => {
       },
     ],
   };
-
+ 
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -194,7 +194,7 @@ const UserVehicleDetails = () => {
               </div>
             </div>
             <div className="col-6 dropdownCol">
-              <div className="dropdown mr-2">
+              {/* <div className="dropdown mr-2">
                 <button
                   type="button"
                   className="gry_btn"
@@ -254,11 +254,75 @@ const UserVehicleDetails = () => {
                     Notify me about new listings
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="pb_40" id="placeBid_col">
                 <div className="card_Gray">
                   <h5 className="cardTitle">CAR INFORMATION</h5>
                   <ul className="bidList_ info_">
+
+                    {/* ============================ */}
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          type="button"
+                          // className="gry_btn"
+                          data-toggle="dropdown"
+                        >
+                          Make: {vehicle.make}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          // type="button"
+                          // className="gry_btn "
+                          data-toggle="dropdown"
+                        >
+                          Model:{vehicle.model}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <div className="dropdown mr-2">
+                        <p
+                          type="button"
+                          // className="gry_btn "
+                        >
+                          Era: {vehicle.year}
+                        </p>
+                        <div className="dropdown-menu">
+                          <a className="dropdown-item" href="#">
+                            View all listings
+                          </a>
+                          <a className="dropdown-item" href="#">
+                            Notify me about new listings
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+
+                    {/* ============================= */}
+
+
                     <li>
                       Vehicle Id:<label htmlFor="">{vehicle.id}</label>
                     </li>
@@ -528,7 +592,7 @@ const UserVehicleDetails = () => {
                       className="col-md-12"
                       rows={4}
                     ></textarea>{" "}
-                    <br />
+                    {/* <br />
                     <label>Description 2</label> <br />
                     <textarea
                       name="description2"
@@ -538,7 +602,7 @@ const UserVehicleDetails = () => {
                       maxLength={2000}
                       className="col-md-12"
                       rows={4}
-                    ></textarea>{" "}
+                    ></textarea>{" "} */}
                     <br />
                     <div className="text-center my-4">
                       <button className="btn btn-warning m-3" type="submit">
