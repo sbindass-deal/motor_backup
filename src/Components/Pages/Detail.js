@@ -363,11 +363,11 @@ function Detail() {
                     boxShadow: "1px 1px 1px 1px grey"
                   }}
                 >
-                  Year: {vehicle.year}
-                </p>
-                <button type="button" className="orange_btn">
                   Era: {vehicle.year}
-                </button>
+                </p>
+                {/* <button type="button" className="orange_btn">
+                  Era: {vehicle.year}
+                </button> */}
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
                     View all listings
