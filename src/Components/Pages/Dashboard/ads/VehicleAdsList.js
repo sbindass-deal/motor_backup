@@ -10,7 +10,7 @@ const VehicleAdsList = () => {
     const fetchApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}vehiclesbyadmin`
+          `${process.env.REACT_APP_URL}vehicles_added_by_admin`
         );
         setClassifiedAd(res.data.data);
       } catch (err) {
@@ -20,7 +20,18 @@ const VehicleAdsList = () => {
     fetchApi();
   }, []);
 
-  const handleDelete = (vId) => {};
+  const handleDelete = async (vId) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}deleteVehicle/${vId}`
+      );
+      if (res.data.status === 200) {
+        window.location.reload(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -67,7 +78,7 @@ const VehicleAdsList = () => {
                           return (
                             <tr>
                               <td>{i + 1}</td>
-                              <td>
+                              <td className="cartImg">
                                 {curElem.images && (
                                   <img
                                     loading="lazy"

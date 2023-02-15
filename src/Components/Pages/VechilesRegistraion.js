@@ -173,28 +173,28 @@ const VechilesRegistraion = () => {
     return years;
   };
 
-  const handleMultipleImgUpload = (vehicleId) => {
-    let formData = new FormData();
-    formData.append("vehicleId", vehicleId);
-    Array.from(file1).forEach((item) => {
-      formData.append("image", item);
-    });
-    const url = `${process.env.REACT_APP_URL}vehicle-image`;
-    axios
-      .post(url, formData)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const uploadFileTwo = (vehicleId) => {
+  //   let formData = new FormData();
+  //   formData.append("vehicleId", vehicleId);
+  //   Array.from(file1).forEach((item) => {
+  //     formData.append("image[]", item);
+  //   });
+  //   const url = `${process.env.REACT_APP_URL}vehicle-image`;
+  //   axios
+  //     .post(url, formData)
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   const uploadFileTwo = async (vehicleId) => {
     (async () => {
       for await (const file11 of file1) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", file11);
+        formData.append("image[]", file11);
         formData.append("vehicleId", vehicleId);
         const config = {
           headers: {
@@ -427,9 +427,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
 
     axios
       .post(`${url}vehicles`, {

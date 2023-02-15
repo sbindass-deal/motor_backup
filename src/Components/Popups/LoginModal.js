@@ -90,9 +90,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           setLoginLoading(false);
           window.location.reload(false);
         } else {
-          notify("Something wrong");
+          notify("Incorrect Email or password");
           setLoginLoading(false);
         }
+        console.log(111,result.data.message)
       })
       .catch((error) => {
         notify(error.message);
