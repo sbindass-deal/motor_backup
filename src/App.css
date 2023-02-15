@@ -14,3 +14,13 @@
     position: relative;
     z-index: 999 !important;
 }
+
+
+
+#sticky{
+  display: block !important;
+ position: sticky !important;
+    top: 0 !important;
+  }
+
+

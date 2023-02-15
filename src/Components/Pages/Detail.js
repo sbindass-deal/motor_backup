@@ -206,15 +206,16 @@ function Detail() {
 
   return (
     <div>
-      <section className="ptb_80 pt_sm_50">
+      <section className="ptb_80 pt_sm_50 " >
         <div className="container">
-          <div className="row">
-            <div className="col-12 text-center pb_30">
-              <h2 className="title_combo title_Center">
+          <div className="row" >
+            <div className="col-12 text-center pb_30 " id="sticky" >
+              <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
             </div>
             <div className="col-12">
+              <hr style={{ borderTop: "1px solid grey" }} />
               <div className="detailPostOption">
                 <div className="">
                   <ul className="labelList">
@@ -307,15 +308,22 @@ function Detail() {
                 )}
               </div>
             </div>
+
+
+
             <div className="col-12 dropdownCol">
-              <div className="dropdown mr-2">
-                <button
+              <div className="dropdown mr-2 ">
+                <p
                   type="button"
-                  className="orange_btn"
+                  // className="orange_btn"
                   data-toggle="dropdown"
+                  style={{
+                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey"
+                  }}
                 >
                   Make: {vehicle.make}
-                </button>
+                </p>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
                     View all listings
@@ -326,13 +334,17 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown mr-2">
-                <button
+                <p
                   type="button"
-                  className="orange_btn"
+                  // className="orange_btn"
                   data-toggle="dropdown"
+                  style={{
+                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey"
+                  }}
                 >
                   Model: {vehicle.model}
-                </button>
+                </p>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
                     View all listings
@@ -344,9 +356,15 @@ function Detail() {
               </div>
 
               <div className="dropdown mr-2">
-                <button type="button" className="orange_btn">
+                <p type="button"
+                  // className="orange_btn"
+                  style={{
+                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey"
+                  }}
+                >
                   Year: {vehicle.year}
-                </button>
+                </p>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
                     View all listings
@@ -357,13 +375,19 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown mr-2">
-                <button
+                <p
                   onClick={handleMorePhoto}
                   type="button"
-                  className="orange_btn"
+                  // className="orange_btn"
+                  style={{
+                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey"
+                  }}
                 >
                   More Photos
-                </button>
+                </p>
+
+
 
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -372,6 +396,19 @@ function Detail() {
                   <a className="dropdown-item" href="#">
                     Notify me about new listings
                   </a>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-8">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia eius iste optio at architecto excepturi nesciunt cum earum illo, provident sapiente iure adipisci dolorem officiis? Laboriosam dolorem totam explicabo itaque odio corrupti assumenda. Tempore laborum doloremque voluptates. Eos velit dolorem ipsam. Quidem a maxime quo saepe vitae dicta corporis architecto doloribus odit cum voluptate earum odio, qui quaerat aliquam delectus asperiores ut. Doloribus optio laboriosam aliquam, asperiores nobis alias. Fugiat laudantium dicta pariatur quis blanditiis aspernatur quibusdam ut, dolorum tenetur minima rem? Mollitia quis recusandae quae neque at delectus inventore suscipit expedita nihil eum? Illum reprehenderit ut itaque in ab.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, ipsam ad? Saepe tempora, quam asperiores omnis accusantium mollitia illo porro eaque animi corrupti consequuntur eius quas placeat commodi sequi voluptatem natus iusto dignissimos nulla libero dolor atque. Eaque harum beatae quae at eveniet, eligendi, maxime necessitatibus soluta, assumenda facere saepe aspernatur quisquam odio commodi optio dolor eos eum culpa tempora earum qui repellendus exercitationem. Hic magnam doloremque velit eveniet architecto, nostrum ut tempore possimus perferendis rerum ad ullam repellendus placeat. Tempore repellendus culpa mollitia fugit reprehenderit doloribus quod, dolores debitis facere quisquam tempora voluptatem doloremque commodi ex deserunt rerum nihil.</p>
+                </div>
+
+                <div className="col-4 pt-3" style={{ border: "1px solid grey", backgroundColor: "#F8F8F8" }}>
+                  <h3>Gas Guzzlrs Essentials</h3>
+                  <ul>
+
+                  </ul>
                 </div>
               </div>
 
@@ -456,7 +493,7 @@ function Detail() {
                           Description
                           <label htmlFor="">
                             {vehicle.moreDescription.length > 20 &&
-                            !showReadMore ? (
+                              !showReadMore ? (
                               <span>
                                 {vehicle.moreDescription.substr(0, 20)}...
                               </span>
@@ -469,7 +506,7 @@ function Detail() {
                               className="btn read_more p-1"
                             >
                               {showReadMore &&
-                              vehicle.moreDescription.length > 20
+                                vehicle.moreDescription.length > 20
                                 ? "Read Less"
                                 : "Read More"}
                             </button>
@@ -637,6 +674,7 @@ function Detail() {
               </div>
             </div>
           </div>
+
         </div>
       </section>
       <Modal
