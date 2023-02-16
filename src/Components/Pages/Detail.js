@@ -206,6 +206,9 @@ function Detail() {
     moreImgRaf.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
 
+
+  
+
   return (
     <div >
       <section className="ptb_80 pt_sm_50 " >
