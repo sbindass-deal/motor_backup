@@ -195,7 +195,7 @@ const Auctionlive = () => {
                             {curElem.odmeter}
                           </Link>
                         </h4>
-                        <p>{curElem?.moreDescription}</p>
+                        <p>{curElem?.moreDescription.substr(0, 200)}</p>
                         <ul
                           className="labelList"
                           style={{

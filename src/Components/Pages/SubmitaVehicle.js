@@ -12,6 +12,7 @@ const SubmitaVehicle = () => {
   const handleScrollAd = useRef(null);
   const [showAdModal, setShowAdModal] = useState(false);
   const [showAdShowroom, setShowAdShowroom] = useState(false);
+  const [areYouDealerOrSealer, setAreYouDealerOrSealer] = useState(false);
   const [planChacked, setPlanChacked] = useState({
     standard: false,
     pro: false,
@@ -81,6 +82,9 @@ const SubmitaVehicle = () => {
   // useEffect(() => {
   //   setShowAdModal(true);
   // }, []);
+  useEffect(() => {
+    setShowAdShowroom(areYouDealerOrSealer);
+  }, [areYouDealerOrSealer]);
 
   return (
     <>
@@ -96,6 +100,30 @@ const SubmitaVehicle = () => {
                 <br /> Select one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
+              <div className="row">
+                <div className="col-5">Are you a individual saler?</div>
+                <div className="col-2">
+                  <div className="switch">
+                    <input
+                      className="react-switch-checkbox"
+                      id={`react-switch-standard`}
+                      checked={areYouDealerOrSealer}
+                      onChange={(e) =>
+                        setAreYouDealerOrSealer(e.target.checked)
+                      }
+                      name="standard"
+                      type="checkbox"
+                    />
+                    <label
+                      className="react-switch-label"
+                      htmlFor={`react-switch-standard`}
+                    >
+                      <span className={`react-switch-button`} />
+                    </label>
+                  </div>
+                </div>
+                <div className="col-5">Are you a dealer?</div>
+              </div>
             </div>
             {/* standard plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">

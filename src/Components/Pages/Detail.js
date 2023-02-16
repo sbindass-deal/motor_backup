@@ -228,80 +228,96 @@ function Detail() {
     <div>
       <section className="ptb_80 pt_sm_50 ">
         <div className="container" style={{ width: "70%" }} id="sticky">
-          <div className="row">
-            <div className="col-12 text-center pb_30 " id="sticky">
+          <div>
+            <div
+              className="col-12 text-center pb_30 "
+              id="sticky"
+              style={{
+                backgroundColor: "white",
+                boxShadow: "1px 1px 1px 1px whitesmoke",
+              }}
+            >
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
-            </div>
-            <div className="col-12">
               <hr style={{ borderTop: "1px solid grey" }} />
-              <div className="detailPostOption">
-                <div className="">
-                  <ul className="labelList">
-                    <li>
-                      <label>Sold for</label>{" "}
-                      <span>
-                        {amountprice ? (
-                          <span>
-                            {" "}
-                            <span style={{ fontWeight: "bold" }}>
+              <div className="col-12">
+                <div className="detailPostOption">
+                  <div className="">
+                    <ul className="labelList">
+                      <li>
+                        <label>Sold for</label>{" "}
+                        <span>
+                          {amountprice ? (
+                            <span>
                               {" "}
-                              ${amountprice}{" "}
+                              <span style={{ fontWeight: "bold" }}>
+                                {" "}
+                                ${amountprice}{" "}
+                              </span>
+                              <span>
+                                on{" "}
+                                {new Date(vehicle.EndTime).toLocaleDateString()}
+                              </span>
                             </span>
-                            <span>on {new Date(vehicle.EndTime).toLocaleDateString()}</span>
+                          ) : (
+                            <span>
+                              {" "}
+                              <span style={{ fontWeight: "bold" }}>
+                                {" "}
+                                ${vehicle.documentFee}{" "}
+                              </span>
+                              <span>
+                                on{" "}
+                                {new Date(vehicle.EndTime).toLocaleDateString()}
+                              </span>
+                            </span>
+                          )}
+                        </span>
+                      </li>
+                      <li>
+                        {vehicle.approved !== "1" ? (
+                          <span>
+                            <img
+                              src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg"
+                              alt="comments-icon"
+                              class="comments_header_icon"
+                            />
+                            <span
+                              style={{ marginLeft: "8px", color: "#C22B25" }}
+                            >
+                              {comments.length}
+                            </span>
+                            <span
+                              style={{ marginLeft: "8px", color: "#C22B25" }}
+                            >
+                              Comments
+                            </span>
+                          </span>
+                        ) : vehicle.approved === "1" && t > 0 ? (
+                          <span>
+                            <label>Ends In:&nbsp;</label>
+                            {days}days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
                           </span>
                         ) : (
-                          <span>
-                            {" "}
-                            <span style={{ fontWeight: "bold" }}>
-                              {" "}
-                              ${vehicle.documentFee}{" "}
-                            </span>
-                            <span>on {new Date(vehicle.EndTime).toLocaleDateString()}</span>
-                          </span>
+                          "Auction Closed"
                         )}
-                      </span>
-                    </li>
-                    <li>
-                      {vehicle.approved !== "1" ? (
-                        <span>
-                          <img
-                            src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg"
-                            alt="comments-icon"
-                            class="comments_header_icon"
-                          />
-                          <span style={{ marginLeft: "8px", color: "#C22B25" }}>
-                           {comments.length}
-                          </span>
-                          <span style={{ marginLeft: "8px", color: "#C22B25" }}>
-                            Comments
-                          </span>
-                        </span>
-                      ) : vehicle.approved === "1" && t > 0 ? (
-                        <span>
-                          <label>Ends In:&nbsp;</label>
-                          {days}days, {hours <= 9 && "0"}
-                          {hours}h : {minutes <= 9 && "0"}
-                          {minutes}m : {seconds <= 9 && "0"}
-                          {seconds}s
-                        </span>
-                      ) : (
-                        "Auction Closed"
-                      )}
-                    </li>
+                      </li>
 
-                    {vehicle.reserve === "Yes" &&
-                      vehicle.approved === "1" &&
-                      t > 0 && (
-                        <li className="reserved">
-                          Reserve: <span>{vehicle.reserve}</span>
-                        </li>
-                      )}
-                  </ul>
-                </div>
-                <div className="d-flex">
-                  {/* {vehicle.like === 1 ? (
+                      {vehicle.reserve === "Yes" &&
+                        vehicle.approved === "1" &&
+                        t > 0 && (
+                          <li className="reserved">
+                            Reserve: <span>{vehicle.reserve}</span>
+                          </li>
+                        )}
+                    </ul>
+                  </div>
+                  <div className="d-flex">
+                    {/* {vehicle.like === 1 ? (
                     <a
                       style={{ cursor: "pointer" }}
                       onClick={() => addFabrity(id)}
@@ -321,116 +337,118 @@ function Detail() {
                     </a>
                   )} */}
 
-                  <button
+                    <button
+                      type="button"
+                      className="gry_btn active bg-dark"
+                      onClick={handleShow}
+                      style={{ border: "none" }}
+                      disabled={
+                        vehicle.approved !== "1" || t < 0 ? true : false
+                      }
+                    >
+                      View Result
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row pt-4 ">
+              <div className="col-12 pb-3">
+                <div className="postHero">
+                  {vehicle?.images && (
+                    <img
+                      loading="lazy"
+                      src={
+                        vehicle?.images[0] &&
+                        `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="Maskgroup1"
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="col-12 dropdownCol">
+                <div className="dropdown mr-2 ">
+                  <p
                     type="button"
-                    className="gry_btn active bg-dark"
-                    onClick={handleShow}
-                    style={{ border: "none" }}
-                    disabled={vehicle.approved !== "1" || t < 0 ? true : false}
-                  >
-                    View Result
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row pt-4 ">
-            <div className="col-12 pb-3">
-              <div className="postHero">
-                {vehicle?.images && (
-                  <img
-                    loading="lazy"
-                    src={
-                      vehicle?.images[0] &&
-                      `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
-                    }
-                    onError={({ currentTarget }) => {
-                      currentTarget.onError = null;
-                      currentTarget.src =
-                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                    // className="orange_btn"
+                    data-toggle="dropdown"
+                    style={{
+                      border: "1px solid grey",
+                      borderRadius: "8px",
+                      padding: "8px",
+                      boxShadow: "1px 1px 1px 1px grey",
                     }}
-                    alt="Maskgroup1"
-                  />
-                )}
-              </div>
-            </div>
-
-            <div className="col-12 dropdownCol">
-              <div className="dropdown mr-2 ">
-                <p
-                  type="button"
-                  // className="orange_btn"
-                  data-toggle="dropdown"
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "8px",
-                    padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey",
-                  }}
-                >
-                  Make: {vehicle.make}
-                </p>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
+                  >
+                    Make: {vehicle.make}
+                  </p>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">
+                      View all listings
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      Notify me about new listings
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="dropdown mr-2">
-                <p
-                  type="button"
-                  // className="orange_btn"
-                  data-toggle="dropdown"
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "8px",
-                    padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey",
-                  }}
-                >
-                  Model: {vehicle.model}
-                </p>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
+                <div className="dropdown mr-2">
+                  <p
+                    type="button"
+                    // className="orange_btn"
+                    data-toggle="dropdown"
+                    style={{
+                      border: "1px solid grey",
+                      borderRadius: "8px",
+                      padding: "8px",
+                      boxShadow: "1px 1px 1px 1px grey",
+                    }}
+                  >
+                    Model: {vehicle.model}
+                  </p>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">
+                      View all listings
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      Notify me about new listings
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div className="dropdown mr-2">
-                <p
-                  type="button"
-                  // className="orange_btn"
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "8px",
-                    padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey",
-                  }}
-                >
-                  Era: {vehicle.year}
-                </p>
-                {/* <button type="button" className="orange_btn">
+                <div className="dropdown mr-2">
+                  <p
+                    type="button"
+                    // className="orange_btn"
+                    style={{
+                      border: "1px solid grey",
+                      borderRadius: "8px",
+                      padding: "8px",
+                      boxShadow: "1px 1px 1px 1px grey",
+                    }}
+                  >
+                    Era: {vehicle.year}
+                  </p>
+                  {/* <button type="button" className="orange_btn">
                   Era: {vehicle.year}
                 </button> */}
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">
+                      View all listings
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      Notify me about new listings
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="dropdown mr-2">
-                {/* <p
+                <div className="dropdown mr-2">
+                  {/* <p
                   onClick={handleMorePhoto}
                   type="button"
                   // className="orange_btn"
@@ -442,71 +460,71 @@ function Detail() {
                   More Photos
                 </p> */}
 
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-8">
-                  <p>{vehicle.moreDescription}</p>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">
+                      View all listings
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      Notify me about new listings
+                    </a>
+                  </div>
                 </div>
 
-                <div
-                  className="col-4 pt-3"
-                  style={{
-                    height: "600px",
-                    backgroundColor: "#F8F8F8",
-                    overflow: "auto",
-                  }}
-                >
-                  <h3>Essentials</h3>
-                  <ul>
-                    <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
-                    <li>fuelType:{vinDetails?.engine?.fuelType}</li>
-                    <li>horsepower:{vinDetails?.engine?.horsepower}</li>
-                    <li>numOfDoors:{vinDetails?.numOfDoors}</li>
-                    <li>
-                      category:
-                      {vinDetails.options !== undefined &&
-                        vinDetails.options.map((curElem, i) => {
-                          return (
-                            <p>
-                              <span style={{ fontWeight: "bolder" }}>
-                                {i + 1}
-                              </span>{" "}
-                              {curElem.category}:
-                              {curElem.options.map((item, i) => {
-                                return (
-                                  <div>
-                                    <span>
-                                      <FiberManualRecordIcon
-                                        style={{ fontSize: "1rem" }}
-                                      />
-                                    </span>{" "}
-                                    {item.name}
-                                  </div>
-                                );
-                              })}
-                            </p>
-                          );
-                        })}
-                    </li>
-                  </ul>
-                  mpg
+                <div className="row justify-content-center">
+                  <div className="col-8">
+                    <p>{vehicle.moreDescription}</p>
+                  </div>
+
+                  <div
+                    className="col-4 pt-3"
+                    style={{
+                      height: "600px",
+                      backgroundColor: "#F8F8F8",
+                      overflow: "auto",
+                    }}
+                  >
+                    <h3>Essentials</h3>
+                    <ul>
+                      <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
+                      <li>fuelType:{vinDetails?.engine?.fuelType}</li>
+                      <li>horsepower:{vinDetails?.engine?.horsepower}</li>
+                      <li>numOfDoors:{vinDetails?.numOfDoors}</li>
+                      <li>
+                        category:
+                        {vinDetails.options !== undefined &&
+                          vinDetails.options.map((curElem, i) => {
+                            return (
+                              <p>
+                                <span style={{ fontWeight: "bolder" }}>
+                                  {i + 1}
+                                </span>{" "}
+                                {curElem.category}:
+                                {curElem.options.map((item, i) => {
+                                  return (
+                                    <div>
+                                      <span>
+                                        <FiberManualRecordIcon
+                                          style={{ fontSize: "1rem" }}
+                                        />
+                                      </span>{" "}
+                                      {item.name}
+                                    </div>
+                                  );
+                                })}
+                              </p>
+                            );
+                          })}
+                      </li>
+                    </ul>
+                    mpg
+                  </div>
                 </div>
-              </div>
 
-              <div className="dropdown">
-                <p className="py-4">{vehicle.desc1}</p>
+                <div className="dropdown">
+                  <p className="py-4">{vehicle.desc1}</p>
 
-                <div className="" id="placeBid_col">
-                  {/* <div className="card_Gray">
+                  <div className="" id="placeBid_col">
+                    {/* <div className="card_Gray">
                     <h5>CAR INFORMATION</h5>
                     <ul className="bidList_ info_">
                       <li>
@@ -607,7 +625,7 @@ function Detail() {
                       )}
                     </ul>
                   </div> */}
-                  {/* <div className="pb_40" id="placeBid_col">
+                    {/* <div className="pb_40" id="placeBid_col">
                     <div className="card_Gray">
                       <h5 className="cardTitle">CAR INFORMATION</h5>
                       <ul className="bidList_ info_">
@@ -919,10 +937,10 @@ function Detail() {
                       
                     </div>
                   </div> */}
-                </div>
-                <p>{vehicle.desc2}</p>
-                <div className="ptb_40" id="placeBid_col">
-                  {/* <div className="card_Gray">
+                  </div>
+                  <p>{vehicle.desc2}</p>
+                  <div className="ptb_40" id="placeBid_col">
+                    {/* <div className="card_Gray">
                     <h5>BID ON THIS LISTING</h5>
                     <ul className="bidList_">
                       <li>
@@ -982,36 +1000,35 @@ function Detail() {
                       </div>
                     </div>
                   </div> */}
-                </div>
-                <div className=" phG">
-                  <h5>PHOTO GALLERY </h5>
-                  <div ref={moreImgRaf} class="card-group">
-                    {vehicle.images &&
-                      vehicle.images.map((curElem) => {
-                        return (
-                          <div
-                            class="card mx-2"
-                            style={{ width: "25vh", height: "25vh" }}
-                          >
-                            <Image
-                              width={150}
-                              loading="lazy"
-                              style={{ height: "25vh", width: "25vh" }}
-                              class="card-img-top"
-                              src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt="Maskgroup1"
-                            />
-                          </div>
-                        );
-                      })}
                   </div>
-                </div>
-                {/* <div className="row pt-4">
+                  <div className=" phG">
+                    <h5>PHOTO GALLERY </h5>
+                    <div ref={moreImgRaf} class="card-group">
+                      {vehicle.images &&
+                        vehicle.images.map((curElem) => {
+                          return (
+                            <div
+                              class="card mx-2"
+                              style={{ width: "30vh", height: "30vh" }}
+                            >
+                              <Image
+                                loading="lazy"
+                                style={{ height: "30vh", width: "30vh" }}
+                                class="card-img-top"
+                                src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                  {/* <div className="row pt-4">
                   <div className="col-12">
                     <h5>COMMENTS</h5>
                     <form
@@ -1079,6 +1096,7 @@ function Detail() {
                     ))}
                   </div>
                 </div> */}
+                </div>
               </div>
             </div>
           </div>
