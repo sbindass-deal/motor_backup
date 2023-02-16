@@ -19,8 +19,11 @@
 
 #sticky{
   display: block !important;
- position: sticky !important;
+  position: sticky !important;
     top: 0 !important;
   }
 
 
+  .ant-image-mask-info{
+    display: none;
+  }

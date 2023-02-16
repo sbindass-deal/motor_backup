@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../redux/reducers/login";
 import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
+import { Image } from 'antd';
+
 
 function Detail() {
   const { id } = useParams();
@@ -205,33 +207,37 @@ function Detail() {
   };
 
   return (
-    <div>
+    <div >
       <section className="ptb_80 pt_sm_50 " >
-        <div className="container">
+        <div className="container" style={{ width: "70%", }} id="sticky">
           <div className="row" >
             <div className="col-12 text-center pb_30 " id="sticky" >
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
             </div>
-            <div className="col-12">
+            <div className="col-12" >
               <hr style={{ borderTop: "1px solid grey" }} />
               <div className="detailPostOption">
                 <div className="">
                   <ul className="labelList">
                     <li>
-                      <label>Current Bid:</label>{" "}
+                      <label>Sold for</label>{" "}
                       <span>
                         {amountprice ? (
-                          <span> USD ${amountprice}</span>
+                          <span> <span style={{ fontWeight: "bold" }}> ${amountprice} </span>
+                            <span>on 2/15/23</span>
+                          </span>
                         ) : (
-                          <span> USD ${vehicle.documentFee} </span>
+                           <span> <span style={{ fontWeight: "bold" }}>  ${vehicle.documentFee} </span>
+                            <span>on 2/15/23</span>
+                            </span>
                         )}
                       </span>
                     </li>
                     <li>
                       {vehicle.approved !== "1" ? (
-                        "Upcoming Auction"
+                        <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color:"#C22B25" }}>295</span><span style={{ marginLeft: "8px", color:"#C22B25" }}>Comments</span></span>
                       ) : vehicle.approved === "1" && t > 0 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
@@ -255,7 +261,7 @@ function Detail() {
                   </ul>
                 </div>
                 <div className="d-flex">
-                  {vehicle.like === 1 ? (
+                  {/* {vehicle.like === 1 ? (
                     <a
                       style={{ cursor: "pointer" }}
                       onClick={() => addFabrity(id)}
@@ -273,22 +279,23 @@ function Detail() {
                       <i className="fa-solid fa-heart mr-2 "></i>
                       Watch
                     </a>
-                  )}
+                  )} */}
 
                   <button
                     type="button"
-                    className="gry_btn active"
+                    className="gry_btn active bg-dark"
                     onClick={handleShow}
+                    style={{border:"none"}}
                     disabled={vehicle.approved !== "1" || t < 0 ? true : false}
                   >
-                    Place a bid
+                    View Result
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row pt-4">
+          <div className="row pt-4 ">
             <div className="col-12 pb-3">
               <div className="postHero">
                 {vehicle?.images && (
@@ -378,7 +385,10 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown mr-2">
-                <p
+
+             
+                  
+                {/* <p
                   onClick={handleMorePhoto}
                   type="button"
                   // className="orange_btn"
@@ -388,7 +398,7 @@ function Detail() {
                   }}
                 >
                   More Photos
-                </p>
+                </p> */}
 
 
 
@@ -402,15 +412,15 @@ function Detail() {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="row justify-content-center">
                 <div className="col-8">
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia eius iste optio at architecto excepturi nesciunt cum earum illo, provident sapiente iure adipisci dolorem officiis? Laboriosam dolorem totam explicabo itaque odio corrupti assumenda. Tempore laborum doloremque voluptates. Eos velit dolorem ipsam. Quidem a maxime quo saepe vitae dicta corporis architecto doloribus odit cum voluptate earum odio, qui quaerat aliquam delectus asperiores ut. Doloribus optio laboriosam aliquam, asperiores nobis alias. Fugiat laudantium dicta pariatur quis blanditiis aspernatur quibusdam ut, dolorum tenetur minima rem? Mollitia quis recusandae quae neque at delectus inventore suscipit expedita nihil eum? Illum reprehenderit ut itaque in ab.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, ipsam ad? Saepe tempora, quam asperiores omnis accusantium mollitia illo porro eaque animi corrupti consequuntur eius quas placeat commodi sequi voluptatem natus iusto dignissimos nulla libero dolor atque. Eaque harum beatae quae at eveniet, eligendi, maxime necessitatibus soluta, assumenda facere saepe aspernatur quisquam odio commodi optio dolor eos eum culpa tempora earum qui repellendus exercitationem. Hic magnam doloremque velit eveniet architecto, nostrum ut tempore possimus perferendis rerum ad ullam repellendus placeat. Tempore repellendus culpa mollitia fugit reprehenderit doloribus quod, dolores debitis facere quisquam tempora voluptatem doloremque commodi ex deserunt rerum nihil.</p>
+                  <p>{vehicle.moreDescription }</p>
                 </div>
 
-                <div className="col-4 pt-3" style={{ border: "1px solid grey", backgroundColor: "#F8F8F8" }}>
-                  <h3>Gas Guzzlrs Essentials</h3>
+                <div className="col-4 pt-3" style={{ height: "600px", backgroundColor:"#F8F8F8" }}>
+                  <h3 >Gas Guzzlrs Essentials</h3>
                   <ul>
-
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores inventore cupiditate iusto nihil fugit, maxime tempora obcaecati nam repellat.</p>
                   </ul>
                 </div>
               </div>
@@ -840,7 +850,7 @@ function Detail() {
                 </div>
                 <p>{vehicle.desc2}</p>
                 <div className="ptb_40" id="placeBid_col">
-                  <div className="card_Gray">
+                  {/* <div className="card_Gray">
                     <h5>BID ON THIS LISTING</h5>
                     <ul className="bidList_">
                       <li>
@@ -855,7 +865,7 @@ function Detail() {
                       </li>
                       <li>
                         {vehicle.approved !== "1" ? (
-                          "Upcoming Auction"
+                          <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color: "#C22B25" }}>2954444444</span><span style={{ marginLeft: "8px", color: "#C22B25" }}>Comments</span></span>
                         ) : vehicle.approved === "1" && t > 0 ? (
                           <span>
                             <label>Ends In:&nbsp;</label>
@@ -874,15 +884,16 @@ function Detail() {
                         <label>Bids</label>
                         <div>{biding ? biding.length : 0}</div>
                       </li>
-                      <button
+                      <button 
                         type="button"
-                        className="gry_btn active"
+                        className="gry_btn active bg-dark"
                         onClick={handleShow}
+                        style={{ border: "none" }}
                         disabled={
                           vehicle.approved !== "1" || t < 0 ? true : false
                         }
                       >
-                        Place a bid
+                        View Result
                       </button>
                     </ul>
                     <div className="bid_bottom">
@@ -898,18 +909,20 @@ function Detail() {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className=" phG">
                   <h5>PHOTO GALLERY </h5>
-                  <div ref={moreImgRaf} class="card-group">
+                  <div ref={moreImgRaf} class="card-group" >
                     {vehicle.images &&
                       vehicle.images.map((curElem) => {
                         return (
-                          <div class="card mx-1 ">
-                            <img
+                          <div class="card mx-2" style={{ width: "100px", }} >
+                           
+                            <Image
+                              width={150}
                               loading="lazy"
-                              class="card-img-top"
+                              class="card-img-top" 
                               src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
@@ -918,12 +931,17 @@ function Detail() {
                               }}
                               alt="Maskgroup1"
                             />
+                           
+
+                          
+                           
+                            
                           </div>
                         );
                       })}
                   </div>
                 </div>
-                <div className="row pt-4">
+                {/* <div className="row pt-4">
                   <div className="col-12">
                     <h5>COMMENTS</h5>
                     <form
@@ -990,7 +1008,7 @@ function Detail() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -1007,7 +1025,7 @@ function Detail() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title">Place a bid</h4>
+              <h4 className="modal-title bg-dark" style={{border:"none"}}>View Result</h4>
               <button
                 onClick={handleClose}
                 type="button"
