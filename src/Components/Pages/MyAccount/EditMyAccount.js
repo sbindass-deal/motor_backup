@@ -62,7 +62,7 @@ function EditMyAccount() {
           email: userLoginData.email,
           phone: userLoginData.mobile,
         });
-        // setAddUserInBid(userLoginData.bid);
+        setAddUserInBid(userLoginData.bid);
       } catch (err) {
         console.log(err);
       }
