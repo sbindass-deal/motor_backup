@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../redux/reducers/login";
 import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
-import { Image } from 'antd';
-
+import { Image } from "antd";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 function Detail() {
   const { id } = useParams();
@@ -16,6 +16,7 @@ function Detail() {
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   // console.log(11111,logingUser.login.admin )
+  const [vinDetails, setVinDetails] = useState({});
   const moreImgRaf = useRef();
   const [vehicle, setVehicle] = useState({});
   const [showReadMore, setShowReadMore] = useState();
@@ -206,17 +207,34 @@ function Detail() {
     moreImgRaf.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
 
+  // get vin details by api
+  useEffect(() => {
+    const fetchVinDetails = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
+        );
+        setVinDetails(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchVinDetails();
+  }, []);
+  // {
+  //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
+  // }
   return (
-    <div >
-      <section className="ptb_80 pt_sm_50 " >
-        <div className="container" style={{ width: "70%", }} id="sticky">
-          <div className="row" >
-            <div className="col-12 text-center pb_30 " id="sticky" >
+    <div>
+      <section className="ptb_80 pt_sm_50 ">
+        <div className="container" style={{ width: "70%" }} id="sticky">
+          <div className="row">
+            <div className="col-12 text-center pb_30 " id="sticky">
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
             </div>
-            <div className="col-12" >
+            <div className="col-12">
               <hr style={{ borderTop: "1px solid grey" }} />
               <div className="detailPostOption">
                 <div className="">
@@ -225,19 +243,41 @@ function Detail() {
                       <label>Sold for</label>{" "}
                       <span>
                         {amountprice ? (
-                          <span> <span style={{ fontWeight: "bold" }}> ${amountprice} </span>
-                            <span>on 2/15/23</span>
+                          <span>
+                            {" "}
+                            <span style={{ fontWeight: "bold" }}>
+                              {" "}
+                              ${amountprice}{" "}
+                            </span>
+                            <span>on {new Date(vehicle.EndTime).toLocaleDateString()}</span>
                           </span>
                         ) : (
-                           <span> <span style={{ fontWeight: "bold" }}>  ${vehicle.documentFee} </span>
-                            <span>on 2/15/23</span>
+                          <span>
+                            {" "}
+                            <span style={{ fontWeight: "bold" }}>
+                              {" "}
+                              ${vehicle.documentFee}{" "}
                             </span>
+                            <span>on {new Date(vehicle.EndTime).toLocaleDateString()}</span>
+                          </span>
                         )}
                       </span>
                     </li>
                     <li>
                       {vehicle.approved !== "1" ? (
-                        <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color:"#C22B25" }}>295</span><span style={{ marginLeft: "8px", color:"#C22B25" }}>Comments</span></span>
+                        <span>
+                          <img
+                            src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg"
+                            alt="comments-icon"
+                            class="comments_header_icon"
+                          />
+                          <span style={{ marginLeft: "8px", color: "#C22B25" }}>
+                           {comments.length}
+                          </span>
+                          <span style={{ marginLeft: "8px", color: "#C22B25" }}>
+                            Comments
+                          </span>
+                        </span>
                       ) : vehicle.approved === "1" && t > 0 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
@@ -285,7 +325,7 @@ function Detail() {
                     type="button"
                     className="gry_btn active bg-dark"
                     onClick={handleShow}
-                    style={{border:"none"}}
+                    style={{ border: "none" }}
                     disabled={vehicle.approved !== "1" || t < 0 ? true : false}
                   >
                     View Result
@@ -316,8 +356,6 @@ function Detail() {
               </div>
             </div>
 
-
-
             <div className="col-12 dropdownCol">
               <div className="dropdown mr-2 ">
                 <p
@@ -325,8 +363,10 @@ function Detail() {
                   // className="orange_btn"
                   data-toggle="dropdown"
                   style={{
-                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey"
+                    border: "1px solid grey",
+                    borderRadius: "8px",
+                    padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey",
                   }}
                 >
                   Make: {vehicle.make}
@@ -346,8 +386,10 @@ function Detail() {
                   // className="orange_btn"
                   data-toggle="dropdown"
                   style={{
-                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey"
+                    border: "1px solid grey",
+                    borderRadius: "8px",
+                    padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey",
                   }}
                 >
                   Model: {vehicle.model}
@@ -363,11 +405,14 @@ function Detail() {
               </div>
 
               <div className="dropdown mr-2">
-                <p type="button"
+                <p
+                  type="button"
                   // className="orange_btn"
                   style={{
-                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey"
+                    border: "1px solid grey",
+                    borderRadius: "8px",
+                    padding: "8px",
+                    boxShadow: "1px 1px 1px 1px grey",
                   }}
                 >
                   Era: {vehicle.year}
@@ -385,9 +430,6 @@ function Detail() {
                 </div>
               </div>
               <div className="dropdown mr-2">
-
-             
-                  
                 {/* <p
                   onClick={handleMorePhoto}
                   type="button"
@@ -399,8 +441,6 @@ function Detail() {
                 >
                   More Photos
                 </p> */}
-
-
 
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
@@ -414,14 +454,51 @@ function Detail() {
 
               <div className="row justify-content-center">
                 <div className="col-8">
-                  <p>{vehicle.moreDescription }</p>
+                  <p>{vehicle.moreDescription}</p>
                 </div>
 
-                <div className="col-4 pt-3" style={{ height: "600px", backgroundColor:"#F8F8F8" }}>
-                  <h3 >Gas Guzzlrs Essentials</h3>
+                <div
+                  className="col-4 pt-3"
+                  style={{
+                    height: "600px",
+                    backgroundColor: "#F8F8F8",
+                    overflow: "auto",
+                  }}
+                >
+                  <h3>Essentials</h3>
                   <ul>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores inventore cupiditate iusto nihil fugit, maxime tempora obcaecati nam repellat.</p>
+                    <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
+                    <li>fuelType:{vinDetails?.engine?.fuelType}</li>
+                    <li>horsepower:{vinDetails?.engine?.horsepower}</li>
+                    <li>numOfDoors:{vinDetails?.numOfDoors}</li>
+                    <li>
+                      category:
+                      {vinDetails.options !== undefined &&
+                        vinDetails.options.map((curElem, i) => {
+                          return (
+                            <p>
+                              <span style={{ fontWeight: "bolder" }}>
+                                {i + 1}
+                              </span>{" "}
+                              {curElem.category}:
+                              {curElem.options.map((item, i) => {
+                                return (
+                                  <div>
+                                    <span>
+                                      <FiberManualRecordIcon
+                                        style={{ fontSize: "1rem" }}
+                                      />
+                                    </span>{" "}
+                                    {item.name}
+                                  </div>
+                                );
+                              })}
+                            </p>
+                          );
+                        })}
+                    </li>
                   </ul>
+                  mpg
                 </div>
               </div>
 
@@ -530,323 +607,318 @@ function Detail() {
                       )}
                     </ul>
                   </div> */}
-                  <div className="pb_40" id="placeBid_col">
-                <div className="card_Gray">
-                  <h5 className="cardTitle">CAR INFORMATION</h5>
-                  <ul className="bidList_ info_">
-
-                    <li>
-                      <div className="dropdown mr-2">
-                        <p
-                          type="button"
-                          data-toggle="dropdown"
-                        >
-                          Make: {vehicle.make}
-                        </p>
-                        <div className="dropdown-menu">
-                          <a className="dropdown-item" href="#">
-                            View all listings
-                          </a>
-                          <a className="dropdown-item" href="#">
-                            Notify me about new listings
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div className="dropdown mr-2">
-                        <p
-                          
-                          data-toggle="dropdown"
-                        >
-                          Model:{vehicle.model}
-                        </p>
-                        <div className="dropdown-menu">
-                          <a className="dropdown-item" href="#">
-                            View all listings
-                          </a>
-                          <a className="dropdown-item" href="#">
-                            Notify me about new listings
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-                    
-                    <li>
-                      <div className="dropdown mr-2">
-                        <p
-                          type="button"
-                        >
-                          Era: {vehicle.year}
-                        </p>
-                        <div className="dropdown-menu">
-                          <a className="dropdown-item" href="#">
-                            View all listings
-                          </a>
-                          <a className="dropdown-item" href="#">
-                            Notify me about new listings
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-
-
-                    <li>
-                      Vehicle Id:<label htmlFor="">{vehicle.id}</label>
-                    </li>
-                    <li>
-                      vehicle finished in Interstellar White{" "}
-                      <label htmlFor=""> {vehicle.Interstellar}</label>
-                    </li>
-
-                    <li>
-                      city is the vehicle located in
-                      <label htmlFor="">{vehicle.city}</label>
-                    </li>
-                    <li>
-                      country is the vehicle currently located in
-                      <label htmlFor="">{vehicle.country}</label>
-                    </li>
-
-                    <li>
-                      accessories are included in the sale
-                      <label htmlFor="">{vehicle.accessories} </label>
-                    </li>
-
-                    <li>
-                      vehicle have any history of paint or bodywork{" "}
-                      <label htmlFor=""> {vehicle.bodywork}</label>
-                    </li>
-
-                    <li>
-                      provide reserve amount
-                      <label htmlFor=""> Reserve {vehicle.reserve}</label>
-                    </li>
-
-                    <li>
-                      size of tires are on the vehicle{" "}
-                      <label htmlFor="">{vehicle.sizetires}</label>
-                    </li>
-
-                    {true ? (
-                      <div>
+                  {/* <div className="pb_40" id="placeBid_col">
+                    <div className="card_Gray">
+                      <h5 className="cardTitle">CAR INFORMATION</h5>
+                      <ul className="bidList_ info_">
                         <li>
-                          wheels are on the vehicle
-                          <label htmlFor="">{vehicle.pickOne}</label>
+                          <div className="dropdown mr-2">
+                            <p type="button" data-toggle="dropdown">
+                              Make: {vehicle.make}
+                            </p>
+                            <div className="dropdown-menu">
+                              <a className="dropdown-item" href="#">
+                                View all listings
+                              </a>
+                              <a className="dropdown-item" href="#">
+                                Notify me about new listings
+                              </a>
+                            </div>
+                          </div>
                         </li>
 
                         <li>
-                          brand and model of tires are currently mounted{" "}
-                          <label htmlFor="">{vehicle.brandandmodel}</label>
-                        </li>
-                        <li>
-                          createdAt{" "}
-                          <label htmlFor="">{vehicle.created_at}</label>
-                        </li>
-                        <li>
-                          current Amount{" "}
-                          <label htmlFor="">{vehicle.currentAmount}</label>
-                        </li>
-
-                        <li>
-                          Amount on document{" "}
-                          <label htmlFor="">{vehicle.documentFee}</label>
-                        </li>
-                        <li>
-                          meter <label htmlFor="">{vehicle.km}</label>
-                        </li>
-                        <li>
-                          your vehicle <label htmlFor="">{vehicle.make}</label>
-                        </li>
-                        <li>
-                          model of vehicle{" "}
-                          <label htmlFor="">{vehicle.model}</label>
-                        </li>
-                        <li>
-                          Fuel Type <label htmlFor="">{vehicle.fuel}</label>
-                        </li>
-                        <li>
-                          current odometer reading{" "}
-                          <label htmlFor="">{vehicle.odmeter}</label>
+                          <div className="dropdown mr-2">
+                            <p data-toggle="dropdown">Model:{vehicle.model}</p>
+                            <div className="dropdown-menu">
+                              <a className="dropdown-item" href="#">
+                                View all listings
+                              </a>
+                              <a className="dropdown-item" href="#">
+                                Notify me about new listings
+                              </a>
+                            </div>
+                          </div>
                         </li>
 
                         <li>
-                          you know about the history of the vehicle{" "}
-                          <label htmlFor="">{vehicle.issuesorproblems}</label>
-                        </li>
-                        <li>
-                          the interior upholstered in Jet Black and Light Gray
-                          leather <label htmlFor="">{vehicle.interior}</label>
-                        </li>
-                        <li>
-                          dealer Description{" "}
-                          <label htmlFor="">{vehicle.dealerDescription}</label>
-                        </li>
-                        <li>
-                          Dealer id:{" "}
-                          <label htmlFor="">{vehicle.dealerId}</label>
-                        </li>
-                        <li>
-                          name of your dealership:{" "}
-                          <label htmlFor="">{vehicle.dealerName}</label>
-                        </li>
-                        <li>
-                          Description{" "}
-                          <label htmlFor="">{vehicle.description}</label>
-                        </li>
-                        <li>
-                          displayInAuction{" "}
-                          <label htmlFor="">{vehicle.displayInAuction}</label>
-                        </li>
-                        <li>
-                          documentFee{" "}
-                          <label htmlFor="">{vehicle.documentFee}</label>
-                        </li>
-                        <li>
-                          Email <label htmlFor="">{vehicle.email}</label>
-                        </li>
-                        <li>
-                          issues or problems does it currently have{" "}
-                          <label htmlFor="">{vehicle.hereFrom}</label>
-                        </li>
-                        <li>
-                          kmacc <label htmlFor="">{vehicle.kmacc}</label>
+                          <div className="dropdown mr-2">
+                            <p type="button">Era: {vehicle.year}</p>
+                            <div className="dropdown-menu">
+                              <a className="dropdown-item" href="#">
+                                View all listings
+                              </a>
+                              <a className="dropdown-item" href="#">
+                                Notify me about new listings
+                              </a>
+                            </div>
+                          </div>
                         </li>
 
                         <li>
-                          modifications details
-                          <label htmlFor="">{vehicle.modificationstock}</label>
+                          Vehicle Id:<label htmlFor="">{vehicle.id}</label>
                         </li>
                         <li>
-                          list and describe services performed and when they
-                          were performed{" "}
-                          <label htmlFor="">{vehicle.moreDescription}</label>
-                        </li>
-                        <li>
-                          name <label htmlFor="">{vehicle.name}</label>
-                        </li>
-                        <li>
-                          modifications details{" "}
-                          <label htmlFor="">
-                            {vehicle.modificationOnTruck}
-                          </label>
-                        </li>
-                        <li>
-                          vehicle have any modifications from stock{" "}
-                          <label htmlFor="">{vehicle.modificationstock}</label>
+                          vehicle finished in Interstellar White{" "}
+                          <label htmlFor=""> {vehicle.Interstellar}</label>
                         </li>
 
                         <li>
-                          you have owned it{" "}
-                          <label htmlFor="">{vehicle.owned}</label>
+                          city is the vehicle located in
+                          <label htmlFor="">{vehicle.city}</label>
                         </li>
                         <li>
-                          vehicle a race car or not otherwise registered for
-                          street use{" "}
-                          <label htmlFor="">{vehicle.ownerDetail}</label>
-                        </li>
-
-                        <li>
-                          premium <label htmlFor="">{vehicle.premium}</label>
-                        </li>
-                        <li>
-                          provide reserve amount{" "}
-                          <label htmlFor="">{vehicle.reservAmount}</label>
+                          country is the vehicle currently located in
+                          <label htmlFor="">{vehicle.country}</label>
                         </li>
 
                         <li>
-                          rust details{" "}
-                          <label htmlFor="">{vehicle.rustDetails}</label>
-                        </li>
-                        <li>
-                          rust present on the vehicle{" "}
-                          <label htmlFor="">{vehicle.rustpresent}</label>
+                          accessories are included in the sale
+                          <label htmlFor="">{vehicle.accessories} </label>
                         </li>
 
                         <li>
-                          sizetires{" "}
+                          vehicle have any history of paint or bodywork{" "}
+                          <label htmlFor=""> {vehicle.bodywork}</label>
+                        </li>
+
+                        <li>
+                          provide reserve amount
+                          <label htmlFor=""> Reserve {vehicle.reserve}</label>
+                        </li>
+
+                        <li>
+                          size of tires are on the vehicle{" "}
                           <label htmlFor="">{vehicle.sizetires}</label>
                         </li>
-                        <li>
-                          sold <label htmlFor="">{vehicle.sold}</label>
-                        </li>
 
-                        <li>
-                          status of the vehicle title{" "}
-                          <label htmlFor="">{vehicle.titleStatus}</label>
-                        </li>
-                        <li>
-                          provide link to the listing{" "}
-                          <label htmlFor="">{vehicle.transmission}</label>
-                        </li>
-                        <li>
-                          engineSize{" "}
-                          <label htmlFor="">{vehicle.engineSize}</label>
-                        </li>
-                        <li>
-                          vehicle history, paint or bodywork{" "}
-                          <label htmlFor="">{vehicle.truckHistory}</label>
-                        </li>
+                        {true ? (
+                          <div>
+                            <li>
+                              wheels are on the vehicle
+                              <label htmlFor="">{vehicle.pickOne}</label>
+                            </li>
 
+                            <li>
+                              brand and model of tires are currently mounted{" "}
+                              <label htmlFor="">{vehicle.brandandmodel}</label>
+                            </li>
+                            <li>
+                              createdAt{" "}
+                              <label htmlFor="">{vehicle.created_at}</label>
+                            </li>
+                            <li>
+                              current Amount{" "}
+                              <label htmlFor="">{vehicle.currentAmount}</label>
+                            </li>
+
+                            <li>
+                              Amount on document{" "}
+                              <label htmlFor="">{vehicle.documentFee}</label>
+                            </li>
+                            <li>
+                              meter <label htmlFor="">{vehicle.km}</label>
+                            </li>
+                            <li>
+                              your vehicle{" "}
+                              <label htmlFor="">{vehicle.make}</label>
+                            </li>
+                            <li>
+                              model of vehicle{" "}
+                              <label htmlFor="">{vehicle.model}</label>
+                            </li>
+                            <li>
+                              Fuel Type <label htmlFor="">{vehicle.fuel}</label>
+                            </li>
+                            <li>
+                              current odometer reading{" "}
+                              <label htmlFor="">{vehicle.odmeter}</label>
+                            </li>
+
+                            <li>
+                              you know about the history of the vehicle{" "}
+                              <label htmlFor="">
+                                {vehicle.issuesorproblems}
+                              </label>
+                            </li>
+                            <li>
+                              the interior upholstered in Jet Black and Light
+                              Gray leather{" "}
+                              <label htmlFor="">{vehicle.interior}</label>
+                            </li>
+                            <li>
+                              dealer Description{" "}
+                              <label htmlFor="">
+                                {vehicle.dealerDescription}
+                              </label>
+                            </li>
+                            <li>
+                              Dealer id:{" "}
+                              <label htmlFor="">{vehicle.dealerId}</label>
+                            </li>
+                            <li>
+                              name of your dealership:{" "}
+                              <label htmlFor="">{vehicle.dealerName}</label>
+                            </li>
+                            <li>
+                              Description{" "}
+                              <label htmlFor="">{vehicle.description}</label>
+                            </li>
+                            <li>
+                              displayInAuction{" "}
+                              <label htmlFor="">
+                                {vehicle.displayInAuction}
+                              </label>
+                            </li>
+                            <li>
+                              documentFee{" "}
+                              <label htmlFor="">{vehicle.documentFee}</label>
+                            </li>
+                            <li>
+                              Email <label htmlFor="">{vehicle.email}</label>
+                            </li>
+                            <li>
+                              issues or problems does it currently have{" "}
+                              <label htmlFor="">{vehicle.hereFrom}</label>
+                            </li>
+                            <li>
+                              kmacc <label htmlFor="">{vehicle.kmacc}</label>
+                            </li>
+
+                            <li>
+                              modifications details
+                              <label htmlFor="">
+                                {vehicle.modificationstock}
+                              </label>
+                            </li>
+                            <li>
+                              list and describe services performed and when they
+                              were performed{" "}
+                              <label htmlFor="">
+                                {vehicle.moreDescription}
+                              </label>
+                            </li>
+                            <li>
+                              name <label htmlFor="">{vehicle.name}</label>
+                            </li>
+                            <li>
+                              modifications details{" "}
+                              <label htmlFor="">
+                                {vehicle.modificationOnTruck}
+                              </label>
+                            </li>
+                            <li>
+                              vehicle have any modifications from stock{" "}
+                              <label htmlFor="">
+                                {vehicle.modificationstock}
+                              </label>
+                            </li>
+
+                            <li>
+                              you have owned it{" "}
+                              <label htmlFor="">{vehicle.owned}</label>
+                            </li>
+                            <li>
+                              vehicle a race car or not otherwise registered for
+                              street use{" "}
+                              <label htmlFor="">{vehicle.ownerDetail}</label>
+                            </li>
+
+                            <li>
+                              premium{" "}
+                              <label htmlFor="">{vehicle.premium}</label>
+                            </li>
+                            <li>
+                              provide reserve amount{" "}
+                              <label htmlFor="">{vehicle.reservAmount}</label>
+                            </li>
+
+                            <li>
+                              rust details{" "}
+                              <label htmlFor="">{vehicle.rustDetails}</label>
+                            </li>
+                            <li>
+                              rust present on the vehicle{" "}
+                              <label htmlFor="">{vehicle.rustpresent}</label>
+                            </li>
+
+                            <li>
+                              sizetires{" "}
+                              <label htmlFor="">{vehicle.sizetires}</label>
+                            </li>
+                            <li>
+                              sold <label htmlFor="">{vehicle.sold}</label>
+                            </li>
+
+                            <li>
+                              status of the vehicle title{" "}
+                              <label htmlFor="">{vehicle.titleStatus}</label>
+                            </li>
+                            <li>
+                              provide link to the listing{" "}
+                              <label htmlFor="">{vehicle.transmission}</label>
+                            </li>
+                            <li>
+                              engineSize{" "}
+                              <label htmlFor="">{vehicle.engineSize}</label>
+                            </li>
+                            <li>
+                              vehicle history, paint or bodywork{" "}
+                              <label htmlFor="">{vehicle.truckHistory}</label>
+                            </li>
+
+                            <li>
+                              understandCondition{" "}
+                              <label htmlFor="">
+                                {vehicle.understandCondition}
+                              </label>
+                            </li>
+                            <li>
+                              updatedAt{" "}
+                              <label htmlFor="">{vehicle.updated_at}</label>
+                            </li>
+                            <li>
+                              userId <label htmlFor="">{vehicle.userId}</label>
+                            </li>
+
+                            <li>
+                              year of your vehicle{" "}
+                              <label htmlFor="">{vehicle.year}</label>
+                            </li>
+                            <li>
+                              EndTime{" "}
+                              <label htmlFor="">{vehicle.EndTime}</label>
+                            </li>
+
+                            <li>
+                              acceptTerms{" "}
+                              <label htmlFor="">{vehicle.acceptTerms}</label>
+                            </li>
+
+                            <li>
+                              Auction type{" "}
+                              <label htmlFor="">{vehicle.auctionType}</label>
+                            </li>
+
+                            <li>
+                              vehicle being sold on consignment{" "}
+                              <label htmlFor="">{vehicle.consignment}</label>
+                            </li>
+                            <li>
+                              Detailvin{" "}
+                              <label htmlFor="">{vehicle.detailvin}</label>
+                            </li>
+                          </div>
+                        ) : null}
                         <li>
-                          understandCondition{" "}
                           <label htmlFor="">
-                            {vehicle.understandCondition}
+                            Private Party or Dealer :dealer
                           </label>
                         </li>
-                        <li>
-                          updatedAt{" "}
-                          <label htmlFor="">{vehicle.updated_at}</label>
-                        </li>
-                        <li>
-                          userId <label htmlFor="">{vehicle.userId}</label>
-                        </li>
-
-                        <li>
-                          year of your vehicle{" "}
-                          <label htmlFor="">{vehicle.year}</label>
-                        </li>
-                        <li>
-                          EndTime <label htmlFor="">{vehicle.EndTime}</label>
-                        </li>
-
-                        <li>
-                          acceptTerms{" "}
-                          <label htmlFor="">{vehicle.acceptTerms}</label>
-                        </li>
-
-                        <li>
-                          Auction type{" "}
-                          <label htmlFor="">{vehicle.auctionType}</label>
-                        </li>
-
-                        <li>
-                          vehicle being sold on consignment{" "}
-                          <label htmlFor="">{vehicle.consignment}</label>
-                        </li>
-                        <li>
-                          Detailvin{" "}
-                          <label htmlFor="">{vehicle.detailvin}</label>
-                        </li>
-                      </div>
-                    ) : null}
-                    <li>
-                      <label htmlFor="">Private Party or Dealer :dealer</label>
-                    </li>
-                  </ul>
-                  {/* <div className="col-12 text-center">
-                    <button
-                      className="btn btn-warning "
-                      onClick={() => setViewAll(!viewAll)}
-                    >
-                      {" "}
-                      {viewAll ? "View Less" : "View All"}
-                    </button>
+                      </ul>
+                      
+                    </div>
                   </div> */}
-                </div>
-              </div>
-
                 </div>
                 <p>{vehicle.desc2}</p>
                 <div className="ptb_40" id="placeBid_col">
@@ -913,16 +985,19 @@ function Detail() {
                 </div>
                 <div className=" phG">
                   <h5>PHOTO GALLERY </h5>
-                  <div ref={moreImgRaf} class="card-group" >
+                  <div ref={moreImgRaf} class="card-group">
                     {vehicle.images &&
                       vehicle.images.map((curElem) => {
                         return (
-                          <div class="card mx-2" style={{ width: "100px", }} >
-                           
+                          <div
+                            class="card mx-2"
+                            style={{ width: "25vh", height: "25vh" }}
+                          >
                             <Image
                               width={150}
                               loading="lazy"
-                              class="card-img-top" 
+                              style={{ height: "25vh", width: "25vh" }}
+                              class="card-img-top"
                               src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
@@ -931,11 +1006,6 @@ function Detail() {
                               }}
                               alt="Maskgroup1"
                             />
-                           
-
-                          
-                           
-                            
                           </div>
                         );
                       })}
@@ -1012,7 +1082,6 @@ function Detail() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
       <Modal
@@ -1025,7 +1094,9 @@ function Detail() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title bg-dark" style={{border:"none"}}>View Result</h4>
+              <h4 className="modal-title bg-dark" style={{ border: "none" }}>
+                View Result
+              </h4>
               <button
                 onClick={handleClose}
                 type="button"
