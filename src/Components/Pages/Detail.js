@@ -210,15 +210,13 @@ function Detail() {
     <div >
       <section className="ptb_80 pt_sm_50 " >
         <div className="container" style={{ width: "70%", }} id="sticky">
-          <div className="row" >
-            <div className="col-12 text-center pb_30 " id="sticky" >
+          <div>
+            <div className="col-12 text-center pb_30 " id="sticky" style={{ backgroundColor: "white", boxShadow: "1px 1px 1px 1px whitesmoke" }}>
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
               </h2>
-            </div>
-            <div className="col-12" >
-              <hr style={{ borderTop: "1px solid grey" }} />
-              <div className="detailPostOption">
+              <hr style={{ borderTop: "1px solid grey", }} />
+              <div className="detailPostOption" >
                 <div className="">
                   <ul className="labelList">
                     <li>
@@ -229,15 +227,15 @@ function Detail() {
                             <span>on 2/15/23</span>
                           </span>
                         ) : (
-                           <span> <span style={{ fontWeight: "bold" }}>  ${vehicle.documentFee} </span>
+                          <span> <span style={{ fontWeight: "bold" }}>  ${vehicle.documentFee} </span>
                             <span>on 2/15/23</span>
-                            </span>
+                          </span>
                         )}
                       </span>
                     </li>
                     <li>
                       {vehicle.approved !== "1" ? (
-                        <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color:"#C22B25" }}>295</span><span style={{ marginLeft: "8px", color:"#C22B25" }}>Comments</span></span>
+                        <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color: "#C22B25" }}>295</span><span style={{ marginLeft: "8px", color: "#C22B25" }}>Comments</span></span>
                       ) : vehicle.approved === "1" && t > 0 ? (
                         <span>
                           <label>Ends In:&nbsp;</label>
@@ -285,13 +283,24 @@ function Detail() {
                     type="button"
                     className="gry_btn active bg-dark"
                     onClick={handleShow}
-                    style={{border:"none"}}
+                    style={{ border: "none" }}
                     disabled={vehicle.approved !== "1" || t < 0 ? true : false}
                   >
                     View Result
                   </button>
                 </div>
               </div>
+            </div>
+          <div className="row" >
+            {/* <div className="col-12 text-center pb_30 " id="sticky" >
+              <h2 className="title_combo title_Center" id="sticky2">
+                {vehicle.make} {vehicle.model} {vehicle.year}
+              </h2>
+            </div> */}
+            <div className="col-12" >
+             
+              
+              
             </div>
           </div>
 
@@ -412,12 +421,12 @@ function Detail() {
                 </div>
               </div>
 
-              <div className="row justify-content-center">
-                <div className="col-8">
+              <div className="row ">
+                <div className="col-6">
                   <p>{vehicle.moreDescription }</p>
                 </div>
 
-                <div className="col-4 pt-3" style={{ height: "600px", backgroundColor:"#F8F8F8" }}>
+                  <div className="col-4 " style={{ height: "600px", backgroundColor: "#F8F8F8", marginLeft: "145px" }}>
                   <h3 >Gas Guzzlrs Essentials</h3>
                   <ul>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores inventore cupiditate iusto nihil fugit, maxime tempora obcaecati nam repellat.</p>
@@ -1012,7 +1021,7 @@ function Detail() {
               </div>
             </div>
           </div>
-
+          </div>
         </div>
       </section>
       <Modal
