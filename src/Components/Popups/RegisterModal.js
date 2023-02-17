@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { showModalLogin } from "../../redux/reducers/login";
+import { authToken, showModalLogin } from "../../redux/reducers/login";
 import FormInput from "../UI/FormInput";
 import StripeCheckout from "react-stripe-checkout";
 import { Checkbox } from "antd";
@@ -125,6 +125,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       })
       .then((result) => {
         if (result.data.status === 200 && dealer === "No") {
+          dispatch(authToken(result.data.access_token));
           handleCloseReg();
           notify(result.data.message);
           setInputValue({
@@ -149,6 +150,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
             password: "",
             cPassword: "",
           });
+          window.location.reload(false);
         } else if (result.data.status === 200 && dealer === "Yes") {
           uploadLogo(result.data.user_id, result.data.message);
         } else {
@@ -370,7 +372,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 )}
 
-                <div className="col-12">
+                <div className="col-12 p-0">
                   {addUserInBid === true ? (
                     <CardDetails
                       inputValue={inputValue}

@@ -162,7 +162,7 @@ function ClassifiedAddList() {
                 {classifiedAds.length > 0 &&
                   classifiedAds.map((curElem) => {
                     return (
-                      <div key={curElem.id} class="col-12 col-md-3 pb-3">
+                      <div key={curElem.id} class="col-12 col-md-6 pb-3">
                         <div class="card_post">
                           <div class="card_postImg">
                             <a
@@ -197,7 +197,7 @@ function ClassifiedAddList() {
                             {/* <img src={img_01} /> */}
                           </div>
                           <div class="card_postInfo">
-                            <h4>
+                            <h4 className="auction_heading header_size">
                               <a
                                 target="_blank"
                                 rel="noopener"
@@ -207,12 +207,14 @@ function ClassifiedAddList() {
                               </a>
                             </h4>
 
-                            <ul class="labelList">
+                            <ul class="labelList ">
                               <li>
-                                <label>Description:</label>{" "}
-                                <span>{curElem.moreDescription}</span>
+                                <label className="color_grey normal_font">Description:</label>{" "}
+                                <span className="color_grey normal_font">{curElem.moreDescription}</span>
                               </li>
                             </ul>
+                          <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
+                            
                           </div>
                         </div>
                       </div>

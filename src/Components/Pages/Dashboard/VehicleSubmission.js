@@ -110,7 +110,14 @@ function VehicleSubmission() {
                               </Link>
                             </td>
                             <td>
-                              <span>{data.status && data.status.title}</span>
+                              {data.approved == 0
+                                ? "Pending"
+                                : data.approved == 1
+                                ? "Approved"
+                                : data.approved == 2
+                                ? "Rejected"
+                                : null}
+                              {/* <span>{data.status && data.status.title}</span> */}
                             </td>
                           </tr>
                         ))

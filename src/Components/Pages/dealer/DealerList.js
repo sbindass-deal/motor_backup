@@ -28,7 +28,7 @@ const DealerList = () => {
     <>
       <div className="col-12 ListDealer mt-50">
         <div className="row">
-          <div className="col-lg-4 col-sm-12 inner-slider">
+          {/* <div className="col-lg-4 col-sm-12 inner-slider">
             <a
               target="_blank"
               rel="noopener"
@@ -36,11 +36,11 @@ const DealerList = () => {
             >
               <div className="card_post">
                 <div className="card_postImg dlr">
-                  <small>AD</small>
+                
                   <img src={custombanner5} alt="Img_bmw" />
                 </div>
                 <div className="card_postInfo">
-                  <h5>Texas Cars Direct</h5>
+                  <h5 className="auction_heading">Texas Cars Direct   <small>AD</small></h5>
                   <p>
                     While we are happy to welcome you to our newly remodeled and
                     distanced showroom-We are also providing additional safety
@@ -51,9 +51,9 @@ const DealerList = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </div> */}
 
-          <div className="col-lg-4 col-sm-12 inner-slider">
+          {/* <div className="col-lg-4 col-sm-12 inner-slider">
             <a
               target="_blank"
               rel="noopener"
@@ -100,11 +100,11 @@ const DealerList = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </div> */}
           {dealerData.length > 0 &&
             dealerData.map((curElem) => {
               return (
-                <div className="col-lg-4 col-sm-12 inner-slider">
+                <div className="col-lg-4 col-sm-12 inner-slider showrroom_wrap">
                   <Link to={`/dealerprofile/${curElem.id}`}>
                     <div className="card_post">
                       <div className="card_postImg dlr">
@@ -125,8 +125,15 @@ const DealerList = () => {
                         )}
                       </div>
                       <div className="card_postInfo">
-                        <h5>{curElem.title}</h5>
+                        <div className="auction_wrapper">
+                        <h5 className="auction_heading">{curElem.title}  </h5>
+                        <small>ADS</small>
+
+                        </div>
                         <p>{curElem.dealerDescription}</p>
+
+                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
+
                       </div>
                     </div>
                   </Link>

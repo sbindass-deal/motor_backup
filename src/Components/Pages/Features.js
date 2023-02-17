@@ -56,7 +56,7 @@ const Features = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         {vehicleData.length > 0 && (
-          <div className="container">
+          <div className="custom_container">
             <div className="row">
               <div className="col-12">
                 <ul className="postTopOption">
@@ -77,7 +77,7 @@ const Features = () => {
                       type="button"
                       className={`gry_btn ${highlightWatch && "active"}`}
                     >
-                      <i className="fa-solid fa-heart mr-2"></i>
+                      <i className="fa-solid fa-heart"></i>
                     </button>
                   </li>
                   <li className="d-flex">
@@ -126,17 +126,7 @@ const Features = () => {
                     <div className="col-12 col-md-6 pb-3">
                       <div className="card_post">
                         <div className="card_postImg">
-                          <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
+                        
                           <Link to={`/detail/${curElem.id}`}>
                             {curElem.images[0] ? (
                               <img
@@ -160,14 +150,27 @@ const Features = () => {
                               />
                             )}
                           </Link>
+
+                        
                         </div>
                         <div className="card_postInfo">
-                          <h4>
+                          <h4 className="auction_wrapper">
                             <a href="detail.html">
                               {curElem.make} &nbsp;
                               {curElem.model} &nbsp;
                               {curElem.year}
                             </a>
+                            <button
+                            onClick={() => addFabrity(curElem.id)}
+                            type="button"
+                            className="watchedIc"
+                          >
+                            <i
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
+                            ></i>
+                          </button>
                           </h4>
                           <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
@@ -197,6 +200,8 @@ const Features = () => {
                               )}
                             </li>
                           </ul>
+                          <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
+
                         </div>
                       </div>
                     </div>

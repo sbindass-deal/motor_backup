@@ -34,6 +34,7 @@ const VechilesRegistraion = () => {
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
+  const [galleryFile, setGalleryFile] = useState([])
   const [signinAggri, setSigninAggri] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
@@ -136,6 +137,7 @@ const VechilesRegistraion = () => {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
         formData.append("image[]", file1);
+        formData.append("category", "Banner");
         formData.append("vehicleId", vehicleId);
         const newImagedata = formData;
         const config = {
@@ -195,6 +197,7 @@ const VechilesRegistraion = () => {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
         formData.append("image[]", file11);
+        formData.append("category", "Document");
         formData.append("vehicleId", vehicleId);
         const config = {
           headers: {
@@ -205,6 +208,24 @@ const VechilesRegistraion = () => {
       }
     })();
   };
+  const uploadFileGallery = async (vehicleId) => {
+    (async () => {
+      for await (const item of galleryFile) {
+        const url = process.env.REACT_APP_URL + "vehicle-image";
+        const formData = new FormData();
+        formData.append("image[]", item);
+        formData.append("category", "Gallery");
+        formData.append("vehicleId", vehicleId);
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const data = await axios.post(url, formData, config);
+      }
+    })();
+  };
+
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -428,9 +449,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
 
     axios
       .post(`${url}vehicles`, {
@@ -495,13 +516,13 @@ const VechilesRegistraion = () => {
         fuel,
         EndTime: EndDateTime.toString(),
         phone,
-        approved: `${displayInAuction === "No" ? null : "11"}`,
         sold: 1,
       })
       .then((result) => {
         setSubmitLoading(false);
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
+        uploadFileGallery(result.data.id)
         handleShowPayment();
         setNamefield({
           name: "",
@@ -1121,19 +1142,14 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <p>
-                                Please upload photos of your vehicle using the
-                                box below — pick ones that offer a good sense of
-                                the vehicle. The more, and the higher the
-                                quality, the better.{" "}
-                                <a href="#" className="link">
-                                  Click here to review our photo guide.
-                                </a>
+                                Please upload banner photo.
                               </p>
                             </div>
                           </div>
-                          <div className="col-12 col-sm-12 col-md-12">
+                          <div className="col-12 col-sm-12 col-md-12 border p-5">
                             <div className="form-group">
                               <div className="">
+                                <div className="row">
                                 {Array.from(file).map((items) => {
                                   return (
                                     <span>
@@ -1145,6 +1161,7 @@ const VechilesRegistraion = () => {
                                         }
                                         style={{
                                           width: "100px",
+                                          height:"100px",
                                           objectFit: "cover",
                                           padding: "15px",
                                         }}
@@ -1152,6 +1169,7 @@ const VechilesRegistraion = () => {
                                     </span>
                                   );
                                 })}
+                                </div>
 
                                 <input
                                   style={{
@@ -1167,9 +1185,75 @@ const VechilesRegistraion = () => {
                                       );
                                     }
                                   }}
+                                  
                                   name="file"
                                   type="file"
                                   accept="image/gif, image/jpeg, image/png, image/jpg"
+                                  
+                                  required
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-12">
+                            <p className="small">
+                              Accepted file types: jpg, jpeg, png, Max. file
+                              size: 2 MB
+                            </p>
+                          </div>
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <p>
+                                Please upload photos of your vehicle using the
+                                box below — pick ones that offer a good sense of
+                                the vehicle. The more, and the higher the
+                                quality, the better.{" "}
+                                <a href="#" className="link">
+                                  Click here to review our photo guide.
+                                </a>
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-12 col-md-12 border p-5">
+                            <div className="form-group">
+                              <div className="">
+                               <div className="row">
+                               {Array.from(galleryFile).map((items) => {
+                                  return (
+                                    <span>
+                                      <img
+                                      
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "100px",
+                                          height:"100px",
+                                          objectFit: "cover",
+                                          padding: "15px",
+                                        }}
+                                      />
+                                    </span>
+                                  );
+                                })}
+                               </div>
+
+                                <input
+                                  style={{
+                                    fontSize: "1.2rem",
+                                    textAlign: "center",
+                                  }}
+                                  onChange={(e) => {
+                                    
+                                    setGalleryFile(e.target.files);
+                                                                       
+                                                                     }}
+                                  name="file"
+                                  type="file"
+                                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                                  multiple
                                   required
                                 />
                               </div>
@@ -1657,7 +1741,7 @@ const VechilesRegistraion = () => {
                                   onChange={(e) => {
                                     basicFactOnChange(e);
                                     setFile1((prevState) => [
-                                      ...prevState,
+                                      
                                       ...e.target.files,
                                     ]);
                                   }}

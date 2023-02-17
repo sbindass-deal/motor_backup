@@ -230,12 +230,9 @@ function Detail() {
         <div className="container" style={{ width: "70%" }} id="sticky">
           <div>
             <div
-              className="col-12 text-center pb_30 "
+              className="col-12 text-center pb_30 box_background p-30"
               id="sticky"
-              style={{
-                backgroundColor: "white",
-                boxShadow: "1px 1px 1px 1px whitesmoke",
-              }}
+             
             >
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
@@ -283,13 +280,13 @@ function Detail() {
                               alt="comments-icon"
                               class="comments_header_icon"
                             />
-                            <span
-                              style={{ marginLeft: "8px", color: "#C22B25" }}
+                            <span className="color_orange"
+                              style={{ marginLeft: "8px", }}
                             >
                               {comments.length}
                             </span>
-                            <span
-                              style={{ marginLeft: "8px", color: "#C22B25" }}
+                            <span className="color_orange"
+                              style={{ marginLeft: "8px",  }}
                             >
                               Comments
                             </span>
@@ -476,10 +473,9 @@ function Detail() {
                   </div>
 
                   <div
-                    className="col-4 pt-3"
+                    className="col-4 pt-3 box_background"
                     style={{
                       height: "600px",
-                      backgroundColor: "#F8F8F8",
                       overflow: "auto",
                     }}
                   >
