@@ -82,7 +82,7 @@ function VehicleSubmission() {
                         >
                           Action
                         </th>
-                        {/* <th>status</th> */}
+                        <th>status</th>
                       </tr>
                     </thead>
                     <tbody>

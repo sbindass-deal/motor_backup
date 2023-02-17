@@ -130,7 +130,7 @@ const VehicleAdsList = () => {
                           </Link>
                         </td> */}
                                 <td>
-                                  <Link
+                                  <Link id="linkTag"
                                     onClick={() => handleDelete(curElem.id)}
                                     to={``}
                                     // className="btn"

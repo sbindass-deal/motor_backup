@@ -130,7 +130,7 @@ const DealerListFeature = () => {
                                   <i class="fa-solid fa-pencil"></i>
                                 </div>
                               </td> */}
-                                <td>
+                                <td className="" >
                                   <div
                                     onClick={() => handleDelete(curElem.id)}
                                     className="p-2"
