@@ -34,7 +34,7 @@ const VechilesRegistraion = () => {
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
-  const [galleryFile, setGalleryFile] = useState([])
+  const [galleryFile, setGalleryFile] = useState([]);
   const [signinAggri, setSigninAggri] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
   const [accessories, setAccessories] = useState([]);
@@ -136,7 +136,7 @@ const VechilesRegistraion = () => {
       for await (const file1 of file) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", file1);
+        formData.append("image[]", file1);
         formData.append("category", "Banner");
         formData.append("vehicleId", vehicleId);
         const newImagedata = formData;
@@ -196,7 +196,7 @@ const VechilesRegistraion = () => {
       for await (const file11 of file1) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", file11);
+        formData.append("image[]", file11);
         formData.append("category", "Document");
         formData.append("vehicleId", vehicleId);
         const config = {
@@ -213,7 +213,7 @@ const VechilesRegistraion = () => {
       for await (const item of galleryFile) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", item);
+        formData.append("image[]", item);
         formData.append("category", "Gallery");
         formData.append("vehicleId", vehicleId);
         const config = {
@@ -522,7 +522,7 @@ const VechilesRegistraion = () => {
         setSubmitLoading(false);
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
-        uploadFileGallery(result.data.id)
+        uploadFileGallery(result.data.id);
         handleShowPayment();
         setNamefield({
           name: "",
@@ -763,7 +763,7 @@ const VechilesRegistraion = () => {
           {
             <div className="row">
               <div className="col-12 text-center pb-4">
-                <h2>Sell your vehicle with GasGuzzlrs Auctions!</h2>
+                <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
               </div>
               <div className="col-12 col-md-4 col-lg-3">
                 <div className="card_Gray mb-5 mb-md-0 divSticky">
@@ -1141,34 +1141,32 @@ const VechilesRegistraion = () => {
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
-                              <p>
-                                Please upload banner photo.
-                              </p>
+                              <p>Please upload banner photo.</p>
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12 border p-5">
                             <div className="form-group">
                               <div className="">
                                 <div className="row">
-                                {Array.from(file).map((items) => {
-                                  return (
-                                    <span>
-                                      <img
-                                        src={
-                                          items
-                                            ? URL.createObjectURL(items)
-                                            : null
-                                        }
-                                        style={{
-                                          width: "100px",
-                                          height:"100px",
-                                          objectFit: "cover",
-                                          padding: "15px",
-                                        }}
-                                      />
-                                    </span>
-                                  );
-                                })}
+                                  {Array.from(file).map((items) => {
+                                    return (
+                                      <span>
+                                        <img
+                                          src={
+                                            items
+                                              ? URL.createObjectURL(items)
+                                              : null
+                                          }
+                                          style={{
+                                            width: "100px",
+                                            height: "100px",
+                                            objectFit: "cover",
+                                            padding: "15px",
+                                          }}
+                                        />
+                                      </span>
+                                    );
+                                  })}
                                 </div>
 
                                 <input
@@ -1185,11 +1183,9 @@ const VechilesRegistraion = () => {
                                       );
                                     }
                                   }}
-                                  
                                   name="file"
                                   type="file"
                                   accept="image/gif, image/jpeg, image/png, image/jpg"
-                                  
                                   required
                                 />
                               </div>
@@ -1217,28 +1213,27 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-12 border p-5">
                             <div className="form-group">
                               <div className="">
-                               <div className="row">
-                               {Array.from(galleryFile).map((items) => {
-                                  return (
-                                    <span>
-                                      <img
-                                      
-                                        src={
-                                          items
-                                            ? URL.createObjectURL(items)
-                                            : null
-                                        }
-                                        style={{
-                                          width: "100px",
-                                          height:"100px",
-                                          objectFit: "cover",
-                                          padding: "15px",
-                                        }}
-                                      />
-                                    </span>
-                                  );
-                                })}
-                               </div>
+                                <div className="row">
+                                  {Array.from(galleryFile).map((items) => {
+                                    return (
+                                      <span>
+                                        <img
+                                          src={
+                                            items
+                                              ? URL.createObjectURL(items)
+                                              : null
+                                          }
+                                          style={{
+                                            width: "100px",
+                                            height: "100px",
+                                            objectFit: "cover",
+                                            padding: "15px",
+                                          }}
+                                        />
+                                      </span>
+                                    );
+                                  })}
+                                </div>
 
                                 <input
                                   style={{
@@ -1246,10 +1241,8 @@ const VechilesRegistraion = () => {
                                     textAlign: "center",
                                   }}
                                   onChange={(e) => {
-                                    
                                     setGalleryFile(e.target.files);
-                                                                       
-                                                                     }}
+                                  }}
                                   name="file"
                                   type="file"
                                   accept="image/gif, image/jpeg, image/png, image/jpg"
@@ -1741,7 +1734,6 @@ const VechilesRegistraion = () => {
                                   onChange={(e) => {
                                     basicFactOnChange(e);
                                     setFile1((prevState) => [
-                                      
                                       ...e.target.files,
                                     ]);
                                   }}
