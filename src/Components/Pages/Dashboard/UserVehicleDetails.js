@@ -37,45 +37,23 @@ const UserVehicleDetails = () => {
       theme: "light",
     });
 
-  const submitApprove = (e) => {
-    e.preventDefault();
-    if (vehicle.approved === null || vehicle.approved === "11") {
-      axios
-        .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
-          approve: 1,
-          id,
-          desc1: descValue.description1,
-          desc2: descValue.description2,
-        })
-        .then(function (response) {
-          if (response.status === 200) {
-            notify("Vehicle approved successfully!");
-            navigate("/vehicle-submission");
-            window.location.reload(false);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      axios
-        .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
-          approve: 11,
-          id,
-          desc1: descValue.description1,
-          desc2: descValue.description2,
-        })
-        .then(function (response) {
-          if (response.status === 200) {
-            notify("Vehicle rejected successfully!");
-            navigate("/vehicle-submission");
-            window.location.reload(false);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+  const submitApprove = (data) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+        approve: data === "approve" ? 1 : 2,
+        id,
+        desc1: descValue.description1,
+        desc2: descValue.description2,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/vehicle-submission");
+          window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const slide = useRef(null);
@@ -168,7 +146,7 @@ const UserVehicleDetails = () => {
       },
     ],
   };
- 
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -259,7 +237,6 @@ const UserVehicleDetails = () => {
                 <div className="card_Gray">
                   <h5 className="cardTitle">CAR INFORMATION</h5>
                   <ul className="bidList_ info_">
-
                     {/* ============================ */}
                     <li>
                       <div className="dropdown mr-2">
@@ -300,7 +277,7 @@ const UserVehicleDetails = () => {
                         </div>
                       </div>
                     </li>
-                    
+
                     <li>
                       <div className="dropdown mr-2">
                         <p
@@ -321,7 +298,6 @@ const UserVehicleDetails = () => {
                     </li>
 
                     {/* ============================= */}
-
 
                     <li>
                       Vehicle Id:<label htmlFor="">{vehicle.id}</label>
@@ -581,7 +557,7 @@ const UserVehicleDetails = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12 w-100 py-4">
-                  <form onSubmit={submitApprove}>
+                  <form>
                     <label>Description 1</label> <br />
                     <textarea
                       name="description1"
@@ -604,14 +580,23 @@ const UserVehicleDetails = () => {
                       rows={4}
                     ></textarea>{" "} */}
                     <br />
-                    <div className="text-center my-4">
-                      <button className="btn btn-warning m-3" type="submit">
-                        {vehicle.approved === null || vehicle.approved === "11"
-                          ? "Approve"
-                          : "Reject"}
-                      </button>
-                    </div>
                   </form>
+                  <div className="text-center my-4">
+                    <button
+                      onClick={() => submitApprove("approve")}
+                      className="btn btn-warning m-3"
+                      type="button"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => submitApprove("reject")}
+                      className="btn btn-warning m-3"
+                      type="button"
+                    >
+                      Reject
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

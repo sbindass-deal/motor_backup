@@ -516,7 +516,6 @@ const VechilesRegistraion = () => {
         fuel,
         EndTime: EndDateTime.toString(),
         phone,
-        approved: `${displayInAuction === "No" ? null : "11"}`,
         sold: 1,
       })
       .then((result) => {
