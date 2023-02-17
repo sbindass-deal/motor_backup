@@ -2,13 +2,15 @@ import axios from "axios";
 import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { showModalLogin } from "../../redux/reducers/login";
 import { getPlan } from "../../redux/reducers/planReducer";
 
 const SubmitaVehicle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const logingUser = useSelector((state) => state);
   const handleScrollAd = useRef(null);
   const [showAdModal, setShowAdModal] = useState(false);
   const [showAdShowroom, setShowAdShowroom] = useState(false);
@@ -85,6 +87,10 @@ const SubmitaVehicle = () => {
   useEffect(() => {
     setShowAdShowroom(areYouDealerOrSealer);
   }, [areYouDealerOrSealer]);
+
+  const handleShow = () => {
+    dispatch(showModalLogin());
+  };
 
   return (
     <>
@@ -175,7 +181,11 @@ const SubmitaVehicle = () => {
                           listName: "standard",
                         })
                       );
-                      navigate("/vechiles");
+                      if (logingUser.login.token) {
+                        navigate("/vechiles");
+                      } else {
+                        handleShow();
+                      }
                     }}
                     className="gry_btn"
                   >
@@ -247,7 +257,11 @@ const SubmitaVehicle = () => {
                           listName: "pro",
                         })
                       );
-                      navigate("/vechiles");
+                      if (logingUser.login.token) {
+                        navigate("/vechiles");
+                      } else {
+                        handleShow();
+                      }
                     }}
                     className="gry_btn"
                   >
@@ -319,7 +333,11 @@ const SubmitaVehicle = () => {
                           listName: "premiere",
                         })
                       );
-                      navigate("/vechiles");
+                      if (logingUser.login.token) {
+                        navigate("/vechiles");
+                      } else {
+                        handleShow();
+                      }
                     }}
                     className="gry_btn"
                   >
@@ -467,7 +485,11 @@ const SubmitaVehicle = () => {
                             listName: "classified",
                           })
                         );
-                        navigate("/vechiles");
+                        if (logingUser.login.token) {
+                          navigate("/vechiles");
+                        } else {
+                          handleShow();
+                        }
                       }}
                       className="gry_btn"
                     >
@@ -539,7 +561,11 @@ const SubmitaVehicle = () => {
                             listName: "showroom",
                           })
                         );
-                        navigate("/vechiles");
+                        if (logingUser.login.token) {
+                          navigate("/vechiles");
+                        } else {
+                          handleShow();
+                        }
                       }}
                       className="gry_btn"
                     >
