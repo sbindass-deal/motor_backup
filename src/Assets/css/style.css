@@ -4622,7 +4622,7 @@ img.g3Logo.W {
 }
 
 .classifiedAdds .card_postImg {
-  height: 150px;
+  height: 320px!important;
 }
 
 .classifiedAdds .card_postInfo h4 {
@@ -5452,4 +5452,31 @@ input[type=file] {
 
 .auction_wrapper p{
   margin-top: 20px;
+}
+
+.header_size{
+  font-size: 20px!important;
+  font-weight: 600!important;;
+}
+
+.normal_font{
+  font-weight: 500!important;
+}
+
+.light .box_background{
+  background: #f7f7f7!important;
+  box-shadow: whitesmoke 1px 1px 1px 1px; 
+}
+
+.dark .box_background{
+  background: #333333!important;
+  box-shadow: unset;
+}
+
+.p-30{
+  padding: 30px;
+}
+
+.color_orange{
+  color: #f7931b!important;
 }
