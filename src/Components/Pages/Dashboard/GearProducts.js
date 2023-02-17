@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
 function GearProducts() {
+  const [loading, setLoading]=useState(true)
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
   const handleDelete = (id) => {
@@ -32,25 +33,41 @@ function GearProducts() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>GearProducts</h3>
-              <hr />
-              <ul className="postTopOption">
+              {/* <h3>Gear Products</h3>
+              <Link to="/add/gear-product" className="orange_btn">
+                <i class="fa-sharp fa-solid fa-plus"></i>
+              </Link> */}
+
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }} id="widthChnge"
+              >
+                <h3>Gear Products</h3>
+                <Link to="/add/gear-product" className="orange_btn">
+                  + Add Gear Products
+                </Link>
+              </div>
+
+
+
+              <hr id="hr"/>
+              <ul className="postTopOption" id="widthChnge" >
                 <li className="post_search">
                   <input type="search" name="search" placeholder="Search…" />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive merchant vehicleSub">
+              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Id</th>
+                      <th scope="col">Sr.No</th>
                       <th scope="col">Image </th>
                       <th scope="col">Product Name</th>
                       <th scope="col">Price</th>
                       <th scope="col">Color</th>
                       <th scope="col">Size</th>
-                      <th scope="col">category </th>
-                      <th scope="col" style={{ textAlign: "right" }}>
+                      <th scope="col">Category </th>
+                      <th scope="col" style={{ textAlign: "center" }}>
                         Action
                       </th>
                     </tr>
@@ -92,9 +109,9 @@ function GearProducts() {
                       );
                     })}
 
-                    <Link to="/add/gear-product" className="btn mt-4">
+                    {/* <Link to="/add/gear-product" className="btn mt-4">
                       <i class="fa-sharp fa-solid fa-plus"></i>
-                    </Link>
+                    </Link> */}
                   </tbody>
                 </table>
               </div>

@@ -33,3 +33,18 @@
         margin-right: -55px;
           margin-top: -11px;
   }
+
+#scrollable{
+            width: 111%;
+            /* height: 28%; */
+            overflow-x: scroll;
+            }
+
+#widthChnge{
+  width: 111%;
+}
+
+#hr{
+  width: 111%;
+}
+

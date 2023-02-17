@@ -5,10 +5,12 @@ import AdminLeftNav from "./AdminLeftNav";
 
 const Enquiry = () => {
   const [enqData, setEnqData] = useState([]);
+  const [loading, setLoading] = useState(true)
   const fetchApi = async () => {
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getAllEnquiry`);
       setEnqData(res.data.data);
+      setLoading(false)
     } catch (err) {
       console.log(err);
     }
@@ -29,43 +31,50 @@ const Enquiry = () => {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Notifications</h3>
+              <h3>Customer Support</h3>
 
-              <hr />
-              <ul className="postTopOption">
+              <hr id="hr"/>
+              <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
                   <input type="search" name="search" placeholder="Search…" />
                 </li>
               </ul>
 
-              <div class="card_Gray table-responsive merchant vehicleSub">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">S no.</th>
-                      <th scope="col">Name </th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Number</th>
-                      <th scope="col" style={{ textAlign: "right" }}>
-                        Comments
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {enqData.map((curElem, i) => {
-                      return (
-                        <tr key={curElem.id}>
-                          <th scope="row">{i + 1}</th>
-                          <td>{curElem.name}</td>
-                          <td> {curElem.email} </td>
-                          <td>{curElem.phone}</td>
+              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
+                {
+                  loading ? <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div> : <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Name </th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Number</th>
+                        <th scope="col" style={{ textAlign: "right" }}>
+                          Comments
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enqData.map((curElem, i) => {
+                        return (
+                          <tr key={curElem.id}>
+                            <th scope="row">{i + 1}</th>
+                            <td>{curElem.name}</td>
+                            <td> {curElem.email} </td>
+                            <td>{curElem.phone}</td>
 
-                          <td className="actionBtn">{curElem.comments}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                            <td className="actionBtn">{curElem.comments}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                }
+                
               </div>
             </div>
           </div>

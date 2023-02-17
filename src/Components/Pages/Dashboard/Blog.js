@@ -8,11 +8,13 @@ import axios from "axios";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}/getblogs`);
         setBlogs(res.data.data);
+        setLoading(false)
       } catch (err) {
         console.log(err);
       }
@@ -46,71 +48,87 @@ function Blog() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3
-                className="d-flex"
+                className="d-flex" id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
                 My Blogs
                 <div>
-                  <Link to="/admin/add-blog" className="btn">
+                  {/* <Link to="/admin/add-blog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
+                  </Link> */}
+                  <Link to="/admin/add-blog" className="orange_btn" style={{
+                    padding: "4px",
+                    fontSize: "18px",
+                    fontWeight:"100"
+
+                  }}>
+                    + Add My Blogs
                   </Link>
+
                 </div>
               </h3>
 
-              <hr />
-              <ul className="postTopOption">
+              <hr id="hr"/>
+              <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
                   <input type="search" name="search" placeholder="Search…" />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive merchant vehicleSub">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Image </th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Created Date</th>
-                      <th scope="col" style={{ textAlign: "right" }}>
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {blogs &&
-                      blogs.map((curElem, i) => {
-                        return (
-                          <tr key={curElem.id}>
-                            <th scope="row">{i + 1}</th>
-                            <td>
-                              <div className="cartImg">
-                                <img
-                                  src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
-                                />
-                              </div>
-                            </td>
-                            <td>{curElem.title} </td>
-                            <td>{curElem.description}</td>
-                            <td>
-                              {curElem.created_at &&
-                                new Date(
-                                  curElem.created_at
-                                ).toLocaleDateString()}
-                            </td>
-                            <td className="actionBtn">
-                              {/* <button data-toggle="modal" data-target="#EditBlog">
+              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
+                {
+                  loading ? <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div> : <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Image </th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col" style={{ textAlign: "center" }}>
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {blogs &&
+                        blogs.map((curElem, i) => {
+                          return (
+                            <tr key={curElem.id}>
+                              <th scope="row">{i + 1}</th>
+                              <td>
+                                <div className="cartImg">
+                                  <img
+                                    src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
+                                  />
+                                </div>
+                              </td>
+                              <td>{curElem.title} </td>
+                              <td>{curElem.description}</td>
+                              <td>
+                                {curElem.created_at &&
+                                  new Date(
+                                    curElem.created_at
+                                  ).toLocaleDateString()}
+                              </td>
+                              <td className="actionBtn">
+                                {/* <button data-toggle="modal" data-target="#EditBlog">
                               <i class="fa-solid fa-pencil"></i>
                             </button> */}
-                              <button onClick={() => handleDelete(curElem.id)}>
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
+                                <button onClick={() => handleDelete(curElem.id)}>
+                                  <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                }
+                
               </div>
 
               {/* <!-- Edit PopUp--> */}

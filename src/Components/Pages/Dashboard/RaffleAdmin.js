@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 function RaffleAdmin() {
   const [showLotary, setShowLotary] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchLotaryApi = async () => {
       try {
@@ -14,6 +16,7 @@ function RaffleAdmin() {
         if (response.data.data.length > 0) {
           console.log("refral", showLotary);
           setShowLotary(response.data.data);
+          setLoading(false)
         } else {
           console.log("Data is empty");
         }
@@ -52,7 +55,7 @@ function RaffleAdmin() {
             <div className="col-12 col-md-8 col-lg-9">
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}
+                style={{ justifyContent: "space-between", width: "111%" }}
               >
                 <h3>Raffle Admin</h3>
                 <Link to="/raffleadmin/add-raffel" className="orange_btn">
@@ -60,68 +63,98 @@ function RaffleAdmin() {
                 </Link>
               </div>
 
-              <hr />
-              <ul className="postTopOption">
-                <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" />
-                </li>
-              </ul>
-              <div class="card_Gray table-responsive vehicleSub raffle">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">S.no</th>
-                      <th scope="col">Name</th>
-                      <th scope="col" className="description">
-                        Description{" "}
-                      </th>
-                      <th scope="col">Price of 1 ticket</th>
-                      <th scope="col">Total ticket stock</th>
-                      <th scope="col">Deadline to purchase ticket</th>
-                      <th scope="col">Lucky draw date</th>
-                      <th scope="col" style={{ textAlign: "right" }}>
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {showLotary.length > 0
-                      ? showLotary.map((data, index) => (
+              <hr id="hr" />
+              <div className="row">
+                <div className="col">
+
+
+                  {/* ================= */}
+                  <ul className="postTopOption" id="widthChnge">
+                    <li className="post_search">
+                      <input type="search" name="search" placeholder="Search…" />
+                    </li>
+                  </ul>
+                  <div class="card_Gray table-responsive vehicleSub raffle"
+                    id="scrollable"
+                  >
+                    {
+                      loading ? <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div> : <table class="table table-striped">
+                        <thead >
                           <tr>
-                            <th scope="row">{index + 1}</th>
-                            <td> {data.name}</td>
-                            <td>{data.description}</td>
-                            <td>{data.price}</td>
-                            <td>20</td>
-                            <td>{data.dealEndDate}</td>
-                            <td>15-01-2023</td>
-                            <td className="actionBtn">
-                              {/* {data.active && ( */}
-                              <button
-                                onClick={() => approveLottery(data.id)}
-                                className={`${
-                                  data.active === "1"
-                                    ? ""
-                                    : "bg-light text-dark"
-                                } `}
-                              >
-                                Approve
-                              </button>
-                              <Link
-                                to={`/raffleadmin/edit-raffel/${data.id}`}
-                                className=""
-                              >
-                                <i class="fa-solid fa-pencil"></i>
-                              </Link>
-                              {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
-                              {/* <button><i class="fa-solid fa-trash-can"></i></button>   */}
-                            </td>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col" className="description">
+                              Description{" "}
+                            </th>
+                            <th scope="col">Ticket Price</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Purchase Date</th>
+                            <th scope="col">Expiry Date</th>
+                            <th scope="col" style={{ textAlign: "right" }}>
+                              Action
+                            </th>
+
+
                           </tr>
-                        ))
-                      : null}
-                  </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                          {showLotary.length > 0
+                            ? showLotary.map((data, index) => (
+
+                              <tr>
+                                <th scope="row">{index + 1}</th>
+                                <td> {data.name}</td>
+                                <td>{
+                                  data.description.substr(0, 50)
+                                }</td>
+                                <td>{data.price}</td>
+                                <td>20</td>
+                                <td>{data.drawdate}</td>
+                                <td>{data.dealEndDate}</td>
+
+                                <td className="actionBtn">
+                                  {/* {data.active && ( */}
+                                  {/* <button
+                                  onClick={() => approveLottery(data.id)}
+                                  className={`${data.active === "1"
+                                      ? ""
+                                      : "bg-light text-dark"
+                                    } `}
+                                >
+                                  Approve
+                                </button> */}
+                                  <Link
+                                    to={`/raffleadmin/edit-raffel/${data.id}`}
+                                    className=""
+                                  >
+                                    <i class="fa-solid fa-pencil"></i>
+                                  </Link>
+                                  {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
+                                  {/* <button><i class="fa-solid fa-trash-can"></i></button>   */}
+                                </td>
+                              </tr>
+                            ))
+                            : null}
+                        </tbody>
+                      </table>
+                    }
+                   
+
+                   
+                  </div>
+                  {/* ===================== */}
+
+
+                </div>
               </div>
+
+
+
+
             </div>
           </div>
         </div>

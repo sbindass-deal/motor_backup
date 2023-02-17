@@ -5,12 +5,14 @@ import axios from "axios";
 
 function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
+  const [loading, setLoading]=useState(true)
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       console.log("refral", response.data);
       if (response.data.data.length > 0) {
         setShowvehicles(response.data.data);
+        setLoading(false)
       } else {
         console.log("Data is empty");
       }
@@ -46,39 +48,48 @@ function VehicleSubmission() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Vehicle Submission</h3>
-              <hr />
-              <ul className="postTopOption">
-                <li className="post_search">
+              <hr id='hr'/>
+              <ul className="postTopOption" id="widthChnge">
+                <li className="post_search" >
                   <input type="search" name="search" placeholder="Search…" />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive vehicleSub">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      {/* <th scope="col">User Id</th> */}
-                      <th scope="col">User Name</th>
-                      <th
-                        scope="col"
-                        colspan="3"
-                        style={{ textAlign: "center" }}
-                      >
-                        Car Info
-                      </th>
+              <div class="card_Gray table-responsive vehicleSub" id="scrollable">
 
-                      <th scope="col" style={{ textAlign: "right" }}>
-                        Action
-                      </th>
-                      <th>status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {showvehicles.length > 0
-                      ? showvehicles.map((data, index) => (
+                {
+                  loading ? <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div> : <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Year</th>
+                        <th
+                        // scope="col"
+                        // colspan="3"
+                        // style={{ textAlign: "center" }}
+                        >
+                          Car Info
+                        </th>
+
+                        <th scope="col"
+                          style={{ textAlign: "center" }}
+                        >
+                          Action
+                        </th>
+                        {/* <th>status</th> */}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {showvehicles.length > 0
+                        ? showvehicles.map((data, index) => (
                           <tr
                             key={index}
-                            // style={{ cursor: "pointer" }}
+                          // style={{ cursor: "pointer" }}
                           >
                             <th scope="row">{index + 1}</th>
                             {/* <td>{data.userId}</td> */}
@@ -103,9 +114,14 @@ function VehicleSubmission() {
                             </td>
                           </tr>
                         ))
-                      : null}
-                  </tbody>
-                </table>
+                        : null}
+                    </tbody>
+                  </table>
+                }
+                
+              
+
+                
               </div>
             </div>
           </div>
