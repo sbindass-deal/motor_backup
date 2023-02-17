@@ -547,8 +547,8 @@ function Home() {
         </div>
       </section>
 
-      <section className="ptb_80 blogSection">
-        <div className="container">
+      <section className="ptb_50 blogSection">
+        <div className="custom_container">
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2>Latest Blogs</h2>
@@ -570,7 +570,7 @@ function Home() {
                           />
                         </div>
                       </div>
-                      <div className="col-12 col-md-6 col-lg-5 d-flex">
+                      <div className="col-12 col-md-6 col-lg-5 blogs_content">
                         <div className="blogPostText">
                           <h4>{curElem.title}</h4>
                           <ul className="post_labelList">

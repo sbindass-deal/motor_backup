@@ -3,7 +3,7 @@ import FormInput from "../UI/FormInput";
 
 const CardDetails = ({ getInputField, inputValue }) => {
   return (
-    <div className="container col-md col-sm p-3 backgroun_register">
+    <div className="container col-md col-sm p-3 backgroun_register p-0">
       {/* <div class="col-md-12 position-relative">
         <label for="validationTooltip01" class="form-label">
           name <samal>(as it appears on your card)</samal>

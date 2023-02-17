@@ -186,8 +186,8 @@ const Inventory = () => {
                           )}
                         </Link>
                       )}
-                      <div className="card_postInfo pt-3">
-                        <h6 className="name_price">
+                      <div className="card_postInfo  pt-3">
+                        <h6 className="name_price ">
                           <Link
                             to={
                               curElem.displayInAuction === "Yes"
@@ -215,6 +215,8 @@ const Inventory = () => {
                             </tr>
                           </tbody>
                         </table>
+                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
+
                       </div>
                     </div>
                   </div>

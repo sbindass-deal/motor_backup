@@ -370,7 +370,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 )}
 
-                <div className="col-12">
+                <div className="col-12 p-0">
                   {addUserInBid === true ? (
                     <CardDetails
                       inputValue={inputValue}
