@@ -57,7 +57,7 @@ const VehicleAdsList = () => {
                     Classified Vehicle
                   </Link> */}
 
-                  <Link to="/admin-dealer/add-dealer" className="orange_btn" style={{
+                  <Link to="/admin-vehicle-ad/add-vehicle-ads" className="orange_btn" style={{
                     padding: "6px",
                     fontSize: "18px",
                     fontWeight: "100"

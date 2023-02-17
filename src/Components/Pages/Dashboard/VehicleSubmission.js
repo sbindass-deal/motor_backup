@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ModeCommentIcon from '@mui/icons-material/ModeComment';
 
 function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
-  const [loading, setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
@@ -48,7 +49,7 @@ function VehicleSubmission() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Vehicle Submission</h3>
-              <hr id='hr'/>
+              <hr id='hr' />
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search" >
                   <input type="search" name="search" placeholder="Search…" />
@@ -113,10 +114,10 @@ function VehicleSubmission() {
                               {data.approved == 0
                                 ? "Pending"
                                 : data.approved == 1
-                                ? "Approved"
-                                : data.approved == 2
-                                ? "Rejected"
-                                : null}
+                                  ? "Approved"
+                                  : data.approved == 2
+                                    ? "Rejected"
+                                    : null}
                               {/* <span>{data.status && data.status.title}</span> */}
                             </td>
                           </tr>
@@ -125,10 +126,10 @@ function VehicleSubmission() {
                     </tbody>
                   </table>
                 }
-                
-              
 
-                
+
+
+
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
 import { Image } from "antd";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import ModeCommentIcon from '@mui/icons-material/ModeComment';
 
 function Detail() {
   const { id } = useParams();
@@ -275,11 +276,12 @@ function Detail() {
                       <li>
                         {vehicle.approved !== "1" ? (
                           <span>
-                            <img
+                            {/* <img
                               src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg"
                               alt="comments-icon"
                               class="comments_header_icon"
-                            />
+                            /> */}
+                            <ModeCommentIcon className="color_orange"/>
                             <span className="color_orange"
                               style={{ marginLeft: "8px", }}
                             >
