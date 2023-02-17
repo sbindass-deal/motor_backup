@@ -136,7 +136,7 @@ const VechilesRegistraion = () => {
       for await (const file1 of file) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image[]", file1);
+        formData.append("image", file1);
         formData.append("category", "Banner");
         formData.append("vehicleId", vehicleId);
         const newImagedata = formData;
@@ -196,7 +196,7 @@ const VechilesRegistraion = () => {
       for await (const file11 of file1) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image[]", file11);
+        formData.append("image", file11);
         formData.append("category", "Document");
         formData.append("vehicleId", vehicleId);
         const config = {
@@ -213,7 +213,7 @@ const VechilesRegistraion = () => {
       for await (const item of galleryFile) {
         const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image[]", item);
+        formData.append("image", item);
         formData.append("category", "Gallery");
         formData.append("vehicleId", vehicleId);
         const config = {

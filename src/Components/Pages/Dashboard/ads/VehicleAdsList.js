@@ -6,7 +6,7 @@ import AdminLeftNav from "../AdminLeftNav";
 
 const VehicleAdsList = () => {
   const [classifiedAd, setClassifiedAd] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchApi = async () => {
       try {
@@ -14,7 +14,7 @@ const VehicleAdsList = () => {
           `${process.env.REACT_APP_URL}vehicles_added_by_admin`
         );
         setClassifiedAd(res.data.data);
-        setLoading(false)
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -49,7 +49,8 @@ const VehicleAdsList = () => {
 
               <div className="col-12 col-md-8 col-lg-9">
                 <div
-                  className="d-flex" id="widthChnge"
+                  className="d-flex"
+                  id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
                   <h3>Classified Vehicle List </h3>
@@ -57,24 +58,32 @@ const VehicleAdsList = () => {
                     Classified Vehicle
                   </Link> */}
 
-                  <Link to="/admin-vehicle-ad/add-vehicle-ads" className="orange_btn" style={{
-                    padding: "6px",
-                    fontSize: "18px",
-                    fontWeight: "100"
-
-                  }}>
+                  <Link
+                    to="/admin-vehicle-ad/add-vehicle-ads"
+                    className="orange_btn"
+                    style={{
+                      padding: "6px",
+                      fontSize: "18px",
+                      fontWeight: "100",
+                    }}
+                  >
                     + Add Vehicle List
                   </Link>
                 </div>
 
-                <hr id="hr"/>
-                <div class="card_Gray table-responsive vehicleSub" id="scrollable">
-                  {
-                    loading ? <div class="d-flex justify-content-center">
+                <hr id="hr" />
+                <div
+                  class="card_Gray table-responsive vehicleSub"
+                  id="scrollable"
+                >
+                  {loading ? (
+                    <div class="d-flex justify-content-center">
                       <div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>
-                    </div> : <table class="table table-striped">
+                    </div>
+                  ) : (
+                    <table class="table table-striped">
                       <thead>
                         <tr>
                           <th scope="col">Sr.No</th>
@@ -95,12 +104,12 @@ const VehicleAdsList = () => {
                               <tr>
                                 <td>{i + 1}</td>
                                 <td className="cartImg">
-                                  {curElem.images && (
+                                  {curElem.image && (
                                     <img
                                       loading="lazy"
                                       src={
-                                        curElem?.images[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem?.images[0]?.imagePath}/${curElem?.images[0]?.imageName}`
+                                        curElem?.image[0] &&
+                                        `${process.env.REACT_APP_URL}${curElem?.image[0]?.imagePath}/${curElem?.image[0]?.imageName}`
                                       }
                                       onError={({ currentTarget }) => {
                                         currentTarget.onError = null;
@@ -124,7 +133,7 @@ const VehicleAdsList = () => {
                                   <Link
                                     onClick={() => handleDelete(curElem.id)}
                                     to={``}
-                                  // className="btn"
+                                    // className="btn"
                                   >
                                     <i class="fa-solid fa-trash-can"></i>
                                   </Link>
@@ -134,8 +143,7 @@ const VehicleAdsList = () => {
                           })}
                       </tbody>
                     </table>
-                  }
-                  
+                  )}
                 </div>
               </div>
             </div>

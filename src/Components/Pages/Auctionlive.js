@@ -50,7 +50,7 @@ const Auctionlive = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-             Current Auctions{" "}
+                Current Auctions{" "}
                 <span>
                   {
                     data
@@ -102,16 +102,18 @@ const Auctionlive = () => {
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -129,8 +131,9 @@ const Auctionlive = () => {
             </div>
           </div>
           <div
-            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
-              }`}
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
           >
             {(data.length > 0 && highlightWatch
               ? data.filter((item) => item.like > 0)
@@ -172,7 +175,6 @@ const Auctionlive = () => {
                               />
                             )}
                           </Link>
-                         
                         </div>
                       </div>
                       <div className="card_postInfo">
@@ -188,18 +190,19 @@ const Auctionlive = () => {
                             className="watchedIc"
                           >
                             <i
-                              className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
-                                }`}
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
                             ></i>
                           </button>
                         </h4>
-                        <p className="color_grey">{curElem?.moreDescription.substr(0, 200)}</p>
+                        <p className="color_grey">
+                          {curElem?.moreDescription.substr(0, 200)}
+                        </p>
                         {/* <div className="opening_bid">
                           <p>Opening Bid: $980000 </p>
                           <p>Upcoming Auction</p>
                         </div> */}
-
-
 
                         <ul
                           className="labelList"
@@ -216,24 +219,23 @@ const Auctionlive = () => {
                               </span>
                             ) : curElem.documentFee ? (
                               <span>
-                                <label>Opening Bid: ${curElem.documentFee}</label>
-                                
+                                <label>
+                                  Opening Bid: ${curElem.documentFee}
+                                </label>
                               </span>
                             ) : null}
-
-
                           </li>
-                          <li> 
+                          <li>
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               parseInt(new Date().getTime(), 10) >
                               0 && curElem.approved === "1" ? (
                               <label>Auction Open</label>
                             ) : parseInt(
-                              new Date(curElem.EndTime).getTime(),
-                              10
-                            ) -
-                              parseInt(new Date().getTime(), 10) >
-                              0 &&
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                parseInt(new Date().getTime(), 10) >
+                                0 &&
                               (curElem.approved === null ||
                                 curElem.approved === "11") ? (
                               <label>Upcoming Auction</label>
@@ -241,9 +243,10 @@ const Auctionlive = () => {
                               <label>Auction Closed</label>
                             )}
                           </li>
-
                         </ul>
-                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
+                        <button className="orange_btn opening_bid_btn">
+                          View Details <i class="fa fa-arrow-right"></i>
+                        </button>
                       </div>
                     </div>
                   </div>
