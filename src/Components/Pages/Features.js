@@ -56,7 +56,7 @@ const Features = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         {vehicleData.length > 0 && (
-          <div className="container">
+          <div className="custom_container">
             <div className="row">
               <div className="col-12">
                 <ul className="postTopOption">
