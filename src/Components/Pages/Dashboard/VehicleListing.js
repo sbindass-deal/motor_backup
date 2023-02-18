@@ -77,6 +77,9 @@ const VehicleListing = () => {
                                 <td>{id}</td>
                                 <td>{name}</td>
                                 <td>{list}</td>
+                                <td>{price}</td>
+                                <td>{maxprice}</td>
+                                
                                 <td className="text-right">
                                   <Link id="linkTag"
                                     to={`/admin/vehicle-listing-details/${id}`}
