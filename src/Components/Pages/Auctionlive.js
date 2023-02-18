@@ -244,9 +244,12 @@ const Auctionlive = () => {
                             )}
                           </li>
                         </ul>
-                        <button className="orange_btn opening_bid_btn">
+                        <Link
+                          to={`/detail/${curElem.id}`}
+                          className="orange_btn opening_bid_btn"
+                        >
                           View Details <i class="fa fa-arrow-right"></i>
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
