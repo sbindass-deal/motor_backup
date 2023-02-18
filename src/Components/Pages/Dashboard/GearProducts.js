@@ -78,8 +78,10 @@ function GearProducts() {
                         <tr key={curElem.id}>
                           <th scope="row">{i + 1}</th>
                           <td>
-                            <div className="cartImg">
+                            <div className="">
                               <img
+                              width={100}
+                              className="img-fluid"
                                 src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
                                 alt={curElem.title}
                               />

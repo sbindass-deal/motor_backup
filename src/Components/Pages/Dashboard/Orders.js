@@ -54,7 +54,7 @@ function Orders() {
                         <th scope="col">Sr.no</th>
                         <th scope="col">Date </th>
                         <th scope="col">Name</th>
-                        <th scope="col">Order no</th>
+                        <th scope="col">Order Id</th>
                         <th scope="col">Amount</th>
                         <th scope="col" style={{ textAlign: "center" }}>
                           Action
@@ -84,7 +84,7 @@ function Orders() {
                           <i class="fa-solid fa-pencil"></i>
                         </button> */}
 
-                                {curElem.amount}
+                                ${curElem.amount}
                               </td>
                               <td>
                                 <Link

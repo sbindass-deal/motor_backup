@@ -100,14 +100,16 @@ function Blog() {
                             <tr key={curElem.id}>
                               <th scope="row">{i + 1}</th>
                               <td>
-                                <div className="cartImg">
+                                <div className="">
                                   <img
+                                  width={200}
+                                  className="img-fluid"
                                     src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                                   />
                                 </div>
                               </td>
                               <td>{curElem.title} </td>
-                              <td>{curElem.description}</td>
+                              <td>{ curElem?.description.substr(0, 100)}</td>
                               <td>
                                 {curElem.created_at &&
                                   new Date(
