@@ -77,23 +77,21 @@ const VehicleListing = () => {
                                 <td>{id}</td>
                                 <td>{name}</td>
                                 <td>{list}</td>
-                                <td>{price}</td>
-                                <td>{maxprice}</td>
-                                <td className="">
+                                <td className="text-right">
                                   <Link id="linkTag"
                                     to={`/admin/vehicle-listing-details/${id}`}
                                     // className="btn"
                                   >
                                     <i class="fa-solid fa-pencil"></i>
                                   </Link>
-                                </td>
-                                <td className="">
+
                                   <Link to={``}  id="linkTag"
                                     // className="btn"
                                   >
                                     <i class="fa-solid fa-trash-can"></i>
                                   </Link>
                                 </td>
+                               
                               </tr>
                             );
                           })}

@@ -62,12 +62,12 @@ const VehicleAdsList = () => {
                     to="/admin-vehicle-ad/add-vehicle-ads"
                     className="orange_btn"
                     style={{
-                      padding: "6px",
-                      fontSize: "18px",
-                      fontWeight: "100",
+                      // padding: "6px",
+                      // fontSize: "18px",
+                      // fontWeight: "100",
                     }}
                   >
-                    + Add Vehicle List
+                    + Add Vehicle
                   </Link>
                 </div>
 

@@ -7,7 +7,7 @@ const Blogs = () => {
 
   return (
     <section className="ptb_80 blogSection">
-      <div className="container">
+      <div className="auction_container">
         <div className="row">
           <div className="col-12 text-center pb_30">
             <h2>All Blogs</h2>
@@ -51,7 +51,7 @@ const Blogs = () => {
                         {curElem.description.length > 500 && (
                           <Link
                             to={`/blogdetail/${curElem.id}`}
-                            className="btn"
+                            className="orange_btn"
                           >
                             Read More
                           </Link>

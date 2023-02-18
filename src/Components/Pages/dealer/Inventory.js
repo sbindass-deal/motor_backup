@@ -77,7 +77,7 @@ const Inventory = () => {
         <h2>All Vehicles</h2>
       </div>
       <section className="pt_40">
-        <div className="container">
+        <div className="auction_container">
           <div className="col-12 col-lg-12 py-2">
             <h4 className="text-center">
               <span className="text-warning">{searchedData.length}</span> &nbsp;
@@ -111,7 +111,7 @@ const Inventory = () => {
               </li>
             </ul>
           </div>
-          <div className="row mt-50">
+          <div className="row mt-30">
             {searchedData.length === 0 ? (
               <NotAvailable text="No Result Found" />
             ) : (
@@ -130,7 +130,7 @@ const Inventory = () => {
                           target="_blank"
                           rel="noopener"
                           href={curElem.externalLink}
-                          className="card_postImg card_postImg_200"
+                          className="card_postImg card_postImg_200 height_image"
                         >
                           {curElem.images[0] ? (
                             <img
@@ -161,7 +161,7 @@ const Inventory = () => {
                               ? `/detail/${curElem.id}`
                               : `/showroom/${curElem.id}`
                           }
-                          className="card_postImg card_postImg_200"
+                          className="card_postImg card_postImg_200 height_image"
                         >
                           {curElem.images[0] ? (
                             <img

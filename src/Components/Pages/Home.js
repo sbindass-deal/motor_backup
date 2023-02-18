@@ -133,7 +133,7 @@ function Home() {
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
                 <h1>WE ARE DEDICATED TO PARKING YOUR DREAM IN YOUR DRIVEWAY</h1>
-                <Link to="/showroom" className="btn">
+                <Link to="/showroom" className="orange_btn">
                   VIEW INVENTORY
                 </Link>
               </div>
@@ -526,7 +526,7 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
               <h1 className="text-back">Find Your Dream Car</h1>
-              <Link to="/showroom" className="btn mt-2">
+              <Link to="/showroom" className="orange_btn mt-2">
                 VIEW INVENTORY
               </Link>
             </div>
@@ -539,7 +539,7 @@ function Home() {
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-6 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
               <h1 className="text">Sell Your High Quality classic Car</h1>
-              <Link to="/showroom" className="btn mt-2">
+              <Link to="/showroom" className="orange_btn mt-2">
                 VIEW INVENTORY
               </Link>
             </div>
@@ -592,7 +592,7 @@ function Home() {
                           {curElem.description.length > 500 && (
                             <Link
                               to={`/blogdetail/${curElem.id}`}
-                              className="btn"
+                              className="orange_btn"
                             >
                               Read More
                             </Link>
@@ -714,7 +714,7 @@ function Home() {
               </div> */}
               <div className="row">
                 <div className="col-12 text-center pt_40">
-                  <Link to="/blogs" className="btn">
+                  <Link to="/blogs" className="orange_btn">
                     View More Blogs
                   </Link>
                 </div>
@@ -737,7 +737,7 @@ function Home() {
                     {new Date(data.lotteryReducer.date).toLocaleDateString()}
                   </p>
                 </div>
-                <button className="btn">Buy Tickets</button>
+                <button className="orange_btn">Buy Tickets</button>
               </div>
               <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
                 <img src={ads_car_2} className="addBanner" />

@@ -85,7 +85,7 @@ function AdminLeftNav() {
               } `}
             to="/admin-enquiry"
           >
-            Customer Support
+            Customer Enquiry
           </Link>
         </li>
       </ul>
