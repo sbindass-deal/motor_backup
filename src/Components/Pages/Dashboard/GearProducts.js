@@ -5,7 +5,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function GearProducts() {
-  const [loading, setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm]=useState('')
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
   const handleDelete = (id) => {
@@ -53,7 +54,9 @@ function GearProducts() {
               <hr id="hr"/>
               <ul className="postTopOption" id="widthChnge" >
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" />
+                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                  }} />
                 </li>
               </ul>
               <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
@@ -73,7 +76,20 @@ function GearProducts() {
                     </tr>
                   </thead>
                   <tbody>
-                    {products.map((curElem, i) => {
+                    {
+                      products.filter((curElem, i) => {
+                        if (searchTerm == '') {
+                          return curElem
+                        } else if (curElem.title.toLowerCase().includes(searchTerm.toLowerCase())
+                          || curElem.color.toLowerCase().includes(searchTerm.toLowerCase())
+                          || curElem.size.toLowerCase().includes(searchTerm.toLowerCase())
+                          || curElem.category.toLowerCase().includes(searchTerm.toLowerCase())
+                        ) {
+                          return curElem
+                        }
+                      }).map((curElem, i) => {
+                          
+                      
                       return (
                         <tr key={curElem.id}>
                           <th scope="row">{i + 1}</th>

@@ -6,6 +6,7 @@ import AdminLeftNav from "./AdminLeftNav";
 const Enquiry = () => {
   const [enqData, setEnqData] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm]=useState('')
   const fetchApi = async () => {
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getAllEnquiry`);
@@ -36,7 +37,9 @@ const Enquiry = () => {
               <hr id="hr"/>
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" />
+                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                  }} />
                 </li>
               </ul>
 
@@ -59,7 +62,19 @@ const Enquiry = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {enqData.map((curElem, i) => {
+                        {
+                          enqData.filter((curElem, i) => {
+                            if (searchTerm == '') {
+                              return curElem
+                            } else if (curElem.name.toLowerCase().includes(searchTerm.toLowerCase())
+                              || curElem.email.toLowerCase().includes(searchTerm.toLowerCase())
+                              || curElem.phone.toLowerCase().includes(searchTerm.toLowerCase())
+                            ) {
+                              return curElem
+                            }
+                          }).map((curElem,i) => {
+                              
+                          
                         return (
                           <tr key={curElem.id}>
                             <th scope="row">{i + 1}</th>

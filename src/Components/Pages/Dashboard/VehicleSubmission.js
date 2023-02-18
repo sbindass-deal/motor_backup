@@ -6,6 +6,9 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 
 function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
+  
+  const [searchTerm, setSearchTerm] = useState('')
+  
   const [loading, setLoading] = useState(true)
   const fetchLotaryApi = async () => {
     try {
@@ -52,7 +55,9 @@ function VehicleSubmission() {
               <hr id='hr' />
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search" >
-                  <input type="search" name="search" placeholder="Search…" />
+                  <input type="search" name="search" placeholder="Search…" onChange={
+                    (e)=>setSearchTerm(e.target.value)
+                  }/>
                 </li>
               </ul>
               <div class="card_Gray table-responsive vehicleSub" id="scrollable">
@@ -87,7 +92,15 @@ function VehicleSubmission() {
                     </thead>
                     <tbody>
                       {showvehicles.length > 0
-                        ? showvehicles.map((data, index) => (
+                          ? showvehicles.filter((data, index)=>{
+                            if (searchTerm == '') {
+                              return data
+                            } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())
+                              || data.make.toLowerCase().includes(searchTerm.toLowerCase())
+                            )
+                              return data
+                          })
+                          .map((data, index) => (
                           <tr
                             key={index}
                           // style={{ cursor: "pointer" }}

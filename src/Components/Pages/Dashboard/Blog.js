@@ -9,6 +9,8 @@ import axios from "axios";
 function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -71,7 +73,9 @@ function Blog() {
               <hr id="hr"/>
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" />
+                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                  }} />
                 </li>
               </ul>
               <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
@@ -94,8 +98,17 @@ function Blog() {
                       </tr>
                     </thead>
                     <tbody>
-                      {blogs &&
-                        blogs.map((curElem, i) => {
+                        {blogs &&
+                          blogs.filter((curElem) => {
+                            if (searchTerm == "") {
+                              return curElem
+                            } else if (curElem.title.toLowerCase().includes(searchTerm.toLowerCase())
+                              
+                            ) {
+                              return curElem
+                            }
+                          })
+                        .map((curElem, i) => {
                           return (
                             <tr key={curElem.id}>
                               <th scope="row">{i + 1}</th>

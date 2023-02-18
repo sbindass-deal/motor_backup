@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function RaffleAdmin() {
   const [showLotary, setShowLotary] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm]=useState('')
 
   useEffect(() => {
     const fetchLotaryApi = async () => {
@@ -71,7 +72,9 @@ function RaffleAdmin() {
                   {/* ================= */}
                   <ul className="postTopOption" id="widthChnge">
                     <li className="post_search">
-                      <input type="search" name="search" placeholder="Search…" />
+                      <input type="search" name="search" placeholder="Search…" onChange={(e) => {
+                        setSearchTerm(e.target.value)
+                      }}/>
                     </li>
                   </ul>
                   <div class="card_Gray table-responsive vehicleSub raffle"
@@ -103,7 +106,17 @@ function RaffleAdmin() {
                         </thead>
                         <tbody>
                           {showLotary.length > 0
-                            ? showLotary.map((data, index) => (
+                              ?
+                              showLotary.filter((data) => {
+                                if (searchTerm == '') {
+                                  return data
+                                } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                  data.description.toLowerCase().includes(searchTerm.toLowerCase())
+                                ) {
+                                  return data
+                                }
+                              })
+                              .map((data, index) => (
 
                               <tr>
                                 <th scope="row">{index + 1}</th>

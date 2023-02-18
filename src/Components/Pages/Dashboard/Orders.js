@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function Orders() {
   const [orderList, setOrderList] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm]=useState('')
   useEffect(() => {
     const fetchOreder = async () => {
       try {
@@ -38,7 +39,9 @@ function Orders() {
               <hr  id="hr"/>
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" />
+                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                  }}/>
                 </li>
               </ul>
               <div class="card_Gray table-responsive merchant vehicleSub" id="hr">
@@ -62,8 +65,15 @@ function Orders() {
                       </tr>
                     </thead>
                     <tbody>
-                      {orderList &&
-                        orderList.map((curElem, i) => {
+                        {orderList &&
+                          orderList.filter((curElem) => {
+                            if (searchTerm == "") {
+                              return curElem
+                            } else if (curElem.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                              return curElem
+                            }
+                          })
+                        .map((curElem, i) => {
                           return (
                             <tr key={curElem.id}>
                               <th scope="row">{i + 1}</th>

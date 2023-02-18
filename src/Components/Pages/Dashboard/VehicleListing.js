@@ -5,7 +5,8 @@ import AdminLeftNav from "./AdminLeftNav";
 
 const VehicleListing = () => {
   const [getData, setGetData] = useState([]);
-  const [loading, setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
+  
   const addListingData = async () => {
     await axios
       .get(`${process.env.REACT_APP_URL}getAllPlans`)
