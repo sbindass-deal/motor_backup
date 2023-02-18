@@ -48,7 +48,7 @@ const UserVehicleDetails = () => {
       .then(function (response) {
         if (response.status === 200) {
           navigate("/vehicle-submission");
-          window.location.reload(false);
+          // window.location.reload(false);
         }
       })
       .catch(function (error) {

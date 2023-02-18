@@ -449,9 +449,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
