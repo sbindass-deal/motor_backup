@@ -52,7 +52,7 @@ function Orders() {
                     <thead>
                       <tr>
                         <th scope="col">Sr.no</th>
-                        <th scope="col">Image </th>
+                        <th scope="col">Date </th>
                         <th scope="col">Name</th>
                         <th scope="col">Order no</th>
                         <th scope="col">Amount</th>
