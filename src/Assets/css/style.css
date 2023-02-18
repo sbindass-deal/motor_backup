@@ -342,7 +342,7 @@ img.addBanner {
 
 .card_postImg {
   width: 100%;
-  height: 400px;
+  height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5494,3 +5494,6 @@ input[type=file] {
   color: #f7931b!important;
 }
 
+.classifiedAdds ul.labelList li{
+border-right: unset!important;
+}
