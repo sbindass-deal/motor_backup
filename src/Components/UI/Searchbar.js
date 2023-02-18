@@ -52,7 +52,7 @@ const Searchbar = () => {
 
   return (
     <div className="searchX">
-      <AutoComplete
+      <AutoComplete id="text1"
         placeholder="Search"
         options={options}
         onSelect={onSelect}
