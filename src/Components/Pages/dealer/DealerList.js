@@ -126,14 +126,14 @@ const DealerList = () => {
                       </div>
                       <div className="card_postInfo">
                         <div className="auction_wrapper">
-                        <h5 className="auction_heading">{curElem.title}  </h5>
-                        <small>ADS</small>
-
+                          <h5 className="auction_heading">{curElem.title} </h5>
+                          <small>ADS</small>
                         </div>
-                        <p>{curElem.dealerDescription}</p>
+                        <p>{curElem?.dealerDescription.substr(0, 200)}</p>
 
-                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
-
+                        <button className="orange_btn opening_bid_btn">
+                          View Details <i class="fa fa-arrow-right"></i>
+                        </button>
                       </div>
                     </div>
                   </Link>
