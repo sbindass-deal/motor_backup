@@ -117,12 +117,12 @@ const Inventory = () => {
             ) : (
               searchedData.map((curElem) => {
                 return (
-                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                  <div className="col-12 col-md-6 col-lg-6" key={curElem.id}>
                     <div className="card_post Inventory auction ffff">
                       {curElem.displayInAuction === "Yes" ? (
                         <p className="forOction">For Auction</p>
                       ) : curElem.displayInAuction === "classified" ? (
-                        <p className="forOction">Ad</p>
+                        <p className="forOction">Ads</p>
                       ) : null}
 
                       {curElem.displayInAuction === "classified" ? (
@@ -188,17 +188,28 @@ const Inventory = () => {
                       )}
                       <div className="card_postInfo  pt-3">
                         <h6 className="name_price ">
-                          <Link
-                            to={
-                              curElem.displayInAuction === "Yes"
-                                ? `/detail/${curElem.id}`
-                                : `/showroom/${curElem.id}`
-                            }
-                          >
-                            {curElem.make} {curElem.model} {curElem.year}
-                          </Link>
+                          {curElem.displayInAuction === "classified" ? (
+                            <a
+                              target="_blank"
+                              rel="noopener"
+                              href={curElem.externalLink}
+                            >
+                              {curElem.make} {curElem.model} {curElem.year}
+                            </a>
+                          ) : (
+                            <Link
+                              to={
+                                curElem.displayInAuction === "Yes"
+                                  ? `/detail/${curElem.id}`
+                                  : `/showroom/${curElem.id}`
+                              }
+                            >
+                              {curElem.make} {curElem.model} {curElem.year}
+                            </Link>
+                          )}
                           <p className="price__">${curElem.documentFee}</p>
                         </h6>
+                        <p>{curElem?.moreDescription.substr(0, 200)}</p>
                         <table className="showroomCol">
                           <tbody>
                             <tr>
@@ -215,8 +226,27 @@ const Inventory = () => {
                             </tr>
                           </tbody>
                         </table>
-                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
-
+                        {curElem.displayInAuction === "classified" ? (
+                          <a
+                            target="_blank"
+                            rel="noopener"
+                            href={curElem.externalLink}
+                            className="orange_btn opening_bid_btn"
+                          >
+                            View Details <i class="fa fa-arrow-right"></i>
+                          </a>
+                        ) : (
+                          <Link
+                            to={
+                              curElem.displayInAuction === "Yes"
+                                ? `/detail/${curElem.id}`
+                                : `/showroom/${curElem.id}`
+                            }
+                            className="orange_btn opening_bid_btn"
+                          >
+                            View Details <i class="fa fa-arrow-right"></i>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -3857,7 +3857,7 @@ tr.right-align {
 }
 
 td.actionBtn {
-  text-align: right;
+  text-align: left;
 }
 
 td.actionBtn button {
@@ -3868,7 +3868,7 @@ td.actionBtn button {
   border-radius: 12px;
   border: none;
   margin: 2px;
-  text-align: right;
+  text-align: left;
   font-size: 12px;
   margin: 0 8px;
 
@@ -3889,14 +3889,14 @@ td.actionBtn button {
 
 td.actionBtn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 1rem !important;
   align-items: center;
 }
 
 td.actionBtn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 1rem !important;
 }
 
@@ -5509,7 +5509,7 @@ border-right: unset!important;
 }
 
 .height_image{
-  height: 265px!important;
+  height: 250px!important;
 }
 
 .light .box_shadow_common{

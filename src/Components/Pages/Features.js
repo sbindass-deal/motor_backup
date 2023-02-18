@@ -126,7 +126,6 @@ const Features = () => {
                     <div className="col-12 col-md-6 pb-3">
                       <div className="card_post box_shadow_common">
                         <div className="card_postImg">
-                        
                           <Link to={`/detail/${curElem.id}`}>
                             {curElem.images[0] ? (
                               <img
@@ -150,27 +149,25 @@ const Features = () => {
                               />
                             )}
                           </Link>
-
-                        
                         </div>
                         <div className="card_postInfo">
                           <h4 className="auction_wrapper">
-                            <a href="detail.html">
+                            <Link to={`/detail/${curElem.id}`}>
                               {curElem.make} &nbsp;
                               {curElem.model} &nbsp;
                               {curElem.year}
-                            </a>
+                            </Link>
                             <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
-                            <i
-                              className={`fa-solid fa-star ${
-                                curElem.like >= 1 ? "faList" : ""
-                              }`}
-                            ></i>
-                          </button>
+                              onClick={() => addFabrity(curElem.id)}
+                              type="button"
+                              className="watchedIc"
+                            >
+                              <i
+                                className={`fa-solid fa-star ${
+                                  curElem.like >= 1 ? "faList" : ""
+                                }`}
+                              ></i>
+                            </button>
                           </h4>
                           <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
@@ -200,8 +197,12 @@ const Features = () => {
                               )}
                             </li>
                           </ul>
-                          <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
-
+                          <Link
+                            to={`/detail/${curElem.id}`}
+                            className="orange_btn opening_bid_btn"
+                          >
+                            View Details <i class="fa fa-arrow-right"></i>
+                          </Link>
                         </div>
                       </div>
                     </div>

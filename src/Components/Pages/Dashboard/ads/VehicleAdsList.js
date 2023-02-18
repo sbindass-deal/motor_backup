@@ -103,10 +103,12 @@ const VehicleAdsList = () => {
                             return (
                               <tr>
                                 <td>{i + 1}</td>
-                                <td className="cartImg">
+                                <td className="">
                                   {curElem.image && (
                                     <img
                                       loading="lazy"
+                                      className="img-fluid"
+                                      width={200}
                                       src={
                                         curElem?.image[0] &&
                                         `${process.env.REACT_APP_URL}${curElem?.image[0]?.imagePath}/${curElem?.image[0]?.imageName}`
@@ -121,7 +123,7 @@ const VehicleAdsList = () => {
                                   )}
                                 </td>
                                 <td>{curElem.make}</td>
-                                <td>{curElem.moreDescription}</td>
+                                <td>{curElem?.moreDescription.substr(0, 100)}</td>
                                 <td>{curElem.year}</td>
 
                                 {/* <td>
