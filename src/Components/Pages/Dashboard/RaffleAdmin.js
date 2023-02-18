@@ -55,7 +55,7 @@ function RaffleAdmin() {
             <div className="col-12 col-md-8 col-lg-9">
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between", width: "111%" }}
+                style={{ justifyContent: "space-between" }}
               >
                 <h3>Raffle Admin</h3>
                 <Link to="/raffleadmin/add-raffel" className="orange_btn">
