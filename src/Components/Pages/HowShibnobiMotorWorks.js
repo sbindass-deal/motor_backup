@@ -24,7 +24,7 @@ function HowShibnobiMotorWorks() {
       </section>
 
       <section className="pt_80">
-        <div className="container">
+        <div className="auction_container">
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
@@ -92,7 +92,7 @@ function HowShibnobiMotorWorks() {
       </section>
 
       <section className="ptb_80">
-        <div className="container">
+        <div className="auction_container">
           <div className="row">
             <div className="col-12 col-md-6">
               <img src={HIW} alt="HIW" />

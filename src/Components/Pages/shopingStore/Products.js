@@ -21,7 +21,7 @@ const Products = ({ id, price, image, title, curElem }) => {
   return (
     <>
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="card_post">
+        <div class="card_post box_shadow_common">
           <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
             <img
               src={`${process.env.REACT_APP_URL}upload/products/${image}`}
@@ -48,7 +48,7 @@ const Products = ({ id, price, image, title, curElem }) => {
                     dispatch(addProduct({ ...curElem, quantity: 1 }));
                     notify("Item Added Successfully");
                   }}
-                  className="removeBtn"
+                  className="orange_btn"
                 >
                   Add
                 </button>

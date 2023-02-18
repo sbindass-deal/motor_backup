@@ -4,7 +4,7 @@ const StoreHero = ({ setSearchValue }) => {
   return (
     <>
       <section class="pt_80 pt_sm_50">
-        <div class="container">
+        <div class="auction_container">
           <div class="row">
             <div class="col-12">
               <ul class="postTopOption">

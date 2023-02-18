@@ -58,7 +58,7 @@ const Shop = () => {
       </section>
       <StoreHero setSearchValue={setSearchValue} />
       <section className="pt_40 shopPg">
-        <div className="container">
+        <div className="auction_container">
           {products.length <= 0 ? (
             <NotAvailable text="Product is not available" />
           ) : (

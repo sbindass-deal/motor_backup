@@ -111,7 +111,7 @@ const Inventory = () => {
               </li>
             </ul>
           </div>
-          <div className="row mt-50">
+          <div className="row mt-30">
             {searchedData.length === 0 ? (
               <NotAvailable text="No Result Found" />
             ) : (

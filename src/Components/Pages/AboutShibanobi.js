@@ -8,7 +8,7 @@ function AboutShibanobi() {
   return (
     <div>
       <section className="ptb_80">
-        <div className="container">
+        <div className="auction_container">
           <div className="row">
             <div className="col-12 col-md-6">
               <img src={about_1} loading="lazy" />
