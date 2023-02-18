@@ -2740,10 +2740,12 @@ ul.bidList_.info_ li.fulwdth {
 }
 
 .auctionLive .card_postImg img {
-  min-width: 428px;
-  max-height: 241px !important;
-  object-fit: cover;
-  overflow: hidden !important;
+      /* min-width: 428px; */
+      /* max-height: 241px !important; */
+      object-fit: cover;
+      overflow: hidden !important;
+      width: 100%;
+      height: 395px;
 }
 
 footer a img {

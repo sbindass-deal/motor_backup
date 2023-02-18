@@ -31,7 +31,7 @@ const Enquiry = () => {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Customer Support</h3>
+              <h3>Customer Enquiry</h3>
 
               <hr id="hr"/>
               <ul className="postTopOption" id="widthChnge">

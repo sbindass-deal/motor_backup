@@ -89,7 +89,7 @@ function Orders() {
                               <td>
                                 <Link
                                   to={`/orders-details/${curElem.order_id}`}
-                                  className="btn p-1"
+                                  className="orange_btn p-1"
                                   style={{
 
                                     fontWeight: "100",

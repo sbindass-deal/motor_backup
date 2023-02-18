@@ -56,12 +56,12 @@ const DealerListFeature = () => {
                  
 
                   <Link to="/admin-dealer/add-dealer" className="orange_btn" style={{
-                    padding: "6px",
-                    fontSize: "18px",
-                    fontWeight: "100"
+                    // padding: "6px",
+                    // fontSize: "18px",
+                    // fontWeight: "100"
 
                   }}>
-                    + Add Dealer List
+                    + Add Dealer
                   </Link>
                 </div>
 

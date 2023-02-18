@@ -44,7 +44,7 @@ function GearProducts() {
               >
                 <h3>Gear Products</h3>
                 <Link to="/add/gear-product" className="orange_btn">
-                  + Add Gear Products
+                  + Add Products
                 </Link>
               </div>
 

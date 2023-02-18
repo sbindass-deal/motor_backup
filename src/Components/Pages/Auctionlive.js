@@ -144,7 +144,7 @@ const Auctionlive = () => {
                 return (
                   <div
                     key={curElem.id}
-                    className="col-12 col-lg-4 col-md-6 pb-3 auctionLive"
+                    className="col-12 col-lg-6 col-md-6 pb-3 auctionLive"
                   >
                     <div className="card_post">
                       <div className="card_postImg">
