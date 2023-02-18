@@ -104,7 +104,7 @@ const DealerList = () => {
           {dealerData.length > 0 &&
             dealerData.map((curElem) => {
               return (
-                <div className="col-lg-4 col-sm-12 inner-slider showrroom_wrap">
+                <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
                   <Link to={`/dealerprofile/${curElem.id}`}>
                     <div className="card_post">
                       <div className="card_postImg dlr">

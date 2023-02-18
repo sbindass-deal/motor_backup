@@ -39,7 +39,7 @@ const Dealer = () => {
       </section>
 
       <section className="ptb_80" id="">
-        <div className="container">
+        <div className="auction_container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
               <h2>Featured Dealers</h2>
