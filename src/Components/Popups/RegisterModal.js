@@ -204,10 +204,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput
+                  <FormInput style={{ textTransform: "none" }}
                     value={userInput.email}
                     onChange={handleUserInput}
                     name="email"
+                    
                     placeholder="Enter Email address"
                     errorMessage="It should be a valid email address!"
                     label="Email address"
@@ -215,10 +216,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput
+                  <FormInput style={{ textTransform: "none" }}
                     value={userInput.userName}
                     onChange={handleUserInput}
                     name="userName"
+                   
                     placeholder="Enter Username"
                     errorMessage="Username should be 3-30 characters and shouldn't include any special character!"
                     label="Username"
@@ -240,7 +242,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <div className="aa">
-                    <FormInput
+                    <FormInput style={{textTransform:"none"}}
                       value={userInput.password}
                       onChange={handleUserInput}
                       name="password"
@@ -264,7 +266,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
-                  <FormInput
+                  <FormInput style={{ textTransform: "none" }}
                     value={userInput.cPassword}
                     onChange={handleUserInput}
                     name="cPassword"

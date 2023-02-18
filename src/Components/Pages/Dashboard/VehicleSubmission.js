@@ -57,7 +57,7 @@ function VehicleSubmission() {
                 <li className="post_search" >
                   <input type="search" name="search" placeholder="Search…" onChange={
                     (e)=>setSearchTerm(e.target.value)
-                  }/>
+                  } />
                 </li>
               </ul>
               <div class="card_Gray table-responsive vehicleSub" id="scrollable">

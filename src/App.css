@@ -48,3 +48,10 @@
   width: 111%;
 } */
 
+#text1{
+text-transform: capitalize;
+}
+
+input[type=search],input[type=text], textarea{
+  text-transform: capitalize;
+}
