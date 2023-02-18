@@ -163,7 +163,7 @@ function ClassifiedAddList() {
                   classifiedAds.map((curElem) => {
                     return (
                       <div key={curElem.id} class="col-12 col-md-6 pb-3">
-                        <div class="card_post">
+                        <div class="card_post box_shadow_common">
                           <div class="card_postImg">
                             <a
                               target="_blank"

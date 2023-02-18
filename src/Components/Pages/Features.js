@@ -124,7 +124,7 @@ const Features = () => {
                 filteredData.map((curElem) => {
                   return (
                     <div className="col-12 col-md-6 pb-3">
-                      <div className="card_post">
+                      <div className="card_post box_shadow_common">
                         <div className="card_postImg">
                         
                           <Link to={`/detail/${curElem.id}`}>
