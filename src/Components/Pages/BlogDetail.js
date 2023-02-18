@@ -14,7 +14,7 @@ const BlogDetail = () => {
 
   return (
     <section className="ptb_80 pt_sm_50">
-      <div className="auction_container">
+      <div className="container">
         <div className="row ">
           <div className="col-sm-9 col-12 pb-3">
             <div className="mainImg">
