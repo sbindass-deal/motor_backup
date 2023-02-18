@@ -104,7 +104,7 @@ const DealerList = () => {
           {dealerData.length > 0 &&
             dealerData.map((curElem) => {
               return (
-                <div className="col-lg-4 col-sm-12 inner-slider showrroom_wrap">
+                <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
                   <Link to={`/dealerprofile/${curElem.id}`}>
                     <div className="card_post">
                       <div className="card_postImg dlr">
@@ -126,14 +126,14 @@ const DealerList = () => {
                       </div>
                       <div className="card_postInfo">
                         <div className="auction_wrapper">
-                        <h5 className="auction_heading">{curElem.title}  </h5>
-                        <small>ADS</small>
-
+                          <h5 className="auction_heading">{curElem.title} </h5>
+                          <small>ADS</small>
                         </div>
-                        <p>{curElem.dealerDescription}</p>
+                        <p>{curElem?.dealerDescription.substr(0, 200)}</p>
 
-                        <button className="orange_btn opening_bid_btn">View Details <i class="fa fa-arrow-right"></i></button>
-
+                        <button className="orange_btn opening_bid_btn">
+                          View Details <i class="fa fa-arrow-right"></i>
+                        </button>
                       </div>
                     </div>
                   </Link>
