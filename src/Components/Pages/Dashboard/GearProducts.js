@@ -5,8 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function GearProducts() {
-  const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm]=useState('')
+  const [searchTerm, setSearchTerm] = useState("");
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
   const handleDelete = (id) => {
@@ -41,7 +40,8 @@ function GearProducts() {
 
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }} id="widthChnge"
+                style={{ justifyContent: "space-between" }}
+                id="widthChnge"
               >
                 <h3>Gear Products</h3>
                 <Link to="/add/gear-product" className="orange_btn">
@@ -49,17 +49,23 @@ function GearProducts() {
                 </Link>
               </div>
 
-
-
-              <hr id="hr"/>
-              <ul className="postTopOption" id="widthChnge" >
+              <hr id="hr" />
+              <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
-                    setSearchTerm(e.target.value)
-                  }} />
+                  <input
+                    type="search"
+                    name="search"
+                    placeholder="Search…"
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
+                  />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
+              <div
+                class="card_Gray table-responsive merchant vehicleSub"
+                id="scrollable"
+              >
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -76,56 +82,64 @@ function GearProducts() {
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                      products.filter((curElem, i) => {
-                        if (searchTerm == '') {
-                          return curElem
-                        } else if (curElem.title.toLowerCase().includes(searchTerm.toLowerCase())
-                          || curElem.color.toLowerCase().includes(searchTerm.toLowerCase())
-                          || curElem.size.toLowerCase().includes(searchTerm.toLowerCase())
-                          || curElem.category.toLowerCase().includes(searchTerm.toLowerCase())
+                    {products
+                      .filter((curElem, i) => {
+                        if (searchTerm == "") {
+                          return curElem;
+                        } else if (
+                          curElem.title
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                          curElem.color
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                          curElem.size
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) ||
+                          curElem.category
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase())
                         ) {
-                          return curElem
+                          return curElem;
                         }
-                      }).map((curElem, i) => {
-                          
-                      
-                      return (
-                        <tr key={curElem.id}>
-                          <th scope="row">{i + 1}</th>
-                          <td>
-                            <div className="">
-                              <img
-                              width={100}
-                              className="img-fluid"
-                                src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
-                                alt={curElem.title}
-                              />
-                            </div>
-                          </td>
-                          <td>{curElem.title}</td>
-                          <td>${curElem.price}</td>
-                          <td>{curElem.color}</td>
-                          <td>{curElem.size}</td>
-                          <td>{curElem.category}</td>
-                          <td className="actionBtn">
-                            <Link to={`/gear-product/${curElem.id}`}>
-                              <button
-                                data-toggle="modal"
-                                data-target="#MerchandiseEdit"
-                              >
-                                <i class="fa-solid fa-pencil"></i>
-                              </button>
-                            </Link>
+                      })
+                      .map((curElem, i) => {
+                        return (
+                          <tr key={curElem.id}>
+                            <th scope="row">{i + 1}</th>
+                            <td>
+                              <div className="">
+                                <img
+                                  width={100}
+                                  className="img-fluid"
+                                  src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
+                                  alt={curElem.title}
+                                />
+                              </div>
+                            </td>
+                            <td>{curElem.title}</td>
+                            <td>${curElem.price}</td>
+                            <td>{curElem.color}</td>
+                            <td>{curElem.size}</td>
+                            <td>{curElem.category}</td>
+                            <td className="actionBtn">
+                              <Link to={`/gear-product/${curElem.id}`}>
+                                <button
+                                  data-toggle="modal"
+                                  data-target="#MerchandiseEdit"
+                                >
+                                  <i class="fa-solid fa-pencil"></i>
+                                </button>
+                              </Link>
 
-                            {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
-                            <button onClick={() => handleDelete(curElem.id)}>
-                              <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                              {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
+                              <button onClick={() => handleDelete(curElem.id)}>
+                                <i class="fa-solid fa-trash-can"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
 
                     {/* <Link to="/add/gear-product" className="btn mt-4">
                       <i class="fa-sharp fa-solid fa-plus"></i>

@@ -46,7 +46,7 @@ const Products = ({ id, price, image, title, curElem }) => {
                 <button
                   onClick={() => {
                     dispatch(addProduct({ ...curElem, quantity: 1 }));
-                    notify("Item Added Successfully");
+                    notify("Added to cart.");
                   }}
                   className="orange_btn"
                 >

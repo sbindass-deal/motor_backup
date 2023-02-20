@@ -195,7 +195,7 @@ const AddVehicleAds = () => {
                   name="description"
                   placeholder="Enter Description"
                   className="field"
-                  maxLength={200}
+                  maxLength={2000}
                   required
                 ></textarea>
               </div>

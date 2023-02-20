@@ -48,7 +48,7 @@ const ShopDetails = () => {
 
   const handleProduct = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));
-    notify("Item Added Successfully");
+    notify("Added to cart.");
   };
 
   return (

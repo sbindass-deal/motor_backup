@@ -48,6 +48,17 @@ const VechilesRegistraion = () => {
   const [showError, setShowError] = useState(true);
   const [vinDetails, setVinDetails] = useState({});
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
+  const [userInfo, setUserinfo] = useState({});
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
+      }
+    });
+  }, []);
+
   const handleClosePayment = () => {
     setShowPayment(false);
   };
@@ -352,9 +363,6 @@ const VechilesRegistraion = () => {
   const detailsOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
-    if (Name === "reserveAmount" || Name === "documentFee") {
-      Value = e.target.value.replace(/\D/g, "");
-    }
     setDetailstab({ ...detailstab, [Name]: Value });
   };
   const detailsSubmitHandler = (e) => {
@@ -375,7 +383,7 @@ const VechilesRegistraion = () => {
 
   const informationSubmitHandler = async (e) => {
     e.preventDefault();
-
+    setSubmitLoading(true);
     const {
       name,
       email,
@@ -449,9 +457,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
 
     axios
       .post(`${url}vehicles`, {
@@ -886,7 +894,7 @@ const VechilesRegistraion = () => {
                                 basicFactOnChange(e);
                               }}
                               name="vin"
-                              label="What is the VIN"
+                              label="What is your vehicle VIN?"
                               placeholder="Enter VIN"
                               errorMessage="VIN should be 17 characters and shouldn't include any special character!"
                               pattern="^[A-Za-z0-9]{17}$"
@@ -1184,6 +1192,7 @@ const VechilesRegistraion = () => {
                                     }
                                   }}
                                   name="file"
+                                  placeholder="Hello"
                                   type="file"
                                   accept="image/gif, image/jpeg, image/png, image/jpg"
                                   required
@@ -1277,7 +1286,9 @@ const VechilesRegistraion = () => {
 
                       <h5>Please provide some basic info on your vehicle:</h5>
                       <p>
-                        We love {namefield.make} {namefield.model}s!{" "}
+                        {namefield.make &&
+                          namefield.model &&
+                          `We love ${namefield.make} ${namefield.model}s!`}
                       </p>
                       {/* <div className="mb-2">
                       <img src={img_001} />
@@ -1295,7 +1306,7 @@ const VechilesRegistraion = () => {
                           {false && (
                             <div className="col-12 col-sm-12 col-md-6">
                               {/* <div className="form-group">
-                            <label>What is the VIN?</label>
+                            <label>What is your vehicle VIN?</label>
                             <input
                               value={basicfact.vin}
                               onChange={basicFactOnChange}
@@ -1313,7 +1324,7 @@ const VechilesRegistraion = () => {
                               value={basicfact.vin}
                               onChange={basicFactOnChange}
                               name="vin"
-                              label="What is the VIN"
+                              label="What is your vehicle VIN?"
                               placeholder="Enter VIN"
                               errorMessage="VIN should be 17 characters and shouldn't include any special character!"
                               pattern="^[A-Za-z0-9]{17}$"
@@ -2231,12 +2242,13 @@ const VechilesRegistraion = () => {
                                 value={detailstab.documentFee}
                                 onChange={detailsOnChange}
                                 name="documentFee"
+                                type="text"
                                 placeholder="USD $"
-                                errorMessage="Amount should be 1-9 characters and shouldn't include any special character and alphabet!"
+                                errorMessage="Amount should be 1-9 characters and shouldn't include any special character, space and alphabet!"
                                 label="What is the amount of the document fee that you
                               will charge buyers above and beyond sale price and
                               tax? (This will be printed in the listing.)"
-                                pattern="^[0-9]{1,9}$"
+                                pattern="^[0-9,]{1,9}$"
                                 required={true}
                               />
                             </div>
@@ -2355,9 +2367,9 @@ const VechilesRegistraion = () => {
                               onChange={informationOnChange}
                               name="iname"
                               placeholder="Enter Name"
-                              errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                              errorMessage="Name should be 2-60 characters and shouldn't include any special character or number!"
                               label="Name"
-                              pattern="^[A-Za-z ]{3,16}$"
+                              pattern="^[A-Za-z ]{2,60}$"
                               required={true}
                             />
                           </div>
@@ -2448,7 +2460,7 @@ const VechilesRegistraion = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2> Name : {information.iname} </h2>
+            <h2> Name : {userInfo.name} </h2>
             <h3 className="price__">
               {" "}
               Type :{" "}
@@ -2510,7 +2522,7 @@ const VechilesRegistraion = () => {
                         name="bid"
                         value={getVinNumber}
                         onChange={(e) => setGetVinNumber(e.target.value)}
-                        label="What is the VIN"
+                        label="What is your vehicle VIN?"
                         placeholder="Enter VIN"
                         errorMessage="VIN should be 17 characters and shouldn't include any special character!"
                         pattern="^[A-Za-z0-9]{17}$"
