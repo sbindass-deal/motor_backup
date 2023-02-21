@@ -173,6 +173,8 @@ function Detail() {
     );
   }, [vehicleDatas, id]);
 
+  
+
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);

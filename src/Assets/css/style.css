@@ -808,7 +808,7 @@ footer h6:before {
   height: 50px;
 }
 
-.postTopOption {
+/* .postTopOption {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -819,18 +819,38 @@ footer h6:before {
 
 .postTopOption li {
   padding: 5px;
+} */
+
+
+.postTopOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #111;
+}
+.postTopOption li {
+  padding: 5px;
 }
 
 .post_search {
   width: 100%;
 }
 
-.post_search input {
+/* .post_search input {
   width: 100%;
   color: #fff;
   background-color: transparent;
   padding: 8px;
   border: 1px #949292 solid
+} */
+
+.post_search input {
+    width: 100%;
+    color: #fff;
+    background-color: transparent;
+    padding: 8px;
+    border: 1px #333 solid;
 }
 
 .gry_btn {
