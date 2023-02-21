@@ -486,9 +486,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
@@ -1315,7 +1315,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12">
                             <p className="small">
                               Accepted file types: jpg, jpeg, png, Max. file
-                              size: 2 MB
+                              size: 8 MB
                             </p>
                           </div>
                           <div className="col-12"></div>

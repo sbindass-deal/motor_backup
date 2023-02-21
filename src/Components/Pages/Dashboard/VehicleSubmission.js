@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import ModeCommentIcon from '@mui/icons-material/ModeComment';
+import ModeCommentIcon from "@mui/icons-material/ModeComment";
 
 function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
-  
-  const [searchTerm, setSearchTerm] = useState('')
-  
-  const [loading, setLoading] = useState(true)
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const [loading, setLoading] = useState(true);
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(process.env.REACT_APP_URL + "vehicles");
       console.log("refral", response.data);
       if (response.data.data.length > 0) {
         setShowvehicles(response.data.data);
-        setLoading(false)
+        setLoading(false);
       } else {
         console.log("Data is empty");
       }
@@ -52,22 +52,32 @@ function VehicleSubmission() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Vehicle Submission</h3>
-              <hr id='hr' />
+              <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
-                <li className="post_search" >
-                  <input type="search" name="search" placeholder="Search…" onChange={
-                    (e)=>setSearchTerm(e.target.value)
-                  } />
+                <li className="post_search">
+                  <input
+                    type="search"
+                    name="search"
+                    placeholder="Search"
+                    onChange={(e) => {
+                      const newVal = e.target.value.toUpperCase();
+                      setSearchTerm(newVal);
+                    }}
+                  />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive vehicleSub" id="scrollable">
-
-                {
-                  loading ? <div class="d-flex justify-content-center">
+              <div
+                class="card_Gray table-responsive vehicleSub"
+                id="scrollable"
+              >
+                {loading ? (
+                  <div class="d-flex justify-content-center">
                     <div class="spinner-border" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
-                  </div> : <table class="table table-striped">
+                  </div>
+                ) : (
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
@@ -82,9 +92,7 @@ function VehicleSubmission() {
                           Car Info
                         </th>
 
-                        <th scope="col"
-                          style={{ textAlign: "center" }}
-                        >
+                        <th scope="col" style={{ textAlign: "center" }}>
                           Action
                         </th>
                         <th>status</th>
@@ -92,57 +100,61 @@ function VehicleSubmission() {
                     </thead>
                     <tbody>
                       {showvehicles.length > 0
-                          ? showvehicles.filter((data, index)=>{
-                            if (searchTerm == '') {
-                              return data
-                            } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())
-                              || data.make.toLowerCase().includes(searchTerm.toLowerCase())
+                        ? showvehicles
+                            .filter((data) =>
+                              data.make && data.model && data.year
+                                ? data.make
+                                    .toUpperCase()
+                                    .includes(searchTerm) ||
+                                  data.model
+                                    .toUpperCase()
+                                    .includes(searchTerm) ||
+                                  data.year.toUpperCase().includes(searchTerm)
+                                : data
                             )
-                              return data
-                          })
-                          .map((data, index) => (
-                          <tr
-                            key={index}
-                          // style={{ cursor: "pointer" }}
-                          >
-                            <th scope="row">{index + 1}</th>
-                            {/* <td>{data.userId}</td> */}
-                            <td>{data.name}</td>
-                            <td>
-                              {new Date(data.updated_at).toLocaleDateString()}{" "}
-                              {new Date(data.updated_at).toLocaleTimeString()}
-                            </td>
-                            <td>{data.year}</td>
-                            <td>{data.make}</td>
-                            <td className="actionBtn vs">
-                              <Link
-                                to={`/vehicle-submission/${data.id}`}
-                                className="btn"
+                            .map((data, index) => (
+                              <tr
+                                key={index}
+                                // style={{ cursor: "pointer" }}
                               >
-                                {/* <i class="fa-solid fa-trash-can"></i> */}
-                                View
-                              </Link>
-                            </td>
-                            <td>
-                              {data.approved == 0
-                                ? "Pending"
-                                : data.approved == 1
-                                  ? "Approved"
-                                  : data.approved == 2
+                                <th scope="row">{index + 1}</th>
+                                {/* <td>{data.userId}</td> */}
+                                <td>{data.name}</td>
+                                <td>
+                                  {new Date(
+                                    data.updated_at
+                                  ).toLocaleDateString()}{" "}
+                                  {new Date(
+                                    data.updated_at
+                                  ).toLocaleTimeString()}
+                                </td>
+                                <td>{data.year}</td>
+                                <td>{data.make}</td>
+                                <td className="actionBtn vs">
+                                  <Link
+                                    to={`/vehicle-submission/${data.id}`}
+                                    className="btn"
+                                  >
+                                    {/* <i class="fa-solid fa-trash-can"></i> */}
+                                    View
+                                  </Link>
+                                </td>
+                                <td>
+                                  {data.approved == 0
+                                    ? "Pending"
+                                    : data.approved == 1
+                                    ? "Approved"
+                                    : data.approved == 2
                                     ? "Rejected"
                                     : null}
-                              {/* <span>{data.status && data.status.title}</span> */}
-                            </td>
-                          </tr>
-                        ))
+                                  {/* <span>{data.status && data.status.title}</span> */}
+                                </td>
+                              </tr>
+                            ))
                         : null}
                     </tbody>
                   </table>
-                }
-
-
-
-
+                )}
               </div>
             </div>
           </div>

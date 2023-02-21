@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
@@ -23,6 +23,17 @@ const EditGearProduct = () => {
     color: "",
     desc: "",
   });
+  const inputRef = useRef();
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setFile((prevState) => [...prevState, ...event.dataTransfer.files]);
+  };
+
   const handleOnChange = (e) => {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
@@ -41,76 +52,119 @@ const EditGearProduct = () => {
     });
     setShowImage(filteredData.image);
   }, [id]);
-  const updateImage = async (prodId) => {
-    const url = `${process.env.REACT_APP_URL}updateproductImage`;
+  // const updateImage = async (prodId) => {
+  //   const url = `${process.env.REACT_APP_URL}updateproductImage`;
 
-    let formdata = new FormData();
-    formdata.append("image", file[0]);
-    formdata.append("id", prodId);
+  //   let formdata = new FormData();
+  //   formdata.append("image", file[0]);
+  //   formdata.append("id", prodId);
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios
-      .post(url, formdata, config)
-      .then((response) => {
-        if (response.status === 200) {
-          navigate("/gear-product");
-          window.location.reload(false);
-        }
-      })
-      .catch((error) => {
-        navigate("/gear-product");
-        window.location.reload(false);
-      });
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   await axios
+  //     .post(url, formdata, config)
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         navigate("/gear-product");
+  //         window.location.reload(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       navigate("/gear-product");
+  //       window.location.reload(false);
+  //     });
+  // };
+
+  const uploadFileOne = (vehicleId = 44) => {
+    (async () => {
+      for await (const file1 of file) {
+        const url = process.env.REACT_APP_URL + "updateproductImage";
+        const formData = new FormData();
+        formData.append("image[]", file1);
+        formData.append("product_id", vehicleId);
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
   };
+
   const handleApi = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    const url = `${process.env.REACT_APP_URL}updateproduct/${id}`;
-    let formdata = new FormData();
-    formdata.append("title", getInputData.name);
-    formdata.append("price", getInputData.price);
-    formdata.append("description", getInputData.desc);
-    formdata.append("category", getInputData.category);
-    formdata.append("stocks", getInputData.stock);
-    formdata.append("color", getInputData.color);
-    formdata.append("size", getInputData.size);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-
-    await axios
-      .post(url, formdata, config)
-      .then((response) => {
-        if (response.status === 200) {
-          if (file.length > 0) {
-            updateImage(id);
-          } else {
-            navigate("/gear-product");
-            window.location.reload(false);
-          }
-        }
+    axios
+      .post(`${process.env.REACT_APP_URL}updateproduct/${id}`, {
+        stocks: getInputData.stock,
+        color: getInputData.color,
+        size: getInputData.size,
+        price: getInputData.price,
+        title: getInputData.name,
+        description: getInputData.desc,
+        category: getInputData.category,
       })
-      .catch((error) => {
-        if (file.length > 0) {
-          updateImage(id);
-        } else {
-          navigate("/gear-product");
-          window.location.reload(false);
+      .then(function (response) {
+        if (response.status === 200) {
+          // navigate("/gear-product");
+          // window.location.reload(false);
         }
+        uploadFileOne(response.data.data.id);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
+
+  // const handleApi = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   const url = `${process.env.REACT_APP_URL}updateproduct/${id}`;
+  //   let formdata = new FormData();
+  //   formdata.append("title", getInputData.name);
+  //   formdata.append("price", getInputData.price);
+  //   formdata.append("description", getInputData.desc);
+  //   formdata.append("category", getInputData.category);
+  //   formdata.append("stocks", getInputData.stock);
+  //   formdata.append("color", getInputData.color);
+  //   formdata.append("size", getInputData.size);
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+
+  //   await axios
+  //     .post(url, formdata, config)
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         if (file.length > 0) {
+  //           updateImage(id);
+  //         } else {
+  //           navigate("/gear-product");
+  //           window.location.reload(false);
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (file.length > 0) {
+  //         updateImage(id);
+  //       } else {
+  //         navigate("/gear-product");
+  //         window.location.reload(false);
+  //       }
+  //     });
+  // };
   return (
     <>
       <div className="container">
         <div className="row m-md-5 my-4">
-          <form onSubmit={handleApi}>
+          <form>
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
@@ -210,7 +264,7 @@ const EditGearProduct = () => {
                   </span>
                 )}
               </div>
-              <div className="col-12 col-md-6">
+              {/* <div className="col-12 col-md-6">
                 <label>Update Photos</label>
                 {file.length === 0 && (
                   <div class="position-relative py-4 py-md-1">
@@ -234,6 +288,57 @@ const EditGearProduct = () => {
                     type="file"
                   />
                 </div>
+              </div> */}
+              <div className="col-12 col-md-12">
+                <label>Upload Photos</label>
+                <div className="row">
+                  {Array.from(file).map((items) => {
+                    return (
+                      <span>
+                        <img
+                          src={items ? URL.createObjectURL(items) : null}
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            objectFit: "cover",
+                            padding: "15px",
+                          }}
+                        />
+                      </span>
+                    );
+                  })}
+                </div>
+
+                <div
+                  className="dropzone"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                >
+                  <h3>Drag and Drop Files to Upload</h3>
+                  <h3>Or</h3>
+                  <input
+                    onChange={(e) => {
+                      return setFile((prevState) => [
+                        ...prevState,
+                        ...e.target.files,
+                      ]);
+                    }}
+                    name="file"
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png, image/jpg"
+                    ref={inputRef}
+                    required
+                    multiple
+                    hidden
+                  />
+                  <button
+                    className="orange_btn"
+                    type="button"
+                    onClick={() => inputRef.current.click()}
+                  >
+                    Select Files
+                  </button>
+                </div>
               </div>
             </div>
             {loading ? (
@@ -241,7 +346,7 @@ const EditGearProduct = () => {
                 Loading...
               </button>
             ) : (
-              <button type="submit" className="btn">
+              <button type="button" onClick={handleApi} className="btn">
                 Submit
               </button>
             )}
