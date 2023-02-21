@@ -233,7 +233,7 @@ function Detail() {
             <div
               className="col-12 text-center pb_30 box_background p-30"
               id="sticky"
-             
+
             >
               <h2 className="title_combo title_Center" id="sticky2">
                 {vehicle.make} {vehicle.model} {vehicle.year}
@@ -281,14 +281,14 @@ function Detail() {
                               alt="comments-icon"
                               class="comments_header_icon"
                             /> */}
-                            <ModeCommentIcon className="color_orange"/>
+                            <ModeCommentIcon className="color_orange" />
                             <span className="color_orange"
                               style={{ marginLeft: "8px", }}
                             >
                               {comments.length}
                             </span>
                             <span className="color_orange"
-                              style={{ marginLeft: "8px",  }}
+                              style={{ marginLeft: "8px", }}
                             >
                               Comments
                             </span>
@@ -1002,28 +1002,31 @@ function Detail() {
                   <div className=" phG">
                     <h5>PHOTO GALLERY </h5>
                     <div ref={moreImgRaf} class="card-group">
-                      {vehicle.images &&
-                        vehicle.images.map((curElem) => {
-                          return (
-                            <div
-                              class="card mx-2"
-                              style={{ width: "30vh", height: "30vh" }}
-                            >
-                              <Image
-                                loading="lazy"
-                                style={{ height: "30vh", width: "30vh" }}
-                                class="card-img-top"
-                                src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </div>
-                          );
-                        })}
+                      <Image.PreviewGroup>
+                        {vehicle.images &&
+                          vehicle.images.map((curElem) => {
+                            return (
+                              <div
+                                class="card mx-2"
+                                style={{ width: "30vh", height: "30vh" }}
+                              >
+
+                                <Image
+                                  loading="lazy"
+                                  style={{ height: "30vh", width: "30vh" }}
+                                  class="card-img-top"
+                                  src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                      </Image.PreviewGroup>
                     </div>
                   </div>
                   {/* <div className="row pt-4">

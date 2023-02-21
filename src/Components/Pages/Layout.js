@@ -68,6 +68,7 @@ import VehicleAdsList from "./Dashboard/ads/VehicleAdsList";
 import DealerListFeature from "./Dashboard/ads/DealerListFeature";
 import AddDealer from "./Dashboard/ads/AddDealer";
 import AddVehicleAds from "./Dashboard/ads/AddVehicleAds";
+import DetailNew from "./DetailNew";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -83,6 +84,7 @@ const Layout = () => {
           {logingUser.login.token && (
             <>
               <Route path="accountinfo" element={<AccountInfo />} />
+              <Route path="detailNew" element={<DetailNew />} />
               <Route path="listing" element={<MyListings />} />
               <Route path="bidswins" element={<MyBidsWins />} />
               <Route path="myshipments" element={<MyShipments />} />

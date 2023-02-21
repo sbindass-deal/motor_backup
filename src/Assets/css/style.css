@@ -5520,3 +5520,115 @@ margin-bottom: 20px!important;
 .mt-30{
   margin-top: 30px!important;
 }
+
+
+.main{
+justify-content: space-evenly;
+}
+
+
+
+.textAlign {
+    margin-top: 14px;
+}
+/* ===================vikas 20-feb============ */
+.bg-dark1{
+  background-color: #141414;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+.bg-dark2{
+
+width: 100%;
+}
+
+.bg-dark2 button{
+width: 100%;
+}
+
+.img-buttom-gap {
+    position: relative;
+    top: -48px;
+    /* text-align: center; */
+    padding: 15px;
+    background-color: #232323;
+}
+
+
+.descp {
+    padding: 21px;
+    position: relative;
+    top: -29px;
+     background-color: #141414;
+}
+
+.text-color{
+  color: #F6811C;
+}
+
+
+.left_box {
+height: fit-content;
+}
+
+.left_box2 {
+     margin-top: -30%;
+}
+.left_box3 {
+     margin-top: -8%;
+}
+
+.left_box4 {
+    margin-top: -11%;
+}
+
+btn1{
+  background-color: #054E0F !important;
+}
+
+.text_black{
+  color: black;
+}
+
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.card-body button{
+  background-color: #074E0A;
+}
+.card-body p{
+  color: black;
+}
+
+.light .bg-dark1 {
+  background-color: white;
+}
+
+.light .descp{
+  background-color: white;
+}
+
+.light .img-buttom-gap {
+  background-color: white;
+}
+
+
+.background_color {
+    background: #141414;
+    /* text-align: center; */
+}
+
+.hr{
+  border-color:#656464;
+}
+
+.light .background_color {
+    background: white
+  
+}
+/* ======================================== */
