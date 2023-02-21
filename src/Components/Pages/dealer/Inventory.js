@@ -9,6 +9,8 @@ import {
 } from "../../../redux/reducers/vehicleReducer";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import img_01 from "../../../Assets/images/img_01.jpg";
+
 
 const Inventory = () => {
   const dispatch = useDispatch();
@@ -117,10 +119,29 @@ const Inventory = () => {
             ) : (
               searchedData.map((curElem) => {
                 return (
-                  <div className="col-12 col-md-6 col-lg-6" key={curElem.id}>
+                  <div className="col-4" key={curElem.id}>
+                    {/* <div class="">
+                      <div class="card_post">
+                        <div class="card_postImg">
+                          <div class="card_postImg_labe">Auction</div>
+                         
+                          <img src={img_01} />
+                        </div>
+                        <div class="card_postInfo">
+                          <h4><a href="detail.html">35k-Mile 1999 Mercedes-Benz SL500</a></h4>
+                          <ul class="labelList priceDateList">
+                            <li class="price__"><span>$126,888</span></li>
+                            <li class="Date__"><label><i class="fa-solid fa-clock"></i></label> <span>5 days</span></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div> */}
+
+                    
+
                     <div className="card_post Inventory auction ffff">
                       {curElem.displayInAuction === "Yes" ? (
-                        <p className="forOction">For Auction</p>
+                        <p className="forOction">Auction</p>
                       ) : curElem.displayInAuction === "classified" ? (
                         <p className="forOction">Ads</p>
                       ) : null}
@@ -210,7 +231,7 @@ const Inventory = () => {
                           <p className="price__">${curElem.documentFee}</p>
                         </h6>
                         <p>{curElem?.moreDescription.substr(0, 200)}</p>
-                        <table className="showroomCol">
+                        {/* <table className="showroomCol">
                           <tbody>
                             <tr>
                               <td>Odometer Reading </td>
@@ -225,8 +246,8 @@ const Inventory = () => {
                               <td>{curElem.name}</td>
                             </tr>
                           </tbody>
-                        </table>
-                        {curElem.displayInAuction === "classified" ? (
+                        </table> */}
+                        {/* {curElem.displayInAuction === "classified" ? (
                           <a
                             target="_blank"
                             rel="noopener"
@@ -246,13 +267,27 @@ const Inventory = () => {
                           >
                             View Details <i class="fa fa-arrow-right"></i>
                           </Link>
-                        )}
+                        )} */}
+
+
+                        
                       </div>
                     </div>
                   </div>
                 );
               })
             )}
+            <div class="col-12 mb-5">
+              <ul class="pagination justify-content-center mt-4">
+                <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="#">10</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

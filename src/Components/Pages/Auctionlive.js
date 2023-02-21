@@ -86,7 +86,7 @@ const Auctionlive = () => {
                     }}
                     type="text"
                     name=""
-                    placeholder="Search"
+                    placeholder="Filter auctions for make, model, category…"
                   />
                 </li>
                 <li className="">
@@ -95,7 +95,8 @@ const Auctionlive = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i className="fa-solid fa-heart "></i>
+                    {/* <i className="fa-solid fa-heart "></i> */}
+                    <i class="fa-solid fa-star mr-2"></i>Watch
                   </button>
                 </li>
                 <li className="d-flex gv">
@@ -154,6 +155,18 @@ const Auctionlive = () => {
                             to={`/detail/${curElem.id}`}
                           >
                             {curElem.images[0] ? (
+                              <>
+                                <button
+                                  // onClick={() => addFabrity(curElem.id)}
+                                  type="button"
+                                  className="watchedIc"
+                                  style={{ margin: "8px" }}
+                                >
+                                  <i
+                                    className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
+                                      }`}
+                                  ></i>
+                                </button>
                               <img
                                 loading="lazy"
                                 src={
@@ -166,13 +179,28 @@ const Auctionlive = () => {
                                     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                                 }}
                                 alt="Maskgroup1"
-                              />
+                                />
+                                </>
                             ) : (
-                              <img
+                                <>
+                                  
+                                  <button
+                                    // onClick={() => addFabrity(curElem.id)}
+                                    type="button"
+                                    className="watchedIc"
+                                    style={{margin:"8px"}}
+                                  >
+                                    <i
+                                      className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
+                                        }`}
+                                    ></i>
+                                  </button>
+                                  <img
                                 loading="lazy"
                                 src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                                 alt="Maskgroup1"
-                              />
+                                />
+                                </>
                             )}
                           </Link>
                         </div>
@@ -184,7 +212,7 @@ const Auctionlive = () => {
                             {curElem.odmeter}
                           </Link>
 
-                          <button
+                          {/* <button
                             onClick={() => addFabrity(curElem.id)}
                             type="button"
                             className="watchedIc"
@@ -194,7 +222,7 @@ const Auctionlive = () => {
                                 curElem.like >= 1 ? "faList" : ""
                               }`}
                             ></i>
-                          </button>
+                          </button> */}
                         </h4>
                         <p className="color_grey">
                           {curElem?.moreDescription.substr(0, 200)}
@@ -208,7 +236,7 @@ const Auctionlive = () => {
                           className="labelList"
                           style={{
                             display: "flex",
-                            justifyContent: "space-between",
+                            justifyContent: "flex-start",
                           }}
                         >
                           <li className="w-auto">
@@ -220,7 +248,7 @@ const Auctionlive = () => {
                             ) : curElem.documentFee ? (
                               <span>
                                 <label>
-                                  Opening Bid: ${curElem.documentFee}
+                                  Current Bid :  ${curElem.documentFee}
                                 </label>
                               </span>
                             ) : null}
@@ -240,16 +268,17 @@ const Auctionlive = () => {
                                 curElem.approved === "11") ? (
                               <label>Upcoming Auction</label>
                             ) : (
-                              <label>Auction Closed</label>
+                              // <label>Auction Closed</label>
+                              <label>End In : 5 days</label>
                             )}
                           </li>
                         </ul>
-                        <Link
+                        {/* <Link
                           to={`/detail/${curElem.id}`}
                           className="orange_btn opening_bid_btn"
                         >
                           View Details <i class="fa fa-arrow-right"></i>
-                        </Link>
+                        </Link> */}
                       </div>
                     </div>
                   </div>

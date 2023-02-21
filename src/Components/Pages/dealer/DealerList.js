@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import rrm_logo from "../../../Assets/images/rrm-logo.png";
 import txautodealer from "../../../Assets/images/txautodealer.png";
 import custombanner5 from "../../../Assets/images/custombanner5.webp";
+import img_01 from "../../../Assets/images/img_01.jpg";
+
 
 const DealerList = () => {
   const [dealerData, setDealerData] = useState([]);
@@ -27,7 +29,14 @@ const DealerList = () => {
   return (
     <>
       <div className="col-12 ListDealer mt-50">
-        <div className="row">
+        <div className="row  pt-4 row_gridList">
+
+
+
+
+
+
+
           {/* <div className="col-lg-4 col-sm-12 inner-slider">
             <a
               target="_blank"
@@ -104,11 +113,66 @@ const DealerList = () => {
           {dealerData.length > 0 &&
             dealerData.map((curElem) => {
               return (
-                <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
+                <>
+ 
+
+                  <div class="col-12 col-md-6 col-lg-4 pb-3">
+                    
+                    <Link to={`/dealerprofile/${curElem.id}`}>
+
+                      {
+                        curElem.image && (
+                          <>
+                            <div class="card_post">
+                              <div class="card_postImg">
+                                <div class="card_postImg_labe">ADS</div>
+                                {/* <button type="button" class="watchedIc"><i class="fa-solid fa-star"></i></button> */}
+                                <img
+                                  loading="lazy"
+                                  src={
+                                    curElem.image[0] &&
+                                    `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt={curElem.name}
+                                />
+                              </div>
+                              <div class="card_postInfo">
+                                <h4><a href="detail.html">{curElem.title}</a></h4>
+                               
+                                {/* <ul class="labelList priceDateList">
+                                  <li class="price__"><span>$126,888</span></li>
+                                  <li class="Date__"><label><i class="fa-solid fa-clock"></i></label> <span>5 days</span></li>
+                                </ul> */}
+                              </div>
+                            </div>
+                          </>
+                        )
+                      }
+
+                     
+                    </Link>
+
+      
+      </div>
+                
+                
+
+
+                
+                
+                {/* <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
                   <Link to={`/dealerprofile/${curElem.id}`}>
                     <div className="card_post">
                       <div className="card_postImg dlr">
                         {curElem.image && (
+                          <>
+                            <small className="">ADS</small>
+                         
                           <img
                             loading="lazy"
                             src={
@@ -122,12 +186,13 @@ const DealerList = () => {
                             }}
                             alt={curElem.name}
                           />
+                             </>
                         )}
                       </div>
                       <div className="card_postInfo">
-                        <div className="auction_wrapper">
+                        <div className="auction_wrapper forOction">
                           <h5 className="auction_heading">{curElem.title} </h5>
-                          <small>ADS</small>
+                          <small >ADS</small>
                         </div>
                         <p>{curElem?.dealerDescription.substr(0, 200)}</p>
 
@@ -137,7 +202,10 @@ const DealerList = () => {
                       </div>
                     </div>
                   </Link>
-                </div>
+                </div> */}
+
+
+                </>
               );
             })}
         </div>

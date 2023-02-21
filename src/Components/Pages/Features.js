@@ -77,7 +77,8 @@ const Features = () => {
                       type="button"
                       className={`gry_btn ${highlightWatch && "active"}`}
                     >
-                      <i className="fa-solid fa-heart"></i>
+                      {/* <i className="fa-solid fa-heart"></i> */}
+                      <i class="fa-solid fa-star mr-2"></i>Watch
                     </button>
                   </li>
                   <li className="d-flex">
@@ -126,8 +127,20 @@ const Features = () => {
                     <div className="col-12 col-md-6 pb-3">
                       <div className="card_post box_shadow_common">
                         <div className="card_postImg">
-                          <Link to={`/detail/${curElem.id}`}>
+                          <Link to={`/detail/${curElem.id}`} className="auction_image">
                             {curElem.images[0] ? (
+                              <>
+                                <button
+                                  // onClick={() => addFabrity(curElem.id)}
+                                  type="button"
+                                  className="watchedIc"
+                                  style={{ margin: "8px" }}
+                                >
+                                  <i
+                                    className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
+                                      }`}
+                                  ></i>
+                                </button>
                               <img
                                 loading="lazy"
                                 src={
@@ -140,13 +153,27 @@ const Features = () => {
                                     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                                 }}
                                 alt="Maskgroup1"
-                              />
+                                />
+                              </>
                             ) : (
+                                <>
+                                  <button
+                                    // onClick={() => addFabrity(curElem.id)}
+                                    type="button"
+                                    className="watchedIc"
+                                    style={{ margin: "8px" }}
+                                  >
+                                    <i
+                                      className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
+                                        }`}
+                                    ></i>
+                                  </button>
                               <img
                                 loading="lazy"
                                 src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                                 alt="Maskgroup1"
-                              />
+                                />
+                               </>
                             )}
                           </Link>
                         </div>
@@ -157,7 +184,7 @@ const Features = () => {
                               {curElem.model} &nbsp;
                               {curElem.year}
                             </Link>
-                            <button
+                            {/* <button
                               onClick={() => addFabrity(curElem.id)}
                               type="button"
                               className="watchedIc"
@@ -167,7 +194,7 @@ const Features = () => {
                                   curElem.like >= 1 ? "faList" : ""
                                 }`}
                               ></i>
-                            </button>
+                            </button> */}
                           </h4>
                           <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
@@ -197,12 +224,12 @@ const Features = () => {
                               )}
                             </li>
                           </ul>
-                          <Link
+                          {/* <Link
                             to={`/detail/${curElem.id}`}
                             className="orange_btn opening_bid_btn"
                           >
                             View Details <i class="fa fa-arrow-right"></i>
-                          </Link>
+                          </Link> */}
                         </div>
                       </div>
                     </div>
