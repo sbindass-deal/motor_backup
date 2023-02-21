@@ -22,7 +22,8 @@ const AddVehicleAds = () => {
   const handleImg = async (vId) => {
     const url = `${process.env.REACT_APP_URL}vehicle-image`;
     let formData = new FormData();
-    formData.append("image", file[0]);
+    formData.append("image[]", file[0]);
+    formData.append("category", "Banner");
     formData.append("vehicleId", vId);
     const config = {
       headers: {
@@ -33,8 +34,8 @@ const AddVehicleAds = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
-          navigate("/admin-dealer");
-          window.location.reload(false);
+          navigate("/admin-vehicle-ad");
+          // window.location.reload(false);
         }
       })
       .catch((error) => {
@@ -108,7 +109,6 @@ const AddVehicleAds = () => {
         fuel: "",
         EndTime: null,
         phone: "",
-        approved: null,
         sold: 1,
       })
       .then(function (response) {
@@ -195,7 +195,7 @@ const AddVehicleAds = () => {
                   name="description"
                   placeholder="Enter Description"
                   className="field"
-                  maxLength={200}
+                  maxLength={2000}
                   required
                 ></textarea>
               </div>

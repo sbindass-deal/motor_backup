@@ -48,7 +48,7 @@ const AddBlog = () => {
         <form onSubmit={handleApi}>
           <div className="row row_gap_5">
             <div className="col-12 ">
-              <label>Blog title</label>
+              <label>Blog Title</label>
               <div className="form-group">
                 <input
                   type="text"
@@ -62,7 +62,7 @@ const AddBlog = () => {
               </div>
             </div>
             <div className="col-12 ">
-              <label>image</label>
+              <label>Image</label>
               <div className="form-group">
                 <input
                   type="file"
