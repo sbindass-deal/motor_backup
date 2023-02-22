@@ -120,25 +120,7 @@ const Inventory = () => {
               searchedData.map((curElem) => {
                 return (
                   <div className="col-4" key={curElem.id}>
-                    {/* <div class="">
-                      <div class="card_post">
-                        <div class="card_postImg">
-                          <div class="card_postImg_labe">Auction</div>
-                         
-                          <img src={img_01} />
-                        </div>
-                        <div class="card_postInfo">
-                          <h4><a href="detail.html">35k-Mile 1999 Mercedes-Benz SL500</a></h4>
-                          <ul class="labelList priceDateList">
-                            <li class="price__"><span>$126,888</span></li>
-                            <li class="Date__"><label><i class="fa-solid fa-clock"></i></label> <span>5 days</span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div> */}
-
-                    
-
+                   
                     <div className="card_post Inventory auction ffff">
                       {curElem.displayInAuction === "Yes" ? (
                         <p className="forOction">Auction</p>
