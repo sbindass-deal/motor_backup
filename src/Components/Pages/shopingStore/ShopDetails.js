@@ -10,9 +10,12 @@ import NotAvailable from "../../UI/NotAvailable";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 import { toast } from "react-toastify";
+import { Carousel } from "antd";
+import { Image } from "antd";
 const ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const notify = (val) =>
@@ -50,6 +53,14 @@ const ShopDetails = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));
     notify("Added to cart.");
   };
+  const contentStyle = {
+    maxHeight: "60vh",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
+    background: "#364d79",
+    cursor: "pointer",
+  };
 
   return (
     <>
@@ -61,11 +72,39 @@ const ShopDetails = () => {
         ) : (
           <div className="row">
             <div className="col-md-6 sliderSec ">
-              <img
+              {/* <img
                 src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
                 alt={product.title}
-              />
+              /> */}
+              <Carousel autoplay>
+                <div>
+                  <img
+                    src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
+                    alt={product.title}
+                    style={contentStyle}
+                    className="img-fluid"
+                    onClick={() => setVisible(true)}
+                  />
+                </div>
+              </Carousel>
+              <div
+                style={{
+                  display: "none",
+                }}
+              >
+                <Image.PreviewGroup
+                  preview={{
+                    visible,
+                    onVisibleChange: (vis) => setVisible(vis),
+                  }}
+                >
+                  <Image
+                    src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
+                  />
+                </Image.PreviewGroup>
+              </div>
             </div>
+
             <div className="col-md-6 rightSec">
               <h5 className="catagories">{product.category}</h5>
               <h2>{product.title}</h2>

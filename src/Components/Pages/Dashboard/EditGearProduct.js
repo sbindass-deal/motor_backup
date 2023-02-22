@@ -244,12 +244,12 @@ const EditGearProduct = () => {
                   required={true}
                 />
               </div>
-              <div className="col-md-12 col-lg-6 col-sm-12 mb-3">
+              <div className="col-md-12 col-lg-12 col-sm-12 mb-3">
                 <label htmlFor="exampleFormControlTextarea1" class="form-label">
                   Description
                 </label>
                 <textarea
-                  class="form-control"
+                  class="field"
                   value={getInputData.desc}
                   name="desc"
                   onChange={handleOnChange}
@@ -292,6 +292,20 @@ const EditGearProduct = () => {
               <div className="col-12 col-md-12">
                 <label>Upload Photos</label>
                 <div className="row">
+                  {file.length === 0 && (
+                    <div class="position-relative py-4 py-md-1">
+                      <img
+                        src={`${process.env.REACT_APP_URL}upload/products/${showImage}`}
+                        alt="Product image"
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </div>
+                  )}
                   {Array.from(file).map((items) => {
                     return (
                       <span>
