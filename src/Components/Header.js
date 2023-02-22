@@ -611,7 +611,7 @@ function Header() {
                         </div>
                       </li>
 
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -623,9 +623,9 @@ function Header() {
                         >
                           Showrooms
                         </Link>
-                      </li> */}
+                      </li>
 
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         {true ? (
                           <Link
                             style={{
@@ -643,9 +643,9 @@ function Header() {
                         ) : (
                           <Link className="nav-link">Raffles</Link>
                         )}
-                      </li> */}
+                      </li>
 
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -657,9 +657,9 @@ function Header() {
                         >
                           Featured
                         </Link>
-                      </li> */}
+                      </li>
 
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -671,9 +671,9 @@ function Header() {
                         >
                           Charity Auctions
                         </Link>
-                      </li> */}
+                      </li>
 
-                      {/* <div className="dropdown">
+                      <div className="dropdown">
                         <Link
                           className="nav-link"
                           style={{
@@ -703,9 +703,9 @@ function Header() {
                             My Shipment
                           </a>
                         </div>
-                      </div> */}
+                      </div>
 
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -717,8 +717,8 @@ function Header() {
                         >
                           FAQ
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item">
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -732,8 +732,8 @@ function Header() {
                         >
                           Classifieds
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item">
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -745,8 +745,8 @@ function Header() {
                         >
                           Gear
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item AddtCrt">
+                      </li>
+                      <li className="nav-item AddtCrt">
                         {logingUser.cartSlice.quantity !== 0 ? (
                           <Link to="/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -755,7 +755,7 @@ function Header() {
                             </span>
                           </Link>
                         ) : null}
-                      </li> */}
+                      </li>
 
                       <li className="nav-item dropdown d-none">
                         <Link
