@@ -69,7 +69,6 @@ import DealerListFeature from "./Dashboard/ads/DealerListFeature";
 import AddDealer from "./Dashboard/ads/AddDealer";
 import AddVehicleAds from "./Dashboard/ads/AddVehicleAds";
 import DetailNew from "./DetailNew";
-
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 

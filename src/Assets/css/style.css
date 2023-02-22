@@ -5651,4 +5651,241 @@ btn1{
     background: white
   
 }
-/* ======================================== */
+
+.detailPostOption .labelList li label {
+  font-size: 1rem;
+  color: #f8971b;
+  font-weight: 500;
+  
+}
+
+
+/* ======================= 21 feb 2023 ================ */
+
+.detailPostOption {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleRight {
+  display: flex;
+  align-items: baseline;
+}
+span.color_orange.couNt {
+  background: #000;
+  padding: 2px 6px;
+  border-radius: 100%;
+  font-size: 12px;
+  position: relative;
+  top: -14px;
+}
+
+.detailPostOption .labelList{
+  opacity: 1;
+}
+
+.card_ {
+  background: #232323;
+  padding: 10px;
+  border-radius: 5px;
+}
+.tagBtns p {
+  padding: 7px 15px;
+  background: #000;
+  margin-bottom: 0;
+}
+.Dfrt {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+span.numBr {
+  background: #000;
+  padding: 5px;
+  border-radius: 100%;
+  margin-left: 5px;
+}
+.auctionHistory {
+  z-index: 9;
+}
+
+.AuctionBtn img {
+  padding-right: 5px;
+}
+.postHero.detail {
+  height: 50vh;
+}
+.Dfrt{
+  position: relative;
+  margin-top: 10px;
+}
+.p-20 {
+  padding: 20px;
+}
+.Dfrt:before {
+  background-color: #232323;
+  content: '';
+  position: absolute;
+  height: 56px;
+  width: 23%;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  transform-origin: right;
+  border-bottom: 56px solid #f7811b;
+  border-left: 23px solid transparent;
+}
+
+.card_ {
+  margin: 10px 0px;
+}
+h3.cardTitle {
+  font-size: 19px;
+  font-weight: 300;
+  color: #f7811b;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #434141;
+}
+
+.downloadZip input {
+  height: 49px;
+  background: transparent;
+  border: 1px solid #fff;
+  position: relative;
+  right: -5px;
+  padding: 10px;
+  z-index: 0;
+  border-right: 0;
+}
+.downloadZip { padding: 15px 0px;}
+.btn{border: 1px solid transparent;}
+.rightGallery img {
+  width: 23.33%;
+  float: left;
+}
+.rightGallery img {
+  width: 30.33%;
+  float: left;
+  margin: 5px;
+}
+.galleryPh .col-5, .galleryPh .col-7 {
+  margin: 0;
+  padding: 0;
+}
+
+.galleryPh .col-5 img {
+  min-width: 392px;
+  max-height: 321px;
+  object-fit: cover;
+  margin: 4px 3px 3px 15px;
+}
+
+.box_backgroundD {
+  background: #232323;
+  padding: 10px;
+}
+
+.box_backgroundD .card_{
+  padding: 0;
+}
+.sellerBox small {
+  display: block;
+}
+
+.sellerBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-bottom: 15px;
+  font-size: 15px;
+}
+.sellerBox a {
+  color: #f7931b;
+}
+ul.listFund li span a {
+  color: #f7931b;
+}
+
+ul.listFund li {
+  padding-left: 10px;
+  border-top: 1px solid #ffa5001f;
+  line-height: 31px;
+}
+.sellerBox a img {
+  background: #f7811c;
+  padding: 5px;
+  border-radius: 100%;
+}
+ul.listFund li span {
+  font-weight: 100;
+  color: #9b9b9b;
+  font-size: 12px;
+}
+
+ul.listFund li {
+  font-weight: 600;
+  color: #fff;
+  font-size: 15px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+ul.UlList {
+  padding-left: 15px;
+}
+
+ul.UlList li {
+  font-size: 14px;
+  line-height: 27px;
+  list-style: disc;
+}
+#more {display: none;}
+button.btn.more_:hover {
+  color: #f7811c;
+}
+button.btn.more_ {
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+  color: #b77b33;
+  font-weight: 400;
+  padding-top: 10px;
+  border: none;
+}
+.justifyCenter {
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.imgText .sidebarPost_Img {
+  width: 44%;
+  height: 60px;
+  padding-right: 10px;
+}
+.imgText .sidebarPost_Img img{
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+.Cont p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.Cont .t {
+  padding: 5px 0px;
+}
+.n span {
+  color: #f7931b;
+  padding-left: 5px;
+}
+.imgText {
+  display: flex;
+  background: black;
+  margin-bottom: 5px;
+}
+.Cont .t {
+  padding: 5px 0px;
+  font-size: 12px;
+}
