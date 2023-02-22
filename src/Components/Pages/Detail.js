@@ -39,6 +39,7 @@ function Detail() {
   const [readMoreExt, setReadMoreExt] = useState(false);
   const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
   const [auctonVehicle, setAuctonVehicle] = useState([]);
+  const [auctionHistory, setAuctionHistory] = useState([])
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
@@ -246,18 +247,33 @@ function Detail() {
 
   // get vin details by api
   useEffect(() => {
-    const fetchVinDetails = async () => {
-      try {
+    const fetchVinDetails = async() => {
+      try{
         const res = await axios.get(
           `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
         );
-        setVinDetails(res.data);
+        setVinDetails(res.data)
+      }catch(err){
+        console.log(err)
+      }
+    }
+    fetchVinDetails()
+  }, [])
+
+  useEffect(() => {
+    const fetchAuctionHistory = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}autionHistroy/${vehicle.userId}`
+        );
+        setAuctionHistory(res.data.data);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchVinDetails();
-  }, []);
+    fetchAuctionHistory();
+  }, [vehicle.userId]);
+  
   // {
   //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
   // }
@@ -282,7 +298,7 @@ function Detail() {
                   <li>
                     Location:{" "}
                     <span>
-                      <a href="https://www.google.com/maps/place/South%20Huntington,%20New%20York%2011746">
+                      <a href={`https://www.google.com/maps/place/${vehicle.country}`}>
                         {vehicle.country}
                       </a>
                     </span>
@@ -475,7 +491,7 @@ function Detail() {
                   <div className="titleRight">
                     <ul className="labelList">
                       <li>
-                        <label>Current bid</label>{" "}
+                        <label>Current bid:</label>{" "}
                         <span>
                           {amountprice ? (
                             <span>
@@ -677,19 +693,41 @@ function Detail() {
                     <img src={carImg} />
                   </div>
                   <div className="col-7">
-                    <div className="rightGallery">
+                    <div ref={moreImgRaf} className="row rightGallery">
+                    <Image.PreviewGroup>
+                      {vehicle.images &&
+                        vehicle.images.map((curElem) => {
+                          return (
+                            <div
+                            >
+                              <Image
+                                loading="lazy"
+                                style={{ height: "30vh", width: "30vh" }}
+                                className="card-img-top"
+                                src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                    </Image.PreviewGroup>
+                      {/* <img src={carImg} />
                       <img src={carImg} />
                       <img src={carImg} />
                       <img src={carImg} />
                       <img src={carImg} />
-                      <img src={carImg} />
-                      <img src={carImg} />
+                      <img src={carImg} /> */}
                     </div>
                   </div>
                 </div>
                 <div className=" phG">
                   <div ref={moreImgRaf} className="card-group">
-                    <Image.PreviewGroup>
+                    {/* <Image.PreviewGroup>
                       {vehicle.images &&
                         vehicle.images.map((curElem) => {
                           return (
@@ -712,7 +750,7 @@ function Detail() {
                             </div>
                           );
                         })}
-                    </Image.PreviewGroup>
+                    </Image.PreviewGroup> */}
                   </div>
                 </div>
               </div>
@@ -918,7 +956,30 @@ function Detail() {
               </button>
             </div>
             <div className="modal-body moAh">
-              <a href="#" className="dfr">
+            {
+              auctionHistory && auctionHistory.map((curElem, i) => {
+                return (
+                  <a key={i} href="#" className="dfr">
+                <div className="imgText">
+                    <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                    </div>
+                    <div className="Cont">
+                      <p>{curElem.make} {curElem.model} {curElem.year}</p>
+                      <div className="n">
+                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                      </div>
+                    </div>
+                </div>
+              </a>
+                )
+              })
+            }
+              
+              {/* <a href="#" className="dfr">
                 <div className="imgText">
                     <div className="sidebarPost_Img">
                         <img src={carImg} />
@@ -965,23 +1026,7 @@ function Detail() {
                       </div>
                     </div>
                 </div>
-              </a>
-              <a href="#" className="dfr">
-                <div className="imgText">
-                    <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>Lamborghini Urus 2019</p>
-                      <div className="n">
-                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
-                      </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
-                      </div>
-                    </div>
-                </div>
-              </a>
+              </a> */}
              
 
             </div>
