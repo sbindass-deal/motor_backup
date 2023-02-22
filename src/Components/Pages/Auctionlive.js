@@ -256,7 +256,8 @@ const Auctionlive = () => {
                               </span>
                             ) : null}
                           </li>
-                          <li>
+                          <li><label>Ends In:</label> <span>5 days</span></li>
+                          {/* <li>
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               parseInt(new Date().getTime(), 10) >
                               0 && curElem.approved === "1" ? (
@@ -274,7 +275,7 @@ const Auctionlive = () => {
                               // <label>Auction Closed</label>
                               <label>End In : 5 days</label>
                             )}
-                          </li>
+                          </li> */}
                         </ul>
                         {/* <Link
                           to={`/detail/${curElem.id}`}

@@ -166,7 +166,7 @@ const Features = () => {
                               </Link>
                               </h4>
                               <ul class="labelList">
-                                <label>Current Bid : </label>
+                                {/* <label>Current Bid : </label>
                                 <li className="px-1">${curElem.documentFee}</li>
 
                                 <li>
@@ -189,7 +189,11 @@ const Features = () => {
                                   ) : (
                                     <label>Auction Closed</label>
                                   )}
-                                </li>
+                                </li> */}
+                                <ul class="labelList">
+                                  <li>October 14, 2022</li>
+                                  <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li>
+                                </ul>
 
                                 {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
                               </ul>
@@ -244,7 +248,7 @@ const Features = () => {
                               </Link>
                               </h4>
                               <ul class="labelList">
-                                <label>Current Bid : </label>
+                                {/* <label>Current Bid : </label>
                                 <li className="px-1">${curElem.documentFee}</li>
 
                                 <li>
@@ -267,7 +271,12 @@ const Features = () => {
                                   ) : (
                                     <label>Auction Closed</label>
                                   )}
-                                </li>
+                                </li> */}
+
+                                <ul class="labelList">
+                                  <li>October 14, 2022</li>
+                                  <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li>
+                                </ul>
 
                                 {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
                               </ul>

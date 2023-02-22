@@ -35,6 +35,8 @@ function Detail() {
   const [inputcomment, setInputComment] = useState("");
   const [bidValue, setBidValue] = useState();
   const [bidComment, setBidComment] = useState();
+  const [readMoreInt, setReadMoreInt] = useState(false);
+  const [readMoreExt, setReadMoreExt] = useState(false);
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
@@ -156,6 +158,18 @@ function Detail() {
         setcomments(res.data.data.reverse());
       });
   };
+  const addComment = (e) => {
+    e.preventDefault();
+    axios
+      .post(process.env.REACT_APP_URL + "comments", {
+        vehicleId: id,
+        userId: vehicle.userId,
+        description: inputcomment,
+      })
+      .then((result) => {
+        console.log(result);
+      });
+  };
 
   // console.log(100,comments)
   const addViews = (id) => {
@@ -248,8 +262,8 @@ function Detail() {
                 <h3 className="cardTitle">Fundamental</h3>
                 <div className="sellerBox">
                   <div>
-                    Seller: <a href="#">UserName</a>
-                    <small> (Private Party or Dealer ): Dealer</small>
+                    Seller: <a href="#">#NA</a>
+                    <small> (Private Party or Dealer ): #NA</small>
                   </div>
                   <a href="#">
                     <img src={bellIcon} alt="bellIcon" />
@@ -260,41 +274,53 @@ function Detail() {
                     Location:{" "}
                     <span>
                       <a href="https://www.google.com/maps/place/South%20Huntington,%20New%20York%2011746">
-                        {" "}
-                        South Huntington, New York 11746
+                        {vehicle.country}
                       </a>
                     </span>
                   </li>
                   <li>
-                    VIN/ID: <span>4Y1SL65848Z411439</span>
+                    VIN/ID: <span>{vehicle.detailvin}</span>
                   </li>
                   <li>
-                    Lot: <span>#97327</span>
+                    Lot: <span>#NA</span>
                   </li>
                   <li>
-                    Miles: <span>18k Miles Shown, TMU</span>
+                    Miles: <span>{vehicle.odmeter} Miles Shown, TMU</span>
                   </li>
                   <li>
-                    Engine :<span>Triple SU Carburetors</span>
+                    Engine :<span>#NA</span>
                   </li>
                   <li>
-                    Transmission: <span>Four-Speed Manual Transmission</span>
+                    Transmission: <span>#NA</span>
                   </li>
                   <li>
-                    Brakes: <span>Hydraulic Drum Brakes</span>
+                    Brakes: <span>#NA</span>
                   </li>
                   <li>
-                    Differential: <span>Four-Wheel Independent Suspension</span>
+                    Differential: <span>#NA</span>
                   </li>
                   <li>
-                    Special Modifications: <span>Five Spare Wire Wheels</span>
+                    Special Modifications: <span>#NA</span>
                   </li>
                 </ul>
               </div>
               <div className="box_backgroundD mt-15">
-                <h3 className="cardTitle">Interior</h3>
-                <ul className="UlList">
-                  <li>Head Up Display (HUD)</li>
+                <h3 className="cardTitle">
+                  {vinDetails.options && vinDetails?.options[0]?.category}
+                </h3>
+                <ul
+                  className="UlList"
+                  style={{
+                    maxHeight: `${readMoreInt ? "100%" : "50vh"}`,
+                    overflow: "hidden",
+                  }}
+                >
+                  {vinDetails.options &&
+                    vinDetails?.options[0]?.options.map((curElem, i) => {
+                      return <li key={i}>{curElem.name}</li>;
+                    })}
+
+                  {/* <li>Head Up Display (HUD)</li>
                   <li>Colored Seat Belt In Bianco Polar</li>
                   <li>Q-citura W/Alcantara</li>
                   <li>Contrast Stitching On Steering Wheel</li>
@@ -303,24 +329,37 @@ function Detail() {
                   </li>
                   <li>Floor Mats W/Leather Piping And Double Stitching</li>
                   <li>Optional Stitching</li>
-                  <li>Multifunctional Steering Wheel In Colored Leather</li>
+                  <li>Multifunctional Steering Wheel In Colored Leather</li> */}
                 </ul>
-                <button className="btn more_">Read more</button>
+                <button
+                  onClick={() => setReadMoreInt(!readMoreInt)}
+                  className="btn more_"
+                >
+                  {readMoreInt ? "Read Less" : "Read more"}
+                </button>
               </div>
               <div className="box_backgroundD mt-15">
-                <h3 className="cardTitle">Exterior</h3>
-                <ul className="UlList">
-                  <li>Chrome Roof Rails</li>
-                  <li>Bright Chrome Exhaust Tailpipes</li>
-                  <li>Rims Nath 22" Titanium Matt</li>
-                  <li>Rims Taigete 23" Shiny Black</li>
-                  <li>Heat Reflective Windscreen W/Heating And Defrosting</li>
-                  <li>Black Matt Exhaust Tailpipes</li>
-                  <li>21" Spare Wheel</li>
-                  <li>Wet-Arm Wiper W/Headlight Washer And RVC Cleaner</li>
-                  <li>Red Painted Brake Calipers</li>
+                <h3 className="cardTitle">
+                  {vinDetails.options && vinDetails?.options[1]?.category}
+                </h3>
+                <ul
+                  className="UlList"
+                  style={{
+                    maxHeight: `${readMoreExt ? "100%" : "50vh"}`,
+                    overflow: "hidden",
+                  }}
+                >
+                  {vinDetails.options &&
+                    vinDetails?.options[1]?.options.map((curElem, i) => {
+                      return <li key={i}>{curElem.name}</li>;
+                    })}
                 </ul>
-                <button className="btn more_">Read more</button>
+                <button
+                  onClick={() => setReadMoreExt(!readMoreExt)}
+                  className="btn more_"
+                >
+                  {readMoreExt ? "Read Less" : "Read more"}
+                </button>
               </div>
               <div className="box_backgroundD mt-15 justifyCenter">
                 <button className="btn">Contact Seller</button>
@@ -511,7 +550,7 @@ function Detail() {
                   <div className="titleRight">
                     <ul className="labelList">
                       <li>
-                        <label>Sold for</label>{" "}
+                        <label>Current bid</label>{" "}
                         <span>
                           {amountprice ? (
                             <span>
@@ -566,13 +605,13 @@ function Detail() {
                         )}
                       </li>
 
-                      {vehicle.reserve === "Yes" &&
+                      {/* {vehicle.reserve === "Yes" &&
                         vehicle.approved === "1" &&
                         t > 0 && (
                           <li className="reserved">
                             Reserve: <span>{vehicle.reserve}</span>
                           </li>
-                        )}
+                        )} */}
                     </ul>
 
                     <button
@@ -584,7 +623,7 @@ function Detail() {
                         vehicle.approved !== "1" || t < 0 ? true : false
                       }
                     >
-                      View Result
+                      Place a bid
                     </button>
                   </div>
                 </div>
@@ -756,15 +795,17 @@ function Detail() {
                 <div className="row ">
                   <div className="col-12">
                     <h3 className="cardTitle">Guzzlrs Chat</h3>
-                    <form className="mb-3">
+                    <form onSubmit={addComment} className="mb-3">
                       <div className="form-group">
                         <textarea
                           placeholder="add comment here"
+                          value={inputcomment}
+                          onChange={(e) => setInputComment(e.target.value)}
                           className="field"
                         ></textarea>
                       </div>
                       <div className="form-group">
-                        <button type="button" className="gry_btn">
+                        <button type="submit" className="gry_btn">
                           Submit
                         </button>
                       </div>

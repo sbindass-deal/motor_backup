@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import car_01 from '../../../Assets/images/car_01.jpg'
 import car_02 from '../../../Assets/images/car_02.jpg'
@@ -82,6 +85,70 @@ const Inventory = () => {
             (item.model && item.model.toLowerCase().includes(searchInputValue))
         )
       : vehicleData;
+  
+  const slide = useRef(null);
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "red" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "green" }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    arrows: false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    // autoplay: true,
+    speed: 3000,
+    // pauseOnHover: true,
+    // cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -89,102 +156,18 @@ const Inventory = () => {
         <h2>All Vehicles</h2>
       </div>
 
-      <section className="pt_40">
-	<div className="container">
-		<div className="row">
-			<div className="col-12 pb-3">
-				<h3 className="title_combo">Acura</h3>
-			</div>
 
-			<div className="col-12 slD">
-				<div className="makes_Slide arrowTop_Slide">
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura Integra</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura Integra Type R</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura Legend</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura Legend</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura NSX NA1/NA2</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura NSX NC1</a></h6>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div className="card_post">
-							<div className="card_postImg">
-								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
-								<img src={car_01}/>
-							</div>
-							<div className="card_postInfo">
-								<h6><a href="#">Acura RSX</a></h6>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+      <section className="ptb_80" id="second">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Featured Auctions</h2>
+            </div>
 
-
-
-
-
+          
+          </div>
+        </div>
+      </section>
 
 
 
@@ -224,6 +207,96 @@ const Inventory = () => {
               </li>
             </ul>
           </div>
+
+          
+          <div className="col-12 slider_ht">
+            <h1>Acura</h1>
+            <div className="nextArrow">
+              <span onClick={() => slide.current.slickPrev()}>
+                <span className="prev">Prev</span>
+              </span>
+              <span
+                onClick={() => slide.current.slickNext()}
+                style={{ marginLeft: 50 }}
+              >
+                <span className="next">Next</span>
+              </span>
+            </div>
+            <div className="featuredAuctions_Slide">
+              <Slider ref={slide} {...settings}>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+              
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+								<h6><a href="#">Acura Integra</a></h6>
+							</div>
+                </div>
+                
+              </Slider>
+            </div>
+          </div>
+
+
+
           <div className="row mt-30">
             {searchedData.length === 0 ? (
               <NotAvailable text="No Result Found" />
@@ -384,6 +457,9 @@ const Inventory = () => {
           </div>
         </div>
       </section>
+
+
+     
 
       
       <Modal
