@@ -10,6 +10,13 @@ import FormInput from "../UI/FormInput";
 import { Image } from "antd";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
+import Msg from '../../Assets/images/msg.svg'
+import { padding } from "@mui/system";
+import EyeIcon from '../../Assets/images/eyeIcon.svg'
+import ScreenShort from '../../Assets/images/screenShort.png'
+import carImg from '../../Assets/images/carImg.png'
+import bellIcon from '../../Assets/images/bellIcon.svg'
+import men_face from '../../Assets/images/men-face.jpg'
 
 function Detail() {
   const { id } = useParams();
@@ -228,259 +235,168 @@ function Detail() {
   return (
     <div>
       <section className="ptb_80 pt_sm_50 ">
-        <div className="container" style={{ width: "70%" }} id="sticky">
-          <div>
-            <div
-              className="col-12 text-center pb_30 box_background p-30"
-              id="sticky"
-
-            >
-              <h2 className="title_combo title_Center" id="sticky2">
-                {vehicle.make} {vehicle.model} {vehicle.year}
-              </h2>
-              <hr style={{ borderTop: "1px solid grey" }} />
-              <div className="col-12">
-                <div className="detailPostOption">
-                  <div className="">
-                    <ul className="labelList">
-                      <li>
-                        <label>Sold for</label>{" "}
-                        <span>
-                          {amountprice ? (
-                            <span>
-                              {" "}
-                              <span style={{ fontWeight: "bold" }}>
-                                {" "}
-                                ${amountprice}{" "}
-                              </span>
-                              <span>
-                                on{" "}
-                                {new Date(vehicle.EndTime).toLocaleDateString()}
-                              </span>
-                            </span>
-                          ) : (
-                            <span>
-                              {" "}
-                              <span style={{ fontWeight: "bold" }}>
-                                {" "}
-                                ${vehicle.documentFee}{" "}
-                              </span>
-                              <span>
-                                on{" "}
-                                {new Date(vehicle.EndTime).toLocaleDateString()}
-                              </span>
-                            </span>
-                          )}
-                        </span>
-                      </li>
-                      <li>
-                        {vehicle.approved !== "1" ? (
-                          <span>
-                            {/* <img
-                              src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg"
-                              alt="comments-icon"
-                              class="comments_header_icon"
-                            /> */}
-                            <ModeCommentIcon className="color_orange" />
-                            <span className="color_orange"
-                              style={{ marginLeft: "8px", }}
-                            >
-                              {comments.length}
-                            </span>
-                            <span className="color_orange"
-                              style={{ marginLeft: "8px", }}
-                            >
-                              Comments
-                            </span>
-                          </span>
-                        ) : vehicle.approved === "1" && t > 0 ? (
-                          <span>
-                            <label>Ends In:&nbsp;</label>
-                            {days}days, {hours <= 9 && "0"}
-                            {hours}h : {minutes <= 9 && "0"}
-                            {minutes}m : {seconds <= 9 && "0"}
-                            {seconds}s
-                          </span>
-                        ) : (
-                          "Auction Closed"
-                        )}
-                      </li>
-
-                      {vehicle.reserve === "Yes" &&
-                        vehicle.approved === "1" &&
-                        t > 0 && (
-                          <li className="reserved">
-                            Reserve: <span>{vehicle.reserve}</span>
-                          </li>
-                        )}
-                    </ul>
+        <div className="container" id="sticky">
+          <div className="row">
+            <div className="col-lg-3 col-sm-12">
+              <div className="box_backgroundD">
+                <h3 className="cardTitle">Fundamental</h3>
+                <div className="sellerBox">
+                  <div>
+                    Seller: <a href="#">UserName</a>
+                    <small> (Private Party or Dealer ): Dealer</small>
                   </div>
-                  <div className="d-flex">
-                    {/* {vehicle.like === 1 ? (
-                    <a
-                      style={{ cursor: "pointer" }}
-                      onClick={() => addFabrity(id)}
-                      className="gry_btn mr-2 faList"
-                    >
-                      <i className="fa-solid fa-heart mr-2 "></i>
-                      Watch
-                    </a>
-                  ) : (
-                    <a
-                      style={{ cursor: "pointer" }}
-                      onClick={() => addFabrity(id)}
-                      className="gry_btn mr-2"
-                    >
-                      <i className="fa-solid fa-heart mr-2 "></i>
-                      Watch
-                    </a>
-                  )} */}
-
-                    <button
-                      type="button"
-                      className="gry_btn active bg-dark"
-                      onClick={handleShow}
-                      style={{ border: "none" }}
-                      disabled={
-                        vehicle.approved !== "1" || t < 0 ? true : false
-                      }
-                    >
-                      View Result
-                    </button>
-                  </div>
+                  <a href="#"><img src={bellIcon} alt="bellIcon"/></a>
                 </div>
+                <ul className="listFund">
+                  <li>Location: <span><a href="https://www.google.com/maps/place/South%20Huntington,%20New%20York%2011746">  South Huntington, New York 11746</a></span></li>
+                  <li>VIN/ID: <span>4Y1SL65848Z411439</span></li>
+                  <li>Lot: <span>#97327</span></li>
+                  <li>Miles: <span>18k Miles Shown, TMU</span></li>
+                  <li>Engine :<span>Triple SU Carburetors</span></li>
+                  <li>Transmission: <span>Four-Speed Manual Transmission</span></li>
+                  <li>Brakes: <span>Hydraulic Drum Brakes</span></li>
+                  <li>Differential: <span>Four-Wheel Independent Suspension</span></li>
+                  <li>Special Modifications: <span>Five Spare Wire Wheels</span></li>
+
+                </ul>
               </div>
-            </div>
-
-            <div className="row pt-4 ">
-              <div className="col-12 pb-3">
-                <div className="postHero">
-                  {vehicle?.images && (
-                    <img
-                      loading="lazy"
-                      src={
-                        vehicle?.images[0] &&
-                        `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
-                      }
-                      onError={({ currentTarget }) => {
-                        currentTarget.onError = null;
-                        currentTarget.src =
-                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                      }}
-                      alt="Maskgroup1"
-                    />
-                  )}
+              <div className="box_backgroundD mt-15">
+                <h3 className="cardTitle">Interior</h3>
+                <ul className="UlList">
+                  <li>Head Up Display (HUD)</li>
+                  <li>Colored Seat Belt In Bianco Polar</li>
+                  <li>Q-citura W/Alcantara</li>
+                  <li>Contrast Stitching On Steering Wheel</li>
+                  <li>Multifunctional Steering Wheel In Smooth Leather Heated</li>
+                  <li>Floor Mats W/Leather Piping And Double Stitching</li>
+                  <li>Optional Stitching</li>
+                  <li>Multifunctional Steering Wheel In Colored Leather</li>
+                </ul>
+                <button className="btn more_">Read more</button>
+              </div>
+              <div className="box_backgroundD mt-15">
+                <h3 className="cardTitle">Exterior</h3>
+                <ul className="UlList">
+                  <li>Chrome Roof Rails</li>
+                  <li>Bright Chrome Exhaust Tailpipes</li>
+                  <li>Rims Nath 22" Titanium Matt</li>
+                  <li>Rims Taigete 23" Shiny Black</li>
+                  <li>Heat Reflective Windscreen W/Heating And Defrosting</li>
+                  <li>Black Matt Exhaust Tailpipes</li>
+                  <li>21" Spare Wheel</li>
+                  <li>Wet-Arm Wiper W/Headlight Washer And RVC Cleaner</li>
+                  <li>Red Painted Brake Calipers</li>
+                </ul>
+                <button className="btn more_">Read more</button>
+              </div>
+              <div className="box_backgroundD mt-15 justifyCenter">
+                  <button className="btn">Contact Seller</button>
+              </div>
+              <div className="box_backgroundD mt-15">
+                <h3 className="cardTitle">Latest Guzzlrs Auctions</h3>
+                <div className="mt-4 pb-3 sidebarPostRow sidebarAuctions">				
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
+                  <div className="imgText">
+                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="Cont">
+                        <p>Lamborghini Urus 2019</p>
+                        <div className="n">Current Bid:<span>$25,000</span> </div>
+                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                    </div>
+                  </div>
+                  <div className="imgText">
+                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="Cont">
+                        <p>Lamborghini Urus 2019</p>
+                        <div className="n">Current Bid:<span>$25,000</span> </div>
+                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                    </div>
+                  </div>
+                  <div className="imgText">
+                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="Cont">
+                        <p>Lamborghini Urus 2019</p>
+                        <div className="n">Current Bid:<span>$25,000</span> </div>
+                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                    </div>
+                  </div>
+                  <div className="imgText">
+                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="Cont">
+                        <p>Lamborghini Urus 2019</p>
+                        <div className="n">Current Bid:<span>$25,000</span> </div>
+                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                    </div>
+                  </div>
+                  <div className="sidebarPost">
+                    <a href="#">
+                      <div className="overlay_post">
+                        <div className="">
+                          <div className="">Current Bid: $25,000</div>
+                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                        </div>
+                      </div>
+                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    </a>
+                  </div>
                 </div>
+                <button className="btn more_">Read more</button>
               </div>
 
-              <div className="col-12 dropdownCol">
-                <div className="dropdown mr-2 ">
-                  <p
-                    type="button"
-                    // className="orange_btn"
-                    data-toggle="dropdown"
-                    style={{
-                      border: "1px solid grey",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      boxShadow: "1px 1px 1px 1px grey",
-                    }}
-                  >
-                    Make: {vehicle.make}
-                  </p>
-                  <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
-                      View all listings
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Notify me about new listings
-                    </a>
-                  </div>
-                </div>
-                <div className="dropdown mr-2">
-                  <p
-                    type="button"
-                    // className="orange_btn"
-                    data-toggle="dropdown"
-                    style={{
-                      border: "1px solid grey",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      boxShadow: "1px 1px 1px 1px grey",
-                    }}
-                  >
-                    Model: {vehicle.model}
-                  </p>
-                  <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
-                      View all listings
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Notify me about new listings
-                    </a>
-                  </div>
-                </div>
-
-                <div className="dropdown mr-2">
-                  <p
-                    type="button"
-                    // className="orange_btn"
-                    style={{
-                      border: "1px solid grey",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      boxShadow: "1px 1px 1px 1px grey",
-                    }}
-                  >
-                    Era: {vehicle.year}
-                  </p>
-                  {/* <button type="button" className="orange_btn">
-                  Era: {vehicle.year}
-                </button> */}
-                  <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
-                      View all listings
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Notify me about new listings
-                    </a>
-                  </div>
-                </div>
-                <div className="dropdown mr-2">
-                  {/* <p
-                  onClick={handleMorePhoto}
-                  type="button"
-                  // className="orange_btn"
-                  style={{
-                    border: "1px solid grey", borderRadius: "8px", padding: "8px",
-                    boxShadow: "1px 1px 1px 1px grey"
-                  }}
-                >
-                  More Photos
-                </p> */}
-
-                  <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
-                      View all listings
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Notify me about new listings
-                    </a>
-                  </div>
-                </div>
-
-                <div className="row justify-content-center">
-                  <div className="col-8">
-                    <p>{vehicle.moreDescription}</p>
-                  </div>
-
-                  <div
-                    className="col-4 pt-3 box_background"
-                    style={{
-                      height: "600px",
-                      overflow: "auto",
-                    }}
-                  >
                     <h3>Essentials</h3>
                     <ul>
                       <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
@@ -514,465 +430,83 @@ function Detail() {
                           })}
                       </li>
                     </ul>
-                    mpg
-                  </div>
-                </div>
-
-                <div className="dropdown">
-                  <p className="py-4">{vehicle.desc1}</p>
-
-                  <div className="" id="placeBid_col">
-                    {/* <div className="card_Gray">
-                    <h5>CAR INFORMATION</h5>
-                    <ul className="bidList_ info_">
-                      <li>
-                        Miles
-                        <label htmlFor="">{vehicle.odmeter}</label>
-                      </li>
-
-                      {vehicle.Interstellar === "Yes" && (
+                    
+            </div>
+            <div className="col-lg-9 col-sm-12">
+              <div className=" text-center box_background p-20" id="sticky" >
+                  <div className="detailPostOption">
+                  <h2 className="title_combo title_Center" id="sticky2">
+                    {vehicle.make} {vehicle.model} {vehicle.year}
+                  </h2>
+                    <div className="titleRight">
+                      <ul className="labelList">
                         <li>
-                          Interstellar <label htmlFor=""> Interstellar</label>
-                        </li>
-                      )}
-
-                      <li>
-                        Location:
-                        <label htmlFor="">
-                          {vehicle.city}, {vehicle.country}
-                        </label>
-                      </li>
-
-                      {vehicle.accessories !== "" && (
-                        <li>
-                          Accessories
-                          <label htmlFor=""> {vehicle.accessories}</label>
-                        </li>
-                      )}
-                      <li>
-                        <label htmlFor="">{vehicle.truckDetails}</label>
-                      </li>
-
-                      {vehicle.bodywork === "Yes" && (
-                        <li>
-                          Body Work <label htmlFor=""> Recently Painted</label>
-                        </li>
-                      )}
-
-                      {vehicle.sizetires !== null && (
-                        <li>
-                          Tyre size
-                          <label htmlFor="">{vehicle.sizetires}</label>
-                        </li>
-                      )}
-                      {vehicle.pickOne !== null && (
-                        <li>
-                          Wheels
-                          <label htmlFor="">{vehicle.pickOne}</label>
-                        </li>
-                      )}
-
-                      <li>
-                        Tyre Brand{" "}
-                        <label htmlFor="">{vehicle.brandandmodel}</label>
-                      </li>
-                      <li>
-                        Fuel Type
-                        <label htmlFor="">{vehicle.fuel}</label>
-                      </li>
-                      <li>
-                        Seller
-                        <label htmlFor="">{vehicle.name}</label>
-                      </li>
-
-                      <li>
-                        Private Party or Dealer :
-                        <label htmlFor="">
-                          {" "}
-                          {vehicle.dealerId === "Yes"
-                            ? "Dealer"
-                            : "Privately owned"}{" "}
-                        </label>
-                      </li>
-                      {vehicle.moreDescription ? (
-                        <li>
-                          Description
-                          <label htmlFor="">
-                            {vehicle.moreDescription.length > 20 &&
-                              !showReadMore ? (
+                          <label>Sold for</label>{" "}
+                          <span>
+                            {amountprice ? (
                               <span>
-                                {vehicle.moreDescription.substr(0, 20)}...
+                                {" "}
+                                <span style={{ fontWeight: "bold" }}>
+                                  {" "}
+                                  ${amountprice}{" "}
+                                </span>
+                                <span>
+                                <label>On</label>
+                                  {" "}
+                                  {new Date(vehicle.EndTime).toLocaleDateString()}
+                                </span>
                               </span>
                             ) : (
-                              vehicle.moreDescription
+                              <span>
+                                {" "}
+                                <span style={{ fontWeight: "bold" }}>
+                                  {" "}
+                                  ${vehicle.documentFee}{" "}
+                                </span>
+                                <span>
+                                <label style={{padding: "0px 10px"}}>On</label> 
+                                  {new Date(vehicle.EndTime).toLocaleDateString()}
+                                </span>
+                              </span>
                             )}
-                            <button
-                              type="text"
-                              onClick={() => setShowReadMore(!showReadMore)}
-                              className="btn read_more p-1"
-                            >
-                              {showReadMore &&
-                                vehicle.moreDescription.length > 20
-                                ? "Read Less"
-                                : "Read More"}
-                            </button>
-                          </label>
-                        </li>
-                      ) : (
-                        ""
-                      )}
-                    </ul>
-                  </div> */}
-                    {/* <div className="pb_40" id="placeBid_col">
-                    <div className="card_Gray">
-                      <h5 className="cardTitle">CAR INFORMATION</h5>
-                      <ul className="bidList_ info_">
-                        <li>
-                          <div className="dropdown mr-2">
-                            <p type="button" data-toggle="dropdown">
-                              Make: {vehicle.make}
-                            </p>
-                            <div className="dropdown-menu">
-                              <a className="dropdown-item" href="#">
-                                View all listings
-                              </a>
-                              <a className="dropdown-item" href="#">
-                                Notify me about new listings
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div className="dropdown mr-2">
-                            <p data-toggle="dropdown">Model:{vehicle.model}</p>
-                            <div className="dropdown-menu">
-                              <a className="dropdown-item" href="#">
-                                View all listings
-                              </a>
-                              <a className="dropdown-item" href="#">
-                                Notify me about new listings
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div className="dropdown mr-2">
-                            <p type="button">Era: {vehicle.year}</p>
-                            <div className="dropdown-menu">
-                              <a className="dropdown-item" href="#">
-                                View all listings
-                              </a>
-                              <a className="dropdown-item" href="#">
-                                Notify me about new listings
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li>
-                          Vehicle Id:<label htmlFor="">{vehicle.id}</label>
+                          </span>
                         </li>
                         <li>
-                          vehicle finished in Interstellar White{" "}
-                          <label htmlFor=""> {vehicle.Interstellar}</label>
+                          {vehicle.approved !== "1" ? (
+                            <span>
+                             
+                              <img src={Msg} alt="msg"/>
+                              <span className="color_orange couNt"
+                                style={{ marginLeft: "8px", }}
+                              >
+                                {comments.length}
+                              </span>
+                              
+                            </span>
+                          ) : vehicle.approved === "1" && t > 0 ? (
+                            <span>
+                              <label>Ends In:&nbsp;</label>
+                              {days}days, {hours <= 9 && "0"}
+                              {hours}h : {minutes <= 9 && "0"}
+                              {minutes}m : {seconds <= 9 && "0"}
+                              {seconds}s
+                            </span>
+                          ) : (
+                            "Auction Closed"
+                          )}
                         </li>
 
-                        <li>
-                          city is the vehicle located in
-                          <label htmlFor="">{vehicle.city}</label>
-                        </li>
-                        <li>
-                          country is the vehicle currently located in
-                          <label htmlFor="">{vehicle.country}</label>
-                        </li>
-
-                        <li>
-                          accessories are included in the sale
-                          <label htmlFor="">{vehicle.accessories} </label>
-                        </li>
-
-                        <li>
-                          vehicle have any history of paint or bodywork{" "}
-                          <label htmlFor=""> {vehicle.bodywork}</label>
-                        </li>
-
-                        <li>
-                          provide reserve amount
-                          <label htmlFor=""> Reserve {vehicle.reserve}</label>
-                        </li>
-
-                        <li>
-                          size of tires are on the vehicle{" "}
-                          <label htmlFor="">{vehicle.sizetires}</label>
-                        </li>
-
-                        {true ? (
-                          <div>
-                            <li>
-                              wheels are on the vehicle
-                              <label htmlFor="">{vehicle.pickOne}</label>
+                        {vehicle.reserve === "Yes" &&
+                          vehicle.approved === "1" &&
+                          t > 0 && (
+                            <li className="reserved">
+                              Reserve: <span>{vehicle.reserve}</span>
                             </li>
-
-                            <li>
-                              brand and model of tires are currently mounted{" "}
-                              <label htmlFor="">{vehicle.brandandmodel}</label>
-                            </li>
-                            <li>
-                              createdAt{" "}
-                              <label htmlFor="">{vehicle.created_at}</label>
-                            </li>
-                            <li>
-                              current Amount{" "}
-                              <label htmlFor="">{vehicle.currentAmount}</label>
-                            </li>
-
-                            <li>
-                              Amount on document{" "}
-                              <label htmlFor="">{vehicle.documentFee}</label>
-                            </li>
-                            <li>
-                              meter <label htmlFor="">{vehicle.km}</label>
-                            </li>
-                            <li>
-                              your vehicle{" "}
-                              <label htmlFor="">{vehicle.make}</label>
-                            </li>
-                            <li>
-                              model of vehicle{" "}
-                              <label htmlFor="">{vehicle.model}</label>
-                            </li>
-                            <li>
-                              Fuel Type <label htmlFor="">{vehicle.fuel}</label>
-                            </li>
-                            <li>
-                              current odometer reading{" "}
-                              <label htmlFor="">{vehicle.odmeter}</label>
-                            </li>
-
-                            <li>
-                              you know about the history of the vehicle{" "}
-                              <label htmlFor="">
-                                {vehicle.issuesorproblems}
-                              </label>
-                            </li>
-                            <li>
-                              the interior upholstered in Jet Black and Light
-                              Gray leather{" "}
-                              <label htmlFor="">{vehicle.interior}</label>
-                            </li>
-                            <li>
-                              dealer Description{" "}
-                              <label htmlFor="">
-                                {vehicle.dealerDescription}
-                              </label>
-                            </li>
-                            <li>
-                              Dealer id:{" "}
-                              <label htmlFor="">{vehicle.dealerId}</label>
-                            </li>
-                            <li>
-                              name of your dealership:{" "}
-                              <label htmlFor="">{vehicle.dealerName}</label>
-                            </li>
-                            <li>
-                              Description{" "}
-                              <label htmlFor="">{vehicle.description}</label>
-                            </li>
-                            <li>
-                              displayInAuction{" "}
-                              <label htmlFor="">
-                                {vehicle.displayInAuction}
-                              </label>
-                            </li>
-                            <li>
-                              documentFee{" "}
-                              <label htmlFor="">{vehicle.documentFee}</label>
-                            </li>
-                            <li>
-                              Email <label htmlFor="">{vehicle.email}</label>
-                            </li>
-                            <li>
-                              issues or problems does it currently have{" "}
-                              <label htmlFor="">{vehicle.hereFrom}</label>
-                            </li>
-                            <li>
-                              kmacc <label htmlFor="">{vehicle.kmacc}</label>
-                            </li>
-
-                            <li>
-                              modifications details
-                              <label htmlFor="">
-                                {vehicle.modificationstock}
-                              </label>
-                            </li>
-                            <li>
-                              list and describe services performed and when they
-                              were performed{" "}
-                              <label htmlFor="">
-                                {vehicle.moreDescription}
-                              </label>
-                            </li>
-                            <li>
-                              name <label htmlFor="">{vehicle.name}</label>
-                            </li>
-                            <li>
-                              modifications details{" "}
-                              <label htmlFor="">
-                                {vehicle.modificationOnTruck}
-                              </label>
-                            </li>
-                            <li>
-                              vehicle have any modifications from stock{" "}
-                              <label htmlFor="">
-                                {vehicle.modificationstock}
-                              </label>
-                            </li>
-
-                            <li>
-                              you have owned it{" "}
-                              <label htmlFor="">{vehicle.owned}</label>
-                            </li>
-                            <li>
-                              vehicle a race car or not otherwise registered for
-                              street use{" "}
-                              <label htmlFor="">{vehicle.ownerDetail}</label>
-                            </li>
-
-                            <li>
-                              premium{" "}
-                              <label htmlFor="">{vehicle.premium}</label>
-                            </li>
-                            <li>
-                              provide reserve amount{" "}
-                              <label htmlFor="">{vehicle.reservAmount}</label>
-                            </li>
-
-                            <li>
-                              rust details{" "}
-                              <label htmlFor="">{vehicle.rustDetails}</label>
-                            </li>
-                            <li>
-                              rust present on the vehicle{" "}
-                              <label htmlFor="">{vehicle.rustpresent}</label>
-                            </li>
-
-                            <li>
-                              sizetires{" "}
-                              <label htmlFor="">{vehicle.sizetires}</label>
-                            </li>
-                            <li>
-                              sold <label htmlFor="">{vehicle.sold}</label>
-                            </li>
-
-                            <li>
-                              status of the vehicle title{" "}
-                              <label htmlFor="">{vehicle.titleStatus}</label>
-                            </li>
-                            <li>
-                              provide link to the listing{" "}
-                              <label htmlFor="">{vehicle.transmission}</label>
-                            </li>
-                            <li>
-                              engineSize{" "}
-                              <label htmlFor="">{vehicle.engineSize}</label>
-                            </li>
-                            <li>
-                              vehicle history, paint or bodywork{" "}
-                              <label htmlFor="">{vehicle.truckHistory}</label>
-                            </li>
-
-                            <li>
-                              understandCondition{" "}
-                              <label htmlFor="">
-                                {vehicle.understandCondition}
-                              </label>
-                            </li>
-                            <li>
-                              updatedAt{" "}
-                              <label htmlFor="">{vehicle.updated_at}</label>
-                            </li>
-                            <li>
-                              userId <label htmlFor="">{vehicle.userId}</label>
-                            </li>
-
-                            <li>
-                              year of your vehicle{" "}
-                              <label htmlFor="">{vehicle.year}</label>
-                            </li>
-                            <li>
-                              EndTime{" "}
-                              <label htmlFor="">{vehicle.EndTime}</label>
-                            </li>
-
-                            <li>
-                              acceptTerms{" "}
-                              <label htmlFor="">{vehicle.acceptTerms}</label>
-                            </li>
-
-                            <li>
-                              Auction type{" "}
-                              <label htmlFor="">{vehicle.auctionType}</label>
-                            </li>
-
-                            <li>
-                              vehicle being sold on consignment{" "}
-                              <label htmlFor="">{vehicle.consignment}</label>
-                            </li>
-                            <li>
-                              Detailvin{" "}
-                              <label htmlFor="">{vehicle.detailvin}</label>
-                            </li>
-                          </div>
-                        ) : null}
-                        <li>
-                          <label htmlFor="">
-                            Private Party or Dealer :dealer
-                          </label>
-                        </li>
+                          )}
                       </ul>
                       
-                    </div>
-                  </div> */}
-                  </div>
-                  <p>{vehicle.desc2}</p>
-                  <div className="ptb_40" id="placeBid_col">
-                    {/* <div className="card_Gray">
-                    <h5>BID ON THIS LISTING</h5>
-                    <ul className="bidList_">
-                      <li>
-                        <label>Current Bid</label>
-                        <div>
-                          {amountprice ? (
-                            <span> USD${amountprice}</span>
-                          ) : (
-                            <span> USD${vehicle.documentFee} </span>
-                          )}
-                        </div>
-                      </li>
-                      <li>
-                        {vehicle.approved !== "1" ? (
-                          <span ><img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/listings/comments.svg" alt="comments-icon" class="comments_header_icon" /><span style={{ marginLeft: "8px", color: "#C22B25" }}>2954444444</span><span style={{ marginLeft: "8px", color: "#C22B25" }}>Comments</span></span>
-                        ) : vehicle.approved === "1" && t > 0 ? (
-                          <span>
-                            <label>Ends In:&nbsp;</label>
-                            {days <= 9 && "0"}
-                            {days} days, {hours <= 9 && "0"}
-                            {hours}h : {minutes <= 9 && "0"}
-                            {minutes}m : {seconds <= 9 && "0"}
-                            {seconds}s
-                          </span>
-                        ) : (
-                          "Auction Closed"
-                        )}
-                      </li>
 
-                      <li>
-                        <label>Bids</label>
-                        <div>{biding ? biding.length : 0}</div>
-                      </li>
-                      <button 
+                      <button
                         type="button"
                         className="gry_btn active bg-dark"
                         onClick={handleShow}
@@ -983,38 +517,158 @@ function Detail() {
                       >
                         View Result
                       </button>
-                    </ul>
-                    <div className="bid_bottom">
-                      <div className="">
-                        <a href="#" className="mr-2">
-                          How bidding works
-                        </a>
-                      </div>
-                      <div className="">
-                        <ul className="bid_viewWatch">
-                          <li>{vehicle.view} views</li>
-                          <li>{vehicle.like} watchers</li>
-                        </ul>
-                      </div>
                     </div>
-                  </div> */}
+                   
                   </div>
-                  <div className=" phG">
-                    <h5>PHOTO GALLERY </h5>
-                    <div ref={moreImgRaf} class="card-group">
+              </div>
+              <div className="postHero pb_30 detail">
+                  {vehicle?.images && (
+                    <img
+                      loading="lazy"
+                      src={
+                        vehicle?.images[0] &&
+                        `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="Maskgroup1"
+                    />
+                  )}
+              </div>
+              <div className="card_ Dfrt">
+                <div>
+                  <div className="dropdown mr-2 tagBtns">
+                    <p
+                      type="button"
+                      // className="orange_btn"
+                      data-toggle="dropdown"
+                    >
+                      Make: {vehicle.make}
+                    </p>
+                    <div className="dropdown-menu">
+                      <a className="dropdown-item" href="#">
+                        View all listings
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Notify me about new listings
+                      </a>
+                    </div>
+                  </div>
+                  <div className="dropdown mr-2 tagBtns">
+                    <p
+                      type="button"
+                      // className="orange_btn"
+                      data-toggle="dropdown"
+                    
+                    >
+                      Model: {vehicle.model}
+                    </p>
+                    <div className="dropdown-menu">
+                      <a className="dropdown-item" href="#">
+                        View all listings
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Notify me about new listings
+                      </a>
+                    </div>
+                  </div>
+                  <div className="dropdown mr-2 tagBtns">
+                    <p
+                      type="button"
+                      // className="orange_btn"
+                    
+                    >
+                      Era: {vehicle.year}
+                    </p>
+                    {/* <button type="button" className="orange_btn">
+                    Era: {vehicle.year}
+                  </button> */}
+                    <div className="dropdown-menu">
+                      <a className="dropdown-item" href="#">
+                        View all listings
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Notify me about new listings
+                      </a>
+                    </div>
+                  </div>
+                  <div className="dropdown mr-2 tagBtns">
+                    <div className="dropdown-menu">
+                      <a className="dropdown-item" href="#">
+                        View all listings
+                      </a>
+                      <a className="dropdown-item" href="#">
+                        Notify me about new listings
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="auctionHistory">
+                      <div className="AuctionBtn">
+                          <img src={EyeIcon}/>
+                          Auction History <span className="numBr">10</span>
+                      </div>
+
+                </div>
+              </div>
+              <div className="card_">
+                <h3 className="cardTitle">Description</h3>
+                <p>{vehicle.moreDescription}</p>
+                <p className="py-4">{vehicle.desc1}</p>
+                <div className="" id="placeBid_col">
+                  <p>{vehicle.desc2}</p>
+                </div>
+                 
+              </div>
+              <div className="card_">
+                <img src={ScreenShort}/>
+              </div>
+              <div className="card_">
+                <h3 className="cardTitle">Shipping</h3>
+                <div className="downloadZip">
+                Destination ZIP <input type="text" placeholder="Destination ZIP"></input><button className="btn">Download</button>
+                </div>
+                <p>Ship this vehicle anywhere in the contiguous 48 states using Bring a Trailer Shipping. 
+Enter your destination ZIP code to get an instant quote.</p>
+              </div>
+              <div className="card_ ptb_40">
+              <h3 className="cardTitle">Gallery</h3>
+              <div className="row galleryPh">
+
+                <div className="col-5">
+                  <img src={carImg}/>
+                </div>
+                <div className="col-7">
+                  <div className="rightGallery">
+                    <img src={carImg}/>
+                    <img src={carImg}/>
+                    <img src={carImg}/>
+                    <img src={carImg}/>
+                    <img src={carImg}/>
+                    <img src={carImg}/>
+                  </div>
+
+                </div>
+
+              </div>
+                <div className=" phG">
+                    <div ref={moreImgRaf} className="card-group">
                       <Image.PreviewGroup>
                         {vehicle.images &&
                           vehicle.images.map((curElem) => {
                             return (
                               <div
-                                class="card mx-2"
+                                className="card mx-2"
                                 style={{ width: "30vh", height: "30vh" }}
                               >
 
                                 <Image
                                   loading="lazy"
                                   style={{ height: "30vh", width: "30vh" }}
-                                  class="card-img-top"
+                                  className="card-img-top"
                                   src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
                                   onError={({ currentTarget }) => {
                                     currentTarget.onError = null;
@@ -1028,81 +682,86 @@ function Detail() {
                           })}
                       </Image.PreviewGroup>
                     </div>
-                  </div>
-                  {/* <div className="row pt-4">
-                  <div className="col-12">
-                    <h5>COMMENTS</h5>
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        axios
-                          .post(process.env.REACT_APP_URL + "comments", {
-                            vehicleId: id,
-                            bidId: 0,
-                            description: inputcomment,
-                          })
-                          .then(() => {
-                            window.location.reload(false);
-                          });
-                      }}
-                      className="mb-3"
-                    >
-                      <div className="form-group">
-                        <textarea
-                          placeholder="add comment here"
-                          className="field"
-                          value={inputcomment}
-                          onChange={(e) => {
-                            setInputComment(e.target.value);
-                          }}
-                          required
-                        ></textarea>
-                      </div>
-                      <div className="form-group">
-                        <button type="submit" className="orange_btn">
-                          Submit
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div className="col-12 pt-3">
-                    {comments.map((data) => (
-                      <div className="commentRow">
-                        <div className="commentHead">
-                          <div className="com_byPic">
-                            <img
-                              loading="lazy"
-                              src="https://pinnacle.works/wp-content/uploads/2022/06/dummy-image.jpg"
-                              alt=""
-                            />
-                          </div>
-                          <div className="com_by">{data.name}</div>
-                          <div className="com_date">
-                            <i className="fa-solid fa-clock mr-1"></i>{" "}
-                            {moment(data.created_at).format("LLL")}
-                          </div>
-                        </div>
-                        <div className="commentBody">
-                          <p>{data.description}</p>
-                        </div>
-                        <div className="commentFooter">
-                          <a href="#" className="mr-3">
-                            <i className="fa-solid fa-thumbs-up"></i> 0
-                          </a>
-                          <a href="#" className="mr-3">
-                            <i className="fa-solid fa-thumbs-down"></i> 0
-                          </a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
                 </div>
+              </div>
+              <div className="card_ ">
+              <div className="row ">
+                <div className="col-12">
+                <h3 className="cardTitle">Guzzlrs Chat</h3>
+                  <form className="mb-3">
+                    <div className="form-group">
+                      <textarea placeholder="add comment here" className="field"></textarea>
+                    </div>
+                    <div className="form-group">
+                      <button type="button" className="gry_btn">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div className="col-12 pt-3">
+                  <div className="commentRow">
+                    <div className="commentHead">
+                      <div className="com_byPic">
+                        <img src={men_face}/>
+                      </div>
+                      <div className="com_by">Z32kerber</div>
+                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i> Sep 23 at 7:31 PM</div>
+                    </div>
+                    <div className="commentBody">
+                      <p>Amazing car but the drive video was a disappointment.</p>
+                    </div>
+                    <div className="commentFooter">
+                    <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-up"></i> 349</a>
+                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
+                    </div>
+                  </div>
+                  <div className="commentRow">
+                    
+                  <div className="commentRow">
+                    <div className="commentHead">
+                      <div className="com_byPic">
+                      <img src={men_face}/>
+                      </div>
+                      <div className="com_by">NobleMotorGroup</div>
+                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i> Sep 23 at 7:31 PM</div>
+                    </div>
+                    <div className="commentBody">
+                      <p>I’ve sold this car a couple times. It’s an amazing, beautiful spec. Whoever ends up with it will be immensely happy. Good luck bidders!</p>
+                    </div>
+                    <div className="commentFooter">
+                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-up"></i> 349</a>
+                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
+                    </div>
+                  </div>
+                  <div className="commentRow">
+                    <div className="commentHead">
+                      <div className="com_byPic">
+                      <img src={men_face}/>
+                      </div>
+                      <div className="com_by">DaveBrewer</div>
+                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i>  Sep 23 at 7:31 PM</div>
+                    </div>
+                    <div className="commentBody">
+                      <p>Dang, and to think I was scared to list my Mustang “No Reserve”…</p>
+                    </div>
+                    <div className="commentFooter">
+                      <a href="#" className="mr-3"> <i className="fa-solid fa-thumbs-up"></i> 349</a>
+                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <button type="button" className="gry_btn">Read More</button>
+                  </div>
+                </div>
+              </div>
+              </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -1143,7 +802,7 @@ function Detail() {
                     </div>
                   </div>
                   <div className="col-12">
-                    <div class="form-group">
+                    <div className="form-group">
                       <FormInput
                         value={bidComment}
                         onChange={(e) => setBidComment(e.target.value)}

@@ -12,7 +12,7 @@ import chatIcon from '../../../src/Assets/images/Vector2.svg'
 const DetailNew = () => {
     return (
        
-        <div className="container-fluid">
+        <div className="container">
             <div className="row main ">
                 <div className="col-md-3 py-5 ">
                     <div className='bg-dark1 p-4  mb-3'>
