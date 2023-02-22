@@ -8,7 +8,9 @@
 		width: 33.33%;
 	}
 }
-
+@media (max-width: 1920px){
+	
+}
 @media (max-width: 1600px) {
 	.toNv ul.navbar-nav.ml-auto {
 		right: 6%;

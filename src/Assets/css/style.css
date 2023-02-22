@@ -5903,3 +5903,23 @@ button.btn.more_ {
   overflow: hidden;
   position: relative;
 }
+
+.moAh .imgText .sidebarPost_Img { width: 27%; padding-right: 5px; margin-right: 10px; height: 122px;}
+
+.moAh .imgText{ margin: 0 auto;  width: 100%; margin: 2px;}
+.moAh .Cont p { font-size: 14px; margin: 12px 0px;}
+a.dfr { color: black;}
+
+.light .imgText { background: #d9d9d9;}
+.light .card_ { background: #f7f7f7;}
+.light .tagBtns p{color: #fff;}
+.light .Dfrt:before { background-color: #f7f7f7;}
+span.numBr {color: #fff;}
+.light .box_backgroundD {
+  background: #f7f7f7;}
+  .light ul.listFund li{color: #000;}
+  a.dfr { color: rgb(161, 159, 159);}
+ .light a.dfr { color: black;}
+
+
+  
