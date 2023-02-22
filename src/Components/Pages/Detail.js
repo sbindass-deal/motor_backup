@@ -37,6 +37,8 @@ function Detail() {
   const [bidComment, setBidComment] = useState();
   const [readMoreInt, setReadMoreInt] = useState(false);
   const [readMoreExt, setReadMoreExt] = useState(false);
+  const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
+  const [auctonVehicle, setAuctonVehicle] = useState([]);
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
@@ -200,6 +202,13 @@ function Detail() {
     );
   }, [vehicleDatas, id]);
 
+  useEffect(() => {
+    const filteredAuctionVehicle = vehicleDatas.filter(
+      (item) => item.displayInAuction === "Yes"
+    );
+    setAuctonVehicle(filteredAuctionVehicle);
+  }, [vehicleDatas, id]);
+
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
@@ -262,7 +271,7 @@ function Detail() {
                 <h3 className="cardTitle">Fundamental</h3>
                 <div className="sellerBox">
                   <div>
-                    Seller: <a href="#">#NA</a>
+                    Seller: <a href="#">{vehicle.name}</a>
                     <small> (Private Party or Dealer ): #NA</small>
                   </div>
                   <a href="#">
@@ -366,150 +375,66 @@ function Detail() {
               </div>
               <div className="box_backgroundD mt-15">
                 <h3 className="cardTitle">Latest Guzzlrs Auctions</h3>
-                <div className="mt-4 pb-3 sidebarPostRow sidebarAuctions">
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
+                <div
+                  style={{
+                    maxHeight: `${showAuctionVehicle ? "100%" : "145vh"}`,
+                    overflow: "hidden",
+                  }}
+                  className="mt-4 pb-3 sidebarPostRow sidebarAuctions"
+                >
+                  {auctonVehicle &&
+                    auctonVehicle.map((curElem, i) => {
+                      return (
+                        <div key={i} className="sidebarPost">
+                          <a href="#">
+                            <div className="overlay_post">
+                              <div className="">
+                                <div className="">
+                                  Current Bid: $
+                                  {curElem.currentAmount
+                                    ? curElem.currentAmount.auctionAmmount
+                                    : curElem.documentFee}
+                                </div>
+                                <div className="">
+                                  Ends in:{" "}
+                                  {curElem.EndTime &&
+                                    new Date(
+                                      curElem.EndTime
+                                    ).toLocaleDateString()}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="sidebarPost_Img">
+                              {curElem.images && (
+                                <img
+                                  loading="lazy"
+                                  src={
+                                    curElem?.images[0] &&
+                                    `${process.env.REACT_APP_URL}/${curElem?.images[0]?.imagePath}/${curElem?.images[0]?.imageName}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              )}
+                            </div>
+                          </a>
                         </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
-                        </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
-                        </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
-                        </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
-                        </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="imgText">
-                    <div className="sidebarPost_Img">
-                      <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>Lamborghini Urus 2019</p>
-                      <div className="n">
-                        Current Bid:<span>$25,000</span>{" "}
-                      </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
-                        30 minutes
-                      </div>
-                    </div>
-                  </div>
-                  <div className="imgText">
-                    <div className="sidebarPost_Img">
-                      <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>Lamborghini Urus 2019</p>
-                      <div className="n">
-                        Current Bid:<span>$25,000</span>{" "}
-                      </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
-                        30 minutes
-                      </div>
-                    </div>
-                  </div>
-                  <div className="imgText">
-                    <div className="sidebarPost_Img">
-                      <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>Lamborghini Urus 2019</p>
-                      <div className="n">
-                        Current Bid:<span>$25,000</span>{" "}
-                      </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
-                        30 minutes
-                      </div>
-                    </div>
-                  </div>
-                  <div className="imgText">
-                    <div className="sidebarPost_Img">
-                      <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>Lamborghini Urus 2019</p>
-                      <div className="n">
-                        Current Bid:<span>$25,000</span>{" "}
-                      </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
-                        30 minutes
-                      </div>
-                    </div>
-                  </div>
-                  <div className="sidebarPost">
-                    <a href="#">
-                      <div className="overlay_post">
-                        <div className="">
-                          <div className="">Current Bid: $25,000</div>
-                          <div className="">Ends in: 12 hours, 30 minutes</div>
-                        </div>
-                      </div>
-                      <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                      </div>
-                    </a>
-                  </div>
+                      );
+                    })}
                 </div>
-                <button className="btn more_">Read more</button>
+                <button
+                  onClick={() => setShowAuctionVehicle(!showAuctionVehicle)}
+                  className="btn more_"
+                >
+                  {showAuctionVehicle ? "Read Less" : "Read more"}
+                </button>
               </div>
 
-              <h3>Essentials</h3>
+              {/* <h3>Essentials</h3>
               <ul>
                 <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
                 <li>fuelType:{vinDetails?.engine?.fuelType}</li>
@@ -539,7 +464,7 @@ function Detail() {
                       );
                     })}
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="col-lg-9 col-sm-12">
               <div className=" text-center box_background p-20" id="sticky">

@@ -163,44 +163,45 @@ const Auctionlive = () => {
                                   style={{ margin: "8px" }}
                                 >
                                   <i
-                                    className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
-                                      }`}
+                                    className={`fa-solid fa-star ${
+                                      curElem.like >= 1 ? "faList" : ""
+                                    }`}
                                   ></i>
                                 </button>
-                              <img
-                                loading="lazy"
-                                src={
-                                  curElem.images[0] &&
-                                  `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
+                                <img
+                                  loading="lazy"
+                                  src={
+                                    curElem.images[0] &&
+                                    `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
                                 />
-                                </>
+                              </>
                             ) : (
-                                <>
-                                  
-                                  <button
-                                    // onClick={() => addFabrity(curElem.id)}
-                                    type="button"
-                                    className="watchedIc"
-                                    style={{margin:"8px"}}
-                                  >
-                                    <i
-                                      className={`fa-solid fa-star ${curElem.like >= 1 ? "faList" : ""
-                                        }`}
-                                    ></i>
-                                  </button>
-                                  <img
-                                loading="lazy"
-                                src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                alt="Maskgroup1"
+                              <>
+                                <button
+                                  // onClick={() => addFabrity(curElem.id)}
+                                  type="button"
+                                  className="watchedIc"
+                                  style={{ margin: "8px" }}
+                                >
+                                  <i
+                                    className={`fa-solid fa-star ${
+                                      curElem.like >= 1 ? "faList" : ""
+                                    }`}
+                                  ></i>
+                                </button>
+                                <img
+                                  loading="lazy"
+                                  src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                  alt="Maskgroup1"
                                 />
-                                </>
+                              </>
                             )}
                           </Link>
                         </div>
@@ -244,14 +245,13 @@ const Auctionlive = () => {
                               <span>
                                 <label>Current&nbsp;Bid :</label>
                                 <span className="px-1">
-
-                                ${curElem.currentAmount.auctionAmmount}
+                                  ${curElem.currentAmount.auctionAmmount}
                                 </span>
                               </span>
                             ) : curElem.documentFee ? (
                               <span>
                                 <label>
-                                  Current Bid :  ${curElem.documentFee}
+                                  Current Bid : ${curElem.documentFee}
                                 </label>
                               </span>
                             ) : null}
