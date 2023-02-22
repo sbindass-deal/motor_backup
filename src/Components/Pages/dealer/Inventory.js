@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import car_01 from '../../../Assets/images/car_01.jpg'
 import car_02 from '../../../Assets/images/car_02.jpg'
 import car_03 from '../../../Assets/images/car_03.jpg'
