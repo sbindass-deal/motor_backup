@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 import car_01 from '../../../Assets/images/car_01.jpg'
 import car_02 from '../../../Assets/images/car_02.jpg'
