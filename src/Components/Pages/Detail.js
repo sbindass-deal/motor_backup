@@ -9,14 +9,14 @@ import { toast } from "react-toastify";
 import FormInput from "../UI/FormInput";
 import { Image } from "antd";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import ModeCommentIcon from '@mui/icons-material/ModeComment';
-import Msg from '../../Assets/images/msg.svg'
+import ModeCommentIcon from "@mui/icons-material/ModeComment";
+import Msg from "../../Assets/images/msg.svg";
 import { padding } from "@mui/system";
-import EyeIcon from '../../Assets/images/eyeIcon.svg'
-import ScreenShort from '../../Assets/images/screenShort.png'
-import carImg from '../../Assets/images/carImg.png'
-import bellIcon from '../../Assets/images/bellIcon.svg'
-import men_face from '../../Assets/images/men-face.jpg'
+import EyeIcon from "../../Assets/images/eyeIcon.svg";
+import ScreenShort from "../../Assets/images/screenShort.png";
+import carImg from "../../Assets/images/carImg.png";
+import bellIcon from "../../Assets/images/bellIcon.svg";
+import men_face from "../../Assets/images/men-face.jpg";
 
 function Detail() {
   const { id } = useParams();
@@ -37,7 +37,7 @@ function Detail() {
   const [bidComment, setBidComment] = useState();
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
-
+  const [showAuctionHistory, setShowAuctionHistory] = useState(false);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
@@ -62,6 +62,12 @@ function Detail() {
   }, [days, hours, minutes, seconds, newTiem]);
 
   // countdown time end
+  const handleCloseAuctionHistory = () => {
+    setShowAuctionHistory(false);
+  };
+  const handleShowAuctionHistory = () => {
+    setShowAuctionHistory(true);
+  };
 
   const handleBidInput = (e) => {
     setBidValue(e.target.value);
@@ -180,8 +186,6 @@ function Detail() {
     );
   }, [vehicleDatas, id]);
 
-  
-
   const getBidingDetails = () => {
     axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
       setBiding(res.data.data);
@@ -235,7 +239,7 @@ function Detail() {
   //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
   // }
   return (
-    <div>
+    <>
       <section className="ptb_80 pt_sm_50 ">
         <div className="container" id="sticky">
           <div className="row">
@@ -247,19 +251,44 @@ function Detail() {
                     Seller: <a href="#">UserName</a>
                     <small> (Private Party or Dealer ): Dealer</small>
                   </div>
-                  <a href="#"><img src={bellIcon} alt="bellIcon"/></a>
+                  <a href="#">
+                    <img src={bellIcon} alt="bellIcon" />
+                  </a>
                 </div>
                 <ul className="listFund">
-                  <li>Location: <span><a href="https://www.google.com/maps/place/South%20Huntington,%20New%20York%2011746">  South Huntington, New York 11746</a></span></li>
-                  <li>VIN/ID: <span>4Y1SL65848Z411439</span></li>
-                  <li>Lot: <span>#97327</span></li>
-                  <li>Miles: <span>18k Miles Shown, TMU</span></li>
-                  <li>Engine :<span>Triple SU Carburetors</span></li>
-                  <li>Transmission: <span>Four-Speed Manual Transmission</span></li>
-                  <li>Brakes: <span>Hydraulic Drum Brakes</span></li>
-                  <li>Differential: <span>Four-Wheel Independent Suspension</span></li>
-                  <li>Special Modifications: <span>Five Spare Wire Wheels</span></li>
-
+                  <li>
+                    Location:{" "}
+                    <span>
+                      <a href="https://www.google.com/maps/place/South%20Huntington,%20New%20York%2011746">
+                        {" "}
+                        South Huntington, New York 11746
+                      </a>
+                    </span>
+                  </li>
+                  <li>
+                    VIN/ID: <span>4Y1SL65848Z411439</span>
+                  </li>
+                  <li>
+                    Lot: <span>#97327</span>
+                  </li>
+                  <li>
+                    Miles: <span>18k Miles Shown, TMU</span>
+                  </li>
+                  <li>
+                    Engine :<span>Triple SU Carburetors</span>
+                  </li>
+                  <li>
+                    Transmission: <span>Four-Speed Manual Transmission</span>
+                  </li>
+                  <li>
+                    Brakes: <span>Hydraulic Drum Brakes</span>
+                  </li>
+                  <li>
+                    Differential: <span>Four-Wheel Independent Suspension</span>
+                  </li>
+                  <li>
+                    Special Modifications: <span>Five Spare Wire Wheels</span>
+                  </li>
                 </ul>
               </div>
               <div className="box_backgroundD mt-15">
@@ -269,7 +298,9 @@ function Detail() {
                   <li>Colored Seat Belt In Bianco Polar</li>
                   <li>Q-citura W/Alcantara</li>
                   <li>Contrast Stitching On Steering Wheel</li>
-                  <li>Multifunctional Steering Wheel In Smooth Leather Heated</li>
+                  <li>
+                    Multifunctional Steering Wheel In Smooth Leather Heated
+                  </li>
                   <li>Floor Mats W/Leather Piping And Double Stitching</li>
                   <li>Optional Stitching</li>
                   <li>Multifunctional Steering Wheel In Colored Leather</li>
@@ -292,11 +323,11 @@ function Detail() {
                 <button className="btn more_">Read more</button>
               </div>
               <div className="box_backgroundD mt-15 justifyCenter">
-                  <button className="btn">Contact Seller</button>
+                <button className="btn">Contact Seller</button>
               </div>
               <div className="box_backgroundD mt-15">
                 <h3 className="cardTitle">Latest Guzzlrs Auctions</h3>
-                <div className="mt-4 pb-3 sidebarPostRow sidebarAuctions">				
+                <div className="mt-4 pb-3 sidebarPostRow sidebarAuctions">
                   <div className="sidebarPost">
                     <a href="#">
                       <div className="overlay_post">
@@ -305,7 +336,9 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                   <div className="sidebarPost">
@@ -316,7 +349,9 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                   <div className="sidebarPost">
@@ -327,7 +362,9 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                   <div className="sidebarPost">
@@ -338,7 +375,9 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                   <div className="sidebarPost">
@@ -349,39 +388,69 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                   <div className="imgText">
-                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="sidebarPost_Img">
+                      <img src={carImg} />
+                    </div>
                     <div className="Cont">
-                        <p>Lamborghini Urus 2019</p>
-                        <div className="n">Current Bid:<span>$25,000</span> </div>
-                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Current Bid:<span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
+                        30 minutes
+                      </div>
                     </div>
                   </div>
                   <div className="imgText">
-                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="sidebarPost_Img">
+                      <img src={carImg} />
+                    </div>
                     <div className="Cont">
-                        <p>Lamborghini Urus 2019</p>
-                        <div className="n">Current Bid:<span>$25,000</span> </div>
-                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Current Bid:<span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
+                        30 minutes
+                      </div>
                     </div>
                   </div>
                   <div className="imgText">
-                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="sidebarPost_Img">
+                      <img src={carImg} />
+                    </div>
                     <div className="Cont">
-                        <p>Lamborghini Urus 2019</p>
-                        <div className="n">Current Bid:<span>$25,000</span> </div>
-                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Current Bid:<span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
+                        30 minutes
+                      </div>
                     </div>
                   </div>
                   <div className="imgText">
-                    <div className="sidebarPost_Img"><img src={carImg}/></div>
+                    <div className="sidebarPost_Img">
+                      <img src={carImg} />
+                    </div>
                     <div className="Cont">
-                        <p>Lamborghini Urus 2019</p>
-                        <div className="n">Current Bid:<span>$25,000</span> </div>
-                        <div className="t"><i className="fa-solid fa-clock"></i> Ends in: 12 hours, 30 minutes</div>
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Current Bid:<span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Ends in: 12 hours,
+                        30 minutes
+                      </div>
                     </div>
                   </div>
                   <div className="sidebarPost">
@@ -392,153 +461,150 @@ function Detail() {
                           <div className="">Ends in: 12 hours, 30 minutes</div>
                         </div>
                       </div>
-                      <div className="sidebarPost_Img"><img src={carImg}/></div>
+                      <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                      </div>
                     </a>
                   </div>
                 </div>
                 <button className="btn more_">Read more</button>
               </div>
 
-                    <h3>Essentials</h3>
-                    <ul>
-                      <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
-                      <li>fuelType:{vinDetails?.engine?.fuelType}</li>
-                      <li>horsepower:{vinDetails?.engine?.horsepower}</li>
-                      <li>numOfDoors:{vinDetails?.numOfDoors}</li>
-                      <li>
-                        category:
-                        {vinDetails.options !== undefined &&
-                          vinDetails.options.map((curElem, i) => {
+              <h3>Essentials</h3>
+              <ul>
+                <li>equipmentType:{vinDetails?.engine?.equipmentType}</li>
+                <li>fuelType:{vinDetails?.engine?.fuelType}</li>
+                <li>horsepower:{vinDetails?.engine?.horsepower}</li>
+                <li>numOfDoors:{vinDetails?.numOfDoors}</li>
+                <li>
+                  category:
+                  {vinDetails.options !== undefined &&
+                    vinDetails.options.map((curElem, i) => {
+                      return (
+                        <p>
+                          <span style={{ fontWeight: "bolder" }}>{i + 1}</span>{" "}
+                          {curElem.category}:
+                          {curElem.options.map((item, i) => {
                             return (
-                              <p>
-                                <span style={{ fontWeight: "bolder" }}>
-                                  {i + 1}
+                              <div>
+                                <span>
+                                  <FiberManualRecordIcon
+                                    style={{ fontSize: "1rem" }}
+                                  />
                                 </span>{" "}
-                                {curElem.category}:
-                                {curElem.options.map((item, i) => {
-                                  return (
-                                    <div>
-                                      <span>
-                                        <FiberManualRecordIcon
-                                          style={{ fontSize: "1rem" }}
-                                        />
-                                      </span>{" "}
-                                      {item.name}
-                                    </div>
-                                  );
-                                })}
-                              </p>
+                                {item.name}
+                              </div>
                             );
                           })}
-                      </li>
-                    </ul>
-                    
+                        </p>
+                      );
+                    })}
+                </li>
+              </ul>
             </div>
             <div className="col-lg-9 col-sm-12">
-              <div className=" text-center box_background p-20" id="sticky" >
-                  <div className="detailPostOption">
+              <div className=" text-center box_background p-20" id="sticky">
+                <div className="detailPostOption">
                   <h2 className="title_combo title_Center" id="sticky2">
                     {vehicle.make} {vehicle.model} {vehicle.year}
                   </h2>
-                    <div className="titleRight">
-                      <ul className="labelList">
-                        <li>
-                          <label>Sold for</label>{" "}
-                          <span>
-                            {amountprice ? (
-                              <span>
-                                {" "}
-                                <span style={{ fontWeight: "bold" }}>
-                                  {" "}
-                                  ${amountprice}{" "}
-                                </span>
-                                <span>
-                                <label>On</label>
-                                  {" "}
-                                  {new Date(vehicle.EndTime).toLocaleDateString()}
-                                </span>
-                              </span>
-                            ) : (
-                              <span>
-                                {" "}
-                                <span style={{ fontWeight: "bold" }}>
-                                  {" "}
-                                  ${vehicle.documentFee}{" "}
-                                </span>
-                                <span>
-                                <label style={{padding: "0px 10px"}}>On</label> 
-                                  {new Date(vehicle.EndTime).toLocaleDateString()}
-                                </span>
-                              </span>
-                            )}
-                          </span>
-                        </li>
-                        <li>
-                          {vehicle.approved !== "1" ? (
+                  <div className="titleRight">
+                    <ul className="labelList">
+                      <li>
+                        <label>Sold for</label>{" "}
+                        <span>
+                          {amountprice ? (
                             <span>
-                             
-                              <img src={Msg} alt="msg"/>
-                              <span className="color_orange couNt"
-                                style={{ marginLeft: "8px", }}
-                              >
-                                {comments.length}
+                              {" "}
+                              <span style={{ fontWeight: "bold" }}>
+                                {" "}
+                                ${amountprice}{" "}
                               </span>
-                              
-                            </span>
-                          ) : vehicle.approved === "1" && t > 0 ? (
-                            <span>
-                              <label>Ends In:&nbsp;</label>
-                              {days}days, {hours <= 9 && "0"}
-                              {hours}h : {minutes <= 9 && "0"}
-                              {minutes}m : {seconds <= 9 && "0"}
-                              {seconds}s
+                              <span>
+                                <label>On</label>{" "}
+                                {new Date(vehicle.EndTime).toLocaleDateString()}
+                              </span>
                             </span>
                           ) : (
-                            "Auction Closed"
+                            <span>
+                              {" "}
+                              <span style={{ fontWeight: "bold" }}>
+                                {" "}
+                                ${vehicle.documentFee}{" "}
+                              </span>
+                              <span>
+                                <label style={{ padding: "0px 10px" }}>
+                                  On
+                                </label>
+                                {new Date(vehicle.EndTime).toLocaleDateString()}
+                              </span>
+                            </span>
                           )}
-                        </li>
+                        </span>
+                      </li>
+                      <li>
+                        {vehicle.approved !== "1" ? (
+                          <span>
+                            <img src={Msg} alt="msg" />
+                            <span
+                              className="color_orange couNt"
+                              style={{ marginLeft: "8px" }}
+                            >
+                              {comments.length}
+                            </span>
+                          </span>
+                        ) : vehicle.approved === "1" && t > 0 ? (
+                          <span>
+                            <label>Ends In:&nbsp;</label>
+                            {days}days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
+                          </span>
+                        ) : (
+                          "Auction Closed"
+                        )}
+                      </li>
 
-                        {vehicle.reserve === "Yes" &&
-                          vehicle.approved === "1" &&
-                          t > 0 && (
-                            <li className="reserved">
-                              Reserve: <span>{vehicle.reserve}</span>
-                            </li>
-                          )}
-                      </ul>
-                      
+                      {vehicle.reserve === "Yes" &&
+                        vehicle.approved === "1" &&
+                        t > 0 && (
+                          <li className="reserved">
+                            Reserve: <span>{vehicle.reserve}</span>
+                          </li>
+                        )}
+                    </ul>
 
-                      <button
-                        type="button"
-                        className="gry_btn active bg-dark"
-                        onClick={handleShow}
-                        style={{ border: "none" }}
-                        disabled={
-                          vehicle.approved !== "1" || t < 0 ? true : false
-                        }
-                      >
-                        View Result
-                      </button>
-                    </div>
-                   
+                    <button
+                      type="button"
+                      className="gry_btn active bg-dark"
+                      onClick={handleShow}
+                      style={{ border: "none" }}
+                      disabled={
+                        vehicle.approved !== "1" || t < 0 ? true : false
+                      }
+                    >
+                      View Result
+                    </button>
                   </div>
+                </div>
               </div>
               <div className="postHero pb_30 detail">
-                  {vehicle?.images && (
-                    <img
-                      loading="lazy"
-                      src={
-                        vehicle?.images[0] &&
-                        `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
-                      }
-                      onError={({ currentTarget }) => {
-                        currentTarget.onError = null;
-                        currentTarget.src =
-                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                      }}
-                      alt="Maskgroup1"
-                    />
-                  )}
+                {vehicle?.images && (
+                  <img
+                    loading="lazy"
+                    src={
+                      vehicle?.images[0] &&
+                      `${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`
+                    }
+                    onError={({ currentTarget }) => {
+                      currentTarget.onError = null;
+                      currentTarget.src =
+                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                    }}
+                    alt="Maskgroup1"
+                  />
+                )}
               </div>
               <div className="card_ Dfrt">
                 <div>
@@ -564,7 +630,6 @@ function Detail() {
                       type="button"
                       // className="orange_btn"
                       data-toggle="dropdown"
-                    
                     >
                       Model: {vehicle.model}
                     </p>
@@ -581,7 +646,6 @@ function Detail() {
                     <p
                       type="button"
                       // className="orange_btn"
-                    
                     >
                       Era: {vehicle.year}
                     </p>
@@ -609,11 +673,13 @@ function Detail() {
                   </div>
                 </div>
                 <div className="auctionHistory">
-                      <div className="AuctionBtn">
-                          <img src={EyeIcon}/>
-                          Auction History <span className="numBr">10</span>
-                      </div>
-
+                  <div
+                    onClick={handleShowAuctionHistory}
+                    className="AuctionBtn"
+                  >
+                    <img src={EyeIcon} />
+                    Auction History <span className="numBr">10</span>
+                  </div>
                 </div>
               </div>
               <div className="card_">
@@ -623,146 +689,182 @@ function Detail() {
                 <div className="" id="placeBid_col">
                   <p>{vehicle.desc2}</p>
                 </div>
-                 
               </div>
               <div className="card_">
-                <img src={ScreenShort}/>
+                <img src={ScreenShort} />
               </div>
               <div className="card_">
                 <h3 className="cardTitle">Shipping</h3>
                 <div className="downloadZip">
-                Destination ZIP <input type="text" placeholder="Destination ZIP"></input><button className="btn">Download</button>
+                  Destination ZIP{" "}
+                  <input type="text" placeholder="Destination ZIP"></input>
+                  <button className="btn">Download</button>
                 </div>
-                <p>Ship this vehicle anywhere in the contiguous 48 states using Bring a Trailer Shipping. 
-Enter your destination ZIP code to get an instant quote.</p>
+                <p>
+                  Ship this vehicle anywhere in the contiguous 48 states using
+                  Bring a Trailer Shipping. Enter your destination ZIP code to
+                  get an instant quote.
+                </p>
               </div>
               <div className="card_ ptb_40">
-              <h3 className="cardTitle">Gallery</h3>
-              <div className="row galleryPh">
-
-                <div className="col-5">
-                  <img src={carImg}/>
-                </div>
-                <div className="col-7">
-                  <div className="rightGallery">
-                    <img src={carImg}/>
-                    <img src={carImg}/>
-                    <img src={carImg}/>
-                    <img src={carImg}/>
-                    <img src={carImg}/>
-                    <img src={carImg}/>
+                <h3 className="cardTitle">Gallery</h3>
+                <div className="row galleryPh">
+                  <div className="col-5">
+                    <img src={carImg} />
                   </div>
-
-                </div>
-
-              </div>
-                <div className=" phG">
-                    <div ref={moreImgRaf} className="card-group">
-                      <Image.PreviewGroup>
-                        {vehicle.images &&
-                          vehicle.images.map((curElem) => {
-                            return (
-                              <div
-                                className="card mx-2"
-                                style={{ width: "30vh", height: "30vh" }}
-                              >
-
-                                <Image
-                                  loading="lazy"
-                                  style={{ height: "30vh", width: "30vh" }}
-                                  className="card-img-top"
-                                  src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src =
-                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                  }}
-                                  alt="Maskgroup1"
-                                />
-                              </div>
-                            );
-                          })}
-                      </Image.PreviewGroup>
+                  <div className="col-7">
+                    <div className="rightGallery">
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
                     </div>
+                  </div>
+                </div>
+                <div className=" phG">
+                  <div ref={moreImgRaf} className="card-group">
+                    <Image.PreviewGroup>
+                      {vehicle.images &&
+                        vehicle.images.map((curElem) => {
+                          return (
+                            <div
+                              className="card mx-2"
+                              style={{ width: "30vh", height: "30vh" }}
+                            >
+                              <Image
+                                loading="lazy"
+                                style={{ height: "30vh", width: "30vh" }}
+                                className="card-img-top"
+                                src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                    </Image.PreviewGroup>
+                  </div>
                 </div>
               </div>
               <div className="card_ ">
-              <div className="row ">
-                <div className="col-12">
-                <h3 className="cardTitle">Guzzlrs Chat</h3>
-                  <form className="mb-3">
-                    <div className="form-group">
-                      <textarea placeholder="add comment here" className="field"></textarea>
-                    </div>
-                    <div className="form-group">
-                      <button type="button" className="gry_btn">Submit</button>
-                    </div>
-                  </form>
-                </div>
-                <div className="col-12 pt-3">
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                        <img src={men_face}/>
+                <div className="row ">
+                  <div className="col-12">
+                    <h3 className="cardTitle">Guzzlrs Chat</h3>
+                    <form className="mb-3">
+                      <div className="form-group">
+                        <textarea
+                          placeholder="add comment here"
+                          className="field"
+                        ></textarea>
                       </div>
-                      <div className="com_by">Z32kerber</div>
-                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i> Sep 23 at 7:31 PM</div>
-                    </div>
-                    <div className="commentBody">
-                      <p>Amazing car but the drive video was a disappointment.</p>
-                    </div>
-                    <div className="commentFooter">
-                    <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-up"></i> 349</a>
-                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
-                    </div>
-                  </div>
-                  <div className="commentRow">
-                    
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                      <img src={men_face}/>
+                      <div className="form-group">
+                        <button type="button" className="gry_btn">
+                          Submit
+                        </button>
                       </div>
-                      <div className="com_by">NobleMotorGroup</div>
-                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i> Sep 23 at 7:31 PM</div>
-                    </div>
-                    <div className="commentBody">
-                      <p>I’ve sold this car a couple times. It’s an amazing, beautiful spec. Whoever ends up with it will be immensely happy. Good luck bidders!</p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-up"></i> 349</a>
-                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
-                    </div>
+                    </form>
                   </div>
-                  <div className="commentRow">
-                    <div className="commentHead">
-                      <div className="com_byPic">
-                      <img src={men_face}/>
+                  <div className="col-12 pt-3">
+                    <div className="commentRow">
+                      <div className="commentHead">
+                        <div className="com_byPic">
+                          <img src={men_face} />
+                        </div>
+                        <div className="com_by">Z32kerber</div>
+                        <div className="com_date">
+                          <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
+                          7:31 PM
+                        </div>
                       </div>
-                      <div className="com_by">DaveBrewer</div>
-                      <div className="com_date"><i className="fa-solid fa-clock mr-1"></i>  Sep 23 at 7:31 PM</div>
+                      <div className="commentBody">
+                        <p>
+                          Amazing car but the drive video was a disappointment.
+                        </p>
+                      </div>
+                      <div className="commentFooter">
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-up"></i> 349
+                        </a>
+                        <a href="#" className="mr-3">
+                          <i className="fa-solid fa-thumbs-down"></i> 20
+                        </a>
+                      </div>
                     </div>
-                    <div className="commentBody">
-                      <p>Dang, and to think I was scared to list my Mustang “No Reserve”…</p>
-                    </div>
-                    <div className="commentFooter">
-                      <a href="#" className="mr-3"> <i className="fa-solid fa-thumbs-up"></i> 349</a>
-                      <a href="#" className="mr-3"><i className="fa-solid fa-thumbs-down"></i> 20</a>
-                    </div>
-                  </div>
+                    <div className="commentRow">
+                      <div className="commentRow">
+                        <div className="commentHead">
+                          <div className="com_byPic">
+                            <img src={men_face} />
+                          </div>
+                          <div className="com_by">NobleMotorGroup</div>
+                          <div className="com_date">
+                            <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
+                            7:31 PM
+                          </div>
+                        </div>
+                        <div className="commentBody">
+                          <p>
+                            I’ve sold this car a couple times. It’s an amazing,
+                            beautiful spec. Whoever ends up with it will be
+                            immensely happy. Good luck bidders!
+                          </p>
+                        </div>
+                        <div className="commentFooter">
+                          <a href="#" className="mr-3">
+                            <i className="fa-solid fa-thumbs-up"></i> 349
+                          </a>
+                          <a href="#" className="mr-3">
+                            <i className="fa-solid fa-thumbs-down"></i> 20
+                          </a>
+                        </div>
+                      </div>
+                      <div className="commentRow">
+                        <div className="commentHead">
+                          <div className="com_byPic">
+                            <img src={men_face} />
+                          </div>
+                          <div className="com_by">DaveBrewer</div>
+                          <div className="com_date">
+                            <i className="fa-solid fa-clock mr-1"></i> Sep 23 at
+                            7:31 PM
+                          </div>
+                        </div>
+                        <div className="commentBody">
+                          <p>
+                            Dang, and to think I was scared to list my Mustang
+                            “No Reserve”…
+                          </p>
+                        </div>
+                        <div className="commentFooter">
+                          <a href="#" className="mr-3">
+                            {" "}
+                            <i className="fa-solid fa-thumbs-up"></i> 349
+                          </a>
+                          <a href="#" className="mr-3">
+                            <i className="fa-solid fa-thumbs-down"></i> 20
+                          </a>
+                        </div>
+                      </div>
 
-                  <div className="pt-4">
-                    <button type="button" className="gry_btn">Read More</button>
+                      <div className="pt-4">
+                        <button type="button" className="gry_btn">
+                          Read More
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
 
       <Modal
         show={show}
@@ -826,7 +928,35 @@ Enter your destination ZIP code to get an instant quote.</p>
           </div>
         </div>
       </Modal>
-    </div>
+      <Modal
+        show={showAuctionHistory}
+        onHide={handleCloseAuctionHistory}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <h4 className="modal-title bg-dark" style={{ border: "none" }}>
+                Auction history
+              </h4>
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div className="modal-body">
+              <h1>New modal</h1>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }
 
