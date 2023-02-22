@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+
+import car_01 from '../../../Assets/images/car_01.jpg'
+import car_02 from '../../../Assets/images/car_02.jpg'
+import car_03 from '../../../Assets/images/car_03.jpg'
+import car_04 from '../../../Assets/images/car_04.jpg'
+
 import {
   clearShowroomFilter,
   filterShowroomData,
@@ -79,7 +85,7 @@ const Inventory = () => {
         <h2>All Vehicles</h2>
       </div>
       <section className="pt_40">
-        <div className="auction_container">
+        <div className="container">
           <div className="col-12 col-lg-12 py-2">
             <h4 className="text-center">
               <span className="text-warning">{searchedData.length}</span> &nbsp;
@@ -291,6 +297,8 @@ const Inventory = () => {
           </div>
         </div>
       </section>
+
+      
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}

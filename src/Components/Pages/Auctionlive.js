@@ -46,7 +46,7 @@ const Auctionlive = () => {
   return (
     <>
       <section className="ptb_80 pt_sm_50">
-        <div className="auction_container">
+        <div className="container">
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
@@ -225,7 +225,7 @@ const Auctionlive = () => {
                           </button> */}
                         </h4>
                         <p className="color_grey">
-                          {curElem?.moreDescription.substr(0, 200)}
+                          {curElem?.moreDescription.substr(0, 123)}
                         </p>
                         {/* <div className="opening_bid">
                           <p>Opening Bid: $980000 </p>
@@ -242,8 +242,11 @@ const Auctionlive = () => {
                           <li className="w-auto">
                             {curElem.currentAmount ? (
                               <span>
-                                <label>Current&nbsp;Bid:</label>
-                                <br />${curElem.currentAmount.auctionAmmount}
+                                <label>Current&nbsp;Bid :</label>
+                                <span className="px-1">
+
+                                ${curElem.currentAmount.auctionAmmount}
+                                </span>
                               </span>
                             ) : curElem.documentFee ? (
                               <span>
