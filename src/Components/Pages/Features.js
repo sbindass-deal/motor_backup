@@ -56,7 +56,7 @@ const Features = () => {
     <div>
       <section className="ptb_80 pt_sm_50">
         {vehicleData.length > 0 && (
-          <div className="custom_container">
+          <div className="container">
             <div className="row">
               <div className="col-12">
                 <ul className="postTopOption">
@@ -126,7 +126,156 @@ const Features = () => {
                   return (
                     <div className="col-12 col-md-6 pb-3">
                       <div className="card_post box_shadow_common">
-                        <div className="card_postImg">
+
+                        <div class="">
+                          <div class="card_post">
+                            <div class="card_postImg">
+                              <Link to={`/detail/${curElem.id}`} className="auction_image">
+                                {
+                                  curElem.images[0] ? (
+
+                                    <img
+                                      loading="lazy"
+                                      src={
+                                        curElem.images[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                  ) : (
+                                      <img
+                                loading="lazy"
+                                src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                alt="Maskgroup1"
+                                />
+                                  )
+                              }
+                              </Link>
+                              
+                            </div>
+                            <div class="card_postInfo">
+                              <h4><Link to={`/detail/${curElem.id}`}>
+                                {/* Lorem Ipsum is simply dummy text */}
+                                {curElem.make} &nbsp;
+                                {curElem.model} &nbsp;
+                                {curElem.year}
+                              </Link>
+                              </h4>
+                              <ul class="labelList">
+                                <label>Current Bid : </label>
+                                <li className="px-1">${curElem.documentFee}</li>
+
+                                <li>
+                                  {parseInt(
+                                    new Date(curElem.EndTime).getTime(),
+                                    10
+                                  ) -
+                                    parseInt(new Date().getTime(), 10) >
+                                    0 && curElem.approved === "1" ? (
+                                    <label>Auction Open</label>
+                                  ) : parseInt(
+                                    new Date(curElem.EndTime).getTime(),
+                                    10
+                                  ) -
+                                    parseInt(new Date().getTime(), 10) >
+                                    0 &&
+                                    (curElem.approved === null ||
+                                      curElem.approved === "11") ? (
+                                    <label>Upcoming Auction</label>
+                                  ) : (
+                                    <label>Auction Closed</label>
+                                  )}
+                                </li>
+
+                                {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
+                              </ul>
+                              <p>{curElem.moreDescription.substr(0, 123)+"..." } </p>
+                            </div>
+                          </div>
+                        </div>
+                        {/* ===================================== */}
+                        
+                        <div class="">
+                          <div class="card_post">
+                            <div class="card_postImg">
+                              <Link to={`/detail/${curElem.id}`} className="auction_image">
+                                {
+                                  curElem.images[0] ? (
+
+                                    <img
+                                      loading="lazy"
+                                      src={
+                                        curElem.images[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                  ) : (
+                                    <img
+                                      loading="lazy"
+                                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                      alt="Maskgroup1"
+                                    />
+                                  )
+                                }
+                              </Link>
+
+                            </div>
+                            <div class="card_postInfo">
+                              <h4><Link to={`/detail/${curElem.id}`}>
+                                {/* Lorem Ipsum is simply dummy text */}
+                                {curElem.make} &nbsp;
+                                {curElem.model} &nbsp;
+                                {curElem.year}
+                              </Link>
+                              </h4>
+                              <ul class="labelList">
+                                <label>Current Bid : </label>
+                                <li className="px-1">${curElem.documentFee}</li>
+
+                                <li>
+                                  {parseInt(
+                                    new Date(curElem.EndTime).getTime(),
+                                    10
+                                  ) -
+                                    parseInt(new Date().getTime(), 10) >
+                                    0 && curElem.approved === "1" ? (
+                                    <label>Auction Open</label>
+                                  ) : parseInt(
+                                    new Date(curElem.EndTime).getTime(),
+                                    10
+                                  ) -
+                                    parseInt(new Date().getTime(), 10) >
+                                    0 &&
+                                    (curElem.approved === null ||
+                                      curElem.approved === "11") ? (
+                                    <label>Upcoming Auction</label>
+                                  ) : (
+                                    <label>Auction Closed</label>
+                                  )}
+                                </li>
+
+                                {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
+                              </ul>
+                              <p>{curElem.moreDescription.substr(0,123)+"..."} </p>
+                            </div>
+                          </div>
+                        </div>
+                        {/* ===================================== */}
+                        
+                        
+                        
+                        {/* <div className="card_postImg">
                           <Link to={`/detail/${curElem.id}`} className="auction_image">
                             {curElem.images[0] ? (
                               <>
@@ -184,7 +333,7 @@ const Features = () => {
                               {curElem.model} &nbsp;
                               {curElem.year}
                             </Link>
-                            {/* <button
+                            <button
                               onClick={() => addFabrity(curElem.id)}
                               type="button"
                               className="watchedIc"
@@ -194,7 +343,7 @@ const Features = () => {
                                   curElem.like >= 1 ? "faList" : ""
                                 }`}
                               ></i>
-                            </button> */}
+                            </button>
                           </h4>
                           <p>{curElem.moreDescription}</p>
                           <ul className="labelList">
@@ -224,18 +373,33 @@ const Features = () => {
                               )}
                             </li>
                           </ul>
-                          {/* <Link
+                          <Link
                             to={`/detail/${curElem.id}`}
                             className="orange_btn opening_bid_btn"
                           >
                             View Details <i class="fa fa-arrow-right"></i>
-                          </Link> */}
-                        </div>
+                          </Link>
+                        </div> */}
+                        
                       </div>
+                      
                     </div>
                   );
                 })
               )}
+
+              <div class="col-12">
+                <ul class="pagination justify-content-center mt-4">
+                  <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">...</a></li>
+                  <li class="page-item"><a class="page-link" href="#">10</a></li>
+                  <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+                </ul>
+              </div>
+
             </div>
           </div>
         )}
