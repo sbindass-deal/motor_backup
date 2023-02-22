@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+
+import car_01 from '../../../Assets/images/car_01.jpg'
+import car_02 from '../../../Assets/images/car_02.jpg'
+import car_03 from '../../../Assets/images/car_03.jpg'
+import car_04 from '../../../Assets/images/car_04.jpg'
+
 import {
   clearShowroomFilter,
   filterShowroomData,
@@ -79,7 +85,7 @@ const Inventory = () => {
         <h2>All Vehicles</h2>
       </div>
       <section className="pt_40">
-        <div className="auction_container">
+        <div className="container">
           <div className="col-12 col-lg-12 py-2">
             <h4 className="text-center">
               <span className="text-warning">{searchedData.length}</span> &nbsp;
@@ -120,25 +126,7 @@ const Inventory = () => {
               searchedData.map((curElem) => {
                 return (
                   <div className="col-4" key={curElem.id}>
-                    {/* <div class="">
-                      <div class="card_post">
-                        <div class="card_postImg">
-                          <div class="card_postImg_labe">Auction</div>
-                         
-                          <img src={img_01} />
-                        </div>
-                        <div class="card_postInfo">
-                          <h4><a href="detail.html">35k-Mile 1999 Mercedes-Benz SL500</a></h4>
-                          <ul class="labelList priceDateList">
-                            <li class="price__"><span>$126,888</span></li>
-                            <li class="Date__"><label><i class="fa-solid fa-clock"></i></label> <span>5 days</span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div> */}
-
-                    
-
+                   
                     <div className="card_post Inventory auction ffff">
                       {curElem.displayInAuction === "Yes" ? (
                         <p className="forOction">Auction</p>
@@ -291,6 +279,8 @@ const Inventory = () => {
           </div>
         </div>
       </section>
+
+      
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}
