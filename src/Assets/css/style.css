@@ -5904,7 +5904,7 @@ button.btn.more_ {
   position: relative;
 }
 
-.moAh .imgText .sidebarPost_Img { width: 27%; padding-right: 5px; margin-right: 10px; height: 122px;}
+.moAh .imgText .sidebarPost_Img { width: 27%; padding-right: 5px; margin-right: 10px; height: 122px;overflow: hidden;}
 
 .moAh .imgText{ margin: 0 auto;  width: 100%; margin: 2px;}
 .moAh .Cont p { font-size: 14px; margin: 12px 0px;}
