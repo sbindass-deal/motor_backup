@@ -9,6 +9,10 @@ import car_02 from '../../../Assets/images/car_02.jpg'
 import car_03 from '../../../Assets/images/car_03.jpg'
 import car_04 from '../../../Assets/images/car_04.jpg'
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import {
   clearShowroomFilter,
   filterShowroomData,
@@ -84,6 +88,107 @@ const Inventory = () => {
       <div className="col-12 text-center pt_80 pb_30">
         <h2>All Vehicles</h2>
       </div>
+
+      <section className="pt_40">
+	<div className="container">
+		<div className="row">
+			<div className="col-12 pb-3">
+				<h3 className="title_combo">Acura</h3>
+			</div>
+
+			<div className="col-12 slD">
+				<div className="makes_Slide arrowTop_Slide">
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura Integra</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura Integra Type R</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura Legend</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura Legend</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura NSX NA1/NA2</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura NSX NC1</a></h6>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="card_post">
+							<div className="card_postImg">
+								<button type="button" className="watchedIc" data-toggle="modal" data-target="#loginModal"><span data-toggle="tooltip" data-placement="bottom" title="Notify me when one is listed"><i className="fa-solid fa-bell"></i></span></button>
+								<img src={car_01}/>
+							</div>
+							<div className="card_postInfo">
+								<h6><a href="#">Acura RSX</a></h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
       <section className="pt_40">
         <div className="container">
           <div className="col-12 col-lg-12 py-2">
@@ -242,7 +347,7 @@ const Inventory = () => {
                             href={curElem.externalLink}
                             className="orange_btn opening_bid_btn"
                           >
-                            View Details <i class="fa fa-arrow-right"></i>
+                            View Details <i className="fa fa-arrow-right"></i>
                           </a>
                         ) : (
                           <Link
@@ -253,7 +358,7 @@ const Inventory = () => {
                             }
                             className="orange_btn opening_bid_btn"
                           >
-                            View Details <i class="fa fa-arrow-right"></i>
+                            View Details <i className="fa fa-arrow-right"></i>
                           </Link>
                         )} */}
 
@@ -265,15 +370,15 @@ const Inventory = () => {
                 );
               })
             )}
-            <div class="col-12 mb-5">
-              <ul class="pagination justify-content-center mt-4">
-                <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+            <div className="col-12 mb-5">
+              <ul className="pagination justify-content-center mt-4">
+                <li className="page-item disabled"><a className="page-link" href="#"><i className="fa-solid fa-arrow-left"></i></a></li>
+                <li className="page-item active"><a className="page-link" href="#">1</a></li>
+                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                <li className="page-item"><a className="page-link" href="#">...</a></li>
+                <li className="page-item"><a className="page-link" href="#">10</a></li>
+                <li className="page-item"><a className="page-link" href="#"><i className="fa-solid fa-arrow-right"></i></a></li>
               </ul>
             </div>
           </div>

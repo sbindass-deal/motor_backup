@@ -124,11 +124,10 @@ const Features = () => {
               ) : (
                 filteredData.map((curElem) => {
                   return (
+                    <>
                     <div className="col-12 col-md-6 pb-3">
-                      <div className="card_post box_shadow_common">
-
-                        <div class="">
-                          <div class="card_post">
+                    <div className="card_post box_shadow_common">
+                      <div class="card_post">
                             <div class="card_postImg">
                               <Link to={`/detail/${curElem.id}`} className="auction_image">
                                 {
@@ -196,11 +195,16 @@ const Features = () => {
                               </ul>
                               <p>{curElem.moreDescription.substr(0, 123)+"..." } </p>
                             </div>
-                          </div>
-                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6 pb-3">
+                      <div className="card_post box_shadow_common">
+
+                       
                         {/* ===================================== */}
                         
-                        <div class="">
+                       
                           <div class="card_post">
                             <div class="card_postImg">
                               <Link to={`/detail/${curElem.id}`} className="auction_image">
@@ -270,7 +274,7 @@ const Features = () => {
                               <p>{curElem.moreDescription.substr(0,123)+"..."} </p>
                             </div>
                           </div>
-                        </div>
+                        
                         {/* ===================================== */}
                         
                         
@@ -384,6 +388,7 @@ const Features = () => {
                       </div>
                       
                     </div>
+                    </>
                   );
                 })
               )}

@@ -938,9 +938,10 @@ function Detail() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title bg-dark" style={{ border: "none" }}>
+              <h3 className="modal-title bg-dark" style={{ border: "none" }}>
                 Auction history
-              </h4>
+              </h3>
+              
               <button
                 onClick={handleClose}
                 type="button"
