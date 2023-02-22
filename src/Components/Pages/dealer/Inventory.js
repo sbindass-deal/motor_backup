@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import car_01 from '../../../Assets/images/car_01.jpg'
 import car_02 from '../../../Assets/images/car_02.jpg'
 import car_03 from '../../../Assets/images/car_03.jpg'
 import car_04 from '../../../Assets/images/car_04.jpg'
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import {
   clearShowroomFilter,
@@ -78,12 +85,93 @@ const Inventory = () => {
             (item.model && item.model.toLowerCase().includes(searchInputValue))
         )
       : vehicleData;
+  
+  const slide = useRef(null);
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "red" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "green" }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    arrows: false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    // autoplay: true,
+    speed: 3000,
+    // pauseOnHover: true,
+    // cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
       <div className="col-12 text-center pt_80 pb_30">
         <h2>All Vehicles</h2>
       </div>
+
+
+      <section className="ptb_80" id="second">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              <h2>Featured Auctions</h2>
+            </div>
+
+          
+          </div>
+        </div>
+      </section>
+
+
+
+
       <section className="pt_40">
         <div className="container">
           <div className="col-12 col-lg-12 py-2">
@@ -119,6 +207,96 @@ const Inventory = () => {
               </li>
             </ul>
           </div>
+
+          
+          <div className="col-12 slider_ht">
+            <h1>Acura</h1>
+            <div className="nextArrow">
+              <span onClick={() => slide.current.slickPrev()}>
+                <span className="prev">Prev</span>
+              </span>
+              <span
+                onClick={() => slide.current.slickNext()}
+                style={{ marginLeft: 50 }}
+              >
+                <span className="next">Next</span>
+              </span>
+            </div>
+            <div className="featuredAuctions_Slide">
+              <Slider ref={slide} {...settings}>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
+              
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+								<h6><a href="#">Acura Integra</a></h6>
+							</div>
+                </div>
+                
+              </Slider>
+            </div>
+          </div>
+
+
+
           <div className="row mt-30">
             {searchedData.length === 0 ? (
               <NotAvailable text="No Result Found" />
@@ -242,7 +420,7 @@ const Inventory = () => {
                             href={curElem.externalLink}
                             className="orange_btn opening_bid_btn"
                           >
-                            View Details <i class="fa fa-arrow-right"></i>
+                            View Details <i className="fa fa-arrow-right"></i>
                           </a>
                         ) : (
                           <Link
@@ -253,7 +431,7 @@ const Inventory = () => {
                             }
                             className="orange_btn opening_bid_btn"
                           >
-                            View Details <i class="fa fa-arrow-right"></i>
+                            View Details <i className="fa fa-arrow-right"></i>
                           </Link>
                         )} */}
 
@@ -265,20 +443,23 @@ const Inventory = () => {
                 );
               })
             )}
-            <div class="col-12 mb-5">
-              <ul class="pagination justify-content-center mt-4">
-                <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+            <div className="col-12 mb-5">
+              <ul className="pagination justify-content-center mt-4">
+                <li className="page-item disabled"><a className="page-link" href="#"><i className="fa-solid fa-arrow-left"></i></a></li>
+                <li className="page-item active"><a className="page-link" href="#">1</a></li>
+                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                <li className="page-item"><a className="page-link" href="#">...</a></li>
+                <li className="page-item"><a className="page-link" href="#">10</a></li>
+                <li className="page-item"><a className="page-link" href="#"><i className="fa-solid fa-arrow-right"></i></a></li>
               </ul>
             </div>
           </div>
         </div>
       </section>
+
+
+     
 
       
       <Modal

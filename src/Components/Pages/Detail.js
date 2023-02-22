@@ -904,9 +904,10 @@ function Detail() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title bg-dark" style={{ border: "none" }}>
+              <h4 className="modal-title" style={{ border: "none" }}>
                 Auction history
               </h4>
+              
               <button
                 onClick={handleClose}
                 type="button"
@@ -916,8 +917,73 @@ function Detail() {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
-            <div className="modal-body">
-              <h1>New modal</h1>
+            <div className="modal-body moAh">
+              <a href="#" className="dfr">
+                <div className="imgText">
+                    <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                    </div>
+                    <div className="Cont">
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                      </div>
+                    </div>
+                </div>
+              </a>
+              <a href="#" className="dfr">
+                <div className="imgText">
+                    <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                    </div>
+                    <div className="Cont">
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                      </div>
+                    </div>
+                </div>
+              </a>
+              <a href="#" className="dfr">
+                <div className="imgText">
+                    <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                    </div>
+                    <div className="Cont">
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                      </div>
+                    </div>
+                </div>
+              </a>
+              <a href="#" className="dfr">
+                <div className="imgText">
+                    <div className="sidebarPost_Img">
+                        <img src={carImg} />
+                    </div>
+                    <div className="Cont">
+                      <p>Lamborghini Urus 2019</p>
+                      <div className="n">
+                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+                      </div>
+                      <div className="t">
+                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                      </div>
+                    </div>
+                </div>
+              </a>
+             
+
             </div>
           </div>
         </div>
