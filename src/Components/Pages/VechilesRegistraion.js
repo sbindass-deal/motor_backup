@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -49,6 +49,35 @@ const VechilesRegistraion = () => {
   const [vinDetails, setVinDetails] = useState({});
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const [userInfo, setUserinfo] = useState({});
+  const inputRefBanner = useRef();
+  const handleDragOverBanner = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBanner = (event) => {
+    event.preventDefault();
+    setFile(event.dataTransfer.files);
+  };
+  const inputRefBannerG = useRef();
+  const handleDragOverBannerG = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBannerG = (event) => {
+    event.preventDefault();
+    setGalleryFile(event.dataTransfer.files);
+  };
+
+  const inputRefBannerD = useRef();
+  const handleDragOverBannerD = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBannerD = (event) => {
+    event.preventDefault();
+    setFile1(event.dataTransfer.files);
+  };
+
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
       if (res.data.data) {
@@ -457,9 +486,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
 
     axios
       .post(`${url}vehicles`, {
@@ -1152,7 +1181,7 @@ const VechilesRegistraion = () => {
                               <p>Please upload banner photo.</p>
                             </div>
                           </div>
-                          <div className="col-12 col-sm-12 col-md-12 border p-5">
+                          <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <div className="">
                                 <div className="row">
@@ -1177,33 +1206,40 @@ const VechilesRegistraion = () => {
                                   })}
                                 </div>
 
-                                <input
-                                  style={{
-                                    fontSize: "1.2rem",
-                                    textAlign: "center",
-                                  }}
-                                  onChange={(e) => {
-                                    if (e.target.files[0].size <= 2000000) {
+                                <div
+                                  className="dropzone"
+                                  onDragOver={handleDragOverBanner}
+                                  onDrop={handleDropBanner}
+                                >
+                                  <h3>Drag and Drop Files to Upload</h3>
+                                  <h3>Or</h3>
+                                  <input
+                                    onChange={(e) => {
                                       return setFile(e.target.files);
-                                    } else {
-                                      notify(
-                                        "Image is too large pleae choose another image"
-                                      );
+                                    }}
+                                    name="file"
+                                    type="file"
+                                    accept="image/gif, image/jpeg, image/png, image/jpg"
+                                    ref={inputRefBanner}
+                                    required
+                                    hidden
+                                  />
+                                  <button
+                                    className="orange_btn"
+                                    onClick={() =>
+                                      inputRefBanner.current.click()
                                     }
-                                  }}
-                                  name="file"
-                                  placeholder="Hello"
-                                  type="file"
-                                  accept="image/gif, image/jpeg, image/png, image/jpg"
-                                  required
-                                />
+                                  >
+                                    Select Files
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
                           <div className="col-12">
                             <p className="small">
                               Accepted file types: jpg, jpeg, png, Max. file
-                              size: 2 MB
+                              size: 8 MB
                             </p>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -1219,7 +1255,7 @@ const VechilesRegistraion = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="col-12 col-sm-12 col-md-12 border p-5">
+                          <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <div className="">
                                 <div className="row">
@@ -1244,27 +1280,42 @@ const VechilesRegistraion = () => {
                                   })}
                                 </div>
 
-                                <input
-                                  style={{
-                                    fontSize: "1.2rem",
-                                    textAlign: "center",
-                                  }}
-                                  onChange={(e) => {
-                                    setGalleryFile(e.target.files);
-                                  }}
-                                  name="file"
-                                  type="file"
-                                  accept="image/gif, image/jpeg, image/png, image/jpg"
-                                  multiple
-                                  required
-                                />
+                                <div
+                                  className="dropzone"
+                                  onDragOver={handleDragOverBannerG}
+                                  onDrop={handleDropBannerG}
+                                >
+                                  <h3>Drag and Drop Files to Upload</h3>
+                                  <h3>Or</h3>
+                                  <input
+                                    onChange={(e) => {
+                                      setGalleryFile(e.target.files);
+                                    }}
+                                    name="file"
+                                    type="file"
+                                    accept="image/gif, image/jpeg, image/png, image/jpg"
+                                    ref={inputRefBannerG}
+                                    required
+                                    multiple
+                                    hidden
+                                  />
+                                  <button
+                                    className="orange_btn"
+                                    onClick={() =>
+                                      inputRefBannerG.current.click()
+                                    }
+                                  >
+                                    Select Files
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
+
                           <div className="col-12">
                             <p className="small">
                               Accepted file types: jpg, jpeg, png, Max. file
-                              size: 2 MB
+                              size: 8 MB
                             </p>
                           </div>
                           <div className="col-12"></div>
@@ -1708,13 +1759,7 @@ const VechilesRegistraion = () => {
 
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
-                              <div className="drag-area">
-                                {/* <div className="icon">
-                                <i className="fas fa-cloud-upload-alt"></i>
-                              </div> */}
-                                {/* <header>Drag & Drop to Upload File</header>
-                              <span>OR</span> */}
-                                {/* <button>Browse File</button> */}
+                              <div className="">
                                 <div className="row">
                                   {Array.from(file1).map((items, i) => {
                                     return (
@@ -1735,26 +1780,36 @@ const VechilesRegistraion = () => {
                                   })}
                                 </div>
 
-                                <input
-                                  style={{
-                                    border: "#EF6031",
-                                    fontSize: "1.2rem",
-                                    textAlign: "center",
-                                    cursor: "pointer",
-                                  }}
-                                  onChange={(e) => {
-                                    basicFactOnChange(e);
-                                    setFile1((prevState) => [
-                                      ...e.target.files,
-                                    ]);
-                                  }}
-                                  name="files"
-                                  type="file"
-                                  multiple
-                                  required
-                                />
-
-                                {/* <UploadMImages /> */}
+                                <div
+                                  className="dropzone"
+                                  onDragOver={handleDragOverBannerD}
+                                  onDrop={handleDropBannerD}
+                                >
+                                  <h3>Drag and Drop Files to Upload</h3>
+                                  <h3>Or</h3>
+                                  <input
+                                    onChange={(e) => {
+                                      setFile1((prevState) => [
+                                        ...prevState,
+                                        ...e.target.files,
+                                      ]);
+                                    }}
+                                    name="files"
+                                    type="file"
+                                    multiple
+                                    ref={inputRefBannerD}
+                                    required
+                                    hidden
+                                  />
+                                  <button
+                                    className="orange_btn"
+                                    onClick={() =>
+                                      inputRefBannerD.current.click()
+                                    }
+                                  >
+                                    Select Files
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>

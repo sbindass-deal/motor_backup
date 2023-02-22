@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import VehicleDetail from '../../../src/Assets/images/VehicleDetail.png'
 import car_01 from '../../../src/Assets/images/car_01.jpg'
 import car_02 from '../../../src/Assets/images/car_02.jpg'
@@ -7,9 +7,243 @@ import car_04 from '../../../src/Assets/images/car_04.jpg'
 import lamborghini from '../../../src/Assets/images/2019-lamborghini-urus.png'
 import menface from '../../../src/Assets/images/men-face.jpg'
 import chatIcon from '../../../src/Assets/images/Vector2.svg'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+
+import { showModalLogin } from "../../redux/reducers/login";
+import { toast } from "react-toastify";
+import FormInput from "../UI/FormInput";
+import { Image } from "antd";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import ModeCommentIcon from '@mui/icons-material/ModeComment';
+import { Modal } from "react-bootstrap";
+
 
 
 const DetailNew = () => {
+    // const { id } = useParams();
+    const id = 34;
+    const dispatch = useDispatch();
+    const logingUser = useSelector((state) => state);
+    const vehicleDatas = logingUser.vehicleReducer.vehicleData;
+    // console.log(11111,logingUser.login.admin )
+    const [vinDetails, setVinDetails] = useState({});
+    const moreImgRaf = useRef();
+    const [vehicle, setVehicle] = useState({});
+
+    console.log(8989,vehicle)
+   
+    const [showReadMore, setShowReadMore] = useState();
+    const [comments, setcomments] = useState([]);
+    const [biding, setBiding] = useState([]);
+    const [show, setShow] = useState(false);
+    //setInputComment
+    const [inputcomment, setInputComment] = useState("");
+    const [bidValue, setBidValue] = useState();
+    const [bidComment, setBidComment] = useState();
+    // countdown time start
+    const [amountprice, setAmountprice] = useState(0);
+
+    const [days, setDays] = useState();
+    const [hours, setHours] = useState();
+    const [minutes, setMinutes] = useState();
+    const [seconds, setSeconds] = useState();
+    const [newTiem, setNewTiem] = useState(
+        new Date("2022-12-15, 19:53:00").getTime()
+    );
+    // new Date("2022-11-30 14:57:00").getTime()
+    const now = new Date().getTime();
+    const t = parseInt(newTiem - now, 10);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
+            setHours(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            setMinutes(Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)));
+            setSeconds(Math.floor((t % (1000 * 60)) / 1000));
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [days, hours, minutes, seconds, newTiem]);
+
+    // countdown time end
+
+    const handleBidInput = (e) => {
+        setBidValue(e.target.value);
+    };
+    const handleClose = () => {
+        setShow(false);
+        window.location.reload(false);
+    };
+    const notify = (val) =>
+        toast.success(val, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+    const handleShow = () => {
+        if (logingUser.login.admin === "1") {
+            notify(`You are admin so you can't bid`);
+        } else if (
+            logingUser.login.token !== "1" &&
+            logingUser.login.token !== null &&
+            vehicle.canBid === "no"
+        ) {
+            notify(`You are seller so you can't bid`);
+        } else if (
+            logingUser.login.token !== "1" &&
+            logingUser.login.token !== null &&
+            vehicle.canBid === "yes"
+        ) {
+            setShow(true);
+        } else {
+            dispatch(showModalLogin());
+        }
+    };
+    // let d = new Date();
+    // // parseInt(d.setMinutes(d.getMinutes() + 5).toLocaleString(), 10);
+    // d.setMinutes(d.getMinutes() + 5);
+    // console.log("addEnd Time", d.toLocaleString());
+    const fetchEndTime = () => {
+        let d = new Date();
+        d.setMinutes(d.getMinutes() + 5);
+
+        axios
+            .post(process.env.REACT_APP_URL + "changeEndTime", {
+                EndTime: d.toLocaleString(),
+                id: vehicle.id,
+            })
+            .then((res) => {
+                handleClose();
+            });
+    };
+    const addBiding = (e) => {
+        e.preventDefault();
+        const bidVal = parseInt(bidValue, 10);
+        if (bidVal <= parseInt(vehicle.documentFee, 10)) {
+            alert("Bid Amount should be greater than " + vehicle.documentFee);
+        } else if (bidVal <= parseInt(amountprice, 10)) {
+            alert("Bid Amount should be greater than " + amountprice);
+        } else {
+            axios
+                .post(process.env.REACT_APP_URL + "biddings", {
+                    auctionId: id,
+                    auctionAmmount: bidValue,
+                    vehicle_id: id,
+                    comment: bidComment,
+                })
+                .then((res) => {
+                    if (res.data.status === 200 && t < 1000 * 60 * 5) {
+                        fetchEndTime();
+                    } else {
+                        handleClose();
+                    }
+                })
+                .catch((err) => alert(err));
+        }
+    };
+    const getComments = () => {
+        axios
+            .get(process.env.REACT_APP_URL + "comment/vehicle/" + id)
+            .then((res) => {
+                setcomments(res.data.data.reverse());
+            });
+    };
+
+    // console.log(100,comments)
+    const addViews = (id) => {
+        axios
+            .post(process.env.REACT_APP_URL + "createViews", {
+                vehicleId: id,
+                date: new Date().toString(),
+            })
+            .then((err) => {
+                console.log(err);
+            });
+    };
+    useEffect(() => {
+        if (id) {
+            addViews(id);
+        }
+    }, []);
+
+    useEffect(() => {
+        const filteredSingleVehicle = vehicleDatas.filter(
+            (item) => item.id === parseInt(id, 10)
+        );
+        setVehicle(filteredSingleVehicle[0]);
+        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+        // console.log("end", new Date(res.data.data[0].EndTime));
+        
+        setNewTiem(
+            parseInt(new Date(filteredSingleVehicle[0].EndTime).getTime(), 10)
+        );
+    }, [vehicleDatas, id]);
+
+
+
+    const getBidingDetails = () => {
+        axios.get(process.env.REACT_APP_URL + "bidding/" + id).then((res) => {
+            setBiding(res.data.data);
+            const length = res.data.data.length - 1;
+            setAmountprice(res.data.data[length].auctionAmmount);
+
+            // const dateLocal = new Date(res.data.data[0].created_at);
+            // const newDate = new Date(
+            //   dateLocal.getTime() - dateLocal.getTimezoneOffset() * 60 * 1000
+            // );
+            // console.log("serverTime", res.data.data[0].EndDate.getTime());
+        });
+    };
+
+    React.useEffect(() => {
+        getComments();
+        getBidingDetails();
+    }, []);
+    const addFabrity = (id) => {
+        axios
+            .post(process.env.REACT_APP_URL + "createLikes", {
+                vehicleId: id,
+                date: new Date().toString(),
+            })
+            .then((res) => {
+                if (res.data.status === 200) {
+                    window.location.reload(false);
+                }
+            });
+    };
+
+    const handleMorePhoto = () => {
+        moreImgRaf.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    };
+
+    // get vin details by api
+    useEffect(() => {
+        const fetchVinDetails = async () => {
+            try {
+                const res = await axios.get(
+                    `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
+                );
+                setVinDetails(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchVinDetails();
+    }, []);
+  // {
+  //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
+  // }
+
+
     return (
        
         <div className="container">
@@ -245,10 +479,11 @@ const DetailNew = () => {
                     <p className=''>
                         <div class="detailPostOption p-3 background_color">
                             <div class=" text-center   ">
-                                <h4 class="title_combo title_Center">Lamborghini Urus 2019</h4>
+                                <h4 class="title_combo title_Center">{vehicle.make} {vehicle.model} {vehicle.year}</h4>
                             </div>
                             <div class="">
                                 <ul class="labelList">
+                                    
                                     <li><label className='text-color'>Sold :</label> <span>$126,888</span> <span> <span className='text-color'>ON</span> 21/02/2023</span></li>
                                     {/* <li><label>Ends In:</label> <span>5 days</span></li> */}
                                     <li>
