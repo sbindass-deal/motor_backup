@@ -26,7 +26,7 @@ const Testing = () => {
     };
 
   return (
-      <div className='container' style={{zIndex:"999"}} >
+      <div className='container' >
           <Calendar
           onSelectSlot={handleSelect}
               views={["day", "agenda", "work_week", "month"]}
