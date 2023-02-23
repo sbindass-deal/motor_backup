@@ -5981,3 +5981,9 @@ span.numBr {color: #fff;}
   border-radius: 100%;
   margin-left: 10px;
 }
+
+.clenderStyle{
+    width: 100%;
+    position: relative;
+    top: 67px;
+}
