@@ -69,6 +69,7 @@ import DealerListFeature from "./Dashboard/ads/DealerListFeature";
 import AddDealer from "./Dashboard/ads/AddDealer";
 import AddVehicleAds from "./Dashboard/ads/AddVehicleAds";
 import DetailNew from "./DetailNew";
+import Event from "./event/Event";
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -195,6 +196,7 @@ const Layout = () => {
           <Route path="blogdetail/:id" element={<BlogDetail />} />
           <Route path="search" element={<SearchResult />} />
           <Route path="comingsoon" element={<ComingSoon />} />
+          <Route path="event" element={<Event />} />
         </Routes>
         <ToastContainer
           position="bottom-center"
