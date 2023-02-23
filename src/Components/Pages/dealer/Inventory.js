@@ -209,17 +209,18 @@ const Inventory = () => {
           </div>
 
           
-          <div className="col-12 slider_ht">
+          <div className="col-12 inveSlid">
             <h1>Acura</h1>
             <div className="nextArrow">
-              <span onClick={() => slide.current.slickPrev()}>
-                <span className="prev">Prev</span>
+              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide.current.slickPrev()}>
+                <span className="">Prev</span>
               </span>
               <span
+                className="slide-arrow next-arrow slick-arrow slick-disabled"
                 onClick={() => slide.current.slickNext()}
-                style={{ marginLeft: 50 }}
+               
               >
-                <span className="next">Next</span>
+                <span className="">Next</span>
               </span>
             </div>
             <div className="featuredAuctions_Slide">
