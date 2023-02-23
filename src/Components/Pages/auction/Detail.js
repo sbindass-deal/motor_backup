@@ -17,7 +17,7 @@ import ScreenShort from "../../../Assets/images/screenShort.png";
 import carImg from "../../../Assets/images/carImg.png";
 import bellIcon from "../../../Assets/images/bellIcon.svg";
 import men_face from "../../../Assets/images/men-face.jpg";
-import ho from '../../../Assets/images/ho.webp'
+import ho from "../../../Assets/images/ho.webp";
 
 function Detail() {
   const { id } = useParams();
@@ -693,11 +693,55 @@ function Detail() {
               <div className="card_ ptb_40">
                 <h3 className="cardTitle">Gallery</h3>
                 <div className="row galleryPh">
-                  <div className="col-12 firstImg">
-                    <img src={ho} />
+                  <div className={`col-lg-5 firstImg col-sm-12`}>
+                    {/* <img src={ho} /> */}
+
+                    {vehicle.images && (
+                      <Image
+                        loading="lazy"
+                        className="card-img-top"
+                        src={`${process.env.REACT_APP_URL}/${vehicle?.images[0]?.imagePath}/${vehicle?.images[0]?.imageName}`}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src =
+                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        }}
+                        alt="Maskgroup1"
+                      />
+                    )}
+                  </div>
+                  <div className={` col-lg-7 col-sm-12`}>
+                    <div ref={moreImgRaf} className="row rightGallery">
+                      <Image.PreviewGroup>
+                        {vehicle.images &&
+                          vehicle.images.slice(1, 7).map((curElem) => {
+                            return (
+                              <div>
+                                <Image
+                                  loading="lazy"
+                                  className="card-img-top"
+                                  src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                      </Image.PreviewGroup>
+                      {/* <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} />
+                      <img src={carImg} /> */}
+                    </div>
                   </div>
                   <div
-                    className="col-12"
+                    className={` col-12`}
                     style={{ display: `${showAuctionGallery ? "" : "none"}` }}
                   >
                     <div ref={moreImgRaf} className="row rightGallery">
@@ -729,6 +773,7 @@ function Detail() {
                       <img src={carImg} /> */}
                     </div>
                   </div>
+
                   <button
                     onClick={() => setShowAuctionGallery(!showAuctionGallery)}
                     className="btn more_"
