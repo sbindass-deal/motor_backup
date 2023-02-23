@@ -212,7 +212,7 @@ const Features = () => {
                       </div>
                       </div>
                       
-                      {console.log(878787, curElem)}
+                    
                     
                     </>
                   );

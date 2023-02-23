@@ -276,6 +276,8 @@ const Auctionlive = () => {
                               <label>End In : 5 days</label>
                             )}
                           </li> */}
+
+                          
                         </ul>
                         {/* <Link
                           to={`/detail/${curElem.id}`}
