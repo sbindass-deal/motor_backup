@@ -69,6 +69,9 @@ import DealerListFeature from "./Dashboard/ads/DealerListFeature";
 import AddDealer from "./Dashboard/ads/AddDealer";
 import AddVehicleAds from "./Dashboard/ads/AddVehicleAds";
 import DetailNew from "./DetailNew";
+import Auctionfeature from "./auction/Auctionfeature";
+import AuctionNoReserve from "./auction/AuctionNoReserve";
+import AuctionResult from "./auction/AuctionResult";
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -182,6 +185,9 @@ const Layout = () => {
           <Route path="detail/:id" element={<Detail />} />
           <Route path="auctionresults" element={<AuctionResults />} />
           <Route path="auctionlive" element={<Auctionlive />} />
+          <Route path="auctionresult" element={<AuctionResult />} />
+          <Route path="auctionfeature" element={<Auctionfeature />} />
+          <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
           <Route path="vechiles" element={<VechilesRegistraion />} />

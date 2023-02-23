@@ -50,7 +50,7 @@ const Auctionfeature = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Current Auctions{" "}
+                 Auctions Features{" "}
                 <span>
                   {
                     data

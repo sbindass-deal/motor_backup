@@ -34,6 +34,7 @@ import { useEffect } from "react";
 import { getTotals } from "./redux/reducers/cartSlice";
 import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
 import { storeGearData } from "./redux/reducers/gearReducer";
+import Testing from "./Components/Pages/Testing";
 
 const bsc = {
   id: 56,
@@ -185,12 +186,13 @@ const App = () => {
 
   return (
     <>
-      <WagmiConfig client={client}>
+      {/* <WagmiConfig client={client}>
         <RainbowKitProvider theme={darkTheme()} chains={chains}>
           <Layout />
         </RainbowKitProvider>
-      </WagmiConfig>
+      </WagmiConfig> */}
       
+      <Testing/>
        
     </>
   );

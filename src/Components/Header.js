@@ -607,6 +607,15 @@ function Header() {
                             <Link className="" to="/auctionlive">
                               Live now
                             </Link>
+                            <Link className="" to="/auctionfeature">
+                              Feature
+                            </Link>
+                            <Link className="" to="/auctionresult">
+                              Result
+                            </Link>
+                            <Link className="" to="/auctionnoreserve">
+                              No Reserve
+                            </Link>
                           </div>
                         </div>
                       </li>
