@@ -4,7 +4,7 @@ import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { showModalLogin } from "../../../redux/reducers/login"; 
+import { showModalLogin } from "../../../redux/reducers/login";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 import { Image } from "antd";
@@ -38,8 +38,9 @@ function Detail() {
   const [readMoreInt, setReadMoreInt] = useState(false);
   const [readMoreExt, setReadMoreExt] = useState(false);
   const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
+  const [showAuctionGallery, setShowAuctionGallery] = useState(false);
   const [auctonVehicle, setAuctonVehicle] = useState([]);
-  const [auctionHistory, setAuctionHistory] = useState([])
+  const [auctionHistory, setAuctionHistory] = useState([]);
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
@@ -247,18 +248,18 @@ function Detail() {
 
   // get vin details by api
   useEffect(() => {
-    const fetchVinDetails = async() => {
-      try{
+    const fetchVinDetails = async () => {
+      try {
         const res = await axios.get(
           `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
         );
-        setVinDetails(res.data)
-      }catch(err){
-        console.log(err)
+        setVinDetails(res.data);
+      } catch (err) {
+        console.log(err);
       }
-    }
-    fetchVinDetails()
-  }, [])
+    };
+    fetchVinDetails();
+  }, []);
 
   useEffect(() => {
     const fetchAuctionHistory = async () => {
@@ -273,7 +274,7 @@ function Detail() {
     };
     fetchAuctionHistory();
   }, [vehicle.userId]);
-  
+
   // {
   //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
   // }
@@ -298,7 +299,9 @@ function Detail() {
                   <li>
                     Location:{" "}
                     <span>
-                      <a href={`https://www.google.com/maps/place/${vehicle.country}`}>
+                      <a
+                        href={`https://www.google.com/maps/place/${vehicle.country}`}
+                      >
                         {vehicle.country}
                       </a>
                     </span>
@@ -692,30 +695,31 @@ function Detail() {
                   <div className="col-12">
                     <img src={carImg} />
                   </div>
-                  <div className="col-12">
+                  <div
+                    className="col-12"
+                    style={{ display: `${showAuctionGallery ? "" : "none"}` }}
+                  >
                     <div ref={moreImgRaf} className="row rightGallery">
-                    <Image.PreviewGroup>
-                      {vehicle.images &&
-                        vehicle.images.map((curElem) => {
-                          return (
-                            <div
-                            >
-                              <Image
-                                loading="lazy"
-                               
-                                className="card-img-top "
-                                src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </div>
-                          );
-                        })}
-                    </Image.PreviewGroup>
+                      <Image.PreviewGroup>
+                        {vehicle.images &&
+                          vehicle.images.map((curElem) => {
+                            return (
+                              <div>
+                                <Image
+                                  loading="lazy"
+                                  className="card-img-top"
+                                  src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                      </Image.PreviewGroup>
                       {/* <img src={carImg} />
                       <img src={carImg} />
                       <img src={carImg} />
@@ -724,6 +728,12 @@ function Detail() {
                       <img src={carImg} /> */}
                     </div>
                   </div>
+                  <button
+                    onClick={() => setShowAuctionGallery(!showAuctionGallery)}
+                    className="btn more_"
+                  >
+                    {showAuctionGallery ? "Show Less" : "Show more"}
+                  </button>
                 </div>
                 <div className=" phG">
                   <div ref={moreImgRaf} className="card-group">
@@ -945,7 +955,7 @@ function Detail() {
               <h4 className="modal-title" style={{ border: "none" }}>
                 Auction history
               </h4>
-              
+
               <button
                 onClick={handleClose}
                 type="button"
@@ -956,29 +966,31 @@ function Detail() {
               </button>
             </div>
             <div className="modal-body moAh">
-            {
-              auctionHistory && auctionHistory.map((curElem, i) => {
-                return (
-                  <a key={i} href="#" className="dfr">
-                <div className="imgText">
-                    <div className="sidebarPost_Img">
-                        <img src={carImg} />
-                    </div>
-                    <div className="Cont">
-                      <p>{curElem.make} {curElem.model} {curElem.year}</p>
-                      <div className="n">
-                        Sold by <b>racer35</b> to <b>ToylorCar</b> for <span>$25,000</span>{" "}
+              {auctionHistory &&
+                auctionHistory.map((curElem, i) => {
+                  return (
+                    <a key={i} href="#" className="dfr">
+                      <div className="imgText">
+                        <div className="sidebarPost_Img">
+                          <img src={carImg} />
+                        </div>
+                        <div className="Cont">
+                          <p>
+                            {curElem.make} {curElem.model} {curElem.year}
+                          </p>
+                          <div className="n">
+                            Sold by <b>racer35</b> to <b>ToylorCar</b> for{" "}
+                            <span>$25,000</span>{" "}
+                          </div>
+                          <div className="t">
+                            <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                          </div>
+                        </div>
                       </div>
-                      <div className="t">
-                        <i className="fa-solid fa-clock"></i> Feb 1, 2023
-                      </div>
-                    </div>
-                </div>
-              </a>
-                )
-              })
-            }
-              
+                    </a>
+                  );
+                })}
+
               {/* <a href="#" className="dfr">
                 <div className="imgText">
                     <div className="sidebarPost_Img">
@@ -1027,8 +1039,6 @@ function Detail() {
                     </div>
                 </div>
               </a> */}
-             
-
             </div>
           </div>
         </div>
