@@ -689,10 +689,10 @@ function Detail() {
               <div className="card_ ptb_40">
                 <h3 className="cardTitle">Gallery</h3>
                 <div className="row galleryPh">
-                  <div className="col-5">
+                  <div className="col-12">
                     <img src={carImg} />
                   </div>
-                  <div className="col-7">
+                  <div className="col-12">
                     <div ref={moreImgRaf} className="row rightGallery">
                     <Image.PreviewGroup>
                       {vehicle.images &&
@@ -702,8 +702,8 @@ function Detail() {
                             >
                               <Image
                                 loading="lazy"
-                                style={{ height: "30vh", width: "30vh" }}
-                                className="card-img-top"
+                               
+                                className="card-img-top "
                                 src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
