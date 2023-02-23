@@ -603,6 +603,7 @@
 }
 
 @media (min-width: 768px) {
+	
 
 	.mobileOnly {
 		display: block;
@@ -1056,6 +1057,10 @@
 	.col-12 .galleryImgSect {height: 150px;}
 	.verticle {	padding: 5px;}
 	.gallery .mt-50 {margin-top: 5px;}
+	.titleRight {
+		display: contents;
+		align-items: baseline;
+	}
 }
 
 @media (max-width: 575px) {
