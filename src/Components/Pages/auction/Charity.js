@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import icGrid from "../../Assets/images/icGrid.svg";
-import { clearData } from "../../redux/reducers/vehicleReducer";
-import NotAvailable from "../UI/NotAvailable";
-import ResultNotFound from "../UI/ResultNotFound";
+import icGrid from "../../../Assets/images/icGrid.svg";
+import { clearData } from "../../../redux/reducers/vehicleReducer";
+import NotAvailable from "../../UI/NotAvailable";
+import ResultNotFound from "../../UI/ResultNotFound";
 const Charity = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);

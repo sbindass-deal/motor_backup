@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import icGrid from "../../Assets/images/icGrid.svg";
+import icGrid from "../../../Assets/images/icGrid.svg";
 import axios from "axios";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearData } from "../../redux/reducers/vehicleReducer";
+import { clearData } from "../../../redux/reducers/vehicleReducer"; 
 const Auctionlive = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -256,7 +256,9 @@ const Auctionlive = () => {
                               </span>
                             ) : null}
                           </li>
-                          <li><label>Ends In:</label> <span>5 days</span></li>
+                          <li>
+                            <label>Ends In:</label> <span>5 days</span>
+                          </li>
                           {/* <li>
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                               parseInt(new Date().getTime(), 10) >
