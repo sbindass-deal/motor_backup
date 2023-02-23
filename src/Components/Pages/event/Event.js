@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Testing from "../Testing";
 
 const Event = () => {
   return (
-    <div>Event</div>
-  )
-}
+    <>
+      <Testing />
+    </>
+  );
+};
 
-export default Event
+export default Event;
