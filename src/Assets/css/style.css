@@ -5921,5 +5921,27 @@ span.numBr {color: #fff;}
   a.dfr { color: rgb(161, 159, 159);}
  .light a.dfr { color: black;}
 
+ .inveSlid .nextArrow {
+  position: absolute;
+  top: 10px;
+  left: calc(50% - -375px);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+
+.inveSlid .slide-arrow{
+  bottom: 0px;
+  display: initial;
+  top: 0;
+
+}
+.inveSlid .nextArrow {
+  position: absolute;
+  top: 10px;
+  left: calc(50% - -486px);
+  z-index: 9999;
+  cursor: pointer;
+}
 
   
