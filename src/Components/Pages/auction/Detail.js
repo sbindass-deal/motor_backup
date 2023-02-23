@@ -4,19 +4,19 @@ import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { showModalLogin } from "../../redux/reducers/login";
+import { showModalLogin } from "../../../redux/reducers/login"; 
 import { toast } from "react-toastify";
-import FormInput from "../UI/FormInput";
+import FormInput from "../../UI/FormInput";
 import { Image } from "antd";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import Msg from "../../Assets/images/msg.svg";
+import Msg from "../../../Assets/images/msg.svg";
 import { padding } from "@mui/system";
-import EyeIcon from "../../Assets/images/eyeIcon.svg";
-import ScreenShort from "../../Assets/images/screenShort.png";
-import carImg from "../../Assets/images/carImg.png";
-import bellIcon from "../../Assets/images/bellIcon.svg";
-import men_face from "../../Assets/images/men-face.jpg";
+import EyeIcon from "../../../Assets/images/eyeIcon.svg";
+import ScreenShort from "../../../Assets/images/screenShort.png";
+import carImg from "../../../Assets/images/carImg.png";
+import bellIcon from "../../../Assets/images/bellIcon.svg";
+import men_face from "../../../Assets/images/men-face.jpg";
 
 function Detail() {
   const { id } = useParams();

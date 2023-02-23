@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import icGrid from "../../Assets/images/icGrid.svg";
-import { clearData } from "../../redux/reducers/vehicleReducer";
-import ResultNotFound from "../UI/ResultNotFound";
+import icGrid from "../../../Assets/images/icGrid.svg";
+import { clearData } from "../../../redux/reducers/vehicleReducer";
+import ResultNotFound from "../../UI/ResultNotFound";
 
 const Features = () => {
   const logingUser = useSelector((state) => state);
@@ -52,10 +52,9 @@ const Features = () => {
       : item
   );
 
-  var date = new Date('2015-02-10T10:12:50.5000z');
+  var date = new Date("2015-02-10T10:12:50.5000z");
 
-
-  console.log(56565, date.toLocaleDateString())
+  console.log(56565, date.toLocaleDateString());
 
   return (
     <div>
@@ -130,45 +129,45 @@ const Features = () => {
                 filteredData.map((curElem) => {
                   return (
                     <>
-                    <div className="col-12 col-md-6 pb-3">
-                    <div className="card_post box_shadow_common">
-                      <div class="card_post">
+                      <div className="col-12 col-md-6 pb-3">
+                        <div className="card_post box_shadow_common">
+                          <div class="card_post">
                             <div class="card_postImg">
-                              <Link to={`/detail/${curElem.id}`} className="auction_image">
-                                {
-                                  curElem.images[0] ? (
-
-                                    <img
-                                      loading="lazy"
-                                      src={
-                                        curElem.images[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                                      }
-                                      onError={({ currentTarget }) => {
-                                        currentTarget.onError = null;
-                                        currentTarget.src =
-                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                      }}
-                                      alt="Maskgroup1"
-                                    />
-                                  ) : (
-                                      <img
-                                loading="lazy"
-                                src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                alt="Maskgroup1"
-                                />
-                                  )
-                              }
+                              <Link
+                                to={`/detail/${curElem.id}`}
+                                className="auction_image"
+                              >
+                                {curElem.images[0] ? (
+                                  <img
+                                    loading="lazy"
+                                    src={
+                                      curElem.images[0] &&
+                                      `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                ) : (
+                                  <img
+                                    loading="lazy"
+                                    src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                    alt="Maskgroup1"
+                                  />
+                                )}
                               </Link>
-                              
                             </div>
                             <div class="card_postInfo">
-                              <h4><Link to={`/detail/${curElem.id}`}>
-                                {/* Lorem Ipsum is simply dummy text */}
-                                {curElem.make} &nbsp;
-                                {curElem.model} &nbsp;
-                                {curElem.year}
-                              </Link>
+                              <h4>
+                                <Link to={`/detail/${curElem.id}`}>
+                                  {/* Lorem Ipsum is simply dummy text */}
+                                  {curElem.make} &nbsp;
+                                  {curElem.model} &nbsp;
+                                  {curElem.year}
+                                </Link>
                               </h4>
                               <ul class="labelList">
                                 {/* <label>Current Bid : </label>
@@ -196,24 +195,26 @@ const Features = () => {
                                   )}
                                 </li> */}
                                 <ul class="labelList">
-
-                                  
-                                  <li>{
-                                    new Date(curElem.created_at).toLocaleDateString()
-                                   
-                                  }</li>
-                                  <li><i class="fa-solid fa-user mr-2"></i> {curElem.name}</li>
+                                  <li>
+                                    {new Date(
+                                      curElem.created_at
+                                    ).toLocaleDateString()}
+                                  </li>
+                                  <li>
+                                    <i class="fa-solid fa-user mr-2"></i>{" "}
+                                    {curElem.name}
+                                  </li>
                                 </ul>
-
                               </ul>
-                              <p>{curElem.moreDescription.substr(0, 123)+"..." } </p>
+                              <p>
+                                {curElem.moreDescription.substr(0, 123) + "..."}{" "}
+                              </p>
                             </div>
+                          </div>
+                        </div>
                       </div>
-                      </div>
-                      </div>
-                      
+
                       {console.log(878787, curElem)}
-                    
                     </>
                   );
                 })
@@ -221,16 +222,43 @@ const Features = () => {
 
               <div class="col-12">
                 <ul class="pagination justify-content-center mt-4">
-                  <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item"><a class="page-link" href="#">10</a></li>
-                  <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#">
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">
+                      1
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      2
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      3
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      ...
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      10
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                  </li>
                 </ul>
               </div>
-
             </div>
           </div>
         )}
@@ -241,111 +269,96 @@ const Features = () => {
 
 export default Features;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ====================================
-{/* <div className="col-12 col-md-6 pb-3">
+{
+  /* <div className="col-12 col-md-6 pb-3">
   <div className="card_post box_shadow_common">
 
 
-    {/* ===================================== */}
+    {/* ===================================== */
+}
 
+// <div class="card_post">
+//   <div class="card_postImg">
+//     <Link to={`/detail/${curElem.id}`} className="auction_image">
+//       {
+//         curElem.images[0] ? (
 
-    // <div class="card_post">
-    //   <div class="card_postImg">
-    //     <Link to={`/detail/${curElem.id}`} className="auction_image">
-    //       {
-    //         curElem.images[0] ? (
+//           <img
+//             loading="lazy"
+//             src={
+//               curElem.images[0] &&
+//               `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+//             }
+//             onError={({ currentTarget }) => {
+//               currentTarget.onError = null;
+//               currentTarget.src =
+//                 "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+//             }}
+//             alt="Maskgroup1"
+//           />
+//         ) : (
+//           <img
+//             loading="lazy"
+//             src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+//             alt="Maskgroup1"
+//           />
+//         )
+//       }
+//     </Link>
 
-    //           <img
-    //             loading="lazy"
-    //             src={
-    //               curElem.images[0] &&
-    //               `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-    //             }
-    //             onError={({ currentTarget }) => {
-    //               currentTarget.onError = null;
-    //               currentTarget.src =
-    //                 "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-    //             }}
-    //             alt="Maskgroup1"
-    //           />
-    //         ) : (
-    //           <img
-    //             loading="lazy"
-    //             src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-    //             alt="Maskgroup1"
-    //           />
-    //         )
-    //       }
-    //     </Link>
+//   </div>
+//   <div class="card_postInfo">
+//     <h4><Link to={`/detail/${curElem.id}`}>
+//       {/* Lorem Ipsum is simply dummy text */}
+//       {curElem.make} &nbsp;
+//       {curElem.model} &nbsp;
+//       {curElem.year}
+//     </Link>
+//     </h4>
+//     <ul class="labelList">
+//       {/* <label>Current Bid : </label>
+//                             <li className="px-1">${curElem.documentFee}</li>
 
-    //   </div>
-    //   <div class="card_postInfo">
-    //     <h4><Link to={`/detail/${curElem.id}`}>
-    //       {/* Lorem Ipsum is simply dummy text */}
-    //       {curElem.make} &nbsp;
-    //       {curElem.model} &nbsp;
-    //       {curElem.year}
-    //     </Link>
-    //     </h4>
-    //     <ul class="labelList">
-    //       {/* <label>Current Bid : </label>
-    //                             <li className="px-1">${curElem.documentFee}</li>
+//                             <li>
+//                               {parseInt(
+//                                 new Date(curElem.EndTime).getTime(),
+//                                 10
+//                               ) -
+//                                 parseInt(new Date().getTime(), 10) >
+//                                 0 && curElem.approved === "1" ? (
+//                                 <label>Auction Open</label>
+//                               ) : parseInt(
+//                                 new Date(curElem.EndTime).getTime(),
+//                                 10
+//                               ) -
+//                                 parseInt(new Date().getTime(), 10) >
+//                                 0 &&
+//                                 (curElem.approved === null ||
+//                                   curElem.approved === "11") ? (
+//                                 <label>Upcoming Auction</label>
+//                               ) : (
+//                                 <label>Auction Closed</label>
+//                               )}
+//                             </li> */}
 
-    //                             <li>
-    //                               {parseInt(
-    //                                 new Date(curElem.EndTime).getTime(),
-    //                                 10
-    //                               ) -
-    //                                 parseInt(new Date().getTime(), 10) >
-    //                                 0 && curElem.approved === "1" ? (
-    //                                 <label>Auction Open</label>
-    //                               ) : parseInt(
-    //                                 new Date(curElem.EndTime).getTime(),
-    //                                 10
-    //                               ) -
-    //                                 parseInt(new Date().getTime(), 10) >
-    //                                 0 &&
-    //                                 (curElem.approved === null ||
-    //                                   curElem.approved === "11") ? (
-    //                                 <label>Upcoming Auction</label>
-    //                               ) : (
-    //                                 <label>Auction Closed</label>
-    //                               )}
-    //                             </li> */}
+//       <ul class="labelList">
+//         <li>October 14, 2022</li>
+//         <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li>
+//       </ul>
 
-    //       <ul class="labelList">
-    //         <li>October 14, 2022</li>
-    //         <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li>
-    //       </ul>
+//       {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
+//     </ul>
+//     <p>{curElem.moreDescription.substr(0, 123) + "..."} </p>
+//   </div>
+// </div>
 
-    //       {/* <li><i class="fa-solid fa-user mr-2"></i> sludgo's Mile Markers</li> */}
-    //     </ul>
-    //     <p>{curElem.moreDescription.substr(0, 123) + "..."} </p>
-    //   </div>
-    // </div>
+{
+  /* ===================================== */
+}
 
-    {/* ===================================== */}
-
-
-
-    {/* <div className="card_postImg">
+{
+  /* <div className="card_postImg">
                           <Link to={`/detail/${curElem.id}`} className="auction_image">
                             {curElem.images[0] ? (
                               <>
@@ -449,9 +462,10 @@ export default Features;
                           >
                             View Details <i class="fa fa-arrow-right"></i>
                           </Link>
-                        </div> */}
+                        </div> */
+}
 
-  // </div>
+// </div>
 
 // </div> */}
 // ===============================
