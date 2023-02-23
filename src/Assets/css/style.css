@@ -4893,10 +4893,10 @@ html {
   display: none;
 }
 
-.myTicketCol {
+/* .myTicketCol {
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
 .plan_card .plan_cardFooter .gry_btn:hover {
   /* background-color: #f7931b; */
@@ -5944,4 +5944,8 @@ span.numBr {color: #fff;}
   cursor: pointer;
 }
 
-  
+  .stylebtn {
+    height: 39px;
+    border-radius: 0px 5px 5px 0px;
+    margin-left: -2px;
+}

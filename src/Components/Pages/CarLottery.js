@@ -8,6 +8,7 @@ import ticket from "../../Assets/images/ticket-solid.svg";
 import ticketSocket from "../../Assets/images/doller-bundal.png";
 import weekly from "../../Assets/images/calander.png";
 import reword from "../../Assets/images/reword.png";
+import bi_ticket from "../../Assets/images/bi_ticket.svg";
 
 import bnbCoin from "../../Assets/images/raffle-4.jpg";
 import { Modal, Placeholder } from "react-bootstrap";
@@ -222,7 +223,7 @@ function CarRaffle() {
       </section>
 
       <section className="ptb_80 pt_sm_50">
-        <div className="custom_container ">
+        <div className="container ">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-8">
               <div className="orangeCard mb-4">
@@ -440,7 +441,7 @@ function CarRaffle() {
 
               {validUser !== "Same user cannot use refer link!" && (
                 <div className="card_Gray2">
-                  <div className="row row_gap_5 ssss">
+                  <div className="">
                     {/* <div className="col-12 mb-3">
                     <h5>
                       <img
@@ -448,8 +449,48 @@ function CarRaffle() {
                        src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
+                    
+
+                    <div class="col-12 col-md-12">
+                      <div class="form-group">
+                        <label>Enter amount</label>
+                        <form onSubmit={addTickets} className="">
+                          <div className="form-group">
+                            <select
+                              value={inputLotteryNumber}
+                              onChange={(e) =>
+                                setInputLotteryNumber(e.target.value)
+                              }
+                              class="form-select w-100"
+                              id="validationCustom04"
+                              required
+                            >
+                              <option selected disabled value="">
+                                Select
+                              </option>
+                              <option value="100">100</option>
+                              <option value="200">200</option>
+                              <option value="300">300</option>
+                              <option value="400">400</option>
+                            </select>
+                          </div>
+                          <div class="">
+                            <div class="">
+                              <button type="submit" class="btn w-full">Enter Lottery</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    {/* <div class="col-12 col-md-12">
+                      <div class="form-group">
+                        <button type="submit" class="btn w-full">Enter Lottery</button>
+                      </div>
+                    </div>
+
                     <div className="col-lg-12 col-md-12 col-sm-12">
-                      <lable>Number of Tickets</lable>
+                      <lable className="my-3">Number of Tickets</lable>
 
                       <form onSubmit={addTickets} className="ticketFom">
                         <div className="form-group">
@@ -472,28 +513,30 @@ function CarRaffle() {
                           </select>
                         </div>
                         <div className="form-group lotryBtn">
-                          <button type="submit" className="btn">
+                          <button type="submit" className="btn stylebtn">
                             Make Payment
                           </button>
                         </div>
                       </form>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               )}
             </div>
             <div className="col-12 col-md-4 col-lg-4 ">
-              <div className="card_Gray2 mt-5 mt-md-0 divSticky">
+              <div className="card_Gray2 mt-5 mt-md-0 ">
                 <div className="">
-                  <div className="cardBorder">
+                  {/* <div className="cardBorder">
                     <h6>My Tickets</h6>
                     <div className="myTicketRow">
                       <div className="myTicketCol" style={{ display: "flex" }}>
                         <div className="MT_Price ">
-                          Number of Tickets :
+                          <img src={bi_ticket} /> :
                           {logingUser.login.token == null
-                            ? 0
-                            : setUserLotteryDetails.data}
+                            ? <span className="MT_Count">0</span>
+                            : <span className="MT_Count">
+                              {setUserLotteryDetails.data}
+                            </span>}
                         </div>
 
                         <div className="MT_Price">
@@ -501,13 +544,47 @@ function CarRaffle() {
                           {logingUser.login.token == null
                             ? 0
                             : logingUser.login.token &&
-                              showLotary.price &&
-                              setUserLotteryDetails.data &&
-                              showLotary.price * setUserLotteryDetails.data}
+                            showLotary.price &&
+                            setUserLotteryDetails.data &&
+                            showLotary.price * setUserLotteryDetails.data}
                         </div>
                       </div>
                     </div>
+                  </div> */}
+
+
+                  <div class="cardBorder">
+                    <h6>My Tickets</h6>
+                    <div class="myTicketRow">
+                      <div class="myTicketCol">
+                        <div class="MT_ic"><img src={bi_ticket} /></div>
+                        <div class="MT_Count">
+                          {
+                            logingUser.login.token == null ?
+                              0 : setUserLotteryDetails.data
+                          }
+
+                        </div>
+                        <div class="MT_Price">
+                          <>
+                            <span>$
+                              {
+                                logingUser.login.token == null ?
+                                  0 : logingUser.login.token &&
+                                  showLotary.price &&
+                                  setUserLotteryDetails.data &&
+                                  showLotary.price * setUserLotteryDetails.data
+                              }
+                            </span>
+                          </>
+
+
+                        </div>
+                      </div>
+                      <div class="">1 Ticket = $0.01 </div>
+                    </div>
                   </div>
+
 
                   <hr />
 

@@ -116,7 +116,59 @@ const DealerList = () => {
                 <>
  
 
-                  <div class="col-12 col-md-6 col-lg-4 pb-3">
+                  
+                  {/* =============================== */}
+
+
+                  <div class="col-12 col-md-6 pb-3">
+                    <div class="card_post">
+                      <div class="card_postImg">
+
+                     
+                        <Link to={`/dealerprofile/${curElem.id}`}>
+                          
+                          {
+                            
+                            curElem.image &&  (
+                              <img
+                                loading="lazy"
+                                src={
+                                  curElem.image[0] &&
+                                  `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt={curElem.username}
+                              />
+                            )
+                          }
+
+                            
+                          </Link> 
+                       
+                       
+                       
+                      </div>
+                      <div class="card_postInfo">
+                        <h4><a href="detail.html">{curElem.title}</a></h4>
+                        <ul class="labelList">
+                          <li>October 14, 2022</li>
+                          <li><i class="fa-solid fa-user mr-2"></i>  {curElem.name}</li>
+                        </ul>
+                        <p>{curElem?.dealerDescription.substr(0, 125)+"..."}</p>
+                      </div>
+
+                      {console.log(777989, curElem)}
+                    </div>
+                  </div>
+
+                  {/* =============================== */}
+
+
+                  {/* <div class="col-12 col-md-6 col-lg-4 pb-3">
                     
                     <Link to={`/dealerprofile/${curElem.id}`}>
 
@@ -126,7 +178,7 @@ const DealerList = () => {
                             <div class="card_post">
                               <div class="card_postImg">
                                 <div class="card_postImg_labe">ADS</div>
-                                {/* <button type="button" class="watchedIc"><i class="fa-solid fa-star"></i></button> */}
+                                <button type="button" class="watchedIc"><i class="fa-solid fa-star"></i></button>
                                 <img
                                   loading="lazy"
                                   src={
@@ -144,10 +196,10 @@ const DealerList = () => {
                               <div class="card_postInfo">
                                 <h4><a href="detail.html">{curElem.title}</a></h4>
                                
-                                {/* <ul class="labelList priceDateList">
+                                <ul class="labelList priceDateList">
                                   <li class="price__"><span>$126,888</span></li>
                                   <li class="Date__"><label><i class="fa-solid fa-clock"></i></label> <span>5 days</span></li>
-                                </ul> */}
+                                </ul>
                               </div>
                             </div>
                           </>
@@ -158,7 +210,7 @@ const DealerList = () => {
                     </Link>
 
       
-      </div>
+      </div> */}
                 
                 
 

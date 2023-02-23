@@ -108,47 +108,47 @@ function Shipping() {
             </div>
             <div className="col-12 col-md-8 col-lg-8">
               <div className="row">
-              <div className="col-12 col-md-12 pb_40">
-                <div className="sallerBox mb-20">
-               
-                  <div className="sellerInfo">
-                    <p className="sallerName">Saller name</p>
-                    <p className="saller_price">$2000</p>
-                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
-                  </div>
-                  <div className="timeandbtn">
-                    <p>1 Day </p>
-                    <button className="btn">Pay now</button>
-                  </div>
+                <div className="col-12 col-md-12 pb_40">
+                  <div className="sallerBox mb-20">
 
-                </div>
-                <div className="sallerBox mb-20">
-                  
-                  <div className="sellerInfo">
-                    <p className="sallerName">Saller name</p>
-                    <p className="saller_price">$2000</p>
-                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
-                  </div>
-                  <div className="timeandbtn">
-                    <p>1 Day </p>
-                    <button className="btn">Pay now</button>
-                  </div>
+                    <div className="sellerInfo">
+                      <p className="sallerName">Saller name</p>
+                      <p className="saller_price">$2000</p>
+                      <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                    </div>
+                    <div className="timeandbtn">
+                      <p>1 Day </p>
+                      <button className="btn">Pay now</button>
+                    </div>
 
-                </div>
-                <div className="sallerBox mb-20">
-               
-                  <div className="sellerInfo">
-                    <p className="sallerName">Saller name</p>
-                    <p className="saller_price">$2000</p>
-                    <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
                   </div>
-                  <div className="timeandbtn">
-                    <p>1 Day </p>
-                    <button className="btn">Pay now</button>
-                  </div>
+                  <div className="sallerBox mb-20">
 
+                    <div className="sellerInfo">
+                      <p className="sallerName">Saller name</p>
+                      <p className="saller_price">$2000</p>
+                      <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                    </div>
+                    <div className="timeandbtn">
+                      <p>1 Day </p>
+                      <button className="btn">Pay now</button>
+                    </div>
+
+                  </div>
+                  <div className="sallerBox mb-20">
+
+                    <div className="sellerInfo">
+                      <p className="sallerName">Saller name</p>
+                      <p className="saller_price">$2000</p>
+                      <p className="saller_dec">We’ll send you a map tracking link so you can watch your vehicle travel from the pickup location to its destination in real time.</p>
+                    </div>
+                    <div className="timeandbtn">
+                      <p>1 Day </p>
+                      <button className="btn">Pay now</button>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
                 <div className="col-12 col-md-7 ptb_40">
                   <h5>Track your shipment in real time</h5>
                   <p>
@@ -159,7 +159,7 @@ function Shipping() {
                   <br />
                   <h5>Seamless, secure, fully integrated</h5>
                   <p>
-                    Every aspect of Bring a Trailer Shipping is managed through
+                    Every aspect of Gas Guzzlrs Shipping is managed through
                     our simple My Shipments page. Whether you’re buying on Gas
                     Guzzlrs Auctions or shipping a private vehicle,
                     everything—including tracking and payment—is in one place.
@@ -172,9 +172,9 @@ function Shipping() {
                     whenever you need us.
                   </p>
                 </div>
-                
+
               </div>
-              
+
             </div>
           </div>
 
@@ -182,7 +182,7 @@ function Shipping() {
 
           <div className="row pt_80">
             <div className="col-12">
-              <h5>Recent Bring a Trailer Shipping Reviews</h5>
+              <h5>Recent Gas Guzzlrs Shipping Reviews</h5>
             </div>
             <div className="col-12 col-md-6 pt-2">
               <div className="commentRow">
