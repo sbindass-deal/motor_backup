@@ -262,8 +262,7 @@ function Detail() {
     fetchVinDetails();
   }, []);
 
-  useEffect(() => {
-    const fetchAuctionHistory = async () => {
+    const handleAuctionHistory = async () => {
       try {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}autionHistroy/${vehicle.userId}`
@@ -273,8 +272,6 @@ function Detail() {
         console.log(err);
       }
     };
-    fetchAuctionHistory();
-  }, [vehicle.userId]);
 
   // {
   //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
@@ -658,11 +655,14 @@ function Detail() {
                 </div>
                 <div className="auctionHistory">
                   <div
-                    onClick={handleShowAuctionHistory}
+                    onClick={() => {
+                      handleShowAuctionHistory()
+                      handleAuctionHistory()
+                      }}
                     className="AuctionBtn"
                   >
                     <img src={EyeIcon} />
-                    Auction History <span className="numBr">10</span>
+                    Auction History <span className="numBr">{auctionHistory.length}</span>
                   </div>
                 </div>
               </div>
@@ -1003,7 +1003,7 @@ function Detail() {
               </h4>
 
               <button
-                onClick={handleClose}
+                onClick={handleCloseAuctionHistory}
                 type="button"
                 className="close"
                 data-dismiss="modal"
@@ -1026,10 +1026,10 @@ function Detail() {
                           </p>
                           <div className="n">
                             Sold by <b>racer35</b> to <b>ToylorCar</b> for{" "}
-                            <span>$25,000</span>{" "}
+                            <span>${curElem.documentFee}</span>{" "}
                           </div>
                           <div className="t">
-                            <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                            <i className="fa-solid fa-clock"></i> {new Date(curElem.created_at).toLocaleDateString()}
                           </div>
                         </div>
                       </div>
