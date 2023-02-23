@@ -711,7 +711,7 @@ function Detail() {
                     )}
                   </div>
                   <div className={` col-lg-7 col-sm-12`}>
-                    <div ref={moreImgRaf} className="row rightGallery">
+                    <div ref={moreImgRaf} className="row rightGallery sixOption">
                       <Image.PreviewGroup>
                         {vehicle.images &&
                           vehicle.images.slice(1, 7).map((curElem) => {
@@ -778,7 +778,7 @@ function Detail() {
                     onClick={() => setShowAuctionGallery(!showAuctionGallery)}
                     className="btn more_"
                   >
-                    {showAuctionGallery ? "Show Less" : "Show more"}
+                    {showAuctionGallery ? "Show Less" : "Show more"} <span className="number">16</span>
                   </button>
                 </div>
                 <div className=" phG">

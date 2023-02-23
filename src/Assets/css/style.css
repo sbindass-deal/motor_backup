@@ -5950,5 +5950,34 @@ span.numBr {color: #fff;}
 }
 .rightGallery>div {
   float: left;
-  width: 19%;
+  width: 19.80%;
+}
+.rightGallery.sixOption>div {
+  width: 32.33%;
+}
+.row.galleryPh {
+  margin: 0 auto;
+}
+.galleryPh .col-lg-5, .galleryPh .col-lg-7 {
+  padding: 1px 1px;
+  margin: 0;
+}
+.firstImg .ant-image {
+  max-width: fit-content;
+  padding: 0px 11px 0px 0px;
+}
+.galleryPh button.btn.more_ {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: 1px solid #b77b33;
+  margin-top: 15px;
+  background: #b77b33;
+  color: #fff;
+}
+.galleryPh button.btn.more_ span.number {
+  background: #000;
+  padding: 3px 6px;
+  border-radius: 100%;
+  margin-left: 10px;
 }
