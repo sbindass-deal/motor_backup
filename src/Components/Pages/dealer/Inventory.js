@@ -78,15 +78,19 @@ const Inventory = () => {
   const searchedData =
     searchInputValue.trim().length > 0
       ? vehicleData &&
-        vehicleData.filter(
-          (item) =>
-            (item.make && item.make.toLowerCase().includes(searchInputValue)) ||
-            (item.year && item.year.toLowerCase().includes(searchInputValue)) ||
-            (item.model && item.model.toLowerCase().includes(searchInputValue))
-        )
+      vehicleData.filter(
+        (item) =>
+          (item.make && item.make.toLowerCase().includes(searchInputValue)) ||
+          (item.year && item.year.toLowerCase().includes(searchInputValue)) ||
+          (item.model && item.model.toLowerCase().includes(searchInputValue))
+      )
       : vehicleData;
-  
-  const slide = useRef(null);
+
+  const slide1 = useRef(null);
+  const slide2 = useRef(null);
+  const slide3 = useRef(null);
+  const slide4 = useRef(null);
+
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -108,8 +112,8 @@ const Inventory = () => {
       />
     );
   }
-  
-  
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -152,19 +156,19 @@ const Inventory = () => {
 
   return (
     <>
-      <div className="col-12 text-center pt_80 pb_30">
+      <div className="col-12 text-center  ">
         <h2>All Vehicles</h2>
       </div>
 
 
-      <section className="ptb_80" id="second">
+      <section className="" id="second">
         <div className="container">
           <div className="row ">
-            <div className="col-12 text-center pb_30">
+            {/* <div className="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
-            </div>
+            </div> */}
 
-          
+
           </div>
         </div>
       </section>
@@ -208,23 +212,23 @@ const Inventory = () => {
             </ul>
           </div>
 
-          
+
           <div className="col-12 inveSlid">
             <h1>Acura</h1>
             <div className="nextArrow">
-              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide.current.slickPrev()}>
+              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide1.current.slickPrev()}>
                 <span className="">Prev</span>
               </span>
               <span
                 className="slide-arrow next-arrow slick-arrow slick-disabled"
-                onClick={() => slide.current.slickNext()}
-               
+                onClick={() => slide1.current.slickNext()}
+
               >
                 <span className="">Next</span>
               </span>
             </div>
             <div className="featuredAuctions_Slide">
-              <Slider ref={slide} {...settings}>
+              <Slider ref={slide1} {...settings}>
                 <div>
                   <h3>
                     <img src={car_01} alt="" />
@@ -281,24 +285,289 @@ const Inventory = () => {
                   <div class="card_postInfo">
                     <h6><a href="#">Acura Integra</a></h6>
                   </div>
-              
+
                 </div>
                 <div>
                   <h3>
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-								<h6><a href="#">Acura Integra</a></h6>
-							</div>
+                    <h6><a href="#">Acura Integra</a></h6>
+                  </div>
                 </div>
-                
+
+              </Slider>
+            </div>
+          </div>
+
+          <div className="col-12 inveSlid">
+            <h1>Alfa Romeo</h1>
+            <div className="nextArrow">
+              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide2.current.slickPrev()}>
+                <span className="">Prev</span>
+              </span>
+              <span
+                className="slide-arrow next-arrow slick-arrow slick-disabled"
+                onClick={() => slide2.current.slickNext()}
+
+              >
+                <span className="">Next</span>
+              </span>
+            </div>
+            <div className="featuredAuctions_Slide">
+              <Slider ref={slide2} {...settings}>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                  </div>
+                </div>
+
+              </Slider>
+            </div>
+          </div>
+
+
+          <div className="col-12 inveSlid">
+            <h1>Amc</h1>
+            <div className="nextArrow">
+              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide3.current.slickPrev()}>
+                <span className="">Prev</span>
+              </span>
+              <span
+                className="slide-arrow next-arrow slick-arrow slick-disabled"
+                onClick={() => slide3.current.slickNext()}
+
+              >
+                <span className="">Next</span>
+              </span>
+            </div>
+            <div className="featuredAuctions_Slide">
+              <Slider ref={slide3} {...settings}>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Amc Integra</a></h6>
+                  </div>
+                </div>
+
+              </Slider>
+            </div>
+          </div>
+
+          <div className="col-12 inveSlid">
+            <h1>Bentley</h1>
+            <div className="nextArrow">
+              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide4.current.slickPrev()}>
+                <span className="">Prev</span>
+              </span>
+              <span
+                className="slide-arrow next-arrow slick-arrow slick-disabled"
+                onClick={() => slide4.current.slickNext()}
+
+              >
+                <span className="">Next</span>
+              </span>
+            </div>
+            <div className="featuredAuctions_Slide">
+              <Slider ref={slide4} {...settings}>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_01} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_02} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_03} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+
+                </div>
+                <div>
+                  <h3>
+                    <img src={car_04} alt="" />
+                  </h3>
+                  <div class="card_postInfo">
+                    <h6><a href="#">Bentley Integra</a></h6>
+                  </div>
+                </div>
+
               </Slider>
             </div>
           </div>
 
 
 
-          <div className="row mt-30">
+
+
+
+          {/* <div className="row mt-30">
             {searchedData.length === 0 ? (
               <NotAvailable text="No Result Found" />
             ) : (
@@ -398,43 +667,7 @@ const Inventory = () => {
                           <p className="price__">${curElem.documentFee}</p>
                         </h6>
                         <p>{curElem?.moreDescription.substr(0, 200)}</p>
-                        {/* <table className="showroomCol">
-                          <tbody>
-                            <tr>
-                              <td>Odometer Reading </td>
-                              <td>{curElem.odmeter}</td>
-                            </tr>
-                            <tr>
-                              <td>Fuel Type</td>
-                              <td>{curElem.fuel}</td>
-                            </tr>
-                            <tr>
-                              <td>Seller</td>
-                              <td>{curElem.name}</td>
-                            </tr>
-                          </tbody>
-                        </table> */}
-                        {/* {curElem.displayInAuction === "classified" ? (
-                          <a
-                            target="_blank"
-                            rel="noopener"
-                            href={curElem.externalLink}
-                            className="orange_btn opening_bid_btn"
-                          >
-                            View Details <i className="fa fa-arrow-right"></i>
-                          </a>
-                        ) : (
-                          <Link
-                            to={
-                              curElem.displayInAuction === "Yes"
-                                ? `/detail/${curElem.id}`
-                                : `/showroom/${curElem.id}`
-                            }
-                            className="orange_btn opening_bid_btn"
-                          >
-                            View Details <i className="fa fa-arrow-right"></i>
-                          </Link>
-                        )} */}
+                       
 
 
                         
@@ -455,14 +688,26 @@ const Inventory = () => {
                 <li className="page-item"><a className="page-link" href="#"><i className="fa-solid fa-arrow-right"></i></a></li>
               </ul>
             </div>
-          </div>
+          </div> */}
+
+          {/* <div className="col-12 mb-5">
+            <ul className="pagination justify-content-center mt-4">
+              <li className="page-item disabled"><a className="page-link" href="#"><i className="fa-solid fa-arrow-left"></i></a></li>
+              <li className="page-item active"><a className="page-link" href="#">1</a></li>
+              <li className="page-item"><a className="page-link" href="#">2</a></li>
+              <li className="page-item"><a className="page-link" href="#">3</a></li>
+              <li className="page-item"><a className="page-link" href="#">...</a></li>
+              <li className="page-item"><a className="page-link" href="#">10</a></li>
+              <li className="page-item"><a className="page-link" href="#"><i className="fa-solid fa-arrow-right"></i></a></li>
+            </ul>
+          </div> */}
         </div>
       </section>
 
 
-     
 
-      
+
+
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}

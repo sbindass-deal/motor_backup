@@ -649,7 +649,7 @@ function Detail() {
                   <div className="dropdown mr-2 tagBtns">
                     <p
                       type="button"
-                      // className="orange_btn"
+                    // className="orange_btn"
                     >
                       Era: {vehicle.year}
                     </p>
@@ -710,7 +710,7 @@ function Detail() {
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using
-                  Bring a Trailer Shipping. Enter your destination ZIP code to
+                  Gas Guzzlrs Shipping. Enter your destination ZIP code to
                   get an instant quote.
                 </p>
               </div>
