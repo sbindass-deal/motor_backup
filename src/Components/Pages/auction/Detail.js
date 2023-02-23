@@ -17,6 +17,7 @@ import ScreenShort from "../../../Assets/images/screenShort.png";
 import carImg from "../../../Assets/images/carImg.png";
 import bellIcon from "../../../Assets/images/bellIcon.svg";
 import men_face from "../../../Assets/images/men-face.jpg";
+import ho from '../../../Assets/images/ho.webp'
 
 function Detail() {
   const { id } = useParams();
@@ -515,12 +516,12 @@ function Detail() {
                                 {" "}
                                 ${vehicle.documentFee}{" "}
                               </span>
-                              <span>
+                              {/* <span>
                                 <label style={{ padding: "0px 10px" }}>
                                   On
                                 </label>
                                 {new Date(vehicle.EndTime).toLocaleDateString()}
-                              </span>
+                              </span> */}
                             </span>
                           )}
                         </span>
@@ -692,8 +693,8 @@ function Detail() {
               <div className="card_ ptb_40">
                 <h3 className="cardTitle">Gallery</h3>
                 <div className="row galleryPh">
-                  <div className="col-12">
-                    <img src={carImg} />
+                  <div className="col-12 firstImg">
+                    <img src={ho} />
                   </div>
                   <div
                     className="col-12"

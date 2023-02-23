@@ -5943,5 +5943,12 @@ span.numBr {color: #fff;}
   z-index: 9999;
   cursor: pointer;
 }
-
-  
+.rightGallery .ant-image {
+  max-width: 99%;
+  object-fit: cover;
+  max-height: 124px;
+}
+.rightGallery>div {
+  float: left;
+  width: 19%;
+}
