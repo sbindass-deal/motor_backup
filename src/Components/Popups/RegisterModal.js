@@ -254,14 +254,14 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required={true}
                     />
                     <div
-                      className="eye_child"
+                      className="eye_child eye_login"
                       onClick={() => setShowPassWord(!showPassWord)}
                     >
-                      {/* {showPassWord ? (
+                      {showPassWord ? (
                         <VisibilityIcon />
                       ) : (
                         <VisibilityOffIcon />
-                      )} */}
+                      )}
                     </div>
                   </div>
                 </div>
@@ -279,10 +279,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     required={true}
                   />
                   <div
-                    className="eye_child"
+                    className="eye_child eye_login"
                     onClick={() => setShowCPassWord(!showCPassword)}
                   >
-                    {/* {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />} */}
+                    {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">

@@ -5182,15 +5182,16 @@ html {
   position: relative;
 }
 
-.eye_arrange .eye_child {
+.eye_child.eye_login {
+  height: auto;
+  top: 41px;
   position: absolute;
-  right: 26px;
-  top: 46%;
+  right: 29px;
 }
 
-.eye_login {
+/* .eye_login {
   top: 55% !important;
-}
+} */
 
 input[type=file] {
   font-size: 15px !important;
@@ -5990,7 +5991,7 @@ span.numBr {color: #fff;}
 .dropdown:hover .dropdown-content { display: block; z-index: 999;}
 .labelList li:last-child {  width: 220px;}
 
-.eye_arrange { position: relative;}
+/* .eye_arrange { position: relative;}
 
 .eye_arrange:before {
   content: '';
@@ -6018,5 +6019,5 @@ span.numBr {color: #fff;}
     z-index: 8;
     filter: contrast(0.5);
     cursor: pointer;
-}
+} */
 

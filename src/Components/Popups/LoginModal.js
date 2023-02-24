@@ -145,7 +145,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   required={true}
                 />
               </div>
-              <div className="col-md-12 eye_arrange eye_cross">
+              <div className="col-md-12 eye_arrange ">
                 <FormInput
                   value={password}
                   onChange={handlePassword}
@@ -163,7 +163,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   className="eye_child eye_login"
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-                  {/* {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />} */}
+                  {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </div>
               </div>
               <div className="col-md-12 fp">
