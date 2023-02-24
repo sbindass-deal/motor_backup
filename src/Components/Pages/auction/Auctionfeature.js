@@ -5,7 +5,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearData } from "../../../redux/reducers/vehicleReducer"; 
-const Auctionlive = () => {
+const Auctionfeature = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -50,7 +50,7 @@ const Auctionlive = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Current Auctions{" "}
+                 Auctions Features{" "}
                 <span>
                   {
                     data
@@ -301,4 +301,4 @@ const Auctionlive = () => {
   );
 };
 
-export default Auctionlive;
+export default Auctionfeature;

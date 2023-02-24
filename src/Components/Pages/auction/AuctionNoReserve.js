@@ -4,8 +4,8 @@ import axios from "axios";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearData } from "../../../redux/reducers/vehicleReducer"; 
-const Auctionlive = () => {
+import { clearData } from "../../../redux/reducers/vehicleReducer";
+const AuctionNoReserve = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -14,6 +14,21 @@ const Auctionlive = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
+
+  // const fetchNoreserveData = async() => {
+  //   try{
+  //     const res = await axios.get(`${process.env.REACT_APP_URL}noreserve`)
+  //     setauctions(res.data.data)
+  //     setFilteredUsers(res.data.data)
+  //     console.log(1111,res.data.data)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchNoreserveData()
+  // }, [])
+
   useEffect(() => {
     const filteredAuctionVehicle = vehicleData.filter(
       (item) => item.displayInAuction === "Yes"
@@ -50,7 +65,7 @@ const Auctionlive = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Current Auctions{" "}
+                Auctions No Reserve{" "}
                 <span>
                   {
                     data
@@ -259,7 +274,10 @@ const Auctionlive = () => {
 
                           {console.log(97989, curElem)}
                           <li>
-                            <label>Ends In:</label> <span>{new Date(curElem.EndTime).toLocaleTimeString() }</span>
+                            <label>Ends In:</label>{" "}
+                            <span>
+                              {new Date(curElem.EndTime).toLocaleTimeString()}
+                            </span>
                           </li>
                           {/* <li>
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
@@ -280,8 +298,6 @@ const Auctionlive = () => {
                               <label>End In : 5 days</label>
                             )}
                           </li> */}
-
-                          
                         </ul>
                         {/* <Link
                           to={`/detail/${curElem.id}`}
@@ -301,4 +317,4 @@ const Auctionlive = () => {
   );
 };
 
-export default Auctionlive;
+export default AuctionNoReserve;

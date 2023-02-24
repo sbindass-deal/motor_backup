@@ -374,7 +374,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 )}
 
-                <div className="col-12 p-0">
+                {/* <div className="col-12 p-0">
                   {addUserInBid === true ? (
                     <CardDetails
                       inputValue={inputValue}
@@ -383,9 +383,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   ) : (
                     ""
                   )}
-                </div>
+                </div> */}
 
-                <div className="col-12 col-md-12">
+                {/* <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input
@@ -398,7 +398,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       i want the ability to bid on action?(Optional)
                     </label>
                   </div>
-                </div>
+                </div> */}
 
                 {/* <div className="col-12">
                   {addUserInBid == true ? (
@@ -429,7 +429,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         type="checkbox"
                         value={acceptTearms}
                         onChange={(e) => setAcceptTearms(e.target.checked)}
-                        checked={acceptTearms}
+                        // checked={acceptTearms}
                         required
                       />{" "}
                       I accept the Terms of Use and Privacy Notice

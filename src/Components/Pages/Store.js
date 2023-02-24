@@ -39,7 +39,7 @@ const Store = () => {
   return (
     <>
       <Dealer />
-      <section className="pt_80 mobileSpec" id="">
+      {/* <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
@@ -106,7 +106,7 @@ const Store = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Inventory />
     </>

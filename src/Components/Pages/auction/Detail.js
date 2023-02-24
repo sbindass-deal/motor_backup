@@ -42,6 +42,7 @@ function Detail() {
   const [showAuctionGallery, setShowAuctionGallery] = useState(false);
   const [auctonVehicle, setAuctonVehicle] = useState([]);
   const [auctionHistory, setAuctionHistory] = useState([]);
+  const [userInfo, setUserinfo] = useState({});
   // countdown time start
   const [amountprice, setAmountprice] = useState(0);
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
@@ -69,6 +70,16 @@ function Detail() {
   }, [days, hours, minutes, seconds, newTiem]);
 
   // countdown time end
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
+      }
+    });
+  }, []);
+
   const handleCloseAuctionHistory = () => {
     setShowAuctionHistory(false);
   };
@@ -262,19 +273,28 @@ function Detail() {
     fetchVinDetails();
   }, []);
 
-  useEffect(() => {
-    const fetchAuctionHistory = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}autionHistroy/${vehicle.userId}`
-        );
-        setAuctionHistory(res.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchAuctionHistory();
-  }, [vehicle.userId]);
+  const handleAuctionHistory = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}autionHistroy/${vehicle.userId}`
+      );
+      setAuctionHistory(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleSubscribe = async() => {
+    axios.post(`${process.env.REACT_APP_URL}subscriber`, {
+      userId: userInfo.id,
+      subscribeTo: vehicle.userId
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   // {
   //   console.log(111, vinDetails.options !== undefined && vinDetails.options.map((curElem) => curElem))
@@ -292,7 +312,7 @@ function Detail() {
                     Seller: <a href="#">{vehicle.name}</a>
                     <small> (Private Party or Dealer ): #NA</small>
                   </div>
-                  <a href="#">
+                  <a onClick={handleSubscribe}>
                     <img src={bellIcon} alt="bellIcon" />
                   </a>
                 </div>
@@ -631,7 +651,7 @@ function Detail() {
                   <div className="dropdown mr-2 tagBtns">
                     <p
                       type="button"
-                      // className="orange_btn"
+                    // className="orange_btn"
                     >
                       Era: {vehicle.year}
                     </p>
@@ -660,11 +680,15 @@ function Detail() {
                 </div>
                 <div className="auctionHistory">
                   <div
-                    onClick={handleShowAuctionHistory}
+                    onClick={() => {
+                      handleShowAuctionHistory();
+                      handleAuctionHistory();
+                    }}
                     className="AuctionBtn"
                   >
                     <img src={EyeIcon} />
-                    Auction History <span className="numBr">10</span>
+                    Auction History{" "}
+                    <span className="numBr">{auctionHistory.length}</span>
                   </div>
                 </div>
               </div>
@@ -688,7 +712,7 @@ function Detail() {
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using
-                  Bring a Trailer Shipping. Enter your destination ZIP code to
+                  Gas Guzzlrs Shipping. Enter your destination ZIP code to
                   get an instant quote.
                 </p>
               </div>
@@ -713,7 +737,10 @@ function Detail() {
                     )}
                   </div>
                   <div className={` col-lg-7 col-sm-12`}>
-                    <div ref={moreImgRaf} className="row rightGallery sixOption">
+                    <div
+                      ref={moreImgRaf}
+                      className="row rightGallery sixOption"
+                    >
                       <Image.PreviewGroup>
                         {vehicle.images &&
                           vehicle.images.slice(1, 7).map((curElem) => {
@@ -780,7 +807,8 @@ function Detail() {
                     onClick={() => setShowAuctionGallery(!showAuctionGallery)}
                     className="btn more_"
                   >
-                    {showAuctionGallery ? "Show Less" : "Show more"} <span className="number">16</span>
+                    {showAuctionGallery ? "Show Less" : "Show more"}{" "}
+                    <span className="number">16</span>
                   </button>
                 </div>
                 <div className=" phG">
@@ -1005,7 +1033,7 @@ function Detail() {
               </h4>
 
               <button
-                onClick={handleClose}
+                onClick={handleCloseAuctionHistory}
                 type="button"
                 className="close"
                 data-dismiss="modal"
@@ -1028,10 +1056,11 @@ function Detail() {
                           </p>
                           <div className="n">
                             Sold by <b>racer35</b> to <b>ToylorCar</b> for{" "}
-                            <span>$25,000</span>{" "}
+                            <span>${curElem.documentFee}</span>{" "}
                           </div>
                           <div className="t">
-                            <i className="fa-solid fa-clock"></i> Feb 1, 2023
+                            <i className="fa-solid fa-clock"></i>{" "}
+                            {new Date(curElem.created_at).toLocaleDateString()}
                           </div>
                         </div>
                       </div>

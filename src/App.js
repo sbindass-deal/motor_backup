@@ -189,9 +189,7 @@ const App = () => {
         <RainbowKitProvider theme={darkTheme()} chains={chains}>
           <Layout />
         </RainbowKitProvider>
-      </WagmiConfig>
-      
-       
+      </WagmiConfig>       
     </>
   );
 };
