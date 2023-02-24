@@ -4382,7 +4382,7 @@ ul#nav {
 }
 
 .modal-body label {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .checRegistered {
@@ -5982,25 +5982,41 @@ span.numBr {color: #fff;}
   border-radius: 100%;
   margin-left: 10px;
 }
+.bg-dark{ background-color: #000000!important;}
+.clenderStyle{ width: 100%;  position: relative;  top: 67px;}
+.activeListView .auctionLive .card_postImg img { height: 105px;}
+.activeListView .auctionLive .card_postImg { width: 160px;}
+.list_wrapper { position: relative;  width: 100%;}
+.dropdown:hover .dropdown-content { display: block; z-index: 999;}
+.labelList li:last-child {  width: 220px;}
 
+.eye_arrange { position: relative;}
 
-.bg-dark{
-  background-color: #000000!important;
+.eye_arrange:before {
+  content: '';
+  background-image: url(../images/eye-solidp.svg);
+  width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 27px;
+    background-repeat: no-repeat;
+    top: 40px;
+    z-index: 8;
+    filter: contrast(0.5);
+    cursor: pointer;
 }
-.clenderStyle{
-    width: 100%;
-    position: relative;
-    top: 67px;
+.eye_cross{position: relative;}
+.eye_cross:before {
+  content: '';
+  background-image: url(../images/eye-slash-solid.svg);
+  width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 27px;
+    background-repeat: no-repeat;
+    top: 40px;
+    z-index: 8;
+    filter: contrast(0.5);
+    cursor: pointer;
 }
 
-
-.activeListView .auctionLive .card_postImg img {
-  height: 105px;
-}
-.activeListView .auctionLive .card_postImg {
-  width: 160px;
-}
-.list_wrapper {
-  position: relative;
-  width: 100%;
-}

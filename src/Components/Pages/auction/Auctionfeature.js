@@ -150,13 +150,7 @@ const Auctionfeature = () => {
                     <div className="card_post">
                       <div className="card_postImg">
                         <div className="list_wrapper">
-                          <Link
-                            className="auction_image"
-                            to={`/detail/${curElem.id}`}
-                          >
-                            {curElem.images[0] ? (
-                              <>
-                                <button
+                        <button
                                   // onClick={() => addFabrity(curElem.id)}
                                   type="button"
                                   className="watchedIc"
@@ -168,6 +162,13 @@ const Auctionfeature = () => {
                                     }`}
                                   ></i>
                                 </button>
+                          <Link
+                            className="auction_image"
+                            to={`/detail/${curElem.id}`}
+                          >
+                            {curElem.images[0] ? (
+                              <>
+                                
                                 <img
                                   loading="lazy"
                                   src={

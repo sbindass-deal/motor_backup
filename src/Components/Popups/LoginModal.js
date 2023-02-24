@@ -145,25 +145,25 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   required={true}
                 />
               </div>
-              <div className="row">
-                <div className="col-md-12 eye_arrange">
-                  <FormInput
-                    value={password}
-                    onChange={handlePassword}
-                    name="password"
-                    placeholder="Enter Password"
-                    errorMessage="Password cannot be empty or incorrect"
-                    label="Password"
-                    type={showPassWord ? "text" : "password"}
-                    // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
-                    required={true}
-                  />
-                </div>
+              <div className="col-md-12 eye_arrange eye_cross">
+                <FormInput
+                  value={password}
+                  onChange={handlePassword}
+                  name="password"
+                  placeholder="Enter Password"
+                  errorMessage="Password cannot be empty or incorrect"
+                  label="Password"
+                  type={showPassWord ? "text" : "password"}
+                  // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                  required={true}
+                  
+                />
+
                 <div
                   className="eye_child eye_login"
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-                  {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  {/* {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />} */}
                 </div>
               </div>
               <div className="col-md-12 fp">

@@ -1057,10 +1057,12 @@
 	.col-12 .galleryImgSect {height: 150px;}
 	.verticle {	padding: 5px;}
 	.gallery .mt-50 {margin-top: 5px;}
-	.titleRight {
-		display: contents;
-		align-items: baseline;
-	}
+	.titleRight {display: contents;align-items: baseline;}
+	.tagBtns p {margin-bottom: 7px;	}
+	.auctionHistory {z-index: 9;	width: 100%;display: block;padding: 10px;background: #f7811b;}
+	.Dfrt {display: block;}
+	.Dfrt:before{ border-bottom: 0px solid #f7811b;    text-align: center;}
+	.card_.Dfrt .dropdown {	width: 100%;}
 }
 
 @media (max-width: 575px) {
