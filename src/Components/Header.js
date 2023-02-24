@@ -290,7 +290,7 @@ function Header() {
                           to="/works"
                           onClick={() => setShowNav(false)}
                         >
-                          How it Works
+                          The G2 Process
                         </Link>
                       </li>
 
@@ -459,7 +459,7 @@ function Header() {
                 </div>
                 {/* mobile view end */}
 
-                <div className="toNv" id="">
+                <div className="toNv" id="" style={{width:"unset"}}>
                   <ul className="navbar-nav ml-auto">
                     <li className="nav-item" style={{ cursor: "pointer" }}>
                       <Link className="nav-link">
@@ -488,7 +488,7 @@ function Header() {
                         }`}
                         to="/works"
                       >
-                        How it Works
+                        The G2 Process
                       </Link>
                     </li>
 
