@@ -4397,6 +4397,7 @@ ul#nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: 10px;
 }
 
 .fp span {
@@ -5982,8 +5983,24 @@ span.numBr {color: #fff;}
   margin-left: 10px;
 }
 
+
+.bg-dark{
+  background-color: #000000!important;
+}
 .clenderStyle{
     width: 100%;
     position: relative;
     top: 67px;
+}
+
+
+.activeListView .auctionLive .card_postImg img {
+  height: 105px;
+}
+.activeListView .auctionLive .card_postImg {
+  width: 160px;
+}
+.list_wrapper {
+  position: relative;
+  width: 100%;
 }

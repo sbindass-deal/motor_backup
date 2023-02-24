@@ -4,7 +4,7 @@ import axios from "axios";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearData } from "../../../redux/reducers/vehicleReducer"; 
+import { clearData } from "../../../redux/reducers/vehicleReducer";
 const Auctionlive = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -150,24 +150,24 @@ const Auctionlive = () => {
                     <div className="card_post">
                       <div className="card_postImg">
                         <div className="list_wrapper">
+                          <button
+                            // onClick={() => addFabrity(curElem.id)}
+                            type="button"
+                            className="watchedIc"
+                            style={{ margin: "8px" }}
+                          >
+                            <i
+                              className={`fa-solid fa-star ${
+                                curElem.like >= 1 ? "faList" : ""
+                              }`}
+                            ></i>
+                          </button>
                           <Link
                             className="auction_image"
                             to={`/detail/${curElem.id}`}
                           >
                             {curElem.images[0] ? (
                               <>
-                                <button
-                                  onClick={() => addFabrity(curElem.id)}
-                                  type="button"
-                                  className="watchedIc"
-                                  style={{ margin: "8px" }}
-                                >
-                                  <i
-                                    className={`fa-solid fa-star ${
-                                      curElem.like >= 1 ? "faList" : ""
-                                    }`}
-                                  ></i>
-                                </button>
                                 <img
                                   loading="lazy"
                                   src={
@@ -252,9 +252,11 @@ const Auctionlive = () => {
                             ) : null}
                           </li>
                           <li>
-                            <label>Ends In:</label> <span>{new Date(curElem.EndTime).toLocaleTimeString() }</span>
+                            <label>Ends In:</label>{" "}
+                            <span>
+                              {new Date(curElem.EndTime).toLocaleTimeString()}
+                            </span>
                           </li>
-                          
                         </ul>
                       </div>
                     </div>
