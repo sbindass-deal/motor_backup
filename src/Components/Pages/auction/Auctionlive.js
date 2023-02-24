@@ -157,7 +157,7 @@ const Auctionlive = () => {
                             {curElem.images[0] ? (
                               <>
                                 <button
-                                  // onClick={() => addFabrity(curElem.id)}
+                                  onClick={() => addFabrity(curElem.id)}
                                   type="button"
                                   className="watchedIc"
                                   style={{ margin: "8px" }}
@@ -228,11 +228,6 @@ const Auctionlive = () => {
                         <p className="color_grey">
                           {curElem?.moreDescription.substr(0, 123)}
                         </p>
-                        {/* <div className="opening_bid">
-                          <p>Opening Bid: $980000 </p>
-                          <p>Upcoming Auction</p>
-                        </div> */}
-
                         <ul
                           className="labelList"
                           style={{
@@ -256,39 +251,11 @@ const Auctionlive = () => {
                               </span>
                             ) : null}
                           </li>
-
-                          {console.log(97989, curElem)}
                           <li>
                             <label>Ends In:</label> <span>{new Date(curElem.EndTime).toLocaleTimeString() }</span>
                           </li>
-                          {/* <li>
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              parseInt(new Date().getTime(), 10) >
-                              0 && curElem.approved === "1" ? (
-                              <label>Auction Open</label>
-                            ) : parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                parseInt(new Date().getTime(), 10) >
-                                0 &&
-                              (curElem.approved === null ||
-                                curElem.approved === "11") ? (
-                              <label>Upcoming Auction</label>
-                            ) : (
-                              // <label>Auction Closed</label>
-                              <label>End In : 5 days</label>
-                            )}
-                          </li> */}
-
                           
                         </ul>
-                        {/* <Link
-                          to={`/detail/${curElem.id}`}
-                          className="orange_btn opening_bid_btn"
-                        >
-                          View Details <i class="fa fa-arrow-right"></i>
-                        </Link> */}
                       </div>
                     </div>
                   </div>

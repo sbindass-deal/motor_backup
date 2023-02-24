@@ -90,10 +90,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           setLoginLoading(false);
           window.location.reload(false);
         } else {
-          notify("Incorrect Email or password");
+          notify(result.data.message);
           setLoginLoading(false);
         }
-        console.log(111,result.data.message)
+        console.log(111, result.data.message);
       })
       .catch((error) => {
         notify(error.message);
@@ -138,26 +138,27 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   value={email}
                   onChange={handleEmail}
                   name="email"
-                  placeholder="enter email address"
+                  placeholder="enter username or email address"
                   type="email"
                   errorMessage="Please enter valid email address"
                   label="Email address"
                   required={true}
                 />
               </div>
-              <div className="col-md-12 eye_arrange">
-                <FormInput
-                  value={password}
-                  onChange={handlePassword}
-                  name="password"
-                  placeholder="Enter Password"
-                  errorMessage="Password cannot be empty or incorrect"
-                  label="Password"
-                  type={showPassWord ? "text" : "password"}
-                  // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
-                  required={true}
-                />
-
+              <div className="row">
+                <div className="col-md-12 eye_arrange">
+                  <FormInput
+                    value={password}
+                    onChange={handlePassword}
+                    name="password"
+                    placeholder="Enter Password"
+                    errorMessage="Password cannot be empty or incorrect"
+                    label="Password"
+                    type={showPassWord ? "text" : "password"}
+                    // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                    required={true}
+                  />
+                </div>
                 <div
                   className="eye_child eye_login"
                   onClick={() => setShowPassWord(!showPassWord)}
