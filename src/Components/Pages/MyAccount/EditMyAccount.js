@@ -83,9 +83,14 @@ function EditMyAccount() {
         username: userName,
       })
       .then((result) => {
-        notify(result.data.message);
-        setLoading(false);
-        window.location.reload(false);
+        if(result.data.status === 200){
+          notify(result.data.message);
+          setLoading(false);
+          window.location.reload(false);
+        }else{
+          notify(result.data.message);
+        }
+        
       })
       .catch((error) => {
         console.log(error);
@@ -137,7 +142,7 @@ function EditMyAccount() {
                   <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.userName}
-                      onChange={handleEditOnChange}
+                      // onChange={handleEditOnChange}
                       name="userName"
                       placeholder="Enter Username"
                       errorMessage="Username should be 3-20 characters and shouldn't include any special character!"

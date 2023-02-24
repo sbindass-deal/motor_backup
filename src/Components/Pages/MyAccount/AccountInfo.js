@@ -56,13 +56,10 @@ function AccountInfo() {
                   <div className="labelList_label">Email Address</div>
                   <div className="labelList_text">
                     {userInfo.email} <br />
-                    <a href="#">Resend Verification Email</a>
+                    {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
-                <li>
-                  <div className="labelList_label">Password</div>
-                  <div className="labelList_text">****************</div>
-                </li>
+                
               </ul>
             </div>
           </div>
