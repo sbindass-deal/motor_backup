@@ -5981,3 +5981,8 @@ span.numBr {color: #fff;}
   border-radius: 100%;
   margin-left: 10px;
 }
+
+
+.bg-dark{
+  background-color: #000000!important;
+}

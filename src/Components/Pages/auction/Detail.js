@@ -504,10 +504,10 @@ function Detail() {
                                 {" "}
                                 ${amountprice}{" "}
                               </span>
-                              <span>
+                              {/* <span>
                                 <label>On</label>{" "}
                                 {new Date(vehicle.EndTime).toLocaleDateString()}
-                              </span>
+                              </span> */}
                             </span>
                           ) : (
                             <span>
@@ -538,12 +538,14 @@ function Detail() {
                             </span>
                           </span>
                         ) : vehicle.approved === "1" && t > 0 ? (
-                          <span>
+                          <span >
                             <label>Ends In:&nbsp;</label>
-                            {days}days, {hours <= 9 && "0"}
-                            {hours}h : {minutes <= 9 && "0"}
-                            {minutes}m : {seconds <= 9 && "0"}
+                           
+                          {days}days, {hours <= 9 && "0"}
+                           {hours}h : {minutes <= 9 && "0"}
+                           {minutes}m : {seconds <= 9 && "0"}
                             {seconds}s
+                            
                           </span>
                         ) : (
                           "Auction Closed"
