@@ -432,7 +432,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         onChange={(e) => setAcceptTerms(e.target.checked)}
                         // checked={acceptTerms}
                         required
-                      />{" "}
+                      /> <span className="text-danger" >*</span>&nbsp;
                       I accept the Terms of Use and Privacy Notice
                     </label>
                   </div>
