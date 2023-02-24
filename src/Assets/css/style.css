@@ -4397,6 +4397,7 @@ ul#nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: 10px;
 }
 
 .fp span {
@@ -5991,3 +5992,5 @@ span.numBr {color: #fff;}
     position: relative;
     top: 67px;
 }
+
+
