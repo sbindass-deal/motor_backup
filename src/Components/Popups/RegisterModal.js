@@ -29,8 +29,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
   const [addUserInBid, setAddUserInBid] = useState(true);
-  const [acceptTearms, setAcceptTearms] = useState(true);
-  const [signInTeams, setSignInTeams] = useState(true);
+  const [acceptTerms, setAcceptTerms] = useState(true);
+  const [signInMe, setSignInMe] = useState(true);
 
   // console.log("####", addUserInBid)
   const [inputValue, setInputValue] = useState({
@@ -106,25 +106,27 @@ function RegisterModal({ showReg, handleCloseReg }) {
         email,
         username: userName,
         password,
-        cpassword: cPassword,
+        // cpassword: cPassword,
         name,
         mobile: phone,
         dealer,
-        dealerDescription,
+        // dealerDescription,
         addUserInBid,
-        cardName: inputValue.name,
-        cardPhone: inputValue.phone,
-        cardAddress: inputValue.address,
-        cardZip: inputValue.zip,
-        cardCountry: inputValue.country,
-        cardNumber: inputValue.cardnumber,
-        cartMonth: inputValue.month,
-        cartYear: inputValue.year,
-        cartCvc: inputValue.cvc,
-        cartHearAbout: inputValue.hearAbout,
+        acceptTerms,
+        mailer: signInMe,
+        // cardName: inputValue.name,
+        // cardPhone: inputValue.phone,
+        // cardAddress: inputValue.address,
+        // cardZip: inputValue.zip,
+        // cardCountry: inputValue.country,
+        // cardNumber: inputValue.cardnumber,
+        // cartMonth: inputValue.month,
+        // cartYear: inputValue.year,
+        // cartCvc: inputValue.cvc,
+        // cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
-        if (result.data.status === 200 && dealer === "No") {
+        if (result.data.status === 200 && result.data.access_token !== null) {
           dispatch(authToken(result.data.access_token));
           handleCloseReg();
           notify(result.data.message);
@@ -151,12 +153,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
             cPassword: "",
           });
           window.location.reload(false);
-        } else if (result.data.status === 200 && dealer === "Yes") {
-          uploadLogo(result.data.user_id, result.data.message);
         } else {
           notify(result.data.message);
         }
-        console.log(1111, result);
       })
       .catch((error) => {
         notify(error);
@@ -204,11 +203,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.email}
                     onChange={handleUserInput}
                     name="email"
-                    
                     placeholder="Enter Email address"
                     errorMessage="It should be a valid email address!"
                     label="Email address"
@@ -216,11 +215,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.userName}
                     onChange={handleUserInput}
                     name="userName"
-                   
                     placeholder="Enter Username"
                     errorMessage="Username should be 3-30 characters and shouldn't include any special character!"
                     label="Username"
@@ -242,7 +241,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <div className="aa">
-                    <FormInput style={{textTransform:"none"}}
+                    <FormInput
+                      style={{ textTransform: "none" }}
                       value={userInput.password}
                       onChange={handleUserInput}
                       name="password"
@@ -266,7 +266,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.cPassword}
                     onChange={handleUserInput}
                     name="cPassword"
@@ -302,7 +303,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     </select>
                   </div>
                 </div>
-                {userInput.dealer === "Yes" && (
+                {/* {userInput.dealer === "Yes" && (
                   <div className="col-md-12 col-lg-6 col-sm-12">
                     <FormInput
                       value={userInput.title}
@@ -315,8 +316,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       required={true}
                     />
                   </div>
-                )}
-                {userInput.dealer === "Yes" && (
+                )} */}
+                {/* {userInput.dealer === "Yes" && (
                   <div className="col-12 col-sm-12 col-md-12">
                     <div className="form-group">
                       <label>Description</label>
@@ -331,8 +332,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       ></textarea>
                     </div>
                   </div>
-                )}
-                {userInput.dealer === "Yes" && (
+                )} */}
+                {/* {userInput.dealer === "Yes" && (
                   <div className="col-12 col-sm-12 col-md-12">
                     <div className="form-group">
                       <label>Dealer logo</label>
@@ -372,7 +373,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* <div className="col-12 p-0">
                   {addUserInBid === true ? (
@@ -385,7 +386,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   )}
                 </div> */}
 
-                {/* <div className="col-12 col-md-12">
+                <div className="col-12 col-md-12">
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input
@@ -393,12 +394,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         onChange={(e) => setAddUserInBid(e.target.checked)}
                         className="form-check-input"
                         type="checkbox"
-                        checked={addUserInBid}
+                        // checked={addUserInBid}
                       />
-                      i want the ability to bid on action?(Optional)
+                      I want the ability to bid on action?
                     </label>
                   </div>
-                </div> */}
+                </div>
 
                 {/* <div className="col-12">
                   {addUserInBid == true ? (
@@ -427,9 +428,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value={acceptTearms}
-                        onChange={(e) => setAcceptTearms(e.target.checked)}
-                        // checked={acceptTearms}
+                        value={acceptTerms}
+                        onChange={(e) => setAcceptTerms(e.target.checked)}
+                        // checked={acceptTerms}
                         required
                       />{" "}
                       I accept the Terms of Use and Privacy Notice
@@ -440,9 +441,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <input
-                        value={signInTeams}
-                        onChange={(e) => setSignInTeams(e.target.checked)}
-                        checked={signInTeams}
+                        value={signInMe}
+                        onChange={(e) => setSignInMe(e.target.checked)}
+                        checked={signInMe}
                         className="form-check-input"
                         type="checkbox"
                       />{" "}

@@ -90,10 +90,10 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           setLoginLoading(false);
           window.location.reload(false);
         } else {
-          notify("Incorrect Email or password");
+          notify(result.data.message);
           setLoginLoading(false);
         }
-        console.log(111,result.data.message)
+        console.log(111, result.data.message);
       })
       .catch((error) => {
         notify(error.message);
@@ -138,7 +138,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   value={email}
                   onChange={handleEmail}
                   name="email"
-                  placeholder="enter email address"
+                  placeholder="enter username or email address"
                   type="email"
                   errorMessage="Please enter valid email address"
                   label="Email address"
