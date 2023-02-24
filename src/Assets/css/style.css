@@ -5994,3 +5994,13 @@ span.numBr {color: #fff;}
 }
 
 
+.activeListView .auctionLive .card_postImg img {
+  height: 105px;
+}
+.activeListView .auctionLive .card_postImg {
+  width: 160px;
+}
+.list_wrapper {
+  position: relative;
+  width: 100%;
+}
