@@ -113,7 +113,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
         // dealerDescription,
         addUserInBid,
         acceptTerms,
-        mailer:signInMe,
+        mailer: signInMe,
         // cardName: inputValue.name,
         // cardPhone: inputValue.phone,
         // cardAddress: inputValue.address,
@@ -126,7 +126,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
         // cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
-        if (result.data.status === 200 && dealer === "No") {
+        if (result.data.status === 200 && result.data.access_token !== null) {
           dispatch(authToken(result.data.access_token));
           handleCloseReg();
           notify(result.data.message);
@@ -153,12 +153,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
             cPassword: "",
           });
           window.location.reload(false);
-        } else if (result.data.status === 200 && dealer === "Yes") {
-          uploadLogo(result.data.user_id, result.data.message);
         } else {
           notify(result.data.message);
         }
-        console.log(1111, result);
       })
       .catch((error) => {
         notify(error);
@@ -206,11 +203,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.email}
                     onChange={handleUserInput}
                     name="email"
-                    
                     placeholder="Enter Email address"
                     errorMessage="It should be a valid email address!"
                     label="Email address"
@@ -218,11 +215,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.userName}
                     onChange={handleUserInput}
                     name="userName"
-                   
                     placeholder="Enter Username"
                     errorMessage="Username should be 3-30 characters and shouldn't include any special character!"
                     label="Username"
@@ -244,7 +241,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
                   <div className="aa">
-                    <FormInput style={{textTransform:"none"}}
+                    <FormInput
+                      style={{ textTransform: "none" }}
                       value={userInput.password}
                       onChange={handleUserInput}
                       name="password"
@@ -268,7 +266,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12 eye_arrange">
-                  <FormInput style={{ textTransform: "none" }}
+                  <FormInput
+                    style={{ textTransform: "none" }}
                     value={userInput.cPassword}
                     onChange={handleUserInput}
                     name="cPassword"
