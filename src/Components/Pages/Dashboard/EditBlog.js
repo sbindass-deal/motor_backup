@@ -1,14 +1,22 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+// import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import {
+  EditorState,
+  ContentState,
+  convertFromHTML,
+  convertToRaw,
+} from "draft-js";
 
-const AddBlog = () => {
+const EditBlog = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [blogDataById, setBlogDataById] = useState([]);
   const [file, setFile] = useState([]);
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [blogData, setBlogData] = useState({
@@ -31,27 +39,52 @@ const AddBlog = () => {
   };
   const handleContent = (e) => {
     setBlogContent(e);
-    console.log(111, e);
+    // console.log(111, convertToRaw(blogContent.getCurrentContent()));
   };
+  //   fetch blog api
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getblogsBYId/${id}`
+        );
+        if (res.data.status === 200 && res.data.data) {
+          setBlogData({
+            title: res.data.data.title,
+            desc: res.data.data.description,
+          });
+          setBlogDataById(res.data.data);
+          setBlogContent(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(res.data.data.description)
+              )
+            )
+          );
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchBlog();
+  }, []);
   const handleApi = async (e) => {
     e.preventDefault();
-    const url = `${process.env.REACT_APP_URL}addblogs`;
-    let formdata = new FormData();
-    formdata.append("image", file[0]);
-    formdata.append("title", blogData.title);
-    formdata.append(
+    const url = `${process.env.REACT_APP_URL}updateblogs/${id}`;
+    let formData = new FormData();
+    formData.append("image", file[0]);
+    formData.append("title", blogData.title);
+    formData.append(
       "description",
       draftToHtml(convertToRaw(blogContent.getCurrentContent()))
     );
-    formdata.append("likes", null);
-    formdata.append("view", null);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     };
     await axios
-      .post(url, formdata, config)
+      .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
           navigate("/blog");
@@ -119,17 +152,44 @@ const AddBlog = () => {
                     minHeight: "30vh",
                   }}
                   editorState={blogContent}
+                  value="dlsjfkljf"
                   toolbarClassName="toolbarClassName"
                   wrapperClassName="wrapperClassName"
                   editorClassName="editorClassName"
                   onEditorStateChange={handleContent}
                   placeholder="Please enter description"
                 />
+                {/* <textarea
+          disabled
+          value={draftToHtml(convertToRaw(blogContent.getCurrentContent()))}
+        ></textarea> */}
               </div>
             </div>
             <div className="col-12 col-md-12">
               <label>Upload Photos</label>
               <div className="row">
+                {blogDataById.image && file.length <= 0 && (
+                  <img
+                    loading="lazy"
+                    width="200px"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                      padding: "15px",
+                    }}
+                    src={
+                      blogDataById?.image &&
+                      `${process.env.REACT_APP_URL}upload/blogs/${blogDataById?.image}`
+                    }
+                    onError={({ currentTarget }) => {
+                      currentTarget.onError = null;
+                      currentTarget.src =
+                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                    }}
+                    alt="Maskgroup1"
+                  />
+                )}
                 {Array.from(file).map((items) => {
                   return (
                     <span>
@@ -185,4 +245,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default EditBlog;

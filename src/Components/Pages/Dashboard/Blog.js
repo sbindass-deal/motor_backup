@@ -5,18 +5,20 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import parse from "html-react-parser";
+import { strToHtml } from "../../UI/globaleVar";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
-  
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}/getblogs`);
         setBlogs(res.data.data);
-        setLoading(false)
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -50,7 +52,8 @@ function Blog() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3
-                className="d-flex" id="widthChnge"
+                className="d-flex"
+                id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
                 My Blogs
@@ -58,33 +61,45 @@ function Blog() {
                   {/* <Link to="/admin/add-blog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
-                  <Link to="/admin/add-blog" className="orange_btn" style={{
-                    padding: "4px",
-                    fontSize: "18px",
-                    fontWeight:"100"
-
-                  }}>
+                  <Link
+                    to="/admin/add-blog"
+                    className="orange_btn"
+                    style={{
+                      padding: "4px",
+                      fontSize: "18px",
+                      fontWeight: "100",
+                    }}
+                  >
                     + Add My Blogs
                   </Link>
-
                 </div>
               </h3>
 
-              <hr id="hr"/>
+              <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
-                  <input type="search" name="search" placeholder="Search…" onChange={(e) => {
-                    setSearchTerm(e.target.value)
-                  }} />
+                  <input
+                    type="search"
+                    name="search"
+                    placeholder="Search…"
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
+                  />
                 </li>
               </ul>
-              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
-                {
-                  loading ? <div class="d-flex justify-content-center">
+              <div
+                class="card_Gray table-responsive merchant vehicleSub"
+                id="scrollable"
+              >
+                {loading ? (
+                  <div class="d-flex justify-content-center">
                     <div class="spinner-border" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
-                  </div> : <table class="table table-striped">
+                  </div>
+                ) : (
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
@@ -98,52 +113,65 @@ function Blog() {
                       </tr>
                     </thead>
                     <tbody>
-                        {blogs &&
-                          blogs.filter((curElem) => {
+                      {blogs &&
+                        blogs
+                          .filter((curElem) => {
                             if (searchTerm == "") {
-                              return curElem
-                            } else if (curElem.title.toLowerCase().includes(searchTerm.toLowerCase())
-                              
+                              return curElem;
+                            } else if (
+                              curElem.title
+                                .toLowerCase()
+                                .includes(searchTerm.toLowerCase())
                             ) {
-                              return curElem
+                              return curElem;
                             }
                           })
-                        .map((curElem, i) => {
-                          return (
-                            <tr key={curElem.id}>
-                              <th scope="row">{i + 1}</th>
-                              <td>
-                                <div className="">
-                                  <img
-                                  width={200}
-                                  className="img-fluid"
-                                    src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
-                                  />
-                                </div>
-                              </td>
-                              <td>{curElem.title} </td>
-                              <td>{ curElem?.description.substr(0, 100)}</td>
-                              <td>
-                                {curElem.created_at &&
-                                  new Date(
-                                    curElem.created_at
-                                  ).toLocaleDateString()}
-                              </td>
-                              <td className="actionBtn">
-                                {/* <button data-toggle="modal" data-target="#EditBlog">
-                              <i class="fa-solid fa-pencil"></i>
-                            </button> */}
-                                <button onClick={() => handleDelete(curElem.id)}>
-                                  <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
+                          .map((curElem, i) => {
+                            return (
+                              <tr key={curElem.id}>
+                                <th scope="row">{i + 1}</th>
+                                <td>
+                                  <div className="">
+                                    <img
+                                      width={200}
+                                      className="img-fluid"
+                                      src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
+                                    />
+                                  </div>
+                                </td>
+                                <td>{curElem.title} </td>
+                                {/* <td>{ curElem?.description.substr(0, 100)}</td> */}
+
+                                <td>
+                                  {parse(
+                                    curElem?.description?.substr(0, 300),
+                                    strToHtml
+                                  )}
+                                </td>
+                                <td>
+                                  {curElem.created_at &&
+                                    new Date(
+                                      curElem.created_at
+                                    ).toLocaleDateString()}
+                                </td>
+                                <td className="actionBtn">
+                                  <Link to={`/editBlog/${curElem.id}`}>
+                                    <button>
+                                      <i class="fa-solid fa-pencil"></i>
+                                    </button>
+                                  </Link>
+                                  <button
+                                    onClick={() => handleDelete(curElem.id)}
+                                  >
+                                    <i class="fa-solid fa-trash-can"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
                     </tbody>
                   </table>
-                }
-                
+                )}
               </div>
 
               {/* <!-- Edit PopUp--> */}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Car_img from "../../Assets/images/img_05.jpg";
+import parse from "html-react-parser";
+import { strToHtml } from "../UI/globaleVar";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -10,6 +12,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const filteredBlog = blogs.find((item) => item.id == id);
     setBlog(filteredBlog);
+    console.log(111, filteredBlog);
   }, [id]);
 
   return (
@@ -31,17 +34,17 @@ const BlogDetail = () => {
                   <i className="fa-solid fa-clock"></i>{" "}
                   {blog.created_at && new Date(blog.created_at).toDateString()}
                 </li>
-                <li>
+                {/* <li>
                   <i className="fa-solid fa-location-dot"></i> {blog.location}
                 </li>
                 <li>
                   <i className="fa-solid fa-comment-dots"></i> {blog.comment}{" "}
                   Comments
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="blogDesc">
-              <p>{blog.description}</p>
+              <p> {blog.description && parse(blog?.description, strToHtml)}</p>
             </div>
           </div>
 

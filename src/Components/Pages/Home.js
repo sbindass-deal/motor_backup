@@ -23,6 +23,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { storeBlogData } from "../../redux/reducers/blogReducer";
+import parse from "html-react-parser";
+import { strToHtml } from "../UI/globaleVar";
 
 function Home() {
   const dispatch = useDispatch();
@@ -228,7 +230,6 @@ function Home() {
                         </Link>
                       );
                     })}
-                  
                 </Slider>
               </div>
             </div>
@@ -477,16 +478,22 @@ function Home() {
                               {curElem.created_at &&
                                 new Date(curElem.created_at).toDateString()}
                             </li>
-                            <li>
+                            {/* <li>
                               <i className="fa-solid fa-location-dot"></i>{" "}
                               {curElem.location}
                             </li>
                             <li>
                               <i className="fa-solid fa-comment-dots"></i>{" "}
                               {curElem.comment}&nbsp;Comments
-                            </li>
+                            </li> */}
                           </ul>
-                          <p>{curElem.description.substr(0, 500)}</p>
+                          {/* <p>{curElem.description.substr(0, 500)}</p> */}
+                          <p>
+                            {parse(
+                              curElem?.description.substr(0, 700),
+                              strToHtml
+                            )}
+                          </p>
                           {curElem.description.length > 500 && (
                             <Link
                               to={`/blogdetail/${curElem.id}`}

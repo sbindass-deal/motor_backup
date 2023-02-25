@@ -73,6 +73,7 @@ import Event from "./event/Event";
 import Auctionfeature from "./auction/Auctionfeature";
 import AuctionNoReserve from "./auction/AuctionNoReserve";
 import AuctionResult from "./auction/AuctionResult";
+import EditBlog from "./Dashboard/EditBlog";
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -134,6 +135,11 @@ const Layout = () => {
                     path="gear-product/:id"
                     element={<EditGearProduct />}
                   />
+                  <Route
+                    path="editBlog/:id"
+                    element={<EditBlog />}
+                  />
+                  
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />

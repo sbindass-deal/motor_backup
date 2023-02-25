@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { strToHtml } from "../UI/globaleVar";
+import parse from "html-react-parser";
 
 const Blogs = () => {
   const blogs = useSelector((state) => state.blogReducer.blogData);
@@ -38,16 +40,17 @@ const Blogs = () => {
                             {curElem.created_at &&
                               new Date(curElem.created_at).toDateString()}
                           </li>
-                          <li>
+                          {/* <li>
                             <i className="fa-solid fa-location-dot"></i>{" "}
                             {curElem.location}
                           </li>
                           <li>
                             <i className="fa-solid fa-comment-dots"></i>{" "}
                             {curElem.comment}&nbsp;Comments
-                          </li>
+                          </li> */}
                         </ul>
-                        <p>{curElem.description.substr(0, 500)}</p>
+                        {/* <p>{curElem.description.substr(0, 500)}</p> */}
+                        <p>{parse(curElem?.description, strToHtml)}</p>
                         {curElem.description.length > 500 && (
                           <Link
                             to={`/blogdetail/${curElem.id}`}
