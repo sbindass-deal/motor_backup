@@ -8,7 +8,6 @@ import txautodealer from "../../../Assets/images/txautodealer.png";
 import custombanner5 from "../../../Assets/images/custombanner5.webp";
 import img_01 from "../../../Assets/images/img_01.jpg";
 
-
 const DealerList = () => {
   const [dealerData, setDealerData] = useState([]);
 
@@ -30,13 +29,6 @@ const DealerList = () => {
     <>
       <div className="col-12 ListDealer mt-50">
         <div className="row  pt-4 row_gridList">
-
-
-
-
-
-
-
           {/* <div className="col-lg-4 col-sm-12 inner-slider">
             <a
               target="_blank"
@@ -114,51 +106,40 @@ const DealerList = () => {
             dealerData.map((curElem) => {
               return (
                 <>
- 
-
-                  
                   {/* =============================== */}
-
 
                   <div class="col-12 col-md-6 pb-3">
                     <div class="card_post">
                       <div class="card_postImg">
-
-                     
                         <Link to={`/dealerprofile/${curElem.id}`}>
-                          
-                          {
-                            
-                            curElem.image &&  (
-                              <img
-                                loading="lazy"
-                                src={
-                                  curElem.image[0] &&
-                                  `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt={curElem.username}
-                              />
-                            )
-                          }
-
-                            
-                          </Link> 
-                       
-                       
-                       
+                          {curElem.image && (
+                            <img
+                              loading="lazy"
+                              src={
+                                curElem.image[0] &&
+                                `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.username}
+                            />
+                          )}
+                        </Link>
                       </div>
                       <div class="card_postInfo">
-                        <h4><a href="detail.html">{curElem.title}</a></h4>
+                        <h4>
+                          <a href="detail.html">{curElem.title}</a>
+                        </h4>
                         <ul class="labelList">
                           <li>October 14, 2022</li>
-                          <li><i class="fa-solid fa-user mr-2"></i>  {curElem.name}</li>
+                          <li>
+                            <i class="fa-solid fa-user mr-2"></i> {curElem.name}
+                          </li>
                         </ul>
-                        <p>{curElem?.dealerDescription.substr(0, 125)+"..."}</p>
+                        <p>{curElem?.dealerDescription?.substr(0, 125)}...</p>
                       </div>
 
                       {console.log(777989, curElem)}
@@ -166,7 +147,6 @@ const DealerList = () => {
                   </div>
 
                   {/* =============================== */}
-
 
                   {/* <div class="col-12 col-md-6 col-lg-4 pb-3">
                     
@@ -211,13 +191,8 @@ const DealerList = () => {
 
       
       </div> */}
-                
-                
 
-
-                
-                
-                {/* <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
+                  {/* <div className="col-lg-6 col-sm-12 inner-slider showrroom_wrap">
                   <Link to={`/dealerprofile/${curElem.id}`}>
                     <div className="card_post">
                       <div className="card_postImg dlr">
@@ -255,8 +230,6 @@ const DealerList = () => {
                     </div>
                   </Link>
                 </div> */}
-
-
                 </>
               );
             })}
