@@ -95,6 +95,9 @@
 	.toNv ul.navbar-nav.ml-auto {
 		right: 8%;
 	}
+	.secondNavbar .navbar-nav .nav-link{
+		font-size: 12px;
+	}
 
 
 }
