@@ -714,6 +714,7 @@ const VechilesRegistraion = () => {
       const req = await axios(
         `https://api.gasguzzlrs.com/test_vin/${inputVin}`
       );
+
       if (req.data.status) {
         notify(req.data.message);
       } else {
@@ -721,6 +722,7 @@ const VechilesRegistraion = () => {
         handleVinClose();
         console.log(1111, req.data);
       }
+      setGetVinNumber(inputVin);
     } catch (err) {
       console.log(err);
     }
@@ -1182,57 +1184,53 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group">
-                              <div className="">
-                                <div className="row">
-                                  {Array.from(file).map((items) => {
-                                    return (
-                                      <span>
-                                        <img
-                                          src={
-                                            items
-                                              ? URL.createObjectURL(items)
-                                              : null
-                                          }
-                                          style={{
-                                            width: "100px",
-                                            height: "100px",
-                                            objectFit: "cover",
-                                            padding: "15px",
-                                          }}
-                                        />
-                                      </span>
-                                    );
-                                  })}
-                                </div>
+                            <div className="row">
+                              {Array.from(file).map((items) => {
+                                return (
+                                  <span>
+                                    <img
+                                      src={
+                                        items
+                                          ? URL.createObjectURL(items)
+                                          : null
+                                      }
+                                      style={{
+                                        width: "100px",
+                                        height: "100px",
+                                        objectFit: "cover",
+                                        padding: "15px",
+                                      }}
+                                    />
+                                  </span>
+                                );
+                              })}
+                            </div>
 
-                                <div
-                                  className="dropzone"
-                                  onDragOver={handleDragOverBanner}
-                                  onDrop={handleDropBanner}
+                            <div className="form-group">
+                              <div
+                                className="dropzone"
+                                onDragOver={handleDragOverBanner}
+                                onDrop={handleDropBanner}
+                              >
+                                <h3>Drag and Drop Files to Upload</h3>
+                                <h3>Or</h3>
+                                <input
+                                  onChange={(e) => {
+                                    return setFile(e.target.files);
+                                  }}
+                                  name="file"
+                                  type="file"
+                                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                                  ref={inputRefBanner}
+                                  hidden
+                                />
+                                <button
+                                  className="orange_btn"
+                                  type="button"
+                                  onClick={() => inputRefBanner.current.click()}
                                 >
-                                  <h3>Drag and Drop Files to Upload</h3>
-                                  <h3>Or</h3>
-                                  <input
-                                    onChange={(e) => {
-                                      return setFile(e.target.files);
-                                    }}
-                                    name="file"
-                                    type="file"
-                                    accept="image/gif, image/jpeg, image/png, image/jpg"
-                                    ref={inputRefBanner}
-                                    required
-                                    hidden
-                                  />
-                                  <button
-                                    className="orange_btn"
-                                    onClick={() =>
-                                      inputRefBanner.current.click()
-                                    }
-                                  >
-                                    Select Files
-                                  </button>
-                                </div>
+                                  Select Files
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -1257,57 +1255,55 @@ const VechilesRegistraion = () => {
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
-                              <div className="">
-                                <div className="row">
-                                  {Array.from(galleryFile).map((items) => {
-                                    return (
-                                      <span>
-                                        <img
-                                          src={
-                                            items
-                                              ? URL.createObjectURL(items)
-                                              : null
-                                          }
-                                          style={{
-                                            width: "100px",
-                                            height: "100px",
-                                            objectFit: "cover",
-                                            padding: "15px",
-                                          }}
-                                        />
-                                      </span>
-                                    );
-                                  })}
-                                </div>
+                              <div className="row">
+                                {Array.from(galleryFile).map((items) => {
+                                  return (
+                                    <span>
+                                      <img
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "100px",
+                                          height: "100px",
+                                          objectFit: "cover",
+                                          padding: "15px",
+                                        }}
+                                      />
+                                    </span>
+                                  );
+                                })}
+                              </div>
 
-                                <div
-                                  className="dropzone"
-                                  onDragOver={handleDragOverBannerG}
-                                  onDrop={handleDropBannerG}
+                              <div
+                                className="dropzone"
+                                onDragOver={handleDragOverBannerG}
+                                onDrop={handleDropBannerG}
+                              >
+                                <h3>Drag and Drop Files to Upload</h3>
+                                <h3>Or</h3>
+                                <input
+                                  onChange={(e) => {
+                                    setGalleryFile(e.target.files);
+                                  }}
+                                  name="file"
+                                  type="file"
+                                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                                  ref={inputRefBannerG}
+                                  multiple
+                                  hidden
+                                />
+                                <button
+                                  className="orange_btn"
+                                  type="button"
+                                  onClick={() =>
+                                    inputRefBannerG.current.click()
+                                  }
                                 >
-                                  <h3>Drag and Drop Files to Upload</h3>
-                                  <h3>Or</h3>
-                                  <input
-                                    onChange={(e) => {
-                                      setGalleryFile(e.target.files);
-                                    }}
-                                    name="file"
-                                    type="file"
-                                    accept="image/gif, image/jpeg, image/png, image/jpg"
-                                    ref={inputRefBannerG}
-                                    required
-                                    multiple
-                                    hidden
-                                  />
-                                  <button
-                                    className="orange_btn"
-                                    onClick={() =>
-                                      inputRefBannerG.current.click()
-                                    }
-                                  >
-                                    Select Files
-                                  </button>
-                                </div>
+                                  Select Files
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -1759,57 +1755,55 @@ const VechilesRegistraion = () => {
 
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
-                              <div className="">
-                                <div className="row">
-                                  {Array.from(file1).map((items, i) => {
-                                    return (
-                                      <span key={i} className="px-1">
-                                        <img
-                                          src={
-                                            items
-                                              ? URL.createObjectURL(items)
-                                              : null
-                                          }
-                                          style={{
-                                            width: "70px",
-                                            objectFit: "cover",
-                                          }}
-                                        />
-                                      </span>
-                                    );
-                                  })}
-                                </div>
+                              <div className="row">
+                                {Array.from(file1).map((items, i) => {
+                                  return (
+                                    <span key={i} className="px-1">
+                                      <img
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "70px",
+                                          objectFit: "cover",
+                                        }}
+                                      />
+                                    </span>
+                                  );
+                                })}
+                              </div>
 
-                                <div
-                                  className="dropzone"
-                                  onDragOver={handleDragOverBannerD}
-                                  onDrop={handleDropBannerD}
+                              <div
+                                className="dropzone"
+                                onDragOver={handleDragOverBannerD}
+                                onDrop={handleDropBannerD}
+                              >
+                                <h3>Drag and Drop Files to Upload</h3>
+                                <h3>Or</h3>
+                                <input
+                                  onChange={(e) => {
+                                    setFile1((prevState) => [
+                                      ...prevState,
+                                      ...e.target.files,
+                                    ]);
+                                  }}
+                                  name="files"
+                                  type="file"
+                                  multiple
+                                  ref={inputRefBannerD}
+                                  hidden
+                                />
+                                <button
+                                  className="orange_btn"
+                                  type="button"
+                                  onClick={() =>
+                                    inputRefBannerD.current.click()
+                                  }
                                 >
-                                  <h3>Drag and Drop Files to Upload</h3>
-                                  <h3>Or</h3>
-                                  <input
-                                    onChange={(e) => {
-                                      setFile1((prevState) => [
-                                        ...prevState,
-                                        ...e.target.files,
-                                      ]);
-                                    }}
-                                    name="files"
-                                    type="file"
-                                    multiple
-                                    ref={inputRefBannerD}
-                                    required
-                                    hidden
-                                  />
-                                  <button
-                                    className="orange_btn"
-                                    onClick={() =>
-                                      inputRefBannerD.current.click()
-                                    }
-                                  >
-                                    Select Files
-                                  </button>
-                                </div>
+                                  Select Files
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -1843,7 +1837,6 @@ const VechilesRegistraion = () => {
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
-
                       <form className="pt-3" onSubmit={detailsSubmitHandler}>
                         <div className="row">
                           <div className="col-12">

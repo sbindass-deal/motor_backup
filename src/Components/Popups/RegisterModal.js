@@ -127,7 +127,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       })
       .then((result) => {
         if (result.data.status === 200 && result.data.access_token !== null) {
-          dispatch(authToken(result.data.access_token));
+          dispatch(authToken(result.data));
           handleCloseReg();
           notify(result.data.message);
           setInputValue({
