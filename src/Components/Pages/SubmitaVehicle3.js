@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { showModalLogin } from "../../redux/reducers/login";
 import { getPlan } from "../../redux/reducers/planReducer";
 
-const SubmitaVehicle1 = () => {
+const SubmitaVehicle3 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
@@ -102,20 +102,44 @@ const SubmitaVehicle1 = () => {
   return (
     <>
       <section className="pt_80">
-        
-        {/* <div className="container">
+
+        <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Pick Your Listing Type! 
+                Pick Your Listing Type!
               </h2>
               <p>
                 Gas Guzzlrs is the best place to auction your vehicle.
                 <br /> Select one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
-              
+              {/* <div className="row">
+                <div className="col-5">Are you a individual saler?</div>
+                <div className="col-2">
+                  <div className="switch">
+                    <input
+                      className="react-switch-checkbox"
+                      id={`react-switch-standard`}
+                      checked={areYouDealerOrSealer}
+                      onChange={(e) =>
+                        setAreYouDealerOrSealer(e.target.checked)
+                      }
+                      name="standard"
+                      type="checkbox"
+                    />
+                    <label
+                      className="react-switch-label"
+                      htmlFor={`react-switch-standard`}
+                    >
+                      <span className={`react-switch-button`} />
+                    </label>
+                  </div>
+                </div>
+                <div className="col-5">Are you a dealer?</div>
+              </div> */}
             </div>
+            {/* standard plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card">
                 <div className="plan_cardHead">
@@ -193,6 +217,7 @@ const SubmitaVehicle1 = () => {
                 </ul>
               </div>
             </div>
+            {/* pro plan */}
             <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus pro">
                 <div className="plan_cardHead">
@@ -268,6 +293,7 @@ const SubmitaVehicle1 = () => {
                 </ul>
               </div>
             </div>
+            {/* premier plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
@@ -343,6 +369,7 @@ const SubmitaVehicle1 = () => {
                 </ul>
               </div>
             </div>
+            {/* exclusive plan */}
             <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
               <div className="plan_card plan_WhiteGlove">
                 <div className="plan_cardHead">
@@ -403,370 +430,11 @@ const SubmitaVehicle1 = () => {
               </div>
             </div>
           </div>
-        </div> */}
-        
-
-
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
-              <h2 className="title_combo title_Center">
-                Dealer Packages
-              </h2>
-              <p>
-                Gas Guzzlrs is the best place to auction your vehicle.
-                <br /> Select one of our many Auction Services to showcase your
-                vehicle the way you want.
-              </p>
-              {/* <div className="row">
-                <div className="col-5">Are you a individual saler?</div>
-                <div className="col-2">
-                  <div className="switch">
-                    <input
-                      className="react-switch-checkbox"
-                      id={`react-switch-standard`}
-                      checked={areYouDealerOrSealer}
-                      onChange={(e) =>
-                        setAreYouDealerOrSealer(e.target.checked)
-                      }
-                      name="standard"
-                      type="checkbox"
-                    />
-                    <label
-                      className="react-switch-label"
-                      htmlFor={`react-switch-standard`}
-                    >
-                      <span className={`react-switch-button`} />
-                    </label>
-                  </div>
-                </div>
-                <div className="col-5">Are you a dealer?</div>
-              </div> */}
-            </div>
-            {/* standard plan */}
-            
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
-              <div className="plan_card">
-                <div className="plan_cardHead">
-                  <h4>STANDARD </h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.pro1 ? 2189 : 199}
-                      <div className="switch">
-                        <span className="plan_Time">Monthly</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-pro1`}
-                          type="checkbox"
-                          checked={planChacked.pro1}
-                          onChange={handleOnChange}
-                          name="pro1"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-pro1`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          Annual
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Same as the Standard listing except we send out a
-                    professional photographer to take pictures of your ride.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.pro ? 1649 : 349,
-                          list: planChacked.pro ? 5 : 1,
-                          valid: planChacked.pro ? 30 : 1,
-                          listName: "pro",
-                        })
-                      );
-                      if (logingUser.login.token) {
-                        navigate("/vechiles");
-                      } else {
-                        handleShow();
-                      }
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
-
-              <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="PLUS_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $499</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
-              </div>
-            </div>
-            {/* pro plan */}
-
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
-              <div className="plan_card plan_Plus pro">
-                <div className="plan_cardHead">
-                  <h4>PRO </h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.pro2 ? 2739 : 249}
-                      <div className="switch">
-                        <span className="plan_Time">Monthly</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-pro2`}
-                          type="checkbox"
-                          checked={planChacked.pro2}
-                          onChange={handleOnChange}
-                          name="pro2"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-pro2`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          Annual
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Same as the Standard listing except we send out a
-                    professional photographer to take pictures of your ride.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.pro ? 1649 : 349,
-                          list: planChacked.pro ? 5 : 1,
-                          valid: planChacked.pro ? 30 : 1,
-                          listName: "pro",
-                        })
-                      );
-                      if (logingUser.login.token) {
-                        navigate("/vechiles");
-                      } else {
-                        handleShow();
-                      }
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
-
-              <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="PLUS_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $499</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
-              </div>
-            </div>
-            {/* premier plan */}
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
-              <div className="plan_card plan_Plus">
-                <div className="plan_cardHead">
-                  <h4>PREMIERE </h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.pro3 ? 3289 : 299}
-                      <div className="switch">
-                        <span className="plan_Time">Monthly</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-pro3`}
-                          type="checkbox"
-                          checked={planChacked.pro3}
-                          onChange={handleOnChange}
-                          name="pro3"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-pro3`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          Annual
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Same as the Standard listing except we send out a
-                    professional photographer to take pictures of your ride.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.pro ? 1649 : 349,
-                          list: planChacked.pro ? 5 : 1,
-                          valid: planChacked.pro ? 30 : 1,
-                          listName: "pro",
-                        })
-                      );
-                      if (logingUser.login.token) {
-                        navigate("/vechiles");
-                      } else {
-                        handleShow();
-                      }
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
-
-              <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="PLUS_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $499</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
-              </div>
-            </div>
-            {/* exclusive plan */}
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
-              <div className="plan_card plan_WhiteGlove">
-                <div className="plan_cardHead">
-                  <h4>EXCLUSIVE</h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      ${planChacked.pro4 ? 3850 : 350}
-                      <div className="switch">
-                        <span className="plan_Time">Monthly</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={`react-switch-pro4`}
-                          type="checkbox"
-                          checked={planChacked.pro4}
-                          onChange={handleOnChange}
-                          name="pro4"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={`react-switch-pro4`}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          Annual
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="plan_cardBody">
-                  <p>
-                    Same as the Standard listing except we send out a
-                    professional photographer to take pictures of your ride.
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.pro ? 1649 : 349,
-                          list: planChacked.pro ? 5 : 1,
-                          valid: planChacked.pro ? 30 : 1,
-                          listName: "pro",
-                        })
-                      );
-                      if (logingUser.login.token) {
-                        navigate("/vechiles");
-                      } else {
-                        handleShow();
-                      }
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
-
-              <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
-              </Link>
-              <div id="PLUS_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $499</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
 
 
 
-
-
-
-
-
-
-
-       
-        
-
-
-
-        
+    
 
 
 
@@ -778,7 +446,6 @@ const SubmitaVehicle1 = () => {
 
 
 
-        
 
 
 
@@ -788,7 +455,24 @@ const SubmitaVehicle1 = () => {
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {showAdShowroom && (
           <div ref={handleScrollAd} className="container mt-80">
             <div className="row">
@@ -1013,4 +697,4 @@ const SubmitaVehicle1 = () => {
   );
 };
 
-export default SubmitaVehicle1;
+export default SubmitaVehicle3;
