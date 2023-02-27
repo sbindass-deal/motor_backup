@@ -592,14 +592,37 @@ function Header() {
                   <div className="" id="navbarNavDropdown">
                     <ul className="navbar-nav flex-wrap" id="nav">
                       <li className="nav-item">
-                        <Link
+                        {/* <Link
                           className={`nav-link ${
                             location.pathname === "/submit" && "navActive"
                           }`}
-                          to="/submit"
+                          to="/submit "
                         >
                           List Your Vehicles
-                        </Link>
+                        </Link> */}
+
+
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${location.pathname === "/submit" && "navActive"
+                              }`}
+                            to="#"
+                          >
+                            List Your Vehicles
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link className="" to="/submit">
+                              Private Party 
+                            </Link>
+                            <Link className="" to="/dealer">
+                              Dealer
+                            </Link>
+                           
+                          </div>
+                        </div>
+                        
+
+
                       </li>
 
                       <li className="nav-item">
