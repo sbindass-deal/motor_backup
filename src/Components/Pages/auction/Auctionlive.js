@@ -254,7 +254,7 @@ const Auctionlive = () => {
                           <li>
                             <label>Ends In:</label>{" "}
                             <span>
-                              {new Date(curElem.EndTime).toLocaleTimeString()}
+                              {curElem.EndTime && new Date(curElem.EndTime).toLocaleTimeString()}
                             </span>
                           </li>
                         </ul>
