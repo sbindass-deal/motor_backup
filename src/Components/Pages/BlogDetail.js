@@ -19,36 +19,7 @@ const BlogDetail = () => {
     <section className="ptb_80 pt_sm_50">
       <div className="container">
         <div className="row ">
-          <div className="col-sm-9 col-12 pb-3">
-            <div className="mainImg">
-              <img
-                src={`${process.env.REACT_APP_URL}upload/blogs/${blog.image}`}
-                alt="details-images"
-                loading="lazy"
-              />
-            </div>
-            <div className="blogInfo">
-              <h2 className="title_combo ">{blog.title}</h2>
-              <ul className="post_labelList">
-                <li>
-                  <i className="fa-solid fa-clock"></i>{" "}
-                  {blog.created_at && new Date(blog.created_at).toDateString()}
-                </li>
-                {/* <li>
-                  <i className="fa-solid fa-location-dot"></i> {blog.location}
-                </li>
-                <li>
-                  <i className="fa-solid fa-comment-dots"></i> {blog.comment}{" "}
-                  Comments
-                </li> */}
-              </ul>
-            </div>
-            <div className="blogDesc">
-              <p> {blog.description && parse(blog?.description, strToHtml)}</p>
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-3">
             <div class="card_Gray pt-3 pb-3 sidebarPostRow">
               <div class="sidebarPostHead">
                 <h6>Recent Blogs</h6>
@@ -123,6 +94,36 @@ const BlogDetail = () => {
               </ul>
             </div> */}
           </div>
+          <div className="col-sm-9 col-12 pb-3">
+            <div className="mainImg">
+              <img
+                src={`${process.env.REACT_APP_URL}upload/blogs/${blog.image}`}
+                alt="details-images"
+                loading="lazy"
+              />
+            </div>
+            <div className="blogInfo">
+              <h2 className="title_combo ">{blog.title}</h2>
+              <ul className="post_labelList">
+                <li>
+                  <i className="fa-solid fa-clock"></i>{" "}
+                  {blog.created_at && new Date(blog.created_at).toDateString()}
+                </li>
+                {/* <li>
+                  <i className="fa-solid fa-location-dot"></i> {blog.location}
+                </li>
+                <li>
+                  <i className="fa-solid fa-comment-dots"></i> {blog.comment}{" "}
+                  Comments
+                </li> */}
+              </ul>
+            </div>
+            <div className="blogDesc">
+              <p> {blog.description && parse(blog?.description, strToHtml)}</p>
+            </div>
+          </div>
+
+          
         </div>
       </div>
     </section>
