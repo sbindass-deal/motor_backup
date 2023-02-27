@@ -74,6 +74,7 @@ import Auctionfeature from "./auction/Auctionfeature";
 import AuctionNoReserve from "./auction/AuctionNoReserve";
 import AuctionResult from "./auction/AuctionResult";
 import EditBlog from "./Dashboard/EditBlog";
+import SubmitaVehicle1 from "./SubmitaVehicle1";
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -168,6 +169,7 @@ const Layout = () => {
           <Route path="works" element={<HowShibnobiMotorWorks />} />
           <Route path="gallary" element={<PhotoGallery />} />
           <Route path="submit" element={<SubmitaVehicle />} />
+          <Route path="dealer" element={<SubmitaVehicle1 />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="successpayment" element={<Paymentsuccess />} />
           <Route

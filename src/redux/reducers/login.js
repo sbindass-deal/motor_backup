@@ -14,7 +14,8 @@ const login = createSlice({
   initialState,
   reducers: {
     authToken: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.access_token;
+      state.user = action.payload
     },
     auth: (state, action) => {
       state.user = action.payload;
@@ -34,7 +35,8 @@ const login = createSlice({
       state.show = false;
     },
     isAdmin: (state, action) => {
-      state.admin = action.payload;
+      state.admin = action.payload.access_token;
+      state.user = action.payload
     },
     reset: (state, action) => {
       state.token = null;

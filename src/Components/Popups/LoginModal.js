@@ -76,24 +76,25 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       })
       .then((result) => {
         if (result.data.access_token && result.data.type === null) {
-          dispatch(authToken(result.data.access_token));
+          dispatch(authToken(result.data));
           notify("Login successfully");
           handleClose();
           setLoginLoading(false);
-          window.location.reload(false);
+          // window.location.reload(false);
+          // console.log(111,"mohan", result.data)
         } else if (result.data.access_token && result.data.type === "1") {
-          dispatch(authToken(result.data.access_token));
+          dispatch(authToken(result.data));
           notify("Admin Login successfully");
-          dispatch(isAdmin(result.data.type));
+          dispatch(isAdmin(result.data));
           navigate("/admin");
           handleClose();
           setLoginLoading(false);
-          window.location.reload(false);
+          // window.location.reload(false);
+          // console.log(111,"mohan", result.data)
         } else {
           notify(result.data.message);
           setLoginLoading(false);
         }
-        console.log(111, result.data.message);
       })
       .catch((error) => {
         notify(error.message);
