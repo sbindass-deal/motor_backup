@@ -1,13 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 
 function VehicleListingDetails() {
+
+ const navigate= useNavigate()
+
+  const {id}=useParams()
+
   const [vehicleDetails, setVehicleDetails] = useState({
     name: "",
     singleprice: "",
     fivesingleprice: "",
     description: "",
+    category:"",
+    monthlyListing:"",
+    annualListing:"",
+    annualDescription:"",
   });
   const handleChange = (e) => {
     setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value }));
@@ -15,14 +25,22 @@ function VehicleListingDetails() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}updateplans/id`, {
-        name: vehicleDetails.name,
-        price: vehicleDetails.singleprice,
-        maxprice: vehicleDetails.fivesingleprice,
-        list: vehicleDetails.description,
+      .post(`${process.env.REACT_APP_URL}updateplans/${id}`, {
+        plan_name: vehicleDetails.name,
+        monthly_price: vehicleDetails.singleprice,
+        annual_price: vehicleDetails.fivesingleprice,
+        monthly_description: vehicleDetails.description,
+        category: vehicleDetails.category,
+        monthly_listing: vehicleDetails.monthlyListing,
+        annual_listing: vehicleDetails.annualListing,
+        annual_description: vehicleDetails.annualDescription,
+
+
+
       })
       .then((response) => {
         if (response.status === 200) {
+          navigate('/admin/vehicle-listing')
         }
       })
       .catch((error) => {
@@ -58,11 +76,11 @@ function VehicleListingDetails() {
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
-                    // value={vehicleDetails.singleprice}
+                    value={vehicleDetails.category}
                     onChange={handleChange}
-                    // name="singleprice"
+                    name="category"
                     className="field"
-                    label="Category"
+                    label="category"
                     placeholder="Category"
                     //   pattern="^[0-9]$"
 
@@ -77,9 +95,9 @@ function VehicleListingDetails() {
                 <div className="form-group">
                   <FormInput
                     type="text"
-                    // value={vehicleDetails.fivesingleprice}
+                    value={vehicleDetails.monthlyListing}
                     onChange={handleChange}
-                    // name="fivesingleprice"
+                    name="monthlyListing"
                     className="field"
                     placeholder="Monthly Listing"
                     //   pattern="^[0-9]$"
@@ -150,9 +168,9 @@ function VehicleListingDetails() {
                 <div className="form-group">
                   <FormInput
                     type="text"
-                    // value={vehicleDetails.fivesingleprice}
+                    value={vehicleDetails.annualListing}
                     onChange={handleChange}
-                    // name="fivesingleprice"
+                    name="annualListing"
                     className="field"
                     placeholder="Annual Listing"
                     //   pattern="^[0-9]$"
@@ -168,9 +186,9 @@ function VehicleListingDetails() {
                 <div className="form-group">
                   <textarea
                     className="field"
-                    // value={vehicleDetails.description}
+                    value={vehicleDetails.annualDescription}
                     onChange={handleChange}
-                    // name="description"
+                    name="annualDescription"
                     placeholder="Description here"
                     required
                   ></textarea>
