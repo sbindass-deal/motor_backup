@@ -6,11 +6,14 @@ import AdminLeftNav from "./AdminLeftNav";
 const VehicleListing = () => {
   const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(true)
-  
+
   const addListingData = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}getAllPlans`)
+      .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {
+        category: "all"
+      })
       .then((respone) => {
+       
         if (respone.status === 200) {
           setGetData(respone.data.data);
           setLoading(false)
@@ -24,6 +27,22 @@ const VehicleListing = () => {
   useEffect(() => {
     addListingData();
   }, []);
+
+  
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(
+        `${process.env.REACT_APP_URL}plans/${id}`
+      );
+      if (res.data.status === 200) {
+        window.location.reload(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   return (
     <>
@@ -60,10 +79,21 @@ const VehicleListing = () => {
                       <thead>
                         <tr>
                           <th scope="col">Sr.No</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Description </th>
-                          <th scope="col">Price Of Single Listing</th>
-                          <th scope="col">Price of 5 Listing</th>
+                            <th scope="col" style={{ textTransform: "capitalize" }}>plan name</th>
+                            <th scope="col" style={{textTransform:"capitalize"}}>annual price</th>
+                            <th scope="col" style={{textTransform:"capitalize"}}>category</th>
+                            <th scope="col" style={{textTransform:"capitalize"}}>monthly listing</th>
+                            <th scope="col" style={{textTransform:"capitalize"}}>monthly price</th>
+                            <th scope="col" style={{textTransform:"capitalize"}}>plan name</th>
+
+                            <th scope="col" style={{ textTransform: "capitalize" }}>monthly description</th>
+
+                            <th scope="col" style={{ textTransform: "capitalize" }}>Annual Description </th>
+
+                            
+
+                            
+
                           <th scope="col" style={{ textAlign: "right" }}>
                             Action
                           </th>
@@ -71,31 +101,42 @@ const VehicleListing = () => {
                       </thead>
                       <tbody>
                         {getData &&
-                          getData.map((curElem) => {
-                            const { id, list, maxprice, name, price } = curElem;
+                            getData.map((curElem) => {
+                              console.log(9898, curElem)
+                              // const { id, list, maxprice, name, price } = curElem;
+                              const { annual_description, annual_listing, annual_price, category,
+                                monthly_description, monthly_listing, monthly_price, plan_name, id } = curElem
                             return (
                               <tr>
                                 <td>{id}</td>
-                                <td>{name}</td>
-                                <td>{list}</td>
-                                <td>{price}</td>
-                                <td>{maxprice}</td>
-                                
+                                <td>{plan_name}</td>
+                                <td>{annual_listing}</td>
+                                <td>{annual_price}</td>
+                                <td>{category}</td>
+                                <td>{monthly_listing}</td>
+                                <td>{monthly_price}</td>
+                                <td>{monthly_description?.substr(0,30) + "..."}</td>
+                                <td>{annual_description?.substr(0,30)+"..."}</td>
+                               
+
                                 <td className="text-right">
                                   <Link id="linkTag"
                                     to={`/admin/vehicle-listing-details/${id}`}
-                                    // className="btn"
+                                  // className="btn"
                                   >
                                     <i class="fa-solid fa-pencil"></i>
                                   </Link>
 
-                                  <Link to={``}  id="linkTag"
-                                    // className="btn"
+                                  <Link to={``} id="linkTag" 
+                                    
+                                    onClick={() => handleDelete(curElem.id)}
+                                    
+                                  // className="btn"
                                   >
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    <i class="fa-solid fa-trash-can" ></i>
                                   </Link>
                                 </td>
-                               
+
                               </tr>
                             );
                           })}
@@ -103,9 +144,9 @@ const VehicleListing = () => {
                     </table>
                   }
 
-                 
 
-                  
+
+
                 </div>
               </div>
             </div>
