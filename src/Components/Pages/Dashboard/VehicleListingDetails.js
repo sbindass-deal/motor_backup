@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 
 function VehicleListingDetails() {
+
+ const navigate= useNavigate()
 
   const {id}=useParams()
 
