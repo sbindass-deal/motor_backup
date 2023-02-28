@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, { useState, useRef } from "react";
 import { useEffect } from "react";
-import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { showModalLogin } from "../../../redux/reducers/login";
 import { getPlan } from "../../../redux/reducers/planReducer";
 
 const PrivateParty = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const logingUser = useSelector((state) => state);
-  const handleScrollAd = useRef(null);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const logingUser = useSelector((state) => state);
+  // const handleScrollAd = useRef(null);
+  const [planName, setPlanName] = useState("");
   const [planData, setPlanData] = useState([]);
-  const [showAdShowroom, setShowAdShowroom] = useState(false);
-  const [areYouDealerOrSealer, setAreYouDealerOrSealer] = useState(false);
+  const [planType, setPlanType] = useState(false);
+
   const [planChacked, setPlanChacked] = useState({
     standard: false,
     pro: false,
@@ -23,64 +23,14 @@ const PrivateParty = () => {
     classified: false,
     showroom: false,
   });
-  const [standardPlan, setStandardPlan] = useState(null);
-  const [proPlan, setProPlan] = useState(null);
-  const [premierPlan, setPremierPlan] = useState(null);
-  const [classifiedPlan, setClassifiedPlan] = useState(null);
-  const [showroomPlan, setShowroomPlan] = useState(null);
 
   const handleOnChange = (e) => {
     setPlanChacked({ ...planChacked, [e.target.name]: e.target.checked });
   };
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}getAllUserPlan`
-        );
-        // console.log(11, res.data.data);
-        if (res.data.data) {
-          const filteredStandard = res.data.data.find(
-            (item) => item.planeName === "standard"
-          );
-          const filteredPro = res.data.data.find(
-            (item) => item.planeName === "pro"
-          );
-          const filteredPremier = res.data.data.find(
-            (item) => item.planeName === "premiere"
-          );
-          const filteredClassified = res.data.data.find(
-            (item) => item.planeName === "classified"
-          );
-          const filteredShowroom = res.data.data.find(
-            (item) => item.planeName === "showroom"
-          );
-          setStandardPlan(filteredStandard);
-          setProPlan(filteredPro);
-          setPremierPlan(filteredPremier);
-          setClassifiedPlan(filteredClassified);
-          setShowroomPlan(filteredShowroom);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchUserDetails();
-  }, []);
-  const goToAddCard = () => {
-    handleScrollAd.current.scrollIntoView({ behavior: "smooth", block: "end" });
-  };
-  // useEffect(() => {
-  //   setShowAdModal(true);
-  // }, []);
-  useEffect(() => {
-    setShowAdShowroom(areYouDealerOrSealer);
-  }, [areYouDealerOrSealer]);
-
-  const handleShow = () => {
-    dispatch(showModalLogin());
-  };
+  // const goToAddCard = () => {
+  //   handleScrollAd.current.scrollIntoView({ behavior: "smooth", block: "end" });
+  // };
 
   const fetchPlan = async () => {
     await axios
@@ -115,87 +65,87 @@ const PrivateParty = () => {
               </p>
             </div>
             {/* standard plan */}
-            {
-              planData.map((curElem, i) => {
-                return(
-                  <div key={i} className="col-lg-3 col-md-6 col-sm-12 mb-4 mobile-mt-50">
-              <div className="plan_card">
-                <div className="plan_cardHead">
-                  <h4>{curElem.plan_name}</h4>
-                  <div className="plan_Price">
-                    <div className="dfk">
-                      {curElem.price}
-                      <div className="switch">
-                        <span className="plan_Time">Single Listing</span>
-                        <input
-                          className="react-switch-checkbox"
-                          id={curElem.plan_name}
-                          // checked={planChacked.standard}
-                          onChange={handleOnChange}
-                          name="standard"
-                          type="checkbox"
-                        />
-                        <label
-                          className="react-switch-label"
-                          htmlFor={curElem.plan_name}
-                        >
-                          <span className={`react-switch-button`} />
-                        </label>
-                        <span className="plan_Time">
-                          {curElem.total_listing} Listing <small>within 30 Days</small>
-                        </span>
+            {planData.map((curElem, i) => {
+              return (
+                <div
+                  key={i}
+                  className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50"
+                >
+                  <div className="plan_card">
+                    <div className="plan_cardHead">
+                      <h4>{curElem.plan_name} </h4>
+                      <div className="plan_Price">
+                        <div className="dfk">
+                          $
+                          {planType && planName === curElem.plan_name
+                            ? curElem.annual_price
+                            : curElem.monthly_price}
+                          <div className="switch">
+                            <span className="plan_Time"> Monthly</span>
+                            <input
+                              className="react-switch-checkbox"
+                              id={curElem.plan_name}
+                              type="checkbox"
+                              // checked={planChacked.pro1}
+                              // checked={planType}
+                              onChange={(e) => {
+                                setPlanName(e.target.name);
+                                setPlanType(e.target.checked);
+                              }}
+                              // onChange={handleOnChange}
+                              name={curElem.plan_name}
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={curElem.plan_name}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                            <span className="plan_Time"> Annual</span>
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <h6>
+                            {" "}
+                            {planType && planName === curElem.plan_name
+                              ? curElem.annual_listing
+                              : curElem.monthly_listing}{" "}
+                            Listing
+                          </h6>
+                        </div>
                       </div>
                     </div>
+
+                    <div className="plan_cardBody">
+                      <p>
+                        {planType && planName === curElem.plan_name
+                          ? curElem.annual_description
+                          : curElem.monthly_description}
+                      </p>
+                    </div>
+                    <div className="plan_cardFooter">
+                      <button className="gry_btn">SUBMIT VEHICLE</button>
+                    </div>
+                  </div>
+
+                  <Link to="/works" className="works_btn HIW_BTN">
+                    The G2 Process
+                  </Link>
+                  <div id="PLUS_HIW" className="collapse">
+                    <ul className="HIW_list mt-4">
+                      <li>Your submit your vehicle</li>
+                      <li>We accept the ones that fit</li>
+                      <li>You pay $499</li>
+                      <li>We write the auction listing</li>
+                      <li>You approve</li>
+                      <li>We schedule the listing</li>
+                      <li>Your Listing goes live</li>
+                    </ul>
                   </div>
                 </div>
-                <div className="plan_cardBody">
-                  <p>
-                    {curElem.description}
-                  </p>
-                </div>
-                <div className="plan_cardFooter">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        getPlan({
-                          amount: planChacked.standard ? 499 : 99,
-                          list: planChacked.standard ? 5 : 1,
-                          valid: planChacked.standard ? 30 : 1,
-                          listName: "standard",
-                        })
-                      );
-                      if (logingUser.login.token) {
-                        navigate("/vechiles");
-                      } else {
-                        handleShow();
-                      }
-                    }}
-                    className="gry_btn"
-                  >
-                    SUBMIT VEHICLE
-                  </button>
-                </div>
-              </div>
+              );
+            })}
 
-              <Link to="/works" className="works_btn HIW_BTN">
-                The G2 Process
-              </Link>
-              <div id="classNameIC_HIW" className="collapse">
-                <ul className="HIW_list mt-4">
-                  <li>Your submit your vehicle</li>
-                  <li>We accept the ones that fit</li>
-                  <li>You pay $99</li>
-                  <li>We write the auction listing</li>
-                  <li>You approve</li>
-                  <li>We schedule the listing</li>
-                  <li>Your Listing goes live</li>
-                </ul>
-              </div>
-            </div>
-                )
-              })
-            }
-           
             {/* pro plan */}
             {/* <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus pro">

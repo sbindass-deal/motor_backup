@@ -12,6 +12,9 @@ const AuctionPlan = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const handleScrollAd = useRef(null);
+  const [planName, setPlanName] = useState("");
+  const [planData, setPlanData] = useState([]);
+  const [planType, setPlanType] = useState(false);
   const [showAdModal, setShowAdModal] = useState(false);
   const [showAdShowroom, setShowAdShowroom] = useState(false);
   const [areYouDealerOrSealer, setAreYouDealerOrSealer] = useState(false);
@@ -99,16 +102,30 @@ const AuctionPlan = () => {
     dispatch(showModalLogin());
   };
 
+  const fetchPlan = async () => {
+    await axios
+      .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {
+        category: "auction",
+      })
+      .then(function (response) {
+        setPlanData(response.data.data);
+        console.log(111, response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    fetchPlan();
+  }, []);
+
   return (
     <>
       <section className="pt_80">
-    
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
-              <h2 className="title_combo title_Center">
-                Auctions
-              </h2>
+              <h2 className="title_combo title_Center">Auctions</h2>
               <p>
                 Gas Guzzlrs is the best place to auction your vehicle.
                 <br /> Select one of our many Auction Services to showcase your
@@ -140,8 +157,88 @@ const AuctionPlan = () => {
               </div> */}
             </div>
             {/* standard plan */}
+            {planData.map((curElem, i) => {
+              return (
+                <div
+                  key={i}
+                  className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50"
+                >
+                  <div className="plan_card">
+                    <div className="plan_cardHead">
+                      <h4>{curElem.plan_name} </h4>
+                      <div className="plan_Price">
+                        <div className="dfk">
+                          $
+                          {planType && planName === curElem.plan_name
+                            ? curElem.annual_price
+                            : curElem.monthly_price}
+                          <div className="switch">
+                            <span className="plan_Time"> Monthly</span>
+                            <input
+                              className="react-switch-checkbox"
+                              id={curElem.plan_name}
+                              type="checkbox"
+                              // checked={planChacked.pro1}
+                              // checked={planType}
+                              onChange={(e) => {
+                                setPlanName(e.target.name);
+                                setPlanType(e.target.checked);
+                              }}
+                              // onChange={handleOnChange}
+                              name={curElem.plan_name}
+                            />
+                            <label
+                              className="react-switch-label"
+                              htmlFor={curElem.plan_name}
+                            >
+                              <span className={`react-switch-button`} />
+                            </label>
+                            <span className="plan_Time"> Annual</span>
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <h6>
+                            {" "}
+                            {planType && planName === curElem.plan_name
+                              ? curElem.annual_listing
+                              : curElem.monthly_listing}{" "}
+                            Listing
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
 
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+                    <div className="plan_cardBody">
+                      <p>
+                        {planType && planName === curElem.plan_name
+                          ? curElem.annual_description
+                          : curElem.monthly_description}
+                      </p>
+                    </div>
+                    <div className="plan_cardFooter">
+                      <button className="gry_btn">SUBMIT VEHICLE</button>
+                    </div>
+                  </div>
+
+                  <Link to="/works" className="works_btn HIW_BTN">
+                    The G2 Process
+                  </Link>
+                  <div id="PLUS_HIW" className="collapse">
+                    <ul className="HIW_list mt-4">
+                      <li>Your submit your vehicle</li>
+                      <li>We accept the ones that fit</li>
+                      <li>You pay $499</li>
+                      <li>We write the auction listing</li>
+                      <li>You approve</li>
+                      <li>We schedule the listing</li>
+                      <li>Your Listing goes live</li>
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card ">
                 <div className="plan_cardHead">
                   <h4>STANDARD</h4>
@@ -202,7 +299,7 @@ const AuctionPlan = () => {
               </div>
 
               <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
+                The G2 Process
               </Link>
               <div id="PLUS_HIW" className="collapse">
                 <ul className="HIW_list mt-4">
@@ -215,10 +312,10 @@ const AuctionPlan = () => {
                   <li>Your Listing goes live</li>
                 </ul>
               </div>
-            </div>
+            </div> */}
             {/* pro plan */}
 
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+            {/* <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus pro">
                 <div className="plan_cardHead">
                   <h4>PRO</h4>
@@ -279,7 +376,7 @@ const AuctionPlan = () => {
               </div>
 
               <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
+                The G2 Process
               </Link>
               <div id="PLUS_HIW" className="collapse">
                 <ul className="HIW_list mt-4">
@@ -292,9 +389,9 @@ const AuctionPlan = () => {
                   <li>Your Listing goes live</li>
                 </ul>
               </div>
-            </div>
+            </div> */}
             {/* premier plan */}
-            <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+            {/* <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
               <div className="plan_card plan_Plus">
                 <div className="plan_cardHead">
                   <h4>PREMIERE</h4>
@@ -319,7 +416,6 @@ const AuctionPlan = () => {
                         </label>
                         <span className="plan_Time">
                         Annual
-                          {/* Unlimited Listing <small>within 30 Days</small> */}
                         </span>
                       </div>
                     </div>
@@ -356,7 +452,7 @@ const AuctionPlan = () => {
               </div>
 
               <Link to="/works" className="works_btn HIW_BTN">
-                How It Works
+                The G2 Process
               </Link>
               <div id="PLUS_HIW" className="collapse">
                 <ul className="HIW_list mt-4">
@@ -369,36 +465,9 @@ const AuctionPlan = () => {
                   <li>Your Listing goes live</li>
                 </ul>
               </div>
-            </div>
-
+            </div> */}
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         {showAdShowroom && (
           <div ref={handleScrollAd} className="container mt-80">
@@ -476,7 +545,7 @@ const AuctionPlan = () => {
                 </div>
 
                 <Link to="/works" className="works_btn HIW_BTN">
-                  How It Works
+                  The G2 Process
                 </Link>
                 <div id="classNameIC_HIW" className="collapse">
                   <ul className="HIW_list mt-4">
@@ -552,7 +621,7 @@ const AuctionPlan = () => {
                 </div>
 
                 <Link to="/works" className="works_btn HIW_BTN">
-                  How It Works
+                  The G2 Process
                 </Link>
                 <div id="PLUS_HIW" className="collapse">
                   <ul className="HIW_list mt-4">
