@@ -9,7 +9,7 @@ import Notifications from "./MyAccount/Notifications";
 import MyBidsWins from "./MyAccount/MyBidsWins";
 import HowShibnobiMotorWorks from "./HowShibnobiMotorWorks";
 import PhotoGallery from "./PhotoGallery";
-import SubmitaVehicle from "./SubmitaVehicle";
+import PrivateParty from "./plan/PrivateParty";
 import MyShipments from "./MyAccount/MyShipments";
 import Store from "./Store";
 import Features from "./auction/Features";
@@ -74,9 +74,9 @@ import Auctionfeature from "./auction/Auctionfeature";
 import AuctionNoReserve from "./auction/AuctionNoReserve";
 import AuctionResult from "./auction/AuctionResult";
 import EditBlog from "./Dashboard/EditBlog";
-import SubmitaVehicle1 from "./SubmitaVehicle1";
-import SubmitaVehicle2 from "./SubmitaVehicle2";
-import SubmitaVehicle3 from "./SubmitaVehicle3";
+import DealerPlan from "./plan/DealerPlan";
+import AuctionPlan from "./plan/AuctionPlan";
+import ClassifiedPlan from "./plan/ClassifiedPlan";
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -138,11 +138,8 @@ const Layout = () => {
                     path="gear-product/:id"
                     element={<EditGearProduct />}
                   />
-                  <Route
-                    path="editBlog/:id"
-                    element={<EditBlog />}
-                  />
-                  
+                  <Route path="editBlog/:id" element={<EditBlog />} />
+
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
@@ -170,10 +167,10 @@ const Layout = () => {
           <Route path="biding" element={<MyBidsWins />} />
           <Route path="works" element={<HowShibnobiMotorWorks />} />
           <Route path="gallary" element={<PhotoGallery />} />
-          <Route path="submit" element={<SubmitaVehicle />} />
-          <Route path="dealer" element={<SubmitaVehicle1 />} />
-          <Route path="auctions_dealer" element={<SubmitaVehicle2 />} />
-          <Route path="classified" element={<SubmitaVehicle3 />} />
+          <Route path="submit" element={<PrivateParty />} />
+          <Route path="dealer" element={<DealerPlan />} />
+          <Route path="auctions_dealer" element={<AuctionPlan />} />
+          <Route path="classified" element={<ClassifiedPlan />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="successpayment" element={<Paymentsuccess />} />
           <Route

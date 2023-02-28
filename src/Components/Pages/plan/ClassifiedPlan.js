@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { showModalLogin } from "../../redux/reducers/login";
-import { getPlan } from "../../redux/reducers/planReducer";
+import { showModalLogin } from "../../../redux/reducers/login";
+import { getPlan } from "../../../redux/reducers/planReducer";
 
-const SubmitaVehicle3 = () => {
+const ClassifiedPlan = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
@@ -697,4 +697,4 @@ const SubmitaVehicle3 = () => {
   );
 };
 
-export default SubmitaVehicle3;
+export default ClassifiedPlan;
