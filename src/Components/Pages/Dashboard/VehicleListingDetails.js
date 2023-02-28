@@ -81,9 +81,9 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     // name="fivesingleprice"
                     className="field"
-                    placeholder="total listing"
+                    placeholder="Monthly Listing"
                     //   pattern="^[0-9]$"
-                    label="Total Listing"
+                    label="Monthly Listing"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
                   />
@@ -98,8 +98,8 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     name="singleprice"
                     className="field"
-                    label=" Single Listing Price"
-                    placeholder="single listing price"
+                    label="Monthly Price"
+                    placeholder="Monthly Price"
                   //   pattern="^[0-9]$"
 
                   //   errorMessage="use only alphabet no special character"
@@ -122,9 +122,9 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     name="fivesingleprice"
                     className="field"
-                    placeholder="Multi listing price"
+                    placeholder="Annual Price"
                     //   pattern="^[0-9]$"
-                    label="Multi Listing Price"
+                    label="Annual Price"
                     //   errorMessage="use only numbers($)"
                     //   required={true}
                   />
@@ -132,7 +132,7 @@ function VehicleListingDetails() {
               </div>
 
               <div className="col-12 col-md-12">
-                <label>Description</label>
+                <label>Monthly Description</label>
                 <div className="form-group">
                   <textarea
                     className="field"
@@ -144,6 +144,40 @@ function VehicleListingDetails() {
                   ></textarea>
                 </div>
               </div>
+
+
+              <div className="col-12 col-md-12">
+                <div className="form-group">
+                  <FormInput
+                    type="text"
+                    // value={vehicleDetails.fivesingleprice}
+                    onChange={handleChange}
+                    // name="fivesingleprice"
+                    className="field"
+                    placeholder="Annual Listing"
+                    //   pattern="^[0-9]$"
+                    label="Annual Listing"
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
+                  />
+                </div>
+              </div>
+
+              <div className="col-12 col-md-12">
+                <label>Annual Description</label>
+                <div className="form-group">
+                  <textarea
+                    className="field"
+                    // value={vehicleDetails.description}
+                    onChange={handleChange}
+                    // name="description"
+                    placeholder="Description here"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+
+
             </div>
             <div className="form-group">
               <button type="submit" className="btn w-100">
