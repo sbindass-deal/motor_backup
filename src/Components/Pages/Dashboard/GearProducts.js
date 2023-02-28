@@ -8,6 +8,7 @@ function GearProducts() {
   const [searchTerm, setSearchTerm] = useState("");
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
+  
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
