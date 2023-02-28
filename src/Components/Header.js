@@ -459,7 +459,7 @@ function Header() {
                 </div>
                 {/* mobile view end */}
 
-                <div className="toNv" id="" style={{width:"unset"}}>
+                <div className="toNv" id="" style={{ width: "unset" }}>
                   <ul className="navbar-nav ml-auto">
                     <li className="nav-item" style={{ cursor: "pointer" }}>
                       <Link className="nav-link">
@@ -601,21 +601,21 @@ function Header() {
                           List Your Vehicles
                         </Link> */}
 
-
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${location.pathname === "/submit" && "navActive"
-                              }`}
+                            className={`nav-link ${
+                              location.pathname === "/submit" && "navActive"
+                            }`}
                             to="#"
                           >
                             List Your Vehicles
                           </Link>
                           <div className="dropdown-content">
                             <Link className="" to="/submit">
-                              Private Party 
+                              Private Party
                             </Link>
                             <Link className="" to="/classified">
-                              classified 
+                              Classified
                             </Link>
                             <Link className="" to="/dealer">
                               Dealer
@@ -623,12 +623,8 @@ function Header() {
                             <Link className="" to="/auctions_dealer">
                               Auctions
                             </Link>
-                           
                           </div>
                         </div>
-                        
-
-
                       </li>
 
                       <li className="nav-item">

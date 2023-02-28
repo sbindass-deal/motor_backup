@@ -2,53 +2,79 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Data = () => {
-  const [planChecked, setPlanChecked] = useState(false);
-
-  const handleOnChange = (e) => {
-    setPlanChecked(e.target.checked);
-  };
+const Data = ({ curElem }) => {
+  const [planName, setPlanName] = useState("");
+  const [planType, setPlanType] = useState(false);
 
   return (
     <>
       <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
-        <div className="plan_card plan_Plus pro">
+        <div
+          className={`plan_card ${
+            curElem.plan_name === "Pro"
+              ? "plan_Plus pro"
+              : curElem.plan_name === "Premiere"
+              ? "plan_Plus"
+              : curElem.plan_name === "Exclusive"
+              ? "plan_WhiteGlove"
+              : ""
+          }`}
+        >
           <div className="plan_cardHead">
-            <h4>Pro</h4>
+            <h4>{curElem.plan_name} </h4>
             <div className="plan_Price">
               <div className="dfk">
-                $ 199
+                $
+                {planType && planName === curElem.plan_name
+                  ? curElem.annual_price
+                  : curElem.monthly_price}
                 <div className="switch">
-                  <span className="plan_Time">Single Listing</span>
+                  <span className="plan_Time"> Monthly</span>
                   <input
                     className="react-switch-checkbox"
-                    id={`react-switch-pro`}
-                    onChange={(e) => setPlanChecked(e.target.checked)}
-                    checked={planChecked}
+                    id={curElem.plan_name}
                     type="checkbox"
-                    name="pro"
+                    onChange={(e) => {
+                      setPlanName(e.target.name);
+                      setPlanType(e.target.checked);
+                    }}
+                    name={curElem.plan_name}
                   />
                   <label
                     className="react-switch-label"
-                    htmlFor={`react-switch-pro`}
+                    htmlFor={curElem.plan_name}
                   >
                     <span className={`react-switch-button`} />
                   </label>
-                  <span className="plan_Time">
-                    5 Listing <small>within 30 Days</small>
-                  </span>
+                  <span className="plan_Time"> Annual</span>
                 </div>
+              </div>
+              <div className="text-center">
+                <h6>
+                  {curElem.plan_name == "Exclusive" &&
+                  curElem.monthly_listing == 0
+                    ? "Unlimited"
+                    : planName === curElem.plan_name &&
+                      curElem.plan_name != "Exclusive"
+                    ? curElem.annual_listing
+                    : curElem.monthly_listing}{" "}
+                  Listing
+                </h6>
               </div>
             </div>
           </div>
+
           <div className="plan_cardBody">
             <p>
-              Same as the Standard listing except we send out a professional
-              photographer to take pictures of your ride.
+              {planType && planName === curElem.plan_name
+                ? curElem.annual_description
+                : curElem.monthly_description}
             </p>
           </div>
           <div className="plan_cardFooter">
-            <button className="gry_btn">SUBMIT VEHICLE</button>
+            <Link to="/vechiles" className="gry_btn">
+              SUBMIT VEHICLE
+            </Link>
           </div>
         </div>
 
