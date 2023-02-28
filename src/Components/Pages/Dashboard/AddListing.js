@@ -8,7 +8,11 @@ const AddListing = () => {
         name:"",
         singleprice:"",
         fivesingleprice:"",
-        description:""
+      description: "",
+      category,
+     monthlyListing,
+     annualListing,
+     annualDescription
     })
  const navigate= useNavigate()
     const handleChange=(e)=>{
