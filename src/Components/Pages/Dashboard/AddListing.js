@@ -9,10 +9,10 @@ const AddListing = () => {
     singleprice: "",
     fivesingleprice: "",
     description: "",
-    //   category,
-    //  monthlyListing,
-    //  annualListing,
-    //  annualDescription
+      category :"",
+     monthlyListing :"",
+     annualListing :"",
+     annualDescription :"",
   })
   const navigate = useNavigate()
   const handleChange = (e) => {
