@@ -10,7 +10,7 @@ const AddListing = () => {
         description:""
     })
     const handleChange=(e)=>{
-setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
+    setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
     }
     const handleSubmit=(e)=>{
      e.preventDefault();
@@ -31,7 +31,12 @@ setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
      });
 
      console.log("####",addListing)
-    }
+  }
+  
+
+
+
+
   return (
     <div className="container mt-3 d-flex justify-content-center">
       <div className="col-6">
@@ -57,6 +62,43 @@ setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
             <div className="col-12 col-md-12">
               <div className="form-group">
                 <FormInput
+                  // value={addListing.singleprice}
+                  onChange={handleChange}
+                  name="singleprice"
+                  className="field"
+                  label="Category"
+                  placeholder="Category"
+                //   pattern="^[0-9]$"
+
+                //   errorMessage="use only alphabet no special character"
+                //   required={true}
+                />
+              </div>
+            </div>
+
+
+            <div className="col-12 col-md-12">
+              <div className="form-group">
+                <FormInput
+                  type="text"
+                  value={addListing.fivesingleprice}
+                  onChange={handleChange}
+                  // name="fivesingleprice"
+                  className="field"
+                  placeholder="Total Listing"
+                  //   pattern="^[0-9]$"
+                  label="Total Listing"
+                //   errorMessage="use only numbers($)"
+                //   required={true}
+                />
+              </div>
+            </div>
+
+
+
+            <div className="col-12 col-md-12">
+              <div className="form-group">
+                <FormInput
                   value={addListing.singleprice}
                   onChange={handleChange}
                   name="singleprice"
@@ -70,6 +112,15 @@ setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
                 />
               </div>
             </div>
+
+
+
+            
+        
+
+
+
+            
             <div className="col-12 col-md-12">
               <div className="form-group">
                 <FormInput
@@ -78,9 +129,9 @@ setAddListing((pre)=>({...pre,[e.target.name]:e.target.value}))
                   onChange={handleChange}
                   name="fivesingleprice"
                   className="field"
-                  placeholder="five listing price"
+                  placeholder="Multi listing price"
                 //   pattern="^[0-9]$"
-                  label="Five Listing Price"
+                  label="Multi Listing Price"
                 //   errorMessage="use only numbers($)"
                 //   required={true}
                 />

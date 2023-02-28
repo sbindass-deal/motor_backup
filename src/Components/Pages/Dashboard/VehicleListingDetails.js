@@ -36,6 +36,7 @@ function VehicleListingDetails() {
         <div className="col-md-6">
           <form onSubmit={handleSubmit} className="p-md-5">
             <div className="row row_gap_5">
+
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -52,6 +53,44 @@ function VehicleListingDetails() {
                   />
                 </div>
               </div>
+
+
+              <div className="col-12 col-md-12">
+                <div className="form-group">
+                  <FormInput
+                    // value={vehicleDetails.singleprice}
+                    onChange={handleChange}
+                    // name="singleprice"
+                    className="field"
+                    label="Category"
+                    placeholder="Category"
+                    //   pattern="^[0-9]$"
+
+                    //   errorMessage="use only alphabet no special character"
+                    //   required={true}
+                  />
+                </div>
+              </div>
+
+
+              <div className="col-12 col-md-12">
+                <div className="form-group">
+                  <FormInput
+                    type="text"
+                    // value={vehicleDetails.fivesingleprice}
+                    onChange={handleChange}
+                    // name="fivesingleprice"
+                    className="field"
+                    placeholder="total listing"
+                    //   pattern="^[0-9]$"
+                    label="Total Listing"
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
+                  />
+                </div>
+              </div>
+
+
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -61,13 +100,20 @@ function VehicleListingDetails() {
                     className="field"
                     label=" Single Listing Price"
                     placeholder="single listing price"
-                    //   pattern="^[0-9]$"
+                  //   pattern="^[0-9]$"
 
-                    //   errorMessage="use only alphabet no special character"
-                    //   required={true}
+                  //   errorMessage="use only alphabet no special character"
+                  //   required={true}
                   />
                 </div>
               </div>
+
+
+              
+
+           
+
+
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -76,9 +122,9 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     name="fivesingleprice"
                     className="field"
-                    placeholder="five listing price"
+                    placeholder="Multi listing price"
                     //   pattern="^[0-9]$"
-                    label="Five Listing Price"
+                    label="Multi Listing Price"
                     //   errorMessage="use only numbers($)"
                     //   required={true}
                   />
