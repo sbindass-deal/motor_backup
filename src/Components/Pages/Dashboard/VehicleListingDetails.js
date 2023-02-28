@@ -14,10 +14,10 @@ function VehicleListingDetails() {
     singleprice: "",
     fivesingleprice: "",
     description: "",
-    category,
-    monthlyListing,
-    annualListing,
-    annualDescription
+    // category,
+    // monthlyListing,
+    // annualListing,
+    // annualDescription
   });
   const handleChange = (e) => {
     setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value }));
