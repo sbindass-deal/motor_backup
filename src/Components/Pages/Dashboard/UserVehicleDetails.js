@@ -11,6 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { toast } from "react-toastify";
+import VechilesRegistraion1 from "../VechilesRegistraion1";
+import VehicleRegistered1 from "../MyAccount/VehicleRegistered1";
 
 const UserVehicleDetails = () => {
   const { id } = useParams();
@@ -64,6 +66,8 @@ const UserVehicleDetails = () => {
         process.env.REACT_APP_URL + "vehicleByID",
         { id: id }
       );
+
+
       if (response.data.data) {
         setVehicle(response.data.data[0]);
       }
@@ -149,7 +153,13 @@ const UserVehicleDetails = () => {
 
   return (
     <div>
-      <section className="ptb_80 pt_sm_50">
+
+      {/* <VechilesRegistraion1 /> */}
+
+      <VehicleRegistered1 />
+
+
+      {/* <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center pb_30">
@@ -172,77 +182,15 @@ const UserVehicleDetails = () => {
               </div>
             </div>
             <div className="col-6 dropdownCol">
-              {/* <div className="dropdown mr-2">
-                <button
-                  type="button"
-                  className="gry_btn"
-                  data-toggle="dropdown"
-                >
-                  Make: {vehicle.make}
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div>
-              <div className="dropdown mr-2">
-                <button
-                  type="button"
-                  className="gry_btn "
-                  data-toggle="dropdown"
-                >
-                  Model:{vehicle.model}
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div>
-              <div className="dropdown mr-2">
-                <button type="button" className="gry_btn">
-                  Era: era
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div>
-              <div className="dropdown mr-2">
-                <button type="button" className="gry_btn">
-                  More Photos
-                </button>
-
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View all listings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Notify me about new listings
-                  </a>
-                </div>
-              </div> */}
+              
               <div className="pb_40" id="placeBid_col">
                 <div className="card_Gray">
                   <h5 className="cardTitle">CAR INFORMATION</h5>
                   <ul className="bidList_ info_">
-                    {/* ============================ */}
                     <li>
                       <div className="dropdown mr-2">
                         <p
                           type="button"
-                          // className="gry_btn"
                           data-toggle="dropdown"
                         >
                           Make: {vehicle.make}
@@ -261,11 +209,12 @@ const UserVehicleDetails = () => {
                     <li>
                       <div className="dropdown mr-2">
                         <p
-                          // type="button"
-                          // className="gry_btn "
+                         
                           data-toggle="dropdown"
                         >
                           Model:{vehicle.model}
+                        </p>
+                        <p>
                         </p>
                         <div className="dropdown-menu">
                           <a className="dropdown-item" href="#">
@@ -282,7 +231,6 @@ const UserVehicleDetails = () => {
                       <div className="dropdown mr-2">
                         <p
                           type="button"
-                          // className="gry_btn "
                         >
                           Era: {vehicle.year}
                         </p>
@@ -297,7 +245,6 @@ const UserVehicleDetails = () => {
                       </div>
                     </li>
 
-                    {/* ============================= */}
 
                     <li>
                       Vehicle Id:<label htmlFor="">{vehicle.id}</label>
@@ -568,17 +515,7 @@ const UserVehicleDetails = () => {
                       className="col-md-12"
                       rows={4}
                     ></textarea>{" "}
-                    {/* <br />
-                    <label>Description 2</label> <br />
-                    <textarea
-                      name="description2"
-                      value={descValue.description2}
-                      onChange={handleDescription}
-                      minLength={2}
-                      maxLength={2000}
-                      className="col-md-12"
-                      rows={4}
-                    ></textarea>{" "} */}
+                    
                     <br />
                   </form>
                   <div className="text-center my-4">
@@ -651,7 +588,9 @@ const UserVehicleDetails = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
     </div>
   );
 };
