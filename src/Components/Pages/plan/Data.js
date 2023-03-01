@@ -1,10 +1,19 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { getPlan } from "../../../redux/reducers/planReducer";
 
 const Data = ({ curElem }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(false);
+  const handleSubmit = (data) => {
+    getPlan();
+    dispatch(getPlan(data));
+    navigate("/vechiles");
+  };
 
   return (
     <>
@@ -72,9 +81,32 @@ const Data = ({ curElem }) => {
             </p>
           </div>
           <div className="plan_cardFooter">
-            <Link to="/vechiles" className="gry_btn">
+            <button
+              onClick={() =>
+                handleSubmit({
+                  planId: curElem.id,
+                  listingType: `${
+                    planType && planName === curElem.plan_name
+                      ? "annual"
+                      : "monthly"
+                  }`,
+                  name: curElem.plan_name,
+                  price: `${
+                    planType && planName === curElem.plan_name
+                      ? curElem.annual_price
+                      : curElem.monthly_price
+                  }`,
+                  desc: `${
+                    planType && planName === curElem.plan_name
+                      ? curElem.annual_description
+                      : curElem.monthly_description
+                  }`,
+                })
+              }
+              className="gry_btn"
+            >
               SUBMIT VEHICLE
-            </Link>
+            </button>
           </div>
         </div>
 
