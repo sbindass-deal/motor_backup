@@ -7,10 +7,10 @@ import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import car_01 from '../../../Assets/images/car_01.jpg'
-import car_02 from '../../../Assets/images/car_02.jpg'
-import car_03 from '../../../Assets/images/car_03.jpg'
-import car_04 from '../../../Assets/images/car_04.jpg'
+import car_01 from "../../../Assets/images/car_01.jpg";
+import car_02 from "../../../Assets/images/car_02.jpg";
+import car_03 from "../../../Assets/images/car_03.jpg";
+import car_04 from "../../../Assets/images/car_04.jpg";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -23,7 +23,6 @@ import {
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
 import img_01 from "../../../Assets/images/img_01.jpg";
-
 
 const Inventory = () => {
   const dispatch = useDispatch();
@@ -78,12 +77,12 @@ const Inventory = () => {
   const searchedData =
     searchInputValue.trim().length > 0
       ? vehicleData &&
-      vehicleData.filter(
-        (item) =>
-          (item.make && item.make.toLowerCase().includes(searchInputValue)) ||
-          (item.year && item.year.toLowerCase().includes(searchInputValue)) ||
-          (item.model && item.model.toLowerCase().includes(searchInputValue))
-      )
+        vehicleData.filter(
+          (item) =>
+            (item.make && item.make.toLowerCase().includes(searchInputValue)) ||
+            (item.year && item.year.toLowerCase().includes(searchInputValue)) ||
+            (item.model && item.model.toLowerCase().includes(searchInputValue))
+        )
       : vehicleData;
 
   const slide1 = useRef(null);
@@ -112,7 +111,6 @@ const Inventory = () => {
       />
     );
   }
-
 
   const settings = {
     dots: true,
@@ -160,21 +158,15 @@ const Inventory = () => {
         <h2>All Vehicles</h2>
       </div>
 
-
       <section className="" id="second">
         <div className="container">
           <div className="row ">
             {/* <div className="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
             </div> */}
-
-
           </div>
         </div>
       </section>
-
-
-
 
       <section className="pt_40">
         <div className="container">
@@ -212,17 +204,18 @@ const Inventory = () => {
             </ul>
           </div>
 
-
           <div className="col-12 inveSlid">
             <h1>Acura</h1>
             <div className="nextArrow">
-              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide1.current.slickPrev()}>
+              <span
+                className="slide-arrow prev-arrow slick-arrow"
+                onClick={() => slide1.current.slickPrev()}
+              >
                 <span className="">Prev</span>
               </span>
               <span
                 className="slide-arrow next-arrow slick-arrow slick-disabled"
                 onClick={() => slide1.current.slickNext()}
-
               >
                 <span className="">Next</span>
               </span>
@@ -234,16 +227,19 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -251,7 +247,9 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -259,7 +257,9 @@ const Inventory = () => {
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -267,7 +267,9 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -275,7 +277,9 @@ const Inventory = () => {
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -283,19 +287,21 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Acura Integra</a></h6>
+                    <h6>
+                      <a href="#">Acura Integra</a>
+                    </h6>
                   </div>
                 </div>
-
               </Slider>
             </div>
           </div>
@@ -303,13 +309,15 @@ const Inventory = () => {
           <div className="col-12 inveSlid">
             <h1>Alfa Romeo</h1>
             <div className="nextArrow">
-              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide2.current.slickPrev()}>
+              <span
+                className="slide-arrow prev-arrow slick-arrow"
+                onClick={() => slide2.current.slickPrev()}
+              >
                 <span className="">Prev</span>
               </span>
               <span
                 className="slide-arrow next-arrow slick-arrow slick-disabled"
                 onClick={() => slide2.current.slickNext()}
-
               >
                 <span className="">Next</span>
               </span>
@@ -321,16 +329,19 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -338,7 +349,9 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -346,7 +359,9 @@ const Inventory = () => {
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -354,7 +369,9 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -362,7 +379,9 @@ const Inventory = () => {
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -370,34 +389,37 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Alfa Romeo Integra</a></h6>
+                    <h6>
+                      <a href="#">Alfa Romeo Integra</a>
+                    </h6>
                   </div>
                 </div>
-
               </Slider>
             </div>
           </div>
 
-
           <div className="col-12 inveSlid">
             <h1>Amc</h1>
             <div className="nextArrow">
-              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide3.current.slickPrev()}>
+              <span
+                className="slide-arrow prev-arrow slick-arrow"
+                onClick={() => slide3.current.slickPrev()}
+              >
                 <span className="">Prev</span>
               </span>
               <span
                 className="slide-arrow next-arrow slick-arrow slick-disabled"
                 onClick={() => slide3.current.slickNext()}
-
               >
                 <span className="">Next</span>
               </span>
@@ -409,16 +431,19 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -426,7 +451,9 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -434,7 +461,9 @@ const Inventory = () => {
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -442,7 +471,9 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -450,7 +481,9 @@ const Inventory = () => {
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -458,19 +491,21 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Amc Integra</a></h6>
+                    <h6>
+                      <a href="#">Amc Integra</a>
+                    </h6>
                   </div>
                 </div>
-
               </Slider>
             </div>
           </div>
@@ -478,13 +513,15 @@ const Inventory = () => {
           <div className="col-12 inveSlid">
             <h1>Bentley</h1>
             <div className="nextArrow">
-              <span className="slide-arrow prev-arrow slick-arrow" onClick={() => slide4.current.slickPrev()}>
+              <span
+                className="slide-arrow prev-arrow slick-arrow"
+                onClick={() => slide4.current.slickPrev()}
+              >
                 <span className="">Prev</span>
               </span>
               <span
                 className="slide-arrow next-arrow slick-arrow slick-disabled"
                 onClick={() => slide4.current.slickNext()}
-
               >
                 <span className="">Next</span>
               </span>
@@ -496,16 +533,19 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -513,7 +553,9 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -521,7 +563,9 @@ const Inventory = () => {
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -529,7 +573,9 @@ const Inventory = () => {
                     <img src={car_01} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -537,7 +583,9 @@ const Inventory = () => {
                     <img src={car_02} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
                 <div>
@@ -545,27 +593,24 @@ const Inventory = () => {
                     <img src={car_03} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
-
                 </div>
                 <div>
                   <h3>
                     <img src={car_04} alt="" />
                   </h3>
                   <div class="card_postInfo">
-                    <h6><a href="#">Bentley Integra</a></h6>
+                    <h6>
+                      <a href="#">Bentley Integra</a>
+                    </h6>
                   </div>
                 </div>
-
               </Slider>
             </div>
           </div>
-
-
-
-
-
 
           {/* <div className="row mt-30">
             {searchedData.length === 0 ? (
@@ -703,10 +748,6 @@ const Inventory = () => {
           </div> */}
         </div>
       </section>
-
-
-
-
 
       <Modal
         show={filteredModal}

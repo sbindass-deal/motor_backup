@@ -37,7 +37,6 @@ const Dealer = () => {
           </div>
         </div>
       </section>
-
       <section className="ptb_80" id="">
         <div className="auction_container">
           <div className="row ">

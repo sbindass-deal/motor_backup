@@ -53,7 +53,6 @@ const DealerList = () => {
               </div>
             </a>
           </div> */}
-
           {/* <div className="col-lg-4 col-sm-12 inner-slider">
             <a
               target="_blank"
@@ -106,8 +105,6 @@ const DealerList = () => {
             dealerData.map((curElem) => {
               return (
                 <>
-                  {/* =============================== */}
-
                   <div class="col-12 col-md-6 pb-3">
                     <div class="card_post">
                       <div class="card_postImg">
