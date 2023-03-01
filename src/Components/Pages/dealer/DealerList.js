@@ -128,7 +128,7 @@ const DealerList = () => {
                       </div>
                       <div class="card_postInfo">
                         <h4>
-                          <a href="detail.html">{curElem.title}</a>
+                          <Link to={`/dealerprofile/${curElem.id}`}>{curElem.title}</Link>
                         </h4>
                         <ul class="labelList">
                           <li>October 14, 2022</li>
