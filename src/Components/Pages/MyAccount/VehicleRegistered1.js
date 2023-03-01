@@ -281,11 +281,13 @@ const VehicleRegistered1 = () => {
   };
 
   const [getfilteredVehicleData, setGetfilteredVehicleData]=useState([])
+  const [vechileInfo, setVechileInfo]=useState({})
 
   useEffect(() => {
     const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
     console.log(11111, filteredVehicleData);
     setGetfilteredVehicleData(filteredVehicleData.images)
+    setVechileInfo(filteredVehicleData)
     setNamefield({
       name: filteredVehicleData.detailvin,
       email: filteredVehicleData.email,
@@ -630,6 +632,8 @@ const VehicleRegistered1 = () => {
 
 
   const submitApprove = (data) => {
+    console.log(5656, data)
+
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
         approve: data === "approve" ? 1 : 2,
@@ -1979,6 +1983,7 @@ const VehicleRegistered1 = () => {
                           onClick={() => submitApprove("approve")}
                           className="btn btn-warning m-3"
                           type="button"
+                          disabled={vechileInfo.approved==1 ? true : false}
                         >
                           Approve
                         </button>
@@ -1986,6 +1991,7 @@ const VehicleRegistered1 = () => {
                           onClick={() => submitApprove("reject")}
                           className="btn btn-warning m-3"
                           type="button"
+                          disabled={vechileInfo.approved == 2 ? true : false}
                         >
                           Reject
                         </button>
