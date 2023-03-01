@@ -19,10 +19,11 @@ import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // import UploadMImages from "./UploadMImages";
 
-const VechilesRegistraion = () => {
+const VechilesRegistraion1 = () => {
+  const { id } = useParams()
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const [showVidnModal, setShowVidnModal] = useState(false);
@@ -53,6 +54,67 @@ const VechilesRegistraion = () => {
   const handleDragOverBanner = (event) => {
     event.preventDefault();
   };
+  const [vehicleImage, setVehicleImage] = useState([]);
+  const [vehicle, setVehicle] = useState({});
+
+  const [descValue, setDescValue] = useState({
+    description1: "",
+    description2: "",
+  });
+
+  const submitApprove = (data) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+        approve: data === "approve" ? 1 : 2,
+        id,
+        desc1: descValue.description1,
+        desc2: descValue.description2,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/vehicle-submission");
+          // window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+
+  // ===========================
+  const fetchVehicleApi = async () => {
+    try {
+      const response = await axios.post(
+        process.env.REACT_APP_URL + "vehicleByID",
+        { id: id }
+      );
+      console.log(98989, response)
+
+
+      if (response.data.data) {
+        setVehicle(response.data.data[0]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const fetchVehicleImage = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL + "/vehicle-image/" + id
+      );
+      setVehicleImage(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchVehicleApi();
+    fetchVehicleImage();
+  }, [id]);
+  // ========================
+
 
   const handleDropBanner = (event) => {
     event.preventDefault();
@@ -830,7 +892,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                            reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -849,8 +911,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -869,8 +931,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -917,7 +979,7 @@ const VechilesRegistraion = () => {
                         </div> */}
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
-                              value={basicfact.vin}
+                              value={vehicle.detailvin}
                               onChange={(e) => {
                                 if (e.target.value.trim().length === 17) {
                                   validateVin(e.target.value.trim());
@@ -936,7 +998,7 @@ const VechilesRegistraion = () => {
                             <div className="form-group">
                               <label>What year is your vehicle?</label>
                               <select
-                                value={namefield.year}
+                                value={vehicle.year}
                                 onChange={handleNameField}
                                 name="year"
                                 className="field"
@@ -958,7 +1020,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
-                                value={namefield.make}
+                                value={vehicle.make}
                                 onChange={handleNameField}
                                 name="make"
                                 placeholder="Enter"
@@ -972,7 +1034,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
-                                value={namefield.model}
+                                value={vehicle.model}
                                 onChange={handleNameField}
                                 name="model"
                                 placeholder="Enter"
@@ -991,7 +1053,7 @@ const VechilesRegistraion = () => {
                               </label>
 
                               <select
-                                value={namefield.vechilelocation}
+                                value={vehicle.country}
                                 onChange={handleNameField}
                                 name="vechilelocation"
                                 className="field"
@@ -1014,7 +1076,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
-                                value={namefield.city}
+                                value={vehicle.city}
                                 onChange={handleNameField}
                                 name="city"
                                 placeholder="Enter city"
@@ -1032,7 +1094,7 @@ const VechilesRegistraion = () => {
                                 you have owned it?
                               </label>
                               <select
-                                value={namefield.sale}
+                                value={vehicle.owned}
                                 onChange={handleNameField}
                                 name="sale"
                                 className="field"
@@ -1053,7 +1115,7 @@ const VechilesRegistraion = () => {
                                 the past?
                               </label>
                               <select
-                                value={namefield.vehiclepast}
+                                value={vehicle.engineSize}
                                 onChange={handleNameField}
                                 name="vehiclepast"
                                 className="field"
@@ -1068,12 +1130,12 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
                           {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                            namefield.vehiclepast === "Yes" ? (
                             <>
                               <div className="col-12 col-sm-12 col-md-12">
                                 <div className="form-group">
                                   <FormInput
-                                    value={namefield.providelink}
+                                      value={vehicle.transmission}
                                     onChange={handleNameField}
                                     name="providelink"
                                     type="url"
@@ -1091,7 +1153,7 @@ const VechilesRegistraion = () => {
                                     was last listed on GasGuzzlrs?
                                   </label>
                                   <textarea
-                                    value={namefield.changedvechiles}
+                                      value={vehicle.titleStatus}
                                     onChange={handleNameField}
                                     name="changedvechiles"
                                     className="field"
@@ -1149,7 +1211,7 @@ const VechilesRegistraion = () => {
                                 Is the vehicle being sold on consignment?
                               </label>
                               <select
-                                value={namefield.soldvechiles}
+                                value={vehicle.consignment}
                                 onChange={handleNameField}
                                 name="soldvechiles"
                                 className="field"
@@ -1166,7 +1228,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <FormInput
-                                value={namefield.videolink}
+                                value={vehicle.description}
                                 onChange={handleNameField}
                                 name="videolink"
                                 type="url"
@@ -1326,7 +1388,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                    reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1385,7 +1447,7 @@ const VechilesRegistraion = () => {
                                 How would you want to list your vehicle?
                               </label>
                               <select
-                                value={basicfact.displayInAuction}
+                                  value={vehicle.displayInAuction}
                                 onChange={basicFactOnChange}
                                 name="displayInAuction"
                                 className="field"
@@ -1398,7 +1460,7 @@ const VechilesRegistraion = () => {
                                   value="Yes"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1409,7 +1471,7 @@ const VechilesRegistraion = () => {
                                   value="No"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1420,7 +1482,7 @@ const VechilesRegistraion = () => {
                                   value="classified"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? false
                                       : true
                                   }
@@ -1432,11 +1494,11 @@ const VechilesRegistraion = () => {
                           </div>
 
                           {logingUser.planReducer.plan.listName ===
-                          "classified" ? (
+                            "classified" ? (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <FormInput
-                                  value={basicfact.adWebsiteLink}
+                                      value={vehicle.externalLink}
                                   onChange={basicFactOnChange}
                                   name="adWebsiteLink"
                                   type="url"
@@ -1452,7 +1514,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group">
                                 <label>Auction type</label>
                                 <select
-                                  value={basicfact.auctionType}
+                                  value={vehicle.auctionType}
                                   onChange={basicFactOnChange}
                                   name="auctionType"
                                   className="field"
@@ -1482,7 +1544,7 @@ const VechilesRegistraion = () => {
                                 registered for street use?
                               </label>
                               <select
-                                value={basicfact.vechilesrace}
+                                  value={vehicle.ownerDetail}
                                 onChange={basicFactOnChange}
                                 name="vechilesrace"
                                 className="field"
@@ -1503,7 +1565,7 @@ const VechilesRegistraion = () => {
                                 system?
                               </label>
                               <select
-                                value={basicfact.ultiumdrive}
+                                  value={vehicle.ste}
                                 onChange={basicFactOnChange}
                                 name="ultiumdrive"
                                 className="field"
@@ -1523,7 +1585,7 @@ const VechilesRegistraion = () => {
                                 Is the vehicle finished in Interstellar White?
                               </label>
                               <select
-                                value={basicfact.Interstellar}
+                                value={vehicle.Interstellar}
                                 onChange={basicFactOnChange}
                                 name="Interstellar"
                                 className="field"
@@ -1544,7 +1606,7 @@ const VechilesRegistraion = () => {
                                 Light Gray leather?
                               </label>
                               <select
-                                value={basicfact.interior}
+                                value={vehicle.interior}
                                 onChange={basicFactOnChange}
                                 name="interior"
                                 className="field"
@@ -1565,7 +1627,7 @@ const VechilesRegistraion = () => {
                                 mounted?
                               </label>
                               <input
-                                value={basicfact.brandandmodel}
+                                value={vehicle.brandandmodel}
                                 onChange={basicFactOnChange}
                                 minLength={2}
                                 maxLength={31}
@@ -1580,7 +1642,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <label>What wheels are on the vehicle?</label>
                             <input
-                              value={basicfact.wheels}
+                                value={vehicle.pickOne}
                               onChange={basicFactOnChange}
                               name="wheels"
                               type="text"
@@ -1598,7 +1660,7 @@ const VechilesRegistraion = () => {
                                 can be found on the tire sidewall.
                               </label>
                               <input
-                                value={basicfact.sizetires}
+                                value={vehicle.sizetires}
                                 onChange={basicFactOnChange}
                                 type="text"
                                 name="sizetires"
@@ -1614,7 +1676,7 @@ const VechilesRegistraion = () => {
                             <div className="form-group">
                               <label>How is the vehicle titled?</label>
                               <select
-                                value={basicfact.km}
+                                value={vehicle.km}
                                 onChange={basicFactOnChange}
                                 name="km"
                                 className="field"
@@ -1649,7 +1711,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group">
                                 <label>Enter vehicle titled</label>
                                 <input
-                                  value={basicfact.otherTruckTitle}
+                                  value={vehicle.otherTruckTitle}
                                   onChange={basicFactOnChange}
                                   type="text"
                                   minLength={2}
@@ -1666,7 +1728,7 @@ const VechilesRegistraion = () => {
                             <div className="form-group">
                               <label>What is the status of the title?</label>
                               <select
-                                value={basicfact.status}
+                                value={vehicle.status}
                                 name="status"
                                 onChange={basicFactOnChange}
                                 className="field"
@@ -1686,7 +1748,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group">
                                 <label>Enter status of the titled</label>
                                 <input
-                                  value={basicfact.otherStatus}
+                                  value={vehicle.otherStatus}
                                   onChange={basicFactOnChange}
                                   type="text"
                                   name="otherStatus"
@@ -1705,7 +1767,7 @@ const VechilesRegistraion = () => {
                                 What is the current odometer reading?
                               </label>
                               <input
-                                value={basicfact.odometer}
+                                value={vehicle.odometer}
                                 onChange={basicFactOnChange}
                                 type="text"
                                 minLength={1}
@@ -1728,7 +1790,7 @@ const VechilesRegistraion = () => {
                                 accurate?
                               </label>
                               <select
-                                value={basicfact.accurateField}
+                                  value={vehicle.kmacc}
                                 onChange={basicFactOnChange}
                                 name="accurateField"
                                 className="field"
@@ -1832,8 +1894,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -1851,7 +1913,7 @@ const VechilesRegistraion = () => {
                                 bodywork?
                               </label>
                               <select
-                                value={detailstab.bodywork}
+                                value={vehicle.bodywork}
                                 onChange={detailsOnChange}
                                 name="bodywork"
                                 className="field"
@@ -1870,7 +1932,7 @@ const VechilesRegistraion = () => {
                                   Enter vehicle history, paint or bodywork
                                 </label>
                                 <input
-                                  value={detailstab.truckHistory}
+                                  value={vehicle.truckHistory}
                                   onChange={detailsOnChange}
                                   type="text"
                                   name="truckHistory"
@@ -1889,7 +1951,7 @@ const VechilesRegistraion = () => {
                                 Is there any rust present on the vehicle?
                               </label>
                               <select
-                                value={detailstab.rustpresent}
+                                value={vehicle.rustpresent}
                                 onChange={detailsOnChange}
                                 name="rustpresent"
                                 className="field"
@@ -1906,7 +1968,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group">
                                 <label>Enter rust details</label>
                                 <input
-                                  value={detailstab.rustDetails}
+                                  value={vehicle.rustDetails}
                                   onChange={detailsOnChange}
                                   type="text"
                                   name="rustDetails"
@@ -1922,7 +1984,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
                               name="fuel"
-                              value={detailstab.fuel}
+                              value={vehicle.fuel}
                               onChange={detailsOnChange}
                               placeholder="Enter fuel type"
                               errorMessage="Fuel type should be 2 to 60 character!"
@@ -1938,7 +2000,7 @@ const VechilesRegistraion = () => {
                                 stock?
                               </label>
                               <select
-                                value={detailstab.modificationstock}
+                                value={vehicle.modificationstock}
                                 onChange={detailsOnChange}
                                 name="modificationstock"
                                 className="field"
@@ -1955,7 +2017,7 @@ const VechilesRegistraion = () => {
                               <div className="form-group">
                                 <label>Enter modifications details</label>
                                 <input
-                                  value={detailstab.modificationOnTrck}
+                                    value={vehicle.modificationOnTruck}
                                   onChange={detailsOnChange}
                                   minLength={2}
                                   maxLength={400}
@@ -1967,10 +2029,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                                    <span className="text-danger">
+                                      You Can entered maximum 1500 characters!
+                                    </span>
+                                  )}
                               </div>
                             )}
                           </div>
@@ -2062,7 +2124,7 @@ const VechilesRegistraion = () => {
                                 vehicle from new?
                               </label>
                               <textarea
-                                value={detailstab.issuesorproblems}
+                                value={vehicle.issuesorproblems}
                                 onChange={detailsOnChange}
                                 name="issuesorproblems"
                                 minLength={1}
@@ -2072,10 +2134,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.issuesorproblems.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                             <p>
                               Please list and describe services performed and
@@ -2087,7 +2149,7 @@ const VechilesRegistraion = () => {
                             </p>
                             <div className="form-group">
                               <textarea
-                                value={detailstab.moreDescription}
+                                value={vehicle.moreDescription}
                                 onChange={detailsOnChange}
                                 name="moreDescription"
                                 className="field"
@@ -2098,10 +2160,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.moreDescription.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -2211,7 +2273,7 @@ const VechilesRegistraion = () => {
                                 dents, interior flaws, etc.)
                               </label>
                               <textarea
-                                value={detailstab.shibnobiabout}
+                                  value={vehicle.hereFrom}
                                 onChange={detailsOnChange}
                                 name="shibnobiabout"
                                 minLength={2}
@@ -2225,7 +2287,7 @@ const VechilesRegistraion = () => {
                             <div className="form-group">
                               <label>Do you want a reserve?</label>
                               <select
-                                value={detailstab.reserve}
+                                value={vehicle.reserve}
                                 onChange={detailsOnChange}
                                 name="reserve"
                                 className="field"
@@ -2243,7 +2305,7 @@ const VechilesRegistraion = () => {
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
                                 <FormInput
-                                  value={detailsInfo.reserveAmount}
+                                  value={vehicle.reserveAmount}
                                   onChange={detailsOnChange}
                                   name="reserveAmount"
                                   placeholder="Enter"
@@ -2261,7 +2323,7 @@ const VechilesRegistraion = () => {
                                 Where did you hear about GasGuzzlrs?
                               </label>
                               <select
-                                value={detailstab.shibnobi}
+                                value={detailstab.shibnobi} //confussion
                                 onChange={detailsOnChange}
                                 name="shibnobi"
                                 className="field"
@@ -2287,7 +2349,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <FormInput
-                                value={detailstab.documentFee}
+                                value={vehicle.documentFee}
                                 onChange={detailsOnChange}
                                 name="documentFee"
                                 type="text"
@@ -2380,13 +2442,29 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
-                      <h3>Contact Info</h3>
-                      <hr />
+                        {/* <h3>Contact Info</h3> */}
+                        <div className="">
+                          <button
+                            onClick={() => submitApprove("approve")}
+                            className="btn btn-warning m-3"
+                            type="button"
+                          >
+                            Approve
+                          </button>
+                          <button
+                            onClick={() => submitApprove("reject")}
+                            className="btn btn-warning m-3"
+                            type="button"
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      {/* <hr /> */}
 
-                      <form
+                      {/* <form
                         className="pt-3"
                         onSubmit={informationSubmitHandler}
                       >
@@ -2399,8 +2477,8 @@ const VechilesRegistraion = () => {
                         <div className="row row_gap_5">
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
-                              value={information.uemail}
-                              onChange={informationOnChange}
+                                value={vehicle.email}
+                              // onChange={informationOnChange}
                               name="uemail"
                               type="email"
                               placeholder="Enter Email"
@@ -2411,8 +2489,8 @@ const VechilesRegistraion = () => {
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
-                              value={information.iname}
-                              onChange={informationOnChange}
+                                value={vehicle.name}
+                              // onChange={informationOnChange}
                               name="iname"
                               placeholder="Enter Name"
                               errorMessage="Name should be 2-60 characters and shouldn't include any special character or number!"
@@ -2424,7 +2502,7 @@ const VechilesRegistraion = () => {
                           <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
                               value={information.phone}
-                              onChange={informationOnChange}
+                              // onChange={informationOnChange}
                               name="phone"
                               placeholder="Enter Phone Number"
                               errorMessage="Phone number should be 10-20 characters and shouldn't include any special character and alphabet!"
@@ -2467,7 +2545,7 @@ const VechilesRegistraion = () => {
                             )}
                           </div>
                         </div>
-                      </form>
+                      </form> */}
                     </div>
                   ) : null}
                 </div>
@@ -2593,4 +2671,4 @@ const VechilesRegistraion = () => {
   );
 };
 
-export default VechilesRegistraion;
+export default VechilesRegistraion1;
