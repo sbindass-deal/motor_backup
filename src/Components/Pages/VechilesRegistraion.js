@@ -21,6 +21,13 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
 // import UploadMImages from "./UploadMImages";
+const inputArr = [
+  {
+    type: "url",
+    id: 1,
+    value: "",
+  },
+];
 
 const VechilesRegistraion = () => {
   const navigate = useNavigate();
@@ -34,6 +41,9 @@ const VechilesRegistraion = () => {
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
+
+  const [arr, setArr] = useState(inputArr);
+
   const [galleryFile, setGalleryFile] = useState([]);
   const [signinAggri, setSigninAggri] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
@@ -47,8 +57,9 @@ const VechilesRegistraion = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
   const [vinDetails, setVinDetails] = useState({});
+  const [mapLink, setMapLink] = useState("1");
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
-  const [userInfo, setUserinfo] = useState({});
+  const [mappedInputData, setMappedInputData] = useState([]);
   const inputRefBanner = useRef();
   const handleDragOverBanner = (event) => {
     event.preventDefault();
@@ -78,16 +89,6 @@ const VechilesRegistraion = () => {
     setFile1(event.dataTransfer.files);
   };
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
-      if (res.data.data) {
-        setUserinfo(res.data.data);
-      } else {
-        setUserinfo(userInfo);
-      }
-    });
-  }, []);
-
   const handleClosePayment = () => {
     setShowPayment(false);
   };
@@ -96,7 +97,7 @@ const VechilesRegistraion = () => {
     setShowPayment(true);
   };
   const onToken = (token, addresses) => {
-    console.log(token, addresses);
+    console.log(111, token, addresses);
     if (token !== null) {
       setShowPayment(false);
       notify("Form submit successfully!");
@@ -489,9 +490,10 @@ const VechilesRegistraion = () => {
     if (errorMakeAndModal || errorBasicFact || errorDetais) {
       return setShowError(false);
     }
-
     axios
       .post(`${url}vehicles`, {
+        planId: logingUser.planReducer.plan.planId,
+        plantype: logingUser.planReducer.plan.listingType,
         name: iname,
         email: uemail,
         premium: reduxValue.submitvechilesReducer.submitPlan,
@@ -793,6 +795,30 @@ const VechilesRegistraion = () => {
       fuel: vinDetails?.engine?.fuelType,
     });
   }, [vinDetails]);
+
+  const addInput = () => {
+    setArr((s) => {
+      return [
+        ...s,
+        {
+          type: "url",
+          value: "",
+        },
+      ];
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const index = e.target.id;
+    setArr((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+
+      return newArr;
+    });
+  };
 
   return (
     <>
@@ -1164,7 +1190,40 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <label htmlFor="video-link">
+                                Please provide any links to videos (Youtube or
+                                Video) here:
+                              </label>
+                              <a
+                                style={{ cursor: "pointer" }}
+                                onClick={addInput}
+                              >
+                                Add more link
+                              </a>
+                            </div>
+                            {arr.map((item, i) => {
+                              return (
+                                <div className="form-group">
+                                  <input
+                                    onChange={handleChange}
+                                    value={item.value}
+                                    id={i}
+                                    className="field"
+                                    placeholder="Enter link"
+                                    type={item.type}
+                                    required={true}
+                                  />
+                                </div>
+                              );
+                            })}
+
+                            {/* <div className="form-group">
                               <FormInput
                                 value={namefield.videolink}
                                 onChange={handleNameField}
@@ -1176,7 +1235,7 @@ const VechilesRegistraion = () => {
                               Video) here:"
                                 required={true}
                               />
-                            </div>
+                            </div> */}
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
@@ -2508,18 +2567,15 @@ const VechilesRegistraion = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2> Name : {userInfo.name} </h2>
+            <h2> Name : {logingUser.login.user.name} </h2>
             <h3 className="price__">
               {" "}
-              Type :{" "}
-              {logingUser.planReducer.plan &&
-                logingUser.planReducer.plan.listName}
+              Type : {logingUser.planReducer.plan.name}
             </h3>
             <h3 className="price__">
-              Price : $
-              {logingUser.planReducer.plan &&
-                logingUser.planReducer.plan.amount}
+              Price : ${logingUser.planReducer.plan.price}
             </h3>
+            <p> Description : {logingUser.planReducer.plan.desc}</p>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
             <br />
@@ -2534,6 +2590,9 @@ const VechilesRegistraion = () => {
               <div>
                 <StripeCheckout
                   className="Btn"
+                  name="GasGuzzlrs Subscribe"
+                  currency="USD"
+                  amount={logingUser.planReducer.plan.price * 100}
                   stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                   token={onToken}
                 />
