@@ -16,7 +16,7 @@ import FormInput from "../../UI/FormInput";
 
 const VehicleRegistered1 = () => {
   const { id } = useParams();
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   const [file, setFile] = useState([]);
@@ -33,6 +33,92 @@ const VehicleRegistered1 = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
+
+
+
+  const fetchVehicleApi = async () => {
+    debugger;
+    // const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
+    // console.log(2222, filteredVehicleData);
+    // setGetfilteredVehicleData(filteredVehicleData.images)
+    // setVechileInfo(filteredVehicleData)
+    axios
+      .post(`${url}updateVehiclesAdmin/${id}`, {
+        planId: logingUser.planReducer.plan.planId,
+        plantype: logingUser.planReducer.plan.listingType,
+        name: namefield.detailvin,
+        email: namefield.email,
+        year: namefield.year,
+        make: namefield.make,
+        model: namefield.model,
+        vechilelocation: namefield.country,
+        city: namefield.city,
+        sale: namefield.owned,
+        link: namefield.link,
+        vehiclepast: namefield.engineSize,
+        providelink: namefield.transmission,
+        changedvechiles: namefield.titleStatus,
+        dealer: namefield.dealerId,
+        dealership: namefield.dealerName,
+        soldvechiles: namefield.consignment,
+        videolink: namefield.description,
+
+        vin: basicfact.detailvin,
+        displayInAuction: basicfact.displayInAuction,
+        auctionType: basicfact.auctionType,
+        adWebsiteLink: basicfact.externalLink,
+        vechilesrace: basicfact.ownerDetail,
+        ultiumdrive: basicfact.ste,
+        Interstellar: basicfact.Interstellar,
+        interior: basicfact.interior,
+        brandandmodel: basicfact.brandandmodel,
+        sizetires: basicfact.sizetires,
+        trucktitled: basicfact.title,
+        other: basicfact.other,
+        status: basicfact.status,
+        km: basicfact.km,
+        wheels: basicfact.pickOne,
+        kmacc: basicfact.ogEngine,
+        odometer: basicfact.odmeter,
+        accurateField: basicfact.kmacc,
+        otherTruckTitle: basicfact.otherTruckTitle,
+        otherStatus: basicfact.otherStatus,
+
+
+        detailvin: detailstab.detailvin,
+        bodywork: detailstab.bodywork,
+        rustpresent: detailstab.rustpresent,
+        modificationstock: detailstab.modificationstock,
+        servicesperformed: detailstab.ammountOnDocument,
+        issuesorproblems: detailstab.issuesorproblems,
+        moreDescription: detailstab.moreDescription,
+        reserve: detailstab.reserve,
+        reserveAmount: detailstab.reservAmount,
+        shibnobiabout: detailstab.hereFrom,
+        shibnobi: detailstab.shibnobi,
+        documentFee: detailstab.documentFee,
+        truckHistory: detailstab.truckHistory,
+        rustDetails: detailstab.rustDetails,
+        modificationOnTrck: detailstab.modificationOnTruck,
+        fuel: detailstab.fuel,
+
+        // uemail: filteredVehicleData.email,
+        // iname: filteredVehicleData.name,
+        // phone: filteredVehicleData.phone,
+
+
+
+      })
+      .then((result) => {
+        //navigaget
+
+      })
+      .catch((error) => {
+        console.log(error);
+
+      });
+  };
+
 
   const notify = (val) =>
     toast.success(val, {
@@ -202,6 +288,8 @@ const VehicleRegistered1 = () => {
     otherStatus: "",
   });
 
+
+
   const [detailstab, setDetailstab] = useState({
     detailvin: "",
     bodywork: "",
@@ -280,8 +368,8 @@ const VehicleRegistered1 = () => {
     setInformation({ ...information, [Name]: Value });
   };
 
-  const [getfilteredVehicleData, setGetfilteredVehicleData]=useState([])
-  const [vechileInfo, setVechileInfo]=useState({})
+  const [getfilteredVehicleData, setGetfilteredVehicleData] = useState([])
+  const [vechileInfo, setVechileInfo] = useState({})
 
   useEffect(() => {
     const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
@@ -643,6 +731,7 @@ const VehicleRegistered1 = () => {
       })
       .then(function (response) {
         if (response.status === 200) {
+          fetchVehicleApi()
           navigate("/vehicle-submission");
           // window.location.reload(false);
         }
@@ -650,6 +739,40 @@ const VehicleRegistered1 = () => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+  const inputArr = [
+    {
+      type: "url",
+      id: 1,
+      value: "",
+    },
+  ];
+
+  const [arr, setArr] = useState(inputArr);
+
+  const addInput = () => {
+    setArr((s) => {
+      return [
+        ...s,
+        {
+          type: "url",
+          value: "",
+        },
+      ];
+    });
+  };
+
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const index = e.target.id;
+    setArr((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+
+      return newArr;
+    });
   };
 
   return (
@@ -686,7 +809,7 @@ const VehicleRegistered1 = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -705,8 +828,8 @@ const VehicleRegistered1 = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -725,8 +848,8 @@ const VehicleRegistered1 = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -771,7 +894,7 @@ const VehicleRegistered1 = () => {
                             required={true}
                           />
                         </div>
-                        
+
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
@@ -903,7 +1026,7 @@ const VehicleRegistered1 = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                        namefield.vehiclepast === "Yes" ? (
+                          namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -998,7 +1121,7 @@ const VehicleRegistered1 = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <FormInput
                               value={namefield.videolink}
@@ -1012,7 +1135,60 @@ const VehicleRegistered1 = () => {
                               required={true}
                             />
                           </div>
+                        </div> */}
+
+
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <label htmlFor="video-link">
+                              Please provide any links to videos (Youtube or
+                              Video) here:
+                            </label>
+                            <a
+                              style={{ cursor: "pointer" }}
+                              onClick={addInput}
+                            >
+                              Add more link
+                            </a>
+                          </div>
+                          {arr.map((item, i) => {
+                            return (
+                              <div className="form-group">
+                                <input
+                                  onChange={handleChange}
+                                  value={item.value}
+                                  id={i}
+                                  className="field"
+                                  placeholder="Enter link"
+                                  type={item.type}
+                                  required={true}
+                                />
+                              </div>
+                            );
+                          })}
+
+                          {/* <div className="form-group">
+                              <FormInput
+                                value={namefield.videolink}
+                                onChange={handleNameField}
+                                name="videolink"
+                                type="url"
+                                placeholder="Enter link"
+                                errorMessage="Please provide valid link"
+                                label="Please provide any links to videos (Youtube or
+                              Video) here:"
+                                required={true}
+                              />
+                            </div> */}
                         </div>
+
+
+
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <p>
@@ -1033,11 +1209,13 @@ const VehicleRegistered1 = () => {
                                 return (
                                   <span>
                                     <img
-                                      style={{ "maxWidth": "16%",
-                                    padding: "10px"}}
+                                      style={{
+                                        "maxWidth": "16%",
+                                        padding: "10px"
+                                      }}
                                       loading="lazy"
                                       src={
-                                      
+
                                         `${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`
                                       }
                                       onError={({ currentTarget }) => {
@@ -1084,7 +1262,7 @@ const VehicleRegistered1 = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1133,7 +1311,7 @@ const VehicleRegistered1 = () => {
                                 value="Yes"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1144,7 +1322,7 @@ const VehicleRegistered1 = () => {
                                 value="No"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1155,7 +1333,7 @@ const VehicleRegistered1 = () => {
                                 value="classified"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? false
                                     : true
                                 }
@@ -1163,13 +1341,13 @@ const VehicleRegistered1 = () => {
                                 Classified Ads
                               </option>
                             </select>
-                            </div>
-                            
-                            
+                          </div>
+
+
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
-                        "classified" ? (
+                          "classified" ? (
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <FormInput
@@ -1481,34 +1659,34 @@ const VehicleRegistered1 = () => {
                           </div>
                         </div> */}
 
-                          
-                          <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group">
-                              <div className="">
-                                {Array.from(getfilteredVehicleData).map((curElem) => {
-                                  return (
-                                    <span>
-                                      <img
-                                        style={{
-                                          "maxWidth": "16%",
-                                          padding: "10px"
-                                        }}
-                                        loading="lazy"
-                                        src={
 
-                                          `${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`
-                                        }
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src =
-                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                        }}
-                                        alt="Maskgroup1"
-                                      />
-                                    </span>
-                                  );
-                                })}
-                                {/* <input
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <div className="">
+                              {Array.from(getfilteredVehicleData).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        "maxWidth": "16%",
+                                        padding: "10px"
+                                      }}
+                                      loading="lazy"
+                                      src={
+
+                                        `${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                  </span>
+                                );
+                              })}
+                              {/* <input
                                 style={{
                                   fontSize: "1.2rem",
                                   textAlign: "center",
@@ -1521,9 +1699,9 @@ const VehicleRegistered1 = () => {
                                 type="file"
                                 accept="image/png, image/jpeg"
                               /> */}
-                              </div>
                             </div>
                           </div>
+                        </div>
 
 
 
@@ -1591,8 +1769,8 @@ const VehicleRegistered1 = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1735,10 +1913,10 @@ const VehicleRegistered1 = () => {
                               />
                               {detailstab.modificationOnTrck.trim().length >
                                 400 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                           )}
                         </div>
@@ -1760,10 +1938,10 @@ const VehicleRegistered1 = () => {
                             ></textarea>
                             {detailstab.issuesorproblems.trim().length >
                               1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
+                                <span className="text-danger">
+                                  You Can entered maximum 1500 characters!
+                                </span>
+                              )}
                           </div>
                           <p>
                             Please list and describe services performed and when
@@ -1786,10 +1964,10 @@ const VehicleRegistered1 = () => {
                             ></textarea>
                             {detailstab.moreDescription.trim().length >
                               1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
+                                <span className="text-danger">
+                                  You Can entered maximum 1500 characters!
+                                </span>
+                              )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -2004,44 +2182,44 @@ const VehicleRegistered1 = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     {/* <h3>Contact Info</h3> */}
-                      {/* <hr /> */}
-                      
-                      <form>
-                        <label>Description </label> <br />
-                        <textarea 
-                          name="description1"
-                          value={descValue.description1}
-                          onChange={handleDescription}
-                          minLength={2}
-                          maxLength={1500}
-                          className="col-md-12 border"
-                          rows={4}
-                        ></textarea>{" "}
+                    {/* <hr /> */}
 
-                        <br />
-                      </form>
-                      <div className="text-center my-4">
-                        <button
-                          onClick={() => submitApprove("approve")}
-                          className="btn btn-warning m-3"
-                          type="button"
-                          disabled={vechileInfo.approved==1 ? true : false}
-                        >
-                          Approve
-                        </button>
-                        <button
-                          onClick={() => submitApprove("reject")}
-                          className="btn btn-warning m-3"
-                          type="button"
-                          disabled={vechileInfo.approved == 2 ? true : false}
-                        >
-                          Reject
-                        </button>
-                      </div>
+                    <form>
+                      <label>Description </label> <br />
+                      <textarea
+                        name="description1"
+                        value={descValue.description1}
+                        onChange={handleDescription}
+                        minLength={2}
+                        maxLength={1500}
+                        className="col-md-12 border"
+                        rows={4}
+                      ></textarea>{" "}
+
+                      <br />
+                    </form>
+                    <div className="text-center my-4">
+                      <button
+                        onClick={() => submitApprove("approve")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved == 1 ? true : false}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        onClick={() => submitApprove("reject")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved == 2 ? true : false}
+                      >
+                        Reject
+                      </button>
+                    </div>
 
                     {/* <form className="pt-3" onSubmit={informationSubmitHandler}>
                       <div className="row">

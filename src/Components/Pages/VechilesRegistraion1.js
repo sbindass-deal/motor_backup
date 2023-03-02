@@ -99,6 +99,9 @@ const VechilesRegistraion1 = () => {
       console.log(err);
     }
   };
+
+
+  
   const fetchVehicleImage = async () => {
     try {
       const response = await axios.get(
