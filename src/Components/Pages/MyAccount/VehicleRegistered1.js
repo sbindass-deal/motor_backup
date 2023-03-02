@@ -16,7 +16,7 @@ import FormInput from "../../UI/FormInput";
 
 const VehicleRegistered1 = () => {
   const { id } = useParams();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   const [file, setFile] = useState([]);
@@ -280,14 +280,14 @@ const VehicleRegistered1 = () => {
     setInformation({ ...information, [Name]: Value });
   };
 
-  const [getfilteredVehicleData, setGetfilteredVehicleData]=useState([])
-  const [vechileInfo, setVechileInfo]=useState({})
+  const [getfilteredVehicleData, setGetfilteredVehicleData] = useState([]);
+  const [vechileInfo, setVechileInfo] = useState({});
 
   useEffect(() => {
     const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
     console.log(11111, filteredVehicleData);
-    setGetfilteredVehicleData(filteredVehicleData.images)
-    setVechileInfo(filteredVehicleData)
+    setGetfilteredVehicleData(filteredVehicleData.images);
+    setVechileInfo(filteredVehicleData);
     setNamefield({
       name: filteredVehicleData.detailvin,
       email: filteredVehicleData.email,
@@ -630,9 +630,8 @@ const VehicleRegistered1 = () => {
     setDescValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-
   const submitApprove = (data) => {
-    console.log(5656, data)
+    console.log(5656, data);
 
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
@@ -771,7 +770,7 @@ const VehicleRegistered1 = () => {
                             required={true}
                           />
                         </div>
-                        
+
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
@@ -1029,27 +1028,28 @@ const VehicleRegistered1 = () => {
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="">
-                              {Array.from(getfilteredVehicleData).map((curElem) => {
-                                return (
-                                  <span>
-                                    <img
-                                      style={{ "maxWidth": "16%",
-                                    padding: "10px"}}
-                                      loading="lazy"
-                                      src={
-                                      
-                                        `${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`
-                                      }
-                                      onError={({ currentTarget }) => {
-                                        currentTarget.onError = null;
-                                        currentTarget.src =
-                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                      }}
-                                      alt="Maskgroup1"
-                                    />
-                                  </span>
-                                );
-                              })}
+                              {Array.from(getfilteredVehicleData).map(
+                                (curElem) => {
+                                  return (
+                                    <span>
+                                      <img
+                                        style={{
+                                          maxWidth: "16%",
+                                          padding: "10px",
+                                        }}
+                                        loading="lazy"
+                                        src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onError = null;
+                                          currentTarget.src =
+                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                        }}
+                                        alt="Maskgroup1"
+                                      />
+                                    </span>
+                                  );
+                                }
+                              )}
                               {/* <input
                                 style={{
                                   fontSize: "1.2rem",
@@ -1163,9 +1163,7 @@ const VehicleRegistered1 = () => {
                                 Classified Ads
                               </option>
                             </select>
-                            </div>
-                            
-                            
+                          </div>
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
@@ -1962,40 +1960,39 @@ const VehicleRegistered1 = () => {
                 reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     {/* <h3>Contact Info</h3> */}
-                      {/* <hr /> */}
-                      
-                      <form>
-                        <label>Description </label> <br />
-                        <textarea 
-                          name="description1"
-                          value={descValue.description1}
-                          onChange={handleDescription}
-                          minLength={2}
-                          maxLength={1500}
-                          className="col-md-12 border"
-                          rows={4}
-                        ></textarea>{" "}
+                    {/* <hr /> */}
 
-                        <br />
-                      </form>
-                      <div className="text-center my-4">
-                        <button
-                          onClick={() => submitApprove("approve")}
-                          className="btn btn-warning m-3"
-                          type="button"
-                          disabled={vechileInfo.approved==1 ? true : false}
-                        >
-                          Approve
-                        </button>
-                        <button
-                          onClick={() => submitApprove("reject")}
-                          className="btn btn-warning m-3"
-                          type="button"
-                          disabled={vechileInfo.approved == 2 ? true : false}
-                        >
-                          Reject
-                        </button>
-                      </div>
+                    <form>
+                      <label>Description </label> <br />
+                      <textarea
+                        name="description1"
+                        value={descValue.description1}
+                        onChange={handleDescription}
+                        minLength={2}
+                        maxLength={1500}
+                        className="col-md-12 border"
+                        rows={4}
+                      ></textarea>{" "}
+                      <br />
+                    </form>
+                    <div className="text-center my-4">
+                      <button
+                        onClick={() => submitApprove("approve")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved == 1 ? true : false}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        onClick={() => submitApprove("reject")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved == 2 ? true : false}
+                      >
+                        Reject
+                      </button>
+                    </div>
 
                     {/* <form className="pt-3" onSubmit={informationSubmitHandler}>
                       <div className="row">
