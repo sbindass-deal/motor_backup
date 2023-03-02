@@ -1468,7 +1468,7 @@ const VehicleRegistered1 = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <p>
                               Please upload a photo of your title (or a photo of
@@ -1477,9 +1477,55 @@ const VehicleRegistered1 = () => {
                               be used to verify ownership status.
                             </p>
                           </div>
-                        </div>
+                        </div> */}
 
-                        <div className="col-12 col-sm-12 col-md-12">
+                          
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <div className="">
+                                {Array.from(getfilteredVehicleData).map((curElem) => {
+                                  return (
+                                    <span>
+                                      <img
+                                        style={{
+                                          "maxWidth": "16%",
+                                          padding: "10px"
+                                        }}
+                                        loading="lazy"
+                                        src={
+
+                                          `${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`
+                                        }
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onError = null;
+                                          currentTarget.src =
+                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                        }}
+                                        alt="Maskgroup1"
+                                      />
+                                    </span>
+                                  );
+                                })}
+                                {/* <input
+                                style={{
+                                  fontSize: "1.2rem",
+                                  textAlign: "center",
+                                }}
+                                onChange={(e) => {
+                                  // handleNameField(e);
+                                  setFile(e.target.files);
+                                }}
+                                name="file"
+                                type="file"
+                                accept="image/png, image/jpeg"
+                              /> */}
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
                               {Array.from(file1).map((items, i) => {
@@ -1517,13 +1563,13 @@ const VehicleRegistered1 = () => {
                               />
                             </div>
                           </div>
-                        </div>
-                        <div className="col-12">
+                        </div> */}
+                        {/* <div className="col-12">
                           <p className="small">
                             Accepted file types: jpg, jpeg, png, Max. file size:
                             1 GB.
                           </p>
-                        </div>
+                        </div> */}
                         <div className="col-12"></div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <button
