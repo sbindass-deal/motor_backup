@@ -37,7 +37,7 @@ const VechilesRegistraion = () => {
   const handleVinShow = () => setShowVidnModal(true);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
-  const [showPayment, setShowPayment] = useState(true);
+  const [showPayment, setShowPayment] = useState(false);
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
