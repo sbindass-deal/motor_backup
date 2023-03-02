@@ -374,8 +374,8 @@ const VehicleRegistered1 = () => {
   useEffect(() => {
     const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
     console.log(11111, filteredVehicleData);
-    setGetfilteredVehicleData(filteredVehicleData.images)
-    setVechileInfo(filteredVehicleData)
+    setGetfilteredVehicleData(filteredVehicleData.images);
+    setVechileInfo(filteredVehicleData);
     setNamefield({
       name: filteredVehicleData.detailvin,
       email: filteredVehicleData.email,
@@ -718,9 +718,8 @@ const VehicleRegistered1 = () => {
     setDescValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-
   const submitApprove = (data) => {
-    console.log(5656, data)
+    console.log(5656, data);
 
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
@@ -2199,7 +2198,6 @@ const VehicleRegistered1 = () => {
                         className="col-md-12 border"
                         rows={4}
                       ></textarea>{" "}
-
                       <br />
                     </form>
                     <div className="text-center my-4">
