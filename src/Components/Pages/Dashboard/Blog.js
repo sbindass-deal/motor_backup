@@ -26,6 +26,8 @@ function Blog() {
     fetchBlogs();
   }, []);
 
+  console.log(blogs);
+
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteblogs/${id}`)
