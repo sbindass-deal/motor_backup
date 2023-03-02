@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Car_img from "../../Assets/images/img_05.jpg";
 import parse from "html-react-parser";
 import { strToHtml } from "../UI/globaleVar";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -108,6 +109,10 @@ const BlogDetail = () => {
                 <li>
                   <i className="fa-solid fa-clock"></i>{" "}
                   {blog.created_at && new Date(blog.created_at).toDateString()}
+                </li>
+                <li>
+                <AccountCircleIcon/>
+                  {blog.username}
                 </li>
                 {/* <li>
                   <i className="fa-solid fa-location-dot"></i> {blog.location}

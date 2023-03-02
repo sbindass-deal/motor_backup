@@ -7,16 +7,20 @@ import { useEffect } from "react";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
+import { useSelector } from "react-redux"; 
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
+  const data = useSelector((state) => state)
+  // console.log(111, data.login.user.user_id)
+
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}/getblogs`);
+        const res = await axios.get(`${process.env.REACT_APP_URL}admin/getblogs/${data.login.user.user_id}`);
         setBlogs(res.data.data);
         setLoading(false);
       } catch (err) {

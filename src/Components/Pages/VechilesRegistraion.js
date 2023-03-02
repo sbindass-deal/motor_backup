@@ -37,7 +37,7 @@ const VechilesRegistraion = () => {
   const handleVinShow = () => setShowVidnModal(true);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
-  const [showPayment, setShowPayment] = useState(false);
+  const [showPayment, setShowPayment] = useState(true);
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
@@ -527,7 +527,7 @@ const VechilesRegistraion = () => {
         userId: userDataLogin.login.user.id,
         year: year,
         make: make,
-        description: arr.map((curElem) => curElem.value),
+        description: `${arr.map((curElem) => curElem.value)}`,
         model: model,
         owned: sale,
         country: vechilelocation,

@@ -25,11 +25,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { storeBlogData } from "../../redux/reducers/blogReducer";
 import parse from "html-react-parser";
 import { strToHtml } from "../UI/globaleVar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state);
   const blogs = data.blogReducer.blogData;
+  // console.log(111, data.login.user.user_id)
   const vehicleData = data.vehicleReducer.vehicleData;
   const [sliderData, setSliderData] = useState([]);
   useEffect(() => {
@@ -478,6 +480,12 @@ function Home() {
                               {curElem.created_at &&
                                 new Date(curElem.created_at).toDateString()}
                             </li>
+
+                            <li>
+                              <AccountCircleIcon />
+                              {curElem.username}
+                            </li>
+
                             {/* <li>
                               <i className="fa-solid fa-location-dot"></i>{" "}
                               {curElem.location}

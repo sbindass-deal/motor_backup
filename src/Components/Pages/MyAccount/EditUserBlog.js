@@ -87,7 +87,7 @@ const EditUserBlog = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
-          navigate("/blog");
+          navigate("/user-blog");
         }
       })
       .catch((error) => {
