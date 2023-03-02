@@ -77,6 +77,10 @@ import EditBlog from "./Dashboard/EditBlog";
 import DealerPlan from "./plan/DealerPlan";
 import AuctionPlan from "./plan/AuctionPlan";
 import ClassifiedPlan from "./plan/ClassifiedPlan";
+import AdUserBlog from "./MyAccount/AdUserBlog";
+import EditUserBlog from "./MyAccount/EditUserBlog";
+import UserBlog from "./MyAccount/UserBlog";
+
 const Layout = () => {
   const logingUser = useSelector((state) => state);
 
@@ -99,6 +103,10 @@ const Layout = () => {
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
               <Route path="vehicle/:id" element={<VehicleRegistered />} />
+              <Route path="user-blog" element={<UserBlog />} />
+              <Route path="add-user-blog" element={<AdUserBlog />} />
+              <Route path="edit-user-blog/:id" element={<EditUserBlog />} />
+
               <Route
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}
