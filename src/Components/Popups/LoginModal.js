@@ -139,7 +139,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   value={email}
                   onChange={handleEmail}
                   name="email"
-                  placeholder="enter username or email address"
+                  placeholder="Enter username or email address"
                   type="email"
                   errorMessage="Please enter valid email address"
                   label="Email address"
@@ -157,14 +157,17 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   type={showPassWord ? "text" : "password"}
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
-                  
                 />
 
                 <div
                   className="eye_child eye_login"
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
-                  {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  {showPassWord ? (
+                    <VisibilityIcon style={{ fill: "#000" }} />
+                  ) : (
+                    <VisibilityOffIcon style={{ fill: "#000" }} />
+                  )}
                 </div>
               </div>
               <div className="col-md-12 fp">

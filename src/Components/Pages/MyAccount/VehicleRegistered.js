@@ -902,7 +902,9 @@ const VehicleRegistered = () => {
                         ) : null}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Are you a dealer?</label>
+                            <label style={{ textTransform: "uppercase" }}>
+                              Are You A Dealer?
+                            </label>
                             <select
                               value={namefield.dealer}
                               onChange={handleNameField}
