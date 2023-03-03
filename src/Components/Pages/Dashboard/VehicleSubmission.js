@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminLeftNav from "./AdminLeftNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 
@@ -8,7 +8,7 @@ function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
-
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(true);
   const fetchLotaryApi = async () => {
     try {
@@ -38,6 +38,8 @@ function VehicleSubmission() {
       console.log(err);
     }
   };
+
+  
 
   return (
     <div>
@@ -101,56 +103,56 @@ function VehicleSubmission() {
                     <tbody>
                       {showvehicles.length > 0
                         ? showvehicles
-                            .filter((data) =>
-                              data.make && data.model && data.year
-                                ? data.make
-                                    .toUpperCase()
-                                    .includes(searchTerm) ||
-                                  data.model
-                                    .toUpperCase()
-                                    .includes(searchTerm) ||
-                                  data.year.toUpperCase().includes(searchTerm)
-                                : data
-                            )
-                            .map((data, index) => (
-                              <tr
-                                key={index}
-                                // style={{ cursor: "pointer" }}
-                              >
-                                <th scope="row">{index + 1}</th>
-                                {/* <td>{data.userId}</td> */}
-                                <td>{data.name}</td>
-                                <td>
-                                  {new Date(
-                                    data.updated_at
-                                  ).toLocaleDateString()}{" "}
-                                  {new Date(
-                                    data.updated_at
-                                  ).toLocaleTimeString()}
-                                </td>
-                                <td>{data.year}</td>
-                                <td>{data.make}</td>
-                                <td className="actionBtn vs">
-                                  <Link
-                                    to={`/vehicle-submission/${data.id}`}
-                                    className="btn"
-                                  >
-                                    {/* <i class="fa-solid fa-trash-can"></i> */}
-                                    View
-                                  </Link>
-                                </td>
-                                <td>
-                                  {data.approved == 0
-                                    ? "Pending"
-                                    : data.approved == 1
+                          .filter((data) =>
+                            data.make && data.model && data.year
+                              ? data.make
+                                .toUpperCase()
+                                .includes(searchTerm) ||
+                              data.model
+                                .toUpperCase()
+                                .includes(searchTerm) ||
+                              data.year.toUpperCase().includes(searchTerm)
+                              : data
+                          )
+                          .map((data, index) => (
+                            <tr
+                              key={index}
+                            // style={{ cursor: "pointer" }}
+                            >
+                              <th scope="row">{index + 1}</th>
+                              {/* <td>{data.userId}</td> */}
+                              <td>{data.name}</td>
+                              <td>
+                                {new Date(
+                                  data.updated_at
+                                ).toLocaleDateString()}{" "}
+                                {new Date(
+                                  data.updated_at
+                                ).toLocaleTimeString()}
+                              </td>
+                              <td>{data.year}</td>
+                              <td>{data.make}</td>
+                              <td className="actionBtn vs">
+                                <Link
+                                  to={`/vehicle-submission/${data.id}`}
+                                  className="btn"
+                                >
+                                  {/* <i class="fa-solid fa-trash-can"></i> */}
+                                  View
+                                </Link>
+                              </td>
+                              <td>
+                                {data.approved == 0
+                                  ? "Pending"
+                                  : data.approved == 1
                                     ? "Approved"
                                     : data.approved == 2
-                                    ? "Rejected"
-                                    : null}
-                                  {/* <span>{data.status && data.status.title}</span> */}
-                                </td>
-                              </tr>
-                            ))
+                                      ? "Rejected"
+                                      : null}
+                                {/* <span>{data.status && data.status.title}</span> */}
+                              </td>
+                            </tr>
+                          ))
                         : null}
                     </tbody>
                   </table>
