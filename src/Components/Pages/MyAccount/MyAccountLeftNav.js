@@ -44,12 +44,20 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${
+            className={`${
               location.pathname === "/myshipments" ? "active" : ""
-            } `}
+            }`}
             to="/myshipments"
           >
             Shipments
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={`${location.pathname === "/user-blog" ? "active" : ""}`}
+            to="/user-blog"
+          >
+            Blog
           </Link>
         </li>
       </ul>

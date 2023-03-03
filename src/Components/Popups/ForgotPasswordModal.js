@@ -72,7 +72,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                     value={email}
                     onChange={handleEmail}
                     name="email"
-                    placeholder="Username or Email"
+                    placeholder="Email"
                     type="email"
                     errorMessage="It should be a valid email address!"
                     label="Please enter your registered email"

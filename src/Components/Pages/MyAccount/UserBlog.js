@@ -1,26 +1,25 @@
 import React from "react";
-import AdminLeftNav from "./AdminLeftNav";
-import img_01 from "../../../Assets/images/img-1.webp";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
-import { useSelector } from "react-redux"; 
+import MyAccountLeftNav from "./MyAccountLeftNav";
+import { useSelector } from "react-redux";
 
-function Blog() {
+function UserBlog() {
+  const data = useSelector((state) => state);
   const [blogs, setBlogs] = useState([]);
-  const data = useSelector((state) => state)
-  // console.log(111, data.login.user.user_id)
-
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}admin/getblogs/${data.login.user.user_id}`);
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}admin/getblogs/${data.login.user.user_id}`
+        );
         setBlogs(res.data.data);
         setLoading(false);
       } catch (err) {
@@ -29,8 +28,6 @@ function Blog() {
     };
     fetchBlogs();
   }, []);
-
-  console.log(blogs);
 
   const handleDelete = (id) => {
     axios
@@ -52,7 +49,9 @@ function Blog() {
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
-                <AdminLeftNav />
+                <h5>My Account</h5>
+                <hr />
+                <MyAccountLeftNav />
               </div>
             </div>
 
@@ -64,11 +63,11 @@ function Blog() {
               >
                 My Blogs
                 <div>
-                  {/* <Link to="/admin/add-blog" className="btn">
+                  {/* <Link to="/admin/add-UserBlog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
                   <Link
-                    to="/admin/add-blog"
+                    to="/add-user-blog"
                     className="orange_btn"
                     style={{
                       padding: "4px",
@@ -161,7 +160,7 @@ function Blog() {
                                     ).toLocaleDateString()}
                                 </td>
                                 <td className="actionBtn">
-                                  <Link to={`/editBlog/${curElem.id}`}>
+                                  <Link to={`/edit-user-blog/${curElem.id}`}>
                                     <button>
                                       <i class="fa-solid fa-pencil"></i>
                                     </button>
@@ -179,77 +178,6 @@ function Blog() {
                   </table>
                 )}
               </div>
-
-              {/* <!-- Edit PopUp--> */}
-
-              {/* <div class="card_Gray table-responsive vehicleSub">
-                <div className="container">
-                  <div className="modal fade" id="EditBlog">
-                    <div className="modal-dialog modal-dialog-centered">
-                      <div className="modal-content">
-                        <div className="modal-header border-0">
-                          <h4 className="modal-title">Edit Blog</h4>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                          >
-                            <i className="fa-solid fa-xmark"></i>
-                          </button>
-                        </div>
-
-                        <div className="modal-body">
-                          <form>
-                            <div className="row row_gap_5">
-                              <div className="col-12 col-md-12">
-                                <label>Upload Photos</label>
-                                <div className="form-group">
-                                  <input
-                                    type="file"
-                                    class="field"
-                                    id="formFileMultiple"
-                                    multiple
-                                  />
-                                </div>
-                                <small>
-                                  (Accepted file types: jpg, jpeg, png, Max.
-                                  file size: 10 MB, Max. files: 200.)
-                                </small>
-                              </div>
-
-                              <div className="col-12 col-md-12">
-                                <label>Blog Name</label>
-                                <div className="form-group">
-                                  <input
-                                    type="text"
-                                    name=""
-                                    className="field"
-                                    placeholder="Product Name"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-12 col-md-12">
-                                <label>Blog Description</label>
-                                <div className="form-group">
-                                  <textarea
-                                    className="field"
-                                    placeholder="Description here"
-                                  ></textarea>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <button type="button" className="btn">
-                                Submit
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -258,4 +186,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default UserBlog;

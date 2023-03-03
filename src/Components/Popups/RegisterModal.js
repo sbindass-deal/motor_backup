@@ -10,8 +10,12 @@ import { Checkbox } from "antd";
 import CardDetails from "./CardDetails";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useSelector } from "react-redux";
 
 function RegisterModal({ showReg, handleCloseReg }) {
+  const logingUser = useSelector((state) => state);
+  console.log("Reduct Mode function call", logingUser.dayAndNightMode.mode);
+
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -128,6 +132,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
       .then((result) => {
         if (result.data.status === 200 && result.data.access_token !== null) {
           dispatch(authToken(result.data));
+          console.log("Result data", result.data);
           handleCloseReg();
           notify(result.data.message);
           setInputValue({
@@ -258,9 +263,27 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       onClick={() => setShowPassWord(!showPassWord)}
                     >
                       {showPassWord ? (
-                        <VisibilityIcon />
+                        <VisibilityIcon
+                          style={{
+                            fill: logingUser.dayAndNightMode.mode
+                              ? "#000"
+                              : "#000",
+                            color: logingUser.dayAndNightMode.mode
+                              ? "#000"
+                              : "#000",
+                          }}
+                        />
                       ) : (
-                        <VisibilityOffIcon />
+                        <VisibilityOffIcon
+                          style={{
+                            fill: logingUser.dayAndNightMode.mode
+                              ? "#000"
+                              : "#000",
+                            color: logingUser.dayAndNightMode.mode
+                              ? "#000"
+                              : "#000",
+                          }}
+                        />
                       )}
                     </div>
                   </div>
@@ -282,12 +305,36 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     className="eye_child eye_login"
                     onClick={() => setShowCPassWord(!showCPassword)}
                   >
-                    {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    {showCPassword ? (
+                      <VisibilityIcon
+                        style={{
+                          fill: logingUser.dayAndNightMode.mode
+                            ? "#000"
+                            : "#000",
+                          color: logingUser.dayAndNightMode.mode
+                            ? "#000"
+                            : "#000",
+                        }}
+                      />
+                    ) : (
+                      <VisibilityOffIcon
+                        style={{
+                          fill: logingUser.dayAndNightMode.mode
+                            ? "#000"
+                            : "#000",
+                          color: logingUser.dayAndNightMode.mode
+                            ? "#000"
+                            : "#000",
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
                   <div className="form-group">
-                    <label htmlFor="">Are you a dealer?</label>
+                    <label htmlFor="" style={{ textTransform: "capitalize" }}>
+                      Are you a dealer?
+                    </label>
                     <select
                       value={userInput.dealer}
                       onChange={handleUserInput}
@@ -432,8 +479,9 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         onChange={(e) => setAcceptTerms(e.target.checked)}
                         // checked={acceptTerms}
                         required
-                      /> <span className="text-danger" >*</span>&nbsp;
-                      I accept the Terms of Use and Privacy Notice
+                      />{" "}
+                      I accept the Terms of Use and Privacy Notice{" "}
+                      <span className="text-danger">*</span>
                     </label>
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { strToHtml } from "../UI/globaleVar";
 import parse from "html-react-parser";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Blogs = () => {
   const blogs = useSelector((state) => state.blogReducer.blogData);
@@ -40,6 +41,12 @@ const Blogs = () => {
                             {curElem.created_at &&
                               new Date(curElem.created_at).toDateString()}
                           </li>
+
+                          <li>
+                            <AccountCircleIcon />
+                            {curElem.username}
+                          </li>
+
                           {/* <li>
                             <i className="fa-solid fa-location-dot"></i>{" "}
                             {curElem.location}

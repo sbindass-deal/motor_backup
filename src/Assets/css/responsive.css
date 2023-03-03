@@ -1,3 +1,40 @@
+/* change by rahul  */
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+	border-color: #d9d9d9 !important;
+	box-shadow: none !important;
+}
+
+
+/* Default styles for the select */
+.fields {
+	background-color: white !important;
+	color: black !important;
+}
+
+/* Styles for light mode */
+@media (prefers-color-scheme: light) {
+	.field {
+		background-color: white !important;
+		color: black !important;
+	}
+}
+
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+	.field {
+		background-color: black !important;
+		color: white !important;
+	}
+}
+
+
+/* end the code  */
+
+
+
 
 @media (min-width: 1200px) {
 	.container {
@@ -8,9 +45,9 @@
 		width: 33.33%;
 	}
 }
-@media (max-width: 1920px){
-	
-}
+
+@media (max-width: 1920px) {}
+
 @media (max-width: 1600px) {
 	.toNv ul.navbar-nav.ml-auto {
 		right: 6%;
@@ -95,7 +132,8 @@
 	.toNv ul.navbar-nav.ml-auto {
 		right: 8%;
 	}
-	.secondNavbar .navbar-nav .nav-link{
+
+	.secondNavbar .navbar-nav .nav-link {
 		font-size: 12px;
 	}
 
@@ -211,9 +249,9 @@
 		padding: 20px;
 	}
 
-	.plan_cardBody{
+	.plan_cardBody {
 		min-height: 214px;
-	  }
+	}
 }
 
 @media (max-width: 1199px) {
@@ -279,10 +317,11 @@
 		width: 85px;
 		height: 102px;
 	}
+
 	.col-12.slider_ht {
 		height: 594px;
 	}
-	
+
 
 }
 
@@ -485,50 +524,49 @@
 		display: block;
 	}
 
-	.plan_cardBody{
+	.plan_cardBody {
 		min-height: 175px;
-	  }
+	}
 
-	  #clockdiv>div{
+	#clockdiv>div {
 		width: 23%;
-	  }
+	}
 
-	  .clockTimer .timerBg{
+	.clockTimer .timerBg {
 		margin: 5px;
 		padding: 11px 7px !important;
 		margin-top: 15px;
-	  }
+	}
 
-	  .pp-0{
+	.pp-0 {
 		padding: 0;
 		margin-left: -3px;
-	  }
+	}
 
-	  #clockdiv div>span{
+	#clockdiv div>span {
 		font-size: 22px;
-	  }
+	}
 
-	  .smalltext{
+	.smalltext {
 		font-size: 11px;
-	  }
+	}
 
-	  .cardBorder{
+	.cardBorder {
 		padding: 15px 11px;
-	  }
+	}
 
-	  .myTicketCol{
+	.myTicketCol {
 		padding: 0;
-	  }
+	}
 
-	  .featuredAuctions_Slide .card_postInfo p{
+	.featuredAuctions_Slide .card_postInfo p {
 		font-size: 13px;
-	  }
+	}
 
-	  .featuredAuctions_Slide .card_postInfo h4{
+	.featuredAuctions_Slide .card_postInfo h4 {
 		font-size: 18px;
 		margin-bottom: 18px
-
-	  }
+	}
 
 }
 
@@ -606,7 +644,7 @@
 }
 
 @media (min-width: 768px) {
-	
+
 
 	.mobileOnly {
 		display: block;
@@ -625,11 +663,11 @@
 @media (max-width: 767px) {
 
 
-	.text_title{
+	.text_title {
 		margin: 15px 0;
 	}
 
-	.plan_card .plan_cardHead{
+	.plan_card .plan_cardHead {
 		min-height: unset;
 	}
 
@@ -1047,30 +1085,95 @@
 		color: #000 !important;
 	}
 
-	a.nav-link.navActive {text-align: left !important;color: #000;}
-	.iconMb .dropdown-content {	left: 22px;	}
-	.modal-title {font-size: 18px; padding-left: 16px;	padding-bottom: 10px;}
-	p.forOction {right: 13px;}
-	.postTopOption {margin-bottom: 25px;}
-	.ptb_80 {padding-bottom: 35px;}
-	ul.postTopOption button.gry_btn{width: 100%;}
-	h4.modal-title.forg {padding-left: 0;}
-	.addSection .inner-slider a .card_postInfo {width: 100%;}
-	.verticle .galleryImgSect {	min-height: 250px;}
-	.col-12 .galleryImgSect {height: 150px;}
-	.verticle {	padding: 5px;}
-	.gallery .mt-50 {margin-top: 5px;}
-	.titleRight {display: contents;align-items: baseline;}
-	.tagBtns p {margin-bottom: 7px;	}
-	.auctionHistory {z-index: 9;	width: 100%;display: block;padding: 10px;background: #f7811b;}
-	.Dfrt {display: block;}
-	.Dfrt:before{ border-bottom: 0px solid #f7811b;    text-align: center;}
-	.card_.Dfrt .dropdown {	width: 100%;}
+	a.nav-link.navActive {
+		text-align: left !important;
+		color: #000;
+	}
+
+	.iconMb .dropdown-content {
+		left: 22px;
+	}
+
+	.modal-title {
+		font-size: 18px;
+		padding-left: 16px;
+		padding-bottom: 10px;
+	}
+
+	p.forOction {
+		right: 13px;
+	}
+
+	.postTopOption {
+		margin-bottom: 25px;
+	}
+
+	.ptb_80 {
+		padding-bottom: 35px;
+	}
+
+	ul.postTopOption button.gry_btn {
+		width: 100%;
+	}
+
+	h4.modal-title.forg {
+		padding-left: 0;
+	}
+
+	.addSection .inner-slider a .card_postInfo {
+		width: 100%;
+	}
+
+	.verticle .galleryImgSect {
+		min-height: 250px;
+	}
+
+	.col-12 .galleryImgSect {
+		height: 150px;
+	}
+
+	.verticle {
+		padding: 5px;
+	}
+
+	.gallery .mt-50 {
+		margin-top: 5px;
+	}
+
+	.titleRight {
+		display: contents;
+		align-items: baseline;
+	}
+
+	.tagBtns p {
+		margin-bottom: 7px;
+	}
+
+	.auctionHistory {
+		z-index: 9;
+		width: 100%;
+		display: block;
+		padding: 10px;
+		background: #f7811b;
+	}
+
+	.Dfrt {
+		display: block;
+	}
+
+	.Dfrt:before {
+		border-bottom: 0px solid #f7811b;
+		text-align: center;
+	}
+
+	.card_.Dfrt .dropdown {
+		width: 100%;
+	}
 }
 
 @media (max-width: 575px) {
 
-	.mainImg{
+	.mainImg {
 		height: unset;
 	}
 
@@ -1172,7 +1275,7 @@
 	.heroSection {
 		background-size: cover;
 		background-position-y: unset;
-		
+
 	}
 
 	.heroText h1 {
@@ -1235,8 +1338,13 @@
 
 
 @media (min-width: 1200px) {
-	.container {max-width: 1170px;}
+	.container {
+		max-width: 1170px;
+	}
 }
+
 @media (min-width: 1400px) {
-	.container {max-width: 1370px;}
+	.container {
+		max-width: 1370px;
+	}
 }

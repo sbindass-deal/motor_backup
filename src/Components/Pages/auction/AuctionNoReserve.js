@@ -28,13 +28,24 @@ const AuctionNoReserve = () => {
   // useEffect(() => {
   //   fetchNoreserveData()
   // }, [])
-
   useEffect(() => {
+    // const fetchNoResurveApi = async () => {
+    //   try {
+    //     const res = await axios.get(`${process.env.REACT_APP_URL}noreserve`);
+    //     console.log(111, res.data.data);
+    //     // setauctions(res.data.data);
+    //     // setFilteredUsers(res.data.data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchNoResurveApi();
     const filteredAuctionVehicle = vehicleData.filter(
       (item) => item.displayInAuction === "Yes"
     );
     setauctions(filteredAuctionVehicle);
     setFilteredUsers(filteredAuctionVehicle);
+    console.log(1111, filteredAuctionVehicle);
   }, [vehicleData]);
 
   const getEndDate = (cal) => {
