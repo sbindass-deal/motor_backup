@@ -10,25 +10,29 @@
 
 /* Default styles for the select */
 .fields {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+.fields {
 	background-color: white !important;
 	color: black !important;
 }
 
 /* Styles for light mode */
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
 	.field {
 		background-color: white !important;
 		color: black !important;
 	}
-}
+} */
 
 /* Styles for dark mode */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 	.field {
 		background-color: black !important;
 		color: white !important;
 	}
-}
+} */
 
 
 /* end the code  */

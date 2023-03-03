@@ -638,11 +638,11 @@ const VehicleRegistered = () => {
                       onClick={handleMakeAndModalTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Make & Model
+                     Edit your profile 
                     </a>
                     {!showError && errorMakeAndModal ? (
                       <span className="text-danger">
-                        Pleae file make & model input field proper
+                        Pleae file input fields proper
                       </span>
                     ) : null}
                   </li>
