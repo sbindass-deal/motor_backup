@@ -796,9 +796,9 @@ const VehicleRegistered1 = () => {
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-            <div className="col-12 text-center pb-4">
+            {/* <div className="col-12 text-center pb-4">
               <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
-            </div>
+            </div> */}
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
                 {/* <!-- Nav pills --> */}
@@ -883,7 +883,7 @@ const VehicleRegistered1 = () => {
               <div className="tab-content">
                 {reduxValue.submitvechilesReducer.step_one === false ? (
                   <div className="tab-pane active">
-                    <h3>Make & Model</h3>
+                    <h3>Edit Profile Of Porsche 911</h3>
                     <hr />
                     <h6>
                       Think your vehicle should be sold via Gas Guzzlrs
