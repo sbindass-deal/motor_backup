@@ -33,7 +33,35 @@ const VehicleRegistered1 = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
+  const [countryId, setCountryId] = useState(231);
+  const [countryData, setCountryData] = useState([]);
+  const [stateData, setStateData] = useState([]);
 
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_URL}countries`);
+        setCountryData(res.data.data.countries);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchApiData();
+  }, []);
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}state/${countryId}`
+        );
+
+        setStateData(res.data.data.states);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchApiData();
+  }, [countryId]);
 
 
   const fetchVehicleApi = async () => {
@@ -883,7 +911,7 @@ const VehicleRegistered1 = () => {
               <div className="tab-content">
                 {reduxValue.submitvechilesReducer.step_one === false ? (
                   <div className="tab-pane active">
-                    <h3>Edit Profile Of Porsche 911</h3>
+                    <h3>Edit Profile Of {namefield.make}</h3>
                     <hr />
                     <h6>
                       Think your vehicle should be sold via Gas Guzzlrs
@@ -965,6 +993,75 @@ const VehicleRegistered1 = () => {
                         <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <label>
+                              What country is the vehicle currently located
+                              in?
+                            </label>
+
+                            <select
+                              value={namefield.vechilelocation}
+                              onChange={(e) => {
+                                handleNameField(e);
+                                setCountryId(e.target.value);
+                              }}
+                              // onChange={(e) => setCountryId(e.target.value ) }
+                              name="vechilelocation"
+                              className="field"
+                              required
+                            >
+                              <option value="231">United States</option>
+                              {countryData.map((curElem, i) => {
+                                return (
+                                  <option value={curElem.id} key={i}>
+                                    {curElem.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
+                            <label>
+                              What state is the vehicle currently located in?
+                            </label>
+
+                            <select
+                              value={namefield.city}
+                              onChange={handleNameField}
+                              name="city"
+                              className="field"
+                              placeholder="Enter city"
+                              required
+                            >
+                              {stateData.map((curElem, i) => {
+                                return (
+                                  <option value={curElem.name} key={i}>
+                                    {curElem.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+
+                          {/* <div className="form-group">
+                              <FormInput
+                                value={namefield.city}
+                                onChange={handleNameField}
+                                name="city"
+                                placeholder="Enter city"
+                                errorMessage="This input field contain 3-16 characters and shouldn't include any special character or number"
+                                label="What city is the vehicle located in?"
+                                pattern="^[A-Za-z ]{3,16}$"
+                                required={true}
+                              />
+                            </div> */}
+                        </div>
+
+                        {/* ===========End============ */}
+
+                        {/* <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
+                            <label>
                               What country is the vehicle currently located in?
                             </label>
 
@@ -998,7 +1095,7 @@ const VehicleRegistered1 = () => {
                               required={true}
                             />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
