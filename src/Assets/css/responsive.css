@@ -7,6 +7,41 @@
 	box-shadow: none !important;
 }
 
+.rdw-dropdown-selectedtext>span {
+	color: #000;
+}
+
+.rdw-dropdown-optionwrapper>li {
+	color: #000;
+}
+
+.public-DraftStyleDefault-block>span {
+	color: #000
+}
+
+.rdw-link-modal-label {
+	color: #000;
+}
+
+.rdw-link-modal-input {
+	color: #000;
+}
+
+.rdw-link-modal-target-option>span {
+	color: #000;
+}
+
+.rdw-embedded-modal-header-option {
+	color: #000;
+}
+
+.rdw-image-modal-header-option {
+	color: #000;
+}
+
+/* End of code  */
+
+
 
 /* Default styles for the select */
 .fields {
