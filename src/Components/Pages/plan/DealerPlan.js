@@ -46,7 +46,7 @@ const DealerPlan = () => {
             </div>
           </div>
           <nav>
-            <div class="nav nav-tabs mb-5" id="nav-tab" role="tablist">
+            <div class="nav nav-tabs mb-5 tabPlan" id="nav-tab" role="tablist">
               <button
                 class="nav-link active"
                 id="nav-home-tab"

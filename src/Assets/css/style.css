@@ -6148,3 +6148,22 @@ a.dfr {
 .imgCross span {
   position: relative;
 }
+
+.tabPlan {
+  justify-content: center;
+}
+
+.tabPlan button {
+  width: 31.33%;
+  margin: 10px;
+}
+ .nav-tabs.tabPlan .nav-link.active {
+  color: #fff;
+  background-color: #f7931b;
+  border-color: 0;
+  border: none;
+}
+.nav-tabs.tabPlan .nav-link:hover {
+  background-color: #f7931a;
+  color: #fff;
+}
