@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Data from "./Data";
+import PrivatePartyData from "./PrivatePartyData";
 
 const PrivateParty = () => {
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,9 @@ const PrivateParty = () => {
               </p>
             </div>
             {planData.map((curElem, i) => {
-              return <Data key={i} loading={loading} curElem={curElem} />;
+              return (
+                <PrivatePartyData key={i} loading={loading} curElem={curElem} />
+              );
             })}
           </div>
         </div>
