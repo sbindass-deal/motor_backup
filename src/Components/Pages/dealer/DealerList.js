@@ -105,7 +105,7 @@ const DealerList = () => {
             dealerData.map((curElem) => {
               return (
                 <>
-                  <div class="col-12 col-md-6 pb-3">
+                  <div class="col-12 col-md-4 pb-3">
                     <div class="card_post">
                       <div class="card_postImg">
                         <Link to={`/dealerprofile/${curElem.id}`}>
