@@ -6167,3 +6167,15 @@ a.dfr {
   background-color: #f7931a;
   color: #fff;
 }
+.light .ListDealer .card_post {
+  padding: 10px;
+  box-shadow: 1px 1px 15px 1px #d5d5d5;
+}
+.ListDealer .card_postImg {
+  height: 230px;
+ 
+}
+.ListDealer .card_post {
+  padding: 10px;
+  box-shadow: 1px 1px 65px 1px #ffffff30;
+}
