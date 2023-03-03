@@ -6124,3 +6124,7 @@ a.dfr {
   background-color: #000 !important;
   color: #fff !important;
 }
+
+.sideBar__ li a.nav-link.active{
+      color: #fff !important;
+}
