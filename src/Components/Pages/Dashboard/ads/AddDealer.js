@@ -144,7 +144,7 @@ const AddDealer = () => {
                   required={true}
                 />
                 <div
-                  className="eye_child"
+                  className="eye_child eye_login"
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
                   {showPassWord ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -164,7 +164,7 @@ const AddDealer = () => {
                 required={true}
               />
               <div
-                className="eye_child"
+                className="eye_child eye_login"
                 onClick={() => setShowCPassWord(!showCPassword)}
               >
                 {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
