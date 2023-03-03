@@ -37,12 +37,11 @@ const VehicleRegistered1 = () => {
 
 
   const fetchVehicleApi = async () => {
-    debugger;
-    // const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
-    // console.log(2222, filteredVehicleData);
-    // setGetfilteredVehicleData(filteredVehicleData.images)
-    // setVechileInfo(filteredVehicleData)
-    axios
+    const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
+    console.log(2222, filteredVehicleData);
+    setGetfilteredVehicleData(filteredVehicleData.images)
+    setVechileInfo(filteredVehicleData)
+    await axios
       .post(`${url}updateVehiclesAdmin/${id}`, {
         planId: logingUser.planReducer.plan.planId,
         plantype: logingUser.planReducer.plan.listingType,
@@ -63,26 +62,26 @@ const VehicleRegistered1 = () => {
         soldvechiles: namefield.consignment,
         videolink: namefield.description,
 
-        vin: basicfact.detailvin,
-        displayInAuction: basicfact.displayInAuction,
-        auctionType: basicfact.auctionType,
-        adWebsiteLink: basicfact.externalLink,
-        vechilesrace: basicfact.ownerDetail,
-        ultiumdrive: basicfact.ste,
-        Interstellar: basicfact.Interstellar,
-        interior: basicfact.interior,
-        brandandmodel: basicfact.brandandmodel,
-        sizetires: basicfact.sizetires,
-        trucktitled: basicfact.title,
-        other: basicfact.other,
-        status: basicfact.status,
-        km: basicfact.km,
-        wheels: basicfact.pickOne,
-        kmacc: basicfact.ogEngine,
-        odometer: basicfact.odmeter,
-        accurateField: basicfact.kmacc,
-        otherTruckTitle: basicfact.otherTruckTitle,
-        otherStatus: basicfact.otherStatus,
+        vin: basicFactOnChange.detailvin,
+        displayInAuction: basicFactOnChange.displayInAuction,
+        auctionType: basicFactOnChange.auctionType,
+        adWebsiteLink: basicFactOnChange.externalLink,
+        vechilesrace: basicFactOnChange.ownerDetail,
+        ultiumdrive: basicFactOnChange.ste,
+        Interstellar: basicFactOnChange.Interstellar,
+        interior: basicFactOnChange.interior,
+        brandandmodel: basicFactOnChange.brandandmodel,
+        sizetires: basicFactOnChange.sizetires,
+        trucktitled: basicFactOnChange.title,
+        other: basicFactOnChange.other,
+        status: basicFactOnChange.status,
+        km: basicFactOnChange.km,
+        wheels: basicFactOnChange.pickOne,
+        kmacc: basicFactOnChange.ogEngine,
+        odometer: basicFactOnChange.odmeter,
+        accurateField: basicFactOnChange.kmacc,
+        otherTruckTitle: basicFactOnChange.otherTruckTitle,
+        otherStatus: basicFactOnChange.otherStatus,
 
 
         detailvin: detailstab.detailvin,
@@ -102,15 +101,20 @@ const VehicleRegistered1 = () => {
         modificationOnTrck: detailstab.modificationOnTruck,
         fuel: detailstab.fuel,
 
-        // uemail: filteredVehicleData.email,
-        // iname: filteredVehicleData.name,
-        // phone: filteredVehicleData.phone,
+        uemail: filteredVehicleData.email,
+        iname: filteredVehicleData.name,
+        phone: filteredVehicleData.phone,
 
 
 
       })
       .then((result) => {
         //navigaget
+        if (result.data.status === 200) {
+          navigate("/vehicle-submission");
+          window.location.reload(false)
+        }
+
 
       })
       .catch((error) => {
@@ -718,6 +722,14 @@ const VehicleRegistered1 = () => {
     setDescValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
+
+
+  const submitUpdate = () => {
+    fetchVehicleApi()
+    navigate("/vehicle-submission");
+
+  }
+
   const submitApprove = (data) => {
     console.log(5656, data);
 
@@ -730,7 +742,7 @@ const VehicleRegistered1 = () => {
       })
       .then(function (response) {
         if (response.status === 200) {
-          fetchVehicleApi()
+
           navigate("/vehicle-submission");
           // window.location.reload(false);
         }
@@ -773,6 +785,11 @@ const VehicleRegistered1 = () => {
       return newArr;
     });
   };
+
+
+  useEffect(() => {
+    console.log("first")
+  }, [id])
 
   return (
     <>
@@ -1059,7 +1076,7 @@ const VehicleRegistered1 = () => {
                             </div>
                           </>
                         ) : null}
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>Are you a dealer?</label>
                             <select
@@ -1626,7 +1643,7 @@ const VehicleRegistered1 = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
                               To the best of your knowledge, is this number
@@ -2216,6 +2233,16 @@ const VehicleRegistered1 = () => {
                         disabled={vechileInfo.approved == 2 ? true : false}
                       >
                         Reject
+                      </button>
+
+
+                      <button
+                        onClick={() => submitUpdate(id)}
+                        className="btn btn-warning m-3"
+                        type="button"
+
+                      >
+                        Update
                       </button>
                     </div>
 
