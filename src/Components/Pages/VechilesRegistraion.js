@@ -10,12 +10,12 @@ import {
   step_three,
   step_two,
 } from "../../redux/reducers/submitvechilesReducer";
-// import counryData from "../countryList";
+import counryData from "../countryList";
 import { Modal } from "react-bootstrap";
 import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
-// import { countryData } from "../../countryAndCity";
+import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
@@ -37,11 +37,13 @@ const VechilesRegistraion = () => {
   const handleVinShow = () => setShowVidnModal(true);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
-  const [showPayment, setShowPayment] = useState(true);
+  const [showPayment, setShowPayment] = useState(false);
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
+
   const [arr, setArr] = useState(inputArr);
+
   const [galleryFile, setGalleryFile] = useState([]);
   const [signinAggri, setSigninAggri] = useState(true);
   const [detailsInfo, setDetailsInfo] = useState([]);
@@ -58,35 +60,6 @@ const VechilesRegistraion = () => {
   const [mapLink, setMapLink] = useState("1");
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const [mappedInputData, setMappedInputData] = useState([]);
-  const [countryData, setCountryData] = useState([]);
-  const [countryId, setCountryId] = useState(231);
-  const [stateData, setStateData] = useState([]);
-
-  useEffect(() => {
-    const fetchApiData = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}countries`);
-        setCountryData(res.data.data.countries);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchApiData();
-  }, []);
-  useEffect(() => {
-    const fetchApiData = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}state/${countryId}`
-        );
-        setStateData(res.data.data.states);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchApiData();
-  }, [countryId]);
-
   const inputRefBanner = useRef();
   const handleDragOverBanner = (event) => {
     event.preventDefault();
@@ -127,7 +100,7 @@ const VechilesRegistraion = () => {
     console.log(111, token, addresses);
     if (token !== null) {
       setShowPayment(false);
-      // notify("Form submit successfully!");
+      notify("Form submit successfully!");
     }
   };
 
@@ -514,9 +487,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
     axios
       .post(`${url}vehicles`, {
         planId: logingUser.planReducer.plan.planId,
@@ -527,7 +500,7 @@ const VechilesRegistraion = () => {
         userId: userDataLogin.login.user.id,
         year: year,
         make: make,
-        description: `${arr.map((curElem) => curElem.value)}`,
+        description: videolink,
         model: model,
         owned: sale,
         country: vechilelocation,
@@ -883,7 +856,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                            reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -902,8 +875,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -922,8 +895,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1045,19 +1018,18 @@ const VechilesRegistraion = () => {
 
                               <select
                                 value={namefield.vechilelocation}
-                                onChange={(e) => {
-                                  handleNameField(e);
-                                  setCountryId(e.target.value);
-                                }}
-                                // onChange={(e) => setCountryId(e.target.value ) }
+                                onChange={handleNameField}
                                 name="vechilelocation"
                                 className="field"
                                 required
                               >
-                                <option value="231">United States</option>
-                                {countryData.map((curElem, i) => {
+                                <option value="United State">
+                                  United State
+                                </option>
+
+                                {counryData.map((curElem, i) => {
                                   return (
-                                    <option value={curElem.id} key={i}>
+                                    <option value={curElem.name} key={i}>
                                       {curElem.name}
                                     </option>
                                   );
@@ -1067,29 +1039,6 @@ const VechilesRegistraion = () => {
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
-                              <label>
-                                What state is the vehicle currently located in?
-                              </label>
-
-                              <select
-                                value={namefield.city}
-                                onChange={handleNameField}
-                                name="city"
-                                className="field"
-                                placeholder="Enter city"
-                                required
-                              >
-                                {stateData.map((curElem, i) => {
-                                  return (
-                                    <option value={curElem.name} key={i}>
-                                      {curElem.name}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-                            </div>
-
-                            {/* <div className="form-group">
                               <FormInput
                                 value={namefield.city}
                                 onChange={handleNameField}
@@ -1100,7 +1049,7 @@ const VechilesRegistraion = () => {
                                 pattern="^[A-Za-z ]{3,16}$"
                                 required={true}
                               />
-                            </div> */}
+                            </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
@@ -1145,7 +1094,7 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
                           {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                            namefield.vehiclepast === "Yes" ? (
                             <>
                               <div className="col-12 col-sm-12 col-md-12">
                                 <div className="form-group">
@@ -1436,7 +1385,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                    reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1508,7 +1457,7 @@ const VechilesRegistraion = () => {
                                   value="Yes"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1519,7 +1468,7 @@ const VechilesRegistraion = () => {
                                   value="No"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1530,7 +1479,7 @@ const VechilesRegistraion = () => {
                                   value="classified"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? false
                                       : true
                                   }
@@ -1542,7 +1491,7 @@ const VechilesRegistraion = () => {
                           </div>
 
                           {logingUser.planReducer.plan.listName ===
-                          "classified" ? (
+                            "classified" ? (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <FormInput
@@ -1942,8 +1891,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -2077,10 +2026,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                                    <span className="text-danger">
+                                      You Can entered maximum 1500 characters!
+                                    </span>
+                                  )}
                               </div>
                             )}
                           </div>
@@ -2182,10 +2131,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.issuesorproblems.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                             <p>
                               Please list and describe services performed and
@@ -2208,10 +2157,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.moreDescription.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -2490,8 +2439,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       <h3>Contact Info</h3>
                       <hr />
