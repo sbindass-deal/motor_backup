@@ -614,15 +614,15 @@ function Header() {
                             <Link className="" to="/submit">
                               Private Party
                             </Link>
-                            <Link className="" to="/classified">
+                            {/* <Link className="" to="/classified">
                               Classified
-                            </Link>
+                            </Link> */}
                             <Link className="" to="/dealer">
                               Dealer
                             </Link>
-                            <Link className="" to="/auctions_dealer">
+                            {/* <Link className="" to="/auctions_dealer">
                               Auctions
-                            </Link>
+                            </Link> */}
                           </div>
                         </div>
                       </li>

@@ -37,7 +37,7 @@ const VechilesRegistraion = () => {
   const handleVinShow = () => setShowVidnModal(true);
   const [modalShow, setModalShow] = useState(false);
   const [amlPolicy, setAmlPolicy] = useState(false);
-  const [showPayment, setShowPayment] = useState(false);
+  const [showPayment, setShowPayment] = useState(true);
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
@@ -127,7 +127,7 @@ const VechilesRegistraion = () => {
     console.log(111, token, addresses);
     if (token !== null) {
       setShowPayment(false);
-      notify("Form submit successfully!");
+      // notify("Form submit successfully!");
     }
   };
 
