@@ -926,7 +926,7 @@ const VehicleRegistered1 = () => {
                         </div>
                       </div>
                       <div className="row row_gap_5">
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <FormInput
                             value={namefield.name}
                             // onChange={handleNameField}
@@ -939,7 +939,7 @@ const VehicleRegistered1 = () => {
                           />
                         </div>
 
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
                             <select
@@ -962,7 +962,7 @@ const VehicleRegistered1 = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <FormInput
                               value={namefield.make}
@@ -976,7 +976,7 @@ const VehicleRegistered1 = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <FormInput
                               value={namefield.model}
@@ -990,8 +990,7 @@ const VehicleRegistered1 = () => {
                             />
                           </div>
                         </div>
-{/* ============= start========= */}
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <label>
                               What country is the vehicle currently located
@@ -1083,7 +1082,7 @@ const VehicleRegistered1 = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <FormInput
                               value={namefield.city}
@@ -1142,7 +1141,7 @@ const VehicleRegistered1 = () => {
                         {namefield.sale === "Yes" ||
                           namefield.vehiclepast === "Yes" ? (
                           <>
-                            <div className="col-12 col-sm-12 col-md-12">
+                            <div className="col-12 col-sm-12 col-md-4">
                               <div className="form-group">
                                 <FormInput
                                   value={namefield.providelink}
@@ -1174,7 +1173,7 @@ const VehicleRegistered1 = () => {
                             </div>
                           </>
                         ) : null}
-                        <div className="col-12 col-sm-12 col-md-12">
+                        <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Are you a dealer?</label>
                             <select
@@ -1215,7 +1214,7 @@ const VehicleRegistered1 = () => {
                         ) : (
                           ""
                         )}
-                        <div className="col-12 col-sm-12 col-md-12">
+                        <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
                               Is the vehicle being sold on consignment?
@@ -1318,7 +1317,7 @@ const VehicleRegistered1 = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="">
+                            <div className="imgCross">
                               {Array.from(getfilteredVehicleData).map((curElem) => {
                                 return (
                                   <span>
@@ -1339,6 +1338,7 @@ const VehicleRegistered1 = () => {
                                       }}
                                       alt="Maskgroup1"
                                     />
+                                    <button className="close">x</button>
                                   </span>
                                 );
                               })}
@@ -2310,7 +2310,7 @@ const VehicleRegistered1 = () => {
                         onChange={handleDescription}
                         minLength={2}
                         maxLength={1500}
-                        className="col-md-12 border"
+                        className="col-md-12 field"
                         rows={4}
                       ></textarea>{" "}
                       <br />

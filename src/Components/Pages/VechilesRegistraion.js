@@ -96,11 +96,29 @@ const VechilesRegistraion = () => {
   const handleShowPayment = (data) => {
     setShowPayment(true);
   };
+  const fetchTransaction = async (token) => {
+    await axios
+      .post(
+        `${process.env.REACT_APP_URL}paymentUpdate/${userDataLogin.login.user.id}`,
+        {
+          transectionId: token.card.id,
+          mode: token.type,
+          status: "1",
+        }
+      )
+      .then(function (response) {
+        // console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const onToken = (token, addresses) => {
-    console.log(111, token, addresses);
+    // console.log(111, token, addresses);
     if (token !== null) {
       setShowPayment(false);
-      notify("Form submit successfully!");
+      fetchTransaction(token);
+      // notify("Form submit successfully!");
     }
   };
 
@@ -119,7 +137,7 @@ const VechilesRegistraion = () => {
     setModalShow(false);
   };
   const receiveMultipleImage = (data) => {
-    console.log("image", JSON.stringify(data));
+    // console.log("image", JSON.stringify(data));
     setuploadMulipleImage(data);
   };
   const handleAccessoriesChange = (e) => {

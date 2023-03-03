@@ -259,72 +259,23 @@
 }
 
 @media (max-width: 1199px) {
-	table.cartSection.cartth tr th:first-child {
-		width: 60%;
-	}
-
-	.toNv:before {
-		width: 85%;
-	}
-
-	.searchForm input {
-		width: 300px;
-	}
-
-	.dfk h5 {
-		font-size: 15px;
-	}
-
-	.plan_cardHead .plan_Price {
-		font-size: 33px;
-	}
-
-	.plan_card {
-		padding: 20px;
-	}
-
-	.plan_cardBody {
-		min-height: 258px;
-	}
-
-	.navbar-brand img {
-		width: 161px !important;
-	}
-
-	.secondNavbar .navbar-nav:before {
-		width: 82%;
-	}
-
-	.searchForm input {
-		width: 100%;
-	}
-
-	header {
-		height: 105px;
-	}
-
-	div#navbarNavDropdown {
-		width: 77%;
-	}
-
-	.searchForm {
-		width: 345px;
-	}
-
-	.autoCom {
-		width: 33.5%;
-		left: 38.6%;
-		top: 54px;
-	}
-
-	.featuredAuctions_Slide.delair .card_postImg.dlr {
-		width: 85px;
-		height: 102px;
-	}
-
-	.col-12.slider_ht {
-		height: 594px;
-	}
+	table.cartSection.cartth tr th:first-child {width: 60%;}
+	.toNv:before {width: 85%;	}
+	.searchForm input {	width: 300px;}
+	.dfk h5 {font-size: 15px;}
+	.plan_cardHead .plan_Price {	font-size: 33px;}
+	.plan_card {padding: 20px;}
+	.plan_cardBody {min-height: 258px;}
+	.navbar-brand img {	width: 161px !important;}
+	.secondNavbar .navbar-nav:before {	width: 82%;}
+	.searchForm input {	width: 100%;}
+	header {height: 105px;}
+	div#navbarNavDropdown {	width: 77%;	}
+	.searchForm {width: 345px;}
+	.autoCom {width: 33.5%;left: 38.6%;top: 54px;	}
+	.featuredAuctions_Slide.delair .card_postImg.dlr {width: 85px;height: 102px;}
+	.col-12.slider_ht {	height: 594px;}
+	.tabPlan button {width: 30.33%;}
 
 
 }
@@ -665,7 +616,10 @@
 }
 
 @media (max-width: 767px) {
-
+	.tabPlan button {
+		width: 31.33%;
+		margin: 1px;
+	}
 
 	.text_title {
 		margin: 15px 0;

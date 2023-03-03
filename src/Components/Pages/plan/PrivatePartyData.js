@@ -33,12 +33,19 @@ const PrivatePartyData = ({ curElem }) => {
             <h4>{curElem.plan_name} </h4>
             <div className="plan_Price">
               <div className="dfk">
-                $
-                {planType && planName === curElem.plan_name
-                  ? curElem.annual_price
-                  : curElem.monthly_price}
+                {curElem.annual_price == 0 || curElem.monthly_price == 0 ? (
+                  "Enquiry"
+                ) : (
+                  <span>
+                    $
+                    {planType && planName === curElem.plan_name
+                      ? curElem.annual_price
+                      : curElem.monthly_price}
+                  </span>
+                )}
                 <div className="switch">
-                  <span className="plan_Time"> Monthly</span>
+                  <span className="plan_Time"> 1 Listing</span>
+                  <br />
                   <input
                     className="react-switch-checkbox"
                     id={curElem.plan_name}
@@ -55,11 +62,11 @@ const PrivatePartyData = ({ curElem }) => {
                   >
                     <span className={`react-switch-button`} />
                   </label>
-                  <span className="plan_Time"> Annual</span>
+                  <span className="plan_Time">5 Listing</span>
                 </div>
               </div>
               <div className="text-center">
-                <h6>
+                {/* <h6>
                   {curElem.plan_name == "Exclusive" &&
                   curElem.monthly_listing == 0
                     ? "Unlimited"
@@ -68,7 +75,7 @@ const PrivatePartyData = ({ curElem }) => {
                     ? curElem.annual_listing
                     : curElem.monthly_listing}{" "}
                   Listing
-                </h6>
+                </h6> */}
               </div>
             </div>
           </div>

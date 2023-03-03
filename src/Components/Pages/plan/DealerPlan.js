@@ -44,10 +44,96 @@ const DealerPlan = () => {
                 vehicle the way you want.
               </p>
             </div>
+          </div>
+          <nav>
+            <div class="nav nav-tabs mb-5 tabPlan" id="nav-tab" role="tablist">
+              <button
+                class="nav-link active"
+                id="nav-home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-home"
+                type="button"
+                role="tab"
+                aria-controls="nav-home"
+                aria-selected="true"
+              >
+                Normal
+              </button>
+              <button
+                class="nav-link"
+                id="nav-profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-profile"
+                type="button"
+                role="tab"
+                aria-controls="nav-profile"
+                aria-selected="false"
+              >
+                Auction
+              </button>
+              <button
+                class="nav-link"
+                id="nav-contact-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-contact"
+                type="button"
+                role="tab"
+                aria-controls="nav-contact"
+                aria-selected="false"
+              >
+                Classified
+              </button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="nav-home"
+              role="tabpanel"
+              aria-labelledby="nav-home-tab"
+              tabindex="0"
+            >
+              <div className="row">
+                {planData.map((curElem, i) => {
+                  return <Data key={i} curElem={curElem} />;
+                })}
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="nav-profile"
+              role="tabpanel"
+              aria-labelledby="nav-profile-tab"
+              tabindex="0"
+            >
+              <div className="row">
+                {planData.map((curElem, i) => {
+                  return <Data key={i} curElem={curElem} />;
+                })}
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="nav-contact"
+              role="tabpanel"
+              aria-labelledby="nav-contact-tab"
+              tabindex="0"
+            >
+              <div className="row">
+                {planData.map((curElem, i) => {
+                  return <Data key={i} curElem={curElem} />;
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* <div className="row">
+          
+            
             {planData.map((curElem, i) => {
               return <Data key={i} curElem={curElem} />;
             })}
-          </div>
+          </div> */}
         </div>
       </section>
     </>
