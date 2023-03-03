@@ -73,7 +73,7 @@ const VehicleRegistered1 = () => {
       .post(`${url}updateVehiclesAdmin/${id}`, {
         planId: logingUser.planReducer.plan.planId,
         plantype: logingUser.planReducer.plan.listingType,
-        name: namefield.detailvin,
+        name: namefield.name,
         email: namefield.email,
         year: namefield.year,
         make: namefield.make,
@@ -409,7 +409,7 @@ const VehicleRegistered1 = () => {
     setGetfilteredVehicleData(filteredVehicleData.images);
     setVechileInfo(filteredVehicleData);
     setNamefield({
-      name: filteredVehicleData.detailvin,
+      name: filteredVehicleData.name,
       email: filteredVehicleData.email,
       year: filteredVehicleData.year,
       make: filteredVehicleData.make,
@@ -900,7 +900,7 @@ const VehicleRegistered1 = () => {
                       onClick={handleContactTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Contact Info
+                      Approval
                     </a>
                   </li>
                 </ul>
@@ -928,7 +928,7 @@ const VehicleRegistered1 = () => {
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-4">
                           <FormInput
-                            value={namefield.name}
+                            value={basicfact.vin}
                             // onChange={handleNameField}
                             name="name"
                             placeholder="Enter Name"
