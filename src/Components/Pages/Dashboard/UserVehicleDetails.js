@@ -12,7 +12,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { toast } from "react-toastify";
 import VechilesRegistraion1 from "../VechilesRegistraion1";
-import VehicleRegistered1 from "../MyAccount/VehicleRegistered1";
+import VehicleRegisteredAdmin from "../MyAccount/VehicleRegisteredAdmin";
 
 const UserVehicleDetails = () => {
   const { id } = useParams();
@@ -156,7 +156,7 @@ const UserVehicleDetails = () => {
 
       {/* <VechilesRegistraion1 /> */}
 
-      <VehicleRegistered1 />
+      <VehicleRegisteredAdmin />
 
 
       {/* <section className="ptb_80 pt_sm_50">
