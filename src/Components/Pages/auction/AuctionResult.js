@@ -4,7 +4,7 @@ import axios from "axios";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearData } from "../../../redux/reducers/vehicleReducer"; 
+import { clearData } from "../../../redux/reducers/vehicleReducer";
 const AuctionResult = () => {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
@@ -50,7 +50,7 @@ const AuctionResult = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                 Auctions Result{" "}
+                Auctions Result{" "}
                 <span>
                   {
                     data
@@ -259,7 +259,10 @@ const AuctionResult = () => {
 
                           {console.log(97989, curElem)}
                           <li>
-                            <label>Ends In:</label> <span>{new Date(curElem.EndTime).toLocaleTimeString() }</span>
+                            <label>Ends In:</label>{" "}
+                            <span>
+                              {new Date(curElem.EndTime).toLocaleTimeString()}
+                            </span>
                           </li>
                           {/* <li>
                             {parseInt(new Date(curElem.EndTime).getTime(), 10) -
@@ -280,8 +283,6 @@ const AuctionResult = () => {
                               <label>End In : 5 days</label>
                             )}
                           </li> */}
-
-                          
                         </ul>
                         {/* <Link
                           to={`/detail/${curElem.id}`}
