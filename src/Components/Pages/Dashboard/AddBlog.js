@@ -13,6 +13,7 @@ const AddBlog = () => {
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [blogData, setBlogData] = useState({
     title: "",
+    titleError: false,
     desc: "",
   });
   const inputRef = useRef();
@@ -27,12 +28,31 @@ const AddBlog = () => {
   };
 
   const handleChange = (e) => {
-    setBlogData({ ...blogData, [e.target.name]: e.target.value });
+    if (e.target.value.length > 49) {
+      setBlogData({
+        ...blogData,
+        titleError: true,
+      });
+    } else {
+      setBlogData({
+        ...blogData,
+        [e.target.name]: e.target.value,
+        titleError: false,
+      });
+    }
   };
+
   const handleContent = (e) => {
     setBlogContent(e);
-    console.log(111, e);
   };
+
+  const handlePaste = (e) => {
+    const text = e.clipboardData.getData("text/plain");
+    if (text.length > 100) {
+      e.preventDefault();
+    }
+  };
+
   const handleApi = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_URL}addblogs`;
@@ -79,8 +99,17 @@ const AddBlog = () => {
                   onChange={handleChange}
                   className="field"
                   placeholder="Product Name"
+                  maxLength={"50"}
+                  minLength={"3"}
                   required
                 />
+                {blogData.titleError && (
+                  <p style={{ color: "red", fontWeight: "bold" }}>
+                    {
+                      "Name should be 3-50 characters and shouldn't include any special character or number!"
+                    }
+                  </p>
+                )}
               </div>
             </div>
             {/* <div className="col-12 ">
@@ -124,6 +153,7 @@ const AddBlog = () => {
                   wrapperClassName="wrapperClassName"
                   editorClassName="editorClassName"
                   onEditorStateChange={handleContent}
+                  onPaste={handlePaste}
                   placeholder="Please enter description"
                 />
               </div>
