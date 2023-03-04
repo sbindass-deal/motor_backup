@@ -278,7 +278,6 @@ const VehicleRegistered = () => {
     const Name = e.target.name;
     setInformation({ ...information, [Name]: Value });
   };
-
   useEffect(() => {
     const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
     console.log(11111, filteredVehicleData);
@@ -638,7 +637,7 @@ const VehicleRegistered = () => {
                       onClick={handleMakeAndModalTab}
                       style={{ cursor: "pointer" }}
                     >
-                     Edit your profile 
+                      Edit your profile
                     </a>
                     {!showError && errorMakeAndModal ? (
                       <span className="text-danger">
