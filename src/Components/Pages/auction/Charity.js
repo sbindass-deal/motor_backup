@@ -19,7 +19,7 @@ const Charity = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/no_reserve`
+        `${process.env.REACT_APP_URL}vehicles_all/charity`
       );
       if (res.data.status === 200) {
         setData(res.data.data);

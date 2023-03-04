@@ -19,7 +19,7 @@ const Features = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/auction`
+        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
       );
       if (res.data.status === 200) {
         setData(res.data.data);
