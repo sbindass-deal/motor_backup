@@ -36,6 +36,11 @@ const UserVehicleDetails = () => {
   const [countryId, setCountryId] = useState(231);
   const [countryData, setCountryData] = useState([]);
   const [stateData, setStateData] = useState([]);
+  const [youtubeLink, setYoutubeLink] = useState([]);
+  const [vehicleData, setVehicleData] = useState([]);
+  const [bannerImage, setBannerImage] = useState([]);
+  const [galleryImage, setGalleryImage] = useState([]);
+  const [documentImage, setDocumentImage] = useState([]);
 
   useEffect(() => {
     const fetchApiData = async () => {
@@ -64,8 +69,7 @@ const UserVehicleDetails = () => {
   }, [countryId]);
 
   const fetchVehicleApi = async (data) => {
-    const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
-    console.log(2222, filteredVehicleData);
+    const filteredVehicleData = vehicleData;
     setGetfilteredVehicleData(filteredVehicleData.images);
     setVechileInfo(filteredVehicleData);
     await axios
@@ -88,6 +92,7 @@ const UserVehicleDetails = () => {
         dealership: namefield.dealerName,
         soldvechiles: namefield.consignment,
         videolink: namefield.description,
+        description: `${[...arr.map((curElem) => curElem.value)]}`,
         vin: basicFactOnChange.detailvin,
         displayInAuction: basicFactOnChange.displayInAuction,
         auctionType: basicFactOnChange.auctionType,
@@ -358,73 +363,163 @@ const UserVehicleDetails = () => {
   const [vechileInfo, setVechileInfo] = useState({});
 
   useEffect(() => {
-    const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
-    console.log(11111, filteredVehicleData);
-    setGetfilteredVehicleData(filteredVehicleData.images);
-    setVechileInfo(filteredVehicleData);
-    setNamefield({
-      name: filteredVehicleData.name,
-      email: filteredVehicleData.email,
-      year: filteredVehicleData.year,
-      make: filteredVehicleData.make,
-      model: filteredVehicleData.model,
-      vechilelocation: filteredVehicleData.country,
-      city: filteredVehicleData.city,
-      sale: filteredVehicleData.owned,
-      link: filteredVehicleData.link,
-      vehiclepast: filteredVehicleData.engineSize,
-      providelink: filteredVehicleData.transmission,
-      changedvechiles: filteredVehicleData.titleStatus,
-      dealer: filteredVehicleData.dealerId,
-      dealership: filteredVehicleData.dealerName,
-      soldvechiles: filteredVehicleData.consignment,
-      videolink: filteredVehicleData.description,
-    });
-    setbasicfact({
-      vin: filteredVehicleData.detailvin,
-      displayInAuction: filteredVehicleData.displayInAuction,
-      auctionType: filteredVehicleData.auctionType,
-      adWebsiteLink: filteredVehicleData.externalLink,
-      vechilesrace: filteredVehicleData.ownerDetail,
-      ultiumdrive: filteredVehicleData.ste,
-      Interstellar: filteredVehicleData.Interstellar,
-      interior: filteredVehicleData.interior,
-      brandandmodel: filteredVehicleData.brandandmodel,
-      sizetires: filteredVehicleData.sizetires,
-      trucktitled: filteredVehicleData.title,
-      other: filteredVehicleData.other,
-      status: filteredVehicleData.status,
-      km: filteredVehicleData.km,
-      wheels: filteredVehicleData.pickOne,
-      kmacc: filteredVehicleData.ogEngine,
-      odometer: filteredVehicleData.odmeter,
-      accurateField: filteredVehicleData.kmacc,
-      otherTruckTitle: filteredVehicleData.otherTruckTitle,
-      otherStatus: filteredVehicleData.otherStatus,
-    });
-    setDetailstab({
-      detailvin: filteredVehicleData.detailvin,
-      bodywork: filteredVehicleData.bodywork,
-      rustpresent: filteredVehicleData.rustpresent,
-      modificationstock: filteredVehicleData.modificationstock,
-      servicesperformed: filteredVehicleData.ammountOnDocument,
-      issuesorproblems: filteredVehicleData.issuesorproblems,
-      moreDescription: filteredVehicleData.moreDescription,
-      reserve: filteredVehicleData.reserve,
-      reserveAmount: filteredVehicleData.reservAmount,
-      shibnobiabout: filteredVehicleData.hereFrom,
-      shibnobi: filteredVehicleData.shibnobi,
-      documentFee: filteredVehicleData.documentFee,
-      truckHistory: filteredVehicleData.truckHistory,
-      rustDetails: filteredVehicleData.rustDetails,
-      modificationOnTrck: filteredVehicleData.modificationOnTruck,
-      fuel: filteredVehicleData.fuel,
-    });
-    setInformation({
-      uemail: filteredVehicleData.email,
-      iname: filteredVehicleData.name,
-      phone: filteredVehicleData.phone,
-    });
+    // const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
+
+    const fetchVehicleData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
+        );
+        const filteredVehicleData = res.data.data;
+        const youtubeLinkMapped = filteredVehicleData.description.map(
+          (curElem) => {
+            return { value: curElem, type: "url", id: Math.random() };
+          }
+        );
+        if (res.data.status === 200) {
+          setVehicleData(filteredVehicleData);
+          setArr(youtubeLinkMapped);
+
+          setGetfilteredVehicleData(filteredVehicleData.images);
+          setVechileInfo(filteredVehicleData);
+          setBannerImage(filteredVehicleData.image_banner);
+          setGalleryImage(filteredVehicleData.image_gallery);
+          setDocumentImage(filteredVehicleData.image_document);
+          setNamefield({
+            name: filteredVehicleData.name,
+            email: filteredVehicleData.email,
+            year: filteredVehicleData.year,
+            make: filteredVehicleData.make,
+            model: filteredVehicleData.model,
+            vechilelocation: filteredVehicleData.country,
+            city: filteredVehicleData.city,
+            sale: filteredVehicleData.owned,
+            link: filteredVehicleData.link,
+            vehiclepast: filteredVehicleData.engineSize,
+            providelink: filteredVehicleData.transmission,
+            changedvechiles: filteredVehicleData.titleStatus,
+            dealer: filteredVehicleData.dealerId,
+            dealership: filteredVehicleData.dealerName,
+            soldvechiles: filteredVehicleData.consignment,
+            videolink: filteredVehicleData.description,
+          });
+          setbasicfact({
+            vin: filteredVehicleData.detailvin,
+            displayInAuction: filteredVehicleData.displayInAuction,
+            auctionType: filteredVehicleData.auctionType,
+            adWebsiteLink: filteredVehicleData.externalLink,
+            vechilesrace: filteredVehicleData.ownerDetail,
+            ultiumdrive: filteredVehicleData.ste,
+            Interstellar: filteredVehicleData.Interstellar,
+            interior: filteredVehicleData.interior,
+            brandandmodel: filteredVehicleData.brandandmodel,
+            sizetires: filteredVehicleData.sizetires,
+            trucktitled: filteredVehicleData.title,
+            other: filteredVehicleData.other,
+            status: filteredVehicleData.status,
+            km: filteredVehicleData.km,
+            wheels: filteredVehicleData.pickOne,
+            kmacc: filteredVehicleData.ogEngine,
+            odometer: filteredVehicleData.odmeter,
+            accurateField: filteredVehicleData.kmacc,
+            otherTruckTitle: filteredVehicleData.otherTruckTitle,
+            otherStatus: filteredVehicleData.otherStatus,
+          });
+          setDetailstab({
+            detailvin: filteredVehicleData.detailvin,
+            bodywork: filteredVehicleData.bodywork,
+            rustpresent: filteredVehicleData.rustpresent,
+            modificationstock: filteredVehicleData.modificationstock,
+            servicesperformed: filteredVehicleData.ammountOnDocument,
+            issuesorproblems: filteredVehicleData.issuesorproblems,
+            moreDescription: filteredVehicleData.moreDescription,
+            reserve: filteredVehicleData.reserve,
+            reserveAmount: filteredVehicleData.reservAmount,
+            shibnobiabout: filteredVehicleData.hereFrom,
+            shibnobi: filteredVehicleData.shibnobi,
+            documentFee: filteredVehicleData.documentFee,
+            truckHistory: filteredVehicleData.truckHistory,
+            rustDetails: filteredVehicleData.rustDetails,
+            modificationOnTrck: filteredVehicleData.modificationOnTruck,
+            fuel: filteredVehicleData.fuel,
+          });
+          setInformation({
+            uemail: filteredVehicleData.email,
+            iname: filteredVehicleData.name,
+            phone: filteredVehicleData.phone,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchVehicleData();
+    // setYoutubeLink(filteredVehicleData.description);
+    // setGetfilteredVehicleData(filteredVehicleData.images);
+    // setVechileInfo(filteredVehicleData);
+    // setNamefield({
+    //   name: filteredVehicleData.name,
+    //   email: filteredVehicleData.email,
+    //   year: filteredVehicleData.year,
+    //   make: filteredVehicleData.make,
+    //   model: filteredVehicleData.model,
+    //   vechilelocation: filteredVehicleData.country,
+    //   city: filteredVehicleData.city,
+    //   sale: filteredVehicleData.owned,
+    //   link: filteredVehicleData.link,
+    //   vehiclepast: filteredVehicleData.engineSize,
+    //   providelink: filteredVehicleData.transmission,
+    //   changedvechiles: filteredVehicleData.titleStatus,
+    //   dealer: filteredVehicleData.dealerId,
+    //   dealership: filteredVehicleData.dealerName,
+    //   soldvechiles: filteredVehicleData.consignment,
+    //   videolink: filteredVehicleData.description,
+    // });
+    // setbasicfact({
+    //   vin: filteredVehicleData.detailvin,
+    //   displayInAuction: filteredVehicleData.displayInAuction,
+    //   auctionType: filteredVehicleData.auctionType,
+    //   adWebsiteLink: filteredVehicleData.externalLink,
+    //   vechilesrace: filteredVehicleData.ownerDetail,
+    //   ultiumdrive: filteredVehicleData.ste,
+    //   Interstellar: filteredVehicleData.Interstellar,
+    //   interior: filteredVehicleData.interior,
+    //   brandandmodel: filteredVehicleData.brandandmodel,
+    //   sizetires: filteredVehicleData.sizetires,
+    //   trucktitled: filteredVehicleData.title,
+    //   other: filteredVehicleData.other,
+    //   status: filteredVehicleData.status,
+    //   km: filteredVehicleData.km,
+    //   wheels: filteredVehicleData.pickOne,
+    //   kmacc: filteredVehicleData.ogEngine,
+    //   odometer: filteredVehicleData.odmeter,
+    //   accurateField: filteredVehicleData.kmacc,
+    //   otherTruckTitle: filteredVehicleData.otherTruckTitle,
+    //   otherStatus: filteredVehicleData.otherStatus,
+    // });
+    // setDetailstab({
+    //   detailvin: filteredVehicleData.detailvin,
+    //   bodywork: filteredVehicleData.bodywork,
+    //   rustpresent: filteredVehicleData.rustpresent,
+    //   modificationstock: filteredVehicleData.modificationstock,
+    //   servicesperformed: filteredVehicleData.ammountOnDocument,
+    //   issuesorproblems: filteredVehicleData.issuesorproblems,
+    //   moreDescription: filteredVehicleData.moreDescription,
+    //   reserve: filteredVehicleData.reserve,
+    //   reserveAmount: filteredVehicleData.reservAmount,
+    //   shibnobiabout: filteredVehicleData.hereFrom,
+    //   shibnobi: filteredVehicleData.shibnobi,
+    //   documentFee: filteredVehicleData.documentFee,
+    //   truckHistory: filteredVehicleData.truckHistory,
+    //   rustDetails: filteredVehicleData.rustDetails,
+    //   modificationOnTrck: filteredVehicleData.modificationOnTruck,
+    //   fuel: filteredVehicleData.fuel,
+    // });
+    // setInformation({
+    //   uemail: filteredVehicleData.email,
+    //   iname: filteredVehicleData.name,
+    //   phone: filteredVehicleData.phone,
+    // });
   }, [id]);
 
   const handleMakeAndModalTab = () => {
@@ -515,7 +610,6 @@ const UserVehicleDetails = () => {
       ];
     });
   };
-
   const handleChange = (e) => {
     e.preventDefault();
 
@@ -1020,30 +1114,29 @@ const UserVehicleDetails = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
+                            <label htmlFor="bannerImage">Banner Image</label>
                             <div className="imgCross">
-                              {Array.from(getfilteredVehicleData).map(
-                                (curElem) => {
-                                  return (
-                                    <span>
-                                      <img
-                                        style={{
-                                          maxWidth: "16%",
-                                          padding: "10px",
-                                        }}
-                                        loading="lazy"
-                                        src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src =
-                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                        }}
-                                        alt="Maskgroup1"
-                                      />
-                                      <button className="close">x</button>
-                                    </span>
-                                  );
-                                }
-                              )}
+                              {Array.from(bannerImage).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        maxWidth: "16%",
+                                        padding: "10px",
+                                      }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                    <button className="close">x</button>
+                                  </span>
+                                );
+                              })}
                               {/* <input
                                 style={{
                                   fontSize: "1.2rem",
@@ -1060,6 +1153,48 @@ const UserVehicleDetails = () => {
                             </div>
                           </div>
                         </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="bannerImage">Gallery Image</label>
+                            <div className="imgCross">
+                              {Array.from(galleryImage).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        maxWidth: "16%",
+                                        padding: "10px",
+                                      }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                    <button className="close">x</button>
+                                  </span>
+                                );
+                              })}
+                              {/* <input
+                                style={{
+                                  fontSize: "1.2rem",
+                                  textAlign: "center",
+                                }}
+                                onChange={(e) => {
+                                  // handleNameField(e);
+                                  setFile(e.target.files);
+                                }}
+                                name="file"
+                                type="file"
+                                accept="image/png, image/jpeg"
+                              /> */}
+                            </div>
+                          </div>
+                        </div>
+
                         <div className="col-12">
                           <p className="small">
                             Accepted file types: jpg, jpeg, png, Max. file size:
@@ -1463,29 +1598,29 @@ const UserVehicleDetails = () => {
 
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="">
-                              {Array.from(getfilteredVehicleData).map(
-                                (curElem) => {
-                                  return (
-                                    <span>
-                                      <img
-                                        style={{
-                                          maxWidth: "16%",
-                                          padding: "10px",
-                                        }}
-                                        loading="lazy"
-                                        src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src =
-                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                        }}
-                                        alt="Maskgroup1"
-                                      />
-                                    </span>
-                                  );
-                                }
-                              )}
+                            <label htmlFor="documentImae">Document Image</label>
+                            <div className="imgCross">
+                              {Array.from(documentImage).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        maxWidth: "16%",
+                                        padding: "10px",
+                                      }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                    <button className="close">X</button>
+                                  </span>
+                                );
+                              })}
                               {/* <input
                                 style={{
                                   fontSize: "1.2rem",
