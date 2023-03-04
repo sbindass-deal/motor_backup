@@ -117,6 +117,7 @@ const AddBlog = () => {
                     background: "white",
                     padding: "15px",
                     minHeight: "30vh",
+                    color: "black",
                   }}
                   editorState={blogContent}
                   toolbarClassName="toolbarClassName"

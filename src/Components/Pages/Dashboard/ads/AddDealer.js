@@ -1,16 +1,22 @@
 import FormInput from "../../../UI/FormInput";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
 
 const AddDealer = () => {
   const navigate = useNavigate();
   const [showPassWord, setShowPassWord] = useState(false);
   const [showCPassword, setShowCPassWord] = useState(false);
-  const [file1, setFile1] = useState([]);
+  const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
+  const [file, setFile] = useState([]);
+  const [bannerImg, setBannerImg] = useState([]);
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -21,6 +27,36 @@ const AddDealer = () => {
     password: "",
     cPassword: "",
   });
+  // Logo image
+  const inputRef = useRef();
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setFile((prevState) => [...event.dataTransfer.files]);
+  };
+
+  // Banner image
+
+  const inputRefBanner = useRef();
+
+  const handleDragOverBanner = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBanner = (event) => {
+    event.preventDefault();
+    setBannerImg((prevState) => [...event.dataTransfer.files]);
+  };
+
+  const handleContent = (e) => {
+    setBlogContent(e);
+    console.log(111, e);
+  };
+
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -36,20 +72,59 @@ const AddDealer = () => {
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
+
+  const uploadLogeImg = (dealer_id) => {
+    (async () => {
+      for await (const item of file) {
+        const url = process.env.REACT_APP_URL + "dealer_img";
+        const formData = new FormData();
+        formData.append("dealer_id", dealer_id);
+        formData.append("category", "logo");
+        formData.append(item);
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
+  const uploadCoverImg = (dealer_id) => {
+    (async () => {
+      for await (const item of bannerImg) {
+        const url = process.env.REACT_APP_URL + "dealer_img";
+        const formData = new FormData();
+        formData.append("dealer_id", dealer_id);
+        formData.append("category", "banner");
+        formData.append(item);
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_URL}usersDealer`;
     let formData = new FormData();
     formData.append("name", userInput.name);
     formData.append("email", userInput.email);
-    formData.append("phone", userInput.phone);
+    formData.append("mobile", userInput.phone);
     formData.append("username", userInput.userName);
-    formData.append("dealerDescription", userInput.dealerDescription);
+    formData.append("dealerDescription", blogContent);
     formData.append("password", userInput.password);
     formData.append("title", userInput.name);
     formData.append("bid", 0);
     formData.append("description", null);
-    formData.append("logo", file1[0]);
+    // formData.append("logo", file[0]);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -59,6 +134,8 @@ const AddDealer = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.data.status === 200) {
+          uploadLogeImg(response.data.dealer_id);
+          uploadCoverImg(response.data.dealer_id);
           navigate("/admin-dealer");
           notify(response.data.message);
         } else {
@@ -80,7 +157,7 @@ const AddDealer = () => {
         <div className="col-12 text-center pb-5">
           <h2>Add Dealers</h2>
         </div>
-        <form className="container px-5" onSubmit={handleSubmit}>
+        <form className="container px-5">
           <div className="row row_gap_5">
             <div className="col-md-12 col-lg-6 col-sm-12">
               {" "}
@@ -100,6 +177,7 @@ const AddDealer = () => {
                 value={userInput.email}
                 onChange={handleUserInput}
                 name="email"
+                type="email"
                 placeholder="Enter Email address"
                 errorMessage="It should be a valid email address!"
                 label="Email address"
@@ -173,7 +251,7 @@ const AddDealer = () => {
             <div className="col-12 col-sm-12 col-md-12">
               <div className="form-group">
                 <label>Description</label>
-                <textarea
+                {/* <textarea
                   value={userInput.dealerDescription}
                   onChange={handleUserInput}
                   name="dealerDescription"
@@ -181,14 +259,30 @@ const AddDealer = () => {
                   className="field"
                   maxLength={200}
                   required
-                ></textarea>
+                ></textarea> */}
+                <div className="border border-2 border-dark">
+                  <Editor
+                    editorStyle={{
+                      background: "white",
+                      padding: "15px",
+                      minHeight: "30vh",
+                      color: "black",
+                    }}
+                    editorState={blogContent}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={handleContent}
+                    placeholder="Please enter description"
+                  />
+                </div>
               </div>
             </div>
-            <div className="col-12 col-sm-12 col-md-12">
+            {/* <div className="col-12 col-sm-12 col-md-12">
               <div className="form-group">
                 <div className="drag-area">
                   <div className="row">
-                    {Array.from(file1).map((items, i) => {
+                    {Array.from(file).map((items, i) => {
                       return (
                         <span key={i} className="px-1">
                           <img
@@ -211,7 +305,7 @@ const AddDealer = () => {
                       cursor: "pointer",
                     }}
                     onChange={(e) => {
-                      setFile1(e.target.files);
+                      setFile(e.target.files);
                     }}
                     name="files"
                     type="file"
@@ -219,10 +313,105 @@ const AddDealer = () => {
                   />
                 </div>
               </div>
+            </div> */}
+            <div className="col-12 col-md-12">
+              <label>Upload Logo</label>
+              <div className="row">
+                {Array.from(file).map((items) => {
+                  return (
+                    <span>
+                      <img
+                        src={items ? URL.createObjectURL(items) : null}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
+                <input
+                  onChange={(e) => {
+                    return setFile((prevState) => [...e.target.files]);
+                  }}
+                  name="file"
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRef}
+                  multiple
+                  required
+                  hidden
+                />
+                <button
+                  className="orange_btn"
+                  type="button"
+                  onClick={() => inputRef.current.click()}
+                >
+                  Select Files
+                </button>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-12 mt-4">
+              <label>Banner Photos</label>
+              <div className="row">
+                {Array.from(bannerImg).map((items) => {
+                  return (
+                    <span>
+                      <img
+                        src={items ? URL.createObjectURL(items) : null}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOverBanner}
+                onDrop={handleDropBanner}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
+                <input
+                  onChange={(e) => {
+                    return setBannerImg((prevState) => [...e.target.files]);
+                  }}
+                  name="file"
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRefBanner}
+                  required
+                  multiple
+                  hidden
+                />
+                <button
+                  className="orange_btn"
+                  type="button"
+                  onClick={() => inputRefBanner.current.click()}
+                >
+                  Select Files
+                </button>
+              </div>
             </div>
           </div>
           <div className="form-group text-center pt-4">
-            <button type="submit" className="btn">
+            <button onClick={handleSubmit} type="button" className="btn">
               Submit
             </button>
           </div>
