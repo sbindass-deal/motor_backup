@@ -827,15 +827,15 @@ const UserVehicleDetails = () => {
                             <label>
                               What state is the vehicle currently located in?
                             </label>
-
                             <select
                               value={namefield.city}
                               onChange={handleNameField}
                               name="city"
                               className="field"
                               placeholder="Enter city"
-                              required
+                              
                             >
+                            <option>{namefield.city}</option>
                               {stateData.map((curElem, i) => {
                                 return (
                                   <option value={curElem.name} key={i}>
