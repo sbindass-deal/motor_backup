@@ -15,19 +15,21 @@ const AuctionNoReserve = () => {
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
 
-  // const fetchNoreserveData = async() => {
-  //   try{
-  //     const res = await axios.get(`${process.env.REACT_APP_URL}noreserve`)
-  //     setauctions(res.data.data)
-  //     setFilteredUsers(res.data.data)
-  //     console.log(1111,res.data.data)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
-  // useEffect(() => {
-  //   fetchNoreserveData()
-  // }, [])
+  const fetchNoreserveData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}vehicles_all/no_reserve`
+      );
+      setauctions(res.data.data);
+      setFilteredUsers(res.data.data);
+      setauctions(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchNoreserveData();
+  }, []);
   useEffect(() => {
     // const fetchNoResurveApi = async () => {
     //   try {
@@ -43,8 +45,8 @@ const AuctionNoReserve = () => {
     const filteredAuctionVehicle = vehicleData.filter(
       (item) => item.displayInAuction === "Yes"
     );
-    setauctions(filteredAuctionVehicle);
-    setFilteredUsers(filteredAuctionVehicle);
+    // setauctions(filteredAuctionVehicle);
+    // setFilteredUsers(filteredAuctionVehicle);
     console.log(1111, filteredAuctionVehicle);
   }, [vehicleData]);
 
@@ -78,11 +80,7 @@ const AuctionNoReserve = () => {
               <h2 className="title_combo title_Center">
                 Auctions No Reserve{" "}
                 <span>
-                  {
-                    data
-                      .filter((data) => data.done === 1 && data.premium === 1)
-                      .map((data) => data).length
-                  }{" "}
+                  {data.length}&nbsp;
                   AUCTIONS NOW LIVE
                 </span>
               </h2>
@@ -93,22 +91,7 @@ const AuctionNoReserve = () => {
                   <input
                     value={searchValue}
                     onChange={(e) => {
-                      let value = e.target.value;
-                      setSearchValue(value);
-                      setauctions(
-                        filteredUsers
-                          .filter(
-                            (data) =>
-                              data.make
-                                .toLowerCase()
-                                .includes(value.toLowerCase()) ||
-                              data.year.includes(value) ||
-                              data.model
-                                .toLowerCase()
-                                .includes(value.toLowerCase())
-                          )
-                          .map((data) => data)
-                      );
+                      setSearchValue(e.target.value);
                     }}
                     type="text"
                     name=""
@@ -162,12 +145,8 @@ const AuctionNoReserve = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {(data.length > 0 && highlightWatch
-              ? data.filter((item) => item.like > 0)
-              : data
-            )
-              .filter((data) => data.done === 1 && data.premium === 1)
-              .map((curElem) => {
+            {data.length > 0 &&
+              data.map((curElem) => {
                 return (
                   <div
                     key={curElem.id}
@@ -180,25 +159,13 @@ const AuctionNoReserve = () => {
                             className="auction_image"
                             to={`/detail/${curElem.id}`}
                           >
-                            {curElem.images[0] ? (
+                            {curElem.image_banner.length > 0 ? (
                               <>
-                                <button
-                                  // onClick={() => addFabrity(curElem.id)}
-                                  type="button"
-                                  className="watchedIc"
-                                  style={{ margin: "8px" }}
-                                >
-                                  <i
-                                    className={`fa-solid fa-star ${
-                                      curElem.like >= 1 ? "faList" : ""
-                                    }`}
-                                  ></i>
-                                </button>
                                 <img
                                   loading="lazy"
                                   src={
-                                    curElem.images[0] &&
-                                    `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                    curElem.image_banner[0] &&
+                                    `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
                                   }
                                   onError={({ currentTarget }) => {
                                     currentTarget.onError = null;
@@ -210,18 +177,6 @@ const AuctionNoReserve = () => {
                               </>
                             ) : (
                               <>
-                                <button
-                                  // onClick={() => addFabrity(curElem.id)}
-                                  type="button"
-                                  className="watchedIc"
-                                  style={{ margin: "8px" }}
-                                >
-                                  <i
-                                    className={`fa-solid fa-star ${
-                                      curElem.like >= 1 ? "faList" : ""
-                                    }`}
-                                  ></i>
-                                </button>
                                 <img
                                   loading="lazy"
                                   src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
@@ -239,7 +194,7 @@ const AuctionNoReserve = () => {
                             {curElem.odmeter}
                           </Link>
 
-                          {/* <button
+                          <button
                             onClick={() => addFabrity(curElem.id)}
                             type="button"
                             className="watchedIc"
@@ -249,15 +204,11 @@ const AuctionNoReserve = () => {
                                 curElem.like >= 1 ? "faList" : ""
                               }`}
                             ></i>
-                          </button> */}
+                          </button>
                         </h4>
                         <p className="color_grey">
                           {curElem?.moreDescription.substr(0, 123)}
                         </p>
-                        {/* <div className="opening_bid">
-                          <p>Opening Bid: $980000 </p>
-                          <p>Upcoming Auction</p>
-                        </div> */}
 
                         <ul
                           className="labelList"
@@ -282,40 +233,13 @@ const AuctionNoReserve = () => {
                               </span>
                             ) : null}
                           </li>
-
-                          {console.log(97989, curElem)}
                           <li>
                             <label>Ends In:</label>{" "}
                             <span>
                               {new Date(curElem.EndTime).toLocaleTimeString()}
                             </span>
                           </li>
-                          {/* <li>
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              parseInt(new Date().getTime(), 10) >
-                              0 && curElem.approved === "1" ? (
-                              <label>Auction Open</label>
-                            ) : parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                parseInt(new Date().getTime(), 10) >
-                                0 &&
-                              (curElem.approved === null ||
-                                curElem.approved === "11") ? (
-                              <label>Upcoming Auction</label>
-                            ) : (
-                              // <label>Auction Closed</label>
-                              <label>End In : 5 days</label>
-                            )}
-                          </li> */}
                         </ul>
-                        {/* <Link
-                          to={`/detail/${curElem.id}`}
-                          className="orange_btn opening_bid_btn"
-                        >
-                          View Details <i class="fa fa-arrow-right"></i>
-                        </Link> */}
                       </div>
                     </div>
                   </div>
