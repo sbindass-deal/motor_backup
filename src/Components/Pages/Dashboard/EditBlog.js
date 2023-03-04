@@ -144,12 +144,13 @@ const EditBlog = () => {
                   rows={11}
                 ></textarea>
               </div> */}
-              <div className="border border-2 border-dark">
+              <div className="border border-2 border-dark" style={{background:"white", color:"black"}}>
                 <Editor
                   editorStyle={{
                     background: "white",
                     padding: "15px",
                     minHeight: "30vh",
+                    color:"black"
                   }}
                   editorState={blogContent}
                   value="dlsjfkljf"
