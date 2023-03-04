@@ -927,7 +927,7 @@ const VehicleRegistered1 = () => {
                       </div>
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-4">
-                          <FormInput
+                          <FormInput 
                             value={basicfact.vin}
                             // onChange={handleNameField}
                             name="name"
@@ -942,9 +942,9 @@ const VehicleRegistered1 = () => {
                         <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
-                            <select
+                            <select disabled
                               value={namefield.year}
-                              onChange={handleNameField}
+                              // onChange={handleNameField}
                               name="year"
                               className="field"
                               required
