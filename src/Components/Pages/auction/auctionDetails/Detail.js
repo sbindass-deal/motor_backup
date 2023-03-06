@@ -48,6 +48,7 @@ function Detail() {
 
   const [latestBidData, setLatestBidData] = useState(null)
   const [bidCount, setBidCount] = useState(null)
+  const [endTimedata, setEndTimedata] = useState(null)
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -169,6 +170,7 @@ function Detail() {
 
       setLatestBidData(response.data.last_bid)
       setBidCount((response.data.data).length)
+      setEndTimedata(response.data.end_time)
 
     }).catch((err) => {
       console.log(err)
@@ -401,7 +403,7 @@ function Detail() {
                 <div className="downloadZip">
                   ZIP Code
                   <input type="text" placeholder="Search ZIP code"></input>
-                  <button className="btn">Search</button>
+                  <button className="btn">Get Quote</button>
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using
@@ -425,25 +427,40 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Time Left</p>
-                        <p style={{ marginLeft: "40px" }}>
+                        <p style={{ marginLeft: "55px" }}>
                           {" "}
-                          2 days, 9 hours, 40 minutes, 16 seconds *
+                          {/* 2 days, 9 hours, 40 minutes, 16 seconds * */}
+                          <span>
+                            {days}days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
+                          </span>
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Ends On</p>
-                        <p style={{ marginLeft: "40px" }}>	Thursday, March 9 at 4:32am remind me</p>
+                        <p style={{ marginLeft: "60px" }}>
+                          {/* Thursday, March 9 at 4:32 am remind me */}
+                          {endTimedata}
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Bids</p>
-                        <p style={{ marginLeft: "40px" }}>{bidCount}</p>
+                        <p style={{ marginLeft: "87px" }}>{bidCount}</p>
                       </li>
                       <li style={{ display: "flex" }}>
-                        <p>Place Bid</p>
-                        <button style={{ marginLeft: "40px" }}>
-                          REGISTER TO BID
+                        {/* <p>Place Bid</p> */}
+                        <button
+                          type="button"
+                          className="gry_btn active bg-dark"
+                          style={{ border: "none" }}
+                          onClick={() => setShow(true)}
+                        >
+                          Place a bid
                         </button>
                       </li>
+                      
                     </ul>
                   </div>
                 </div>
