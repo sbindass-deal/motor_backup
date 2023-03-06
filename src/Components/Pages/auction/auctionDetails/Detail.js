@@ -460,11 +460,12 @@ function Detail() {
                         <p style={{ marginLeft: "87px" }}>{bidCount}</p>
                       </li>
                       <li style={{ display: "flex" }}>
-                        {/* <p>Place Bid</p> */}
+                        <p>Place Bid</p>
                         <button
+                         
                           type="button"
                           className="gry_btn active bg-dark"
-                          style={{ border: "none" }}
+                          style={{ border: "none" ,marginLeft: "40px",marginBottom: "20px"}}
                           onClick={() => setShow(true)}
                         >
                           Place a bid
@@ -476,7 +477,7 @@ function Detail() {
                 </div>
               </div>
 
-              <Comment />
+              {/* <Comment /> */}
             </div>
           </div>
         </div>
