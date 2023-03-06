@@ -533,9 +533,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
-    //   return setShowError(false);
-    // }
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
     axios
       .post(`${url}vehicles`, {
         planId: logingUser.planReducer.plan.planId,
@@ -571,7 +571,7 @@ const VechilesRegistraion = () => {
         engineSize: vehiclepast,
         stepOneImage: "",
         stepTwoImage: "",
-        UltiumDriveeWDsystem: ultiumdrive,
+        // UltiumDriveeWDsystem: ultiumdrive,
         link: link,
         accessories: accessories.toString(),
         truckDetails: detailsInfo.toString(),
@@ -1289,7 +1289,6 @@ const VechilesRegistraion = () => {
                                     className="field"
                                     placeholder="Enter link"
                                     type={item.type}
-                                    required={true}
                                   />
                                 </div>
                               );

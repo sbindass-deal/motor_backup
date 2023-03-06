@@ -6,6 +6,7 @@ import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import FormInput from "../../../UI/FormInput";
 import Msg from "../../../../Assets/images/msg.svg";
+import MicrosoftTeams from "../../../../Assets/images/MicrosoftTeams-image.png"
 import EyeIcon from "../../../../Assets/images/eyeIcon.svg";
 import ScreenShort from "../../../../Assets/images/screenShort.png";
 import carImg from "../../../../Assets/images/carImg.png";
@@ -178,7 +179,7 @@ function Detail() {
     const fetchApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
+          `${process.env.REACT_APP_URL}vehicle_detail/${id}`
         );
         if (res.data.status === 200) {
           setVehicle(res.data.data);
@@ -194,6 +195,7 @@ function Detail() {
 
     fetchApi();
   }, [vehicleDatas, id]);
+
 
   // get vin details by api
   useEffect(() => {
@@ -303,9 +305,8 @@ function Detail() {
                 {vehicle?.image_banner && (
                   <img
                     loading="lazy"
-                    src={
-                      vehicle?.image_banner[0] &&
-                      `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
+                    src={ vehicle?.image_banner.length == 0 ? MicrosoftTeams : vehicle?.image_banner[0] && `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
+                      
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
