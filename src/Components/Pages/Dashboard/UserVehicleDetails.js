@@ -42,6 +42,84 @@ const UserVehicleDetails = () => {
   const [bannerImage, setBannerImage] = useState([]);
   const [galleryImage, setGalleryImage] = useState([]);
   const [documentImage, setDocumentImage] = useState([]);
+  const [namefield, setNamefield] = useState({
+    name: "",
+    email: "",
+    year: "",
+    make: "",
+    model: "",
+    vechilelocation: "",
+    city: "",
+    sale: "",
+    link: "",
+    vehiclepast: "",
+    providelink: "",
+    changedvechiles: "",
+    dealer: "",
+    dealership: "",
+    soldvechiles: "",
+    videolink: "",
+    file: uploadmultipleImage,
+  });
+
+  // basic facts
+
+  const [basicfact, setbasicfact] = useState({
+    vin: "",
+    displayInAuction: "",
+    auctionType: "",
+    adWebsiteLink: "",
+    vechilesrace: "",
+    ultiumdrive: "",
+    Interstellar: "",
+    interior: "",
+    brandandmodel: "",
+    sizetires: "",
+    trucktitled: "",
+    other: "",
+    status: "",
+    km: "",
+    wheels: "",
+    kmacc: "",
+    odometer: "",
+    accurateField: "",
+    files: "",
+    otherTruckTitle: "",
+    otherStatus: "",
+  });
+
+  const [detailstab, setDetailstab] = useState({
+    detailvin: "",
+    bodywork: "",
+    rustpresent: "",
+    modificationstock: "",
+    truckfromnew: "",
+    servicesperformed: "",
+    issuesorproblems: "",
+    moreDescription: "",
+    reserve: "",
+    reserveAmount: "",
+    shibnobiabout: "",
+    rtmember: "",
+    shibnobi: "",
+    documentFee: "",
+    accept: "",
+    understand: "",
+    truckHistory: "",
+    rustDetails: "",
+    modificationOnTrck: "",
+    fuel: "",
+  });
+
+  // contact info
+
+  const [information, setInformation] = useState({
+    uemail: "",
+    username: "",
+    password: "",
+    iname: "",
+    phone: "",
+  });
 
   useEffect(() => {
     const fetchApiData = async () => {
@@ -68,84 +146,6 @@ const UserVehicleDetails = () => {
     };
     fetchApiData();
   }, [countryId]);
-
-  const fetchVehicleApi = async (data) => {
-    const filteredVehicleData = vehicleData;
-    setGetfilteredVehicleData(filteredVehicleData.images);
-    setVechileInfo(filteredVehicleData);
-    await axios
-      .post(`${url}updateVehiclesAdmin/${id}`, {
-        planId: logingUser.planReducer.plan.planId,
-        plantype: logingUser.planReducer.plan.listingType,
-        name: namefield.name,
-        email: namefield.email,
-        year: namefield.year,
-        make: namefield.make,
-        model: namefield.model,
-        vechilelocation: namefield.country,
-        city: namefield.city,
-        sale: namefield.owned,
-        link: namefield.link,
-        vehiclepast: namefield.engineSize,
-        providelink: namefield.transmission,
-        changedvechiles: namefield.titleStatus,
-        dealer: namefield.dealerId,
-        dealership: namefield.dealerName,
-        soldvechiles: namefield.consignment,
-        videolink: namefield.description,
-        description: `${[...arr.map((curElem) => curElem.value)]}`,
-        vin: basicFactOnChange.detailvin,
-        displayInAuction: basicFactOnChange.displayInAuction,
-        auctionType: basicFactOnChange.auctionType,
-        adWebsiteLink: basicFactOnChange.externalLink,
-        vechilesrace: basicFactOnChange.ownerDetail,
-        ultiumdrive: basicFactOnChange.Interstellar,
-        Interstellar: basicFactOnChange.Interstellar,
-        interior: basicFactOnChange.interior,
-        brandandmodel: basicFactOnChange.brandandmodel,
-        sizetires: basicFactOnChange.sizetires,
-        trucktitled: basicFactOnChange.title,
-        other: basicFactOnChange.other,
-        status: basicFactOnChange.status,
-        km: basicFactOnChange.km,
-        wheels: basicFactOnChange.pickOne,
-        kmacc: basicFactOnChange.ogEngine,
-        odometer: basicFactOnChange.odmeter,
-        accurateField: basicFactOnChange.kmacc,
-        otherTruckTitle: basicFactOnChange.otherTruckTitle,
-        otherStatus: basicFactOnChange.otherStatus,
-        detailvin: detailstab.detailvin,
-        bodywork: detailstab.bodywork,
-        rustpresent: detailstab.rustpresent,
-        modificationstock: detailstab.modificationstock,
-        servicesperformed: detailstab.ammountOnDocument,
-        issuesorproblems: detailstab.issuesorproblems,
-        moreDescription: detailstab.moreDescription,
-        reserve: detailstab.reserve,
-        reserveAmount: detailstab.reservAmount,
-        shibnobiabout: detailstab.hereFrom,
-        shibnobi: detailstab.shibnobi,
-        documentFee: detailstab.documentFee,
-        truckHistory: detailstab.truckHistory,
-        rustDetails: detailstab.rustDetails,
-        modificationOnTrck: detailstab.modificationOnTruck,
-        fuel: detailstab.fuel,
-        uemail: filteredVehicleData.email,
-        iname: filteredVehicleData.name,
-        phone: filteredVehicleData.phone,
-      })
-      .then((result) => {
-        //navigaget
-        if (result.data.status === 200) {
-          navigate("/vehicle-submission");
-          submitApprove(data);
-          // window.location.reload(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const notify = (val) =>
     toast.success(val, {
@@ -236,84 +236,6 @@ const UserVehicleDetails = () => {
       }
     })();
   };
-  const [namefield, setNamefield] = useState({
-    name: "",
-    email: "",
-    year: "",
-    make: "",
-    model: "",
-    vechilelocation: "",
-    city: "",
-    sale: "",
-    link: "",
-    vehiclepast: "",
-    providelink: "",
-    changedvechiles: "",
-    dealer: "",
-    dealership: "",
-    soldvechiles: "",
-    videolink: "",
-    file: uploadmultipleImage,
-  });
-
-  // basic facts
-
-  const [basicfact, setbasicfact] = useState({
-    vin: "",
-    displayInAuction: "",
-    auctionType: "",
-    adWebsiteLink: "",
-    vechilesrace: "",
-    ultiumdrive: "",
-    Interstellar: "",
-    interior: "",
-    brandandmodel: "",
-    sizetires: "",
-    trucktitled: "",
-    other: "",
-    status: "",
-    km: "",
-    wheels: "",
-    kmacc: "",
-    odometer: "",
-    accurateField: "",
-    files: "",
-    otherTruckTitle: "",
-    otherStatus: "",
-  });
-
-  const [detailstab, setDetailstab] = useState({
-    detailvin: "",
-    bodywork: "",
-    rustpresent: "",
-    modificationstock: "",
-    truckfromnew: "",
-    servicesperformed: "",
-    issuesorproblems: "",
-    moreDescription: "",
-    reserve: "",
-    reserveAmount: "",
-    shibnobiabout: "",
-    rtmember: "",
-    shibnobi: "",
-    documentFee: "",
-    accept: "",
-    understand: "",
-    truckHistory: "",
-    rustDetails: "",
-    modificationOnTrck: "",
-    fuel: "",
-  });
-
-  // contact info
-
-  const [information, setInformation] = useState({
-    uemail: "",
-    username: "",
-    password: "",
-    iname: "",
-    phone: "",
-  });
   const handleNameField = (e) => {
     const Value = e.target.value;
     const Name = e.target.name;
@@ -330,9 +252,6 @@ const UserVehicleDetails = () => {
   const basicFactOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
-    if (Name === "odometer") {
-      Value = e.target.value.replace(/\D/g, "");
-    }
     setbasicfact({ ...basicfact, [Name]: Value });
   };
   const basicFactSubmitHandler = (e) => {
@@ -380,7 +299,6 @@ const UserVehicleDetails = () => {
         if (res.data.status === 200) {
           setVehicleData(filteredVehicleData);
           setArr(youtubeLinkMapped);
-
           setGetfilteredVehicleData(filteredVehicleData.images);
           setVechileInfo(filteredVehicleData);
           setBannerImage(filteredVehicleData.image_banner);
@@ -427,7 +345,7 @@ const UserVehicleDetails = () => {
             otherStatus: filteredVehicleData.otherStatus,
           });
           setDetailstab({
-            detailvin: filteredVehicleData.detailvin,
+            detailvin: filteredVehicleData.vin,
             bodywork: filteredVehicleData.bodywork,
             rustpresent: filteredVehicleData.rustpresent,
             modificationstock: filteredVehicleData.modificationstock,
@@ -583,7 +501,7 @@ const UserVehicleDetails = () => {
       .then(function (response) {
         if (response.status === 200) {
           navigate("/vehicle-submission");
-          window.location.reload(false);
+          // window.location.reload(false);
         }
       })
       .catch(function (error) {
@@ -623,9 +541,155 @@ const UserVehicleDetails = () => {
     });
   };
 
-  useEffect(() => {
-    console.log("first");
-  }, [id]);
+  const fetchVehicleApi = async (data) => {
+    const filteredVehicleData = vehicleData;
+    setGetfilteredVehicleData(filteredVehicleData.images);
+    setVechileInfo(filteredVehicleData);
+    const {
+      name,
+      email,
+      year,
+      make,
+      model,
+      vechilelocation,
+      city,
+      sale,
+      link,
+      vehiclepast,
+      providelink,
+      changedvechiles,
+      dealer,
+      dealership,
+      soldvechiles,
+      videolink,
+    } = namefield;
+
+    const {
+      vin,
+      displayInAuction,
+      auctionType,
+      adWebsiteLink,
+      vechilesrace,
+      ultiumdrive,
+      Interstellar,
+      interior,
+      brandandmodel,
+      sizetires,
+      trucktitled,
+      other,
+      status,
+      km,
+      wheels,
+      kmacc,
+      odometer,
+      accurateField,
+      files,
+      otherTruckTitle,
+      otherStatus,
+    } = basicfact;
+    const {
+      detailvin,
+      bodywork,
+      rustpresent,
+      modificationstock,
+      truckfromnew,
+      servicesperformed,
+      issuesorproblems,
+      moreDescription,
+      reserve,
+      reserveAmount,
+      shibnobiabout,
+      rtmember,
+      shibnobi,
+      documentFee,
+      accept,
+      understand,
+      truckHistory,
+      rustDetails,
+      modificationOnTrck,
+      fuel,
+    } = detailsInfo;
+    const { uemail, username, password, iname, phone } = information;
+    // debugger
+    await axios
+      .post(`${url}updateVehiclesAdmin/${id}`, {
+        // planId: logingUser.planReducer.plan.planId,
+        // plantype: logingUser.planReducer.plan.listingType,
+        name: iname,
+        email: uemail,
+        premium: reduxValue.submitvechilesReducer.submitPlan,
+        userId: userDataLogin.login.user.id,
+        year: year,
+        make: make,
+        description: `${[...arr.map((curElem) => curElem.value)]}`,
+        model: model,
+        owned: sale,
+        country: vechilelocation,
+        city: city,
+        consignment: soldvechiles,
+        dealerName: dealership,
+        dealerId: dealer,
+        dealerDescription: dealership,
+        ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
+        detailvin: vin,
+        displayInAuction: displayInAuction,
+        auctionType,
+        externalLink: adWebsiteLink,
+        km: odometer,
+        kmacc: accurateField,
+        odmeter: odometer,
+        ogEngine: kmacc,
+        transmission: providelink,
+        title: trucktitled,
+        other,
+        titleStatus: changedvechiles,
+        engineSize: vehiclepast,
+        stepOneImage: "",
+        stepTwoImage: "",
+        // UltiumDriveeWDsystem: ultiumdrive,
+        link: link,
+        accessories: accessories.toString(),
+        truckDetails: detailsInfo.toString(),
+        moreDescription: moreDescription,
+        reserve: `${reserve === "Yes" ? reserve : "No"}`,
+        reservAmount: reserveAmount,
+        hereFrom: shibnobiabout,
+        ammountOnDocument: servicesperformed,
+        documentFee,
+        Interstellar,
+        pickOne: wheels,
+        interior,
+        brandandmodel,
+        understandCondition,
+        acceptTerms,
+        sizetires,
+        bodywork,
+        rustpresent,
+        modificationstock,
+        issuesorproblems,
+        status, // db me check karni h
+        otherTruckTitle,
+        otherStatus,
+        truckHistory,
+        rustDetails,
+        modificationOnTruck: modificationOnTrck,
+        fuel,
+        // EndTime: EndDateTime.toString(),
+        phone,
+        sold: 1,
+      })
+      .then((result) => {
+        //navigaget
+        if (result.data.status === 200) {
+          navigate("/vehicle-submission");
+          submitApprove(data);
+          // window.location.reload(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -1798,12 +1862,6 @@ const UserVehicleDetails = () => {
                                 className="field"
                                 required
                               />
-                              {detailstab.modificationOnTrck.trim().length >
-                                400 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
                             </div>
                           )}
                         </div>
@@ -1823,12 +1881,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             ></textarea>
-                            {detailstab.issuesorproblems.trim().length >
-                              1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
                           </div>
                           <p>
                             Please list and describe services performed and when
@@ -1849,12 +1901,6 @@ const UserVehicleDetails = () => {
                               placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
                             ></textarea>
-                            {detailstab.moreDescription.trim().length >
-                              1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
