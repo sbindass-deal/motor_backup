@@ -599,7 +599,7 @@ const VechilesRegistraion = () => {
         rustDetails,
         modificationOnTruck: modificationOnTrck,
         fuel,
-        EndTime: EndDateTime.toString(),
+        // EndTime: EndDateTime.toString(),
         phone,
         sold: 1,
       })
