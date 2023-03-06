@@ -46,8 +46,8 @@ function Detail() {
     new Date("2023-03-07, 19:53:00").getTime()
   );
 
-  const [latestBidData, setLatestBidData] = useState(null);
-  const [bidCount, setBidCount] = useState(null);
+  const [latestBidData, setLatestBidData] = useState(null)
+  const [bidCount, setBidCount] = useState(null)
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -167,13 +167,13 @@ function Detail() {
       .then((response) => {
         console.log(109, response);
 
-        setLatestBidData(response.data.last_bid);
-        setBidCount(response.data.data.length);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      setLatestBidData(response.data.last_bid)
+      setBidCount((response.data.data).length)
+
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   useEffect(() => {
     getfetchData();
@@ -432,10 +432,7 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Ends On</p>
-                        <p style={{ marginLeft: "40px" }}>
-                          {" "}
-                          Thursday, March 9 at 4:32am remind me
-                        </p>
+                        <p style={{ marginLeft: "40px" }}>	Thursday, March 9 at 4:32am remind me</p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Bids</p>

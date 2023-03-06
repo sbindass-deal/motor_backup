@@ -1595,7 +1595,7 @@ const VechilesRegistraion = () => {
                                   <option value="General listing">
                                     General listing
                                   </option>
-                                  <option value="charity">charity</option>
+                                  <option value="charity">Charity</option>
                                   <option value="Premium listing">
                                     Premium listing
                                   </option>
