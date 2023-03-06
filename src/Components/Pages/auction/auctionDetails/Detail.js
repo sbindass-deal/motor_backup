@@ -48,6 +48,7 @@ function Detail() {
 
   const [latestBidData, setLatestBidData] = useState(null)
   const [bidCount, setBidCount] = useState(null)
+  const [endTimeData, setEndTimeData] = useState(null)
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -165,6 +166,7 @@ function Detail() {
 
       setLatestBidData(response.data.last_bid)
       setBidCount((response.data.data).length)
+      setEndTimeData(response.data.end_time)
 
     }).catch((err) => {
       console.log(err)
@@ -426,7 +428,7 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Ends On</p>
-                        <p style={{ marginLeft: "40px" }}>	Thursday, March 9 at 4:32am remind me</p>
+                        <p style={{ marginLeft: "40px" }}>	{endTimeData }</p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Bids</p>
