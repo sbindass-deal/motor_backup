@@ -618,7 +618,7 @@ const UserVehicleDetails = () => {
         if (result.data.status === 200) {
           navigate("/vehicle-submission");
           submitApprove(data);
-          window.location.reload(false);
+          // window.location.reload(false);
         }
       })
       .catch((error) => {
@@ -2072,7 +2072,7 @@ const UserVehicleDetails = () => {
                         onClick={() => fetchVehicleApi("reject")}
                         className="btn btn-warning m-3"
                         type="button"
-                        disabled={vechileInfo.approved == 2 ? true : false}
+                        disabled={vechileInfo.approved == 3 ? true : false}
                       >
                         Reject
                       </button>
