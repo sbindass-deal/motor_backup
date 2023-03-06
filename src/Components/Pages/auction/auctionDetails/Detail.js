@@ -568,7 +568,7 @@ function Detail() {
                   console.log(778, curElem)
 
                   return (
-                    <a key={i} href="#" className="dfr">
+                    <a key={i} className="dfr">
                       <div className="imgText">
                         <div className="sidebarPost_Img">
                           {/* <img src={carImg} /> */}
