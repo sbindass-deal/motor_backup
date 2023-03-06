@@ -7,7 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import {
   step_one,
   step_three,
@@ -189,8 +188,6 @@ const UserVehicleDetails = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
-
-  
 
   const uploadFileOne = (vehicleId) => {
     (async () => {
@@ -578,7 +575,7 @@ const UserVehicleDetails = () => {
 
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
-        approve: data === "approve" ? 1 : 2,
+        approve: data === "approve" ? 1 : 3,
         id,
         desc1: descValue.description1,
         desc2: descValue.description2,
@@ -750,7 +747,8 @@ const UserVehicleDetails = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
-                            <select disabled
+                            <select
+                              disabled
                               value={namefield.year}
                               onChange={handleNameField}
                               name="year"
@@ -837,9 +835,8 @@ const UserVehicleDetails = () => {
                               name="city"
                               className="field"
                               placeholder="Enter city"
-                              
                             >
-                            <option>{namefield.city}</option>
+                              <option>{namefield.city}</option>
                               {stateData.map((curElem, i) => {
                                 return (
                                   <option value={curElem.name} key={i}>

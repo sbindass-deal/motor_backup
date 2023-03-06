@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { async } from "q";
 
 function MyListings() {
   const logingUser = useSelector((state) => state);
@@ -15,6 +16,7 @@ function MyListings() {
   const [chateApiData, setChateApiData] = useState([]);
   const [vehicleId, setVehicleId] = useState();
   const [vehicleLoding, setVehicleLoding] = useState(false);
+  const [filterValue, setFilterValue] = useState("All");
   const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
 
@@ -42,87 +44,24 @@ function MyListings() {
     fetchData();
   }, []);
 
-  useEffect(() => {
+  const fetchUserVehicleListApi = async () => {
     setVehicleLoding(true);
-    axios
-      .get(process.env.REACT_APP_URL + `byUserVehicle`)
-      .then((response) => {
-        if (response.data.data && response.data.status === 200) {
-          setData(response.data.data);
-        }
-        setVehicleLoding(false);
-      })
-      .catch((err) => {
-        setVehicleLoding(false);
-      });
-  }, [logingUser.login.token]);
-  const fetchResurveApi = (vId, resurve, resurveAmount) => {
-    axios
-      .post(process.env.REACT_APP_URL + "changeReserve", {
-        id: vId,
-        reserve: resurve === "Yes" ? "No" : "Yes",
-        reservAmount: resurveAmount,
-      })
-      .then((res) => {
-        if (res.data.status === 200) {
-          setData([]);
-          window.location.reload(false);
-        }
-        console.log(res);
-      });
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}byUserVehicle?veicleStatus=${filterValue}`
+      );
+      if (res.data.status === 200) {
+        setData(res.data.data);
+      }
+      setVehicleLoding(false);
+    } catch (err) {
+      setVehicleLoding(false);
+    }
   };
 
   useEffect(() => {
-    const getChateMessageApi = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}getChat/${vehicleId}`
-        );
-        if (res.data.status === 200) {
-          setChateApiData(res.data.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getChateMessageApi();
-    const interVal = setInterval(() => {
-      if (show) {
-        getChateMessageApi();
-      }
-    }, 5000);
-    return () => {
-      clearInterval(interVal);
-    };
-  }, [show]);
-
-  const handleChatMessage = (e) => {
-    e.preventDefault();
-    axios
-      .post(process.env.REACT_APP_URL + "addChat", {
-        userId: userId.login.user.id,
-        vehicleId: vehicleId,
-        message: chatMessage,
-      })
-      .then((res) => {
-        if (res.data.status === 200) {
-          setChatMessage("");
-          setChateApiData(res.data.data);
-        }
-      });
-  };
-
-  const handleSoldApi = (id, userId) => {
-    axios
-      .post(process.env.REACT_APP_URL + "sold", {
-        id: id,
-        sold: 0,
-        userId,
-      })
-      .then((res) => {
-        window.location.reload(false);
-      });
-  };
+    fetchUserVehicleListApi();
+  }, [filterValue]);
 
   const handleDeleteVehicle = (vId) => {
     axios
@@ -133,6 +72,23 @@ function MyListings() {
         }
       })
       .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const publishVehicle = (vId) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+        approve: 2,
+        id: vId,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          fetchUserVehicleListApi(filterValue);
+          // window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -177,11 +133,26 @@ function MyListings() {
                 }}
               >
                 <h3>My Listing</h3>
+                <ul>
+                  <li className="">
+                    <select
+                      value={filterValue}
+                      onChange={(e) => {
+                        setFilterValue(e.target.value);
+                      }}
+                      className="post_select"
+                    >
+                      <option value="All">All</option>
+                      <option value="PUBLISHED">Publish</option>
+                      <option value="REVIEWD_BY_ADMIN">Approve</option>
+                      <option value="PENDING_ADMIN_APPROVAL">Pending</option>
+                    </select>
+                  </li>
+                </ul>
                 <Link to="/submit" className="gry_btn px-3">
                   + Add new listing
                 </Link>
               </div>
-              {/* </div> */}
               <hr />
               <div className="row">
                 <div className="col-12">
@@ -213,87 +184,17 @@ function MyListings() {
                               <p>
                                 {curElem.fuel} {curElem.odmeter}
                               </p>
-                              {curElem.bidding.map((curBid) => {
-                                return (
-                                  <p>
-                                    {curElem.reserve === "Yes"
-                                      ? "High Bid"
-                                      : "Current Bid"}
-                                    :- {curBid.auctionAmmount}
-                                  </p>
-                                );
-                              })}
                             </div>
 
                             <div className="pl-md-3 d-flex">
-                              {curElem.reserve === "Yes" &&
-                                curElem.sold === "1" &&
-                                parseInt(
-                                  new Date(curElem.EndTime).getTime(),
-                                  10
-                                ) -
-                                  new Date().getTime() <
-                                  0 && (
-                                  <div className="mx-2">
-                                    <button
-                                      onClick={() =>
-                                        handleSoldApi(
-                                          curElem.id,
-                                          curElem.userId
-                                        )
-                                      }
-                                      type="button"
-                                      className="gry_btn"
-                                    >
-                                      Sell
-                                    </button>
-                                  </div>
-                                )}
-                              {parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() <
-                                0 && curElem.reserve === "Yes" ? (
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() => handleShow(curElem.id)}
-                                    type="button"
-                                    className="gry_btn"
-                                  >
-                                    <ChatIcon />
-                                  </button>
-                                </div>
-                              ) : null}
-                              {parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() <
-                                900000 &&
-                              parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                new Date().getTime() >
-                                0 &&
-                              curElem.reserve === "Yes" ? (
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() =>
-                                      fetchResurveApi(
-                                        curElem.id,
-                                        curElem.reserve,
-                                        curElem.reservAmount
-                                      )
-                                    }
-                                    type="button"
-                                    className="gry_btn"
-                                  >
-                                    Reserve off
-                                  </button>
-                                </div>
-                              ) : null}
+                              {curElem?.approved == "1" && (
+                                <button
+                                  onClick={() => publishVehicle(curElem.id)}
+                                  className="gry_btn mr-2"
+                                >
+                                  Published
+                                </button>
+                              )}
                               <Link
                                 to={`/vehicle/${curElem.id}`}
                                 className="gry_btn"
@@ -368,7 +269,7 @@ function MyListings() {
               })}
             </div>
           </div>
-          <form onSubmit={handleChatMessage}>
+          <form>
             <div className="row">
               <div className="col-12 col-md-12">
                 <label for="validationCustom01" class="form-label">

@@ -15,7 +15,7 @@ const Auctionlive = () => {
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
 
-  const fetchNoreserveData = async () => {
+  const fetchAuctionLiveApi = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
@@ -31,7 +31,7 @@ const Auctionlive = () => {
     }
   };
   useEffect(() => {
-    fetchNoreserveData();
+    fetchAuctionLiveApi();
   }, []);
 
   // const getEndDate = (cal) => {
