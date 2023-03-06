@@ -162,6 +162,8 @@ function Detail() {
       .catch((err) => console.log(err));
   };
 
+  
+
   const getfetchData = () => {
     axios
       .get(`https://api.gasguzzlrs.com/bidding/${id}`)
@@ -431,7 +433,7 @@ function Detail() {
                           {" "}
                           {/* 2 days, 9 hours, 40 minutes, 16 seconds * */}
                           <span>
-                            {days}days, {hours <= 9 && "0"}
+                            {days} days, {hours <= 9 && "0"}
                             {hours}h : {minutes <= 9 && "0"}
                             {minutes}m : {seconds <= 9 && "0"}
                             {seconds}s
@@ -442,7 +444,15 @@ function Detail() {
                         <p>Ends On</p>
                         <p style={{ marginLeft: "60px" }}>
                           {/* Thursday, March 9 at 4:32 am remind me */}
-                          {endTimedata}
+                          {/* {endTimedata} */}
+
+                          {/* new Date("2023-03-13 00:00:00"); */}
+                          {new Date(endTimedata).getDay()} <span style={{ marginLeft: "5px" }}>days</span>
+                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getHours()}  hours</span>
+
+                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getMinutes()} minutes</span>
+
+                         
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
