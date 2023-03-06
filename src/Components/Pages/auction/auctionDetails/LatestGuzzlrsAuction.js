@@ -1,9 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const LatestGuzzlrsAuction = () => {
   const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
   const [auctonVehicle, setAuctonVehicle] = useState([]);
+
+  useEffect(() => {
+    const latestAuctionDataApi = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}vehicles_all/auction`
+        );
+        if (res.data.status === 200) {
+          setAuctonVehicle(res.data.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    latestAuctionDataApi();
+  }, []);
 
   return (
     <>
@@ -37,12 +55,12 @@ const LatestGuzzlrsAuction = () => {
                       </div>
                     </div>
                     <div className="sidebarPost_Img">
-                      {curElem.images && (
+                      {curElem?.image_banner && (
                         <img
                           loading="lazy"
                           src={
-                            curElem?.images[0] &&
-                            `${process.env.REACT_APP_URL}/${curElem?.images[0]?.imagePath}/${curElem?.images[0]?.imageName}`
+                            curElem?.image_banner[0] &&
+                            `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
                           }
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
