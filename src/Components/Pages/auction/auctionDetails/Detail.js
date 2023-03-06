@@ -583,17 +583,17 @@ function Detail() {
                           
                         </div>
                         <div className="Cont">
-                          <p>
+                          <p onClick={handleCloseAuctionHistory}>
                             {curElem.make} {curElem.model} {curElem.year}
                           </p>
                           <div className="n">
                             Sold by <b>racer35</b> to <b>ToylorCar</b> for{" "}
                             <span>${curElem.documentFee}</span>{" "}
                           </div>
-                          <div className="t">
+                          {/* <div className="t">
                             <i className="fa-solid fa-clock"></i>{" "}
                             {new Date(curElem.created_at).toLocaleDateString()}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </a>
