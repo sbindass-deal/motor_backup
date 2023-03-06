@@ -109,16 +109,7 @@ function Detail() {
       });
   };
 
-  const openNotification = (msg) => {
-    notification.open({
-      // message: 'Notification Title',
-      description: msg,
-      onClick: () => {
-        console.log("Notification Clicked!");
-      },
-    });
-  };
-
+  
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -223,7 +214,7 @@ function Detail() {
   const handleAuctionHistory = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}autionHistroy/${vehicle.userId}`
+        `${process.env.REACT_APP_URL}getAuctionHistory/${vehicle.userId}`
       );
       setAuctionHistory(res.data.data);
     } catch (err) {
@@ -447,10 +438,11 @@ function Detail() {
                           {/* {endTimedata} */}
 
                           {/* new Date("2023-03-13 00:00:00"); */}
-                          {new Date(endTimedata).getDay()} <span style={{ marginLeft: "5px" }}>days</span>
+                          {new Date(endTimedata).getDate()} <span style={{ marginLeft: "5px" }}>days</span>
                           <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getHours()}  hours</span>
 
                           <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getMinutes()} minutes</span>
+                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getSeconds()} seconds</span>
 
                          
                         </p>
@@ -571,11 +563,24 @@ function Detail() {
             <div className="modal-body moAh">
               {auctionHistory &&
                 auctionHistory.map((curElem, i) => {
+
+                  console.log(778, curElem)
+
                   return (
                     <a key={i} href="#" className="dfr">
                       <div className="imgText">
                         <div className="sidebarPost_Img">
-                          <img src={carImg} />
+                          {/* <img src={carImg} /> */}
+                          <img
+                            loading="lazy"
+                            src={
+                              curElem?.image_banner &&
+                              `${process.env.REACT_APP_URL}/${curElem?.image_banner?.imagePath}/${curElem?.image_banner?.imageName}`
+                            }
+                          
+                          />
+
+                          
                         </div>
                         <div className="Cont">
                           <p>

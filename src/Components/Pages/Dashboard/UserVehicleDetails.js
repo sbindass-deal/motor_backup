@@ -135,6 +135,8 @@ const UserVehicleDetails = () => {
         phone: filteredVehicleData.phone,
       })
       .then((result) => {
+
+        console.log(77878, result)
         //navigaget
         if (result.data.status === 200) {
           navigate("/vehicle-submission");
@@ -658,7 +660,7 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -677,8 +679,8 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -697,8 +699,8 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                        reduxValue.submitvechilesReducer.step_two === true &&
-                        reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -943,7 +945,7 @@ const UserVehicleDetails = () => {
                           </div>
                         </div>
                         {namefield.sale === "Yes" ||
-                        namefield.vehiclepast === "Yes" ? (
+                          namefield.vehiclepast === "Yes" ? (
                           <>
                             <div className="col-12 col-sm-12 col-md-4">
                               <div className="form-group">
@@ -1173,7 +1175,7 @@ const UserVehicleDetails = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1210,7 +1212,7 @@ const UserVehicleDetails = () => {
                                 value="Yes"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1221,7 +1223,7 @@ const UserVehicleDetails = () => {
                                 value="No"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? true
                                     : false
                                 }
@@ -1232,7 +1234,7 @@ const UserVehicleDetails = () => {
                                 value="classified"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                  "classified"
+                                    "classified"
                                     ? false
                                     : true
                                 }
@@ -1244,7 +1246,7 @@ const UserVehicleDetails = () => {
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
-                        "classified" ? (
+                          "classified" ? (
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
@@ -1656,8 +1658,8 @@ const UserVehicleDetails = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1800,10 +1802,10 @@ const UserVehicleDetails = () => {
                               />
                               {detailstab.modificationOnTrck.trim().length >
                                 400 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                           )}
                         </div>
@@ -1825,10 +1827,10 @@ const UserVehicleDetails = () => {
                             ></textarea>
                             {detailstab.issuesorproblems.trim().length >
                               1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
+                                <span className="text-danger">
+                                  You Can entered maximum 1500 characters!
+                                </span>
+                              )}
                           </div>
                           <p>
                             Please list and describe services performed and when
@@ -1851,10 +1853,10 @@ const UserVehicleDetails = () => {
                             ></textarea>
                             {detailstab.moreDescription.trim().length >
                               1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
+                                <span className="text-danger">
+                                  You Can entered maximum 1500 characters!
+                                </span>
+                              )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -2069,8 +2071,8 @@ const UserVehicleDetails = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                reduxValue.submitvechilesReducer.step_two === true &&
-                reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     {/* <h3>Contact Info</h3> */}
                     {/* <hr /> */}
