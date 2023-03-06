@@ -296,6 +296,7 @@ const UserVehicleDetails = () => {
             return { value: curElem, type: "url", id: Math.random() };
           }
         );
+        console.log(111, res.data.data, res.data.status);
         if (res.data.status === 200) {
           setVehicleData(filteredVehicleData);
           setArr(youtubeLinkMapped);
@@ -373,72 +374,6 @@ const UserVehicleDetails = () => {
       }
     };
     fetchVehicleData();
-    // setYoutubeLink(filteredVehicleData.description);
-    // setGetfilteredVehicleData(filteredVehicleData.images);
-    // setVechileInfo(filteredVehicleData);
-    // setNamefield({
-    //   name: filteredVehicleData.name,
-    //   email: filteredVehicleData.email,
-    //   year: filteredVehicleData.year,
-    //   make: filteredVehicleData.make,
-    //   model: filteredVehicleData.model,
-    //   vechilelocation: filteredVehicleData.country,
-    //   city: filteredVehicleData.city,
-    //   sale: filteredVehicleData.owned,
-    //   link: filteredVehicleData.link,
-    //   vehiclepast: filteredVehicleData.engineSize,
-    //   providelink: filteredVehicleData.transmission,
-    //   changedvechiles: filteredVehicleData.titleStatus,
-    //   dealer: filteredVehicleData.dealerId,
-    //   dealership: filteredVehicleData.dealerName,
-    //   soldvechiles: filteredVehicleData.consignment,
-    //   videolink: filteredVehicleData.description,
-    // });
-    // setbasicfact({
-    //   vin: filteredVehicleData.detailvin,
-    //   displayInAuction: filteredVehicleData.displayInAuction,
-    //   auctionType: filteredVehicleData.auctionType,
-    //   adWebsiteLink: filteredVehicleData.externalLink,
-    //   vechilesrace: filteredVehicleData.ownerDetail,
-    //   ultiumdrive: filteredVehicleData.ste,
-    //   Interstellar: filteredVehicleData.Interstellar,
-    //   interior: filteredVehicleData.interior,
-    //   brandandmodel: filteredVehicleData.brandandmodel,
-    //   sizetires: filteredVehicleData.sizetires,
-    //   trucktitled: filteredVehicleData.title,
-    //   other: filteredVehicleData.other,
-    //   status: filteredVehicleData.status,
-    //   km: filteredVehicleData.km,
-    //   wheels: filteredVehicleData.pickOne,
-    //   kmacc: filteredVehicleData.ogEngine,
-    //   odometer: filteredVehicleData.odmeter,
-    //   accurateField: filteredVehicleData.kmacc,
-    //   otherTruckTitle: filteredVehicleData.otherTruckTitle,
-    //   otherStatus: filteredVehicleData.otherStatus,
-    // });
-    // setDetailstab({
-    //   detailvin: filteredVehicleData.detailvin,
-    //   bodywork: filteredVehicleData.bodywork,
-    //   rustpresent: filteredVehicleData.rustpresent,
-    //   modificationstock: filteredVehicleData.modificationstock,
-    //   servicesperformed: filteredVehicleData.ammountOnDocument,
-    //   issuesorproblems: filteredVehicleData.issuesorproblems,
-    //   moreDescription: filteredVehicleData.moreDescription,
-    //   reserve: filteredVehicleData.reserve,
-    //   reserveAmount: filteredVehicleData.reservAmount,
-    //   shibnobiabout: filteredVehicleData.hereFrom,
-    //   shibnobi: filteredVehicleData.shibnobi,
-    //   documentFee: filteredVehicleData.documentFee,
-    //   truckHistory: filteredVehicleData.truckHistory,
-    //   rustDetails: filteredVehicleData.rustDetails,
-    //   modificationOnTrck: filteredVehicleData.modificationOnTruck,
-    //   fuel: filteredVehicleData.fuel,
-    // });
-    // setInformation({
-    //   uemail: filteredVehicleData.email,
-    //   iname: filteredVehicleData.name,
-    //   phone: filteredVehicleData.phone,
-    // });
   }, [id]);
 
   const handleMakeAndModalTab = () => {
@@ -608,7 +543,7 @@ const UserVehicleDetails = () => {
       rustDetails,
       modificationOnTrck,
       fuel,
-    } = detailsInfo;
+    } = detailstab;
     const { uemail, username, password, iname, phone } = information;
     // debugger
     await axios
@@ -683,7 +618,7 @@ const UserVehicleDetails = () => {
         if (result.data.status === 200) {
           navigate("/vehicle-submission");
           submitApprove(data);
-          // window.location.reload(false);
+          window.location.reload(false);
         }
       })
       .catch((error) => {
@@ -1746,9 +1681,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
                             </select>
@@ -1784,9 +1716,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
                             </select>
@@ -1818,9 +1747,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Electric">Electric</option>
                               <option value="CNG">CNG</option>
                               <option value="Petrol">Petrol</option>
@@ -1841,9 +1767,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
                             </select>
