@@ -16,9 +16,9 @@ import Interior from "./Interior";
 import External from "./External";
 import Fundamental from "./Fundamental";
 
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 
-import { Button, notification } from 'antd';
+import { Button, notification } from "antd";
 
 function Detail() {
   const { id } = useParams();
@@ -46,8 +46,8 @@ function Detail() {
     new Date("2023-03-07, 19:53:00").getTime()
   );
 
-  const [latestBidData, setLatestBidData] = useState(null)
-  const [bidCount, setBidCount] = useState(null)
+  const [latestBidData, setLatestBidData] = useState(null);
+  const [bidCount, setBidCount] = useState(null);
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -90,7 +90,6 @@ function Detail() {
     setShow(false);
   };
 
-
   // let d = new Date();
   // // parseInt(d.setMinutes(d.getMinutes() + 5).toLocaleString(), 10);
   // d.setMinutes(d.getMinutes() + 5);
@@ -114,14 +113,22 @@ function Detail() {
       // message: 'Notification Title',
       description: msg,
       onClick: () => {
-        console.log('Notification Clicked!');
+        console.log("Notification Clicked!");
       },
     });
   };
 
-  const notify = (val) => toast.success(val,
-    { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
-
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const addBiding = (e) => {
     e.preventDefault();
@@ -132,11 +139,9 @@ function Detail() {
         // vehicle_id: id,
         // comment: bidComment,
 
-
         vehicle_id: id,
         auctionAmmount: bidValue,
-        comment: bidComment
-
+        comment: bidComment,
       })
       .then((res) => {
         // if (res.data.status === 200 && t < 1000 * 60 * 5) {
@@ -145,36 +150,34 @@ function Detail() {
         //   handleClose();
         // }
         if (res.data.status === 200) {
-          console.log(109, res)
+          console.log(109, res);
 
           handleClose();
-          notify(res.data.message)
-          setBidComment("")
-          setBidValue("")
+          notify(res.data.message);
+          setBidComment("");
+          setBidValue("");
         }
-
       })
       .catch((err) => console.log(err));
-
   };
 
-
   const getfetchData = () => {
-    axios.get(`https://api.gasguzzlrs.com/bidding/${id}`).then((response) => {
-      console.log(109, (response))
+    axios
+      .get(`https://api.gasguzzlrs.com/bidding/${id}`)
+      .then((response) => {
+        console.log(109, response);
 
-      setLatestBidData(response.data.last_bid)
-      setBidCount((response.data.data).length)
-
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+        setLatestBidData(response.data.last_bid);
+        setBidCount(response.data.data.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    getfetchData()
-  }, [bidValue, bidComment])
-
+    getfetchData();
+  }, [bidValue, bidComment]);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -408,25 +411,31 @@ function Detail() {
               </div>
               <Gallery vehicle={vehicle} />
 
-              <div className="card" >
-
-
+              <div className="card">
                 <div className="row">
                   <div className="col-md-6 ">
                     <h3 style={{ color: "black" }}>BID ON THIS LISTING</h3>
 
                     <ul>
-                      <li style={{ display: "flex", }}>
+                      <li style={{ display: "flex" }}>
                         <p>Current Bid</p>
-                        <p style={{ marginLeft: "40px" }}>USD	${ latestBidData }</p>
+                        <p style={{ marginLeft: "40px" }}>
+                          USD ${latestBidData}
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Time Left</p>
-                        <p style={{ marginLeft: "40px" }}>	2 days, 9 hours, 40 minutes, 16 seconds *</p>
+                        <p style={{ marginLeft: "40px" }}>
+                          {" "}
+                          2 days, 9 hours, 40 minutes, 16 seconds *
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Ends On</p>
-                        <p style={{ marginLeft: "40px" }}>	Thursday, March 9 at 4:32am remind me</p>
+                        <p style={{ marginLeft: "40px" }}>
+                          {" "}
+                          Thursday, March 9 at 4:32am remind me
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Bids</p>
@@ -434,22 +443,16 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Place Bid</p>
-                        <button style={{ marginLeft: "40px" }}>REGISTER TO BID</button>
+                        <button style={{ marginLeft: "40px" }}>
+                          REGISTER TO BID
+                        </button>
                       </li>
                     </ul>
-
                   </div>
                 </div>
-
               </div>
 
-
               <Comment />
-
-
-
-
-
             </div>
           </div>
         </div>
