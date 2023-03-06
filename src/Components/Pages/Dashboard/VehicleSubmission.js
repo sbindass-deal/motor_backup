@@ -113,7 +113,7 @@ function VehicleSubmission() {
                                 .includes(searchTerm) ||
                               data.year.toUpperCase().includes(searchTerm)
                               : data
-                          )
+                          ).reverse()
                           .map((data, index) => (
                             <tr
                               key={index}

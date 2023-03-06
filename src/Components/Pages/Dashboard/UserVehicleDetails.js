@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 import {
   step_one,
   step_three,
@@ -182,6 +184,8 @@ const UserVehicleDetails = () => {
     dispatch(step_two(false));
     dispatch(step_three(false));
   }, []);
+
+  
 
   const uploadFileOne = (vehicleId) => {
     (async () => {
@@ -641,7 +645,7 @@ const UserVehicleDetails = () => {
                             value={basicfact.vin}
                             // onChange={handleNameField}
                             name="name"
-                            placeholder="Enter Name"
+                            placeholder="Enter Vin"
                             // errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
                             label="What is your vehicle VIN?"
                             // pattern="^[A-Za-z ]{3,16}$"
@@ -652,7 +656,7 @@ const UserVehicleDetails = () => {
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
-                            <select
+                            <select disabled
                               value={namefield.year}
                               onChange={handleNameField}
                               name="year"

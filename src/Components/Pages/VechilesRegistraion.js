@@ -31,6 +31,7 @@ const inputArr = [
 
 const VechilesRegistraion = () => {
   const navigate = useNavigate();
+  
   const logingUser = useSelector((state) => state);
   const [showVidnModal, setShowVidnModal] = useState(false);
   const handleVinClose = () => setShowVidnModal(false);
@@ -1019,9 +1020,9 @@ const VechilesRegistraion = () => {
                                 onChange={handleNameField}
                                 name="model"
                                 placeholder="Enter"
-                                // errorMessage="This input field contain 1-16 characters and shouldn't include any special character"
+                                errorMessage="This input field contain 1-35 characters and shouldn't include any special character"
                                 label="What model is this vehicle?"
-                                // pattern="^[A-Za-z0-9 ]{1,16}$"
+                                pattern="^[A-Za-z0-9 ]{1,35}$"
                                 required={true}
                               />
                             </div>
@@ -1061,9 +1062,9 @@ const VechilesRegistraion = () => {
                                 onChange={handleNameField}
                                 name="city"
                                 placeholder="Enter city"
-                                errorMessage="This input field contain 3-16 characters and shouldn't include any special character or number"
+                                errorMessage="This input field contain 3-35 characters and shouldn't include any special character or number"
                                 label="What city is the vehicle located in?"
-                                pattern="^[A-Za-z ]{3,16}$"
+                                pattern="^[A-Za-z ]{3,35}$"
                                 required={true}
                               />
                             </div>
@@ -2001,9 +2002,9 @@ const VechilesRegistraion = () => {
                               value={detailstab.fuel}
                               onChange={detailsOnChange}
                               placeholder="Enter fuel type"
-                              errorMessage="Fuel type should be 2 to 60 character!"
+                              errorMessage="Fuel type should be 3 to 15 character!"
                               label="Fuel Type"
-                              pattern="^[A-Za-z(),.;@! ]{2,60}$"
+                              pattern="^[A-Za-z(),.;@! ]{2,15}$"
                               required={true}
                             />
                           </div>

@@ -17,7 +17,7 @@ function AboutShibanobi() {
               <div>
               <h3 className="text_title">Our vision</h3>
                 <p>
-                auctions are designed to provide the best experience for buyers and sellers alike.
+                Auctions are designed to provide the best experience for buyers and sellers alike.
                 </p>
                 <p>
                 The auction process starts with sellers submitting their cars through the website. We select the most interesting and work with the seller to compile a thorough listing for the vehicle. Auctions typically run for 7 days.
