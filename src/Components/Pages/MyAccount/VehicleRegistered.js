@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import {
   step_one,
   step_three,
@@ -14,8 +15,9 @@ import {
 import counryData from "../../countryList";
 import FormInput from "../../UI/FormInput";
 
-const VehicleRegistered = () => {
+const UserVehicleDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   const [file, setFile] = useState([]);
@@ -32,129 +34,14 @@ const VehicleRegistered = () => {
   const [errorDetais, setErrorDetais] = useState(true);
   const [showError, setShowError] = useState(true);
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
-
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const handleAccessoriesChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setAccessories([...accessories, value]);
-    } else {
-      setAccessories(accessories.filter((e) => e !== value));
-    }
-  };
-  const handleDetailsInfoOnChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setDetailsInfo([...detailsInfo, value]);
-    } else {
-      setDetailsInfo(detailsInfo.filter((e) => e !== value));
-    }
-  };
-  const signInChange = (e) => {
-    const { checked } = e.target;
-    setSigninAggri(checked);
-  };
-
-  const url = process.env.REACT_APP_URL;
-  const dispatch = useDispatch();
-  const reduxValue = useSelector((data) => data);
-
-  useEffect(() => {
-    dispatch(step_one(false));
-    dispatch(step_two(false));
-    dispatch(step_three(false));
-  }, []);
-
-  //   const asyncUppercase = item =>
-  //   new Promise(resolve =>
-  //     setTimeout(
-  //       () => resolve(item.toUpperCase()),
-  //       Math.floor(Math.random() * 1000)
-  //     )
-  //   );
-
-  // const uppercaseItems = async (vId) => {
-  //   await file.forEach(async item => {
-  //     const uppercaseItem = await asyncUppercase(item);
-  //     console.log(uppercaseItem);
-  //   });
-
-  //   console.log('Items processed');
-  // };
-
-  // uppercaseItems("vId");
-
-  const uploadFileOne = (vehicleId) => {
-    (async () => {
-      for await (const file1 of file) {
-        const url = process.env.REACT_APP_URL + "updateVehicleImage";
-        const formData = new FormData();
-        formData.append("image", file1);
-        formData.append("id", vehicleId);
-        const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        await axios.post(url, newImagedata, config);
-      }
-    })();
-
-    // for (let i = 0; i < file.length; i++) {
-    //   const url = process.env.REACT_APP_URL + "vehicle-image";
-    //   const formData = new FormData();
-    //   formData.append("image", file[i]);
-    //   formData.append("vehicleId", vehicleId);
-    //   const config = {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   };
-    //   const data = await axios.post(url, formData, config);
-
-    // }
-  };
-
-  //Get past 15 year get year till now year?
-  const years = (startYear) => {
-    var currentYear = new Date().getFullYear(),
-      years = [];
-    startYear = startYear || 1980;
-    while (startYear <= currentYear) {
-      years.push(startYear++);
-    }
-    return years;
-  };
-
-  // console.log(years(new Date().getFullYear() - 15).reverse());
-
-  const uploadFileTwo = async (vehicleId) => {
-    (async () => {
-      for await (const file11 of file1) {
-        const url = process.env.REACT_APP_URL + "updateVehicleImage";
-        const formData = new FormData();
-        formData.append("image", file11);
-        formData.append("id", vehicleId);
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        const data = await axios.post(url, formData, config);
-      }
-    })();
-  };
+  const [countryId, setCountryId] = useState(231);
+  const [countryData, setCountryData] = useState([]);
+  const [stateData, setStateData] = useState([]);
+  const [youtubeLink, setYoutubeLink] = useState([]);
+  const [vehicleData, setVehicleData] = useState([]);
+  const [bannerImage, setBannerImage] = useState([]);
+  const [galleryImage, setGalleryImage] = useState([]);
+  const [documentImage, setDocumentImage] = useState([]);
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -233,6 +120,122 @@ const VehicleRegistered = () => {
     iname: "",
     phone: "",
   });
+
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_URL}countries`);
+        setCountryData(res.data.data.countries);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchApiData();
+  }, []);
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}state/${countryId}`
+        );
+
+        setStateData(res.data.data.states);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchApiData();
+  }, [countryId]);
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const handleAccessoriesChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setAccessories([...accessories, value]);
+    } else {
+      setAccessories(accessories.filter((e) => e !== value));
+    }
+  };
+  const handleDetailsInfoOnChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setDetailsInfo([...detailsInfo, value]);
+    } else {
+      setDetailsInfo(detailsInfo.filter((e) => e !== value));
+    }
+  };
+  const signInChange = (e) => {
+    const { checked } = e.target;
+    setSigninAggri(checked);
+  };
+
+  const url = process.env.REACT_APP_URL;
+  const dispatch = useDispatch();
+  const reduxValue = useSelector((data) => data);
+
+  useEffect(() => {
+    dispatch(step_one(false));
+    dispatch(step_two(false));
+    dispatch(step_three(false));
+  }, []);
+
+  const uploadFileOne = (vehicleId) => {
+    (async () => {
+      for await (const file1 of file) {
+        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const formData = new FormData();
+        formData.append("image", file1);
+        formData.append("id", vehicleId);
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
+  //Get past 15 year get year till now year?
+  const years = (startYear) => {
+    var currentYear = new Date().getFullYear(),
+      years = [];
+    startYear = startYear || 1980;
+    while (startYear <= currentYear) {
+      years.push(startYear++);
+    }
+    return years;
+  };
+
+  // console.log(years(new Date().getFullYear() - 15).reverse());
+
+  const uploadFileTwo = async (vehicleId) => {
+    (async () => {
+      for await (const file11 of file1) {
+        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const formData = new FormData();
+        formData.append("image", file11);
+        formData.append("id", vehicleId);
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const data = await axios.post(url, formData, config);
+      }
+    })();
+  };
   const handleNameField = (e) => {
     const Value = e.target.value;
     const Name = e.target.name;
@@ -249,9 +252,6 @@ const VehicleRegistered = () => {
   const basicFactOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
-    if (Name === "odometer") {
-      Value = e.target.value.replace(/\D/g, "");
-    }
     setbasicfact({ ...basicfact, [Name]: Value });
   };
   const basicFactSubmitHandler = (e) => {
@@ -278,303 +278,103 @@ const VehicleRegistered = () => {
     const Name = e.target.name;
     setInformation({ ...information, [Name]: Value });
   };
+
+  const [getfilteredVehicleData, setGetfilteredVehicleData] = useState([]);
+  const [vechileInfo, setVechileInfo] = useState({});
+
   useEffect(() => {
-    const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
-    console.log(11111, filteredVehicleData);
-    setNamefield({
-      name: filteredVehicleData.name,
-      email: filteredVehicleData.email,
-      year: filteredVehicleData.year,
-      make: filteredVehicleData.make,
-      model: filteredVehicleData.model,
-      vechilelocation: filteredVehicleData.country,
-      city: filteredVehicleData.city,
-      sale: filteredVehicleData.owned,
-      link: filteredVehicleData.link,
-      vehiclepast: filteredVehicleData.engineSize,
-      providelink: filteredVehicleData.transmission,
-      changedvechiles: filteredVehicleData.titleStatus,
-      dealer: filteredVehicleData.dealerId,
-      dealership: filteredVehicleData.dealerName,
-      soldvechiles: filteredVehicleData.consignment,
-      videolink: filteredVehicleData.description,
-    });
-    setbasicfact({
-      vin: filteredVehicleData.detailvin,
-      displayInAuction: filteredVehicleData.displayInAuction,
-      auctionType: filteredVehicleData.auctionType,
-      adWebsiteLink: filteredVehicleData.externalLink,
-      vechilesrace: filteredVehicleData.ownerDetail,
-      ultiumdrive: filteredVehicleData.ste,
-      Interstellar: filteredVehicleData.Interstellar,
-      interior: filteredVehicleData.interior,
-      brandandmodel: filteredVehicleData.brandandmodel,
-      sizetires: filteredVehicleData.sizetires,
-      trucktitled: filteredVehicleData.title,
-      other: filteredVehicleData.other,
-      status: filteredVehicleData.status,
-      km: filteredVehicleData.km,
-      wheels: filteredVehicleData.pickOne,
-      kmacc: filteredVehicleData.ogEngine,
-      odometer: filteredVehicleData.odmeter,
-      accurateField: filteredVehicleData.kmacc,
-      otherTruckTitle: filteredVehicleData.otherTruckTitle,
-      otherStatus: filteredVehicleData.otherStatus,
-    });
-    setDetailstab({
-      detailvin: filteredVehicleData.detailvin,
-      bodywork: filteredVehicleData.bodywork,
-      rustpresent: filteredVehicleData.rustpresent,
-      modificationstock: filteredVehicleData.modificationstock,
-      servicesperformed: filteredVehicleData.ammountOnDocument,
-      issuesorproblems: filteredVehicleData.issuesorproblems,
-      moreDescription: filteredVehicleData.moreDescription,
-      reserve: filteredVehicleData.reserve,
-      reserveAmount: filteredVehicleData.reservAmount,
-      shibnobiabout: filteredVehicleData.hereFrom,
-      shibnobi: filteredVehicleData.shibnobi,
-      documentFee: filteredVehicleData.documentFee,
-      truckHistory: filteredVehicleData.truckHistory,
-      rustDetails: filteredVehicleData.rustDetails,
-      modificationOnTrck: filteredVehicleData.modificationOnTruck,
-      fuel: filteredVehicleData.fuel,
-    });
-    setInformation({
-      uemail: filteredVehicleData.email,
-      iname: filteredVehicleData.name,
-      phone: filteredVehicleData.phone,
-    });
-  }, [id]);
+    // const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
 
-  const informationSubmitHandler = async (e) => {
-    e.preventDefault();
-
-    const {
-      name,
-      email,
-      year,
-      make,
-      model,
-      vechilelocation,
-      city,
-      sale,
-      link,
-      vehiclepast,
-      providelink,
-      changedvechiles,
-      dealer,
-      dealership,
-      soldvechiles,
-      videolink,
-    } = namefield;
-    const {
-      vin,
-      displayInAuction,
-      auctionType,
-      adWebsiteLink,
-      vechilesrace,
-      ultiumdrive,
-      Interstellar,
-      interior,
-      brandandmodel,
-      sizetires,
-      trucktitled,
-      other,
-      status,
-      kmacc,
-      odometer,
-      accurateField,
-      wheels,
-      otherTruckTitle,
-      otherStatus,
-    } = basicfact;
-    const {
-      bodywork,
-      rustpresent,
-      modificationstock,
-      servicesperformed,
-      issuesorproblems,
-      moreDescription,
-      reserve,
-      reserveAmount,
-      shibnobiabout,
-      documentFee,
-      truckHistory,
-      rustDetails,
-      modificationOnTrck,
-      fuel,
-    } = detailstab;
-    const { uemail, iname, phone } = information;
-    // let d = new Date();
-    // d.setHours(d.getHours() + 2);
-    // d.setMinutes(d.getMinutes() + 20);
-    // console.log("addEnd Time", d.toLocaleString());
-    const handleDateTimeFormate = () => {
-      let curDateAndTime = new Date();
-      curDateAndTime.setDate(curDateAndTime.getDate() + 5);
-      const formateDay = curDateAndTime.getDate();
-      const formateMonth = curDateAndTime.getMonth() + 1;
-      const formateYear = curDateAndTime.getFullYear();
-      const formateHour = curDateAndTime.getHours();
-      const formateMint = curDateAndTime.getMinutes();
-      const formateSecond = curDateAndTime.getSeconds();
-      return `${formateYear}/${formateMonth}/${formateDay}, ${formateHour}:${formateMint}:${formateSecond}`;
+    const fetchVehicleData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
+        );
+        const filteredVehicleData = res.data.data;
+        const youtubeLinkMapped = filteredVehicleData.description.map(
+          (curElem) => {
+            return { value: curElem, type: "url", id: Math.random() };
+          }
+        );
+        console.log(111, res.data.data, res.data.status);
+        if (res.data.status === 200) {
+          setVehicleData(filteredVehicleData);
+          setArr(youtubeLinkMapped);
+          setGetfilteredVehicleData(filteredVehicleData.images);
+          setVechileInfo(filteredVehicleData);
+          setBannerImage(filteredVehicleData.image_banner);
+          setGalleryImage(filteredVehicleData.image_gallery);
+          setDocumentImage(filteredVehicleData.image_document);
+          setNamefield({
+            name: filteredVehicleData.name,
+            email: filteredVehicleData.email,
+            year: filteredVehicleData.year,
+            make: filteredVehicleData.make,
+            model: filteredVehicleData.model,
+            vechilelocation: filteredVehicleData.country,
+            city: filteredVehicleData.city,
+            sale: filteredVehicleData.owned,
+            link: filteredVehicleData.link,
+            vehiclepast: filteredVehicleData.engineSize,
+            providelink: filteredVehicleData.transmission,
+            changedvechiles: filteredVehicleData.titleStatus,
+            dealer: filteredVehicleData.dealerId,
+            dealership: filteredVehicleData.dealerName,
+            soldvechiles: filteredVehicleData.consignment,
+            videolink: filteredVehicleData.description,
+          });
+          setbasicfact({
+            vin: filteredVehicleData.detailvin,
+            displayInAuction: filteredVehicleData.displayInAuction,
+            auctionType: filteredVehicleData.auctionType,
+            adWebsiteLink: filteredVehicleData.externalLink,
+            vechilesrace: filteredVehicleData.ownerDetail,
+            ultiumdrive: filteredVehicleData.UltiumDriveeWDsystem,
+            Interstellar: filteredVehicleData.Interstellar,
+            interior: filteredVehicleData.interior,
+            brandandmodel: filteredVehicleData.brandandmodel,
+            sizetires: filteredVehicleData.sizetires,
+            trucktitled: filteredVehicleData.title,
+            other: filteredVehicleData.other,
+            status: filteredVehicleData.status,
+            km: filteredVehicleData.km,
+            wheels: filteredVehicleData.pickOne,
+            kmacc: filteredVehicleData.ogEngine,
+            odometer: filteredVehicleData.odmeter,
+            accurateField: filteredVehicleData.kmacc,
+            otherTruckTitle: filteredVehicleData.otherTruckTitle,
+            otherStatus: filteredVehicleData.otherStatus,
+          });
+          setDetailstab({
+            detailvin: filteredVehicleData.vin,
+            bodywork: filteredVehicleData.bodywork,
+            rustpresent: filteredVehicleData.rustpresent,
+            modificationstock: filteredVehicleData.modificationstock,
+            servicesperformed: filteredVehicleData.ammountOnDocument,
+            issuesorproblems: filteredVehicleData.issuesorproblems,
+            moreDescription: filteredVehicleData.moreDescription,
+            reserve: filteredVehicleData.reserve,
+            reserveAmount: filteredVehicleData.reservAmount,
+            shibnobiabout: filteredVehicleData.hereFrom,
+            shibnobi: filteredVehicleData.shibnobi,
+            documentFee: filteredVehicleData.documentFee,
+            truckHistory: filteredVehicleData.truckHistory,
+            rustDetails: filteredVehicleData.rustDetails,
+            modificationOnTrck: filteredVehicleData.modificationOnTruck,
+            fuel: filteredVehicleData.fuel,
+          });
+          setInformation({
+            uemail: filteredVehicleData.email,
+            iname: filteredVehicleData.name,
+            phone: filteredVehicleData.phone,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
     };
-    const EndDateTime = handleDateTimeFormate();
-
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
-
-    axios
-      .post(`${url}updateVehicles/${id}`, {
-        name: iname,
-        email: uemail,
-        premium: reduxValue.submitvechilesReducer.submitPlan,
-        userId: userDataLogin.login.user.id,
-        year: year,
-        make: make,
-        description: videolink,
-        model: model,
-        owned: sale,
-        country: vechilelocation,
-        city: city,
-        consignment: soldvechiles,
-        dealerName: dealership,
-        dealerId: dealer,
-        dealerDescription: dealership,
-        ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
-        detailvin: vin,
-        displayInAuction: displayInAuction,
-        auctionType,
-        externalLink: adWebsiteLink,
-        km: odometer,
-        kmacc: accurateField,
-        odmeter: odometer,
-        ogEngine: kmacc,
-        transmission: providelink,
-        title: trucktitled,
-        other,
-        titleStatus: changedvechiles,
-        engineSize: vehiclepast,
-        stepOneImage: "",
-        stepTwoImage: "",
-        ste: `${ultiumdrive === "Yes" ? "Drive e4WD system" : ""}`,
-        link: link,
-        accessories: accessories.toString(),
-        truckDetails: detailsInfo.toString(),
-        moreDescription: moreDescription,
-        reserve: `${reserve === "Yes" ? reserve : "No"}`,
-        reservAmount: reserveAmount,
-        hereFrom: shibnobiabout,
-        ammountOnDocument: servicesperformed,
-        documentFee,
-        Interstellar,
-        pickOne: wheels,
-        interior,
-        brandandmodel,
-        understandCondition,
-        acceptTerms,
-        sizetires,
-        bodywork,
-        rustpresent,
-        modificationstock,
-        issuesorproblems,
-        status, // db me check karni h
-        // shibnobi we have to add on db
-        otherTruckTitle,
-        otherStatus,
-        truckHistory,
-        rustDetails,
-        modificationOnTruck: modificationOnTrck,
-        fuel,
-        EndTime: EndDateTime.toString(),
-        phone,
-        approved: `${displayInAuction === "No" ? null : "11"}`,
-        sold: 1,
-      })
-      .then((result) => {
-        setSubmitLoading(false);
-        if (file.length > 0) {
-          uploadFileOne(result.data.id);
-        }
-        if (file1.length > 0) {
-          uploadFileTwo(result.data.id);
-        }
-
-        setNamefield({
-          name: "",
-          email: "",
-          year: "",
-          make: "",
-          model: "",
-          vechilelocation: "",
-          city: "",
-          sale: "",
-          link: "",
-          vehiclepast: "",
-          providelink: "",
-          changedvechiles: "",
-          dealer: "",
-          dealership: "",
-          soldvechiles: "",
-          videolink: "",
-          file: "",
-        });
-        setbasicfact({
-          vin: "",
-          displayInAuction: "",
-          auctionType: "",
-          adWebsiteLink: "",
-          vechilesrace: "",
-          ultiumdrive: "",
-          Interstellar: "",
-          interior: "",
-          brandandmodel: "",
-          sizetires: "",
-          trucktitled: "",
-          other: "",
-          status: "",
-          km: "",
-          kmacc: "",
-          odometer: "",
-          accurateField: "",
-          files: "",
-        });
-        setDetailstab({
-          detailvin: "",
-          bodywork: "",
-          rustpresent: "",
-          modificationstock: "",
-          truckfromnew: "",
-          servicesperformed: "",
-          issuesorproblems: "",
-          moreDescription: "",
-          reserve: "",
-          reserveAmount: "",
-          shibnobiabout: "",
-          rtmember: "",
-          shibnobi: "",
-          documentFee: "",
-          accept: "",
-          understand: "",
-        });
-        setInformation({
-          uemail: "",
-          username: "",
-          password: "",
-          iname: "",
-          phone: "",
-        });
-        dispatch(step_one(false));
-        dispatch(step_two(false));
-        dispatch(step_three(false));
-      })
-      .catch((error) => {
-        console.log(error);
-        setSubmitLoading(false);
-      });
-  };
+    fetchVehicleData();
+  }, [id]);
 
   const handleMakeAndModalTab = () => {
     dispatch(step_one(false));
@@ -615,14 +415,222 @@ const VehicleRegistered = () => {
     dispatch(step_three(false));
   };
 
+  const [descValue, setDescValue] = useState({
+    description1: "",
+    description2: "",
+  });
+  const handleDescription = (e) => {
+    setDescValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
+  };
+
+  const submitApprove = (data) => {
+    console.log(5656, data);
+
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
+        approve: data === "publish" ? 2 : 3,
+        id,
+        desc1: descValue.description1,
+        desc2: descValue.description2,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/vehicle-submission");
+          // window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const inputArr = [
+    {
+      type: "url",
+      id: 1,
+      value: "",
+    },
+  ];
+
+  const [arr, setArr] = useState(inputArr);
+
+  const addInput = () => {
+    setArr((s) => {
+      return [
+        ...s,
+        {
+          type: "url",
+          value: "",
+        },
+      ];
+    });
+  };
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const index = e.target.id;
+    setArr((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+
+      return newArr;
+    });
+  };
+
+  const fetchVehicleApi = async (data) => {
+    const filteredVehicleData = vehicleData;
+    setGetfilteredVehicleData(filteredVehicleData.images);
+    setVechileInfo(filteredVehicleData);
+    const {
+      name,
+      email,
+      year,
+      make,
+      model,
+      vechilelocation,
+      city,
+      sale,
+      link,
+      vehiclepast,
+      providelink,
+      changedvechiles,
+      dealer,
+      dealership,
+      soldvechiles,
+      videolink,
+    } = namefield;
+
+    const {
+      vin,
+      displayInAuction,
+      auctionType,
+      adWebsiteLink,
+      vechilesrace,
+      ultiumdrive,
+      Interstellar,
+      interior,
+      brandandmodel,
+      sizetires,
+      trucktitled,
+      other,
+      status,
+      km,
+      wheels,
+      kmacc,
+      odometer,
+      accurateField,
+      files,
+      otherTruckTitle,
+      otherStatus,
+    } = basicfact;
+    const {
+      detailvin,
+      bodywork,
+      rustpresent,
+      modificationstock,
+      truckfromnew,
+      servicesperformed,
+      issuesorproblems,
+      moreDescription,
+      reserve,
+      reserveAmount,
+      shibnobiabout,
+      rtmember,
+      shibnobi,
+      documentFee,
+      accept,
+      understand,
+      truckHistory,
+      rustDetails,
+      modificationOnTrck,
+      fuel,
+    } = detailstab;
+    const { uemail, username, password, iname, phone } = information;
+    // debugger
+    await axios
+      .post(`${url}updateVehiclesAdmin/${id}`, {
+        // planId: logingUser.planReducer.plan.planId,
+        // plantype: logingUser.planReducer.plan.listingType,
+        name: iname,
+        email: uemail,
+        premium: reduxValue.submitvechilesReducer.submitPlan,
+        userId: userDataLogin.login.user.id,
+        year: year,
+        make: make,
+        description: `${[...arr.map((curElem) => curElem.value)]}`,
+        model: model,
+        owned: sale,
+        country: vechilelocation,
+        city: city,
+        consignment: soldvechiles,
+        dealerName: dealership,
+        dealerId: dealer,
+        dealerDescription: dealership,
+        ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
+        detailvin: vin,
+        displayInAuction: displayInAuction,
+        auctionType,
+        externalLink: adWebsiteLink,
+        km: odometer,
+        kmacc: accurateField,
+        odmeter: odometer,
+        ogEngine: kmacc,
+        transmission: providelink,
+        title: trucktitled,
+        other,
+        titleStatus: changedvechiles,
+        engineSize: vehiclepast,
+        stepOneImage: "",
+        stepTwoImage: "",
+        // UltiumDriveeWDsystem: ultiumdrive,
+        link: link,
+        accessories: accessories.toString(),
+        truckDetails: detailsInfo.toString(),
+        moreDescription: moreDescription,
+        reserve: `${reserve === "Yes" ? reserve : "No"}`,
+        reservAmount: reserveAmount,
+        hereFrom: shibnobiabout,
+        ammountOnDocument: servicesperformed,
+        documentFee,
+        Interstellar,
+        pickOne: wheels,
+        interior,
+        brandandmodel,
+        understandCondition,
+        acceptTerms,
+        sizetires,
+        bodywork,
+        rustpresent,
+        modificationstock,
+        issuesorproblems,
+        status, // db me check karni h
+        otherTruckTitle,
+        otherStatus,
+        truckHistory,
+        rustDetails,
+        modificationOnTruck: modificationOnTrck,
+        fuel,
+        // EndTime: EndDateTime.toString(),
+        phone,
+        sold: 1,
+      })
+      .then((result) => {
+        //navigaget
+        if (result.data.status === 200) {
+          navigate("/vehicle-submission");
+          submitApprove(data);
+          // window.location.reload(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-            <div className="col-12 text-center pb-4">
-              <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
-            </div>
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
                 {/* <!-- Nav pills --> */}
@@ -637,11 +645,11 @@ const VehicleRegistered = () => {
                       onClick={handleMakeAndModalTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Edit your profile
+                      Make & Model
                     </a>
                     {!showError && errorMakeAndModal ? (
                       <span className="text-danger">
-                        Pleae file input fields proper
+                        Pleae file make & model input field proper
                       </span>
                     ) : null}
                   </li>
@@ -696,7 +704,7 @@ const VehicleRegistered = () => {
                       onClick={handleContactTab}
                       style={{ cursor: "pointer" }}
                     >
-                      Contact Info
+                      Approval
                     </a>
                   </li>
                 </ul>
@@ -707,7 +715,7 @@ const VehicleRegistered = () => {
               <div className="tab-content">
                 {reduxValue.submitvechilesReducer.step_one === false ? (
                   <div className="tab-pane active">
-                    <h3>Make & Model</h3>
+                    <h3>Edit Profile Of {namefield.make}</h3>
                     <hr />
                     <h6>
                       Think your vehicle should be sold via Gas Guzzlrs
@@ -724,20 +732,22 @@ const VehicleRegistered = () => {
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-6">
                           <FormInput
-                            value={namefield.name}
-                            onChange={handleNameField}
+                            value={basicfact.vin}
+                            // onChange={handleNameField}
                             name="name"
-                            placeholder="Enter Name"
-                            errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
-                            label="What is your name?"
-                            pattern="^[A-Za-z ]{3,16}$"
+                            placeholder="Enter Vin"
+                            // errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
+                            label="What is your vehicle VIN?"
+                            // pattern="^[A-Za-z ]{3,16}$"
                             required={true}
                           />
                         </div>
+
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>What year is your vehicle?</label>
                             <select
+                              disabled
                               value={namefield.year}
                               onChange={handleNameField}
                               name="year"
@@ -761,12 +771,12 @@ const VehicleRegistered = () => {
                           <div className="form-group">
                             <FormInput
                               value={namefield.make}
-                              onChange={handleNameField}
+                              // onChange={handleNameField}
                               name="make"
                               placeholder="Enter"
-                              errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
-                              label="what is your vehicle?"
-                              pattern="^[A-Za-z0-9 ]{3,16}$"
+                              // errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
+                              label="what make is your vehicle?"
+                              // pattern="^[A-Za-z0-9 ]{3,16}$"
                               required={true}
                             />
                           </div>
@@ -775,17 +785,84 @@ const VehicleRegistered = () => {
                           <div className="form-group">
                             <FormInput
                               value={namefield.model}
-                              onChange={handleNameField}
+                              // onChange={handleNameField}
                               name="model"
                               placeholder="Enter"
-                              errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
+                              // errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
                               label="What model is this vehicle?"
-                              pattern="^[A-Za-z0-9 ]{3,16}$"
+                              // pattern="^[A-Za-z0-9 ]{3,16}$"
                               required={true}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
+                            <label>
+                              What country is the vehicle currently located in?
+                            </label>
+
+                            <select
+                              value={namefield.vechilelocation}
+                              onChange={(e) => {
+                                handleNameField(e);
+                                setCountryId(e.target.value);
+                              }}
+                              // onChange={(e) => setCountryId(e.target.value ) }
+                              name="vechilelocation"
+                              className="field"
+                              required
+                            >
+                              <option value="231">United States</option>
+                              {countryData.map((curElem, i) => {
+                                return (
+                                  <option value={curElem.id} key={i}>
+                                    {curElem.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-6">
+                          <div className="form-group">
+                            <label>
+                              What state is the vehicle currently located in?
+                            </label>
+                            <select
+                              value={namefield.city}
+                              onChange={handleNameField}
+                              name="city"
+                              className="field"
+                              placeholder="Enter city"
+                            >
+                              <option>{namefield.city}</option>
+                              {stateData.map((curElem, i) => {
+                                return (
+                                  <option value={curElem.name} key={i}>
+                                    {curElem.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+
+                          {/* <div className="form-group">
+                              <FormInput
+                                value={namefield.city}
+                                onChange={handleNameField}
+                                name="city"
+                                placeholder="Enter city"
+                                errorMessage="This input field contain 3-16 characters and shouldn't include any special character or number"
+                                label="What city is the vehicle located in?"
+                                pattern="^[A-Za-z ]{3,16}$"
+                                required={true}
+                              />
+                            </div> */}
+                        </div>
+
+                        {/* ===========End============ */}
+
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
                               What country is the vehicle currently located in?
@@ -808,7 +885,7 @@ const VehicleRegistered = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-4">
                           <div className="form-group">
                             <FormInput
                               value={namefield.city}
@@ -821,7 +898,7 @@ const VehicleRegistered = () => {
                               required={true}
                             />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
@@ -867,7 +944,7 @@ const VehicleRegistered = () => {
                         {namefield.sale === "Yes" ||
                         namefield.vehiclepast === "Yes" ? (
                           <>
-                            <div className="col-12 col-sm-12 col-md-12">
+                            <div className="col-12 col-sm-12 col-md-4">
                               <div className="form-group">
                                 <FormInput
                                   value={namefield.providelink}
@@ -901,49 +978,6 @@ const VehicleRegistered = () => {
                         ) : null}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label style={{ textTransform: "uppercase" }}>
-                              Are You A Dealer?
-                            </label>
-                            <select
-                              value={namefield.dealer}
-                              onChange={handleNameField}
-                              name="dealer"
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Select
-                              </option>
-                              <option>Yes</option>
-                              <option>No</option>
-                            </select>
-                          </div>
-                        </div>
-                        {namefield.dealer === "Yes" ? (
-                          <div className="col-12 col-sm-12 col-md-6">
-                            <div className="form-group">
-                              <label>
-                                What is the name of your dealership? Please
-                                include a link to your website.
-                              </label>
-                              <input
-                                value={namefield.dealership}
-                                onChange={handleNameField}
-                                type="text"
-                                minLength={2}
-                                maxLength={50}
-                                name="dealership"
-                                placeholder="Enter"
-                                className="field"
-                                required
-                              />
-                            </div>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                        <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
                             <label>
                               Is the vehicle being sold on consignment?
                             </label>
@@ -962,7 +996,7 @@ const VehicleRegistered = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <FormInput
                               value={namefield.videolink}
@@ -976,7 +1010,54 @@ const VehicleRegistered = () => {
                               required={true}
                             />
                           </div>
+                        </div> */}
+
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <label htmlFor="video-link">
+                              Please provide any links to videos (Youtube or
+                              Video) here:
+                            </label>
+                            <a style={{ cursor: "pointer" }} onClick={addInput}>
+                              Add more link
+                            </a>
+                          </div>
+                          {arr.map((item, i) => {
+                            return (
+                              <div className="form-group">
+                                <input
+                                  onChange={handleChange}
+                                  value={item.value}
+                                  id={i}
+                                  className="field"
+                                  placeholder="Enter link"
+                                  type={item.type}
+                                  required={true}
+                                />
+                              </div>
+                            );
+                          })}
+
+                          {/* <div className="form-group">
+                              <FormInput
+                                value={namefield.videolink}
+                                onChange={handleNameField}
+                                name="videolink"
+                                type="url"
+                                placeholder="Enter link"
+                                errorMessage="Please provide valid link"
+                                label="Please provide any links to videos (Youtube or
+                              Video) here:"
+                                required={true}
+                              />
+                            </div> */}
                         </div>
+
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <p>
@@ -992,26 +1073,30 @@ const VehicleRegistered = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
-                            <div className="">
-                              {Array.from(file).map((items) => {
+                            <label htmlFor="bannerImage">Banner Image</label>
+                            <div className="imgCross">
+                              {Array.from(bannerImage).map((curElem) => {
                                 return (
                                   <span>
                                     <img
-                                      src={
-                                        items
-                                          ? URL.createObjectURL(items)
-                                          : null
-                                      }
                                       style={{
-                                        width: "100px",
-                                        objectFit: "cover",
-                                        padding: "15px",
+                                        maxWidth: "16%",
+                                        padding: "10px",
                                       }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
                                     />
+                                    <button className="close">x</button>
                                   </span>
                                 );
                               })}
-                              <input
+                              {/* <input
                                 style={{
                                   fontSize: "1.2rem",
                                   textAlign: "center",
@@ -1023,10 +1108,52 @@ const VehicleRegistered = () => {
                                 name="file"
                                 type="file"
                                 accept="image/png, image/jpeg"
-                              />
+                              /> */}
                             </div>
                           </div>
                         </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="bannerImage">Gallery Image</label>
+                            <div className="imgCross">
+                              {Array.from(galleryImage).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        maxWidth: "16%",
+                                        padding: "10px",
+                                      }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                    <button className="close">x</button>
+                                  </span>
+                                );
+                              })}
+                              {/* <input
+                                style={{
+                                  fontSize: "1.2rem",
+                                  textAlign: "center",
+                                }}
+                                onChange={(e) => {
+                                  // handleNameField(e);
+                                  setFile(e.target.files);
+                                }}
+                                name="file"
+                                type="file"
+                                accept="image/png, image/jpeg"
+                              /> */}
+                            </div>
+                          </div>
+                        </div>
+
                         <div className="col-12">
                           <p className="small">
                             Accepted file types: jpg, jpeg, png, Max. file size:
@@ -1064,25 +1191,13 @@ const VehicleRegistered = () => {
                     <form onSubmit={basicFactSubmitHandler} className="pt-3">
                       <div className="row row_gap_5">
                         <div className="col-12 col-sm-12 col-md-6">
-                          <FormInput
-                            value={basicfact.vin}
-                            onChange={basicFactOnChange}
-                            name="vin"
-                            label="What is the VIN"
-                            placeholder="Enter VIN"
-                            errorMessage="VIN should be 17 characters and shouldn't include any special character!"
-                            pattern="^[A-Za-z0-9]{17}$"
-                            required={true}
-                          />
-                        </div>
-                        <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
                               How would you want to list your vehicle?
                             </label>
                             <select
                               value={basicfact.displayInAuction}
-                              onChange={basicFactOnChange}
+                              // onChange={basicFactOnChange}
                               name="displayInAuction"
                               className="field"
                               required
@@ -1129,7 +1244,7 @@ const VehicleRegistered = () => {
 
                         {logingUser.planReducer.plan.listName ===
                         "classified" ? (
-                          <div className="col-12 col-sm-12 col-md-12">
+                          <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
                                 value={basicfact.adWebsiteLink}
@@ -1144,12 +1259,12 @@ const VehicleRegistered = () => {
                             </div>
                           </div>
                         ) : (
-                          <div className="col-12 col-sm-12 col-md-12">
+                          <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>Auction type</label>
                               <select
                                 value={basicfact.auctionType}
-                                onChange={basicFactOnChange}
+                                // onChange={basicFactOnChange}
                                 name="auctionType"
                                 className="field"
                                 required
@@ -1202,9 +1317,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required={true}
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
                             </select>
@@ -1365,9 +1477,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="clean">Clean</option>
                               <option value="rebuilt">Rebuilt</option>
                               <option value="salvage">Salvage</option>
@@ -1408,7 +1517,7 @@ const VehicleRegistered = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
                               To the best of your knowledge, is this number
@@ -1429,7 +1538,7 @@ const VehicleRegistered = () => {
                             </select>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-12">
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <p>
                               Please upload a photo of your title (or a photo of
@@ -1438,9 +1547,51 @@ const VehicleRegistered = () => {
                               be used to verify ownership status.
                             </p>
                           </div>
-                        </div>
+                        </div> */}
 
                         <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <label htmlFor="documentImae">Document Image</label>
+                            <div className="imgCross">
+                              {Array.from(documentImage).map((curElem) => {
+                                return (
+                                  <span>
+                                    <img
+                                      style={{
+                                        maxWidth: "16%",
+                                        padding: "10px",
+                                      }}
+                                      loading="lazy"
+                                      src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                    <button className="close">X</button>
+                                  </span>
+                                );
+                              })}
+                              {/* <input
+                                style={{
+                                  fontSize: "1.2rem",
+                                  textAlign: "center",
+                                }}
+                                onChange={(e) => {
+                                  // handleNameField(e);
+                                  setFile(e.target.files);
+                                }}
+                                name="file"
+                                type="file"
+                                accept="image/png, image/jpeg"
+                              /> */}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <div className="drag-area">
                               {Array.from(file1).map((items, i) => {
@@ -1478,13 +1629,13 @@ const VehicleRegistered = () => {
                               />
                             </div>
                           </div>
-                        </div>
-                        <div className="col-12">
+                        </div> */}
+                        {/* <div className="col-12">
                           <p className="small">
                             Accepted file types: jpg, jpeg, png, Max. file size:
                             1 GB.
                           </p>
-                        </div>
+                        </div> */}
                         <div className="col-12"></div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <button
@@ -1530,9 +1681,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
                             </select>
@@ -1568,9 +1716,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
                             </select>
@@ -1602,9 +1747,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="Electric">Electric</option>
                               <option value="CNG">CNG</option>
                               <option value="Petrol">Petrol</option>
@@ -1625,9 +1767,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
                             </select>
@@ -1646,12 +1785,6 @@ const VehicleRegistered = () => {
                                 className="field"
                                 required
                               />
-                              {detailstab.modificationOnTrck.trim().length >
-                                400 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
                             </div>
                           )}
                         </div>
@@ -1671,12 +1804,6 @@ const VehicleRegistered = () => {
                               className="field"
                               required
                             ></textarea>
-                            {detailstab.issuesorproblems.trim().length >
-                              1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
                           </div>
                           <p>
                             Please list and describe services performed and when
@@ -1697,12 +1824,6 @@ const VehicleRegistered = () => {
                               placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
                               required
                             ></textarea>
-                            {detailstab.moreDescription.trim().length >
-                              1500 && (
-                              <span className="text-danger">
-                                You Can entered maximum 1500 characters!
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -1821,7 +1942,7 @@ const VehicleRegistered = () => {
                             ></textarea>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-6">
+                        <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>Do you want a reserve?</label>
                             <select
@@ -1848,7 +1969,7 @@ const VehicleRegistered = () => {
                                 name="reserveAmount"
                                 placeholder="Enter"
                                 errorMessage="Reserve amount should be 1-9 characters and shouldn't include any special character and alphabet!"
-                                label="Please provide reserve amount:"
+                                label="Please provide reserve amount"
                                 pattern="^[0-9]{1,9}$"
                                 required={true}
                               />
@@ -1856,7 +1977,7 @@ const VehicleRegistered = () => {
                           </div>
                         )}
 
-                        <div className="col-12 col-sm-12 col-md-6">
+                        {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Where did you hear about Gas Guzzlrs?</label>
                             <select
@@ -1882,7 +2003,7 @@ const VehicleRegistered = () => {
                               <option value="other">Other</option>
                             </select>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <FormInput
@@ -1894,7 +2015,7 @@ const VehicleRegistered = () => {
                               label="What is the amount of the document fee that you
                               will charge buyers above and beyond sale price and
                               tax? (This will be printed in the listing.)"
-                              pattern="^[0-9]{1,9}$"
+                              pattern="^[0-9,]{1,9}$"
                               required={true}
                             />
                           </div>
@@ -1920,10 +2041,52 @@ const VehicleRegistered = () => {
                 reduxValue.submitvechilesReducer.step_two === true &&
                 reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
-                    <h3>Contact Info</h3>
-                    <hr />
+                    {/* <h3>Contact Info</h3> */}
+                    {/* <hr /> */}
 
-                    <form className="pt-3" onSubmit={informationSubmitHandler}>
+                    <form>
+                      <label>Description </label> <br />
+                      <textarea
+                        name="description1"
+                        value={descValue.description1}
+                        onChange={handleDescription}
+                        minLength={2}
+                        maxLength={1500}
+                        className="col-md-12 field"
+                        rows={4}
+                      ></textarea>{" "}
+                      <br />
+                    </form>
+                    <div className="text-center my-4">
+                      <button
+                        // onClick={() => submitApprove("approve")}
+                        onClick={() => fetchVehicleApi("publish")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved == 1 ? false : true}
+                      >
+                        Publish
+                      </button>
+                      <button
+                        // onClick={() => submitApprove("reject")}
+                        onClick={() => fetchVehicleApi("reject")}
+                        className="btn btn-warning m-3"
+                        type="button"
+                        disabled={vechileInfo.approved != 1 ? false : true}
+                      >
+                        Reject
+                      </button>
+
+                      {/* <button
+                        onClick={() => submitUpdate(id)}
+                        className="btn btn-warning m-3"
+                        type="button"
+                      >
+                        Update
+                      </button> */}
+                    </div>
+
+                    {/* <form className="pt-3" onSubmit={informationSubmitHandler}>
                       <div className="row">
                         <div className="col-12">
                           <h5>Complete Your Contact Info</h5>
@@ -2000,7 +2163,7 @@ const VehicleRegistered = () => {
                           )}
                         </div>
                       </div>
-                    </form>
+                    </form> */}
                   </div>
                 ) : null}
               </div>
@@ -2012,4 +2175,4 @@ const VehicleRegistered = () => {
   );
 };
 
-export default VehicleRegistered;
+export default UserVehicleDetails;

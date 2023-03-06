@@ -134,10 +134,15 @@ function VehicleSubmission() {
                                 <td>{data.make}</td>
                                 <td className="actionBtn vs">
                                   <Link
+                                    to={`/detail/${data.id}`}
+                                    className="btn mr-1"
+                                  >
+                                    Preview
+                                  </Link>
+                                  <Link
                                     to={`/vehicle-submission/${data.id}`}
                                     className="btn"
                                   >
-                                    {/* <i class="fa-solid fa-trash-can"></i> */}
                                     View
                                   </Link>
                                 </td>
