@@ -67,14 +67,7 @@ const Auctionlive = () => {
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
                 Current Auctions{" "}
-                <span>
-                  {
-                    data
-                      .filter((data) => data.done === 1 && data.premium === 1)
-                      .map((data) => data).length
-                  }{" "}
-                  AUCTIONS NOW LIVE
-                </span>
+                <span>{data?.length}&nbsp; AUCTIONS NOW LIVE</span>
               </h2>
             </div>
             <div className="col-12">
