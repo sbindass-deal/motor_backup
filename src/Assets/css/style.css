@@ -5827,6 +5827,7 @@ h3.cardTitle {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  padding: 0px 10px;
   padding-bottom: 15px;
   font-size: 15px;
 }

@@ -6,6 +6,7 @@ import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import FormInput from "../../../UI/FormInput";
 import Msg from "../../../../Assets/images/msg.svg";
+import MicrosoftTeams from "../../../../Assets/images/MicrosoftTeams-image.png"
 import EyeIcon from "../../../../Assets/images/eyeIcon.svg";
 import ScreenShort from "../../../../Assets/images/screenShort.png";
 import carImg from "../../../../Assets/images/carImg.png";
@@ -48,6 +49,7 @@ function Detail() {
 
   const [latestBidData, setLatestBidData] = useState(null)
   const [bidCount, setBidCount] = useState(null)
+  const [endTimedata, setEndTimedata] = useState(null)
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -161,6 +163,8 @@ function Detail() {
       .catch((err) => console.log(err));
   };
 
+  
+
   const getfetchData = () => {
     axios
       .get(`https://api.gasguzzlrs.com/bidding/${id}`)
@@ -169,6 +173,7 @@ function Detail() {
 
       setLatestBidData(response.data.last_bid)
       setBidCount((response.data.data).length)
+      setEndTimedata(response.data.end_time)
 
     }).catch((err) => {
       console.log(err)
@@ -183,7 +188,7 @@ function Detail() {
     const fetchApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
+          `${process.env.REACT_APP_URL}vehicle_detail/${id}`
         );
         if (res.data.status === 200) {
           setVehicle(res.data.data);
@@ -199,6 +204,7 @@ function Detail() {
 
     fetchApi();
   }, [vehicleDatas, id]);
+
 
   // get vin details by api
   useEffect(() => {
@@ -308,9 +314,8 @@ function Detail() {
                 {vehicle?.image_banner && (
                   <img
                     loading="lazy"
-                    src={
-                      vehicle?.image_banner[0] &&
-                      `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
+                    src={ vehicle?.image_banner.length == 0 ? MicrosoftTeams : vehicle?.image_banner[0] && `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
+                      
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
@@ -401,7 +406,7 @@ function Detail() {
                 <div className="downloadZip">
                   ZIP Code
                   <input type="text" placeholder="Search ZIP code"></input>
-                  <button className="btn">Search</button>
+                  <button className="btn">Get Quote</button>
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using
@@ -425,31 +430,55 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Time Left</p>
-                        <p style={{ marginLeft: "40px" }}>
+                        <p style={{ marginLeft: "55px" }}>
                           {" "}
-                          2 days, 9 hours, 40 minutes, 16 seconds *
+                          {/* 2 days, 9 hours, 40 minutes, 16 seconds * */}
+                          <span>
+                            {days} days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
+                          </span>
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Ends On</p>
-                        <p style={{ marginLeft: "40px" }}>	Thursday, March 9 at 4:32am remind me</p>
+                        <p style={{ marginLeft: "60px" }}>
+                          {/* Thursday, March 9 at 4:32 am remind me */}
+                          {/* {endTimedata} */}
+
+                          {/* new Date("2023-03-13 00:00:00"); */}
+                          {new Date(endTimedata).getDay()} <span style={{ marginLeft: "5px" }}>days</span>
+                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getHours()}  hours</span>
+
+                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getMinutes()} minutes</span>
+
+                         
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Bids</p>
-                        <p style={{ marginLeft: "40px" }}>{bidCount}</p>
+                        <p style={{ marginLeft: "87px" }}>{bidCount}</p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Place Bid</p>
-                        <button style={{ marginLeft: "40px" }}>
-                          REGISTER TO BID
+                        <button
+                         
+                          type="button"
+                          className="gry_btn active bg-dark"
+                          style={{ border: "none" ,marginLeft: "40px",marginBottom: "20px"}}
+                          onClick={() => setShow(true)}
+                        >
+                          Place a bid
                         </button>
                       </li>
+                      
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <Comment />
+              {/* <Comment /> */}
             </div>
           </div>
         </div>
