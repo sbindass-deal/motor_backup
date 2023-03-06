@@ -10,12 +10,10 @@ import {
   step_three,
   step_two,
 } from "../../redux/reducers/submitvechilesReducer";
-import counryData from "../countryList";
 import { Modal } from "react-bootstrap";
 import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
-import { countryData } from "../../countryAndCity";
 import FormInput from "../UI/FormInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
@@ -61,7 +59,37 @@ const VechilesRegistraion = () => {
   const [mapLink, setMapLink] = useState("1");
   const [uploadmultipleImage, setuploadMulipleImage] = useState([]);
   const [mappedInputData, setMappedInputData] = useState([]);
+  const [counryData, setCounryData] = useState([]);
+  const [stateData, setStateData] = useState([]);
+  const [countryCode, setCountryCode] = useState(231);
   const inputRefBanner = useRef();
+
+  useEffect(() => {
+    const fetchCountryApi = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_URL}countries`);
+        setCounryData(res.data.data.countries);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCountryApi();
+  }, []);
+
+  useEffect(() => {
+    const fetchStateData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}state/${countryCode}`
+        );
+        setStateData(res.data.data.states);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchStateData();
+  }, [countryCode]);
+
   const handleDragOverBanner = (event) => {
     event.preventDefault();
   };
@@ -505,9 +533,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
     axios
       .post(`${url}vehicles`, {
         planId: logingUser.planReducer.plan.planId,
@@ -1036,18 +1064,19 @@ const VechilesRegistraion = () => {
 
                               <select
                                 value={namefield.vechilelocation}
-                                onChange={handleNameField}
+                                onChange={(e) => {
+                                  handleNameField(e);
+                                  setCountryCode(e.target.value);
+                                }}
                                 name="vechilelocation"
                                 className="field"
                                 required
                               >
-                                <option value="United State">
-                                  United State
-                                </option>
+                                <option value="231">United States</option>
 
                                 {counryData.map((curElem, i) => {
                                   return (
-                                    <option value={curElem.name} key={i}>
+                                    <option value={curElem.id} key={i}>
                                       {curElem.name}
                                     </option>
                                   );
@@ -1055,7 +1084,7 @@ const VechilesRegistraion = () => {
                               </select>
                             </div>
                           </div>
-                          <div className="col-12 col-sm-12 col-md-6">
+                          {/* <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
                                 value={namefield.city}
@@ -1068,7 +1097,32 @@ const VechilesRegistraion = () => {
                                 required={true}
                               />
                             </div>
+                          </div> */}
+                          <div className="col-12 col-sm-12 col-md-6">
+                            <div className="form-group">
+                              <label>
+                                What state is the vehicle currently located in?
+                              </label>
+
+                              <select
+                                value={namefield.city}
+                                onChange={handleNameField}
+                                name="city"
+                                placeholder="Enter city"
+                                className="field"
+                                // required
+                              >
+                                {stateData.map((curElem, i) => {
+                                  return (
+                                    <option value={curElem.name} key={i}>
+                                      {curElem.name}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                            </div>
                           </div>
+
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>
@@ -1541,9 +1595,7 @@ const VechilesRegistraion = () => {
                                   <option value="General listing">
                                     General listing
                                   </option>
-                                  <option value="For charity">
-                                    For charity
-                                  </option>
+                                  <option value="charity">charity</option>
                                   <option value="Premium listing">
                                     Premium listing
                                   </option>

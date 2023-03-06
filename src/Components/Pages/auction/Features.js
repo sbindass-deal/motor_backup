@@ -1,31 +1,46 @@
-import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import icGrid from "../../../Assets/images/icGrid.svg";
+import axios from "axios";
+import moment from "moment";
+import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
-import ResultNotFound from "../../UI/ResultNotFound";
+import Data from "./Data";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const Features = () => {
-  const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
-  const vehicleDatas = logingUser.vehicleReducer.vehicleData;
-
-  const [vehicleData, setVehicleData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
-  useEffect(() => {
-    const filteredData = vehicleDatas.filter(
-      (item) =>
-        item.displayInAuction === "Yes" &&
-        item.auctionType === "Premium listing"
-    );
-    setVehicleData(filteredData);
-  }, [vehicleDatas]);
 
+  const fetchNoreserveData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
+      );
+      if (res.data.status === 200) {
+        setData(res.data.data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchNoreserveData();
+  }, []);
+
+  // const getEndDate = (cal) => {
+  //   let data = cal.split("T");
+  //   let endDate = moment().format("YYYY-MM-DD");
+  //   let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
+
+  //   return startDate.toString();
+  // };
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
@@ -40,72 +55,59 @@ const Features = () => {
       });
   };
 
-  const filteredData = (
-    vehicleData.length > 0 && highlightWatch
-      ? vehicleData.filter((item) => item.like > 0)
-      : vehicleData
-  ).filter((item) =>
-    item.make
-      ? item.make.toLowerCase().includes(searchValue) ||
-        item.model.toLowerCase().includes(searchValue) ||
-        item.year.includes(searchValue)
-      : item
-  );
-
-  var date = new Date("2015-02-10T10:12:50.5000z");
-
-  console.log(56565, date.toLocaleDateString());
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
 
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
-        {vehicleData.length > 0 && (
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <ul className="postTopOption">
-                  <li className="post_search">
-                    <input
-                      type="search"
-                      name="search"
-                      value={searchValue}
-                      onChange={(e) =>
-                        setSearchValue(e.target.value.toLowerCase())
-                      }
-                      placeholder="Filter auctions for make, model, category…"
-                    />
-                  </li>
-                  <li className="">
-                    <button
-                      onClick={() => setHighlightWatch(!highlightWatch)}
-                      type="button"
-                      className={`gry_btn ${highlightWatch && "active"}`}
-                    >
-                      {/* <i className="fa-solid fa-heart"></i> */}
-                      <i class="fa-solid fa-star mr-2"></i>Watch
-                    </button>
-                  </li>
-                  <li className="d-flex">
-                    <button
-                      onClick={() => setViewListActive(false)}
-                      type="button"
-                      className={`gry_btn gridView ${
-                        !viewListActive ? "active" : ""
-                      }`}
-                    >
-                      <img src={icGrid} loading="lazy" />
-                    </button>
-                    <button
-                      onClick={() => setViewListActive(true)}
-                      type="button"
-                      className={`gry_btn listView ${
-                        viewListActive ? "active" : ""
-                      }`}
-                    >
-                      <i className="fa-sharp fa-solid fa-list"></i>
-                    </button>
-                  </li>
-                  {/* <li className="">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <ul className="postTopOption">
+                <li className="post_search">
+                  <input
+                    type="search"
+                    name="search"
+                    value={searchValue}
+                    onChange={(e) =>
+                      setSearchValue(e.target.value.toLowerCase())
+                    }
+                    placeholder="Filter auctions for make, model, category…"
+                  />
+                </li>
+                <li className="">
+                  <button
+                    onClick={() => setHighlightWatch(!highlightWatch)}
+                    type="button"
+                    className={`gry_btn ${highlightWatch && "active"}`}
+                  >
+                    {/* <i className="fa-solid fa-heart"></i> */}
+                    <i class="fa-solid fa-star mr-2"></i>Watch
+                  </button>
+                </li>
+                <li className="d-flex">
+                  <button
+                    onClick={() => setViewListActive(false)}
+                    type="button"
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
+                  >
+                    <img src={icGrid} loading="lazy" />
+                  </button>
+                  <button
+                    onClick={() => setViewListActive(true)}
+                    type="button"
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
+                  >
+                    <i className="fa-sharp fa-solid fa-list"></i>
+                  </button>
+                </li>
+                {/* <li className="">
                   <select className="post_select">
                     <option>Ending Soonest</option>
                     <option>Bid: Low to High</option>
@@ -114,154 +116,67 @@ const Features = () => {
                     <option>Closest to postal code...</option>
                   </select>
                 </li> */}
-                </ul>
-              </div>
-            </div>
-
-            <div
-              className={`row pt-4 row_gridList ${
-                viewListActive && "activeListView"
-              }`}
-            >
-              {filteredData.length <= 0 ? (
-                <ResultNotFound text="Result not found! 🙄" />
-              ) : (
-                filteredData.map((curElem) => {
-                  return (
-                    <>
-                      <div className="col-12 col-md-6 pb-3">
-                        <div className="card_post box_shadow_common">
-                          <div class="card_post">
-                            <div class="card_postImg">
-                              <Link
-                                to={`/detail/${curElem.id}`}
-                                className="auction_image"
-                              >
-                                {curElem.images[0] ? (
-                                  <img
-                                    loading="lazy"
-                                    src={
-                                      curElem.images[0] &&
-                                      `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                                    }
-                                    onError={({ currentTarget }) => {
-                                      currentTarget.onError = null;
-                                      currentTarget.src =
-                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                    }}
-                                    alt="Maskgroup1"
-                                  />
-                                ) : (
-                                  <img
-                                    loading="lazy"
-                                    src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                    alt="Maskgroup1"
-                                  />
-                                )}
-                              </Link>
-                            </div>
-                            <div class="card_postInfo">
-                              <h4>
-                                <Link to={`/detail/${curElem.id}`}>
-                                  {/* Lorem Ipsum is simply dummy text */}
-                                  {curElem.make} &nbsp;
-                                  {curElem.model} &nbsp;
-                                  {curElem.year}
-                                </Link>
-                              </h4>
-                              <ul class="labelList">
-                                {/* <label>Current Bid : </label>
-                                <li className="px-1">${curElem.documentFee}</li>
-
-                                <li>
-                                  {parseInt(
-                                    new Date(curElem.EndTime).getTime(),
-                                    10
-                                  ) -
-                                    parseInt(new Date().getTime(), 10) >
-                                    0 && curElem.approved === "1" ? (
-                                    <label>Auction Open</label>
-                                  ) : parseInt(
-                                    new Date(curElem.EndTime).getTime(),
-                                    10
-                                  ) -
-                                    parseInt(new Date().getTime(), 10) >
-                                    0 &&
-                                    (curElem.approved === null ||
-                                      curElem.approved === "11") ? (
-                                    <label>Upcoming Auction</label>
-                                  ) : (
-                                    <label>Auction Closed</label>
-                                  )}
-                                </li> */}
-                                <ul class="labelList">
-                                  <li>
-                                    {new Date(
-                                      curElem.created_at
-                                    ).toLocaleDateString()}
-                                  </li>
-                                  <li>
-                                    <i class="fa-solid fa-user mr-2"></i>{" "}
-                                    {curElem.name}
-                                  </li>
-                                </ul>
-                              </ul>
-                              <p>
-                                {curElem.moreDescription.substr(0, 123) + "..."}{" "}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      
-                    </>
-                  );
-                })
-              )}
-
-              <div class="col-12">
-                <ul class="pagination justify-content-center mt-4">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#">
-                      <i class="fa-solid fa-arrow-left"></i>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      ...
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      10
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              </ul>
             </div>
           </div>
-        )}
+
+          <div
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
+          >
+            {data.length > 0 &&
+              data.map((curElem) => {
+                return (
+                  <Data
+                    key={curElem.id}
+                    curElem={curElem}
+                    addFabrity={addFabrity}
+                  />
+                );
+              })}
+
+            <div class="col-12">
+              <ul class="pagination justify-content-center mt-4">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">
+                    1
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    2
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    3
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    ...
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    10
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

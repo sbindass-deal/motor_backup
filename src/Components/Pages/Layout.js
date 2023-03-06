@@ -13,7 +13,7 @@ import PrivateParty from "./plan/PrivateParty";
 import MyShipments from "./MyAccount/MyShipments";
 import Store from "./Store";
 import Features from "./auction/Features";
-import Detail from "./auction/Detail";
+import Detail from "./auction/auctionDetails/Detail";
 import TermsOfUse from "./TermsOfUse";
 import AboutShibanobi from "./AboutShibanobi";
 import Shipping from "./Shipping";
@@ -111,7 +111,6 @@ const Layout = () => {
                 path="vehicle-submission/:id"
                 element={<UserVehicleDetails />}
               />
-              {/* Admin login start */}
               {logingUser.login.admin && (
                 <>
                   <Route

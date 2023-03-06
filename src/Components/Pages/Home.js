@@ -177,12 +177,12 @@ function Home() {
                             <div key={curElem.id}>
                               <div className="card_post">
                                 <div className="card_postImg">
-                                  {curElem.images[0] ? (
+                                  {curElem.image_banner ? (
                                     <img
                                       loading="lazy"
                                       src={
-                                        curElem.images[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                        curElem.image_banner[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
                                       }
                                       onError={({ currentTarget }) => {
                                         currentTarget.onError = null;
