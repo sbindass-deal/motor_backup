@@ -571,7 +571,7 @@ const VechilesRegistraion = () => {
         engineSize: vehiclepast,
         stepOneImage: "",
         stepTwoImage: "",
-        ste: `${ultiumdrive === "Yes" ? "Drive e4WD system" : ""}`,
+        UltiumDriveeWDsystem: ultiumdrive,
         link: link,
         accessories: accessories.toString(),
         truckDetails: detailsInfo.toString(),

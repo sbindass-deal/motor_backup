@@ -99,7 +99,7 @@ const UserVehicleDetails = () => {
         auctionType: basicFactOnChange.auctionType,
         adWebsiteLink: basicFactOnChange.externalLink,
         vechilesrace: basicFactOnChange.ownerDetail,
-        ultiumdrive: basicFactOnChange.ste,
+        ultiumdrive: basicFactOnChange.Interstellar,
         Interstellar: basicFactOnChange.Interstellar,
         interior: basicFactOnChange.interior,
         brandandmodel: basicFactOnChange.brandandmodel,
@@ -410,7 +410,7 @@ const UserVehicleDetails = () => {
             auctionType: filteredVehicleData.auctionType,
             adWebsiteLink: filteredVehicleData.externalLink,
             vechilesrace: filteredVehicleData.ownerDetail,
-            ultiumdrive: filteredVehicleData.ste,
+            ultiumdrive: filteredVehicleData.UltiumDriveeWDsystem,
             Interstellar: filteredVehicleData.Interstellar,
             interior: filteredVehicleData.interior,
             brandandmodel: filteredVehicleData.brandandmodel,
@@ -979,47 +979,6 @@ const UserVehicleDetails = () => {
                         ) : null}
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
-                            <label>Are you a dealer?</label>
-                            <select
-                              value={namefield.dealer}
-                              onChange={handleNameField}
-                              name="dealer"
-                              className="field"
-                              required
-                            >
-                              <option selected disabled value="">
-                                Select
-                              </option>
-                              <option>Yes</option>
-                              <option>No</option>
-                            </select>
-                          </div>
-                        </div>
-                        {namefield.dealer === "Yes" ? (
-                          <div className="col-12 col-sm-12 col-md-6">
-                            <div className="form-group">
-                              <label>
-                                What is the name of your dealership? Please
-                                include a link to your website.
-                              </label>
-                              <input
-                                value={namefield.dealership}
-                                onChange={handleNameField}
-                                type="text"
-                                minLength={2}
-                                maxLength={50}
-                                name="dealership"
-                                placeholder="Enter"
-                                className="field"
-                                required
-                              />
-                            </div>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                        <div className="col-12 col-sm-12 col-md-6">
-                          <div className="form-group">
                             <label>
                               Is the vehicle being sold on consignment?
                             </label>
@@ -1359,9 +1318,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required={true}
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="No">No</option>
                               <option value="Yes">Yes</option>
                             </select>
@@ -1522,9 +1478,6 @@ const UserVehicleDetails = () => {
                               className="field"
                               required
                             >
-                              <option selected disabled value="">
-                                Select
-                              </option>
                               <option value="clean">Clean</option>
                               <option value="rebuilt">Rebuilt</option>
                               <option value="salvage">Salvage</option>
@@ -2093,7 +2046,7 @@ const UserVehicleDetails = () => {
                               label="What is the amount of the document fee that you
                               will charge buyers above and beyond sale price and
                               tax? (This will be printed in the listing.)"
-                              pattern="^[0-9]{1,9}$"
+                              pattern="^[0-9,]{1,9}$"
                               required={true}
                             />
                           </div>
