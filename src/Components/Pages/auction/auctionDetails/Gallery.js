@@ -1,6 +1,7 @@
 import React from "react";
 import { Image } from "antd";
 import { useState } from "react";
+import ReactPlayer from "react-player";
 
 const Gallery = ({ vehicle }) => {
   const [showAuctionGallery, setShowAuctionGallery] = useState(false);
@@ -87,22 +88,13 @@ const Gallery = ({ vehicle }) => {
             {showAuctionGallery ? "Show Less" : "Show more"}{" "}
           </button>
         </div>
-
         <div className=" phG">
           <h3>Youtube Videos</h3>
           <div className="card-group">
             {vehicle?.description?.map((curElem, i) => {
               return (
                 <div key={i}>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={curElem}
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                  ></iframe>
+                  <ReactPlayer className="m-1" url={curElem} />
                 </div>
               );
             })}

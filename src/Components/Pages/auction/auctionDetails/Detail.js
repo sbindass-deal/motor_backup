@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
@@ -6,10 +6,9 @@ import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import FormInput from "../../../UI/FormInput";
 import Msg from "../../../../Assets/images/msg.svg";
-import MicrosoftTeams from "../../../../Assets/images/MicrosoftTeams-image.png"
+import MicrosoftTeams from "../../../../Assets/images/MicrosoftTeams-image.png";
 import EyeIcon from "../../../../Assets/images/eyeIcon.svg";
 import ScreenShort from "../../../../Assets/images/screenShort.png";
-import carImg from "../../../../Assets/images/carImg.png";
 import Comment from "./Comment";
 import Gallery from "./Gallery";
 import LatestGuzzlrsAuction from "./LatestGuzzlrsAuction";
@@ -19,20 +18,15 @@ import Fundamental from "./Fundamental";
 
 import { toast } from "react-toastify";
 
-import { Button, notification } from "antd";
-
 function Detail() {
   const { id } = useParams();
   const logingUser = useSelector((state) => state);
   const vehicleDatas = logingUser.vehicleReducer.vehicleData;
   const [vinDetails, setVinDetails] = useState({});
   const [vehicle, setVehicle] = useState({});
-  const [showReadMore, setShowReadMore] = useState();
-  const [comments, setcomments] = useState([]);
-  const [biding, setBiding] = useState([]);
   const [show, setShow] = useState(false);
+  const [commentCount, setCommentCount] = useState(0);
   //setInputComment
-  const [inputcomment, setInputComment] = useState("");
   const [bidValue, setBidValue] = useState();
   const [bidComment, setBidComment] = useState();
   const [auctionHistory, setAuctionHistory] = useState([]);
@@ -44,12 +38,8 @@ function Detail() {
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [newTiem, setNewTiem] = useState(
-    new Date("2023-03-07, 19:53:00").getTime()
+    new Date("2023-03-10, 19:53:00").getTime()
   );
-
-  const [latestBidData, setLatestBidData] = useState(null)
-  const [bidCount, setBidCount] = useState(null)
-  const [endTimedata, setEndTimedata] = useState(null)
 
   // new Date("2022-11-30 14:57:00").getTime()
   const now = new Date().getTime();
@@ -90,6 +80,7 @@ function Detail() {
   };
   const handleClose = () => {
     setShow(false);
+    window.location.reload(false);
   };
 
   // let d = new Date();
@@ -110,7 +101,6 @@ function Detail() {
       });
   };
 
-  
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -127,24 +117,12 @@ function Detail() {
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_URL}biddings`, {
-        // auctionId: id,
-        // auctionAmmount: bidValue,
-        // vehicle_id: id,
-        // comment: bidComment,
-
         vehicle_id: id,
         auctionAmmount: bidValue,
         comment: bidComment,
       })
       .then((res) => {
-        // if (res.data.status === 200 && t < 1000 * 60 * 5) {
-        //   fetchEndTime();
-        // } else {
-        //   handleClose();
-        // }
         if (res.data.status === 200) {
-          console.log(109, res);
-
           handleClose();
           notify(res.data.message);
           setBidComment("");
@@ -154,27 +132,6 @@ function Detail() {
       .catch((err) => console.log(err));
   };
 
-  
-
-  const getfetchData = () => {
-    axios
-      .get(`https://api.gasguzzlrs.com/bidding/${id}`)
-      .then((response) => {
-        console.log(109, response);
-
-      setLatestBidData(response.data.last_bid)
-      setBidCount((response.data.data).length)
-      setEndTimedata(response.data.end_time)
-
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-
-  useEffect(() => {
-    getfetchData();
-  }, [bidValue, bidComment]);
-
   useEffect(() => {
     const fetchApi = async () => {
       try {
@@ -183,7 +140,7 @@ function Detail() {
         );
         if (res.data.status === 200) {
           setVehicle(res.data.data);
-          // setNewTiem(parseInt(new Date(res.data.data.EndTime).getTime(), 10));
+          setNewTiem(parseInt(new Date(res.data.data.EndTime).getTime(), 10));
 
           // console.log("t", new Date(res.data.data[0].EndTime).getTime());
           // console.log("end", new Date(res.data.data[0].EndTime));
@@ -195,7 +152,6 @@ function Detail() {
 
     fetchApi();
   }, [vehicleDatas, id]);
-
 
   // get vin details by api
   useEffect(() => {
@@ -239,6 +195,10 @@ function Detail() {
       });
   };
 
+  const getVehicleComment = (count) => {
+    setCommentCount(count);
+  };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50 ">
@@ -266,7 +226,7 @@ function Detail() {
                     <ul className="labelList">
                       <li>
                         <label>Current bid:</label>{" "}
-                        <span>${vehicle.documentFee}</span>
+                        <span>$ {vehicle?.currentBid?.last_bid}</span>
                       </li>
                       <li>
                         <span>
@@ -275,29 +235,42 @@ function Detail() {
                             className="color_orange couNt"
                             style={{ marginLeft: "8px" }}
                           >
-                            {comments.length}
+                            {commentCount}
                           </span>
                         </span>
                       </li>
-                      <li>
-                        <span>
-                          <label>Ends In:&nbsp;</label>
-                          {days}days, {hours <= 9 && "0"}
-                          {hours}h : {minutes <= 9 && "0"}
-                          {minutes}m : {seconds <= 9 && "0"}
-                          {seconds}s
-                        </span>
-                      </li>
+                      {t > 0 ? (
+                        <li>
+                          <span>
+                            <label>Ends In:&nbsp;</label>
+                            {days}days, {hours <= 9 && "0"}
+                            {hours}h : {minutes <= 9 && "0"}
+                            {minutes}m : {seconds <= 9 && "0"}
+                            {seconds}s
+                          </span>
+                        </li>
+                      ) : (
+                        <li>Bidding closed</li>
+                      )}
                     </ul>
-
-                    <button
-                      type="button"
-                      className="gry_btn active bg-dark"
-                      style={{ border: "none" }}
-                      onClick={() => setShow(true)}
-                    >
-                      Place a bid
-                    </button>
+                    {t > 0 ? (
+                      <button
+                        type="button"
+                        className="gry_btn active bg-dark"
+                        style={{ border: "none" }}
+                        onClick={() => setShow(true)}
+                      >
+                        Place a bid
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="gry_btn active bg-dark"
+                        style={{ border: "none" }}
+                      >
+                        View result
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -305,8 +278,11 @@ function Detail() {
                 {vehicle?.image_banner && (
                   <img
                     loading="lazy"
-                    src={ vehicle?.image_banner.length == 0 ? MicrosoftTeams : vehicle?.image_banner[0] && `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
-                      
+                    src={
+                      vehicle?.image_banner.length == 0
+                        ? MicrosoftTeams
+                        : vehicle?.image_banner[0] &&
+                          `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
@@ -416,7 +392,7 @@ function Detail() {
                       <li style={{ display: "flex" }}>
                         <p>Current Bid</p>
                         <p style={{ marginLeft: "40px" }}>
-                          USD ${latestBidData}
+                          USD $ {vehicle?.currentBid?.last_bid}
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
@@ -433,44 +409,32 @@ function Detail() {
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
-                        <p>Ends On</p>
-                        <p style={{ marginLeft: "60px" }}>
-                          {/* Thursday, March 9 at 4:32 am remind me */}
-                          {/* {endTimedata} */}
-
-                          {/* new Date("2023-03-13 00:00:00"); */}
-                          {new Date(endTimedata).getDate()} <span style={{ marginLeft: "5px" }}>days</span>
-                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getHours()}  hours</span>
-
-                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getMinutes()} minutes</span>
-                          <span style={{ marginLeft: "5px" }}>{new Date(endTimedata).getSeconds()} seconds</span>
-
-                         
-                        </p>
-                      </li>
-                      <li style={{ display: "flex" }}>
                         <p>Bids</p>
-                        <p style={{ marginLeft: "87px" }}>{bidCount}</p>
+                        <p style={{ marginLeft: "87px" }}>
+                          {vehicle?.currentBid?.total_bid}
+                        </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Place Bid</p>
                         <button
-                         
                           type="button"
                           className="gry_btn active bg-dark"
-                          style={{ border: "none" ,marginLeft: "40px",marginBottom: "20px"}}
+                          style={{
+                            border: "none",
+                            marginLeft: "40px",
+                            marginBottom: "20px",
+                          }}
                           onClick={() => setShow(true)}
                         >
                           Place a bid
                         </button>
                       </li>
-                      
                     </ul>
                   </div>
                 </div>
               </div>
 
-              {/* <Comment /> */}
+              <Comment getVehicleComment={getVehicleComment} id={id} />
             </div>
           </div>
         </div>
@@ -564,8 +528,7 @@ function Detail() {
             <div className="modal-body moAh">
               {auctionHistory &&
                 auctionHistory.map((curElem, i) => {
-
-                  console.log(778, curElem)
+                  console.log(778, curElem);
 
                   return (
                     <a key={i} className="dfr">
@@ -578,10 +541,7 @@ function Detail() {
                               curElem?.image_banner &&
                               `${process.env.REACT_APP_URL}/${curElem?.image_banner?.imagePath}/${curElem?.image_banner?.imageName}`
                             }
-                          
                           />
-
-                          
                         </div>
                         <div className="Cont">
                           <p onClick={handleCloseAuctionHistory}>
