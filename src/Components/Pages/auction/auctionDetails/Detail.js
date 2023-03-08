@@ -17,6 +17,7 @@ import Interior from "./Interior";
 import External from "./External";
 import Fundamental from "./Fundamental";
 
+
 import { toast } from "react-toastify";
 
 import { Button, notification } from "antd";
@@ -561,6 +562,8 @@ function Detail() {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
+
+
             <div className="modal-body moAh">
               {auctionHistory &&
                 auctionHistory.map((curElem, i) => {
