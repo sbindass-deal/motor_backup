@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
@@ -17,11 +17,12 @@ import External from "./External";
 import Fundamental from "./Fundamental";
 
 import { toast } from "react-toastify";
+import { toCommas } from "../../../UI/globaleVar";
 
 function Detail() {
   const { id } = useParams();
-  const logingUser = useSelector((state) => state);
-  const vehicleDatas = logingUser.vehicleReducer.vehicleData;
+  const commentRef = useRef();
+  const loginUser = useSelector((state) => state);
   const [vinDetails, setVinDetails] = useState({});
   const [vehicle, setVehicle] = useState({});
   const [show, setShow] = useState(false);
@@ -31,6 +32,7 @@ function Detail() {
   const [bidComment, setBidComment] = useState();
   const [auctionHistory, setAuctionHistory] = useState([]);
   const [userInfo, setUserinfo] = useState({});
+  const [loadingBiding, setLoadingBiding] = useState(false);
   // countdown time start
   const [showAuctionHistory, setShowAuctionHistory] = useState(false);
   const [days, setDays] = useState();
@@ -80,7 +82,13 @@ function Detail() {
   };
   const handleClose = () => {
     setShow(false);
-    window.location.reload(false);
+  };
+  const handleShow = () => {
+    if (loginUser.login.token === null) {
+      return notify("Please login or register");
+    } else {
+      setShow(true);
+    }
   };
 
   // let d = new Date();
@@ -115,6 +123,7 @@ function Detail() {
 
   const addBiding = (e) => {
     e.preventDefault();
+    setLoadingBiding(true);
     axios
       .post(`${process.env.REACT_APP_URL}biddings`, {
         vehicle_id: id,
@@ -122,36 +131,37 @@ function Detail() {
         comment: bidComment,
       })
       .then((res) => {
+        setLoadingBiding(false);
         if (res.data.status === 200) {
           handleClose();
-          notify(res.data.message);
           setBidComment("");
           setBidValue("");
+          fetchApi();
         }
+        notify(res.data.message);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setLoadingBiding(false));
+  };
+  const fetchApi = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}vehicle_detail/${id}`
+      );
+      if (res.data.status === 200) {
+        setVehicle(res.data.data);
+        setNewTiem(parseInt(new Date(res.data.data.EndTime).getTime(), 10));
+
+        // console.log("t", new Date(res.data.data[0].EndTime).getTime());
+        // console.log("end", new Date(res.data.data[0].EndTime));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    const fetchApi = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}vehicle_detail/${id}`
-        );
-        if (res.data.status === 200) {
-          setVehicle(res.data.data);
-          setNewTiem(parseInt(new Date(res.data.data.EndTime).getTime(), 10));
-
-          // console.log("t", new Date(res.data.data[0].EndTime).getTime());
-          // console.log("end", new Date(res.data.data[0].EndTime));
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     fetchApi();
-  }, [vehicleDatas, id]);
+  }, [id]);
 
   // get vin details by api
   useEffect(() => {
@@ -199,6 +209,12 @@ function Detail() {
     setCommentCount(count);
   };
 
+  const handleCommentRef = () =>
+    window.scrollTo({
+      top: commentRef.current.offsetTop - 100,
+      behavior: "smooth",
+    });
+
   return (
     <>
       <section className="ptb_80 pt_sm_50 ">
@@ -226,9 +242,16 @@ function Detail() {
                     <ul className="labelList">
                       <li>
                         <label>Current bid:</label>{" "}
-                        <span>$ {vehicle?.currentBid?.last_bid}</span>
+                        <span>
+                          ${" "}
+                          {vehicle?.currentBid &&
+                            toCommas(vehicle?.currentBid?.last_bid)}
+                        </span>
                       </li>
-                      <li>
+                      <li
+                        onClick={handleCommentRef}
+                        style={{ cursor: "pointer" }}
+                      >
                         <span>
                           <img src={Msg} alt="msg" />
                           <span
@@ -258,7 +281,7 @@ function Detail() {
                         type="button"
                         className="gry_btn active bg-dark"
                         style={{ border: "none" }}
-                        onClick={() => setShow(true)}
+                        onClick={handleShow}
                       >
                         Place a bid
                       </button>
@@ -383,7 +406,7 @@ function Detail() {
               </div>
               <Gallery vehicle={vehicle} />
 
-              <div className="card">
+              <div className="card border p-md-4 text-light">
                 <div className="row">
                   <div className="col-md-6 ">
                     <h3 style={{ color: "black" }}>BID ON THIS LISTING</h3>
@@ -392,20 +415,25 @@ function Detail() {
                       <li style={{ display: "flex" }}>
                         <p>Current Bid</p>
                         <p style={{ marginLeft: "40px" }}>
-                          USD $ {vehicle?.currentBid?.last_bid}
+                          USD ${" "}
+                          {vehicle?.currentBid &&
+                            toCommas(vehicle?.currentBid?.last_bid)}
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Time Left</p>
                         <p style={{ marginLeft: "55px" }}>
-                          {" "}
-                          {/* 2 days, 9 hours, 40 minutes, 16 seconds * */}
-                          <span>
-                            {days} days, {hours <= 9 && "0"}
-                            {hours}h : {minutes <= 9 && "0"}
-                            {minutes}m : {seconds <= 9 && "0"}
-                            {seconds}s
-                          </span>
+                          {t > 0 ? (
+                            <span>
+                              <label>Ends In:&nbsp;</label>
+                              {days}days, {hours <= 9 && "0"}
+                              {hours}h : {minutes <= 9 && "0"}
+                              {minutes}m : {seconds <= 9 && "0"}
+                              {seconds}s
+                            </span>
+                          ) : (
+                            <span>Bidding closed</span>
+                          )}
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
@@ -416,25 +444,43 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Place Bid</p>
-                        <button
-                          type="button"
-                          className="gry_btn active bg-dark"
-                          style={{
-                            border: "none",
-                            marginLeft: "40px",
-                            marginBottom: "20px",
-                          }}
-                          onClick={() => setShow(true)}
-                        >
-                          Place a bid
-                        </button>
+                        {t > 0 ? (
+                          <button
+                            type="button"
+                            className="gry_btn active bg-dark"
+                            style={{
+                              border: "none",
+                              marginLeft: "40px",
+                              marginBottom: "20px",
+                            }}
+                            onClick={handleShow}
+                          >
+                            Place a bid
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            className="gry_btn active bg-dark"
+                            style={{
+                              border: "none",
+                              marginLeft: "40px",
+                              marginBottom: "20px",
+                            }}
+                          >
+                            View result
+                          </button>
+                        )}
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <Comment getVehicleComment={getVehicleComment} id={id} />
+              <Comment
+                commentRef={commentRef}
+                getVehicleComment={getVehicleComment}
+                id={id}
+              />
             </div>
           </div>
         </div>
@@ -472,7 +518,7 @@ function Detail() {
                         onChange={handleBidInput}
                         name="bid"
                         placeholder="Please enter bid amount"
-                        errorMessage="Amount should be 1-9 characters and shouldn't include any special character and alphabet!"
+                        errorMessage="Amount should be 1-8 characters and shouldn't include any special character and alphabet!"
                         label="Bid Amount"
                         pattern="^[0-9]{1,12}$"
                         required={true}
@@ -492,9 +538,15 @@ function Detail() {
                     </div>
                   </div>
                   <div className="col-12 d-flex justify-content-center pt-4 ">
-                    <button className="btn" type="submit">
-                      Submit
-                    </button>
+                    {loadingBiding ? (
+                      <button className="btn" type="button">
+                        Loading...
+                      </button>
+                    ) : (
+                      <button className="btn" type="submit">
+                        Submit
+                      </button>
+                    )}
                   </div>
                 </div>
               </form>
@@ -528,8 +580,6 @@ function Detail() {
             <div className="modal-body moAh">
               {auctionHistory &&
                 auctionHistory.map((curElem, i) => {
-                  console.log(778, curElem);
-
                   return (
                     <a key={i} className="dfr">
                       <div className="imgText">

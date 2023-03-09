@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import men_face from "../../../../Assets/images/men-face.jpg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const Comment = ({ id, getVehicleComment }) => {
+const Comment = ({ id, getVehicleComment, commentRef }) => {
   const [commentVal, setCommentVal] = useState("");
   const [commentData, setCommentData] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
@@ -53,7 +53,7 @@ const Comment = ({ id, getVehicleComment }) => {
 
   return (
     <>
-      <div className="card_ ">
+      <div className="card_ " ref={commentRef}>
         <div className="row ">
           <div className="col-12">
             <h3 className="cardTitle">Guzzlrs Chat</h3>
