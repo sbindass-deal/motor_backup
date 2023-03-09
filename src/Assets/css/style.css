@@ -5766,7 +5766,7 @@ h3.cardTitle {
   border-bottom: 1px solid #434141;
 }
 
-.downloadZip input {
+.dark .downloadZip input {
   height: 49px;
   background: transparent;
   border: 1px solid #fff;
@@ -5774,8 +5774,11 @@ h3.cardTitle {
   right: -5px;
   padding: 10px;
   z-index: 0;
-  border-right: 0;
+ 
+  color: white;
 }
+
+
 
 .downloadZip {
   padding: 15px 0px;
@@ -6202,4 +6205,30 @@ a.dfr {
 
 .blogLiT .blogPost {
   margin-top: 15px;
+}
+
+.light .orangeText{
+  color: #f7931a;
+}
+.dark .orangeTextDark{
+  color: #f7931a;
+}
+
+.dark .bgChangeDark{
+    background: black;
+    color: white;
+}
+
+
+
+.light .downloadZip input {
+  height: 49px;
+  background: transparent;
+  /* border: 1px solid #fff; */
+  position: relative;
+  right: -5px;
+  padding: 10px;
+  z-index: 0;
+  
+  
 }
