@@ -16,9 +16,10 @@ import Interior from "./Interior";
 import External from "./External";
 import Fundamental from "./Fundamental";
 
-
 import { toast } from "react-toastify";
 import { toCommas } from "../../../UI/globaleVar";
+import AuctionHistory from "./AuctionHistory";
+import ViewResult from "./ViewResult";
 
 function Detail() {
   const { id } = useParams();
@@ -31,11 +32,9 @@ function Detail() {
   //setInputComment
   const [bidValue, setBidValue] = useState();
   const [bidComment, setBidComment] = useState();
-  const [auctionHistory, setAuctionHistory] = useState([]);
   const [userInfo, setUserinfo] = useState({});
   const [loadingBiding, setLoadingBiding] = useState(false);
   // countdown time start
-  const [showAuctionHistory, setShowAuctionHistory] = useState(false);
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
@@ -70,13 +69,6 @@ function Detail() {
       }
     });
   }, []);
-
-  const handleCloseAuctionHistory = () => {
-    setShowAuctionHistory(false);
-  };
-  const handleShowAuctionHistory = () => {
-    setShowAuctionHistory(true);
-  };
 
   const handleBidInput = (e) => {
     setBidValue(e.target.value, 10);
@@ -179,18 +171,6 @@ function Detail() {
     fetchVinDetails();
   }, []);
 
-  // Auction history
-  const handleAuctionHistory = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}getAuctionHistory/${vehicle.userId}`
-      );
-      setAuctionHistory(res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   // Subscribe api
   const handleSubscribe = async () => {
     axios
@@ -287,13 +267,7 @@ function Detail() {
                         Place a bid
                       </button>
                     ) : (
-                      <button
-                        type="button"
-                        className="gry_btn active bg-dark"
-                        style={{ border: "none" }}
-                      >
-                        View result
-                      </button>
+                      <ViewResult vehicle={vehicle} />
                     )}
                   </div>
                 </div>
@@ -367,19 +341,7 @@ function Detail() {
                     </div>
                   </div>
                 </div>
-                <div className="auctionHistory">
-                  <div
-                    onClick={() => {
-                      handleShowAuctionHistory();
-                      handleAuctionHistory();
-                    }}
-                    className="AuctionBtn"
-                  >
-                    <img src={EyeIcon} />
-                    Auction History{" "}
-                    <span className="numBr">{auctionHistory.length}</span>
-                  </div>
-                </div>
+                <AuctionHistory vId={vehicle.userId} />
               </div>
               <div className="card_">
                 <h3 className="cardTitle">Description</h3>
@@ -459,17 +421,7 @@ function Detail() {
                             Place a bid
                           </button>
                         ) : (
-                          <button
-                            type="button"
-                            className="gry_btn active bg-dark"
-                            style={{
-                              border: "none",
-                              marginLeft: "40px",
-                              marginBottom: "20px",
-                            }}
-                          >
-                            View result
-                          </button>
+                          <ViewResult vehicle={vehicle} />
                         )}
                       </li>
                     </ul>
@@ -551,68 +503,6 @@ function Detail() {
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-      </Modal>
-      <Modal
-        show={showAuctionHistory}
-        onHide={handleCloseAuctionHistory}
-        className="modal fade"
-        id="loginModal"
-        centered
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header border-0">
-              <h4 className="modal-title" style={{ border: "none" }}>
-                Auction history
-              </h4>
-
-              <button
-                onClick={handleCloseAuctionHistory}
-                type="button"
-                className="close"
-                data-dismiss="modal"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-
-
-            <div className="modal-body moAh">
-              {auctionHistory &&
-                auctionHistory.map((curElem, i) => {
-                  return (
-                    <a key={i} className="dfr">
-                      <div className="imgText">
-                        <div className="sidebarPost_Img">
-                          {/* <img src={carImg} /> */}
-                          <img
-                            loading="lazy"
-                            src={
-                              curElem?.image_banner &&
-                              `${process.env.REACT_APP_URL}/${curElem?.image_banner?.imagePath}/${curElem?.image_banner?.imageName}`
-                            }
-                          />
-                        </div>
-                        <div className="Cont">
-                          <p onClick={handleCloseAuctionHistory}>
-                            {curElem.make} {curElem.model} {curElem.year}
-                          </p>
-                          <div className="n">
-                            Sold by <b>racer35</b> to <b>ToylorCar</b> for{" "}
-                            <span>${curElem.documentFee}</span>{" "}
-                          </div>
-                          {/* <div className="t">
-                            <i className="fa-solid fa-clock"></i>{" "}
-                            {new Date(curElem.created_at).toLocaleDateString()}
-                          </div> */}
-                        </div>
-                      </div>
-                    </a>
-                  );
-                })}
             </div>
           </div>
         </div>
