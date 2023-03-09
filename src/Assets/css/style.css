@@ -6232,3 +6232,32 @@ a.dfr {
   
   
 }
+
+.neWm.dropdown button {
+  background: transparent;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  background: transparent;
+  padding: 10px;
+  border: 0px !important;
+}
+.neWm .dropdown-toggle::after{
+  display: none;
+}
+.neWm .show>.btn-success.dropdown-toggle:focus{box-shadow: none;}
+
+.neWm .dropdown-menu.show {
+  background: #29292b;
+}
+.neWm .dropdown-item:focus, .dropdown-item:hover{
+background-color: #0000;
+}
+.light .neWm .dropdown-menu.show {
+  background: #29292b;
+}
+a.editDrop svg {
+  padding-right: 10px;
+}
+.show>.btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 0%);
+}

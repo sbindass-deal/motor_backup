@@ -50,13 +50,13 @@
 
 /* Default styles for the select */
 .field {
-	background-color: #000 !important;
-	color: #fff !important;
+	background-color: #000 ;
+	color: #fff ;
 }
 
-.field {
-	background-color: white !important;
-	color: black !important;
+.light .field {
+	background-color: white ;
+	color: black ;
 }
 
 /* Styles for light mode */

@@ -26,7 +26,7 @@ const Event = () => {
   return (
     <div className="container clenderStyle pb-5 mb-5 px-5">
       <Calendar
-        // onSelectSlot={handleSelect}
+        onSelectSlot={handleSelect}
         views={["day", "agenda", "work_week", "month"]}
         selectable
         localizer={localizer}
