@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import men_face from "../../../../Assets/images/men-face.jpg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { toCommas } from "../../../UI/globaleVar";
 
 const Comment = ({ id, getVehicleComment, commentRef }) => {
   const [commentVal, setCommentVal] = useState("");
@@ -26,7 +27,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
       }
     };
     fetchCommentDataApi();
-  }, []);
+  }, [id]);
 
   const submitUserComment = async (e) => {
     e.preventDefault();
@@ -97,20 +98,26 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                   <div className="commentBody">
                     {curElem.category === "bid" ? (
                       <p className="bg-light p-2 text-danger fw-bolder">
-                        <strong>$ {curElem?.bid_amount} bid placed</strong>
+                        <strong>
+                          ${" "}
+                          {curElem?.bid_amount && toCommas(curElem?.bid_amount)}{" "}
+                          bid placed
+                        </strong>
                       </p>
                     ) : (
                       <p className="p-2">{curElem?.description}</p>
                     )}
                   </div>
-                  <div className="commentFooter">
-                    <a href="#" className="mr-3">
-                      <i className="fa-solid fa-thumbs-up"></i> 0
-                    </a>
-                    <a href="#" className="mr-3">
-                      <i className="fa-solid fa-thumbs-down"></i> 0
-                    </a>
-                  </div>
+                  {curElem.category !== "bid" && (
+                    <div className="commentFooter">
+                      <a href="#" className="mr-3">
+                        <i className="fa-solid fa-thumbs-up"></i> 0
+                      </a>
+                      <a href="#" className="mr-3">
+                        <i className="fa-solid fa-thumbs-down"></i> 0
+                      </a>
+                    </div>
+                  )}
                 </div>
               );
             })}

@@ -7,6 +7,7 @@ import rrm_logo from "../../../Assets/images/rrm-logo.png";
 import txautodealer from "../../../Assets/images/txautodealer.png";
 import custombanner5 from "../../../Assets/images/custombanner5.webp";
 import img_01 from "../../../Assets/images/img_01.jpg";
+import { noImage } from "../../UI/globaleVar";
 
 const DealerList = () => {
   const [dealerData, setDealerData] = useState([]);
@@ -113,13 +114,13 @@ const DealerList = () => {
                             <img
                               loading="lazy"
                               src={
-                                curElem.image[0] &&
-                                `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                curElem.image[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                  : noImage
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                currentTarget.src = noImage;
                               }}
                               alt={curElem.username}
                             />
@@ -128,7 +129,9 @@ const DealerList = () => {
                       </div>
                       <div class="card_postInfo">
                         <h4>
-                          <Link to={`/dealerprofile/${curElem.id}`}>{curElem.title}</Link>
+                          <Link to={`/dealerprofile/${curElem.id}`}>
+                            {curElem.title}
+                          </Link>
                         </h4>
                         <ul class="labelList">
                           <li>October 14, 2022</li>

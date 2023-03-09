@@ -78,12 +78,12 @@ function EditMyAccount() {
   }, []);
 
   const uploadLogo = async (uId) => {
-    const url = `${process.env.REACT_APP_URL}dealer_regi`;
+    const url = `${process.env.REACT_APP_URL}dealer_img`;
     let formData = new FormData();
     formData.append("title", editUser.title);
     formData.append("description", editUser.desc);
-    formData.append("id", uId);
-    formData.append("logo", file[0]);
+    formData.append("dealerId", uId);
+    formData.append("logo[]", file[0]);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
