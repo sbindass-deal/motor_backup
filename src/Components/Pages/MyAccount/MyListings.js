@@ -140,7 +140,7 @@ function MyListings() {
                       onChange={(e) => {
                         setFilterValue(e.target.value);
                       }}
-                      className="post_select"
+                      className=" field"
                     >
                       <option value="All">All</option>
                       <option value="PUBLISHED">Publish</option>
