@@ -59,7 +59,6 @@ function AccountInfo() {
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
-                
               </ul>
             </div>
           </div>
