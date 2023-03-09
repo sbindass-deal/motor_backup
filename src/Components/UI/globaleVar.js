@@ -12,3 +12,11 @@ export const strToHtml = {
     }
   },
 };
+
+export const toCommas = (value) => {
+  if (value === null || value === undefined) {
+    return value;
+  } else {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+};

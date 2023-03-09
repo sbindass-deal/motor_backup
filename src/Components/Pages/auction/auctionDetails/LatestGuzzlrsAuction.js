@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LatestGuzzlrsAuction = () => {
   const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
@@ -37,7 +38,11 @@ const LatestGuzzlrsAuction = () => {
           {auctonVehicle &&
             auctonVehicle.map((curElem, i) => {
               return (
-                <div key={i} className="sidebarPost">
+                <Link
+                  to={`/detail/${curElem.id}`}
+                  key={i}
+                  className="sidebarPost"
+                >
                   <a href="#">
                     <div className="overlay_post">
                       <div className="">
@@ -72,7 +77,7 @@ const LatestGuzzlrsAuction = () => {
                       )}
                     </div>
                   </a>
-                </div>
+                </Link>
               );
             })}
         </div>
