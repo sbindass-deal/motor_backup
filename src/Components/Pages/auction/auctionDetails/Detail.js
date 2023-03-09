@@ -280,7 +280,7 @@ function Detail() {
                       vehicle?.image_banner.length == 0
                         ? MicrosoftTeams
                         : vehicle?.image_banner[0] &&
-                          `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
+                        `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
@@ -359,7 +359,7 @@ function Detail() {
                 <div className="downloadZip">
                   ZIP Code
                   <input type="text" placeholder="Search ZIP code"></input>
-                  <button className="btn">Get Quote</button>
+                  <button className="btn" style={{marginLeft:"20px"}}>Get Quote</button>
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using

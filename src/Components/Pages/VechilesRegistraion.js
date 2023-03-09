@@ -29,7 +29,7 @@ const inputArr = [
 
 const VechilesRegistraion = () => {
   const navigate = useNavigate();
-  
+
   const logingUser = useSelector((state) => state);
   const [showVidnModal, setShowVidnModal] = useState(false);
   const handleVinClose = () => setShowVidnModal(false);
@@ -874,7 +874,7 @@ const VechilesRegistraion = () => {
           {
             <div className="row">
               <div className="col-12 text-center pb-4">
-                <h2>Sell your vehicle with Gas Guzzlrs Auctions! </h2>
+                <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
               </div>
               <div className="col-12 col-md-4 col-lg-3">
                 <div className="card_Gray mb-5 mb-md-0 divSticky">
@@ -902,7 +902,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                            reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -921,8 +921,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -941,8 +941,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1011,7 +1011,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.year}
                                 onChange={handleNameField}
                                 name="year"
-                                className="field"
+                                className="field  bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1069,7 +1069,7 @@ const VechilesRegistraion = () => {
                                   setCountryCode(e.target.value);
                                 }}
                                 name="vechilelocation"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option value="231">United States</option>
@@ -1110,7 +1110,7 @@ const VechilesRegistraion = () => {
                                 name="city"
                                 placeholder="Enter city"
                                 className="field"
-                                // required
+                              // required
                               >
                                 {stateData.map((curElem, i) => {
                                   return (
@@ -1133,7 +1133,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.sale}
                                 onChange={handleNameField}
                                 name="sale"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1154,7 +1154,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.vehiclepast}
                                 onChange={handleNameField}
                                 name="vehiclepast"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1165,8 +1165,11 @@ const VechilesRegistraion = () => {
                               </select>
                             </div>
                           </div>
-                          {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                          {namefield.sale === "Yes"
+                            // ||
+                            // namefield.vehiclepast === "Yes"
+                            ?
+                            // (
                             <>
                               <div className="col-12 col-sm-12 col-md-12">
                                 <div className="form-group">
@@ -1182,6 +1185,31 @@ const VechilesRegistraion = () => {
                                   />
                                 </div>
                               </div>
+                              {/* <div className="col-12 col-sm-12 col-md-12">
+                                <div className="form-group">
+                                  <label>
+                                    What has changed on this vehicle since it
+                                    was last listed on GasGuzzlrs?
+                                  </label>
+                                  <textarea
+                                    value={namefield.changedvechiles}
+                                    onChange={handleNameField}
+                                    name="changedvechiles"
+                                    className="field"
+                                    maxLength={200}
+                                    required
+                                  ></textarea>
+                                </div>
+                              </div> */}
+                            </>
+                            // ) 
+                            : null
+                          }
+
+
+                          {
+
+                            namefield.vehiclepast === "Yes" ? <>
                               <div className="col-12 col-sm-12 col-md-12">
                                 <div className="form-group">
                                   <label>
@@ -1198,8 +1226,10 @@ const VechilesRegistraion = () => {
                                   ></textarea>
                                 </div>
                               </div>
-                            </>
-                          ) : null}
+                            </> : null
+                          }
+
+
                           {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>Are you a dealer?</label>
@@ -1250,7 +1280,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.soldvechiles}
                                 onChange={handleNameField}
                                 name="soldvechiles"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1456,7 +1486,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                    reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1518,7 +1548,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.displayInAuction}
                                 onChange={basicFactOnChange}
                                 name="displayInAuction"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1528,7 +1558,7 @@ const VechilesRegistraion = () => {
                                   value="Yes"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1539,7 +1569,7 @@ const VechilesRegistraion = () => {
                                   value="No"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? true
                                       : false
                                   }
@@ -1550,7 +1580,7 @@ const VechilesRegistraion = () => {
                                   value="classified"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                      "classified"
                                       ? false
                                       : true
                                   }
@@ -1562,7 +1592,7 @@ const VechilesRegistraion = () => {
                           </div>
 
                           {logingUser.planReducer.plan.listName ===
-                          "classified" ? (
+                            "classified" ? (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <FormInput
@@ -1585,7 +1615,7 @@ const VechilesRegistraion = () => {
                                   value={basicfact.auctionType}
                                   onChange={basicFactOnChange}
                                   name="auctionType"
-                                  className="field"
+                                  className="field bgChangeDark"
                                   required
                                 >
                                   <option selected disabled value="">
@@ -1613,7 +1643,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.vechilesrace}
                                 onChange={basicFactOnChange}
                                 name="vechilesrace"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1634,7 +1664,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.ultiumdrive}
                                 onChange={basicFactOnChange}
                                 name="ultiumdrive"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1654,7 +1684,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.Interstellar}
                                 onChange={basicFactOnChange}
                                 name="Interstellar"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1675,7 +1705,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.interior}
                                 onChange={basicFactOnChange}
                                 name="interior"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1745,7 +1775,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.km}
                                 onChange={basicFactOnChange}
                                 name="km"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option
@@ -1797,7 +1827,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.status}
                                 name="status"
                                 onChange={basicFactOnChange}
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1859,7 +1889,7 @@ const VechilesRegistraion = () => {
                                 value={basicfact.accurateField}
                                 onChange={basicFactOnChange}
                                 name="accurateField"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1960,8 +1990,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -1982,7 +2012,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.bodywork}
                                 onChange={detailsOnChange}
                                 name="bodywork"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -2020,7 +2050,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.rustpresent}
                                 onChange={detailsOnChange}
                                 name="rustpresent"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -2069,7 +2099,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.modificationstock}
                                 onChange={detailsOnChange}
                                 name="modificationstock"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -2095,10 +2125,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                                    <span className="text-danger">
+                                      You Can entered maximum 1500 characters!
+                                    </span>
+                                  )}
                               </div>
                             )}
                           </div>
@@ -2200,10 +2230,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.issuesorproblems.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                             <p>
                               Please list and describe services performed and
@@ -2226,10 +2256,10 @@ const VechilesRegistraion = () => {
                               ></textarea>
                               {detailstab.moreDescription.trim().length >
                                 1500 && (
-                                <span className="text-danger">
-                                  You Can entered maximum 1500 characters!
-                                </span>
-                              )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -2356,7 +2386,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.reserve}
                                 onChange={detailsOnChange}
                                 name="reserve"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -2392,7 +2422,7 @@ const VechilesRegistraion = () => {
                                 value={detailstab.shibnobi}
                                 onChange={detailsOnChange}
                                 name="shibnobi"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -2508,8 +2538,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       <h3>Contact Info</h3>
                       <hr />
