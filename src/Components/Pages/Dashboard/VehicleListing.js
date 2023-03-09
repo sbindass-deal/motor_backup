@@ -65,7 +65,7 @@ const VehicleListing = () => {
                 >
                   <h3>Listing Plan </h3>
                   <Link to="/admin/addVehicle-listing" className="orange_btn">
-                    + Add Listing
+                    Add Listing
                   </Link>
                 </div>
 
@@ -146,9 +146,6 @@ const VehicleListing = () => {
                                       
                                     </Dropdown.Menu>
                                   </Dropdown>
-                                  
-
-                                 
                                 </td>
 
                               </tr>
