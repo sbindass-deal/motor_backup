@@ -6232,3 +6232,16 @@ a.dfr {
   
   
 }
+
+.neWm.dropdown button {
+  background: transparent;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  background: transparent;
+  padding: 10px;
+  border: 0px !important;
+}
+.neWm .dropdown-toggle::after{
+  display: none;
+}
+.neWm .show>.btn-success.dropdown-toggle:focus{box-shadow: none;}
