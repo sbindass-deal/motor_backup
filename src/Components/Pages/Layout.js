@@ -80,6 +80,8 @@ import ClassifiedPlan from "./plan/ClassifiedPlan";
 import AdUserBlog from "./MyAccount/AdUserBlog";
 import EditUserBlog from "./MyAccount/EditUserBlog";
 import UserBlog from "./MyAccount/UserBlog";
+import EventDetailPage from "./event/EventDetailPage";
+import CreateMeeting from "./Dashboard/CreateMeeting";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -163,6 +165,7 @@ const Layout = () => {
                     element={<AddVehicleAds />}
                   />
                   <Route path="admin-enquiry" element={<Enquiry />} />
+                  <Route path="admin-meeting" element={<CreateMeeting />} />
                 </>
               )}
             </>
@@ -219,6 +222,7 @@ const Layout = () => {
           <Route path="search" element={<SearchResult />} />
           <Route path="comingsoon" element={<ComingSoon />} />
           <Route path="event" element={<Event />} />
+          <Route path="eventdetail" element={<EventDetailPage/>} />
         </Routes>
         <ToastContainer
           position="bottom-center"
