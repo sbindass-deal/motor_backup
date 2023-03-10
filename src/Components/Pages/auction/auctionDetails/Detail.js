@@ -6,8 +6,6 @@ import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import FormInput from "../../../UI/FormInput";
 import Msg from "../../../../Assets/images/msg.svg";
-import MicrosoftTeams from "../../../../Assets/images/MicrosoftTeams-image.png";
-import EyeIcon from "../../../../Assets/images/eyeIcon.svg";
 import ScreenShort from "../../../../Assets/images/screenShort.png";
 import Comment from "./Comment";
 import Gallery from "./Gallery";
@@ -15,9 +13,8 @@ import LatestGuzzlrsAuction from "./LatestGuzzlrsAuction";
 import Interior from "./Interior";
 import External from "./External";
 import Fundamental from "./Fundamental";
-
 import { toast } from "react-toastify";
-import { toCommas } from "../../../UI/globaleVar";
+import { noImage, toCommas } from "../../../UI/globaleVar";
 import AuctionHistory from "./AuctionHistory";
 import ViewResult from "./ViewResult";
 
@@ -224,7 +221,7 @@ function Detail() {
                       <li>
                         <label>Current bid:</label>{" "}
                         <span>
-                          ${" "}
+                          $
                           {vehicle?.currentBid &&
                             toCommas(vehicle?.currentBid?.last_bid)}
                         </span>
@@ -278,7 +275,7 @@ function Detail() {
                     loading="lazy"
                     src={
                       vehicle?.image_banner.length == 0
-                        ? MicrosoftTeams
+                        ? noImage
                         : vehicle?.image_banner[0] &&
                           `${process.env.REACT_APP_URL}/${vehicle?.image_banner[0]?.imagePath}/${vehicle?.image_banner[0]?.imageName}`
                     }
@@ -380,7 +377,7 @@ function Detail() {
                       <li style={{ display: "flex" }}>
                         <p>Current Bid</p>
                         <p style={{ marginLeft: "40px" }}>
-                          USD ${" "}
+                          $
                           {vehicle?.currentBid &&
                             toCommas(vehicle?.currentBid?.last_bid)}
                         </p>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { noImage } from "../../UI/globaleVar";
 
 const Data = ({ curElem, addFabrity }) => {
   return (
@@ -14,24 +15,20 @@ const Data = ({ curElem, addFabrity }) => {
                     <img
                       loading="lazy"
                       src={
-                        curElem.image_banner[0] &&
-                        `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                        curElem.image_banner[0]
+                          ? `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                          : noImage
                       }
                       onError={({ currentTarget }) => {
                         currentTarget.onError = null;
-                        currentTarget.src =
-                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        currentTarget.src = noImage;
                       }}
                       alt="Maskgroup1"
                     />
                   </>
                 ) : (
                   <>
-                    <img
-                      loading="lazy"
-                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                      alt="Maskgroup1"
-                    />
+                    <img loading="lazy" src={noImage} alt="Maskgroup1" />
                   </>
                 )}
               </Link>

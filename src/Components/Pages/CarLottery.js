@@ -71,6 +71,9 @@ function CarRaffle() {
   );
   const now = new Date().getTime();
   const t = newTiem - now;
+  const [lotteryAPI , setLotteryAPI] = useState({});
+  const [count , setCount] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setDays(Math.floor(t / (1000 * 60 * 60 * 24)));
@@ -122,9 +125,10 @@ function CarRaffle() {
   const fetchLotaryApi = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_URL + "getLotteryDetailActive"
+        process.env.REACT_APP_URL + "getLotteryDetail"
       );
       if (response.data.data.length > 0) {
+        setLotteryAPI(response.data.data)
         setShowLotary(response.data.data[0]);
       } else {
         console.log("Data is empty");
@@ -138,9 +142,9 @@ function CarRaffle() {
   const fetchLotaryApiAll = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_URL + `tickets/${showLotary.id}`
+        process.env.REACT_APP_URL + `tickets/${showLotary?.id}`
       );
-      console.log(11, response.data);
+      // console.log(11, response.data);
       setSetUserLotteryDetails(response.data);
       setTotalRaffrel(response.data.totalrefer.length);
     } catch (err) {
@@ -154,18 +158,28 @@ function CarRaffle() {
   }, [newEncryptedvalue]);
 
   useEffect(() => {
+    setShowLotary(lotteryAPI[count]);
+  }, [count])
+
+  useEffect(() => {
     fetchLotaryApi();
-    const value = { earning: 5, total_reffaral: 15, lottery_id: showLotary.id };
+  }, [])
+  
+  
+
+  useEffect(() => {
+
+    const value = { earning: 5, total_reffaral: 15, lottery_id: showLotary?.id };
     var ciphertext = CryptoJS.AES.encrypt(
       JSON.stringify(value),
       "my-gas-guzzelers@123"
     ).toString();
 
     setCoupen(ciphertext.replaceAll("/", "g_s"));
-  }, [showLotary.id]);
+  }, [showLotary?.id]);
   useEffect(() => {
     fetchLotaryApiAll();
-  }, [showLotary.id, inputLotteryNumber]);
+  }, [showLotary?.id, inputLotteryNumber]);
 
   const addTickets = (e) => {
     e.preventDefault();
@@ -179,13 +193,13 @@ function CarRaffle() {
   };
 
   const onToken = (token, addresses) => {
-    console.log(token, addresses);
+    // console.log(token, addresses);
     if (token !== null) {
       navigate("/successpayment");
       // addTickets();
       axios
         .post(process.env.REACT_APP_URL + "addTicket", {
-          lottery_id: showLotary.id,
+          lottery_id: showLotary?.id,
           qty: parseInt(inputLotteryNumber, 10),
           enc: newEncryptedvalue,
         })
@@ -209,6 +223,24 @@ function CarRaffle() {
   useEffect(() => {
     validateUser();
   }, []);
+
+  const slideLeft = () => {
+    if(count > 0){
+      setCount(count-1);
+    }
+    
+    
+  }
+
+  const slideRight = () => {
+    if(count < lotteryAPI.length-1){
+      setCount(count+1);
+    }
+  }
+
+  console.log("showLotary" , showLotary , count);
+
+  
 
   return (
     <>
@@ -256,7 +288,7 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary.images && (
+                          {showLotary?.images && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
@@ -281,7 +313,7 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary.images && (
+                          {showLotary?.images && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
@@ -306,7 +338,7 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary.images && (
+                          {showLotary?.images && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
@@ -328,7 +360,9 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-12 col-md-7 pp-0">
-                    <div className="" key={showLotary.id}>
+                    <div className="" key={showLotary?.id}>
+                      <button onClick={slideLeft}>left</button>
+                      <button onClick={slideRight}>right</button>
                       <div className="counterCol">
                         <h5>Countdown to the next draw</h5>
                         {t > 0 ? (
@@ -367,11 +401,11 @@ function CarRaffle() {
                           </div>
                         )}
 
-                        {showLotary.description ? (
+                        {showLotary?.description ? (
                           <p className="py-4">
-                            {showLotary.description && !showReadMore
-                              ? showLotary.description.substr(0, 100)
-                              : showLotary.description}
+                            {showLotary?.description && !showReadMore
+                              ? showLotary?.description.substr(0, 100)
+                              : showLotary?.description}
                             <p
                               type="text"
                               onClick={() => setshowReadMore(!showReadMore)}
@@ -398,7 +432,7 @@ function CarRaffle() {
                       Price at
                       <br /> just
                     </h5>
-                    <p>${showLotary.price}</p>
+                    <p>${showLotary?.price}</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -408,7 +442,7 @@ function CarRaffle() {
                       Total
                       <br /> available
                     </h5>
-                    <p>{showLotary.stock}</p>
+                    <p>{showLotary?.stock}</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -419,8 +453,8 @@ function CarRaffle() {
                       purchase ticket
                     </h5>
                     <p>
-                      {showLotary.dealEndDate &&
-                        new Date(showLotary.dealEndDate).toLocaleDateString()}
+                      {showLotary?.dealEndDate &&
+                        new Date(showLotary?.dealEndDate).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="col-md-3 iconSecT">
@@ -432,8 +466,8 @@ function CarRaffle() {
                       <br /> announced on{" "}
                     </h5>
                     <p>
-                      {showLotary.drawdate &&
-                        new Date(showLotary.drawdate).toLocaleDateString()}
+                      {showLotary?.drawdate &&
+                        new Date(showLotary?.drawdate).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
@@ -571,9 +605,9 @@ function CarRaffle() {
                               {
                                 logingUser.login.token == null ?
                                   0 : logingUser.login.token &&
-                                  showLotary.price &&
+                                  showLotary?.price &&
                                   setUserLotteryDetails.data &&
-                                  showLotary.price * setUserLotteryDetails.data
+                                  showLotary?.price * setUserLotteryDetails.data
                               }
                             </span>
                           </>
@@ -617,7 +651,7 @@ function CarRaffle() {
                           } else {
                             axios
                               .get(
-                                `${process.env.REACT_APP_URL}encrypted/${showLotary.id}/20`
+                                `${process.env.REACT_APP_URL}encrypted/${showLotary?.id}/20`
                               )
                               .then((res) => {
                                 setIsModalOpen(true);
@@ -724,10 +758,10 @@ function CarRaffle() {
         </Modal.Header>
         <Modal.Body>
           <div className="processPy">
-            <h2>Lottery Name : {showLotary.name}</h2>
+            <h2>Lottery Name : {showLotary?.name}</h2>
             <h3 className="price__">
               Price : ${" "}
-              {showLotary.price && showLotary.price * inputLotteryNumber}
+              {showLotary?.price && showLotary?.price * inputLotteryNumber}
             </h3>
 
             {/* <small className="ticketCount">1 Ticket = $100</small> */}
