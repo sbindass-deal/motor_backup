@@ -61,7 +61,7 @@ const DealerListFeature = () => {
                     // fontWeight: "100"
 
                   }}>
-                    + Add Dealer
+                    Add Dealer
                   </Link>
                 </div>
 

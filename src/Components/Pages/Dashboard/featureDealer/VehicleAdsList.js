@@ -67,7 +67,7 @@ const VehicleAdsList = () => {
                       // fontWeight: "100",
                     }}
                   >
-                    + Add Vehicle
+                    Add Vehicle
                   </Link>
                 </div>
 
