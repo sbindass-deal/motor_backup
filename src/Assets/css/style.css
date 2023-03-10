@@ -6262,6 +6262,38 @@ a.editDrop svg {
   box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 0%);
 }
 
+
+.light .textHeading{
+  color: black;
+}
+.light .backgroundlight{
+  background-color: #E5E5E5;
+}
+
+.post-share .post-share-link {
+    height: 33px;
+    margin: 0 6px;
+    width: 33px;
+}
+
+.comment-submission-actions{
+  display: flex;
+  justify-content: space-between;
+}
+
+.imagepart{
+  display: flex;
+}
+
+.topmargin {
+    margin-top: -56%;
+}
+
+.imgLeft {
+    margin-left: 20px;
+}
+
+
 .reffAdmn {
   display: flex;
   align-items: center;

@@ -3,10 +3,13 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import events from "./Data";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useNavigate } from "react-router-dom";
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 const Event = () => {
+
+  const navigate= useNavigate()
   const [eventsData, setEventsData] = useState(events);
   const handleSelect = ({ start, end }) => {
     console.log(start);
@@ -34,7 +37,8 @@ const Event = () => {
         defaultView="month"
         events={eventsData}
         style={{ height: "100vh" }}
-        onSelectEvent={(event) => alert(event.title)}
+        onSelectEvent={(event) => navigate('/eventdetail')}
+        // onSelectEvent={(event) => alert(event.title)}
       />
     </div>
   );

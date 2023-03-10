@@ -138,8 +138,8 @@ export default [
   {
     id: 17,
     title: "Dutch Song Producing",
-    start: new Date(2015, 3, 14, 16, 30, 0),
-    end: new Date(2015, 3, 14, 20, 0, 0),
+    start: new Date(2023, 2, 14, 16, 30, 0),
+    end: new Date(2023, 2, 14, 20, 0, 0),
   },
   {
     id: 18,
