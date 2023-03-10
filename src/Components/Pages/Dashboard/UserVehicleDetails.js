@@ -809,7 +809,7 @@ const UserVehicleDetails = () => {
                               }}
                               // onChange={(e) => setCountryId(e.target.value ) }
                               name="vechilelocation"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="231">United States</option>
@@ -909,7 +909,7 @@ const UserVehicleDetails = () => {
                               value={namefield.sale}
                               onChange={handleNameField}
                               name="sale"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -930,7 +930,7 @@ const UserVehicleDetails = () => {
                               value={namefield.vehiclepast}
                               onChange={handleNameField}
                               name="vehiclepast"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -941,8 +941,10 @@ const UserVehicleDetails = () => {
                             </select>
                           </div>
                         </div>
-                        {namefield.sale === "Yes" ||
-                          namefield.vehiclepast === "Yes" ? (
+                        {namefield.sale === "Yes" 
+                          // namefield.vehiclepast === "Yes" 
+                          ?
+                          // (
                           <>
                             <div className="col-12 col-sm-12 col-md-4">
                               <div className="form-group">
@@ -958,7 +960,7 @@ const UserVehicleDetails = () => {
                                 />
                               </div>
                             </div>
-                            <div className="col-12 col-sm-12 col-md-12">
+                            {/* <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <label>
                                   What has changed on this vehicle since it was
@@ -973,9 +975,34 @@ const UserVehicleDetails = () => {
                                   required
                                 ></textarea>
                               </div>
-                            </div>
+                            </div> */}
                           </>
-                        ) : null}
+                          // )
+                          : null}
+                        
+                        {
+                          namefield.vehiclepast === "Yes" ? 
+                            <>
+                              <div className="col-12 col-sm-12 col-md-12">
+                                <div className="form-group">
+                                  <label>
+                                    What has changed on this vehicle since it was
+                                    last listed on Gas Guzzlrs?
+                                  </label>
+                                  <textarea
+                                    value={namefield.changedvechiles}
+                                    onChange={handleNameField}
+                                    name="changedvechiles"
+                                    className="field"
+                                    maxLength={200}
+                                    required
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </> : null
+                        }
+
+
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
                             <label>
@@ -985,7 +1012,7 @@ const UserVehicleDetails = () => {
                               value={namefield.soldvechiles}
                               onChange={handleNameField}
                               name="soldvechiles"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1199,7 +1226,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.displayInAuction}
                               // onChange={basicFactOnChange}
                               name="displayInAuction"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1266,7 +1293,7 @@ const UserVehicleDetails = () => {
                                 value={basicfact.auctionType}
                                 // onChange={basicFactOnChange}
                                 name="auctionType"
-                                className="field"
+                                className="field bgChangeDark"
                                 required
                               >
                                 <option selected disabled value="">
@@ -1294,7 +1321,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.vechilesrace}
                               onChange={basicFactOnChange}
                               name="vechilesrace"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1314,7 +1341,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.ultiumdrive}
                               onChange={basicFactOnChange}
                               name="ultiumdrive"
-                              className="field"
+                              className="field bgChangeDark"
                               required={true}
                             >
                               <option value="No">No</option>
@@ -1331,7 +1358,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.Interstellar}
                               onChange={basicFactOnChange}
                               name="Interstellar"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1352,7 +1379,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.interior}
                               onChange={basicFactOnChange}
                               name="interior"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1422,7 +1449,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.km}
                               onChange={basicFactOnChange}
                               name="km"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option
@@ -1474,7 +1501,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.status}
                               name="status"
                               onChange={basicFactOnChange}
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="clean">Clean</option>
@@ -1527,7 +1554,7 @@ const UserVehicleDetails = () => {
                               value={basicfact.accurateField}
                               onChange={basicFactOnChange}
                               name="accurateField"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">
@@ -1678,7 +1705,7 @@ const UserVehicleDetails = () => {
                               value={detailstab.bodywork}
                               onChange={detailsOnChange}
                               name="bodywork"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="Yes">Yes</option>
@@ -1713,7 +1740,7 @@ const UserVehicleDetails = () => {
                               value={detailstab.rustpresent}
                               onChange={detailsOnChange}
                               name="rustpresent"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="Yes">Yes</option>
@@ -1744,7 +1771,7 @@ const UserVehicleDetails = () => {
                               name="fuel"
                               value={detailstab.fuel}
                               onChange={detailsOnChange}
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="Electric">Electric</option>
@@ -1764,7 +1791,7 @@ const UserVehicleDetails = () => {
                               value={detailstab.modificationstock}
                               onChange={detailsOnChange}
                               name="modificationstock"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option value="No">No</option>
@@ -1949,7 +1976,7 @@ const UserVehicleDetails = () => {
                               value={detailstab.reserve}
                               onChange={detailsOnChange}
                               name="reserve"
-                              className="field"
+                              className="field bgChangeDark"
                               required
                             >
                               <option selected disabled value="">

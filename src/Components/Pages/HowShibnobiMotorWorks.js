@@ -16,7 +16,7 @@ function HowShibnobiMotorWorks() {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>How Gas Guzzlrs Works</h1>
+                <h1 className="orangeTextDark">How Gas Guzzlrs Works</h1>
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@ function HowShibnobiMotorWorks() {
         <div className="auction_container">
           <div className="row">
             <div className="col-12 text-center pb_30">
-              <h2 className="title_combo title_Center">
+              <h2 className="title_combo title_Center orangeTextDark">
                 What makes Gas Guzzlrs different?
               </h2>
             </div>
@@ -99,20 +99,20 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
-                <h3>Submitting a Vehicle for Auction</h3>
+                <h3 className="orangeTextDark">Submitting a Vehicle for Auction</h3>
                 <p>
                   If you're looking to sell your car, get it ready for auction
                   and see what you can get, you can sell your car for the
                   highest price possible. Its fast, it's easy.
                 </p>
-                <h6>1. Classic</h6>
+                <h6 className="orangeTextDark">1. Classic</h6>
                 <p>
                   Make the introduction for you and write a compelling
                   description of your item. Our car experts will help you sell
                   faster and for a higher price.
                 </p>
                 <hr />
-                <h6>2. Plus Photography</h6>
+                <h6 className="orangeTextDark">2. Plus Photography</h6>
                 <p>
                   Bringing your car to life and unleashing its full potential is
                   our passion. Enjoy the true value of your car by choosing to
@@ -120,7 +120,7 @@ function HowShibnobiMotorWorks() {
                   of the listing process.
                 </p>
                 <hr />
-                <h6>3. White Glove Service</h6>
+                <h6 className="orangeTextDark">3. White Glove Service</h6>
                 <p>
                   We aim to deliver premium-quality customer service and
                   workmanship, setting new customer experience standards for
@@ -135,7 +135,7 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
               <div>
-                <h3>How it will work for the giveway</h3>
+                <h3 className="orangeTextDark">How it will work for the giveway</h3>
                 <p style={{ lineHeight: "2rem" }}>
                   Every dollar amount spent or equivalent ( CRYPTO BUY IN ) on
                   your favorite products in the Gas Guzzlrs store/ticket site
@@ -160,7 +160,7 @@ function HowShibnobiMotorWorks() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
-                <h3>How we will Select the winner</h3>
+                <h3 className="orangeTextDark">How we will Select the winner</h3>
                 <p style={{ lineHeight: "2rem" }}>
                   At the completion of the contest, a regulated 3rd party
                   contest agent conducts a computer randomized drawing and
@@ -181,7 +181,7 @@ function HowShibnobiMotorWorks() {
           </div>
           <div className="row pt_80">
             <div className="col-12 col-md-8 offset-md-2 text-center">
-              <h2>The Submission Process</h2>
+              <h2 className="orangeTextDark">The Submission Process</h2>
               <p style={{ lineHeight: "2rem" }}>
                 The car auction submission process is designed to ensure that
                 every submitted vehicle is properly cataloged and documented

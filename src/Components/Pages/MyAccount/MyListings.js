@@ -3,10 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useSelector } from "react-redux";
-import ChatIcon from "@mui/icons-material/Chat";
 import { Modal, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { async } from "q";
+import { noImage } from "../../UI/globaleVar";
 
 function MyListings() {
   const logingUser = useSelector((state) => state);
@@ -140,7 +139,7 @@ function MyListings() {
                       onChange={(e) => {
                         setFilterValue(e.target.value);
                       }}
-                      className="post_select"
+                      className=" field"
                     >
                       <option value="All">All</option>
                       <option value="PUBLISHED">Publish</option>
@@ -164,14 +163,13 @@ function MyListings() {
                             <img
                               loading="lazy"
                               src={
-                                curElem.images && curElem.images[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                                  : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                curElem.image_banner && curElem.image_banner[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                                  : noImage
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                currentTarget.src = noImage;
                               }}
                               alt="Maskgroup1"
                             />

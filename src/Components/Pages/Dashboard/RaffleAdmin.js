@@ -55,19 +55,15 @@ function RaffleAdmin() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <div
-                className="d-flex"
-                style={{ justifyContent: "space-between" }}
+                className="reffAdmn"
               >
                 <h3>Raffle Admin</h3>
-                <Link to="/raffleadmin/add-raffel" className="orange_btn">
-                  + Add raffle
-                </Link>
-
+                <div style={{marginLeft: "auto"}}></div>
+                <Link to="/raffleadmin/add-raffel" style={{marginRight: "10px"}} className="orange_btn"> Add raffle </Link>
                 <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="orange_btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                     Category
                   </a>
-
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" onClick={() => { setCategory("All") }}>All</a></li>
                     <li><a class="dropdown-item" onClick={() => { setCategory("Expired") }}>Expired</a></li>

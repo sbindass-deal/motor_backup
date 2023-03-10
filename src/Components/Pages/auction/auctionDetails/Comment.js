@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import men_face from "../../../../Assets/images/men-face.jpg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { toCommas } from "../../../UI/globaleVar";
 
-const Comment = ({ id, getVehicleComment }) => {
+const Comment = ({ id, getVehicleComment, commentRef }) => {
   const [commentVal, setCommentVal] = useState("");
   const [commentData, setCommentData] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
@@ -26,7 +27,7 @@ const Comment = ({ id, getVehicleComment }) => {
       }
     };
     fetchCommentDataApi();
-  }, []);
+  }, [id]);
 
   const submitUserComment = async (e) => {
     e.preventDefault();
@@ -53,7 +54,7 @@ const Comment = ({ id, getVehicleComment }) => {
 
   return (
     <>
-      <div className="card_ ">
+      <div className="card_ " ref={commentRef}>
         <div className="row ">
           <div className="col-12">
             <h3 className="cardTitle">Guzzlrs Chat</h3>
@@ -97,20 +98,26 @@ const Comment = ({ id, getVehicleComment }) => {
                   <div className="commentBody">
                     {curElem.category === "bid" ? (
                       <p className="bg-light p-2 text-danger fw-bolder">
-                        <strong>$ {curElem?.bid_amount} bid placed</strong>
+                        <strong>
+                          ${" "}
+                          {curElem?.bid_amount && toCommas(curElem?.bid_amount)}{" "}
+                          bid placed
+                        </strong>
                       </p>
                     ) : (
                       <p className="p-2">{curElem?.description}</p>
                     )}
                   </div>
-                  <div className="commentFooter">
-                    <a href="#" className="mr-3">
-                      <i className="fa-solid fa-thumbs-up"></i> 0
-                    </a>
-                    <a href="#" className="mr-3">
-                      <i className="fa-solid fa-thumbs-down"></i> 0
-                    </a>
-                  </div>
+                  {curElem.category !== "bid" && (
+                    <div className="commentFooter">
+                      <a href="#" className="mr-3">
+                        <i className="fa-solid fa-thumbs-up"></i> 0
+                      </a>
+                      <a href="#" className="mr-3">
+                        <i className="fa-solid fa-thumbs-down"></i> 0
+                      </a>
+                    </div>
+                  )}
                 </div>
               );
             })}

@@ -7,7 +7,7 @@ function PrivacyPolicy() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12 col-lg-12">
-              <h2 className="title_combo title_Center">Privacy Notice</h2>
+              <h2 className="title_combo title_Center orangeText">Privacy Notice</h2>
               <div className="post-excerpt">
                 {/* <p><strong>Terms of Use</strong></p> */}
                 {/* <p>Last revised on: 6/25/2020</p> */}
@@ -25,7 +25,7 @@ function PrivacyPolicy() {
                   affiliates (“we”, “us”, “our” or “shibnobiMedia”).
                 </p>
 
-                <h2>Contact</h2>
+                <h2 className="orangeText">Contact</h2>
                 <p>
                   After reviewing this policy, if you have additional questions,
                   want more information about our privacy practices, or would
@@ -39,7 +39,7 @@ function PrivacyPolicy() {
                   States
                 </p>
 
-                <h2>Collecting Personal Information</h2>
+                <h2 className="orangeText">Collecting Personal Information</h2>
 
                 <p>
                   When you visit the Site, we collect certain information about
@@ -133,7 +133,7 @@ function PrivacyPolicy() {
                   </li>
                 </ul>
 
-                <h2>Minors</h2>
+                <h2 className="orangeText">Minors</h2>
                 <ul>
                   <li>
                     The Site is not intended for individuals under the age of
@@ -147,7 +147,7 @@ function PrivacyPolicy() {
                     <li>You may not build a business, in whole or in part, resell, redistribute, recirculate or make any other commercial use of, or create derivative works or materials utilizing any portion of the Digital Services (including any code used in any software) or Content, whether or not for profit.</li>
                     <li>If we become aware that any of our Users has repeatedly infringed the proprietary rights of any third party, we may take steps to terminate that User’s access to the Digital Services. We reserve the right (but have no obligation) to review any information you provide, investigate, and/or take appropriate action against you or any other User in our sole discretion.</li> */}
                 </ul>
-                <h2>Sharing Personal Information</h2>
+                <h2 className="orangeText">Sharing Personal Information</h2>
                 <ul>
                   <li>
                     We share your Personal Information with service providers to
@@ -173,7 +173,7 @@ function PrivacyPolicy() {
                   <li>[INSERT INFORMATION ABOUT OTHER SERVICE PROVIDERS]</li>
                   <p></p>
                 </ul>
-                <h2>Behavioural Advertising</h2>
+                <h2 className="orangeText">Behavioural Advertising</h2>
                 <ul>
                   <li>
                     As described above, we use your Personal Information to
@@ -252,7 +252,7 @@ function PrivacyPolicy() {
                     at: https://optout.aboutads.info/.
                   </li>
                 </ul>
-                <h2>Using Personal Information</h2>
+                <h2 className="orangeText">Using Personal Information</h2>
                 <ul>
                   <li>
                     We use your personal Information to provide our services to
@@ -267,7 +267,7 @@ function PrivacyPolicy() {
                     OR IF YOU HAVE CUSTOMERS IN EUROPE]
                   </li>
                 </ul>
-                <h2>Lawful basis</h2>
+                <h2 className="orangeText">Lawful basis</h2>
                 <ul>
                   <li>
                     Pursuant to the General Data Protection Regulation (“GDPR”),
@@ -300,7 +300,7 @@ function PrivacyPolicy() {
                   </li>
                   <p></p>
                 </ul>
-                <h2>Retention</h2>
+                <h2 className="orangeText">Retention</h2>
                 <ul>
                   <li>
                     When you place an order through the Site, we will retain
@@ -313,7 +313,7 @@ function PrivacyPolicy() {
                   {/* <li>The Agreement (including the Privacy Notice and any additional guidelines, terms, procedures or rules that may apply to a specific feature of the Digital Services) constitutes the entire agreement between you and us regarding the use of the Digital Services.</li>
                     <li>If any provision of the Terms of Use is, for any reason, held to be invalid or unenforceable, the other provisions of the Terms of Use will be unimpaired and the invalid or unenforceable provision will be deemed modified so that it is valid and enforceable to the maximum extent permitted by law.</li> */}
                 </ul>
-                <h2>Automatic decision-making</h2>
+                <h2 className="orangeText">Automatic decision-making</h2>
                 <ul>
                   <li>
                     If you are a resident of the EEA, you have the right to
@@ -355,7 +355,7 @@ function PrivacyPolicy() {
                   </li>
                   <p></p>
                 </ul>
-                <h2>Selling Personal Information</h2>
+                <h2 className="orangeText">Selling Personal Information</h2>
                 <ul>
                   <li>
                     [INCLUDE THIS SECTION IF YOUR BUSINESS IS SUBJECT TO THE
@@ -396,7 +396,7 @@ function PrivacyPolicy() {
                   <p></p>
                 </ul>
 
-                <h2>Your rights</h2>
+                <h2 className="orangeText">Your rights</h2>
                 <ul>
                   <li>
                     [INCLUDE FOLLOWING SECTION IF YOUR STORE IS LOCATED IN OR IF
@@ -405,7 +405,7 @@ function PrivacyPolicy() {
                   <p></p>
                 </ul>
 
-                <h2>GDPR</h2>
+                <h2 className="orangeText">GDPR</h2>
                 <ul>
                   <li>
                     If you are a resident of the EEA, you have the right to
@@ -435,7 +435,7 @@ function PrivacyPolicy() {
                   <p></p>
                 </ul>
 
-                <h2>CCPA</h2>
+                <h2 className="orangeText">CCPA</h2>
                 <ul>
                   <li>
                     If you are a resident of California, you have the right to
@@ -457,7 +457,7 @@ function PrivacyPolicy() {
                   <p></p>
                 </ul>
 
-                <h2>Cookies</h2>
+                <h2 className="orangeText">Cookies</h2>
                 <ul>
                   <li>
                     A cookie is a small amount of information that’s downloaded
@@ -488,7 +488,7 @@ function PrivacyPolicy() {
                   <p></p>
                 </ul>
 
-                <h2>Cookies Necessary for the Functioning of the Store</h2>
+                <h2 className="orangeText">Cookies Necessary for the Functioning of the Store</h2>
                 <table>
                   <thead>
                     <tr>
@@ -782,7 +782,7 @@ function PrivacyPolicy() {
                   </p>
                 </ul>
 
-                <h2>Do Not Track</h2>
+                <h2 className="orangeText">Do Not Track</h2>
 
                 <ul>
                   <p>
@@ -794,7 +794,7 @@ function PrivacyPolicy() {
                 </ul>
                 <p></p>
 
-                <h2>Changes</h2>
+                <h2 className="orangeText">Changes</h2>
                 <ul>
                   <p>
                     We may update this Privacy Policy from time to time in order
@@ -803,7 +803,7 @@ function PrivacyPolicy() {
                   </p>
                 </ul>
                 <p></p>
-                <h2>Complaints</h2>
+                <h2 className="orangeText">Complaints</h2>
 
                 <ul>
                   <p>

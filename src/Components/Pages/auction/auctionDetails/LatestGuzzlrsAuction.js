@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { noImage, toCommas } from "../../../UI/globaleVar";
 
 const LatestGuzzlrsAuction = () => {
   const [showAuctionVehicle, setShowAuctionVehicle] = useState(false);
@@ -37,15 +39,18 @@ const LatestGuzzlrsAuction = () => {
           {auctonVehicle &&
             auctonVehicle.map((curElem, i) => {
               return (
-                <div key={i} className="sidebarPost">
+                <Link
+                  to={`/detail/${curElem.id}`}
+                  key={i}
+                  className="sidebarPost"
+                >
                   <a href="#">
                     <div className="overlay_post">
                       <div className="">
                         <div className="">
                           Current Bid: $
-                          {curElem.currentAmount
-                            ? curElem.currentAmount.auctionAmmount
-                            : curElem.documentFee}
+                          {curElem?.currentBid &&
+                            toCommas(curElem?.currentBid?.last_bid)}
                         </div>
                         <div className="">
                           Ends in:{" "}
@@ -59,20 +64,20 @@ const LatestGuzzlrsAuction = () => {
                         <img
                           loading="lazy"
                           src={
-                            curElem?.image_banner[0] &&
-                            `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                            curElem?.image_banner[0]
+                              ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                              : noImage
                           }
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            currentTarget.src = noImage;
                           }}
                           alt="Maskgroup1"
                         />
                       )}
                     </div>
                   </a>
-                </div>
+                </Link>
               );
             })}
         </div>

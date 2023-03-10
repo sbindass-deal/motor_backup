@@ -75,7 +75,7 @@ function UserBlog() {
                       fontWeight: "100",
                     }}
                   >
-                    + Add My Blogs
+                    + Add New Blogs
                   </Link>
                 </div>
               </h3>

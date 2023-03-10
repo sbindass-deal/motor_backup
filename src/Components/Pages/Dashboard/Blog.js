@@ -8,6 +8,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import { useSelector } from "react-redux"; 
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -69,14 +70,10 @@ function Blog() {
                   </Link> */}
                   <Link
                     to="/admin/add-blog"
-                    className="orange_btn"
-                    style={{
-                      padding: "4px",
-                      fontSize: "18px",
-                      fontWeight: "100",
-                    }}
+                    className="orange_btn _blog"
+                   
                   >
-                    + Add New Blogs
+                    Add New Blogs
                   </Link>
                 </div>
               </h3>
@@ -139,8 +136,7 @@ function Blog() {
                                 <td>
                                   <div className="">
                                     <img
-                                      width={200}
-                                      className="img-fluid"
+                                      className="img-fluid2"
                                       src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
                                     />
                                   </div>
@@ -161,16 +157,31 @@ function Blog() {
                                     ).toLocaleDateString()}
                                 </td>
                                 <td className="actionBtn">
-                                  <Link to={`/editBlog/${curElem.id}`}>
+
+                                <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1"> 
+                                      <Link to={`/editBlog/${curElem.id}`}>
                                     <button>
-                                      <i class="fa-solid fa-pencil"></i>
+                                      <i class="fa-solid fa-pencil"></i> Edit
                                     </button>
                                   </Link>
-                                  <button
-                                    onClick={() => handleDelete(curElem.id)}
-                                  >
-                                    <i class="fa-solid fa-trash-can"></i>
-                                  </button>
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                        <button
+                                          onClick={() => handleDelete(curElem.id)}
+                                        >
+                                          <i class="fa-solid fa-trash-can"></i> Delete
+                                        </button>
+                                      </Dropdown.Item>
+                                      
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                  
                                 </td>
                               </tr>
                             );

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminLeftNav from "./AdminLeftNav";
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 const VehicleListing = () => {
   const [getData, setGetData] = useState([]);
@@ -63,7 +65,7 @@ const VehicleListing = () => {
                 >
                   <h3>Listing Plan </h3>
                   <Link to="/admin/addVehicle-listing" className="orange_btn">
-                    + Add Listing
+                    Add Listing
                   </Link>
                 </div>
 
@@ -120,21 +122,30 @@ const VehicleListing = () => {
                                
 
                                 <td className="text-right">
-                                  <Link id="linkTag"
-                                    to={`/admin/vehicle-listing-details/${id}`}
-                                  // className="btn"
-                                  >
-                                    <i class="fa-solid fa-pencil"></i>
-                                  </Link>
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
 
-                                  <Link to={``} id="linkTag" 
-                                    
-                                    onClick={() => handleDelete(curElem.id)}
-                                    
-                                  // className="btn"
-                                  >
-                                    <i class="fa-solid fa-trash-can" ></i>
-                                  </Link>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1"> 
+                                      <Link className="editDrop"
+                                        to={`/admin/vehicle-listing-details/${id}`}
+                                      // className="btn"
+                                      >
+                                        <i class="fa-solid fa-pencil"></i> Edit
+                                      </Link>
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                      <Link to={``} className="editDrop"                                    
+                                        onClick={() => handleDelete(curElem.id)}
+                                      >
+                                      <i class="fa-solid fa-trash-can" ></i> Delete
+                                    </Link>
+                                      </Dropdown.Item>
+                                      
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </td>
 
                               </tr>
