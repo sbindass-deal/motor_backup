@@ -6261,9 +6261,24 @@ a.editDrop svg {
 .show>.btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 0%);
 }
-.plan_card {
-  height: 530px;
+
+.reffAdmn {
+  display: flex;
+  align-items: center;
+}
+a.orange_btn._blog {
+  font-size: 14px;
+  padding: 10px 24px;
 }
 .plan_cardBody {
-  min-height: 258px;
+  min-height: 135px;
+}
+
+.light .neWm button.dropdown-toggle.btn.btn-success {
+  color: #f7931b;
+}
+
+img.img-fluid2 {
+  width: 40px;
+  height: 40px;
 }
