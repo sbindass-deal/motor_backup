@@ -18,6 +18,11 @@ import FormInput from "../UI/FormInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
+
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
   {
@@ -62,6 +67,13 @@ const VechilesRegistraion = () => {
   const [counryData, setCounryData] = useState([]);
   const [stateData, setStateData] = useState([]);
   const [countryCode, setCountryCode] = useState(231);
+  const [vehicleHistory, setVehicleHistory] = useState(
+    EditorState.createEmpty()
+  );
+  const [serviceRecord, setServiceRecord] = useState(EditorState.createEmpty());
+  const [issuesProblems, setIssuesProblems] = useState(
+    EditorState.createEmpty()
+  );
   const inputRefBanner = useRef();
 
   useEffect(() => {
@@ -575,10 +587,12 @@ const VechilesRegistraion = () => {
         link: link,
         accessories: accessories.toString(),
         truckDetails: detailsInfo.toString(),
-        moreDescription: moreDescription,
+        moreDescription: draftToHtml(
+          convertToRaw(serviceRecord.getCurrentContent())
+        ),
         reserve: `${reserve === "Yes" ? reserve : "No"}`,
         reservAmount: reserveAmount,
-        hereFrom: shibnobiabout,
+        hereFrom: draftToHtml(convertToRaw(issuesProblems.getCurrentContent())),
         ammountOnDocument: servicesperformed,
         documentFee,
         Interstellar,
@@ -591,7 +605,9 @@ const VechilesRegistraion = () => {
         bodywork,
         rustpresent,
         modificationstock,
-        issuesorproblems,
+        issuesorproblems: draftToHtml(
+          convertToRaw(vehicleHistory.getCurrentContent())
+        ),
         status, // db me check karni h
         otherTruckTitle,
         otherStatus,
@@ -902,7 +918,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -921,8 +937,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === true &&
-                            reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -941,8 +957,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === true &&
-                            reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1110,7 +1126,7 @@ const VechilesRegistraion = () => {
                                 name="city"
                                 placeholder="Enter city"
                                 className="field"
-                              // required
+                                // required
                               >
                                 {stateData.map((curElem, i) => {
                                   return (
@@ -1165,10 +1181,9 @@ const VechilesRegistraion = () => {
                               </select>
                             </div>
                           </div>
-                          {namefield.sale === "Yes"
+                          {namefield.sale === "Yes" ? (
                             // ||
                             // namefield.vehiclepast === "Yes"
-                            ?
                             // (
                             <>
                               <div className="col-12 col-sm-12 col-md-12">
@@ -1202,14 +1217,11 @@ const VechilesRegistraion = () => {
                                 </div>
                               </div> */}
                             </>
-                            // ) 
-                            : null
-                          }
+                          ) : // )
+                          null}
 
-
-                          {
-
-                            namefield.vehiclepast === "Yes" ? <>
+                          {namefield.vehiclepast === "Yes" ? (
+                            <>
                               <div className="col-12 col-sm-12 col-md-12">
                                 <div className="form-group">
                                   <label>
@@ -1226,9 +1238,8 @@ const VechilesRegistraion = () => {
                                   ></textarea>
                                 </div>
                               </div>
-                            </> : null
-                          }
-
+                            </>
+                          ) : null}
 
                           {/* <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -1486,7 +1497,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1558,7 +1569,7 @@ const VechilesRegistraion = () => {
                                   value="Yes"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                      "classified"
+                                    "classified"
                                       ? true
                                       : false
                                   }
@@ -1569,7 +1580,7 @@ const VechilesRegistraion = () => {
                                   value="No"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                      "classified"
+                                    "classified"
                                       ? true
                                       : false
                                   }
@@ -1580,7 +1591,7 @@ const VechilesRegistraion = () => {
                                   value="classified"
                                   disabled={
                                     logingUser.planReducer.plan.listName ===
-                                      "classified"
+                                    "classified"
                                       ? false
                                       : true
                                   }
@@ -1592,7 +1603,7 @@ const VechilesRegistraion = () => {
                           </div>
 
                           {logingUser.planReducer.plan.listName ===
-                            "classified" ? (
+                          "classified" ? (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <FormInput
@@ -1990,8 +2001,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === true &&
-                    reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -2125,143 +2136,70 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                    <span className="text-danger">
-                                      You Can entered maximum 1500 characters!
-                                    </span>
-                                  )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                               </div>
                             )}
                           </div>
-                          {/* <div className="col-12 col-sm-12 col-md-12">
-                          <div className="form-group">
-                            <label>
-                              Is the vehicle equipped with any of the following?
-                              <br /> Please select all that apply:
-                            </label>
-                            <div className="row">
-                              <div className="col-12 col-md-6">
-                                <div className="form-check">
-                                  <label className="form-check-label">
-                                    <input
-                                      value="Illumination"
-                                      onChange={handleDetailsInfoOnChange}
-                                      name="Illumination"
-                                      className="form-check-input"
-                                      type="checkbox"
-                                    />{" "}
-                                    Illumination Package
-                                  </label>
-                                </div>
-                              </div>
-                              <div className="col-12 col-md-6">
-                                <div className="form-check">
-                                  <label className="form-check-label">
-                                    <input
-                                      value="Power-retractable tonneau cover"
-                                      onChange={handleDetailsInfoOnChange}
-                                      className="form-check-input"
-                                      name="Power-retractable"
-                                      type="checkbox"
-                                    />{" "}
-                                    Power-retractable tonneau cover
-                                  </label>
-                                </div>
-                              </div>
-                              <div className="col-12 col-md-6">
-                                <div className="form-check">
-                                  <label className="form-check-label">
-                                    <input
-                                      value="Soft tonneau cover"
-                                      name="soft"
-                                      onChange={handleDetailsInfoOnChange}
-                                      className="form-check-input"
-                                      type="checkbox"
-                                    />{" "}
-                                    Soft tonneau cover
-                                  </label>
-                                </div>
-                              </div>
-                              <div className="col-12 col-md-6">
-                                <div className="form-check">
-                                  <label className="form-check-label">
-                                    <input
-                                      value="Kicker audio system with MultiPro tailgate"
-                                      name="kicker"
-                                      onChange={handleDetailsInfoOnChange}
-                                      className="form-check-input"
-                                      type="checkbox"
-                                    />{" "}
-                                    Kicker audio system with MultiPro tailgate
-                                  </label>
-                                </div>
-                              </div>
-                              <div className="col-12 col-md-6">
-                                <div className="form-check">
-                                  <label className="form-check-label">
-                                    <input
-                                      value="Other"
-                                      name="other"
-                                      onChange={handleDetailsInfoOnChange}
-                                      className="form-check-input"
-                                      type="checkbox"
-                                    />{" "}
-                                    Other
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> */}
-
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <label>
                                 What do you know about the history of the
                                 vehicle from new?
                               </label>
-                              <textarea
-                                value={detailstab.issuesorproblems}
-                                onChange={detailsOnChange}
-                                name="issuesorproblems"
-                                minLength={1}
-                                maxLength={2000}
-                                className="field"
-                                required
-                              ></textarea>
-                              {detailstab.issuesorproblems.trim().length >
-                                1500 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
-                            </div>
-                            <p>
-                              Please list and describe services performed and
-                              when they were performed. <br />
-                              *Dates and timelines provide valuable information
-                              for interested buyers. Don't forget to upload
-                              images of redacted service records for recent
-                              and/or notable services.
-                            </p>
-                            <div className="form-group">
-                              <textarea
-                                value={detailstab.moreDescription}
-                                onChange={detailsOnChange}
-                                name="moreDescription"
-                                className="field"
-                                minLength={1}
-                                maxLength={2000}
-                                placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
-                                required
-                              ></textarea>
-                              {detailstab.moreDescription.trim().length >
-                                1500 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                              <div className="border border-2 border-dark">
+                                <Editor
+                                  editorStyle={{
+                                    background: "white",
+                                    padding: "15px",
+                                    minHeight: "30vh",
+                                    color: "black",
+                                  }}
+                                  editorState={vehicleHistory}
+                                  toolbarClassName="toolbarClassName"
+                                  wrapperClassName="wrapperClassName"
+                                  editorClassName="editorClassName"
+                                  onEditorStateChange={(e) =>
+                                    setVehicleHistory(e)
+                                  }
+                                  placeholder="Please enter vehicle history"
+                                />
+                              </div>
                             </div>
                           </div>
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group">
+                              <p>
+                                Please list and describe services performed and
+                                when they were performed. <br />
+                                *Dates and timelines provide valuable
+                                information for interested buyers. Don't forget
+                                to upload images of redacted service records for
+                                recent and/or notable services.
+                              </p>
+                              <div className="border border-2 border-dark">
+                                <Editor
+                                  editorStyle={{
+                                    background: "white",
+                                    padding: "15px",
+                                    minHeight: "30vh",
+                                    color: "black",
+                                  }}
+                                  editorState={serviceRecord}
+                                  toolbarClassName="toolbarClassName"
+                                  wrapperClassName="wrapperClassName"
+                                  editorClassName="editorClassName"
+                                  onEditorStateChange={(e) =>
+                                    setServiceRecord(e)
+                                  }
+                                  placeholder="Please enter here"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
                           <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group">
                               <label>
@@ -2368,17 +2306,27 @@ const VechilesRegistraion = () => {
                                 (e.g. engine problems, non-functional items,
                                 dents, interior flaws, etc.)
                               </label>
-                              <textarea
-                                value={detailstab.shibnobiabout}
-                                onChange={detailsOnChange}
-                                name="shibnobiabout"
-                                minLength={2}
-                                maxLength={2000}
-                                className="field"
-                                required
-                              ></textarea>
+                              <div className="border border-2 border-dark">
+                                <Editor
+                                  editorStyle={{
+                                    background: "white",
+                                    padding: "15px",
+                                    minHeight: "30vh",
+                                    color: "black",
+                                  }}
+                                  editorState={issuesProblems}
+                                  toolbarClassName="toolbarClassName"
+                                  wrapperClassName="wrapperClassName"
+                                  editorClassName="editorClassName"
+                                  onEditorStateChange={(e) =>
+                                    setIssuesProblems(e)
+                                  }
+                                  placeholder="Please enter here"
+                                />
+                              </div>
                             </div>
                           </div>
+
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>Do you want a reserve?</label>
@@ -2538,8 +2486,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === true &&
-                    reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       <h3>Contact Info</h3>
                       <hr />

@@ -89,7 +89,7 @@ const AddDealer = () => {
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-  const uploadLogeImg = async (dealer_id) => {
+  const uploadLogeImg = (dealer_id) => {
     (async () => {
       for await (const item of logoImg) {
         const url = `${process.env.REACT_APP_URL}dealer_img`;
@@ -181,7 +181,7 @@ const AddDealer = () => {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
           uploadGallery(response.data.dealer_id);
-          navigate("/admin-dealer");
+          // navigate("/admin-dealer");
           notify(response.data.message);
         } else {
           notify(response.data.message);
