@@ -11,7 +11,6 @@ import HowShibnobiMotorWorks from "./HowShibnobiMotorWorks";
 import PhotoGallery from "./PhotoGallery";
 import PrivateParty from "./plan/PrivateParty";
 import MyShipments from "./MyAccount/MyShipments";
-import Store from "./Store";
 import Features from "./auction/Features";
 import Detail from "./auction/auctionDetails/Detail";
 import TermsOfUse from "./TermsOfUse";
@@ -57,8 +56,8 @@ import CheckoutDetails from "./shopingStore/CheckoutDetails";
 import AddGearProduct from "./Dashboard/AddGearProduct";
 import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
-import DealerProfile from "./dealer/DealerProfile";
-import ClassifiedAddList from "./dealer/ClassifiedAddList";
+import DealerProfile from "./showroom/DealerProfile";
+import ClassifiedAddList from "./showroom/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
 import ComingSoon from "./ComingSoon";
 import Blogs from "./Blogs";
@@ -80,6 +79,7 @@ import ClassifiedPlan from "./plan/ClassifiedPlan";
 import AdUserBlog from "./MyAccount/AdUserBlog";
 import EditUserBlog from "./MyAccount/EditUserBlog";
 import UserBlog from "./MyAccount/UserBlog";
+import Store from "./showroom/Store";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);

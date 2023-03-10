@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Dealer from "./dealer/Dealer";
+import Dealer from "./Dealer";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import Inventory from "./dealer/Inventory";
+import Inventory from "./Inventory";
 
 const Store = () => {
   const navigate = useNavigate();
