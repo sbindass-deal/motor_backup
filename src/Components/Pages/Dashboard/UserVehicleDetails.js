@@ -14,6 +14,10 @@ import {
 } from "../../../redux/reducers/submitvechilesReducer";
 import counryData from "../../countryList";
 import FormInput from "../../UI/FormInput";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
 
 const UserVehicleDetails = () => {
   const { id } = useParams();
@@ -42,6 +46,14 @@ const UserVehicleDetails = () => {
   const [bannerImage, setBannerImage] = useState([]);
   const [galleryImage, setGalleryImage] = useState([]);
   const [documentImage, setDocumentImage] = useState([]);
+  const [vehicleHistory, setVehicleHistory] = useState(
+    EditorState.createEmpty()
+  );
+  const [serviceRecord, setServiceRecord] = useState(EditorState.createEmpty());
+  const [issuesProblems, setIssuesProblems] = useState(
+    EditorState.createEmpty()
+  );
+
   const [namefield, setNamefield] = useState({
     name: "",
     email: "",
@@ -585,10 +597,12 @@ const UserVehicleDetails = () => {
         link: link,
         accessories: accessories.toString(),
         truckDetails: detailsInfo.toString(),
-        moreDescription: moreDescription,
+        moreDescription: draftToHtml(
+          convertToRaw(serviceRecord.getCurrentContent())
+        ),
         reserve: `${reserve === "Yes" ? reserve : "No"}`,
         reservAmount: reserveAmount,
-        hereFrom: shibnobiabout,
+        hereFrom: draftToHtml(convertToRaw(issuesProblems.getCurrentContent())),
         ammountOnDocument: servicesperformed,
         documentFee,
         Interstellar,
@@ -601,7 +615,9 @@ const UserVehicleDetails = () => {
         bodywork,
         rustpresent,
         modificationstock,
-        issuesorproblems,
+        issuesorproblems: draftToHtml(
+          convertToRaw(vehicleHistory.getCurrentContent())
+        ),
         status, // db me check karni h
         otherTruckTitle,
         otherStatus,
@@ -657,7 +673,7 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                        reduxValue.submitvechilesReducer.step_two === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -676,8 +692,8 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === false
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -696,8 +712,8 @@ const UserVehicleDetails = () => {
                     <a
                       className={
                         reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                        reduxValue.submitvechilesReducer.step_two === true &&
+                        reduxValue.submitvechilesReducer.step_three === true
                           ? "nav-link active"
                           : "nav-link"
                       }
@@ -941,9 +957,8 @@ const UserVehicleDetails = () => {
                             </select>
                           </div>
                         </div>
-                        {namefield.sale === "Yes" 
-                          // namefield.vehiclepast === "Yes" 
-                          ?
+                        {namefield.sale === "Yes" ? (
+                          // namefield.vehiclepast === "Yes"
                           // (
                           <>
                             <div className="col-12 col-sm-12 col-md-4">
@@ -977,31 +992,29 @@ const UserVehicleDetails = () => {
                               </div>
                             </div> */}
                           </>
-                          // )
-                          : null}
-                        
-                        {
-                          namefield.vehiclepast === "Yes" ? 
-                            <>
-                              <div className="col-12 col-sm-12 col-md-12">
-                                <div className="form-group">
-                                  <label>
-                                    What has changed on this vehicle since it was
-                                    last listed on Gas Guzzlrs?
-                                  </label>
-                                  <textarea
-                                    value={namefield.changedvechiles}
-                                    onChange={handleNameField}
-                                    name="changedvechiles"
-                                    className="field"
-                                    maxLength={200}
-                                    required
-                                  ></textarea>
-                                </div>
-                              </div>
-                            </> : null
-                        }
+                        ) : // )
+                        null}
 
+                        {namefield.vehiclepast === "Yes" ? (
+                          <>
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="form-group">
+                                <label>
+                                  What has changed on this vehicle since it was
+                                  last listed on Gas Guzzlrs?
+                                </label>
+                                <textarea
+                                  value={namefield.changedvechiles}
+                                  onChange={handleNameField}
+                                  name="changedvechiles"
+                                  className="field"
+                                  maxLength={200}
+                                  required
+                                ></textarea>
+                              </div>
+                            </div>
+                          </>
+                        ) : null}
 
                         <div className="col-12 col-sm-12 col-md-6">
                           <div className="form-group">
@@ -1199,7 +1212,7 @@ const UserVehicleDetails = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                reduxValue.submitvechilesReducer.step_two === false ? (
                   <div className="tab-pane active">
                     <h3>Basic Facts</h3>
                     <hr />
@@ -1236,7 +1249,7 @@ const UserVehicleDetails = () => {
                                 value="Yes"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? true
                                     : false
                                 }
@@ -1247,7 +1260,7 @@ const UserVehicleDetails = () => {
                                 value="No"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? true
                                     : false
                                 }
@@ -1258,7 +1271,7 @@ const UserVehicleDetails = () => {
                                 value="classified"
                                 disabled={
                                   logingUser.planReducer.plan.listName ===
-                                    "classified"
+                                  "classified"
                                     ? false
                                     : true
                                 }
@@ -1270,7 +1283,7 @@ const UserVehicleDetails = () => {
                         </div>
 
                         {logingUser.planReducer.plan.listName ===
-                          "classified" ? (
+                        "classified" ? (
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <FormInput
@@ -1682,8 +1695,8 @@ const UserVehicleDetails = () => {
                 ) : null}
 
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === false ? (
                   <div className="tab-pane active">
                     <h3>Details</h3>
                     <hr />
@@ -1822,37 +1835,55 @@ const UserVehicleDetails = () => {
                               What do you know about the history of the vehicle
                               from new?
                             </label>
-                            <textarea
-                              value={detailstab.issuesorproblems}
-                              onChange={detailsOnChange}
-                              name="issuesorproblems"
-                              minLength={1}
-                              maxLength={2000}
-                              className="field"
-                              required
-                            ></textarea>
-                          </div>
-                          <p>
-                            Please list and describe services performed and when
-                            they were performed. <br />
-                            *Dates and timelines provide valuable information
-                            for interested buyers. Don't forget to upload images
-                            of redacted service records for recent and/or
-                            notable services.
-                          </p>
-                          <div className="form-group">
-                            <textarea
-                              value={detailstab.moreDescription}
-                              onChange={detailsOnChange}
-                              name="moreDescription"
-                              className="field"
-                              minLength={1}
-                              maxLength={2000}
-                              placeholder="Ex. June 2017: clutch replaced, May 2018: tyre replaced and wheels refinished, September 2021: fluids and filters changed"
-                              required
-                            ></textarea>
+                            <div className="border border-2 border-dark">
+                              <Editor
+                                editorStyle={{
+                                  background: "white",
+                                  padding: "15px",
+                                  minHeight: "30vh",
+                                  color: "black",
+                                }}
+                                editorState={vehicleHistory}
+                                toolbarClassName="toolbarClassName"
+                                wrapperClassName="wrapperClassName"
+                                editorClassName="editorClassName"
+                                onEditorStateChange={(e) =>
+                                  setVehicleHistory(e)
+                                }
+                                placeholder="Please enter vehicle history"
+                              />
+                            </div>
                           </div>
                         </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <p>
+                              Please list and describe services performed and
+                              when they were performed. <br />
+                              *Dates and timelines provide valuable information
+                              for interested buyers. Don't forget to upload
+                              images of redacted service records for recent
+                              and/or notable services.
+                            </p>
+                            <div className="border border-2 border-dark">
+                              <Editor
+                                editorStyle={{
+                                  background: "white",
+                                  padding: "15px",
+                                  minHeight: "30vh",
+                                  color: "black",
+                                }}
+                                editorState={serviceRecord}
+                                toolbarClassName="toolbarClassName"
+                                wrapperClassName="wrapperClassName"
+                                editorClassName="editorClassName"
+                                onEditorStateChange={(e) => setServiceRecord(e)}
+                                placeholder="Please enter here"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
                             <label>
@@ -1958,15 +1989,24 @@ const UserVehicleDetails = () => {
                               (e.g. engine problems, non-functional items,
                               dents, interior flaws, etc.)
                             </label>
-                            <textarea
-                              value={detailstab.shibnobiabout}
-                              onChange={detailsOnChange}
-                              name="shibnobiabout"
-                              minLength={2}
-                              maxLength={2000}
-                              className="field"
-                              required
-                            ></textarea>
+                            <div className="border border-2 border-dark">
+                              <Editor
+                                editorStyle={{
+                                  background: "white",
+                                  padding: "15px",
+                                  minHeight: "30vh",
+                                  color: "black",
+                                }}
+                                editorState={issuesProblems}
+                                toolbarClassName="toolbarClassName"
+                                wrapperClassName="wrapperClassName"
+                                editorClassName="editorClassName"
+                                onEditorStateChange={(e) =>
+                                  setIssuesProblems(e)
+                                }
+                                placeholder="Please enter here"
+                              />
+                            </div>
                           </div>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
@@ -2065,8 +2105,8 @@ const UserVehicleDetails = () => {
                   </div>
                 ) : null}
                 {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                reduxValue.submitvechilesReducer.step_two === true &&
+                reduxValue.submitvechilesReducer.step_three === true ? (
                   <div className="tab-pane active">
                     {/* <h3>Contact Info</h3> */}
                     {/* <hr /> */}

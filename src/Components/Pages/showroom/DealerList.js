@@ -3,7 +3,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { noImage } from "../../UI/globaleVar";
+import { noImage, strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 
 const DealerList = () => {
   const [dealerData, setDealerData] = useState([]);
@@ -63,10 +64,14 @@ const DealerList = () => {
                             <i class="fa-solid fa-user mr-2"></i> {curElem.name}
                           </li>
                         </ul>
-                        <p>{curElem?.dealerDescription?.substr(0, 125)}...</p>
+                        <p>
+                          {curElem?.dealerDescription &&
+                            parse(
+                              curElem?.dealerDescription?.substr(0, 125),
+                              strToHtml
+                            )}
+                        </p>
                       </div>
-
-                      {console.log(777989, curElem)}
                     </div>
                   </div>
                 </>

@@ -114,7 +114,14 @@ const DealerListFeature = () => {
                                 </td>
                                 <td>{curElem?.name}</td>
                                 <td>
-                                  {parse(curElem?.dealerDescription, strToHtml)}
+                                  {curElem?.dealerDescription &&
+                                    parse(
+                                      curElem?.dealerDescription?.substr(
+                                        0,
+                                        125
+                                      ),
+                                      strToHtml
+                                    )}
                                 </td>
 
                                 <td className="">
