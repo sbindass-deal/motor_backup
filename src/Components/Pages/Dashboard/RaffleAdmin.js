@@ -3,10 +3,13 @@ import AdminLeftNav from "./AdminLeftNav";
 import img_01 from "../../../Assets/images/img_001.webp";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import moment from "moment";
+
 function RaffleAdmin() {
   const [showLotary, setShowLotary] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm]=useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [category, setCategory] = useState("All")
 
   useEffect(() => {
     const fetchLotaryApi = async () => {
@@ -15,14 +18,12 @@ function RaffleAdmin() {
           process.env.REACT_APP_URL + "getLotteryDetail"
         );
         if (response.data.data.length > 0) {
-          console.log("refral", showLotary);
           setShowLotary(response.data.data);
           setLoading(false)
         } else {
           console.log("Data is empty");
         }
       } catch (err) {
-        console.log(err);
       }
     };
 
@@ -38,7 +39,6 @@ function RaffleAdmin() {
         window.location.reload(false);
       }
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -62,19 +62,31 @@ function RaffleAdmin() {
                 <Link to="/raffleadmin/add-raffel" className="orange_btn">
                   + Add raffle
                 </Link>
+
+                <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                  </a>
+
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" onClick={() => { setCategory("All") }}>All</a></li>
+                    <li><a class="dropdown-item" onClick={() => { setCategory("Expired") }}>Expired</a></li>
+                    <li><a class="dropdown-item" onClick={() => { setCategory("Going") }}>On Going</a></li>
+                    <li><a class="dropdown-item" onClick={() => { setCategory("Future") }}>Future</a></li>
+                  </ul>
+                </div>
+
               </div>
 
               <hr id="hr" />
               <div className="row">
                 <div className="col">
-
-
                   {/* ================= */}
                   <ul className="postTopOption" id="widthChnge">
                     <li className="post_search">
                       <input type="search" name="search" placeholder="Search…" onChange={(e) => {
                         setSearchTerm(e.target.value)
-                      }}/>
+                      }} />
                     </li>
                   </ul>
                   <div class="card_Gray table-responsive vehicleSub raffle"
@@ -105,9 +117,37 @@ function RaffleAdmin() {
                           </tr>
                         </thead>
                         <tbody>
-                          {showLotary.length > 0
-                              ?
-                              showLotary.filter((data) => {
+                          {
+                            showLotary.
+                              filter((d) => {
+                                let now = moment();
+                                if (category == "All") {
+                                  return d
+                                }
+                                else if (category == "Expired") {
+                                  if (moment(now).isAfter(d.dealEndDate)) {
+                                    console.log("past");
+                                    return (d);
+                                  }
+                                }
+                                else if (category == "Going") {
+                                  if (moment(now).isSame(d.dealEndDate, "day")) {
+                                    console.log("present");
+                                    return (d);
+                                  }
+                                }
+                                else if (category == "Future") {
+                                  if (moment(now).isBefore(d.dealEndDate)) {
+                                    console.log("future");
+                                    return (d);
+                                  }
+                                }
+
+
+
+
+                              })
+                              ?.filter((data) => {
                                 if (searchTerm == '') {
                                   return data
                                 } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -116,22 +156,22 @@ function RaffleAdmin() {
                                   return data
                                 }
                               })
-                              .map((data, index) => (
+                              .reverse().map((data, index) => (
 
-                              <tr>
-                                <th scope="row">{index + 1}</th>
-                                <td> {data.name}</td>
-                                <td>{
-                                  data.description.substr(0, 50)
-                                }</td>
-                                <td>{data.price}</td>
-                                <td>20</td>
-                                <td>{data.drawdate}</td>
-                                <td>{data.dealEndDate}</td>
+                                <tr>
+                                  <th scope="row">{index + 1}</th>
+                                  <td> {data.name}</td>
+                                  <td>{
+                                    data.description.substr(0, 50)
+                                  }</td>
+                                  <td>{data.price}</td>
+                                  <td>20</td>
+                                  <td>{data.created_at}</td>
+                                  <td>{data.dealEndDate}</td>
 
-                                <td className="actionBtn">
-                                  {/* {data.active && ( */}
-                                  {/* <button
+                                  <td className="actionBtn">
+                                    {/* {data.active && ( */}
+                                    {/* <button
                                   onClick={() => approveLottery(data.id)}
                                   className={`${data.active === "1"
                                       ? ""
@@ -140,24 +180,24 @@ function RaffleAdmin() {
                                 >
                                   Approve
                                 </button> */}
-                                  <Link id="linkTag"
-                                    to={`/raffleadmin/edit-raffel/${data.id}`}
-                                    className=""
-                                  >
-                                    <i class="fa-solid fa-pencil"></i>
-                                  </Link>
-                                  {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
-                                  {/* <button><i class="fa-solid fa-trash-can"></i></button>   */}
-                                </td>
-                              </tr>
-                            ))
-                            : null}
+                                    <Link id="linkTag"
+                                      to={`/raffleadmin/edit-raffel/${data.id}`}
+                                      className=""
+                                    >
+                                      <i class="fa-solid fa-pencil"></i>
+                                    </Link>
+                                    {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
+                                    {/* <button><i class="fa-solid fa-trash-can"></i></button>   */}
+                                  </td>
+                                </tr>
+                              ))
+                          }
                         </tbody>
                       </table>
                     }
-                   
 
-                   
+
+
                   </div>
                   {/* ===================== */}
 
