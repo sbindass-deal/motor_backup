@@ -1,4 +1,7 @@
 import CryptoJS from "crypto-js";
+import MicrosoftTeams from "../../../src/Assets/images/MicrosoftTeams-image.png";
+
+export const noImage = MicrosoftTeams;
 
 export const incVal = (val) => {
   const newVal = CryptoJS.AES.encrypt(val, process.env.REACT_APP_API_KEY);
