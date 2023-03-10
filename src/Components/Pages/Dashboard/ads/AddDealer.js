@@ -17,6 +17,8 @@ const AddDealer = () => {
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
   const [bannerImg, setBannerImg] = useState([]);
+  const [logoImg, setLogoImg] = useState([]);
+  const [aboutUs, setAboutUs] = useState(EditorState.createEmpty());
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -28,6 +30,18 @@ const AddDealer = () => {
     cPassword: "",
   });
   // Logo image
+  const inputRefLogo = useRef();
+
+  const handleDragOverLogo = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropLogo = (event) => {
+    event.preventDefault();
+    setFile((prevState) => [...event.dataTransfer.files]);
+  };
+
+  // gallery image
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -54,7 +68,10 @@ const AddDealer = () => {
 
   const handleContent = (e) => {
     setBlogContent(e);
-    console.log(111, e);
+  };
+
+  const handleAboutUs = (e) => {
+    setAboutUs(e);
   };
 
   const notify = (val) =>
@@ -121,10 +138,10 @@ const AddDealer = () => {
     formData.append("username", userInput.userName);
     formData.append("dealerDescription", blogContent);
     formData.append("password", userInput.password);
-    formData.append("title", userInput.name);
-    formData.append("bid", 0);
+    // formData.append("title", userInput.name);
+    formData.append("about_us", aboutUs);
+    // formData.append("bid", 0);
     formData.append("description", null);
-    // formData.append("logo", file[0]);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -136,7 +153,7 @@ const AddDealer = () => {
         if (response.data.status === 200) {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
-          navigate("/admin-dealer");
+          // navigate("/admin-dealer");
           notify(response.data.message);
         } else {
           notify(response.data.message);
@@ -157,7 +174,7 @@ const AddDealer = () => {
         <div className="col-12 text-center pb-5">
           <h2>Add Dealers</h2>
         </div>
-        <form className="container px-5">
+        <form onSubmit={handleSubmit} className="container px-5">
           <div className="row row_gap_5">
             <div className="col-md-12 col-lg-6 col-sm-12">
               {" "}
@@ -248,18 +265,36 @@ const AddDealer = () => {
                 {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
             </div>
+
+            {/* About us */}
+
+            <div className="col-12 col-sm-12 col-md-12">
+              <div className="form-group">
+                <label>About us</label>
+                <div className="border border-2 border-dark">
+                  <Editor
+                    editorStyle={{
+                      background: "white",
+                      padding: "15px",
+                      minHeight: "30vh",
+                      color: "black",
+                    }}
+                    editorState={aboutUs}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={handleAboutUs}
+                    placeholder="Please enter about us"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+
             <div className="col-12 col-sm-12 col-md-12">
               <div className="form-group">
                 <label>Description</label>
-                {/* <textarea
-                  value={userInput.dealerDescription}
-                  onChange={handleUserInput}
-                  name="dealerDescription"
-                  placeholder="Enter Description"
-                  className="field"
-                  maxLength={200}
-                  required
-                ></textarea> */}
                 <div className="border border-2 border-dark">
                   <Editor
                     editorStyle={{
@@ -278,44 +313,99 @@ const AddDealer = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="col-12 col-sm-12 col-md-12">
-              <div className="form-group">
-                <div className="drag-area">
-                  <div className="row">
-                    {Array.from(file).map((items, i) => {
-                      return (
-                        <span key={i} className="px-1">
-                          <img
-                            src={items ? URL.createObjectURL(items) : null}
-                            style={{
-                              width: "70px",
-                              objectFit: "cover",
-                            }}
-                          />
-                        </span>
-                      );
-                    })}
-                  </div>
 
-                  <input
-                    style={{
-                      border: "#EF6031",
-                      fontSize: "1.2rem",
-                      textAlign: "center",
-                      cursor: "pointer",
-                    }}
-                    onChange={(e) => {
-                      setFile(e.target.files);
-                    }}
-                    name="files"
-                    type="file"
-                    required
-                  />
+            <div className="col-12 col-md-12 mt-4">
+              <label>Logo</label>
+              <div className="row">
+                {Array.from(logoImg).map((items) => {
+                  return (
+                    <span>
+                      <img
+                        src={items ? URL.createObjectURL(items) : null}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOverLogo}
+                onDrop={handleDropLogo}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
+                <input
+                  onChange={(e) => {
+                    return setLogoImg((prevState) => [...e.target.files]);
+                  }}
+                  name="file"
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRefLogo}
+                  hidden
+                />
+                <div
+                  className="orange_btn"
+                  onClick={() => inputRefLogo.current.click()}
+                >
+                  Select Files
                 </div>
               </div>
-            </div> */}
+            </div>
+
+            <div className="col-12 col-md-12 mt-4">
+              <label>Banner</label>
+              <div className="row">
+                {Array.from(bannerImg).map((items) => {
+                  return (
+                    <span>
+                      <img
+                        src={items ? URL.createObjectURL(items) : null}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOverBanner}
+                onDrop={handleDropBanner}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
+                <input
+                  onChange={(e) => {
+                    return setBannerImg((prevState) => [...e.target.files]);
+                  }}
+                  name="file"
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRefBanner}
+                  multiple
+                  hidden
+                />
+                <div
+                  className="orange_btn"
+                  onClick={() => inputRefBanner.current.click()}
+                >
+                  Select Files
+                </div>
+              </div>
+            </div>
             <div className="col-12 col-md-12">
-              <label>Upload Logo</label>
+              <label>Gallery</label>
               <div className="row">
                 {Array.from(file).map((items) => {
                   return (
@@ -349,69 +439,19 @@ const AddDealer = () => {
                   accept="image/gif, image/jpeg, image/png, image/jpg"
                   ref={inputRef}
                   multiple
-                  required
                   hidden
                 />
-                <button
+                <div
                   className="orange_btn"
-                  type="button"
                   onClick={() => inputRef.current.click()}
                 >
                   Select Files
-                </button>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-12 mt-4">
-              <label>Banner Photos</label>
-              <div className="row">
-                {Array.from(bannerImg).map((items) => {
-                  return (
-                    <span>
-                      <img
-                        src={items ? URL.createObjectURL(items) : null}
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                          padding: "15px",
-                        }}
-                      />
-                    </span>
-                  );
-                })}
-              </div>
-              <div
-                className="dropzone"
-                onDragOver={handleDragOverBanner}
-                onDrop={handleDropBanner}
-              >
-                <h3>Drag and Drop Files to Upload</h3>
-                <h3>Or</h3>
-                <input
-                  onChange={(e) => {
-                    return setBannerImg((prevState) => [...e.target.files]);
-                  }}
-                  name="file"
-                  type="file"
-                  accept="image/gif, image/jpeg, image/png, image/jpg"
-                  ref={inputRefBanner}
-                  required
-                  multiple
-                  hidden
-                />
-                <button
-                  className="orange_btn"
-                  type="button"
-                  onClick={() => inputRefBanner.current.click()}
-                >
-                  Select Files
-                </button>
+                </div>
               </div>
             </div>
           </div>
           <div className="form-group text-center pt-4">
-            <button onClick={handleSubmit} type="button" className="btn">
+            <button type="submit" className="btn">
               Submit
             </button>
           </div>
