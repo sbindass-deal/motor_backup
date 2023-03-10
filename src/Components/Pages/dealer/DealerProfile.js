@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Gallery_1 from "../../../Assets/images/g-1.png";
-import Gallery_2 from "../../../Assets/images/g-2.png";
-import Gallery_3 from "../../../Assets/images/g-3.png";
-import Gallery_4 from "../../../Assets/images/g-4.png";
 import DealerAuction from "./DealerAuction";
 import { Link, useParams } from "react-router-dom";
 import DealerVehicleList from "./DealerVehicleList";

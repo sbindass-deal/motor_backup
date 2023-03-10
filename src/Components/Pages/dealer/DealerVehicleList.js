@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 const DealerVehicleList = ({ userId: id, dealerName }) => {
   const [userVehicle, setUserVehicle] = useState([]);
-  const logingUser = useSelector((state) => state);
-  const vehicleData = logingUser.vehicleReducer.vehicleData;
+  const loginUser = useSelector((state) => state);
+  const vehicleData = loginUser.vehicleReducer.vehicleData;
 
   useEffect(() => {
     const filteredUserVehicle = vehicleData.filter(
@@ -181,32 +181,6 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                   </div>
                 );
               })}
-
-            {/* <div className="col-lg-6 col-sm-12 inner-slider">
-              <a href="https://www.texascarsdirect.com/used-mercedes-benz-dallas-tx.html">
-                <div className="card_post">
-                  <div className="card_postImg dlr">
-                    <img src={ttttt} alt="ttttt" />
-                  </div>
-                  <div className="card_postInfo">
-                    <h5>2015 Audi Q7 </h5>
-
-                    <ul className="labelList">
-                      <li>
-                        <label>Current Bid:</label> <span>$126,888</span>
-                      </li>
-                      <li>
-                        <label>Ends In:</label> <span>5 days</span>
-                      </li>
-                    </ul>
-                    <button className="btn bidnW">
-                      Bid now <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                  </div>
-                </div>
-                <small>Dealer AD</small>
-              </a>
-            </div> */}
           </div>
         </div>
       </section>
