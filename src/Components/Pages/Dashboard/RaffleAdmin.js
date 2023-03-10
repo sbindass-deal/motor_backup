@@ -3,6 +3,7 @@ import AdminLeftNav from "./AdminLeftNav";
 import img_01 from "../../../Assets/images/img_001.webp";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
 function RaffleAdmin() {
   const [showLotary, setShowLotary] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,7 @@ function RaffleAdmin() {
               >
                 <h3>Raffle Admin</h3>
                 <Link to="/raffleadmin/add-raffel" className="orange_btn">
-                  + Add raffle
+                   Add raffle
                 </Link>
               </div>
 
@@ -130,6 +131,28 @@ function RaffleAdmin() {
                                 <td>{data.dealEndDate}</td>
 
                                 <td className="actionBtn">
+
+                                <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1"> 
+                                      <Link id=""
+                                        to={`/raffleadmin/edit-raffel/${data.id}`}
+                                        className=""
+                                      >
+                                        <i class="fa-solid fa-pencil"></i> Edit
+                                      </Link>
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                      
+                                      </Dropdown.Item>
+                                      
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+
                                   {/* {data.active && ( */}
                                   {/* <button
                                   onClick={() => approveLottery(data.id)}
@@ -140,12 +163,12 @@ function RaffleAdmin() {
                                 >
                                   Approve
                                 </button> */}
-                                  <Link id="linkTag"
+                                  {/* <Link id="linkTag"
                                     to={`/raffleadmin/edit-raffel/${data.id}`}
                                     className=""
                                   >
                                     <i class="fa-solid fa-pencil"></i>
-                                  </Link>
+                                  </Link> */}
                                   {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
                                   {/* <button><i class="fa-solid fa-trash-can"></i></button>   */}
                                 </td>

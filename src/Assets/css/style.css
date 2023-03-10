@@ -6261,3 +6261,9 @@ a.editDrop svg {
 .show>.btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 0%);
 }
+.plan_card {
+  height: 530px;
+}
+.plan_cardBody {
+  min-height: 258px;
+}
