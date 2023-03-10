@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import DealerVehicleList from "./DealerVehicleList";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Carousal from "./Carousal";
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -49,21 +50,7 @@ const DealerProfile = () => {
 
   return (
     <>
-      <section className="storeHeroSection dealer detail align-items-center">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-12">
-              <div className="heroText">
-                <h1>{dealerData.name}</h1>
-                <h5>
-                  We help you find your dream car. Select from our exclusive
-                  <br /> list of showrooms.
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Carousal />
 
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
