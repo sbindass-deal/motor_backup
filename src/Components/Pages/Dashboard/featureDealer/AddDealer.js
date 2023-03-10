@@ -38,7 +38,7 @@ const AddDealer = () => {
 
   const handleDropLogo = (event) => {
     event.preventDefault();
-    setFile((prevState) => [...event.dataTransfer.files]);
+    setLogoImg(event.dataTransfer.files);
   };
 
   // gallery image
@@ -50,7 +50,7 @@ const AddDealer = () => {
 
   const handleDrop = (event) => {
     event.preventDefault();
-    setFile((prevState) => [...event.dataTransfer.files]);
+    setFile(event.dataTransfer.files);
   };
 
   // Banner image
@@ -89,15 +89,14 @@ const AddDealer = () => {
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-
-  const uploadLogeImg = (dealer_id) => {
+  const uploadLogeImg = async (dealer_id) => {
     (async () => {
-      for await (const item of file) {
-        const url = process.env.REACT_APP_URL + "dealer_img";
+      for await (const item of logoImg) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
         const formData = new FormData();
-        formData.append("dealer_id", dealer_id);
+        formData.append("logo[]", item);
+        formData.append("dealerId", dealer_id);
         formData.append("category", "logo");
-        formData.append(item);
         const newImagedata = formData;
         const config = {
           headers: {
@@ -112,11 +111,30 @@ const AddDealer = () => {
   const uploadCoverImg = (dealer_id) => {
     (async () => {
       for await (const item of bannerImg) {
-        const url = process.env.REACT_APP_URL + "dealer_img";
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
         const formData = new FormData();
-        formData.append("dealer_id", dealer_id);
+        formData.append("logo[]", item);
+        formData.append("dealerId", dealer_id);
         formData.append("category", "banner");
-        formData.append(item);
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
+  const uploadGallery = (dealer_id) => {
+    (async () => {
+      for await (const item of file) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
+        formData.append("logo[]", item);
+        formData.append("dealerId", dealer_id);
+        formData.append("category", "gallery");
         const newImagedata = formData;
         const config = {
           headers: {
@@ -136,12 +154,21 @@ const AddDealer = () => {
     formData.append("email", userInput.email);
     formData.append("mobile", userInput.phone);
     formData.append("username", userInput.userName);
-    formData.append("dealerDescription", blogContent);
+    formData.append(
+      "dealerDescription",
+      draftToHtml(convertToRaw(blogContent.getCurrentContent()))
+    );
     formData.append("password", userInput.password);
     // formData.append("title", userInput.name);
-    formData.append("about_us", aboutUs);
+    formData.append(
+      "about_us",
+      draftToHtml(convertToRaw(aboutUs.getCurrentContent()))
+    );
     // formData.append("bid", 0);
-    formData.append("description", null);
+    formData.append(
+      "description",
+      draftToHtml(convertToRaw(blogContent.getCurrentContent()))
+    );
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -153,6 +180,7 @@ const AddDealer = () => {
         if (response.data.status === 200) {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
+          uploadGallery(response.data.dealer_id);
           // navigate("/admin-dealer");
           notify(response.data.message);
         } else {
@@ -342,7 +370,7 @@ const AddDealer = () => {
                 <h3>Or</h3>
                 <input
                   onChange={(e) => {
-                    return setLogoImg((prevState) => [...e.target.files]);
+                    setLogoImg(e.target.files);
                   }}
                   name="file"
                   type="file"
@@ -432,7 +460,7 @@ const AddDealer = () => {
                 <h3>Or</h3>
                 <input
                   onChange={(e) => {
-                    return setFile((prevState) => [...e.target.files]);
+                    setFile(e.target.files);
                   }}
                   name="file"
                   type="file"
