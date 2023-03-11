@@ -35,18 +35,16 @@ const DealerProfile = () => {
     };
     fetchDealer();
 
-    const vehicleDataAfterFilter = vehicleData
-      .filter((item) => item.userId === parseInt(id, 10))
-      .map((data) => data);
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
 
-    // create image array
-    let initialState = [];
-    vehicleDataAfterFilter.map((data) => {
-      initialState = [...data.images, ...initialState];
-    });
-
-    setUserVehicleImage(initialState);
-  }, []);
+    // setUserVehicleImage(initialState);
+  }, [id]);
 
   return (
     <>
