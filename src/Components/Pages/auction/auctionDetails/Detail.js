@@ -14,9 +14,10 @@ import Interior from "./Interior";
 import External from "./External";
 import Fundamental from "./Fundamental";
 import { toast } from "react-toastify";
-import { noImage, toCommas } from "../../../UI/globaleVar";
+import { noImage, strToHtml, toCommas } from "../../../UI/globaleVar";
 import AuctionHistory from "./AuctionHistory";
 import ViewResult from "./ViewResult";
+import parse from "html-react-parser";
 
 function Detail() {
   const { id } = useParams();
@@ -342,7 +343,10 @@ function Detail() {
               </div>
               <div className="card_">
                 <h3 className="cardTitle">Description</h3>
-                <p>{vehicle.moreDescription}</p>
+                <p>
+                  {vehicle?.moreDescription &&
+                    parse(vehicle?.moreDescription, strToHtml)}
+                </p>
                 <p className="py-4">{vehicle.desc1}</p>
                 <div className="" id="placeBid_col">
                   <p>{vehicle.desc2}</p>

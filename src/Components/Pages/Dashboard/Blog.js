@@ -7,12 +7,12 @@ import { useEffect } from "react";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
-import { useSelector } from "react-redux"; 
-import Dropdown from 'react-bootstrap/Dropdown';
+import { useSelector } from "react-redux";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const data = useSelector((state) => state)
+  const data = useSelector((state) => state);
   // console.log(111, data.login.user.user_id)
 
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,9 @@ function Blog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}admin/getblogs/${data.login.user.user_id}`);
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}admin/getblogs/${data.login.user.user_id}`
+        );
         setBlogs(res.data.data);
         setLoading(false);
       } catch (err) {
@@ -68,11 +70,7 @@ function Blog() {
                   {/* <Link to="/admin/add-blog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
-                  <Link
-                    to="/admin/add-blog"
-                    className="orange_btn _blog"
-                   
-                  >
+                  <Link to="/admin/add-blog" className="orange_btn _blog">
                     Add New Blogs
                   </Link>
                 </div>
@@ -145,10 +143,11 @@ function Blog() {
                                 {/* <td>{ curElem?.description.substr(0, 100)}</td> */}
 
                                 <td>
-                                  {parse(
-                                    curElem?.description?.substr(0, 300),
-                                    strToHtml
-                                  )}
+                                  {curElem?.description &&
+                                    parse(
+                                      curElem?.description?.substr(0, 300),
+                                      strToHtml
+                                    )}
                                 </td>
                                 <td>
                                   {curElem.created_at &&
@@ -157,31 +156,32 @@ function Blog() {
                                     ).toLocaleDateString()}
                                 </td>
                                 <td className="actionBtn">
-
-                                <Dropdown className="neWm">
+                                  <Dropdown className="neWm">
                                     <Dropdown.Toggle variant="success" id="">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                      <i class="fa-solid fa-ellipsis-vertical"></i>
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                      <Dropdown.Item href="#/action-1"> 
-                                      <Link to={`/editBlog/${curElem.id}`}>
-                                    <button>
-                                      <i class="fa-solid fa-pencil"></i> Edit
-                                    </button>
-                                  </Link>
+                                      <Dropdown.Item href="#/action-1">
+                                        <Link to={`/editBlog/${curElem.id}`}>
+                                          <button>
+                                            <i class="fa-solid fa-pencil"></i>{" "}
+                                            Edit
+                                          </button>
+                                        </Link>
                                       </Dropdown.Item>
                                       <Dropdown.Item href="#/action-2">
                                         <button
-                                          onClick={() => handleDelete(curElem.id)}
+                                          onClick={() =>
+                                            handleDelete(curElem.id)
+                                          }
                                         >
-                                          <i class="fa-solid fa-trash-can"></i> Delete
+                                          <i class="fa-solid fa-trash-can"></i>{" "}
+                                          Delete
                                         </button>
                                       </Dropdown.Item>
-                                      
                                     </Dropdown.Menu>
                                   </Dropdown>
-                                  
                                 </td>
                               </tr>
                             );
