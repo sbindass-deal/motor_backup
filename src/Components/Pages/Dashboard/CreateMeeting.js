@@ -24,7 +24,7 @@ const CreateMeeting = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post('/user', {
+    axios.post(`${process.env.REACT_APP_URL}/user`, {
       title: 'Fred',
       description: 'Flintstone',
       image: 'Flintstonew',
