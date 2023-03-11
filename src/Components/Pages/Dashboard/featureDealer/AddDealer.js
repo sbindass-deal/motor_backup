@@ -89,61 +89,59 @@ const AddDealer = () => {
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-  const uploadLogeImg = (dealer_id) => {
+  const uploadLogeImg = async (dealer_id) => {
+    const url = `${process.env.REACT_APP_URL}dealer_img`;
+    let formData = new FormData();
     (async () => {
       for await (const item of logoImg) {
-        const url = `${process.env.REACT_APP_URL}dealer_img`;
-        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "logo");
-        const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        await axios.post(url, newImagedata, config);
       }
     })();
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios.post(url, formData, config);
   };
 
-  const uploadCoverImg = (dealer_id) => {
+  const uploadCoverImg = async (dealer_id) => {
+    const url = `${process.env.REACT_APP_URL}dealer_img`;
+    let formData = new FormData();
+
     (async () => {
       for await (const item of bannerImg) {
-        const url = `${process.env.REACT_APP_URL}dealer_img`;
-        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "banner");
-        const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        await axios.post(url, newImagedata, config);
       }
     })();
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios.post(url, formData, config);
   };
 
-  const uploadGallery = (dealer_id) => {
+  const uploadGallery = async (dealer_id) => {
+    const url = `${process.env.REACT_APP_URL}dealer_img`;
+    let formData = new FormData();
     (async () => {
       for await (const item of file) {
-        const url = `${process.env.REACT_APP_URL}dealer_img`;
-        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "gallery");
-        const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        await axios.post(url, newImagedata, config);
       }
     })();
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios.post(url, formData, config);
   };
 
   const handleSubmit = async (e) => {
@@ -181,12 +179,11 @@ const AddDealer = () => {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
           uploadGallery(response.data.dealer_id);
-          // navigate("/admin-dealer");
+          navigate("/admin-dealer");
           notify(response.data.message);
         } else {
           notify(response.data.message);
         }
-        // console.log(1111, response.data.status, response.data.message);
       })
       .catch((error) => {
         notify(error);
