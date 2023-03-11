@@ -23,6 +23,28 @@ const CreateMeeting = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    axios.post('/user', {
+      title: 'Fred',
+      description: 'Flintstone',
+      image: 'Flintstonew',
+      url: 'Flintstone',
+      start_date: 'Flintstone',
+      end_date:''
+    }, {
+      headers: {
+        Authorization: 'eyJpdiI6InFTcTNXQ0kvQ2RscXowS2pjcDVQZEE9PSIsInZhbHVlIjoicjhFbWdiSGtMV0VmWjExZWtFQ0xSSkczTzRDekc5UHcxRkVhMWxYV2l4ST0iLCJtYWMiOiI5YTM0YWYwN2NiZjE2Y2I2YTU3YzE4ZmI0OTJlODVlNTk4YTFlNmYwNzZlMjEwNmM1MzhjOWMzNDA5ZjBmYjhjIiwidGFnIjoiIn0 = 12',
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+
   }
   return (
     <>
