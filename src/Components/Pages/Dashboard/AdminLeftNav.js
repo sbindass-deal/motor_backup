@@ -95,7 +95,7 @@ function AdminLeftNav() {
               } `}
             to="/admin-meeting"
           >
-            Create Meeting
+            Create Events
           </Link>
         </li>
       </ul>
