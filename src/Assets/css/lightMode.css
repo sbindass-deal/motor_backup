@@ -9,6 +9,15 @@ body.light {
     background: #f7f7f7;
 }
 
+.light .bg-header-rendam {
+    background-color: #fff;
+}
+
+.light .bg-header-fluid {
+    background-color: #fff;
+}
+
+
 .light h2,
 .light h3,
 .light h4,

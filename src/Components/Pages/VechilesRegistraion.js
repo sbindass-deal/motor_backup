@@ -22,6 +22,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import CloseIcon from "@mui/icons-material/Close";
 
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
@@ -882,6 +883,14 @@ const VechilesRegistraion = () => {
     });
   };
 
+  function removeArrItem(index) {
+    // create a new array with the item at the specified index removed
+    const newItems = [...arr.slice(0, index), ...arr.slice(index + 1)];
+    // setItems(newItems);
+    // set the state with the new array
+    setArr(newItems);
+  }
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -1316,6 +1325,7 @@ const VechilesRegistraion = () => {
                               <a
                                 style={{ cursor: "pointer" }}
                                 onClick={addInput}
+                                className="link"
                               >
                                 Add more link
                               </a>
@@ -1323,14 +1333,32 @@ const VechilesRegistraion = () => {
                             {arr.map((item, i) => {
                               return (
                                 <div className="form-group">
-                                  <input
-                                    onChange={handleChange}
-                                    value={item.value}
-                                    id={i}
-                                    className="field"
-                                    placeholder="Enter link"
-                                    type={item.type}
-                                  />
+                                  <div style={{ position: "relative" }}>
+                                    <input
+                                      onChange={handleChange}
+                                      value={item.value}
+                                      id={i}
+                                      className="field"
+                                      placeholder="Enter link"
+                                      type={item.type}
+                                    />
+                                    {i > 0 && (
+                                      <div
+                                        className=""
+                                        style={{
+                                          position: "absolute",
+                                          top: "8px",
+                                          right: "10px",
+                                          textAlign: "center",
+                                          alignItems: "center",
+                                          cursor: "pointer",
+                                        }}
+                                        onClick={() => removeArrItem(i)}
+                                      >
+                                        <CloseIcon style={{ fill: "#000" }} />
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               );
                             })}

@@ -1060,6 +1060,7 @@ footer h6:before {
   background-color: transparent;
   padding: 10px 15px;
   border: 1px #333 solid;
+  border-radius: 5px;
 }
 
 select.field option {
@@ -2819,6 +2820,15 @@ li.nav-item.afterLogin span {
 header {
   height: 107px;
   border: 1px solid #333;
+  background: #000;
+
+}
+
+header>.bg-header-fluid {
+  height: 107px;
+  border: 1px solid #333;
+  background: #000;
+
 }
 
 .secondNavbar {
@@ -5383,7 +5393,7 @@ input[type=file] {
 
 .blogs_content {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .ptb_50 {
@@ -5774,7 +5784,7 @@ h3.cardTitle {
   right: -5px;
   padding: 10px;
   z-index: 0;
- 
+
   color: white;
 }
 
@@ -6129,9 +6139,10 @@ a.dfr {
   color: #fff !important;
 }
 
-.sideBar__ li a.nav-link.active{
-      color: #fff !important;
+.sideBar__ li a.nav-link.active {
+  color: #fff !important;
 }
+
 .imgCross span button.close {
   position: absolute;
   right: 5px;
@@ -6161,39 +6172,48 @@ a.dfr {
   width: 31.33%;
   margin: 10px;
 }
- .nav-tabs.tabPlan .nav-link.active {
+
+.nav-tabs.tabPlan .nav-link.active {
   color: #fff;
   background-color: #f7931b;
   border-color: 0;
   border: none;
 }
+
 .nav-tabs.tabPlan .nav-link:hover {
   background-color: #f7931a;
   color: #fff;
 }
+
 .light .ListDealer .card_post {
   padding: 10px;
   box-shadow: 1px 1px 15px 1px #d5d5d5;
 }
+
 .ListDealer .card_postImg {
   height: 230px;
- 
+
 }
+
 .ListDealer .card_post {
   padding: 10px;
   box-shadow: 1px 1px 65px 1px #ffffff30;
 }
+
 .blogLiT {
   margin-bottom: 25px;
-  box-shadow: 1px 0px 115px 61px #171616;
+  /* box-shadow: 1px 0px 115px 61px #171616; */
 }
+
 .blogLiT .blogPostText {
   padding: 30px 15px;
 }
+
 .light .blogLiT {
   margin-bottom: 25px;
-  box-shadow: 1px 0px 115px 61px #e9e5e5;
+  /* box-shadow: 1px 0px 115px 61px #e9e5e5; */
 }
+
 .blogLiT .blogPost {
   display: flex;
   justify-content: center;
@@ -6207,16 +6227,17 @@ a.dfr {
   margin-top: 15px;
 }
 
-.light .orangeText{
-  color: #f7931a;
-}
-.dark .orangeTextDark{
+.light .orangeText {
   color: #f7931a;
 }
 
-.dark .bgChangeDark{
-    background: black;
-    color: white;
+.dark .orangeTextDark {
+  color: #f7931a;
+}
+
+.dark .bgChangeDark {
+  background: black;
+  color: white;
 }
 
 
@@ -6229,68 +6250,79 @@ a.dfr {
   right: -5px;
   padding: 10px;
   z-index: 0;
-  
-  
+
+
 }
 
 .neWm.dropdown button {
   background: transparent;
 }
+
 .neWm button.dropdown-toggle.btn.btn-success {
   background: transparent;
   padding: 10px;
   border: 0px !important;
 }
-.neWm .dropdown-toggle::after{
+
+.neWm .dropdown-toggle::after {
   display: none;
 }
-.neWm .show>.btn-success.dropdown-toggle:focus{box-shadow: none;}
+
+.neWm .show>.btn-success.dropdown-toggle:focus {
+  box-shadow: none;
+}
 
 .neWm .dropdown-menu.show {
   background: #29292b;
 }
-.neWm .dropdown-item:focus, .dropdown-item:hover{
-background-color: #0000;
+
+.neWm .dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #0000;
 }
+
 .light .neWm .dropdown-menu.show {
   background: #29292b;
 }
+
 a.editDrop svg {
   padding-right: 10px;
 }
+
 .show>.btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 0%);
 }
 
 
-.light .textHeading{
+.light .textHeading {
   color: black;
 }
-.light .backgroundlight{
+
+.light .backgroundlight {
   background-color: #E5E5E5;
 }
 
 .post-share .post-share-link {
-    height: 33px;
-    margin: 0 6px;
-    width: 33px;
+  height: 33px;
+  margin: 0 6px;
+  width: 33px;
 }
 
-.comment-submission-actions{
+.comment-submission-actions {
   display: flex;
   justify-content: space-between;
 }
 
-.imagepart{
+.imagepart {
   display: flex;
 }
 
 .topmargin {
-    margin-top: -56%;
+  margin-top: -56%;
 }
 
 .imgLeft {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 
@@ -6298,10 +6330,12 @@ a.editDrop svg {
   display: flex;
   align-items: center;
 }
+
 a.orange_btn._blog {
   font-size: 14px;
   padding: 10px 24px;
 }
+
 .plan_cardBody {
   min-height: 135px;
 }
