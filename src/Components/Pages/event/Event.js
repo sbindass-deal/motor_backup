@@ -4,13 +4,34 @@ import moment from "moment";
 import events from "./Data";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 const Event = () => {
-
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [eventsData, setEventsData] = useState(events);
+
+  useEffect(() => {
+    const fetchEventApi = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_URL}getAllEvent`);
+        const eventData = res.data.data.map((curElem) => {
+          return {
+            title: curElem.title,
+            start: new Date(curElem.start_date),
+            end: new Date(curElem.end_date),
+          };
+        });
+        setEventsData(eventData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEventApi();
+  }, []);
+
   const handleSelect = ({ start, end }) => {
     console.log(start);
     console.log(end);
@@ -29,7 +50,7 @@ const Event = () => {
   return (
     <div className="container clenderStyle pb-5 mb-5 px-5">
       <Calendar
-        onSelectSlot={handleSelect}
+        // onSelectSlot={handleSelect}
         views={["day", "agenda", "work_week", "month"]}
         selectable
         localizer={localizer}
@@ -37,7 +58,7 @@ const Event = () => {
         defaultView="month"
         events={eventsData}
         style={{ height: "100vh" }}
-        onSelectEvent={(event) => navigate('/eventdetail')}
+        onSelectEvent={(event) => navigate("/eventdetail")}
         // onSelectEvent={(event) => alert(event.title)}
       />
     </div>
