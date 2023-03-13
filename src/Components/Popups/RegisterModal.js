@@ -503,8 +503,8 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group">
                     <p className="small">
                       This site is protected by reCAPTCHA and the Google{" "}
-                      <a href="/privacy"> Privacy Policy</a> and{" "}
-                      <a href="/termsandconditions">Terms of Service</a> apply
+                      <a href="/privacy" target="_blank"> Privacy Policy</a> and{" "}
+                      <a href="/termsandconditions" target="_blank">Terms of Service</a> apply
                     </p>
                   </div>
                 </div>
