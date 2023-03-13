@@ -24,7 +24,7 @@ const Products = ({ id, price, image, title, curElem }) => {
         <div class="card_post box_shadow_common">
           <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
             <img
-              src={`${process.env.REACT_APP_URL}upload/products/${image}`}
+              src={`${process.env.REACT_APP_URL}upload/product_image/${image}`}
               alt={title}
             />
           </Link>
