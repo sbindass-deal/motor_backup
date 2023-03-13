@@ -134,21 +134,22 @@ const VechilesRegistraion = () => {
     setShowPayment(false);
   };
 
-  const handleShowPayment = (data) => {
+  const handleShowPayment = (e) => {
+    e.preventDefault();
     setShowPayment(true);
   };
   const fetchTransaction = async (token) => {
     await axios
-      .post(
-        `${process.env.REACT_APP_URL}paymentUpdate/${userDataLogin.login.user.id}`,
-        {
-          transectionId: token.card.id,
-          mode: token.type,
-          status: "1",
-        }
-      )
+      .post(`${process.env.REACT_APP_URL}paymentUpdate`, {
+        planId: logingUser.planReducer.plan.planId,
+        plantype: logingUser.planReducer.plan.listingType,
+        transactionId: token.card.id,
+        mode: token.type,
+        purchase_qty: logingUser.planReducer.plan.playQuantity,
+      })
       .then(function (response) {
         // console.log(response);
+        informationSubmitHandler();
       })
       .catch(function (error) {
         console.log(error);
@@ -469,8 +470,7 @@ const VechilesRegistraion = () => {
     }
     setInformation({ ...information, [Name]: Value });
   };
-  const informationSubmitHandler = async (e) => {
-    e.preventDefault();
+  const informationSubmitHandler = async () => {
     setSubmitLoading(true);
     const {
       name,
@@ -624,7 +624,7 @@ const VechilesRegistraion = () => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
         uploadFileGallery(result.data.id);
-        handleShowPayment();
+        // handleShowPayment();
         setNamefield({
           name: "",
           email: "",
@@ -2492,10 +2492,7 @@ const VechilesRegistraion = () => {
                       <h3>Contact Info</h3>
                       <hr />
 
-                      <form
-                        className="pt-3"
-                        onSubmit={informationSubmitHandler}
-                      >
+                      <form className="pt-3" onSubmit={handleShowPayment}>
                         <div className="row">
                           <div className="col-12">
                             <h5>Complete Your Contact Info</h5>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -7,13 +8,18 @@ import { Link } from "react-router-dom";
 const DealerVehicleList = ({ userId: id, dealerName }) => {
   const [userVehicle, setUserVehicle] = useState([]);
   const loginUser = useSelector((state) => state);
-  const vehicleData = loginUser.vehicleReducer.vehicleData;
-
   useEffect(() => {
-    const filteredUserVehicle = vehicleData.filter(
-      (item) => item.userId === parseInt(id, 10)
-    );
-    setUserVehicle(filteredUserVehicle);
+    const fetchDealerInventoryApi = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}/vehicles/${id}`
+        );
+        setUserVehicle(res.data.auction_vehicle);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchDealerInventoryApi();
   }, [id]);
 
   return (
@@ -44,26 +50,26 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                 </li>
               </ul>
             </div>
-            {userVehicle &&
+            {userVehicle.length > 0 &&
               userVehicle.map((curElem) => {
                 return (
                   <div
-                    key={curElem.id}
+                    key={curElem?.id}
                     className="col-lg-6 col-sm-12 inner-slider"
                   >
-                    {curElem.displayInAuction === "classified" ? (
+                    {curElem?.displayInAuction === "classified" ? (
                       <a
                         target="_blank"
                         rel="noopener"
-                        href={curElem.externalLink}
+                        href={curElem?.externalLink}
                       >
                         <div className="card_post">
                           <div className="card_postImg dlr">
-                            {curElem.images[0] ? (
+                            {curElem?.image_banner ? (
                               <img
                                 src={
-                                  curElem.images[0] &&
-                                  `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                  curElem?.image_banner[0] &&
+                                  `${process.env.REACT_APP_URL}/${curElem?.image_banner[0].imagePath}/${curElem?.image_banner[0].imageName}`
                                 }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -81,9 +87,9 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                           </div>
                           <div className="card_postInfo">
                             <h5>
-                              {curElem.make} &nbsp;
-                              {curElem.model} &nbsp;
-                              {curElem.year}
+                              {curElem?.make} &nbsp;
+                              {curElem?.model} &nbsp;
+                              {curElem?.year}
                             </h5>
 
                             <ul className="labelList">
@@ -91,8 +97,8 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                                 <label>Current Bid:</label>{" "}
                                 <span>
                                   $
-                                  {curElem.currentAmount
-                                    ? curElem.currentAmount.auctionAmmount
+                                  {curElem?.currentAmount
+                                    ? curElem?.currentAmount.auctionAmmount
                                     : 0}
                                 </span>
                               </li>
@@ -106,9 +112,9 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                           </div>
                         </div>
                         <small>
-                          {curElem.displayInAuction === "Yes"
+                          {curElem?.displayInAuction === "Yes"
                             ? "For Auction"
-                            : curElem.displayInAuction === "classified"
+                            : curElem?.displayInAuction === "classified"
                             ? "Guzzlrs AD"
                             : null}
                         </small>
@@ -116,18 +122,18 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                     ) : (
                       <Link
                         to={
-                          curElem.displayInAuction === "Yes"
-                            ? `/detail/${curElem.id}`
-                            : `/showroom/${curElem.id}`
+                          curElem?.displayInAuction === "Yes"
+                            ? `/detail/${curElem?.id}`
+                            : `/showroom/${curElem?.id}`
                         }
                       >
                         <div className="card_post">
                           <div className="card_postImg dlr">
-                            {curElem.images[0] ? (
+                            {curElem?.image_banner ? (
                               <img
                                 src={
-                                  curElem.images[0] &&
-                                  `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                  curElem?.image_banner[0] &&
+                                  `${process.env.REACT_APP_URL}/${curElem?.image_banner[0].imagePath}/${curElem?.image_banner[0].imageName}`
                                 }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -145,9 +151,9 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                           </div>
                           <div className="card_postInfo">
                             <h5>
-                              {curElem.make} &nbsp;
-                              {curElem.model} &nbsp;
-                              {curElem.year}
+                              {curElem?.make} &nbsp;
+                              {curElem?.model} &nbsp;
+                              {curElem?.year}
                             </h5>
 
                             <ul className="labelList">
@@ -155,8 +161,8 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                                 <label>Current Bid:</label>{" "}
                                 <span>
                                   $
-                                  {curElem.currentAmount
-                                    ? curElem.currentAmount.auctionAmmount
+                                  {curElem?.currentAmount
+                                    ? curElem?.currentAmount.auctionAmmount
                                     : 0}
                                 </span>
                               </li>
@@ -170,9 +176,9 @@ const DealerVehicleList = ({ userId: id, dealerName }) => {
                           </div>
                         </div>
                         <small>
-                          {curElem.displayInAuction === "Yes"
+                          {curElem?.displayInAuction === "Yes"
                             ? "For Auction"
-                            : curElem.displayInAuction === "classified"
+                            : curElem?.displayInAuction === "classified"
                             ? "Guzzlrs AD"
                             : null}
                         </small>

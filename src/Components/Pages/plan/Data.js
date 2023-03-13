@@ -82,7 +82,8 @@ const Data = ({ curElem }) => {
           </div>
           <div className="plan_cardFooter">
             <button
-              onClick={() =>
+              onClick={() => {
+                console.log(1111, curElem);
                 handleSubmit({
                   planId: curElem.id,
                   listingType: `${
@@ -101,8 +102,13 @@ const Data = ({ curElem }) => {
                       ? curElem.annual_description
                       : curElem.monthly_description
                   }`,
-                })
-              }
+                  playQuantity: `${
+                    planType && planName === curElem.plan_name
+                      ? curElem.annual_listing
+                      : curElem.monthly_listing
+                  }`,
+                });
+              }}
               className="gry_btn"
             >
               SUBMIT VEHICLE

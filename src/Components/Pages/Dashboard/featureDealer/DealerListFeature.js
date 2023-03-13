@@ -57,7 +57,7 @@ const DealerListFeature = () => {
                 >
                   <h3>Dealer List </h3>
 
-                  <Link to="/admin-dealer/add-dealer" className="orange_btn" >
+                  <Link to="/admin-dealer/add-dealer" className="orange_btn">
                     Add Dealer
                   </Link>
                 </div>
@@ -92,7 +92,7 @@ const DealerListFeature = () => {
                               <tr key={curElem.id}>
                                 <td>{i + 1}</td>
                                 <td>
-                                  {curElem.image && (
+                                  {curElem.image_logo && (
                                     <img
                                       loading="lazy"
                                       style={{
@@ -100,8 +100,8 @@ const DealerListFeature = () => {
                                         maxHeight: "100px",
                                       }}
                                       src={
-                                        curElem.image[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                        curElem.image_logo[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.image_logo[0]?.logo}`
                                       }
                                       onError={({ currentTarget }) => {
                                         currentTarget.onError = null;

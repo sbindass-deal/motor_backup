@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { noImage } from "../../UI/globaleVar";
+import { noImage, strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 
 const Data = ({ curElem, addFabrity }) => {
   return (
@@ -50,8 +51,10 @@ const Data = ({ curElem, addFabrity }) => {
                 ></i>
               </button>
             </h4>
+
             <p className="color_grey">
-              {curElem?.moreDescription.substr(0, 123)}
+              {curElem?.moreDescription &&
+                parse(curElem?.moreDescription?.substr(0, 300), strToHtml)}
             </p>
 
             <ul

@@ -15,7 +15,7 @@ const DealerList = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
-        setDealerData([...res.data.featured_dealer, ...res.data.user_dealer]);
+        setDealerData([...res.data.featured_dealer]);
       } catch (err) {
         console.log(err);
       }
@@ -35,12 +35,12 @@ const DealerList = () => {
                     <div class="card_post">
                       <div class="card_postImg">
                         <Link to={`/dealerprofile/${curElem.id}`}>
-                          {curElem.image && (
+                          {curElem.image_logo && (
                             <img
                               loading="lazy"
                               src={
-                                curElem.image[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem.image[0]?.logo}`
+                                curElem.image_logo[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem.image_logo[0]?.logo}`
                                   : noImage
                               }
                               onError={({ currentTarget }) => {

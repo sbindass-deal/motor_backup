@@ -108,7 +108,7 @@ const Store = () => {
         </div>
       </section> */}
 
-      <Inventory />
+      {/* <Inventory /> */}
     </>
   );
 };

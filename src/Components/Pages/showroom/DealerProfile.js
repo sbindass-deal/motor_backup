@@ -24,7 +24,7 @@ const DealerProfile = () => {
         })
         .then(function (response) {
           if (response.data.data) {
-            setDealerData(response.data.data);
+            setDealerData({ ...response.data.data[0] });
           } else {
             setDealerData({});
           }
@@ -35,22 +35,20 @@ const DealerProfile = () => {
     };
     fetchDealer();
 
-    const vehicleDataAfterFilter = vehicleData
-      .filter((item) => item.userId === parseInt(id, 10))
-      .map((data) => data);
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
 
-    // create image array
-    let initialState = [];
-    vehicleDataAfterFilter.map((data) => {
-      initialState = [...data.images, ...initialState];
-    });
-
-    setUserVehicleImage(initialState);
-  }, []);
+    // setUserVehicleImage(initialState);
+  }, [id]);
 
   return (
     <>
-      <Carousal />
+      <Carousal dealerData={dealerData} />
 
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
@@ -60,7 +58,7 @@ const DealerProfile = () => {
             </div>
             <div className="col-12 gallery">
               <div className="row">
-                <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
+                {/* <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
                   <div className="galleryImgSect">
                     <img
                       src={
@@ -75,26 +73,32 @@ const DealerProfile = () => {
                       alt="Maskgroup1"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="col-lg-8 col-md-8 col-sm-12">
                   <div className="row">
-                    <div className="col-6 col-md-6 col-sm-12">
-                      <div className="galleryImgSect">
-                        <img
-                          src={
-                            userVehicleImage[1] &&
-                            `${process.env.REACT_APP_URL}/${userVehicleImage[1].imagePath}/${userVehicleImage[1].imageName}`
-                          }
-                          onError={({ currentTarget }) => {
-                            currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt="Maskgroup1"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-6 col-md-6 col-sm-12">
+                    {dealerData?.image_gallery &&
+                      dealerData?.image_gallery.map((curElem, i) => {
+                        return (
+                          <div key={i} className="col-6 col-md-6 col-sm-12">
+                            <div className="galleryImgSect">
+                              <img
+                                src={
+                                  curElem.logo &&
+                                  `${process.env.REACT_APP_URL}/${curElem.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                    {/* <div className="col-6 col-md-6 col-sm-12">
                       <div className="galleryImgSect">
                         <img
                           src={
@@ -109,23 +113,7 @@ const DealerProfile = () => {
                           alt="Maskgroup1"
                         />
                       </div>
-                    </div>
-                    <div className="col-lg-12 col-md-12  mt-50">
-                      <div className="galleryImgSect">
-                        <img
-                          src={
-                            userVehicleImage[3] &&
-                            `${process.env.REACT_APP_URL}/${userVehicleImage[3].imagePath}/${userVehicleImage[3].imageName}`
-                          }
-                          onError={({ currentTarget }) => {
-                            currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt="Maskgroup1"
-                        />
-                      </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

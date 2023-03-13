@@ -3,18 +3,22 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DealerAuction = ({ userId: id, dealerName }) => {
   const [userVehicle, setUserVehicle] = useState([]);
-  const logingUser = useSelector((state) => state);
-  const vehicleData = logingUser.vehicleReducer.vehicleData;
-
   useEffect(() => {
-    const filteredUserVehicle = vehicleData.filter(
-      (item) =>
-        item.userId === parseInt(id, 10) && item.displayInAuction === "Yes"
-    );
-    setUserVehicle(filteredUserVehicle);
+    const fetchDealerInventoryApi = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}/vehicles/${id}`
+        );
+        setUserVehicle(res.data.inventory_vehicle);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchDealerInventoryApi();
   }, [id]);
 
   return (
@@ -44,11 +48,11 @@ const DealerAuction = ({ userId: id, dealerName }) => {
                           >
                             <div className="card_post">
                               <div className="card_postImg dlr">
-                                {curElem.images[0] ? (
+                                {curElem.image_banner ? (
                                   <img
                                     src={
-                                      curElem.images[0] &&
-                                      `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                      curElem.image_banner[0] &&
+                                      `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
                                     }
                                     onError={({ currentTarget }) => {
                                       currentTarget.onError = null;
