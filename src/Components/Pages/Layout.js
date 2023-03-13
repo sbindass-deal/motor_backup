@@ -83,6 +83,7 @@ import EventDetailPage from "./event/EventDetailPage";
 import CreateMeeting from "./Dashboard/CreateMeeting";
 import Store from "./showroom/Store";
 import AddCreateMeeting from "./Dashboard/AddCreateMeeting";
+import EditCreateMeeting from "./Dashboard/EditCreateMeeting";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -168,6 +169,10 @@ const Layout = () => {
                   <Route
                     path="admin-add-meeting/add-meeting"
                     element={<AddCreateMeeting />}
+                  />
+                  <Route
+                    path="edit-meeting/:id"
+                    element={<EditCreateMeeting />}
                   />
 
                   

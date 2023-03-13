@@ -1,144 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import AdminLeftNav from "./AdminLeftNav";
-// import axios from "axios";
-// import parse from "html-react-parser";
-
-
-// const AddCreateMeeting = () => {
-//   // const [dealerData, setDealerData] = useState([]);
-//   // const [loading, setLoading] = useState(true);
-
-//   // useEffect(() => {
-//   //   const fetchDealer = async () => {
-//   //     try {
-//   //       const res = await axios.get(
-//   //         `${process.env.REACT_APP_URL}get_all_dealers`
-//   //       );
-//   //       setDealerData([...res.data.featured_dealer]);
-//   //       setLoading(false);
-//   //     } catch (err) {
-//   //       console.log(err);
-//   //     }
-//   //   };
-//   //   fetchDealer();
-//   // }, []);
-
-//   // const handleDelete = async (id) => {
-//   //   try {
-//   //     const res = await axios.get(
-//   //       `${process.env.REACT_APP_URL}destroy_dealer_featured/${id}`
-//   //     );
-//   //     if (res.data.status === 200) {
-//   //       window.location.reload(false);
-//   //     }
-//   //   } catch (err) {
-//   //     console.log(err);
-//   //   }
-//   // };
-
-//   return (
-//     <>
-//       <div>
-//         <section className="ptb_80 pt_sm_50">
-//           <div className="container">
-//             <div className="row">
-//               <div className="col-12 col-md-4 col-lg-3">
-//                 <div className="card_Gray mb-5 mb-md-0 divSticky">
-//                   <AdminLeftNav />
-//                 </div>
-//               </div>
-
-//               <div className="col-12 col-md-8 col-lg-9">
-//                 <div
-//                   className="d-flex"
-//                   id="widthChnge"
-//                   style={{ justifyContent: "space-between" }}
-//                 >
-//                   <h3>Dealer List </h3>
-
-//                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
-//                     Add Dealer
-//                   </Link>
-//                 </div>
-
-//                 <hr id="hr" />
-//                 <div
-//                   class="card_Gray table-responsive vehicleSub"
-//                   id="scrollable"
-//                 >
-                  
-//                     <table class="table table-striped">
-//                       <thead>
-//                         <tr>
-//                           <th scope="col">Sr.No</th>
-//                           <th scope="col">Image</th>
-
-//                           <th scope="col">Name</th>
-//                           <th scope="col">Description </th>
-//                           <th scope="col">Action</th>
-//                         </tr>
-//                       </thead>
-//                       <tbody>
-                        
-                          
-//                               <tr key={"curElem.id"}>
-//                                 <td>{1}</td>
-//                                 <td>
-//                                   <img src="" alt="" />
-//                                 </td>
-//                                 <td>{"curElem?.name"}</td>
-//                                 <td>
-//                                   {9}
-//                                 </td>
-
-//                                 <td className="">
-//                                   <div
-//                                     // onClick={() => handleDelete(curElem.id)}
-//                                     className="p-2"
-//                                     style={{ cursor: "pointer" }}
-//                                   >
-//                                     <i class="fa-solid fa-trash-can"></i>
-//                                   </div>
-//                                 </td>
-//                               </tr>
-                            
-                        
-//                       </tbody>
-//                     </table>
-                  
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default AddCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
@@ -147,10 +6,18 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {  notification } from 'antd';
+import {
 
-const AddCreateMeeting = () => {
- const navigate= useNavigate()
+  ContentState,
+  convertFromHTML,
+ 
+} from "draft-js";
+
+const EditCreateMeeting = () => {
+  const { id } = useParams()
+const navigate=  useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
 
@@ -180,6 +47,41 @@ const AddCreateMeeting = () => {
   }
 
   
+  useEffect(() => {
+    const fetchMeeting = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getEventBYId/${id}`
+        );
+
+        console.log(989, res)
+        if (res.data.status === 200 && res.data.data) {
+          setMeetingDetail({
+            title: res.data.data.title, 
+            startdate: res.data.data.start_date,
+            enddate: res.data.data.end_date,
+            websitelink: res.data.data.url,
+            facebooklink: res.data.data.facebook,
+            twitterlink: res.data.data.twitter,
+            emailid: res.data.data.email
+          });
+          // setBlogDataById(res.data.data);
+          setDescription(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(res.data.data.description)
+              )
+            )
+          );
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchMeeting();
+  }, []);
+
+  
 
 
   const inputRef = useRef();
@@ -197,10 +99,11 @@ const AddCreateMeeting = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    const url = `${process.env.REACT_APP_URL}AddEvent`;
+    const url = `${process.env.REACT_APP_URL}UpdateEvent`;
 
 
     const formData=new FormData()
+    formData.append('id', id)
     formData.append('title', meetingDetail.title)
     formData.append('url', meetingDetail.websitelink)
     formData.append('start_date', meetingDetail.startdate)
@@ -224,7 +127,7 @@ const AddCreateMeeting = () => {
   
     await axios.post(url, formData, config)
       .then(function (response) {
-        navigate('/admin-meeting')
+        navigate("/admin-meeting");
         console.log(109,response);
       })
       .catch(function (error) {
@@ -425,7 +328,7 @@ const AddCreateMeeting = () => {
   );
 };
 
-export default AddCreateMeeting;
+export default EditCreateMeeting;
 
 
 

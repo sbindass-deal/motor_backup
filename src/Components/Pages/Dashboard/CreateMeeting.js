@@ -17,7 +17,7 @@ const CreateMeeting = () => {
         );
         console.log(7676, res.data.data)
         setMeetingData(res.data.data);
-        // setLoading(false);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -25,18 +25,19 @@ const CreateMeeting = () => {
     fetchMeetingDetail();
   }, []);
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const res = await axios.get(
-  //       `${process.env.REACT_APP_URL}destroy_dealer_featured/${id}`
-  //     );
-  //     if (res.data.status === 200) {
-  //       window.location.reload(false);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(
+        `${process.env.REACT_APP_URL}deleteEvent/${id}`
+      );
+      if (res.data.status === 200) {
+        window.location.reload(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   return (
     <>
@@ -68,51 +69,67 @@ const CreateMeeting = () => {
                   class="card_Gray table-responsive vehicleSub"
                   id="scrollable"
                 >
-
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Sr.No</th>
-                        {/* <th scope="col">Image</th> */}
-                        <th scope="col">Title</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date </th>
-                        <th scope="col">Website Link</th>
-                        <th scope="col">Facebook Link</th>
-                        <th scope="col">Twitter Link</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        meetingData.map((curVal,index) => {
-                          console.log(989, curVal,index)
-                          return <tr>
-                            <td>{index + 1}</td>
-                            <td>{curVal.title }</td>
-                            <td>{curVal.start_date }</td>
-                            <td>{curVal.end_date}</td>
-                            <td>{curVal.url}</td>
-                            <td>{curVal.facebook}</td>
-                            <td>{curVal.twitter}</td>
-                            <td>{curVal.email}</td>
-                            <td>{curVal.description}</td>
-                            <td>
-
-                            <button>Edit</button>
-                            <button>Delete</button>
-                            </td>
-                          </tr>
-                        })
-}
-
-                    
+                  {
+                    loading ? <div class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div> : <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Sr.No</th>
+                          {/* <th scope="col">Image</th> */}
+                          <th scope="col">Title</th>
+                          <th scope="col">Start Date</th>
+                          <th scope="col">End Date </th>
+                          <th scope="col">Website Link</th>
+                          <th scope="col">Facebook Link</th>
+                          <th scope="col">Twitter Link</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
 
 
-                    </tbody>
-                  </table>
+
+                      <tbody>
+                        {
+                          meetingData.map((curVal, index) => {
+                            console.log(989, curVal, index)
+                            return <tr>
+                              <td>{index + 1}</td>
+                              <td>{curVal.title}</td>
+                              <td>{curVal.start_date}</td>
+                              <td>{curVal.end_date}</td>
+                              <td>{curVal.url}</td>
+                              <td>{curVal.facebook}</td>
+                              <td>{curVal.twitter}</td>
+                              <td>{curVal.email}</td>
+                              <td>{curVal.description}</td>
+                              <td>
+
+                                <Link to={`/edit-meeting/${curVal.id}`}>
+                                  <button>
+                                    <i class="fa-solid fa-pencil"></i>{" "}
+                                    Edit
+                                  </button>
+                                </Link>
+                                <button onClick={() => handleDelete(curVal.id)}>Delete</button>
+                              </td>
+                            </tr>
+                          })
+                        }
+
+
+
+
+                      </tbody>
+                    </table>
+                  }
+                  
+
+                 
 
                 </div>
               </div>
