@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 const Carousal = ({ dealerData }) => {
   return (
     <>
-      <Carousel fade>
+      <Carousel fade >
         {dealerData?.image_banner &&
           dealerData?.image_banner.map((curElem, i) => {
             return (
