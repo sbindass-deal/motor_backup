@@ -22,7 +22,7 @@ import parse from "html-react-parser";
 function Detail() {
   const { id } = useParams();
   const commentRef = useRef();
-  const loginUser = useSelector((state) => state);
+  const loginUser = useSelector((state) => state.login);
   const [vinDetails, setVinDetails] = useState({});
   const [vehicle, setVehicle] = useState({});
   const [show, setShow] = useState(false);
@@ -75,10 +75,12 @@ function Detail() {
     setShow(false);
   };
   const handleShow = () => {
-    if (loginUser.login.token === null) {
+    if (loginUser.token === null && loginUser.admin === null) {
       return notify("Please login or register");
-    } else {
+    } else if (loginUser.token !== null && loginUser.admin === null) {
       setShow(true);
+    } else if (loginUser.admin !== null) {
+      return notify("You are admin so you can't bid.");
     }
   };
 
@@ -471,12 +473,14 @@ function Detail() {
                     <div className="form-group">
                       <FormInput
                         value={bidValue}
-                        onChange={handleBidInput}
+                        onChange={(e) => {
+                          handleBidInput(e);
+                        }}
                         name="bid"
                         placeholder="Please enter bid amount"
                         errorMessage="Amount should be 1-8 characters and shouldn't include any special character and alphabet!"
                         label="Bid Amount"
-                        pattern="^[0-9]{1,12}$"
+                        pattern="^[0-9]{1,8}$"
                         required={true}
                       />
                     </div>
@@ -485,7 +489,9 @@ function Detail() {
                     <div className="form-group">
                       <FormInput
                         value={bidComment}
-                        onChange={(e) => setBidComment(e.target.value)}
+                        onChange={(e) => {
+                          setBidComment(e.target.value);
+                        }}
                         name="comment"
                         placeholder="Enter comment"
                         label="comment"
