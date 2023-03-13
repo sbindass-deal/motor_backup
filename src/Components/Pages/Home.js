@@ -307,7 +307,7 @@ function Home() {
               <div className="row">
                 <div className="col-12 text-center pt_40">
                   <Link to="/blogs" className="orange_btn">
-                    View More Blogs
+                    View More
                   </Link>
                 </div>
               </div>
