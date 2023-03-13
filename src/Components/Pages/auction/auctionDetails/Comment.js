@@ -61,7 +61,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
             <form onSubmit={submitUserComment} className="mb-3">
               <div className="form-group">
                 <textarea
-                  placeholder="add comment here"
+                  placeholder="Add comment here"
                   className="field"
                   value={commentVal}
                   onChange={(e) => setCommentVal(e.target.value)}

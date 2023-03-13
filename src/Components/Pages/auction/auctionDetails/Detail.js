@@ -252,7 +252,7 @@ function Detail() {
                           </span>
                         </li>
                       ) : (
-                        <li>Bidding closed</li>
+                        <li className="text-danger">BIDDING CLOSED</li>
                       )}
                     </ul>
                     {t > 0 ? (
