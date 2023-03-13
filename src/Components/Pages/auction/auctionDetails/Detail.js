@@ -215,7 +215,7 @@ function Detail() {
               <div className=" text-center box_background p-20" id="sticky">
                 <div className="detailPostOption">
                   <h2 className="title_combo title_Center" id="sticky2">
-                    {vehicle.make} {vehicle.model} {vehicle.year}
+                    {vehicle.make}
                   </h2>
                   <div className="titleRight">
                     <ul className="labelList">
