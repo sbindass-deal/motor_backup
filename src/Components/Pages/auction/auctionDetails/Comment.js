@@ -4,12 +4,27 @@ import { useEffect } from "react";
 import men_face from "../../../../Assets/images/men-face.jpg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { toCommas } from "../../../UI/globaleVar";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Comment = ({ id, getVehicleComment, commentRef }) => {
+  const loginUser = useSelector((state) => state.login);
   const [commentVal, setCommentVal] = useState("");
   const [commentData, setCommentData] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
   const [showMoreLess, setShowMoreLess] = useState(false);
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   useEffect(() => {
     const fetchCommentDataApi = async () => {
@@ -31,25 +46,31 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
 
   const submitUserComment = async (e) => {
     e.preventDefault();
-    setBtnLoading(true);
-    await axios
-      .post(`${process.env.REACT_APP_URL}comments`, {
-        vehicleId: id,
-        comment: commentVal,
-      })
-      .then(function (response) {
-        setBtnLoading(false);
-        const data = response.data.data;
-        if (response.data.status === 200) {
-          setCommentData(data);
-          getVehicleComment(data.length);
-        }
-        setCommentVal("");
-      })
-      .catch(function (error) {
-        console.log(error);
-        setBtnLoading(false);
-      });
+    if (loginUser.token === null && loginUser.admin === null) {
+      return notify("Please login or register");
+    } else if (loginUser.token !== null && loginUser.admin === null) {
+      setBtnLoading(true);
+      await axios
+        .post(`${process.env.REACT_APP_URL}comments`, {
+          vehicleId: id,
+          comment: commentVal,
+        })
+        .then(function (response) {
+          setBtnLoading(false);
+          const data = response.data.data;
+          if (response.data.status === 200) {
+            setCommentData(data);
+            getVehicleComment(data.length);
+          }
+          setCommentVal("");
+        })
+        .catch(function (error) {
+          console.log(error);
+          setBtnLoading(false);
+        });
+    } else if (loginUser.admin !== null) {
+      return notify("You are admin so you can't comment");
+    }
   };
 
   return (
@@ -61,7 +82,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
             <form onSubmit={submitUserComment} className="mb-3">
               <div className="form-group">
                 <textarea
-                  placeholder="add comment here"
+                  placeholder="Add comment here"
                   className="field"
                   value={commentVal}
                   onChange={(e) => setCommentVal(e.target.value)}

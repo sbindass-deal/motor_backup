@@ -3,7 +3,7 @@ import AdminLeftNav from "./AdminLeftNav";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 
 function VehicleSubmission() {
   const [showvehicles, setShowvehicles] = useState([]);
@@ -92,11 +92,10 @@ function VehicleSubmission() {
                         >
                           Car Info
                         </th>
-
+                        <th>status</th>
                         <th scope="col" style={{ textAlign: "center" }}>
                           Action
                         </th>
-                        <th>status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -133,35 +132,7 @@ function VehicleSubmission() {
                                 </td>
                                 <td>{data.year}</td>
                                 <td>{data.make}</td>
-                                
-                                <td className="actionBtn vs">
-                                <Dropdown className="neWm">
-                                    <Dropdown.Toggle variant="success" id="">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </Dropdown.Toggle>
 
-                                    <Dropdown.Menu>
-                                      <Dropdown.Item href="#/action-1"> 
-                                      <Link
-                                        to={`/detail/${data.id}`}
-                                        className=" mr-1"
-                                      >
-                                        Preview
-                                      </Link>
-                                      </Dropdown.Item>
-                                      <Dropdown.Item href="#/action-2">
-                                      <Link
-                                        to={`/vehicle-submission/${data.id}`}
-                                        className=""
-                                      >
-                                        View
-                                      </Link>
-                                      </Dropdown.Item>
-                                      
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-
-                                </td>
                                 <td>
                                   {data.approved == 0
                                     ? "Pending"
@@ -173,6 +144,33 @@ function VehicleSubmission() {
                                     ? "Rejected"
                                     : null}
                                   {/* <span>{data.status && data.status.title}</span> */}
+                                </td>
+
+                                <td className="actionBtn vs">
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1">
+                                        <Link
+                                          to={`/detail/${data.id}`}
+                                          className=" mr-1"
+                                        >
+                                          Preview
+                                        </Link>
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                        <Link
+                                          to={`/vehicle-submission/${data.id}`}
+                                          className=""
+                                        >
+                                          Edit
+                                        </Link>
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </td>
                               </tr>
                             ))
