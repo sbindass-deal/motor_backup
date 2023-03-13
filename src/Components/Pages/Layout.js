@@ -82,7 +82,7 @@ import UserBlog from "./MyAccount/UserBlog";
 import EventDetailPage from "./event/EventDetailPage";
 import CreateMeeting from "./Dashboard/CreateMeeting";
 import Store from "./showroom/Store";
-import AddCreateMeeting from "./Dashboard/AddCreateMeeting";
+// import AddCreateMeeting from "./Dashboard/AddCreateMeeting";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -165,10 +165,10 @@ const Layout = () => {
                     path="admin-vehicle-ad/add-vehicle-ads"
                     element={<AddVehicleAds />}
                   />
-                  <Route
+                  {/* <Route
                     path="admin-add-meeting/add-meeting"
                     element={<AddCreateMeeting />}
-                  />
+                  /> */}
 
                   
 
