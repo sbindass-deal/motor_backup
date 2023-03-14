@@ -63,7 +63,7 @@ const navigate=  useNavigate()
             websitelink: res.data.data.url,
             facebooklink: res.data.data.facebook,
             twitterlink: res.data.data.twitter,
-            emailid: res.data.data.email
+            emailid: res.data.data.email,
           });
           // setBlogDataById(res.data.data);
           setDescription(
