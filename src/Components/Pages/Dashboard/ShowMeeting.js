@@ -5,7 +5,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 
 
-const CreateMeeting = () => {
+const ShowMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,26 +45,11 @@ const CreateMeeting = () => {
         <section className="ptb_80 pt_sm_50">
           <div className="container">
             <div className="row">
-              <div className="col-12 col-md-4 col-lg-3">
-                <div className="card_Gray mb-5 mb-md-0 divSticky">
-                  <AdminLeftNav />
-                </div>
-              </div>
+             
 
-              <div className="col-12 col-md-8 col-lg-9">
-                <div
-                  className="d-flex"
-                  id="widthChnge"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <h3>Create Meeting </h3>
-
-                  <Link to="/admin-add-meeting/add-meeting" className="orange_btn">
-                    Add New Meeting
-                  </Link>
-                </div>
-
-                <hr id="hr" />
+              <div className="" style={{width:"100%"}}>
+               
+<h4>Meeting List</h4>
                 <div
                   class="card_Gray table-responsive vehicleSub"
                   id="scrollable"
@@ -88,7 +73,7 @@ const CreateMeeting = () => {
                           <th scope="col">Twitter Link</th>
                           <th scope="col">Email</th>
                           <th scope="col">Description</th>
-                          <th scope="col">Action</th>
+                          {/* <th scope="col">Action</th> */}
                         </tr>
                       </thead>
 
@@ -111,7 +96,7 @@ const CreateMeeting = () => {
                               <td>{curVal.twitter}</td>
                               <td>{curVal.email}</td>
                               <td>{curVal.description.substr(0,100)}</td>
-                              <td>
+                              {/* <td>
 
                                 <Link to={`/edit-meeting/${curVal.id}`}>
                                   <button>
@@ -120,7 +105,7 @@ const CreateMeeting = () => {
                                   </button>
                                 </Link>
                                 <button onClick={() => handleDelete(curVal.id)}>Delete</button>
-                              </td>
+                              </td> */}
                             </tr>
                           })
                         }
@@ -145,7 +130,7 @@ const CreateMeeting = () => {
   );
 };
 
-export default CreateMeeting;
+export default ShowMeeting;
 
 
 

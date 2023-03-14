@@ -1,20 +1,41 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const EventDetailPage = () => {
-
+    const { id } = useParams()
+    const [getEventdata, setGetEventdata]=useState([])
     const handleSubmit = (e) => {
         e.preventDefault()
     }
 
+    useEffect(() => {
+        const fetchMeeting = async () => {
+            try {
+                const res = await axios.get(
+                    `${process.env.REACT_APP_URL}getEventBYId/${id}`
+                );
+                setGetEventdata(res.data.data)
+                console.log(56565,res.data.data)
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchMeeting();
+    }, []);
+
+
     return (
+
         <div className="container mt-3">
             <div className="row ">
                 <div className="col-md-8">
                     <p>All Event</p>
-                    <h1 className='textHeading'>2023 SVRA Road Atlanta Speedtour</h1>
+                    <h1 className='textHeading'>{getEventdata.title }</h1>
+
 
                     <p>
-                        <img className='img-fluid' src="https://bringatrailer.com/wp-content/uploads/2023/02/Screenshot-2023-02-10-at-4.29.37-PM-75398.png?fit=946%2C298&resize=620%2C195" alt="" />
+                        <img className='img-fluid' src={`https://api.gasguzzlrs.com/upload/event/${getEventdata.image}`} alt="" />
                     </p>
 
                 </div>
@@ -23,18 +44,19 @@ const EventDetailPage = () => {
             <div className="row ">
                 <div className="col-md-7">
                     <h3>From the organizer:</h3>
-                    <p>The Atlanta SpeedTour at Michelin Raceway Road Atlanta’s world-class, 12-turn, 2.54-mile road circuit offers a full slate of sprint races for all of SVRA’s race groups. A Mazda Miata Heritage Cup Series race has been added to the schedule. The track’s challenging combination of blind corners, fast sweepers, serpentine esses, steep elevation changes, and high-speed straights keeps everyone coming back year after year. The rich history of stock car racing will be showcased with a Stock Car feature.</p>
+                    {/* <p>The Atlanta SpeedTour at Michelin Raceway Road Atlanta’s world-class, 12-turn, 2.54-mile road circuit offers a full slate of sprint races for all of SVRA’s race groups. A Mazda Miata Heritage Cup Series race has been added to the schedule. The track’s challenging combination of blind corners, fast sweepers, serpentine esses, steep elevation changes, and high-speed straights keeps everyone coming back year after year. The rich history of stock car racing will be showcased with a Stock Car feature.</p> */}
+                    <p>{getEventdata.description }</p>
 
-                    <p>
+                    {/* <p>
                         Since opening in 1970, the 750-acre Road Atlanta complex has hosted just about every major race series run in the US including Can-Am, Trans-Am, the SCCA National Championships, the American Le Mans Series, and the Tudor United Sports Car Series. Road Atlanta’s great racing history, challenging track, nearby resorts, and proximity to the city of Atlanta adds to the popularity of this venue.
-                    </p>
+                    </p> */}
 
-                    <p>
+                    {/* <p>
                         Join us for one of the most entertaining race weekends on the 2022 schedule.
-                    </p>
+                    </p> */}
                 </div>
 
-                <div className="col-3 border h-25 p-2" >
+                {/* <div className="col-3 border h-25 p-2" >
 
                     <h5>Get The Shibnobi Daily Email</h5>
 
@@ -56,7 +78,7 @@ const EventDetailPage = () => {
 
 
 
-                </div>
+                </div> */}
 
 
 
@@ -68,17 +90,17 @@ const EventDetailPage = () => {
                     <h5 className='textHeading'>details</h5>
                     <div>
                         <span>Start</span>
-                        <p>March 23</p>
+                        <p>{getEventdata.start_date}</p>
                     </div>
 
                     <div>
                         <span>End</span>
-                        <p>March 23</p>
+                        <p>{getEventdata.end_date }</p>
                     </div>
 
                     <div>
                         <span>Website</span>
-                        <p>svra.com/events/2023-atlanta-speedtour/</p>
+                        <p>{getEventdata.url }</p>
                     </div>
                 </div>
 
@@ -93,14 +115,14 @@ const EventDetailPage = () => {
             <div className="row mb-4">
                 <div className="col-md-6  p-4">
                     <div class="post-share">
-                        <a class="post-share-link post-share-link-facebook" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fbringatrailer.com%2Fevent%2F2022-atlanta-speedtour%2F" target="_blank" title="Facebook" aria-label="Share this listing on Facebook" data-share-height="300" data-share-width="609">
+                        <a class="post-share-link post-share-link-facebook" href={getEventdata.facebook} target="_blank" title="Facebook" aria-label="Share this listing on Facebook" data-share-height="300" data-share-width="609">
                             <img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-facebook.svg" alt="Facebook icon" aria-hidden="true" />        </a>
 
-                        <a class="post-share-link post-share-link-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbringatrailer.com%2Fevent%2F2022-atlanta-speedtour%2F&amp;text=2023+SVRA+Road+Atlanta+Speedtour" target="_blank" title="Twitter" aria-label="Share this listing on Twitter" data-share-height="257" data-share-width="626">
+                        <a class="post-share-link post-share-link-twitter" href={getEventdata.twitter} target="_blank" title="Twitter" aria-label="Share this listing on Twitter" data-share-height="257" data-share-width="626">
                             <img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-twitter.svg" alt="Twitter icon" aria-hidden="true" />        </a>
 
 
-                        <a class="post-share-link post-share-link-email poppable-link" href="https://bringatrailer.com/message/send/54577401/" aria-label="Share this listing on email">
+                        <a class="post-share-link post-share-link-email poppable-link" href={getEventdata.email} target="_blank" aria-label="Share this listing on email">
                             <img src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-email.svg" alt="Email icon" aria-hidden="true" />        </a>
 
                     </div>
@@ -128,11 +150,12 @@ const EventDetailPage = () => {
 
             </div>
 
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-md-7 p-4"></div>
                 <div className="col-md-3 topmargin">
                     <h6 className='textHeading'>Recent Shibnobi Features</h6>
 
+                    
                     <p className='imagepart'>
                         <p>
                             <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/06/Site-Header-85994.png?resize=235%2C159" alt="" />
@@ -457,7 +480,7 @@ const EventDetailPage = () => {
 
 
             </div>
-        </div>
+        </div> */}
 
 
         </div >

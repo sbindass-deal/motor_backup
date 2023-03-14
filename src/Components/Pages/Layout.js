@@ -235,7 +235,7 @@ const Layout = () => {
           <Route path="search" element={<SearchResult />} />
           <Route path="comingsoon" element={<ComingSoon />} />
           <Route path="event" element={<Event />} />
-          <Route path="eventdetail" element={<EventDetailPage/>} />
+          <Route path="eventdetail/:id" element={<EventDetailPage/>} />
         </Routes>
         <ToastContainer
           position="bottom-center"
