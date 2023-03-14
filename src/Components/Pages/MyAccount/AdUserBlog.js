@@ -15,6 +15,10 @@ const AdUserBlog = () => {
     title: "",
     desc: "",
   });
+
+  // console.log(787, draftToHtml(convertToRaw(blogContent.getCurrentContent())).length)
+
+  
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -36,6 +40,21 @@ const AdUserBlog = () => {
   const handleApi = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_URL}addblogs`;
+
+    // if (!blogData.title) {
+    //   alert('Please Enter Blog Title');
+    //   return false
+    // }
+    // if (draftToHtml(convertToRaw(blogContent.getCurrentContent())).length<8) {
+    //   alert('Please Enter Description');
+    //   return false
+    // }
+    // if (!file) {
+    //   alert('Upload photo is required');
+    //   return false
+    // }
+
+
     let formdata = new FormData();
     formdata.append("image", file[0]);
     formdata.append("title", blogData.title);

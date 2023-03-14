@@ -18,7 +18,7 @@ function RaffleAdmin() {
           process.env.REACT_APP_URL + "getLotteryDetail"
         );
         if (response.data.data.length > 0) {
-          setShowLotary(response.data.data);
+          setShowLotary(response?.data?.data);
           setLoading(false)
         } else {
           console.log("Data is empty");
@@ -146,24 +146,24 @@ function RaffleAdmin() {
                               ?.filter((data) => {
                                 if (searchTerm == '') {
                                   return data
-                                } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  data.description.toLowerCase().includes(searchTerm.toLowerCase())
+                                } else if (data?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                  data?.description?.toLowerCase().includes(searchTerm.toLowerCase())
                                 ) {
                                   return data
                                 }
                               })
-                              .reverse().map((data, index) => (
+                              ?.reverse()?.map((data, index) => (
 
                                 <tr>
                                   <th scope="row">{index + 1}</th>
-                                  <td> {data.name}</td>
+                                  <td> {data?.name}</td>
                                   <td>{
-                                    data.description.substr(0, 50)
+                                    data?.description?.substr(0, 50)
                                   }</td>
-                                  <td>{data.price}</td>
+                                  <td>{data?.price}</td>
                                   <td>20</td>
-                                  <td>{data.created_at}</td>
-                                  <td>{data.dealEndDate}</td>
+                                  <td>{data?.created_at}</td>
+                                  <td>{data?.dealEndDate}</td>
 
                                   <td className="actionBtn">
                                     {/* {data.active && ( */}
@@ -177,7 +177,7 @@ function RaffleAdmin() {
                                   Approve
                                 </button> */}
                                     <Link id="linkTag"
-                                      to={`/raffleadmin/edit-raffel/${data.id}`}
+                                      to={`/raffleadmin/edit-raffel/${data?.id}`}
                                       className=""
                                     >
                                       <i class="fa-solid fa-pencil"></i>

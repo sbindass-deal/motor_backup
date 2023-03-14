@@ -95,7 +95,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                 <div className="form-group">
                   <p>
                     Having trouble? Email us at{" "}
-                    <a href="javascript:void(0)">Xavier@GasGuzzlrs.com</a> with
+                    <a href="mailto:vikassharma85109@gmail.com?subject=Testing out mailto!">Xavier@GasGuzzlrs.com</a> with
                     any questions.
                   </p>
                 </div>
