@@ -3,14 +3,14 @@ import Carousel from "react-bootstrap/Carousel";
 const Carousal = ({ dealerData }) => {
   return (
     <>
-      <Carousel fade >
+      <Carousel fade className="newDelarSlid">
         {dealerData?.image_banner &&
           dealerData?.image_banner.map((curElem, i) => {
             return (
               <Carousel.Item key={i}>
                 <img
-                  className="d-block w-100"
-                  style={{ maxHeight: "80vh" }}
+                  className="slidImg"
+                  
                   src={
                     curElem.logo &&
                     `${process.env.REACT_APP_URL}/${curElem.logo}`
@@ -18,7 +18,7 @@ const Carousal = ({ dealerData }) => {
                   alt="First slide"
                 />
                 <Carousel.Caption>
-                  <h3>First slide label</h3>
+                  <h3 className="sliderTile">First slide label</h3>
                   <p>
                     Nulla vitae elit libero, a pharetra augue mollis interdum.
                   </p>
