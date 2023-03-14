@@ -28,7 +28,7 @@ const AddBlog = () => {
   };
 
   const handleChange = (e) => {
-    if (e.target.value.length > 49) {
+    if (e.target.value.length > 20) {
       setBlogData({
         ...blogData,
         titleError: true,
@@ -99,14 +99,14 @@ const AddBlog = () => {
                   onChange={handleChange}
                   className="field"
                   placeholder="Product Name"
-                  maxLength={"50"}
+                  maxLength={"21"}
                   minLength={"3"}
                   required
                 />
                 {blogData.titleError && (
                   <p style={{ color: "red", fontWeight: "bold" }}>
                     {
-                      "Name should be 3-50 characters and shouldn't include any special character or number!"
+                      "Name should be 3-20 characters and shouldn't include any special character or number!"
                     }
                   </p>
                 )}

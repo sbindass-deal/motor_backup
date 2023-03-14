@@ -3,12 +3,13 @@ import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function GearProducts() {
   const [searchTerm, setSearchTerm] = useState("");
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
-  
+
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
@@ -46,7 +47,8 @@ function GearProducts() {
               >
                 <h3>Gear Products</h3>
                 <Link to="/add/gear-product" className="orange_btn">
-                  + Add Products
+                  <i className="fa-solid fa-plus mr-2"></i>
+                  Add Products
                 </Link>
               </div>
 
@@ -123,7 +125,7 @@ function GearProducts() {
                             <td>{curElem.color}</td>
                             <td>{curElem.size}</td>
                             <td>{curElem.category}</td>
-                            <td className="actionBtn">
+                            {/* <td className="actionBtn">
                               <Link to={`/gear-product/${curElem.id}`}>
                                 <button
                                   data-toggle="modal"
@@ -132,11 +134,39 @@ function GearProducts() {
                                   <i class="fa-solid fa-pencil"></i>
                                 </button>
                               </Link>
-
-                              {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
                               <button onClick={() => handleDelete(curElem.id)}>
                                 <i class="fa-solid fa-trash-can"></i>
                               </button>
+                            </td> */}
+
+                            <td className="text-right">
+                              <Dropdown className="neWm">
+                                <Dropdown.Toggle variant="success" id="">
+                                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                  <Dropdown.Item href="#/action-1">
+                                    <Link
+                                      className="editDrop"
+                                      to={`/gear-product/${curElem.id}`}
+                                      // className="btn"
+                                    >
+                                      <i class="fa-solid fa-pencil"></i> Edit
+                                    </Link>
+                                  </Dropdown.Item>
+                                  <Dropdown.Item href="#/action-2">
+                                    <Link
+                                      to={``}
+                                      className="editDrop"
+                                      onClick={() => handleDelete(curElem.id)}
+                                    >
+                                      <i class="fa-solid fa-trash-can"></i>{" "}
+                                      Delete
+                                    </Link>
+                                  </Dropdown.Item>
+                                </Dropdown.Menu>
+                              </Dropdown>
                             </td>
                           </tr>
                         );

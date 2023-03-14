@@ -4,6 +4,7 @@ import AdminLeftNav from "../AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../../UI/globaleVar";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const DealerListFeature = () => {
   const [dealerData, setDealerData] = useState([]);
@@ -58,6 +59,7 @@ const DealerListFeature = () => {
                   <h3>Dealer List </h3>
 
                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
+                    <i className="fa-solid fa-plus mr-2"></i>
                     Add Dealer
                   </Link>
                 </div>
@@ -124,7 +126,7 @@ const DealerListFeature = () => {
                                     )}
                                 </td>
 
-                                <td className="">
+                                {/* <td className="">
                                   <div
                                     onClick={() => handleDelete(curElem.id)}
                                     className="p-2"
@@ -132,6 +134,27 @@ const DealerListFeature = () => {
                                   >
                                     <i class="fa-solid fa-trash-can"></i>
                                   </div>
+                                </td> */}
+                                <td className="text-right">
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-2">
+                                        <Link
+                                          to={``}
+                                          className="editDrop"
+                                          onClick={() =>
+                                            handleDelete(curElem.id)
+                                          }
+                                        >
+                                          <i class="fa-solid fa-trash-can"></i>{" "}
+                                          Delete
+                                        </Link>
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </td>
                               </tr>
                             );

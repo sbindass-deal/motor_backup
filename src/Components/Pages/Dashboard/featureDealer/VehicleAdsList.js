@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminLeftNav from "../AdminLeftNav";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const VehicleAdsList = () => {
   const [classifiedAd, setClassifiedAd] = useState([]);
@@ -61,12 +62,15 @@ const VehicleAdsList = () => {
                   <Link
                     to="/admin-vehicle-ad/add-vehicle-ads"
                     className="orange_btn"
-                    style={{
-                      // padding: "6px",
-                      // fontSize: "18px",
-                      // fontWeight: "100",
-                    }}
+                    style={
+                      {
+                        // padding: "6px",
+                        // fontSize: "18px",
+                        // fontWeight: "100",
+                      }
+                    }
                   >
+                    <i className="fa-solid fa-plus mr-2"></i>
                     Add Vehicle
                   </Link>
                 </div>
@@ -123,7 +127,9 @@ const VehicleAdsList = () => {
                                   )}
                                 </td>
                                 <td>{curElem.make}</td>
-                                <td>{curElem?.moreDescription.substr(0, 100)}</td>
+                                <td>
+                                  {curElem?.moreDescription.substr(0, 100)}
+                                </td>
                                 <td>{curElem.year}</td>
 
                                 {/* <td>
@@ -131,14 +137,39 @@ const VehicleAdsList = () => {
                             <i class="fa-solid fa-pencil"></i>
                           </Link>
                         </td> */}
-                                <td>
-                                  <Link id="linkTag"
+
+                                {/* <td>
+                                  <Link
+                                    id="linkTag"
                                     onClick={() => handleDelete(curElem.id)}
                                     to={``}
                                     // className="btn"
                                   >
                                     <i class="fa-solid fa-trash-can"></i>
                                   </Link>
+                                </td> */}
+
+                                <td className="text-right">
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-2">
+                                        <Link
+                                          to={``}
+                                          className="editDrop"
+                                          onClick={() =>
+                                            handleDelete(curElem.id)
+                                          }
+                                        >
+                                          <i class="fa-solid fa-trash-can"></i>{" "}
+                                          Delete
+                                        </Link>
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </td>
                               </tr>
                             );

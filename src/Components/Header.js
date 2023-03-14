@@ -118,13 +118,10 @@ function Header() {
 
   return (
     <>
-      <header
-        className="bg-header-rendam"
-        style={{ zIndex: 99999999, position: "relative" }}
-      >
+      <header className="bg-header-rendam" style={{ position: "relative" }}>
         <div
           className="container-fluid bg-header-fluid"
-          style={{ position: "fixed", zIndex: 999999 }}
+          style={{ position: "fixed", zIndex: 1 }}
         >
           <div className="row">
             <div className="col-md-12 p-0">

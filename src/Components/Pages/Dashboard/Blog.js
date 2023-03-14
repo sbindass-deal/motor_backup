@@ -65,13 +65,14 @@ function Blog() {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                My Blogs
+                Blogs
                 <div>
                   {/* <Link to="/admin/add-blog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
-                  <Link to="/admin/add-blog" className="orange_btn _blog">
-                    Add New Blogs
+                  <Link to="/admin/add-blog" className="orange_btn _blog ">
+                    <i className="fa-solid fa-plus mr-2"></i>
+                    Add Blogs
                   </Link>
                 </div>
               </h3>
@@ -107,7 +108,9 @@ function Blog() {
                         <th scope="col">Image </th>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Created Date</th>
+                        <th scope="col" style={{ whiteSpace: "nowrap" }}>
+                          Created On
+                        </th>
                         <th scope="col" style={{ textAlign: "center" }}>
                           Action
                         </th>
@@ -139,13 +142,18 @@ function Blog() {
                                     />
                                   </div>
                                 </td>
-                                <td>{curElem.title} </td>
-                                {/* <td>{ curElem?.description.substr(0, 100)}</td> */}
+                                <td>
+                                  {curElem.title.slice(0, 20)}
+                                  {curElem.title.length > 20 && "..."}
+                                </td>
 
                                 <td>
                                   {curElem?.description &&
                                     parse(
-                                      curElem?.description?.substr(0, 300),
+                                      curElem?.description.length > 130
+                                        ? curElem?.description.substr(0, 130) +
+                                            "..."
+                                        : curElem?.description,
                                       strToHtml
                                     )}
                                 </td>
