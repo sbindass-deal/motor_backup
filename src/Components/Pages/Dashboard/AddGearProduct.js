@@ -9,13 +9,14 @@ const AddGearProduct = () => {
   const [file, setFile] = useState([]);
   const [loading, setLoading] = useState(false);
   const [getInputData, setGetInputData] = useState({
-    name: "",
+    tittle: "",
     category: "",
     price: "",
-    stock: "",
-    size: "",
-    color: "",
+    stocks: "",
+    size: [],
+    color: [],
     desc: "",
+    youtube_link: "www.something.com"
   });
   const inputRef = useRef();
 
@@ -55,25 +56,30 @@ const AddGearProduct = () => {
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_URL}addproduct`, {
-        stocks: getInputData.stock,
+        stocks: getInputData.stocks,
         color: getInputData.color,
         size: getInputData.size,
         price: getInputData.price,
-        title: getInputData.name,
+        title: getInputData.tittle,
         description: getInputData.desc,
         category: getInputData.category,
+        youtube_link: getInputData.youtube_link
       })
-      .then(function (response) {
+      .then(async function (response) {
         if (response.status === 200) {
-          // navigate("/gear-product");
-          // window.location.reload(false);
-          uploadFileOne(response.data.data.id);
+          let a = await uploadFileOne(response.data.data.id);
+          if (a.status === 200) {
+            navigate("/gear-product");
+            window.location.reload(false);
+          }
         }
       })
       .catch(function (error) {
         console.log(error);
       });
   };
+
+
 
   // const handleApi = async (e) => {
   //   e.preventDefault();
@@ -114,8 +120,8 @@ const AddGearProduct = () => {
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="name"
-                  onChange={handleOnChange}
+                  name="tittle"
+                  onChange={(e) => { setGetInputData({ ...getInputData, tittle: e.target.value }) }}
                   value={getInputData.name}
                   placeholder="Enter Name"
                   errorMessage="Name should be 2-80 characters and shouldn't include any number!"
@@ -163,7 +169,7 @@ const AddGearProduct = () => {
                       name="price"
                       onChange={(e) => {
                         if (e.target.value.length <= 10) {
-                          handleOnChange(e);
+                          setGetInputData({ ...getInputData, price: e.target.value })
                         }
                       }}
                       value={getInputData.price}
@@ -189,13 +195,13 @@ const AddGearProduct = () => {
                   <div>
                     <label>Stock</label>
                     <input
-                      name="stock"
+                      name="stocks"
                       className="field"
                       value={getInputData.stock}
                       placeholder="Enter stock"
                       onChange={(e) => {
                         if (e.target.value.length <= 10) {
-                          handleOnChange(e);
+                          setGetInputData({ ...getInputData, stocks: e.target.value });
                         }
                       }}
                       type="number"
@@ -207,7 +213,7 @@ const AddGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="size"
-                  onChange={handleOnChange}
+                  onChange={(e) => { setGetInputData({ ...getInputData, size: [e.target.value] }) }}
                   value={getInputData.size}
                   placeholder="Enter size"
                   errorMessage="Size should be 1-80 characters and shouldn't include any number!"
@@ -219,7 +225,7 @@ const AddGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="color"
-                  onChange={handleOnChange}
+                  onChange={(e) => { setGetInputData({ ...getInputData, color: [e.target.value] }) }}
                   value={getInputData.color}
                   placeholder="Enter color"
                   errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
@@ -251,9 +257,9 @@ const AddGearProduct = () => {
               <div className="col-12 col-md-12">
                 <label>Upload Photos</label>
                 <div className="row">
-                  {Array.from(file).map((items) => {
+                  {Array.from(file).map((items, i) => {
                     return (
-                      <span>
+                      <span key={i}>
                         <img
                           src={items ? URL.createObjectURL(items) : null}
                           style={{
