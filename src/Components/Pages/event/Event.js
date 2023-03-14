@@ -6,18 +6,23 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import ShowMeeting from "../Dashboard/ShowMeeting";
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 const Event = () => {
   const navigate = useNavigate();
   const [eventsData, setEventsData] = useState(events);
+  const [getId, setGetId] = useState('')
+  
 
   useEffect(() => {
     const fetchEventApi = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}getAllEvent`);
         const eventData = res.data.data.map((curElem) => {
+          setGetId(curElem.id)
+          console.log(1019,curElem)
           return {
             title: curElem.title,
             start: new Date(curElem.start_date),
@@ -33,8 +38,8 @@ const Event = () => {
   }, []);
 
   const handleSelect = ({ start, end }) => {
-    console.log(start);
-    console.log(end);
+    console.log(500,start);
+    console.log(500,end);
     const title = window.prompt("New Event name");
     if (title)
       setEventsData([
@@ -48,6 +53,7 @@ const Event = () => {
   };
 
   return (
+    
     <div className="container clenderStyle pb-5 mb-5 px-5">
       <Calendar
         // onSelectSlot={handleSelect}
@@ -58,9 +64,11 @@ const Event = () => {
         defaultView="month"
         events={eventsData}
         style={{ height: "100vh" }}
-        onSelectEvent={(event) => navigate("/eventdetail")}
-        // onSelectEvent={(event) => alert(event.title)}
+        onSelectEvent={(event) => navigate("/eventdetail/" + getId)}
+        // onSelectEvent={(event) => alert(event.id)}
       />
+
+      <ShowMeeting/>
     </div>
   );
 };
