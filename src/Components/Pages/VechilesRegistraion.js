@@ -137,6 +137,9 @@ const VechilesRegistraion = () => {
 
   const handleShowPayment = (e) => {
     e.preventDefault();
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
     setShowPayment(true);
   };
   const fetchTransaction = async (token) => {
@@ -546,9 +549,9 @@ const VechilesRegistraion = () => {
     };
     const EndDateTime = handleDateTimeFormate();
 
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
+    // if (errorMakeAndModal || errorBasicFact || errorDetais) {
+    //   return setShowError(false);
+    // }
     axios
       .post(`${url}vehicles`, {
         planId: logingUser.planReducer.plan.planId,
@@ -1097,7 +1100,8 @@ const VechilesRegistraion = () => {
                                 className="field bgChangeDark"
                                 required
                               >
-                                <option value="231">United States</option>
+                              
+                                <option value="">Select</option>
 
                                 {counryData.map((curElem, i) => {
                                   return (
@@ -1137,6 +1141,7 @@ const VechilesRegistraion = () => {
                                 className="field"
                                 // required
                               >
+                              <option value="">Select</option>
                                 {stateData.map((curElem, i) => {
                                   return (
                                     <option value={curElem.name} key={i}>
@@ -1593,46 +1598,21 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option
-                                  value="Yes"
-                                  disabled={
-                                    logingUser.planReducer.plan.listName ===
-                                    "classified"
-                                      ? true
-                                      : false
-                                  }
-                                >
-                                  Auction
-                                </option>
-                                <option
-                                  value="No"
-                                  disabled={
-                                    logingUser.planReducer.plan.listName ===
-                                    "classified"
-                                      ? true
-                                      : false
-                                  }
-                                >
-                                  Showroom
-                                </option>
-                                <option
-                                  value="classified"
-                                  disabled={
-                                    logingUser.planReducer.plan.listName ===
-                                    "classified"
-                                      ? false
-                                      : true
-                                  }
-                                >
-                                  Classified Ads
-                                </option>
+                                {logingUser.planReducer.planSelectByDealer ===
+                                "classified" ? (
+                                  <option value="classified">
+                                    Classified Ads
+                                  </option>
+                                ) : (
+                                  <option value="Yes">Auction</option>
+                                )}
                               </select>
                             </div>
                           </div>
 
-                          {logingUser.planReducer.plan.listName ===
+                          {logingUser.planReducer.planSelectByDealer ===
                           "classified" ? (
-                            <div className="col-12 col-sm-12 col-md-12">
+                            <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
                                 <FormInput
                                   value={basicfact.adWebsiteLink}
@@ -1658,14 +1638,16 @@ const VechilesRegistraion = () => {
                                   required
                                 >
                                   <option selected disabled value="">
-                                    Auction type
+                                    Select
                                   </option>
                                   <option value="General listing">
                                     General listing
                                   </option>
-                                  <option value="charity">Charity</option>
+                                  <option value="charity">
+                                    Charity listing
+                                  </option>
                                   <option value="Premium listing">
-                                    Premium listing
+                                    Featured listing
                                   </option>
                                 </select>
                               </div>
@@ -1688,8 +1670,9 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
+
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                           </div>
@@ -1709,8 +1692,9 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
+
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                           </div>
@@ -1729,8 +1713,9 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
+
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                           </div>
@@ -1750,8 +1735,8 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                           </div>
@@ -2144,8 +2129,9 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
+
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                             {detailstab.modificationstock === "Yes" && (
@@ -2368,8 +2354,9 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                <option value="No">No</option>
+
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                               </select>
                             </div>
                           </div>

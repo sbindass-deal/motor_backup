@@ -10,7 +10,6 @@ const Data = ({ curElem }) => {
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(false);
   const handleSubmit = (data) => {
-    getPlan();
     dispatch(getPlan(data));
     navigate("/vechiles");
   };
