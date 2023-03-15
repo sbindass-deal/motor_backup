@@ -140,6 +140,9 @@ const VechilesRegistraion = () => {
     if (errorMakeAndModal || errorBasicFact || errorDetais) {
       return setShowError(false);
     }
+    if (logingUser.planReducer.planSubscribe === true) {
+      return informationSubmitHandler();
+    }
     setShowPayment(true);
   };
   const fetchTransaction = async (token) => {

@@ -50,23 +50,20 @@ const DealerPlan = () => {
   return (
     <>
       <section className="pt_80">
-        {planData.length <= 0 ? (
-          <NotAvailable text="Data is not available!" />
-        ) : (
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
-                <h2 className="title_combo title_Center">Dealer Packages</h2>
-                <p>
-                  Gas Guzzlrs is the best place to auction your vehicle.
-                  <br /> Select one of our many Auction Services to showcase
-                  your vehicle the way you want.
-                </p>
-              </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-8 offset-md-2 text-center pb_30">
+              <h2 className="title_combo title_Center">Dealer Packages</h2>
+              <p>
+                Gas Guzzlrs is the best place to auction your vehicle.
+                <br /> Select one of our many Auction Services to showcase your
+                vehicle the way you want.
+              </p>
             </div>
-            <nav>
-              <div className="nav nav-tabs mb-5 tabPlan">
-                {/* <button
+          </div>
+          <nav>
+            <div className="nav nav-tabs mb-5 tabPlan">
+              {/* <button
                   className={`nav-link ${showTab.normal ? "active" : ""}`}
                   onClick={() => {
                     setShowTab({
@@ -80,39 +77,39 @@ const DealerPlan = () => {
                 >
                   Normal
                 </button> */}
-                <button
-                  className={`nav-link ${showTab.auction ? "active" : ""}`}
-                  onClick={() => {
-                    setShowTab({
-                      normal: false,
-                      auction: true,
-                      classified: false,
-                    });
-                    dispatch(getPlanByDealerSelect("auction"));
-                    setCallPlanApi("auction");
-                  }}
-                >
-                  Auction
-                </button>
-                <button
-                  className={`nav-link ${showTab.classified ? "active" : ""}`}
-                  onClick={() => {
-                    setShowTab({
-                      normal: false,
-                      auction: false,
-                      classified: true,
-                    });
-                    dispatch(getPlanByDealerSelect("classified"));
-                    setCallPlanApi("classified");
-                  }}
-                >
-                  Classified
-                </button>
-              </div>
-            </nav>
+              <button
+                className={`nav-link ${showTab.auction ? "active" : ""}`}
+                onClick={() => {
+                  setShowTab({
+                    normal: false,
+                    auction: true,
+                    classified: false,
+                  });
+                  dispatch(getPlanByDealerSelect("auction"));
+                  setCallPlanApi("auction");
+                }}
+              >
+                Auction
+              </button>
+              <button
+                className={`nav-link ${showTab.classified ? "active" : ""}`}
+                onClick={() => {
+                  setShowTab({
+                    normal: false,
+                    auction: false,
+                    classified: true,
+                  });
+                  dispatch(getPlanByDealerSelect("classified"));
+                  setCallPlanApi("classified");
+                }}
+              >
+                Classified
+              </button>
+            </div>
+          </nav>
 
-            <div className="tab-content" id="nav-tabContent">
-              {/* {showTab.normal && (
+          <div className="tab-content" id="nav-tabContent">
+            {/* {showTab.normal && (
                 <div>
                   <div className="row">
                     {planData.map((curElem, i) => {
@@ -121,27 +118,26 @@ const DealerPlan = () => {
                   </div>
                 </div>
               )} */}
-              {showTab.auction && (
-                <div>
-                  <div className="row">
-                    {planData.map((curElem, i) => {
-                      return <Data key={i} curElem={curElem} />;
-                    })}
-                  </div>
+            {showTab.auction && (
+              <div>
+                <div className="row">
+                  {planData.map((curElem, i) => {
+                    return <Data key={i} curElem={curElem} />;
+                  })}
                 </div>
-              )}
-              {showTab.classified && (
-                <div>
-                  <div className="row">
-                    {planData.map((curElem, i) => {
-                      return <Data key={i} curElem={curElem} />;
-                    })}
-                  </div>
+              </div>
+            )}
+            {showTab.classified && (
+              <div>
+                <div className="row">
+                  {planData.map((curElem, i) => {
+                    return <Data key={i} curElem={curElem} />;
+                  })}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </section>
     </>
   );

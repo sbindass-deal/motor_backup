@@ -76,12 +76,12 @@ const DealerProfile = () => {
                     />
                   </div>
                 </div> */}
-                <div className="col-lg-8 col-md-8 col-sm-12">
+                <div className="col-lg-12 col-md-12 col-sm-12">
                   <div className="row">
                     {dealerData?.image_gallery &&
                       dealerData?.image_gallery.map((curElem, i) => {
                         return (
-                          <div key={i} className="col-6 col-md-6 col-sm-12">
+                          <div key={i} className="col-4 col-md-4 col-sm-12">
                             <div className="galleryImgSect">
                               <img
                                 src={
@@ -132,7 +132,7 @@ const DealerProfile = () => {
           </div>
         </div>
       </section>
-      <section className=" mobileSpec" id="">
+      <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
               <div className="col-lg-6 col-md-12 col-sm-12" style={{padding: "0"}}>

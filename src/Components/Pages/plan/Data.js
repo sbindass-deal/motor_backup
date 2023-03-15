@@ -82,7 +82,6 @@ const Data = ({ curElem }) => {
           <div className="plan_cardFooter">
             <button
               onClick={() => {
-                console.log(1111, curElem);
                 handleSubmit({
                   planId: curElem.id,
                   listingType: `${
