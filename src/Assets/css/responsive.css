@@ -1,0 +1,1402 @@
+/* change by rahul  */
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+	border-color: #d9d9d9 !important;
+	box-shadow: none !important;
+}
+
+.searchSec .ant-select-selection-placeholder {
+	color: #fff;
+	font-weight: 400;
+}
+
+.rdw-dropdown-selectedtext>span {
+	color: #000;
+}
+
+.rdw-dropdown-optionwrapper>li {
+	color: #000;
+}
+
+.public-DraftStyleDefault-block>span {
+	color: #000
+}
+
+.rdw-link-modal-label {
+	color: #000;
+}
+
+.rdw-link-modal-input {
+	color: #000;
+}
+
+.rdw-link-modal-target-option>span {
+	color: #000;
+}
+
+.rdw-embedded-modal-header-option {
+	color: #000;
+}
+
+.rdw-image-modal-header-option {
+	color: #000;
+}
+
+/* End of code  */
+
+
+
+/* Default styles for the select */
+.field {
+	background-color: #000 ;
+	color: #fff ;
+}
+
+.light .field {
+	background-color: white ;
+	color: black ;
+}
+
+/* Styles for light mode */
+/* @media (prefers-color-scheme: light) {
+	.field {
+		background-color: white !important;
+		color: black !important;
+	}
+} */
+
+/* Styles for dark mode */
+/* @media (prefers-color-scheme: dark) {
+	.field {
+		background-color: black !important;
+		color: white !important;
+	}
+} */
+
+
+/* end the code  */
+
+
+
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1170px;
+	}
+
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 33.33%;
+	}
+}
+
+@media (max-width: 1920px) {}
+
+@media (max-width: 1600px) {
+	.toNv ul.navbar-nav.ml-auto {
+		right: 6%;
+	}
+
+	.autoCom {
+		width: calc(100% - 75.0%);
+		left: 46.6%;
+	}
+
+	.payTPop .modal-content {
+		width: calc(100% - 10%);
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+		max-width: 1370px;
+	}
+
+	.sliderSec .carousel-inner {
+		width: 100% !important;
+	}
+
+	.searchBody {
+		width: 35.2%;
+	}
+
+	.toNv .navbar-nav .nav-link {
+		right: 5%;
+	}
+
+}
+
+@media (max-width: 1440px) {
+
+	.modal-title {
+		font-size: 28px;
+	}
+
+	.processPy h2 {
+		font-size: 18px;
+	}
+
+	.autoCom {
+		width: 28%;
+		margin: 0 auto;
+		left: 47.8%;
+	}
+
+	div#navbarNavDropdown {
+		width: 74%;
+	}
+
+	.toNv {
+		/* width: 60%; */
+	}
+
+	.toNv .navbar-nav .nav-link {
+		padding: 8px 18px;
+	}
+
+	.toNv .navbar-nav .nav-link {
+		padding: 8px 18px;
+	}
+
+	.autoCom {
+		background: black;
+		position: absolute;
+		width: calc(100% - 72.2%);
+		margin: 0 auto;
+		left: 47.6%;
+		top: 56px;
+		padding: 10px;
+		z-index: 1;
+	}
+
+	.modal-dialog {
+		width: 600px;
+	}
+
+	.toNv ul.navbar-nav.ml-auto {
+		right: 8%;
+	}
+
+	.secondNavbar .navbar-nav .nav-link {
+		font-size: 12px;
+	}
+
+
+}
+
+
+
+@media (max-width: 1366px) {
+	table.cartSection.cartth tr th:first-child {
+		width: 66%;
+	}
+
+	.autoCom {
+		width: 29.5%;
+		left: 45%;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg.dlr {
+		width: 243px;
+		height: 152px;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg img {
+		object-fit: contain;
+	}
+
+
+}
+
+@media (max-width: 1280px) {
+	a.navbar-brand {
+		top: 17px;
+		left: 22px;
+	}
+
+	.navbar-brand img {
+		width: 135px;
+	}
+
+	.navbar-nav .nav-link {
+		padding: 8px 12px;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 75%;
+	}
+
+	.secondNavbar .navbar-nav {
+		top: 0px;
+	}
+
+	.secondNavbar {
+		padding: 8px 0px;
+	}
+
+	.autoCom {
+		width: 31.5%;
+		left: 42.6%;
+	}
+
+	div#navbarNavDropdown {
+		width: 72%;
+	}
+
+
+	.toNv {
+		width: 62%;
+	}
+
+	.toNv ul.navbar-nav.ml-auto {
+
+		right: 6%;
+
+	}
+
+	header {
+		height: 104px;
+	}
+
+	.modal-title {
+		font-size: 24px;
+	}
+
+	.searchSec .ant-select-selector {
+		min-width: 332px;
+	}
+
+	h2.title_combo {
+		font-size: 26px;
+	}
+
+	.plan_cardHead h4 {
+		font-size: 18px;
+		padding: 13px 10px;
+	}
+
+	.dfk {
+		font-size: 26px;
+	}
+
+	.switch .react-switch-label {
+		width: 50px;
+		height: 20px;
+	}
+
+	.switch .react-switch-label .react-switch-button {
+		width: 15px;
+		height: 15px;
+	}
+
+	.inner-slider .card_postInfo {
+		padding: 20px;
+	}
+
+	.plan_cardBody {
+		min-height: 214px;
+	}
+}
+
+@media (max-width: 1199px) {
+	table.cartSection.cartth tr th:first-child {
+		width: 60%;
+	}
+
+	.toNv:before {
+		width: 85%;
+	}
+
+	.searchForm input {
+		width: 300px;
+	}
+
+	.dfk h5 {
+		font-size: 15px;
+	}
+
+	.plan_cardHead .plan_Price {
+		font-size: 33px;
+	}
+
+	.plan_card {
+		padding: 20px;
+	}
+
+	.plan_cardBody {
+		min-height: 258px;
+	}
+
+	.navbar-brand img {
+		width: 161px !important;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 82%;
+	}
+
+	.searchForm input {
+		width: 100%;
+	}
+
+	header {
+		height: 105px;
+	}
+
+	div#navbarNavDropdown {
+		width: 77%;
+	}
+
+	.searchForm {
+		width: 345px;
+	}
+
+	.autoCom {
+		width: 33.5%;
+		left: 38.6%;
+		top: 54px;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg.dlr {
+		width: 85px;
+		height: 102px;
+	}
+
+	.col-12.slider_ht {
+		height: 594px;
+	}
+
+	.tabPlan button {
+		width: 30.33%;
+	}
+
+
+}
+
+@media (max-width: 1080px) {
+	.navbarNavDropdown {
+		width: 75%;
+	}
+
+	.searchSec .ant-select-selector {
+		min-width: 242px;
+	}
+
+}
+
+@media (max-width: 1024px) {
+
+
+	table.cartSection.cartth tr th:first-child {
+		width: 40%;
+	}
+
+	.navbar-nav .nav-link {
+		padding: 8px 8px !important;
+	}
+
+	.navbar-brand img {
+		width: 180px !important;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 80%;
+	}
+
+	.mobileOnlyHide {
+		display: block;
+	}
+
+}
+
+
+
+@media (max-width: 991px) {
+
+	a.full {
+		width: 100%;
+		display: block;
+	}
+
+	.secondNavbar .navbar-nav:before {
+		width: 85%;
+	}
+
+	h1 {
+		font-size: 40px;
+	}
+
+	h2 {
+		font-size: 30px;
+	}
+
+	h3 {
+		font-size: 24px;
+	}
+
+	h4 {
+		font-size: 20px;
+	}
+
+	h5 {
+		font-size: 18px;
+	}
+
+	.navbar-nav .nav-link {
+		font-size: 14px;
+		padding: 8px 8px !important;
+	}
+
+	.activeListView .card_postInfo {
+		flex-wrap: wrap;
+		align-content: center;
+	}
+
+	.activeListView .card_postInfo h4 {
+		width: 100%;
+		padding-right: 0;
+	}
+
+	.sidebarPostRow {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.sidebarPost {
+		width: 50%;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+
+	.navbar-expand-md .navbar-toggler {
+		display: block;
+		position: relative;
+		right: 20px;
+		top: 16px;
+	}
+
+	.toNv {
+		display: none;
+	}
+
+	ul.navbar-nav.mobileOnly {
+		display: none;
+	}
+
+	.navbar-collapse.mobileOnly.collapse.show {
+		/* display: block; */
+		position: absolute;
+		width: 100%;
+		background-color: #f79117;
+		height: 100vh;
+		top: 100px;
+		z-index: 999;
+		color: #fff;
+		left: 0;
+		transform: translateY(0);
+	}
+
+	.mobileOnly {
+		display: block;
+	}
+
+	ul.navbar-nav.mNone {
+		display: block;
+	}
+
+	.dddd {
+		display: block;
+		margin-left: auto;
+	}
+
+	button.sunMoonBtn {
+		left: 87%;
+		top: -224px;
+	}
+
+	.light button.sunMoonBtn img {
+		width: 24px;
+		height: 24px;
+		filter: brightness(0.5);
+	}
+
+	.navbar-expand-md .navbar-nav {
+		width: 100%;
+	}
+
+	ul.navbar-nav {
+		padding-right: 0;
+	}
+
+	.mobileOnly form.searchForm {
+		width: 39%;
+	}
+
+	.navbar-collapse.mobileOnly.collapse.show .mobileOnly {
+		display: block;
+	}
+
+	.featuredAuctions_Slide.delair .card_post {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly !important;
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg {
+		width: unset;
+		height: unset;
+	}
+
+	.mobile-mt-50 {
+		margin-bottom: 100px !important;
+	}
+
+	a.navbar-brand {
+		top: 12px;
+		left: 22px;
+		z-index: 0;
+	}
+
+	.mobileOnlyHide {
+		display: none;
+	}
+
+	.navbar-collapse.mobileOnly.collapse.show {
+		padding-top: 20px;
+		padding-left: 2%;
+	}
+
+	.featuredAuctions_Slide.delair .card_post {
+		display: block;
+	}
+
+	.plan_cardBody {
+		min-height: 175px;
+	}
+
+	#clockdiv>div {
+		width: 23%;
+	}
+
+	.clockTimer .timerBg {
+		margin: 5px;
+		padding: 11px 7px !important;
+		margin-top: 15px;
+	}
+
+	.pp-0 {
+		padding: 0;
+		margin-left: -3px;
+	}
+
+	#clockdiv div>span {
+		font-size: 22px;
+	}
+
+	.smalltext {
+		font-size: 11px;
+	}
+
+	.cardBorder {
+		padding: 15px 11px;
+	}
+
+	.myTicketCol {
+		padding: 0;
+	}
+
+	.featuredAuctions_Slide .card_postInfo p {
+		font-size: 13px;
+	}
+
+	.featuredAuctions_Slide .card_postInfo h4 {
+		font-size: 18px;
+		margin-bottom: 18px
+	}
+
+}
+
+@media (max-width: 860px) {
+	button.sunMoonBtn {
+		left: 87%;
+		top: -192px;
+	}
+
+	.dfk h5 {
+		font-size: 15px;
+	}
+
+	.plan_cardHead .plan_Price {
+		font-size: 33px;
+	}
+
+	.plan_card {
+		padding: 20px;
+	}
+
+	.plan_cardBody {
+		min-height: 258px;
+	}
+
+	.mobileOnlyHide {
+		display: none;
+	}
+
+	.heroText h1 {
+		font-size: 28px;
+		line-height: 36px;
+	}
+
+	.heroSection {
+		background-size: 113%;
+		background-position-y: -102px;
+	}
+
+	.card_postInfo h4 {
+		margin-bottom: 25px;
+	}
+
+	.nextArrow {
+		bottom: -80px;
+	}
+
+	.ptb_80 {
+		padding-top: 48px;
+		padding-bottom: 105px;
+	}
+
+	.blogSection {
+		padding-bottom: 30px;
+	}
+
+	.row.row_gap_5.ssss {
+		width: 90%;
+	}
+
+	.inner-slider .card_postInfo {
+		min-height: unset;
+	}
+
+}
+
+.hidemenu {
+	transform: translateY(-120%);
+}
+
+@media (max-width: 768px) {
+	.ar {
+		flex-direction: column;
+	}
+}
+
+@media (min-width: 768px) {
+
+
+	.mobileOnly {
+		display: block;
+	}
+
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 33.33%;
+	}
+
+	ul.bidList_.info_ li {
+		width: 50%;
+	}
+
+}
+
+@media (max-width: 767px) {
+	.tabPlan button {
+		width: 31.33%;
+		margin: 1px;
+	}
+
+	.text_title {
+		margin: 15px 0;
+	}
+
+	.plan_card .plan_cardHead {
+		min-height: unset;
+	}
+
+	button.btn.bidnW {
+		padding: 0;
+	}
+
+	.addSection .inner-slider .card_post {
+		display: block;
+	}
+
+	.auctionBid {
+		padding: 0;
+	}
+
+	/* .addSection .inner-slider small {
+		position: absolute;
+		right: 24px;
+		bottom: 166px;
+		background: black;
+		padding: 5px 15px;
+	} */
+
+	.addSection .inner-slider .card_postImg.dlr {
+		padding-right: 0;
+	}
+
+	.modal-dialog {
+		width: auto;
+	}
+
+	.modal-header .close {
+		top: -18px;
+		left: -1%;
+	}
+
+	.fp {
+		display: block;
+	}
+
+	.modal-body,
+	.modal-header {
+		padding: 0rem;
+	}
+
+	.modal-body label {
+		font-size: 13px;
+	}
+
+	.infoCar {
+		width: 100%;
+	}
+
+	.featuredAuctions_Slide.delair .slick-list {
+		text-align: center;
+	}
+
+	.featuredAuctions_Slide.delair .card_postImg.dlr {
+		margin: 0 auto;
+	}
+
+	.modal-title {
+		font-size: 18px;
+	}
+
+	.processPy h2 {
+		font-size: 15px;
+	}
+
+	.processPy .price__ {
+		font-size: 14px;
+	}
+
+	.mobileOnly form.searchForm {
+		width: 100%;
+	}
+
+	.navbar-expand-md .navbar-toggler {
+		display: block;
+		position: relative;
+
+		top: 8px;
+	}
+
+	.plan_cardBody {
+		min-height: auto;
+	}
+
+	span.plan_Time small {
+		right: 20px;
+	}
+
+	.cartImgSect img {
+		width: 36%;
+		padding-right: 10px;
+	}
+
+	h1 {
+		font-size: 30px;
+	}
+
+	h2 {
+		font-size: 25px;
+	}
+
+	.scrollDownIc img {
+		width: 22px;
+	}
+
+	.copyRight p {
+		margin-top: 15px;
+	}
+
+	.navbar-brand img {
+		height: 40px;
+	}
+
+	.arrowTop_Slide .slide-arrow {
+		bottom: -30px;
+		top: unset;
+	}
+
+	.arrowTop_Slide .prev-arrow {
+		left: calc(50% - 140px);
+	}
+
+	.arrowTop_Slide .next-arrow {
+		right: calc(50% - 140px);
+	}
+
+	.lightTheme .latestBids_Slide .prev-arrow {
+		left: calc(50% - 55px);
+	}
+
+	.lightTheme .latestBids_Slide .next-arrow {
+		right: calc(50% - 55px);
+	}
+
+	.title_combo {
+		justify-content: center;
+	}
+
+	.title_combo span {
+		display: block;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.price__ {
+		font-size: 20px;
+	}
+
+	.card_postImg {
+		height: 250px;
+	}
+
+	.blogPost {
+		height: 250px;
+	}
+
+	.btn {
+		font-size: 14px;
+		padding: 12px 25px;
+	}
+
+	.bgHolder h1.text-back {
+		color: #fff !important;
+	}
+
+	.pt_sm_50 {
+		padding-top: 50px;
+	}
+
+	.postTopOption {
+		flex-wrap: wrap;
+	}
+
+	.postHero {
+		height: 250px;
+	}
+
+	.sideBar__ {
+		display: flex;
+		overflow: auto;
+		padding-bottom: 8px;
+	}
+
+	.sideBar__ li {
+		white-space: nowrap;
+		padding: 8px;
+	}
+
+	.daily_mail {
+		padding: 30px 15px;
+	}
+
+	.daily_mail_box button {
+		position: inherit;
+	}
+
+	.daily_mail input {
+		padding: 22px 15px;
+		margin-bottom: 10px;
+	}
+
+	.makes_Slide.arrowTop_Slide .card_post {
+		width: 100%;
+	}
+
+	ul.bidList_.info_ li {
+		width: 100%;
+	}
+
+	.toNv {
+		position: relative;
+		z-index: 1;
+		padding-top: 40px;
+	}
+
+	.toNv:before {
+		content: '';
+		background: #f7931b;
+		position: absolute;
+		width: 100%;
+		height: 70vh;
+		right: 0;
+		z-index: -2;
+		border-top-left-radius: 0px;
+		top: 30px;
+	}
+
+	a.navbar-brand {
+		position: relative;
+		top: 17px;
+		left: 10px;
+	}
+
+	.slick-slide {
+		margin: 0 0px;
+	}
+
+	.nextArrow {
+		position: absolute;
+		bottom: -39px;
+		left: calc(50% - 145px);
+	}
+
+	h1.animate-charcter {
+		font-size: 115px !important;
+	}
+
+	h1.animate-charcter span {
+		font-size: 30px !important;
+	}
+
+	img.carGif {
+		width: 100%;
+	}
+
+	.containerSec {
+		height: 81vh;
+	}
+
+
+
+	button.sunMoonBtn {
+		position: absolute;
+		z-index: 999;
+		border: 1px solid;
+		background: transparent;
+		padding: 7px;
+		border-radius: 5px;
+		border: none;
+		top: -73px;
+		left: 75%;
+	}
+
+	.light button.sunMoonBtn {
+		filter: brightness(0.5);
+	}
+
+	.post-excerpt {
+		padding: 0px 10px;
+		text-align: left;
+	}
+
+	section.ptb_80.blogPostText.rf {
+		text-align: center;
+	}
+
+	.rafSect .price_ {
+		justify-content: center;
+	}
+
+	a.full {
+		width: 100%;
+		display: block;
+	}
+
+	.blogPostText .btn {
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+
+	.featuredAuctions_Slide.delair .card_post {
+		display: block;
+	}
+
+	ul.img_sec {
+		width: 100%;
+		margin-right: 10px;
+	}
+
+	section.ptb_80.mobileSpec {
+		margin-top: 250px;
+	}
+
+	.featuredAuctions_Slide.delair .nextArrow {
+		bottom: -298px !important;
+	}
+
+	.Latest_B {
+		display: block;
+		height: 100%;
+	}
+
+	.autoCom {
+		width: 100%;
+		margin: 0 auto;
+		left: 0;
+		top: 35px;
+	}
+
+	h1 {
+		font-size: 2.5em;
+	}
+
+	.payTPop .modal-content {
+		width: calc(80% - -67%);
+	}
+
+	.navbar-expand-md .navbar-toggler {
+		top: 22px;
+	}
+
+	h2.title_combo {
+		font-size: 25px;
+	}
+
+	h1.text,
+	.bgHolder h1.text-back {
+		font-size: 28px;
+	}
+
+	.searchSec .ant-select-selector {
+		min-width: 354px;
+	}
+
+	.bg-pop .modal-content {
+		width: min-content;
+	}
+
+	.ar {
+		display: block;
+	}
+
+	.card_postImg img {
+		min-width: 100%;
+		min-height: auto;
+		object-fit: cover;
+	}
+
+	.auctionBid ul.labelList {
+		color: #fff;
+	}
+
+	.light .auctionBid ul.labelList {
+		color: #000;
+	}
+
+	.accordion button.accordion-button.collapsed {
+		text-align: left;
+	}
+
+	.form-group.lotryBtn button.btn {
+		padding: 10px;
+	}
+
+	.clockTimer .timerBg {
+		background: black;
+		margin: 3px;
+	}
+
+	.clockTimer #clockdiv>div {
+		display: inline-block;
+		padding: 0px 5px;
+		min-width: 72px;
+	}
+
+	.row.row_gap_5.ssss {
+		width: 100%;
+	}
+
+	li.d-flex.gv {
+		display: none !important;
+	}
+
+	.dropdown-content {
+		right: -89px;
+	}
+
+	a.nav-link.active {
+		color: #000 !important;
+	}
+
+	a.nav-link.navActive {
+		text-align: left !important;
+		color: #000;
+	}
+
+	.iconMb .dropdown-content {
+		left: 22px;
+	}
+
+	.modal-title {
+		font-size: 18px;
+		padding-left: 16px;
+		padding-bottom: 10px;
+	}
+
+	p.forOction {
+		right: 13px;
+	}
+
+	.postTopOption {
+		margin-bottom: 25px;
+	}
+
+	.ptb_80 {
+		padding-bottom: 35px;
+	}
+
+	ul.postTopOption button.gry_btn {
+		width: 100%;
+	}
+
+	h4.modal-title.forg {
+		padding-left: 0;
+	}
+
+	.addSection .inner-slider a .card_postInfo {
+		width: 100%;
+	}
+
+	.verticle .galleryImgSect {
+		min-height: 250px;
+	}
+
+	.col-12 .galleryImgSect {
+		height: 150px;
+	}
+
+	.verticle {
+		padding: 5px;
+	}
+
+	.gallery .mt-50 {
+		margin-top: 5px;
+	}
+
+	.titleRight {
+		display: contents;
+		align-items: baseline;
+	}
+
+	.tagBtns p {
+		margin-bottom: 7px;
+	}
+
+	.auctionHistory {
+		z-index: 9;
+		width: 100%;
+		display: block;
+		padding: 10px;
+		background: #f7811b;
+	}
+
+	.Dfrt {
+		display: block;
+	}
+
+	.Dfrt:before {
+		border-bottom: 0px solid #f7811b;
+		text-align: center;
+	}
+
+	.card_.Dfrt .dropdown {
+		width: 100%;
+	}
+}
+
+@media (max-width: 575px) {
+
+	.mainImg {
+		height: unset;
+	}
+
+	.prev-arrow:before,
+	.next-arrow:after {
+		width: 50px;
+	}
+
+	.prev-arrow,
+	.arrowTop_Slide .prev-arrow {
+		left: calc(50% - 110px);
+	}
+
+	.next-arrow,
+	.arrowTop_Slide .next-arrow {
+		right: calc(50% - 110px);
+	}
+
+	.fLinks_row li {
+		width: 50%;
+	}
+
+	.heroCar:after,
+	.heroCar:before {
+		width: 400px;
+		height: 400px;
+	}
+
+	.heroBanner .heroText_2 {
+		padding: 40px 20px 50px;
+	}
+
+	.heroBanner .heroText_2 h3 br {
+		display: none;
+	}
+
+	.searchModal .modal-content {
+		width: 90%;
+	}
+
+	.bidList_ li label {
+		min-width: 120px;
+	}
+
+	.detailPostOption .d-flex {
+		flex-wrap: wrap;
+	}
+
+	.detailPostOption .gry_btn {
+		margin-bottom: 5px;
+	}
+
+	.bidList_ li {
+		width: 100%;
+		padding-right: 0px;
+	}
+
+	.orderImg {
+		width: 100%;
+		height: 250px;
+	}
+
+	.orderInfo {
+		width: 100%;
+		padding: 10px 0px;
+	}
+
+	.orderStep {
+		flex-wrap: wrap;
+		margin-bottom: 15px;
+	}
+
+	.orderStep li {
+		text-align: left;
+		width: 100%;
+		padding: 0px 0px 10px 25px;
+	}
+
+	.orderStep li:before {
+		width: 3px;
+		height: 100%;
+		left: 6px;
+	}
+
+	.orderStep li:last-child:before {
+		width: 3px;
+		display: none;
+	}
+
+	.orderStep li:after {
+		top: 0px;
+		left: 8px;
+	}
+
+	.orderStep li.active:last-child:after {
+		top: 0px;
+	}
+
+	.heroSection {
+		background-size: cover;
+		background-position-y: unset;
+
+	}
+
+	.heroText h1 {
+		font-size: 28px;
+	}
+
+	.card_postInfo h4 {
+		font-size: 17px;
+	}
+
+	.nextArrow {
+		bottom: -8px;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.heroBanner .heroText_2 {
+		padding: 40px 20px 100px;
+	}
+
+	.postTopOption li:last-child,
+	.postTopOption li .post_select {
+		width: 100%;
+	}
+
+	.activeListView .card_postImg {
+		width: 150px;
+		height: 100px;
+	}
+
+
+	.orderImg {
+		width: 100%;
+		height: 150px;
+	}
+
+	h1 {
+		font-size: 28px;
+	}
+
+	.video_section {
+		height: 55vh;
+	}
+}
+
+@media (max-width: 414px) {}
+
+@media (max-width: 375px) {
+	h1 {
+		font-size: 28px;
+	}
+}
+
+@media (min-width: 360px) {
+	h1 {
+		font-size: 28px;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1170px;
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+		max-width: 1370px;
+	}
+}

@@ -1,0 +1,83 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { strToHtml } from "../UI/globaleVar";
+import parse from "html-react-parser";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+const Blogs = () => {
+  const blogs = useSelector((state) => state.blogReducer.blogData);
+
+  return (
+    <section className="ptb_80 blogSection">
+      <div className="auction_container">
+        <div className="row">
+          <div className="col-12 text-center pb_30" style={{zIndex:"2"}}>
+            <h2 >All Blogs</h2>
+          </div>
+          <div className="col-12 ">
+            {blogs &&
+              blogs.map((curElem, i) => {
+                return (
+                  <div key={i} className="row pb_30 blogLiT">
+                   
+                      <div
+                        className={`order-md-${
+                          i % 2 === 0 ? 0 : 1
+                        } col-12 col-md-6 col-lg-7`}
+                      >
+                        <div className="blogPost">
+                          <img
+                            src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
+                            alt={curElem.title}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-lg-5 d-flex align-items-center">
+                        <div className="blogPostText">
+                          <h4>{curElem.title}</h4>
+                          <ul className="post_labelList">
+                            <li>
+                              <i className="fa-solid fa-clock"></i>{" "}
+                              {curElem.created_at &&
+                                new Date(curElem.created_at).toDateString()}
+                            </li>
+
+                            <li>
+                              <AccountCircleIcon />
+                              {curElem.username}
+                            </li>
+
+                            {/* <li>
+                              <i className="fa-solid fa-location-dot"></i>{" "}
+                              {curElem.location}
+                            </li>
+                            <li>
+                              <i className="fa-solid fa-comment-dots"></i>{" "}
+                              {curElem.comment}&nbsp;Comments
+                            </li> */}
+                          </ul>
+                          {/* <p>{curElem.description.substr(0, 500)}</p> */}
+                          <p>{parse(curElem?.description, strToHtml)}</p>
+                          {curElem.description.length > 500 && (
+                            <Link
+                              to={`/blogdetail/${curElem.id}`}
+                              className="orange_btn"
+                            >
+                              Read More
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Blogs;

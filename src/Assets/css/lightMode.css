@@ -1,0 +1,304 @@
+body.light {
+    background-color: #fff;
+    color: #000;
+}
+
+.light footer,
+.light .postTopOption,
+.light .card_Gray2 {
+    background: #f7f7f7;
+}
+
+.light .bg-header-rendam {
+    background-color: #fff;
+}
+
+.light .bg-header-fluid {
+    background-color: #fff;
+}
+
+
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6,
+.light p,
+.light footer ul.fLinks.fLinks_row li a,
+.light .copyRight p,
+.light .copyRight a {
+    color: #000;
+}
+
+.light .post_labelList li {
+    color: rgb(35, 34, 34);
+}
+
+.light h1.text {
+    color: #fff;
+}
+
+.light .copyRight {
+    background-color: #ffffff;
+}
+
+.light .fLinks a {
+    color: #000;
+}
+
+.lght .heroText h1 {
+    color: #fff;
+}
+
+.light .post_select {
+    color: #000;
+    padding: 8px;
+    background-color: #ffffff;
+}
+
+.light .gry_btn {
+    border: 1px #f7931b solid;
+    background-color: #f7931b;
+    color: #fff;
+}
+
+
+/* changes made by rahul  */
+.light .orderInfo h5 a {
+    color: #000;
+}
+
+.light .orderInfo>h5>a:hover {
+    color: #f7931b;
+}
+
+/* end of code  */
+
+
+.light .post_search input {
+    border: 1px #cbcbcb solid;
+    color: #000;
+}
+
+.light .card_post.store.auction {
+    border: 1px solid #3331311c;
+}
+
+.light h6.name_price a,
+.light .card_postInfo a {
+    color: black;
+    text-transform: capitalize;
+}
+
+.light .fLinks a:hover {
+    color: #f7931b !important;
+}
+
+.light .refferFriendList {
+    border: 1px #e1e1e1 solid;
+    background-color: #ffffff;
+}
+
+.light .refferFriendList li {
+    border-bottom: 1px #ededed solid;
+}
+
+.light .cardBorder {
+    border: 1px #d7d7d7 solid;
+}
+
+.light .clockTimer .timerBg {
+    background: white;
+}
+
+.light #clockdiv {
+    color: #000;
+}
+
+.lighht .card_postInfo h4 a:hover {
+    color: #f7931b
+}
+
+.light li.nav-item.afterLogin a span {
+    color: #000;
+}
+
+.light .page-item.disabled .page-link {
+    background-color: #fff;
+}
+
+.light .pagination .page-link {
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+}
+
+.light .page-item.active .page-link {
+    background-color: #f7931b;
+    color: #fff;
+    border: 1px solid #f7931b;
+    ;
+}
+
+.light .labelList li:first-child {
+    border-right: 1px rgb(63 63 63 / 20%) solid;
+}
+
+.light img.darkLogo {
+    display: none;
+}
+
+.light img.whiteLogo {
+    display: block;
+}
+
+.light .accordion button.accordion-button.collapsed {
+    background: transparent !important;
+}
+
+.light .searchForm input {
+    background-color: #ffff;
+}
+
+.light .searchBody {
+    background: #fff;
+}
+
+.light .searchAuto {
+    background: #f0f0f0;
+}
+
+.light .searchAuto:hover {
+    background: #fff;
+    border-bottom: 1px solid #ffc107;
+    cursor: pointer;
+}
+
+.light .searchForm input {
+    border-bottom: 1px #fff solid;
+    background-color: #0000;
+    color: #fff;
+}
+
+.light .searchForm button {
+    color: #000;
+}
+
+.light .navbarToggler:before,
+.light .navbarToggler:after {
+    background: #000;
+}
+
+.light .navbar-toggler.collapsed .navbarToggler {
+    background-color: #000;
+}
+
+.light .accordion-button {
+    background-color: transparent !important;
+    color: #000000;
+}
+
+.light .accordion-body {
+    color: #000;
+}
+
+.light .accordion-item {
+    border-bottom: 1px solid #ececec !important;
+}
+
+.light .plan_card {
+    background-color: #f8f8f8;
+}
+
+.light .plan_card:hover .plan_cardHead h4 {
+    background-color: #f4ce5f;
+}
+
+.light .HIW_list li:after {
+    background-color: #f7931a;
+}
+
+.light .card_Gray {
+    background-color: rgb(136 134 134 / 22%);
+}
+
+.light .sideBar__ li a {
+    color: #000;
+}
+
+.light .field {
+    color: #000;
+}
+
+.light .card_ic {
+    background: #f7f7f7;
+}
+
+.light .formCard {
+    background-color: #f7f7f7;
+}
+
+.light .sallerBox {
+    width: 100%;
+    border: 1px solid #ffd5a3;
+}
+
+.light .modal-content {
+    background-color: #fff;
+}
+
+.light .ProcessPymt img {
+    border: 1px solid #cbcbcb;
+    background: #ffffff;
+}
+
+.light .payTPop button {
+    color: #000;
+}
+
+.light .vehicleSub .table tr {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #f7931b2b;
+    color: #000;
+    border-top: 0px solid #dee2e6;
+}
+
+.light .autoCom {
+    background: #ececec;
+
+}
+
+.light .autoCom p.title {
+    color: #f7931b;
+}
+
+.light .rafSect {
+    background: #e0e0e0;
+}
+
+.light .ant-select-dropdown {
+    background-color: #fff;
+}
+
+.light .ant-select-item.ant-select-item-option {
+    color: #000;
+}
+
+.light .topTile {}
+
+.light img.g3Logo {
+    display: block;
+}
+
+.light img.g3Logo.W {
+    display: none;
+}
+
+.light .heroText.shop h1 {
+    color: #000;
+}
+
+.light .ant-select-item.ant-select-item-option a {
+    color: #000;
+}

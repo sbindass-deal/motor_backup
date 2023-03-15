@@ -1,0 +1,89 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+.unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #cc0000;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .navbar-brand img {
+    width: 231px !important;
+    position: relative;
+    z-index: 999 !important;
+}
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 280px;
+  border: 5px dashed rgb(117, 112, 112);
+  padding: 2rem;
+}
+
+#sticky{
+  display: block !important;
+  position: sticky !important;
+    top: 0 !important;
+    z-index: 99;
+  }
+
+
+  .ant-image-mask-info{
+    display: none;
+  }
+
+  .darkSun{
+        margin-right: -55px;
+          margin-top: -11px;
+  }
+
+/* #scrollable{
+            width: 111%;
+            
+            overflow-x: scroll;
+            }
+
+#widthChnge{
+  width: 111%;
+}
+
+#hr{
+  width: 111%;
+} */
+
+#text1{
+text-transform: capitalize;
+}
+
+/* input[type=search],input[type=text], textarea{
+  text-transform: capitalize;
+} */
+
+
+.formMeeting{
+  display: block;
+  min-width: 90%;
+  margin: 1em;
+  padding: 1em;
+  width: 35em;
+  border-radius: 8px;
+  border-style: none;
+  border: 1px solid #e4e6e8;
+  transition: 0.1s ease;
+}
+
+
+
+.buttonStyleMeeting {
+  margin: 0.8em;
+  padding: 1em;
+  border: 1px solid #e4e6e8;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s ease -in;
+}
