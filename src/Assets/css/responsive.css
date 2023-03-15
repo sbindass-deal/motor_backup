@@ -714,10 +714,24 @@
 	ul.bidList_.info_ li {
 		width: 50%;
 	}
+	.videoColl .col-lg-6 {
+		height: 216px;
+		margin: 0px;
+		padding: 0;
+		width: 100%;
+		border: 3px solid transparent;
+	}
 
 }
 
 @media (max-width: 767px) {
+	.videoColl .col-lg-6 {
+		height: 216px;
+		margin: 0px;
+		padding: 0;
+		width: 100%;
+		border: 3px solid transparent;
+	}
 	.newDelarSlid.carousel {height: 210px;}
 	.newDelarSlid .carousel-caption p {font-size: 10px;}
 	h3.sliderTile {	font-size: 30px;line-height: 24px;}
