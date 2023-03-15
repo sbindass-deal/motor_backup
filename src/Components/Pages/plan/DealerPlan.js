@@ -13,8 +13,8 @@ const DealerPlan = () => {
   const [planData, setPlanData] = useState([]);
   const [callPlanApi, setCallPlanApi] = useState(null);
   const [showTab, setShowTab] = useState({
-    normal: true,
-    auction: false,
+    normal: false,
+    auction: true,
     classified: false,
   });
 
@@ -66,7 +66,7 @@ const DealerPlan = () => {
             </div>
             <nav>
               <div className="nav nav-tabs mb-5 tabPlan">
-                <button
+                {/* <button
                   className={`nav-link ${showTab.normal ? "active" : ""}`}
                   onClick={() => {
                     setShowTab({
@@ -79,7 +79,7 @@ const DealerPlan = () => {
                   }}
                 >
                   Normal
-                </button>
+                </button> */}
                 <button
                   className={`nav-link ${showTab.auction ? "active" : ""}`}
                   onClick={() => {
@@ -112,7 +112,7 @@ const DealerPlan = () => {
             </nav>
 
             <div className="tab-content" id="nav-tabContent">
-              {showTab.normal && (
+              {/* {showTab.normal && (
                 <div>
                   <div className="row">
                     {planData.map((curElem, i) => {
@@ -120,7 +120,7 @@ const DealerPlan = () => {
                     })}
                   </div>
                 </div>
-              )}
+              )} */}
               {showTab.auction && (
                 <div>
                   <div className="row">

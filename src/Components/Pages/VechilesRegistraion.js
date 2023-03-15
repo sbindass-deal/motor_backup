@@ -802,7 +802,7 @@ const VechilesRegistraion = () => {
       year: `${vinDetails.years && vinDetails?.years[0]?.year}`,
       make: vinDetails?.make?.name,
       model: vinDetails?.model?.name,
-      vechilelocation: "United State",
+      vechilelocation: "",
       city: "",
       sale: "",
       link: "",
@@ -1045,7 +1045,7 @@ const VechilesRegistraion = () => {
                                 <option selected disabled value="">
                                   Select
                                 </option>
-                                {years(new Date().getFullYear() - 15)
+                                {years(new Date().getFullYear() - 50)
                                   .reverse()
                                   .map((curVal) => {
                                     return (
@@ -1100,8 +1100,9 @@ const VechilesRegistraion = () => {
                                 className="field bgChangeDark"
                                 required
                               >
-                              
-                                <option value="">Select</option>
+                                <option selected disabled value="">
+                                  Select
+                                </option>
 
                                 {counryData.map((curElem, i) => {
                                   return (
@@ -1141,7 +1142,9 @@ const VechilesRegistraion = () => {
                                 className="field"
                                 // required
                               >
-                              <option value="">Select</option>
+                                <option selected disabled value="">
+                                  Select
+                                </option>
                                 {stateData.map((curElem, i) => {
                                   return (
                                     <option value={curElem.name} key={i}>
