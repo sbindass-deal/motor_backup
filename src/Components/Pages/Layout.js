@@ -84,6 +84,9 @@ import CreateMeeting from "./Dashboard/CreateMeeting";
 import Store from "./showroom/Store";
 import AddCreateMeeting from "./Dashboard/AddCreateMeeting";
 import EditCreateMeeting from "./Dashboard/EditCreateMeeting";
+import UserCreateMeeting from "./MyAccount/UserCreateMeeting";
+import AdUserMeeting from "./MyAccount/AdUserMeeting";
+import EditUserMeeting from "./MyAccount/EditUserMeeting";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -109,7 +112,9 @@ const Layout = () => {
               <Route path="vehicle/:id" element={<VehicleRegistered />} />
               <Route path="user-blog" element={<UserBlog />} />
               <Route path="add-user-blog" element={<AdUserBlog />} />
+              <Route path="add-user-meeting" element={<AdUserMeeting />} />
               <Route path="edit-user-blog/:id" element={<EditUserBlog />} />
+              <Route path="user-meeting" element={<UserCreateMeeting />} />
 
               <Route
                 path="vehicle-submission/:id"
@@ -223,6 +228,12 @@ const Layout = () => {
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
+
+          <Route
+            path="edit-user-meeting/:id"
+            element={<EditUserMeeting />}
+          />
+
           <Route path="vechiles" element={<VechilesRegistraion />} />
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />

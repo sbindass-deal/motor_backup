@@ -60,6 +60,14 @@ function MyAccountLeftNav() {
             Blog
           </Link>
         </li>
+        <li>
+          <Link
+            className={`${location.pathname === "/user-meeting" ? "active" : ""}`}
+            to="/user-meeting"
+          >
+            Create Event
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -1,15 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import AdminLeftNav from "./AdminLeftNav";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
 
-const AddCreateMeeting = () => {
- const navigate= useNavigate()
+  ContentState,
+  convertFromHTML,
+
+} from "draft-js";
+import MyAccountLeftNav from "./MyAccountLeftNav";
+
+function EditUserMeeting() {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
 
@@ -25,20 +32,55 @@ const AddCreateMeeting = () => {
     websitelink: "",
     facebooklink: "",
     twitterlink: "",
-    emailid:""
+    emailid: ""
   })
 
 
- 
+
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
-    
-    setMeetingDetail({...meetingDetail,[name]:value})
+
+    setMeetingDetail({ ...meetingDetail, [name]: value })
 
   }
 
-  
+
+  useEffect(() => {
+    const fetchMeeting = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getEventBYId/${id}`
+        );
+
+        console.log(989, res)
+        if (res.data.status === 200 && res.data.data) {
+          setMeetingDetail({
+            title: res.data.data.title,
+            startdate: res.data.data.start_date,
+            enddate: res.data.data.end_date,
+            websitelink: res.data.data.url,
+            facebooklink: res.data.data.facebook,
+            twitterlink: res.data.data.twitter,
+            emailid: res.data.data.email,
+          });
+          // setBlogDataById(res.data.data);
+          setDescription(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(res.data.data.description)
+              )
+            )
+          );
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchMeeting();
+  }, []);
+
+
 
 
   const inputRef = useRef();
@@ -52,14 +94,15 @@ const AddCreateMeeting = () => {
     setFile((prevState) => [...event.dataTransfer.files[0]]);
   };
 
-  console.log(889,file[0])
+  console.log(889, file[0])
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const url = `${process.env.REACT_APP_URL}AddEvent`;
+    const url = `${process.env.REACT_APP_URL}UpdateEvent`;
 
 
-    const formData=new FormData()
+    const formData = new FormData()
+    formData.append('id', id)
     formData.append('title', meetingDetail.title)
     formData.append('url', meetingDetail.websitelink)
     formData.append('start_date', meetingDetail.startdate)
@@ -80,11 +123,11 @@ const AddCreateMeeting = () => {
         Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
       },
     };
-  
+
     await axios.post(url, formData, config)
       .then(function (response) {
-        navigate('/admin-meeting')
-        console.log(109,response);
+        navigate("/admin-meeting");
+        console.log(109, response);
       })
       .catch(function (error) {
         console.log(error);
@@ -98,27 +141,27 @@ const AddCreateMeeting = () => {
       facebooklink: "",
       twitterlink: "",
       emailid: "",
-      
+
     });
 
 
   }
-   
+
   return (
-    <>
+    <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
-              <div className="card_Gray mb-5 mb-md-0 divSticky">
-                <AdminLeftNav />
+              <div className="card_Gray mb-5 mb-md-0">
+                <h5>My Account</h5>
+                <hr />
+                <MyAccountLeftNav />
               </div>
             </div>
-
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Create Events</h3>
-
-              <hr id="hr" />
+              <hr />
               <form onSubmit={handleSubmit}>
                 <div class="row">
                   <div class="col-md-6">
@@ -257,7 +300,7 @@ const AddCreateMeeting = () => {
                         ref={inputRef}
                         multiple
                         hidden
-                        
+
                       />
                       <button
                         className="orange_btn"
@@ -280,107 +323,8 @@ const AddCreateMeeting = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
-};
+}
 
-export default AddCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default EditUserMeeting;
