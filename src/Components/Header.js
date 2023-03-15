@@ -606,31 +606,48 @@ function Header() {
                         >
                           List Your Vehicles
                         </Link> */}
-
-                        <div className="dropdown">
-                          <Link
-                            className={`nav-link ${
-                              location.pathname === "/submit" && "navActive"
-                            }`}
-                            to="#"
+                        {logingUser.login.token === null ? (
+                          <div
+                            onClick={() => {
+                              if (logingUser.login.token === null) {
+                                return handleShow();
+                              }
+                            }}
+                            className="dropdown"
                           >
-                            List Your Vehicles
-                          </Link>
-                          <div className="dropdown-content">
-                            <Link className="" to="/submit">
-                              Private Party
+                            <Link
+                              className={`nav-link ${
+                                location.pathname === "/submit" && "navActive"
+                              }`}
+                              to="#"
+                            >
+                              List Your Vehicles
                             </Link>
-                            {/* <Link className="" to="/classified">
-                              Classified
-                            </Link> */}
-                            <Link className="" to="/dealer">
-                              Dealer
-                            </Link>
-                            {/* <Link className="" to="/auctions_dealer">
-                              Auctions
-                            </Link> */}
+                            <div className="dropdown-content">
+                              <Link className="">Private Party</Link>
+                              <Link className="">Dealer</Link>
+                            </div>
                           </div>
-                        </div>
+                        ) : (
+                          <div className="dropdown">
+                            <Link
+                              className={`nav-link ${
+                                location.pathname === "/submit" && "navActive"
+                              }`}
+                              to="#"
+                            >
+                              List Your Vehicles
+                            </Link>
+                            <div className="dropdown-content">
+                              <Link className="" to="/submit">
+                                Private Party
+                              </Link>
+                              <Link className="" to="/dealer">
+                                Dealer
+                              </Link>
+                            </div>
+                          </div>
+                        )}
                       </li>
 
                       <li className="nav-item">

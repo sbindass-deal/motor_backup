@@ -17,9 +17,7 @@ const planReducer = createSlice({
       state.planSelectByDealer = action.payload;
     },
     purchagedPlan: (state, action) => {
-      state.planSelectByDealer = "Auction";
-      state.planSubscribe = true;
-      state.plan = action.payload;
+      state.planSubscribe = action.payload;
     },
   },
 });
