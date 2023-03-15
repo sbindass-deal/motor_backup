@@ -132,13 +132,13 @@ const DealerProfile = () => {
           </div>
         </div>
       </section>
-      <section className="pt_80 mobileSpec" id="">
+      <section className=" mobileSpec" id="">
         <div className="container">
           <div className="row ">
-              <div className="col-lg-6 col-md-6 col-sm-12" style={{padding: "0"}}>
+              <div className="col-lg-6 col-md-12 col-sm-12" style={{padding: "0"}}>
                 <img src={Dabout} alt="aboutImg"/>
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12 bgOrange">
+              <div className="col-lg-6 col-md-12 col-sm-12 bgOrange">
                  
                     <h3>About Us</h3>
                     <p>
@@ -158,10 +158,10 @@ diagnostic technology to have you back in your car.
       <section className="pt_80 mobileSpec contactD" id="">
         <div className="container">
           <div className="row ">
-            <div className="col-6">
+            <div className="col-lg-6 col-md-6 col-sm-12">
               <img src={caer}/>
             </div>
-            <div className="col-6 ">
+            <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="contactInfo">
               <h2>CONTACTS US</h2>
               <ul>
