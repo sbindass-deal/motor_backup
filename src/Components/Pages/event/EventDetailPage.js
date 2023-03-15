@@ -49,11 +49,11 @@ const EventDetailPage = () => {
                     <h3>From the organizer:</h3>
                     {/* <p>The Atlanta SpeedTour at Michelin Raceway Road Atlanta’s world-class, 12-turn, 2.54-mile road circuit offers a full slate of sprint races for all of SVRA’s race groups. A Mazda Miata Heritage Cup Series race has been added to the schedule. The track’s challenging combination of blind corners, fast sweepers, serpentine esses, steep elevation changes, and high-speed straights keeps everyone coming back year after year. The rich history of stock car racing will be showcased with a Stock Car feature.</p> */}
                     <p>
-                        {getEventdata.description}
-                        {/* {parse(
-                            getEventdata.description.substr(0, 700),
+                        {/* {getEventdata.description} */}
+                        {getEventdata.description && parse(
+                            getEventdata.description,
                             strToHtml
-                        )} */}
+                        )}
                     </p>
                    
                     {/* <p>
@@ -159,7 +159,7 @@ const EventDetailPage = () => {
 
             </div>
 
-            {/* <div className="row">
+            <div className="row">
                 <div className="col-md-7 p-4"></div>
                 <div className="col-md-3 topmargin">
                     <h6 className='textHeading'>Recent Shibnobi Features</h6>
@@ -489,7 +489,7 @@ const EventDetailPage = () => {
 
 
             </div>
-        </div> */}
+        </div>
 
 
         </div >
