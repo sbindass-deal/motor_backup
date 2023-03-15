@@ -126,7 +126,7 @@ function MyListings() {
       </div>
     );
   }
-
+  // console.log(1111, logingUser.login);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
