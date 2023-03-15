@@ -73,6 +73,20 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
     }
   };
 
+  const handleLikeDislike = async (id, type) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}like_or_dislike`, {
+        comment_id: id,
+        like_or_dislike: type,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className="card_ " ref={commentRef}>
@@ -131,11 +145,29 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                   </div>
                   {curElem.category !== "bid" && (
                     <div className="commentFooter">
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-up"></i> 0
+                      <a
+                        onClick={() => handleLikeDislike(curElem.id, 1)}
+                        className="mr-3"
+                      >
+                        <i
+                          className={`fa-solid fa-thumbs-up ${
+                            curElem.user_reaction_on_commnet == 1 &&
+                            "text-warning"
+                          }`}
+                        ></i>{" "}
+                        {curElem?.Like_count}
                       </a>
-                      <a href="#" className="mr-3">
-                        <i className="fa-solid fa-thumbs-down"></i> 0
+                      <a
+                        onClick={() => handleLikeDislike(curElem.id, 2)}
+                        className="mr-3"
+                      >
+                        <i
+                          className={`fa-solid fa-thumbs-down ${
+                            curElem.user_reaction_on_commnet == 2 &&
+                            "text-warning"
+                          }`}
+                        ></i>{" "}
+                        {curElem?.Dislike_count}
                       </a>
                     </div>
                   )}

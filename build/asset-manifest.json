@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b65cb8cc.css",
-    "main.js": "/static/js/main.76935add.js",
+    "main.css": "/static/css/main.62ff9320.css",
+    "main.js": "/static/js/main.3276e149.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -46,6 +46,7 @@
     "static/media/rrrr.png": "/static/media/rrrr.c612b2c7bf49669fff19.png",
     "static/media/charity.png": "/static/media/charity.0acb5bcf2e136c674772.png",
     "static/media/bgImg_01.jpg": "/static/media/bgImg_01.26a3479bdc7930909428.jpg",
+    "static/media/caer.gif": "/static/media/caer.466d8f83dce7f7502cac.gif",
     "static/media/not_found.gif": "/static/media/not_found.466d8f83dce7f7502cac.gif",
     "static/media/dealer-d.png": "/static/media/dealer-d.24d29a52b2587fbf0f49.png",
     "static/media/VehicleDetail.png": "/static/media/VehicleDetail.007f953da91e8c9ea5c1.png",
@@ -57,7 +58,9 @@
     "static/media/about-3.jpg": "/static/media/about-3.07577c52c7976dfbea20.jpg",
     "static/media/shop-banner.png": "/static/media/shop-banner.5302ec4954ade319b648.png",
     "static/media/howItWork.jpg": "/static/media/howItWork.5ca8eae483a1f31ab7f2.jpg",
+    "static/media/contactBg.png": "/static/media/contactBg.287636b3b7fa2a48cbe6.png",
     "static/media/about.jpg": "/static/media/about.908b8d15299591dbd1dc.jpg",
+    "static/media/Dabout.jpg": "/static/media/Dabout.8e200aeeca7cf2560366.jpg",
     "static/media/HIW.jpg": "/static/media/HIW.db93126a48e52b0b2bc9.jpg",
     "static/media/bgImg_04.jpg": "/static/media/bgImg_04.25898655cc132bd703ad.jpg",
     "static/media/HIW3.jpg": "/static/media/HIW3.f466fc823fe0550fbf6a.jpg",
@@ -124,8 +127,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.b65cb8cc.css.map": "/static/css/main.b65cb8cc.css.map",
-    "main.76935add.js.map": "/static/js/main.76935add.js.map",
+    "main.62ff9320.css.map": "/static/css/main.62ff9320.css.map",
+    "main.3276e149.js.map": "/static/js/main.3276e149.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -165,7 +168,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b65cb8cc.css",
-    "static/js/main.76935add.js"
+    "static/css/main.62ff9320.css",
+    "static/js/main.3276e149.js"
   ]
 }

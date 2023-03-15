@@ -4,8 +4,11 @@ import { useEffect } from "react";
 import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
 import NotAvailable from "../../UI/NotAvailable";
+import { useDispatch } from "react-redux";
+import { getPlanByDealerSelect } from "../../../redux/reducers/planReducer";
 
 const DealerPlan = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [planData, setPlanData] = useState([]);
   const [callPlanApi, setCallPlanApi] = useState(null);
@@ -36,9 +39,13 @@ const DealerPlan = () => {
     fetchPlan();
   }, [callPlanApi]);
 
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
+  useEffect(() => {
+    dispatch(getPlanByDealerSelect("normal"));
+  }, []);
+
+  // if (loading) {
+  //   return <SmallSpinner spin={true} />;
+  // }
 
   return (
     <>
@@ -67,6 +74,7 @@ const DealerPlan = () => {
                       auction: false,
                       classified: false,
                     });
+                    dispatch(getPlanByDealerSelect("normal"));
                     setCallPlanApi("normal");
                   }}
                 >
@@ -80,6 +88,7 @@ const DealerPlan = () => {
                       auction: true,
                       classified: false,
                     });
+                    dispatch(getPlanByDealerSelect("auction"));
                     setCallPlanApi("auction");
                   }}
                 >
@@ -93,6 +102,7 @@ const DealerPlan = () => {
                       auction: false,
                       classified: true,
                     });
+                    dispatch(getPlanByDealerSelect("classified"));
                     setCallPlanApi("classified");
                   }}
                 >

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   plan: {},
+  planSelectByDealer: "",
 };
 
 const planReducer = createSlice({
@@ -11,9 +12,12 @@ const planReducer = createSlice({
     getPlan: (state, action) => {
       state.plan = action.payload;
     },
+    getPlanByDealerSelect: (state, action) => {
+      state.planSelectByDealer = action.payload;
+    },
   },
 });
 
-export const { getPlan } = planReducer.actions;
+export const { getPlan, getPlanByDealerSelect } = planReducer.actions;
 
 export default planReducer.reducer;

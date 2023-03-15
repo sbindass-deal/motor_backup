@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AdminLeftNav from "./AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
+import { strToHtml } from "../../UI/globaleVar";
 
 
 const CreateMeeting = () => {
@@ -15,8 +16,8 @@ const CreateMeeting = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getAllEvent`
         );
-        console.log(7676, res.data.data)
-        setMeetingData(res.data.data);
+        console.log(7676, res.data.data.allevent)
+        setMeetingData(res.data.data.allevent);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -78,6 +79,7 @@ const CreateMeeting = () => {
                       <thead>
                         <tr>
                           <th scope="col">Sr.No</th>
+                          <th scope="col">image</th>
                           {/* <th scope="col">Image</th> */}
                           <th scope="col">Title</th>
                           <th scope="col">Start Date</th>
@@ -99,6 +101,9 @@ const CreateMeeting = () => {
                             console.log(989, curVal, index)
                             return <tr>
                               <td>{index + 1}</td>
+                              <td>
+                                <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" />
+                              </td>
                               <td>{curVal.title}</td>
                               <td>{curVal.start_date}</td>
                               <td>{curVal.end_date}</td>
@@ -106,7 +111,11 @@ const CreateMeeting = () => {
                               <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>
                               <td>{curVal.email}</td>
-                              <td>{curVal.description}</td>
+                              {/* <td>{curVal.description.substr(0,100)}</td> */}
+                              <td>{parse(
+                                curVal?.description.substr(0, 100),
+                                strToHtml
+                              )}</td>
                               <td>
 
                                 <Link to={`/edit-meeting/${curVal.id}`}>
