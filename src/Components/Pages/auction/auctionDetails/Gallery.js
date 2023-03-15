@@ -11,7 +11,7 @@ const Gallery = ({ vehicle }) => {
       <div className="card_ ptb_40">
         <h3 className="cardTitle">Gallery</h3>
         <div className="row galleryPh">
-          <div className={`col-lg-5 firstImg col-sm-12`}>
+          {/* <div className={`col-lg-5 firstImg col-sm-12`}>
             {vehicle.image_gallery && (
               <Image
                 loading="lazy"
@@ -25,9 +25,9 @@ const Gallery = ({ vehicle }) => {
                 alt="Maskgroup1"
               />
             )}
-          </div>
-          <div className={` col-lg-7 col-sm-12`}>
-            <div className="row rightGallery sixOption">
+          </div> */}
+          <div className={` col-lg-12 col-sm-12 `}>
+            <div className="row rightGallery">
               <Image.PreviewGroup>
                 {vehicle.image_gallery &&
                   vehicle.image_gallery.slice(1, 7).map((curElem) => {
@@ -88,18 +88,33 @@ const Gallery = ({ vehicle }) => {
             {showAuctionGallery ? "Show Less" : "Show more"}{" "}
           </button>
         </div>
-        <div className=" phG">
-          <h3>Youtube Videos</h3>
-          <div className="card-group">
+      </div>
+      <div className="card_ ptb_40">
+        <h3 className="cardTitle">Youtube Videos</h3>
+        <div className="card-group videoColl">
             {vehicle?.description?.map((curElem, i) => {
               return (
-                <div key={i}>
-                  <ReactPlayer className="m-1" url={curElem} />
+                <>
+                <div className="col-lg-6 mb-10" key={i}>
+                    <ReactPlayer className="videoWidth" url={curElem} />
+                    
                 </div>
+                <div className="col-lg-6 mb-10" key={i}>
+                    <ReactPlayer className="videoWidth" url={curElem} />
+                    
+                </div>
+                <div className="col-lg-6 mb-10" key={i}>
+                    <ReactPlayer className="videoWidth" url={curElem} />
+                    
+                </div>
+                
+                </>
+                
+               
+                
               );
             })}
           </div>
-        </div>
       </div>
     </>
   );

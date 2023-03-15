@@ -374,10 +374,10 @@ function Detail() {
               </div>
               <Gallery vehicle={vehicle} />
 
-              <div className="card border p-md-4 text-light">
+              <div className="card_  text-light">
                 <div className="row">
-                  <div className="col-md-6 ">
-                    <h3 style={{ color: "black" }}>BID ON THIS LISTING</h3>
+                  <div className="col-md-12 ">
+                    <h3 class="cardTitle">Bid On This Listing</h3>
 
                     <ul>
                       <li style={{ display: "flex" }}>
