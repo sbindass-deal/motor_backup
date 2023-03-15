@@ -108,6 +108,11 @@ const PrivatePartyData = ({ curElem }) => {
                       ? curElem.annual_description
                       : curElem.monthly_description
                   }`,
+                  playQuantity: `${
+                    planType && planName === curElem.plan_name
+                      ? curElem.annual_listing
+                      : curElem.monthly_listing
+                  }`,
                 })
               }
               className="gry_btn"
