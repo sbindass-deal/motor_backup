@@ -54,8 +54,8 @@ const PrivateParty = () => {
                   your vehicle the way you want.
                 </p>
               </div>
-                {planData.map((curElem, i) => {
-                  console.log(8787, curElem)
+              {planData.map((curElem, i) => {
+                console.log(8787, curElem);
                 return (
                   <PrivatePartyData
                     key={i}
