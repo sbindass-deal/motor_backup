@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AdminLeftNav from "./AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
+import { strToHtml } from "../../UI/globaleVar";
 
 
 const CreateMeeting = () => {
@@ -110,7 +111,11 @@ const CreateMeeting = () => {
                               <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>
                               <td>{curVal.email}</td>
-                              <td>{curVal.description.substr(0,100)}</td>
+                              {/* <td>{curVal.description.substr(0,100)}</td> */}
+                              <td>{parse(
+                                curVal?.description.substr(0, 100),
+                                strToHtml
+                              )}</td>
                               <td>
 
                                 <Link to={`/edit-meeting/${curVal.id}`}>

@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { strToHtml } from '../../UI/globaleVar'
+import parse from "html-react-parser";
+
 
 const EventDetailPage = () => {
     const { id } = useParams()
@@ -45,8 +48,14 @@ const EventDetailPage = () => {
                 <div className="col-md-7">
                     <h3>From the organizer:</h3>
                     {/* <p>The Atlanta SpeedTour at Michelin Raceway Road Atlanta’s world-class, 12-turn, 2.54-mile road circuit offers a full slate of sprint races for all of SVRA’s race groups. A Mazda Miata Heritage Cup Series race has been added to the schedule. The track’s challenging combination of blind corners, fast sweepers, serpentine esses, steep elevation changes, and high-speed straights keeps everyone coming back year after year. The rich history of stock car racing will be showcased with a Stock Car feature.</p> */}
-                    <p>{getEventdata.description }</p>
-
+                    <p>
+                        {getEventdata.description}
+                        {/* {parse(
+                            getEventdata.description.substr(0, 700),
+                            strToHtml
+                        )} */}
+                    </p>
+                   
                     {/* <p>
                         Since opening in 1970, the 750-acre Road Atlanta complex has hosted just about every major race series run in the US including Can-Am, Trans-Am, the SCCA National Championships, the American Le Mans Series, and the Tudor United Sports Car Series. Road Atlanta’s great racing history, challenging track, nearby resorts, and proximity to the city of Atlanta adds to the popularity of this venue.
                     </p> */}

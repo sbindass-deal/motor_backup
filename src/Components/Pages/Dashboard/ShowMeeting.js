@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AdminLeftNav from "./AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
+import { strToHtml } from "../../UI/globaleVar";
 
 
 const ShowMeeting = () => {
@@ -55,7 +56,11 @@ const ShowMeeting = () => {
                       <Link to={`/eventdetail/${curVal.id}` }>
                       <img height={190} class="card-img-top" src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="Card image cap" />
                       <div class="card-body">
-                        <h6 class="card-text">{curVal.description.substr(0, 100)}</h6>
+                        {/* <h6 class="card-text">{curVal.description.substr(0, 100)}</h6> */}
+                          <h6 class="card-text">{parse(
+                            curVal?.description.substr(0, 100),
+                            strToHtml
+                          )}</h6>
                         </div>
                       </Link>
                     </div>
