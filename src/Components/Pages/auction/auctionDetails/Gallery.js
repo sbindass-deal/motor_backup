@@ -11,7 +11,7 @@ const Gallery = ({ vehicle }) => {
       <div className="card_ ptb_40">
         <h3 className="cardTitle">Gallery</h3>
         <div className="row galleryPh">
-          {/* <div className={`col-lg-5 firstImg col-sm-12`}>
+          <div className={`col-lg-5 firstImg col-sm-12`}>
             {vehicle.image_gallery && (
               <Image
                 loading="lazy"
@@ -25,12 +25,12 @@ const Gallery = ({ vehicle }) => {
                 alt="Maskgroup1"
               />
             )}
-          </div> */}
+          </div>
           <div className={` col-lg-7 col-sm-12`}>
             <div className="row rightGallery sixOption">
               <Image.PreviewGroup>
                 {vehicle.image_gallery &&
-                  vehicle.image_gallery.map((curElem) => {
+                  vehicle.image_gallery.slice(1, 7).map((curElem) => {
                     return (
                       <div>
                         <Image
