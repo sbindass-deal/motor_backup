@@ -30,7 +30,7 @@ const DealerAuction = ({ userId: id, dealerName }) => {
               <h2>{dealerName} Auctions</h2>
             </div>
             <div className="col-12">
-              <div className="col-12 ptb_80 ListDealer auctionBid" style={{}}>
+              <div className="col-12  ListDealer auctionBid" style={{}}>
                 <div className="row">
                   {userVehicle &&
                     userVehicle.map((curElem) => {
