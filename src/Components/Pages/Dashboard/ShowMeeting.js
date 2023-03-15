@@ -15,8 +15,8 @@ const ShowMeeting = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getAllEvent`
         );
-        console.log(7676, res.data.data)
-        setMeetingData(res.data.data);
+        console.log(7676, res.data.data.allevent)
+        setMeetingData(res.data.data.allevent);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -50,8 +50,7 @@ const ShowMeeting = () => {
 
               {
                 meetingData.map((curVal) => {
-                  console.log(7878, curVal)
-                  return <div className="col mt-4 mb-4">
+                  return <div className="col-4 mt-4 mb-4">
                     <div class="card" style={{ width: "18rem" }}>
                       <Link to={`/eventdetail/${curVal.id}` }>
                       <img height={190} class="card-img-top" src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="Card image cap" />

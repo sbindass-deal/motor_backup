@@ -15,8 +15,8 @@ const CreateMeeting = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getAllEvent`
         );
-        console.log(7676, res.data.data)
-        setMeetingData(res.data.data);
+        console.log(7676, res.data.data.allevent)
+        setMeetingData(res.data.data.allevent);
         setLoading(false);
       } catch (err) {
         console.log(err);

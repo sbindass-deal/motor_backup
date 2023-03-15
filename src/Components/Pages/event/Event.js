@@ -20,9 +20,11 @@ const Event = () => {
     const fetchEventApi = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}getAllEvent`);
-        const eventData = res.data.data.map((curElem) => {
+        console.log(1019, res.data.data.allevent)
+
+        const eventData = res.data.data.allevent.map((curElem) => {
           setGetId(curElem.id)
-          console.log(1019,curElem)
+          // console.log(1019, res)
           return {
             title: curElem.title,
             start: new Date(curElem.start_date),
