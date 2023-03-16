@@ -23,6 +23,9 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
   const logingUser = useSelector((state) => state.login);
   const show = logingUser.show;
 
+  const mode = useSelector((state) => state);
+  console.log("Login Mode", mode.dayAndNightMode.mode);
+
   const dispatch = useDispatch();
   const notify = (val) =>
     toast.success(val, {
@@ -164,9 +167,17 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   onClick={() => setShowPassWord(!showPassWord)}
                 >
                   {showPassWord ? (
-                    <VisibilityIcon style={{ fill: "#000" }} />
+                    <VisibilityIcon
+                      style={{
+                        fill: mode.dayAndNightMode.mode ? "#fff" : "#000",
+                      }}
+                    />
                   ) : (
-                    <VisibilityOffIcon style={{ fill: "#000" }} />
+                    <VisibilityOffIcon
+                      style={{
+                        fill: mode.dayAndNightMode.mode ? "#fff" : "#000",
+                      }}
+                    />
                   )}
                 </div>
               </div>

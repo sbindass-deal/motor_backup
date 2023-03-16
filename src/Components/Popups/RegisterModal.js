@@ -266,10 +266,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         <VisibilityIcon
                           style={{
                             fill: logingUser.dayAndNightMode.mode
-                              ? "#000"
+                              ? "#fff"
                               : "#000",
                             color: logingUser.dayAndNightMode.mode
-                              ? "#000"
+                              ? "#fff"
                               : "#000",
                           }}
                         />
@@ -277,10 +277,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         <VisibilityOffIcon
                           style={{
                             fill: logingUser.dayAndNightMode.mode
-                              ? "#000"
+                              ? "#fff"
                               : "#000",
                             color: logingUser.dayAndNightMode.mode
-                              ? "#000"
+                              ? "#fff"
                               : "#000",
                           }}
                         />
@@ -309,10 +309,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <VisibilityIcon
                         style={{
                           fill: logingUser.dayAndNightMode.mode
-                            ? "#000"
+                            ? "#fff"
                             : "#000",
                           color: logingUser.dayAndNightMode.mode
-                            ? "#000"
+                            ? "#fff"
                             : "#000",
                         }}
                       />
@@ -320,10 +320,10 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       <VisibilityOffIcon
                         style={{
                           fill: logingUser.dayAndNightMode.mode
-                            ? "#000"
+                            ? "#fff"
                             : "#000",
                           color: logingUser.dayAndNightMode.mode
-                            ? "#000"
+                            ? "#fff"
                             : "#000",
                         }}
                       />

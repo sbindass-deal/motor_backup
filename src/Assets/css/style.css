@@ -332,7 +332,7 @@ img.addBanner {
   transform: translateX(-50%);
   background-color: transparent;
   border: none;
-  z-index: 9;
+  z-index: 0;
 }
 
 .scrollDownIc img {}
@@ -2897,7 +2897,7 @@ li.nav-item.afterLogin span {
   position: absolute;
   bottom: -32px;
   left: calc(50% - 165px);
-  z-index: 9999;
+  z-index: 0;
   cursor: pointer;
 }
 
