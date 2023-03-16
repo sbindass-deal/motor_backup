@@ -54,7 +54,10 @@ const AddCreateMeeting = () => {
 
   console.log(889,file[0])
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
+    
+    debugger;
+
     e.preventDefault()
     const url = `${process.env.REACT_APP_URL}AddEvent`;
 
@@ -67,6 +70,8 @@ const AddCreateMeeting = () => {
     formData.append('facebook', meetingDetail.facebooklink)
     formData.append('twitter', meetingDetail.twitterlink)
     formData.append('email', meetingDetail.emailid)
+    formData.append('status', 1)
+
     formData.append(
       "description",
       draftToHtml(convertToRaw(description.getCurrentContent()))
@@ -75,13 +80,9 @@ const AddCreateMeeting = () => {
     formData.append("image", file[0]);
 
 
-    const config = {
-      headers: {
-        Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
-      },
-    };
+    
   
-    await axios.post(url, formData, config)
+    await axios.post(url, formData)
       .then(function (response) {
         navigate('/admin-meeting')
         console.log(109,response);
@@ -98,6 +99,7 @@ const AddCreateMeeting = () => {
       facebooklink: "",
       twitterlink: "",
       emailid: "",
+      status:1
       
     });
 
@@ -135,7 +137,7 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="startdate"
@@ -146,7 +148,7 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"

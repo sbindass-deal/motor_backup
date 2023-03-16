@@ -10,14 +10,17 @@ const ShowMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+ 
+
+
   useEffect(() => {
     const fetchMeetingDetail = async () => {
       try {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getAllEvent`
         );
-        console.log(7676, res.data.data.allevent)
-        setMeetingData(res.data.data.allevent);
+        console.log(7676, res.data.data)
+        setMeetingData(res.data.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -50,7 +53,7 @@ const ShowMeeting = () => {
             <div className="row ">
 
               {
-                meetingData.map((curVal) => {
+                meetingData?.map((curVal) => {
                   return <div className="col-4 mt-4 mb-4">
                     <div class="card" style={{ width: "18rem" }}>
                       <Link to={`/eventdetail/${curVal.id}` }>

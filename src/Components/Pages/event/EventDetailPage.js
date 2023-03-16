@@ -169,7 +169,7 @@ const EventDetailPage = () => {
             <div className="row">
                 <div className="col-md-7 p-4"></div>
                 <div className="col-md-3 topmargin">
-                    <h6 className='textHeading'>Shibnobi Recent Event</h6>
+                    <h6 className='textHeading'>Recent Event</h6>
                     {
                         getRecentEventdata.map((curVal) => {
                             console.log(787989, curVal)

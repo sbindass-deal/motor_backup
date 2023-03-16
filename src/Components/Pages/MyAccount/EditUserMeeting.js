@@ -19,6 +19,7 @@ function EditUserMeeting() {
   const navigate = useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
+  const [file1, setFile1] = useState([]);
 
   const handleContent = (e) => {
     setDescription(e);
@@ -64,6 +65,8 @@ function EditUserMeeting() {
             twitterlink: res.data.data.twitter,
             emailid: res.data.data.email,
           });
+          setFile1(res.data.data.image)
+
           // setBlogDataById(res.data.data);
           setDescription(
             EditorState.createWithContent(
@@ -81,8 +84,7 @@ function EditUserMeeting() {
   }, []);
 
 
-
-
+  console.log(12,meetingDetail.enddate)
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -118,15 +120,11 @@ function EditUserMeeting() {
     formData.append("image", file[0]);
 
 
-    const config = {
-      headers: {
-        Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
-      },
-    };
+    
 
-    await axios.post(url, formData, config)
+    await axios.post(url, formData)
       .then(function (response) {
-        navigate("/admin-meeting");
+        navigate("/user-meeting");
         console.log(109, response);
       })
       .catch(function (error) {
@@ -178,7 +176,7 @@ function EditUserMeeting() {
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="startdate"
@@ -189,7 +187,7 @@ function EditUserMeeting() {
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"
@@ -267,6 +265,17 @@ function EditUserMeeting() {
                   <div className="col-12 col-md-12">
                     <label>Upload Photos</label>
                     <div className="row">
+
+                      {file && file.length <= 0 &&
+
+                        <img style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }} src={`https://api.gasguzzlrs.com/upload/event/${file1}`} alt="" />
+                      }
+
                       {Array.from(file).map((items) => {
                         return (
                           <span>
