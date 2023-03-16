@@ -24,6 +24,7 @@ function Detail() {
   const commentRef = useRef();
   const loginUser = useSelector((state) => state.login);
   const [vinDetails, setVinDetails] = useState({});
+  const [loading, setLoading] = useState(false);
   const [vehicle, setVehicle] = useState({});
   const [show, setShow] = useState(false);
   const [commentCount, setCommentCount] = useState(0);
@@ -133,9 +134,13 @@ function Detail() {
         }
         notify(res.data.message);
       })
-      .catch((err) => setLoadingBiding(false));
+      .catch((err) => {
+        setLoadingBiding(false);
+        notify(err.response.data.message);
+      });
   };
   const fetchApi = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}vehicle_detail/${id}`
@@ -147,8 +152,10 @@ function Detail() {
         // console.log("t", new Date(res.data.data[0].EndTime).getTime());
         // console.log("end", new Date(res.data.data[0].EndTime));
       }
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -226,7 +233,9 @@ function Detail() {
                         <span>
                           $
                           {vehicle?.currentBid &&
-                            toCommas(vehicle?.currentBid?.last_bid)}
+                          vehicle?.currentBid?.last_bid > 0
+                            ? toCommas(vehicle?.currentBid?.last_bid)
+                            : 0}
                         </span>
                       </li>
                       <li
@@ -257,17 +266,29 @@ function Detail() {
                         <li className="text-danger">BIDDING CLOSED</li>
                       )}
                     </ul>
-                    {t > 0 ? (
+                    {vehicle.displayInAuction === "classified" ? (
                       <button
                         type="button"
                         className="gry_btn active bg-dark"
                         style={{ border: "none" }}
-                        onClick={handleShow}
                       >
-                        Place a bid
+                        Buy now
                       </button>
                     ) : (
-                      <ViewResult vehicle={vehicle} />
+                      <>
+                        {t > 0 ? (
+                          <button
+                            type="button"
+                            className="gry_btn active bg-dark"
+                            style={{ border: "none" }}
+                            onClick={handleShow}
+                          >
+                            Place a bid
+                          </button>
+                        ) : (
+                          <ViewResult vehicle={vehicle} />
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
@@ -385,7 +406,9 @@ function Detail() {
                         <p style={{ marginLeft: "40px" }}>
                           $
                           {vehicle?.currentBid &&
-                            toCommas(vehicle?.currentBid?.last_bid)}
+                          vehicle?.currentBid?.last_bid > 0
+                            ? toCommas(vehicle?.currentBid?.last_bid)
+                            : 0}
                         </p>
                       </li>
                       <li style={{ display: "flex" }}>
@@ -412,21 +435,29 @@ function Detail() {
                       </li>
                       <li style={{ display: "flex" }}>
                         <p>Place Bid</p>
-                        {t > 0 ? (
+                        {vehicle.displayInAuction === "classified" ? (
                           <button
                             type="button"
                             className="gry_btn active bg-dark"
-                            style={{
-                              border: "none",
-                              marginLeft: "40px",
-                              marginBottom: "20px",
-                            }}
-                            onClick={handleShow}
+                            style={{ border: "none" }}
                           >
-                            Place a bid
+                            Buy now
                           </button>
                         ) : (
-                          <ViewResult vehicle={vehicle} />
+                          <>
+                            {t > 0 ? (
+                              <button
+                                type="button"
+                                className="gry_btn active bg-dark"
+                                style={{ border: "none" }}
+                                onClick={handleShow}
+                              >
+                                Place a bid
+                              </button>
+                            ) : (
+                              <ViewResult vehicle={vehicle} />
+                            )}
+                          </>
                         )}
                       </li>
                     </ul>

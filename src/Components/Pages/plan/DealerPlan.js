@@ -17,6 +17,7 @@ const DealerPlan = () => {
     auction: true,
     classified: false,
   });
+  const [purchagedPlan, setPurchagedPlan] = useState([]);
 
   const fetchPlan = async () => {
     setLoading(true);
@@ -27,6 +28,7 @@ const DealerPlan = () => {
       .then(function (response) {
         if (response.data.status === 200) {
           setPlanData(response.data.data);
+          setPurchagedPlan(response.data.purchasePlan);
         }
         setLoading(false);
       })
@@ -89,7 +91,7 @@ const DealerPlan = () => {
                   setCallPlanApi("auction");
                 }}
               >
-                Auction
+                Auctions
               </button>
               <button
                 className={`nav-link ${showTab.classified ? "active" : ""}`}
@@ -103,7 +105,7 @@ const DealerPlan = () => {
                   setCallPlanApi("classified");
                 }}
               >
-                Classified
+                Classifieds
               </button>
             </div>
           </nav>
@@ -122,7 +124,13 @@ const DealerPlan = () => {
               <div>
                 <div className="row">
                   {planData.map((curElem, i) => {
-                    return <Data key={i} curElem={curElem} />;
+                    return (
+                      <Data
+                        purchagedPlan={purchagedPlan}
+                        key={i}
+                        curElem={curElem}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -131,7 +139,13 @@ const DealerPlan = () => {
               <div>
                 <div className="row">
                   {planData.map((curElem, i) => {
-                    return <Data key={i} curElem={curElem} />;
+                    return (
+                      <Data
+                        key={i}
+                        purchagedPlan={purchagedPlan}
+                        curElem={curElem}
+                      />
+                    );
                   })}
                 </div>
               </div>
