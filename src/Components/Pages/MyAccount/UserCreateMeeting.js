@@ -9,22 +9,20 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 function UserCreateMeeting() {
   const [meetingData, setMeetingData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filterValue, setFilterValue] = useState("All");
 
 
-  const config = {
-    headers: {
-      Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
-    },
-  };
+
+  
 
   useEffect(() => {
     const fetchMeetingDetail = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}getAllEvent`, config
+          `${process.env.REACT_APP_URL}getAllEvent`
         );
-        console.log(7676, res.data.data.allevent)
-        setMeetingData(res.data.data.allevent);
+        console.log(7676, res.data.data)
+        setMeetingData(res.data.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -46,6 +44,29 @@ function UserCreateMeeting() {
     }
   };
 
+  const VechilesApprove = (id, dis) => {
+    debugger
+    axios
+      .post(`${process.env.REACT_APP_URL}approveEvent`, {
+        id: id,
+        status: dis,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          console.log(798989, response)
+          // fetchUserVehicleListApi(filterValue);
+          window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+
+
+
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -61,6 +82,22 @@ function UserCreateMeeting() {
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
                 <h3>Create Event</h3>
+
+                <ul>
+                  <li className="">
+                    <select
+                      value={filterValue}
+                      onChange={(e) => {
+                        setFilterValue(e.target.value);
+                      }}
+                      className="field">
+                      <option value="All">All</option>
+                      <option value="PUBLISHED">Publish</option>
+                      <option value="REVIEWD_BY_ADMIN">Approve</option>
+                      <option value="PENDING_ADMIN_APPROVAL">Pending</option> </select>
+                  </li>
+                </ul>
+
                 <Link to="/add-user-meeting" className="orange_btn">
                   Add Create Event
                 </Link>
@@ -97,7 +134,7 @@ function UserCreateMeeting() {
 
                     <tbody>
                       {
-                        meetingData.map((curVal, index) => {
+                        meetingData?.map((curVal, index) => {
                           console.log(989, curVal, index)
                           return <tr>
                             <td>{index + 1}</td>
@@ -113,7 +150,7 @@ function UserCreateMeeting() {
                             <td>{curVal.email}</td>
                             {/* <td>{curVal.description.substr(0,100)}</td> */}
                             <td>{parse(
-                              curVal?.description.substr(0, 100),
+                              curVal?.description.substr(0, 300),
                               strToHtml
                             )}</td>
                             <td>
@@ -124,9 +161,63 @@ function UserCreateMeeting() {
                                   Edit
                                 </button>
                               </Link>
-                              <button onClick={() => handleDelete(curVal.id)}>Delete</button>
+                              <button
+                              onClick={() => handleDelete(curVal.id)}
+                              >Delete</button>
                             </td>
+
+                            <div className="pl-md-3 d-flex">
+                              {curVal?.status == "0" && (
+                                <p
+                                  // onClick={() => VechilesApprove(curVal.id,0)}
+                                  className=""
+                                >
+                                  Pending for Admin Review
+                                </p>
+                              ) 
+                            
+                              }
+                              
+                              {curVal?.status == "1" && (
+                                <button
+                                  onClick={() => VechilesApprove(curVal.id, 2)}
+                                  className="gry_btn mr-2"
+                                >
+                                  Publish
+                                </button>
+                              )
+
+                              }
+                              {curVal?.status == "2" && (
+                                <p
+                                  // onClick={() => VechilesApprove(curVal.id, 2)}
+                                  className=""
+                                >
+                                  Published
+                                </p>
+                              )
+
+                              }
+                              {curVal?.status == "3" && (
+                                <p
+                                  // onClick={() => VechilesApprove(curVal.id, 2)}
+                                  className=""
+                                >
+                                  Rejected by Admin
+                                </p>
+                              )
+
+                              }
+
+
+
+                            </div>
                           </tr>
+
+
+
+
+
                         })
                       }
 
@@ -141,12 +232,12 @@ function UserCreateMeeting() {
 
 
               </div>
-             
+
             </div>
           </div>
         </div>
       </section>
-     
+
     </>
   );
 }

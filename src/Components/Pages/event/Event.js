@@ -20,9 +20,9 @@ const Event = () => {
     const fetchEventApi = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}getAllEvent`);
-        console.log(1019, res.data.data.allevent)
+        console.log(1019, res.data.data)
 
-        const eventData = res.data.data.allevent.map((curElem) => {
+        const eventData = res.data.data.map((curElem) => {
           setGetId(curElem.id)
           // console.log(1019, res)
           return {

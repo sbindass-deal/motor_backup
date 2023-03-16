@@ -18,7 +18,8 @@ const Products = ({ id, price, images, title, curElem }) => {
     });
 
   const dispatch = useDispatch();
-  const [imageValue, setImageValsue] = useState(0)
+  const [imageValue, setImageValsue] = useState(0);
+  // const [addButton , setAddButton] = useState(false)
 
   console.log(images[0]);
 
@@ -40,7 +41,7 @@ const Products = ({ id, price, images, title, curElem }) => {
                 })
               }
             </div>
-            <div className="w-75">
+            <div className="w-100">
               <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
                 <img
                   src={`${process.env.REACT_APP_URL}upload/products/${images[imageValue].image}`}
@@ -64,15 +65,17 @@ const Products = ({ id, price, images, title, curElem }) => {
             >
               <li class="price__">${price}</li>
               <li class="">
-                <button
-                  onClick={() => {
-                    dispatch(addProduct({ ...curElem, quantity: 1 }));
-                    notify("Added to cart.");
-                  }}
+              <Link to={`/shop/${id}`}><button
+                  // onClick={() => {
+                  //   dispatch(addProduct({ ...curElem, quantity: 1 }));
+                  //   notify("Added to cart.");
+                  //   setAddButton(true)
+                  // }}
                   className="orange_btn"
+                  // disabled ={addButton}
                 >
-                  Add
-                </button>
+                  View
+                </button></Link>
               </li>
             </ul>
           </div>
