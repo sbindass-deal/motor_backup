@@ -10,6 +10,7 @@ import PrivatePartyData from "./PrivatePartyData";
 const PrivateParty = () => {
   const [loading, setLoading] = useState(false);
   const [planData, setPlanData] = useState([]);
+  const [purchagedPlan, setPurchagedPlan] = useState([]);
 
   const fetchPlan = async () => {
     setLoading(true);
@@ -20,6 +21,7 @@ const PrivateParty = () => {
       .then(function (response) {
         if (response.data.status === 200) {
           setPlanData(response.data.data);
+          setPurchagedPlan(response.data.purchasePlan);
         }
         setLoading(false);
       })
@@ -58,6 +60,7 @@ const PrivateParty = () => {
                 console.log(8787, curElem);
                 return (
                   <PrivatePartyData
+                    purchagedPlan={purchagedPlan}
                     key={i}
                     loading={loading}
                     curElem={curElem}

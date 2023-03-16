@@ -79,8 +79,8 @@ const VechilesRegistraion = () => {
   const [issuesProblems, setIssuesProblems] = useState(
     EditorState.createEmpty()
   );
+  const [charityEditor, setCharityEditor] = useState(EditorState.createEmpty());
   const inputRefBanner = useRef();
-
   useEffect(() => {
     const fetchCountryApi = async () => {
       try {
@@ -100,9 +100,11 @@ const VechilesRegistraion = () => {
         .then(function (response) {
           if (response.data.purchasePlan.length > 0) {
             dispatch(purchagedPlan(true));
-            dispatch(
-              getPlanByDealerSelect(response?.data?.purchasePlan[0]?.category)
-            );
+            // dispatch(
+            //   getPlanByDealerSelect(response?.data?.purchasePlan[0]?.category)
+            // );
+          } else {
+            dispatch(purchagedPlan(false));
           }
         })
         .catch(function (error) {
@@ -622,6 +624,9 @@ const VechilesRegistraion = () => {
         reserve: `${reserve === "Yes" ? reserve : "No"}`,
         reservAmount: reserveAmount,
         hereFrom: draftToHtml(convertToRaw(issuesProblems.getCurrentContent())),
+        charityDescription: draftToHtml(
+          convertToRaw(charityEditor.getCurrentContent())
+        ),
         ammountOnDocument: servicesperformed,
         documentFee,
         Interstellar,
@@ -1686,6 +1691,32 @@ const VechilesRegistraion = () => {
                             </div>
                           )}
 
+                          {basicfact.auctionType === "charity" && (
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="form-group">
+                                <p>Please add description.</p>
+                                <div className="border border-2 border-dark">
+                                  <Editor
+                                    editorStyle={{
+                                      background: "white",
+                                      padding: "15px",
+                                      minHeight: "30vh",
+                                      color: "black",
+                                    }}
+                                    editorState={charityEditor}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                    editorClassName="editorClassName"
+                                    onEditorStateChange={(e) =>
+                                      setCharityEditor(e)
+                                    }
+                                    placeholder="Please enter here"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>
@@ -2141,7 +2172,7 @@ const VechilesRegistraion = () => {
                               placeholder="Enter fuel type"
                               errorMessage="Fuel type should be 3 to 15 character!"
                               label="Fuel Type"
-                              pattern="^[A-Za-z(),.;@! ]{2,15}$"
+                              pattern="^[A-Za-z(),.;@! ]{3,15}$"
                               required={true}
                             />
                           </div>
