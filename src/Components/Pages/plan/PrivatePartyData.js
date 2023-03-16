@@ -87,7 +87,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          {purchagedPlan && purchagedPlan[0].planId == curElem.id ? (
+          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
             <div className="plan_cardFooter">
               <button
                 onClick={() =>

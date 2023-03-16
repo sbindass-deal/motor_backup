@@ -181,6 +181,7 @@ const VechilesRegistraion = () => {
       })
       .then(function (response) {
         // console.log(response);
+        informationSubmitHandler();
       })
       .catch(function (error) {
         console.log(error);
