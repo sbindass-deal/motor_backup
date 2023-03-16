@@ -127,60 +127,59 @@ function MyBidsWins() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>My Bids & Wins</h3>
+                <h3>Bids & Wins</h3>
               </div>
               <hr />
 
               <div className="row">
                 <div className="col-12">
                   {data.length > 0 ? (
-                    
-                      data.map((curElem) => {
-                        return (
-                          <div key={curElem.id} className="bidsListRow">
-                            <div className="bidsImg">
-                              <img
-                                loading="lazy"
-                                src={
-                                  curElem.images && curElem.images[0]
-                                    ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
-                                    : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
-                              />
+                    data.map((curElem) => {
+                      return (
+                        <div key={curElem.id} className="bidsListRow">
+                          <div className="bidsImg">
+                            <img
+                              loading="lazy"
+                              src={
+                                curElem.images && curElem.images[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                  : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt="Maskgroup1"
+                            />
+                          </div>
+                          <div className="bidsInfo">
+                            <div className="">
+                              <h6>{curElem.name}</h6>
+                              <p>
+                                Your BID&nbsp;
+                                <span style={{ color: "#fff" }}>
+                                  {curElem.auctionAmmount}
+                                </span>
+                                &nbsp;
+                                <i className="fa-solid fa-dollar-sign"></i>
+                              </p>
                             </div>
-                            <div className="bidsInfo">
-                              <div className="">
-                                <h6>{curElem.name}</h6>
-                                <p>
-                                  Your BID&nbsp;
-                                  <span style={{ color: "#fff" }}>
-                                    {curElem.auctionAmmount}
-                                  </span>
-                                  &nbsp;
-                                  <i className="fa-solid fa-dollar-sign"></i>
-                                </p>
+                            <div className="pl-md-3 d-flex">
+                              <div className="mx-2">
+                                <button
+                                  onClick={() =>
+                                    handleShowPayment(
+                                      curElem.id,
+                                      curElem.auctionAmmount
+                                    )
+                                  }
+                                  className="gry_btn"
+                                >
+                                  Pay now
+                                </button>
                               </div>
-                              <div className="pl-md-3 d-flex">
-                                <div className="mx-2">
-                                  <button
-                                    onClick={() =>
-                                      handleShowPayment(
-                                        curElem.id,
-                                        curElem.auctionAmmount
-                                      )
-                                    }
-                                    className="gry_btn"
-                                  >
-                                    Pay now
-                                  </button>
-                                </div>
-                                {/* {curElem.reserve === "Yes" && (
+                              {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button
                                   onClick={() => handleShow(curElem.id)}
@@ -191,31 +190,34 @@ function MyBidsWins() {
                                 </button>
                               </div>
                             )} */}
-                                {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                                  new Date().getTime() <
-                                  0 && curElem.reserve === "Yes" ? (
-                                  <div className="mx-2">
-                                    <button
-                                      onClick={() => handleShow(curElem.id)}
-                                      type="button"
-                                      className="gry_btn"
-                                    >
-                                      <ChatIcon />
-                                    </button>
-                                  </div>
-                                ) : null}
+                              {parseInt(
+                                new Date(curElem.EndTime).getTime(),
+                                10
+                              ) -
+                                new Date().getTime() <
+                                0 && curElem.reserve === "Yes" ? (
+                                <div className="mx-2">
+                                  <button
+                                    onClick={() => handleShow(curElem.id)}
+                                    type="button"
+                                    className="gry_btn"
+                                  >
+                                    <ChatIcon />
+                                  </button>
+                                </div>
+                              ) : null}
 
-                                <Link
-                                  to={`/detail/${curElem.id}`}
-                                  className="gry_btn"
-                                >
-                                  <i className="fa-solid fa-eye mr-2"></i> View
-                                </Link>
-                              </div>
+                              <Link
+                                to={`/detail/${curElem.id}`}
+                                className="gry_btn"
+                              >
+                                <i className="fa-solid fa-eye mr-2"></i> View
+                              </Link>
                             </div>
                           </div>
-                        );
-                      })
+                        </div>
+                      );
+                    })
                   ) : (
                     <div
                       className="container"
@@ -227,11 +229,10 @@ function MyBidsWins() {
                       }}
                     >
                       <div className="row">
-                          <h3>You did not Bid on any vehicle</h3>
+                        <h3>You did not Bid on any vehicle</h3>
                       </div>
                     </div>
-                  )} 
-                   
+                  )}
                 </div>
               </div>
             </div>

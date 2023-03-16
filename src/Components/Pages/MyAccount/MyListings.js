@@ -52,7 +52,7 @@ function MyListings() {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}byUserVehicle?veicleStatus=${filterValue}`
       );
-      console.log(9898, res)
+      console.log(9898, res);
       if (res.data.status === 200) {
         setData(res.data.data);
       }
@@ -149,7 +149,7 @@ function MyListings() {
                   alignItems: "center",
                 }}
               >
-                <h3>My Listing</h3>
+                <h3>Listing</h3>
                 <ul>
                   <li className="">
                     <select
