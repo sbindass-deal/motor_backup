@@ -127,7 +127,7 @@ function MyListings() {
       </div>
     );
   }
-  // console.log(1111, logingUser.login);
+  // console.log(1111, logingUser.login.user.dealer);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -169,11 +169,15 @@ function MyListings() {
 
                 <button
                   onClick={() => {
-                    dispatch(
-                      purchagedPlan({ planId: availablePlan[0].planId })
-                    );
+                    dispatch(purchagedPlan(true));
                     navigate(
-                      `${availablePlan.length > 0 ? "/vechiles" : "/submit"}`
+                      `${
+                        availablePlan.length > 0
+                          ? "/vechiles"
+                          : logingUser.login.user.dealer === "yes"
+                          ? "/dealer"
+                          : "/submit"
+                      }`
                     );
                   }}
                   className="gry_btn px-3"

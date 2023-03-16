@@ -16,7 +16,7 @@ const AddGearProduct = () => {
     size: [],
     color: [],
     desc: "",
-    youtube_link: "www.something.com"
+    youtube_link: ""
   });
   const inputRef = useRef();
 
@@ -34,22 +34,28 @@ const AddGearProduct = () => {
     const NewValues = Values.charAt(0).toUpperCase() + Values.slice(1);
     setGetInputData({ ...getInputData, [e.target.name]: NewValues });
   };
-  const uploadFileOne = (vehicleId) => {
-    (async () => {
-      for await (const file1 of file) {
-        const url = process.env.REACT_APP_URL + "productImage";
-        const formData = new FormData();
+  const uploadFileOne = async (vehicleId) => {
+    const formData = new FormData();
+    const url = process.env.REACT_APP_URL + "productImage";
+    const config = {
+    headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+      for  (const file1 of file) {
         formData.append("image[]", file1);
         formData.append("product_id", vehicleId);
         const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        await axios.post(url, newImagedata, config);
+        console.log(file , formData);
       }
-    })();
+      let a = await axios.post(url, formData, config);
+      if(a.status == 200){
+        return true
+      }
+      else{
+        return false
+      }
+    ;
   };
 
   const handleApi = async (e) => {
@@ -68,7 +74,7 @@ const AddGearProduct = () => {
       .then(async function (response) {
         if (response.status === 200) {
           let a = await uploadFileOne(response.data.data.id);
-          if (a.status === 200) {
+          if (a) {
             navigate("/gear-product");
             window.location.reload(false);
           }
@@ -231,6 +237,18 @@ const AddGearProduct = () => {
                   errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
                   label="Color"
                   pattern="^[A-Za-z ]{1,80}$"
+                  required={true}
+                />
+              </div>
+              <div className="col-md-12 col-lg-6 col-sm-12">
+                <FormInput
+                  name="youtube_link"
+                  onChange={(e) => { setGetInputData({ ...getInputData, youtube_link: e.target.value }) }}
+                  value={getInputData.youtube_link}
+                  placeholder="Enter Link"
+                  // errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
+                  label="Video Link"
+                  // pattern="^[A-Za-z ]{1,80}$"
                   required={true}
                 />
               </div>

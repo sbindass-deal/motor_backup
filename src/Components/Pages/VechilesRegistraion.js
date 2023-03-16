@@ -23,6 +23,10 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import CloseIcon from "@mui/icons-material/Close";
+import {
+  getPlanByDealerSelect,
+  purchagedPlan,
+} from "../../redux/reducers/planReducer";
 
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
@@ -75,8 +79,8 @@ const VechilesRegistraion = () => {
   const [issuesProblems, setIssuesProblems] = useState(
     EditorState.createEmpty()
   );
+  const [charityEditor, setCharityEditor] = useState(EditorState.createEmpty());
   const inputRefBanner = useRef();
-
   useEffect(() => {
     const fetchCountryApi = async () => {
       try {
@@ -87,6 +91,27 @@ const VechilesRegistraion = () => {
       }
     };
     fetchCountryApi();
+  }, []);
+
+  useEffect(() => {
+    const fetchPurchagePlan = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {})
+        .then(function (response) {
+          if (response.data.purchasePlan.length > 0) {
+            dispatch(purchagedPlan(true));
+            // dispatch(
+            //   getPlanByDealerSelect(response?.data?.purchasePlan[0]?.category)
+            // );
+          } else {
+            dispatch(purchagedPlan(false));
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchPurchagePlan();
   }, []);
 
   useEffect(() => {
@@ -156,7 +181,6 @@ const VechilesRegistraion = () => {
       })
       .then(function (response) {
         // console.log(response);
-        informationSubmitHandler();
       })
       .catch(function (error) {
         console.log(error);
@@ -557,8 +581,8 @@ const VechilesRegistraion = () => {
     // }
     axios
       .post(`${url}vehicles`, {
-        planId: logingUser.planReducer.plan.planId,
-        plantype: logingUser.planReducer.plan.listingType,
+        // planId: logingUser.planReducer.plan.planId,
+        // plantype: logingUser.planReducer.plan.listingType,
         name: iname,
         email: uemail,
         premium: reduxValue.submitvechilesReducer.submitPlan,
@@ -600,6 +624,9 @@ const VechilesRegistraion = () => {
         reserve: `${reserve === "Yes" ? reserve : "No"}`,
         reservAmount: reserveAmount,
         hereFrom: draftToHtml(convertToRaw(issuesProblems.getCurrentContent())),
+        charityDescription: draftToHtml(
+          convertToRaw(charityEditor.getCurrentContent())
+        ),
         ammountOnDocument: servicesperformed,
         documentFee,
         Interstellar,
@@ -631,74 +658,78 @@ const VechilesRegistraion = () => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
         uploadFileGallery(result.data.id);
+        notify(result.data.message);
         // handleShowPayment();
-        setNamefield({
-          name: "",
-          email: "",
-          year: "",
-          make: "",
-          model: "",
-          vechilelocation: "",
-          city: "",
-          sale: "",
-          link: "",
-          vehiclepast: "",
-          providelink: "",
-          changedvechiles: "",
-          dealer: "",
-          dealership: "",
-          soldvechiles: "",
-          videolink: "",
-          file: "",
-        });
-        setbasicfact({
-          vin: "",
-          displayInAuction: "",
-          auctionType: "",
-          adWebsiteLink: "",
-          vechilesrace: "",
-          ultiumdrive: "",
-          Interstellar: "",
-          interior: "",
-          brandandmodel: "",
-          sizetires: "",
-          trucktitled: "",
-          other: "",
-          status: "",
-          km: "",
-          kmacc: "",
-          odometer: "",
-          accurateField: "",
-          files: "",
-        });
-        setDetailstab({
-          detailvin: "",
-          bodywork: "",
-          rustpresent: "",
-          modificationstock: "",
-          truckfromnew: "",
-          servicesperformed: "",
-          issuesorproblems: "",
-          moreDescription: "",
-          reserve: "",
-          reserveAmount: "",
-          shibnobiabout: "",
-          rtmember: "",
-          shibnobi: "",
-          documentFee: "",
-          accept: "",
-          understand: "",
-        });
-        setInformation({
-          uemail: "",
-          username: "",
-          password: "",
-          iname: "",
-          phone: "",
-        });
-        dispatch(step_one(false));
-        dispatch(step_two(false));
-        dispatch(step_three(false));
+        if (result.data.status === 200) {
+          navigate("/");
+          // setNamefield({
+          //   name: "",
+          //   email: "",
+          //   year: "",
+          //   make: "",
+          //   model: "",
+          //   vechilelocation: "",
+          //   city: "",
+          //   sale: "",
+          //   link: "",
+          //   vehiclepast: "",
+          //   providelink: "",
+          //   changedvechiles: "",
+          //   dealer: "",
+          //   dealership: "",
+          //   soldvechiles: "",
+          //   videolink: "",
+          //   file: "",
+          // });
+          // setbasicfact({
+          //   vin: "",
+          //   displayInAuction: "",
+          //   auctionType: "",
+          //   adWebsiteLink: "",
+          //   vechilesrace: "",
+          //   ultiumdrive: "",
+          //   Interstellar: "",
+          //   interior: "",
+          //   brandandmodel: "",
+          //   sizetires: "",
+          //   trucktitled: "",
+          //   other: "",
+          //   status: "",
+          //   km: "",
+          //   kmacc: "",
+          //   odometer: "",
+          //   accurateField: "",
+          //   files: "",
+          // });
+          // setDetailstab({
+          //   detailvin: "",
+          //   bodywork: "",
+          //   rustpresent: "",
+          //   modificationstock: "",
+          //   truckfromnew: "",
+          //   servicesperformed: "",
+          //   issuesorproblems: "",
+          //   moreDescription: "",
+          //   reserve: "",
+          //   reserveAmount: "",
+          //   shibnobiabout: "",
+          //   rtmember: "",
+          //   shibnobi: "",
+          //   documentFee: "",
+          //   accept: "",
+          //   understand: "",
+          // });
+          // setInformation({
+          //   uemail: "",
+          //   username: "",
+          //   password: "",
+          //   iname: "",
+          //   phone: "",
+          // });
+          // dispatch(step_one(false));
+          // dispatch(step_two(false));
+          // dispatch(step_three(false));
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -1660,6 +1691,32 @@ const VechilesRegistraion = () => {
                             </div>
                           )}
 
+                          {basicfact.auctionType === "charity" && (
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="form-group">
+                                <p>Please add description.</p>
+                                <div className="border border-2 border-dark">
+                                  <Editor
+                                    editorStyle={{
+                                      background: "white",
+                                      padding: "15px",
+                                      minHeight: "30vh",
+                                      color: "black",
+                                    }}
+                                    editorState={charityEditor}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                    editorClassName="editorClassName"
+                                    onEditorStateChange={(e) =>
+                                      setCharityEditor(e)
+                                    }
+                                    placeholder="Please enter here"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
                               <label>
@@ -2115,7 +2172,7 @@ const VechilesRegistraion = () => {
                               placeholder="Enter fuel type"
                               errorMessage="Fuel type should be 3 to 15 character!"
                               label="Fuel Type"
-                              pattern="^[A-Za-z(),.;@! ]{2,15}$"
+                              pattern="^[A-Za-z(),.;@! ]{3,15}$"
                               required={true}
                             />
                           </div>
