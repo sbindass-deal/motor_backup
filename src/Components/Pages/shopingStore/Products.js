@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 
-const Products = ({ id, price, image, title, curElem }) => {
+const Products = ({ id, price, images, title, curElem }) => {
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -18,16 +18,37 @@ const Products = ({ id, price, image, title, curElem }) => {
     });
 
   const dispatch = useDispatch();
+  const [imageValue, setImageValsue] = useState(0)
+
+  console.log(images[0]);
+
   return (
     <>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card_post box_shadow_common">
-          <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
-            <img
-              src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
-              alt={title}
-            />
-          </Link>
+          <div className="d-flex border">
+            <div className="w-25">
+              {
+                images.map((d, i) => {
+                  return (
+                    <img
+                      onClick={() => setImageValsue(i)}
+                      src={`${process.env.REACT_APP_URL}upload/products/${d.image}`}
+                      alt={title}
+                    />
+                  )
+                })
+              }
+            </div>
+            <div className="w-75">
+              <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
+                <img
+                  src={`${process.env.REACT_APP_URL}upload/products/${images[imageValue].image}`}
+                  alt={title}
+                />
+              </Link>
+            </div>
+          </div>
           <div class="card_postInfo pt-3">
             <h6>
               <Link to={`/shop/${id}`}>{title}</Link>
