@@ -238,7 +238,7 @@ const Layout = () => {
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
-          <Route path="shop" element={<Shop />} />
+          <Route path="shop" element={<Shop/>} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="blogs" element={<Blogs />} />

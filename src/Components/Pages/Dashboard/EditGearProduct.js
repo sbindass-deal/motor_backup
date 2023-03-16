@@ -15,13 +15,14 @@ const EditGearProduct = () => {
   const [file, setFile] = useState([]);
   const [showImage, setShowImage] = useState(null);
   const [getInputData, setGetInputData] = useState({
-    name: "",
+    tittle: "",
     category: "",
     price: "",
-    stock: "",
-    size: "",
-    color: "",
+    stocks: "",
+    size: [],
+    color: [],
     desc: "",
+    youtube_link: ""
   });
   const inputRef = useRef();
 
@@ -78,10 +79,10 @@ const EditGearProduct = () => {
   //     });
   // };
 
-  const uploadFileOne = (vehicleId = 44) => {
-    (async () => {
+  const uploadFileOne = (vehicleId) => {
+    return (async () => {
       for await (const file1 of file) {
-        const url = process.env.REACT_APP_URL + "updateproductImage";
+        const url = process.env.REACT_APP_URL + "productImage";
         const formData = new FormData();
         formData.append("image[]", file1);
         formData.append("product_id", vehicleId);
@@ -91,7 +92,13 @@ const EditGearProduct = () => {
             "Content-Type": "multipart/form-data",
           },
         };
-        await axios.post(url, newImagedata, config);
+        let a = await axios.post(url, newImagedata, config);
+        if(a.status==200){
+          return true
+        }
+        else {
+          return false}
+
       }
     })();
   };
@@ -100,20 +107,24 @@ const EditGearProduct = () => {
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_URL}updateproduct/${id}`, {
-        stocks: getInputData.stock,
+        stocks: getInputData.stocks,
         color: getInputData.color,
         size: getInputData.size,
         price: getInputData.price,
-        title: getInputData.name,
+        title: getInputData.tittle,
         description: getInputData.desc,
         category: getInputData.category,
+        youtube_link: getInputData.youtube_link
       })
-      .then(function (response) {
-        if (response.status === 200) {
-          // navigate("/gear-product");
-          // window.location.reload(false);
+      .then(async function (response) {
+        if (response.status == 200) {
+          let a = await uploadFileOne(response.data.data.id);
+
+          if (a) {
+            navigate("/gear-product");
+            window.location.reload(false);
+          }
         }
-        uploadFileOne(response.data.data.id);
       })
       .catch(function (error) {
         console.log(error);
@@ -168,9 +179,9 @@ const EditGearProduct = () => {
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="name"
-                  onChange={handleOnChange}
-                  value={getInputData.name}
+                  name="tittle"
+                  onChange={(e) => { setGetInputData({ ...getInputData, tittle: e.target.value }) }}
+                  value={getInputData.tittle}
                   placeholder="Enter Name"
                   errorMessage="Name should be 2-80 characters and shouldn't include any number!"
                   label="Name"
@@ -198,35 +209,44 @@ const EditGearProduct = () => {
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="price"
-                  onChange={handleOnChange}
-                  value={getInputData.price}
-                  placeholder="Enter price"
-                  errorMessage="Price should be 1-9 characters and shouldn't include any special character and alphabet!"
                   label="Price"
-                  pattern="^[0-9.]{1,9}$"
+                  className="field"
+                  autoComplete="off"
+                  name="price"
+                  onChange={(e) => {
+                    if (e.target.value.length <= 10) {
+                      setGetInputData({ ...getInputData, price: e.target.value })
+                    }
+                  }}
+                  value={getInputData.price}
+                  placeholder="$ Enter price"
+                  type="number"
                   required={true}
                 />
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="stock"
-                  onChange={handleOnChange}
+                  label="Stock"
+                  name="stocks"
+                  className="field"
                   value={getInputData.stock}
                   placeholder="Enter stock"
-                  errorMessage="Stock should be 1-9 characters and shouldn't include any special character and alphabet!"
-                  label="Stock"
-                  pattern="^[0-9]{1,9}$"
+                  onChange={(e) => {
+                    if (e.target.value.length <= 10) {
+                      setGetInputData({ ...getInputData, stocks: e.target.value });
+                    }
+                  }}
+                  type="number"
                   required={true}
                 />
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="size"
-                  onChange={handleOnChange}
+                  onChange={(e) => { setGetInputData({ ...getInputData, size: [e.target.value] }) }}
                   value={getInputData.size}
                   placeholder="Enter size"
-                  errorMessage="Size should be 2-80 characters and shouldn't include any number!"
+                  errorMessage="Size should be 1-80 characters and shouldn't include any number!"
                   label="Size"
                   pattern="^[A-Za-z0-9-:/ ]{1,80}$"
                   required={true}
@@ -235,27 +255,39 @@ const EditGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="color"
-                  onChange={handleOnChange}
+                  onChange={(e) => { setGetInputData({ ...getInputData, color: [e.target.value] }) }}
                   value={getInputData.color}
                   placeholder="Enter color"
                   errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
                   label="Color"
-                  pattern="^[A-Za-z]{1,80}$"
+                  pattern="^[A-Za-z ]{1,80}$"
                   required={true}
                 />
               </div>
-              <div className="col-md-12 col-lg-12 col-sm-12 mb-3">
+              <div className="col-md-12 col-lg-6 col-sm-12">
+                <FormInput
+                  name="youtube_link"
+                  onChange={(e) => { setGetInputData({ ...getInputData, youtube_link: e.target.value }) }}
+                  value={getInputData.youtube_link}
+                  placeholder="Enter Link"
+                  // errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
+                  label="Video Link"
+                  // pattern="^[A-Za-z ]{1,80}$"
+                  required={true}
+                />
+              </div>
+              <div className="col-md-12 col-sm-12 mb-3">
                 <label htmlFor="exampleFormControlTextarea1" class="form-label">
                   Description
                 </label>
                 <textarea
-                  class="field"
+                  className="field"
                   value={getInputData.desc}
                   name="desc"
                   onChange={handleOnChange}
                   id="descriptonArea"
                   minLength={1}
-                  maxLength={500}
+                  maxLength={2000}
                   rows="4"
                 ></textarea>
                 {getInputData.desc.trim().length > 500 && (
