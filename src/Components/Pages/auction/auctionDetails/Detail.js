@@ -400,10 +400,10 @@ function Detail() {
                   <div className="col-md-12 ">
                     <h3 class="cardTitle">Bid On This Listing</h3>
 
-                    <ul>
-                      <li style={{ display: "flex" }}>
+                    <ul className="bidOnThis">
+                      <li >
                         <p>Current Bid</p>
-                        <p style={{ marginLeft: "40px" }}>
+                        <p >
                           $
                           {vehicle?.currentBid &&
                           vehicle?.currentBid?.last_bid > 0
@@ -411,9 +411,9 @@ function Detail() {
                             : 0}
                         </p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li>
                         <p>Time Left</p>
-                        <p style={{ marginLeft: "55px" }}>
+                        <p >
                           {t > 0 ? (
                             <span>
                               <label>Ends In:&nbsp;</label>
@@ -427,13 +427,13 @@ function Detail() {
                           )}
                         </p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li >
                         <p>Bids</p>
-                        <p style={{ marginLeft: "87px" }}>
-                          {vehicle?.currentBid?.total_bid}
+                        <p >
+                          -{vehicle?.currentBid?.total_bid}
                         </p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li>
                         <p>Place Bid</p>
                         {vehicle.displayInAuction === "classified" ? (
                           <button
@@ -445,7 +445,9 @@ function Detail() {
                           </button>
                         ) : (
                           <>
+                          <p>
                             {t > 0 ? (
+                              
                               <button
                                 type="button"
                                 className="gry_btn active bg-dark"
@@ -457,6 +459,7 @@ function Detail() {
                             ) : (
                               <ViewResult vehicle={vehicle} />
                             )}
+                            </p>
                           </>
                         )}
                       </li>

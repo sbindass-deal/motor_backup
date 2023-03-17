@@ -16,11 +16,7 @@ const ViewResult = ({ vehicle }) => {
         onClick={handleShowResult}
         type="button"
         className="gry_btn active bg-dark"
-        style={{
-          border: "none",
-          marginLeft: "40px",
-          marginBottom: "20px",
-        }}
+       
       >
         View result
       </button>
