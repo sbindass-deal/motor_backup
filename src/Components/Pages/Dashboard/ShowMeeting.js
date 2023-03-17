@@ -55,10 +55,13 @@ const ShowMeeting = () => {
               {
                 meetingData?.map((curVal) => {
                   return <div className="col-4 mt-4 mb-4">
-                    <div class="card" style={{ width: "18rem" }}>
+                    <div class="card_post">
                       <Link to={`/eventdetail/${curVal.id}` }>
-                      <img height={190} class="card-img-top" src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="Card image cap" />
-                      <div class="card-body">
+                        <div className="card_postImg">
+                        <img class="card-img-top" src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="Card image cap" />
+                        </div>
+                      
+                      <div class="card_postInfo ">
                         {/* <h6 class="card-text">{curVal.description.substr(0, 100)}</h6> */}
                           <h6 class="card-text">{parse(
                             curVal?.description.substr(0, 100),
