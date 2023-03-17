@@ -132,7 +132,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                   </div>
                   <div className="commentBody">
                     {curElem.category === "bid" ? (
-                      <p className="bg-light p-2 text-danger fw-bolder">
+                      <p className=" p-2 text-danger fw-bolder">
                         <strong>
                           ${" "}
                           {curElem?.bid_amount && toCommas(curElem?.bid_amount)}{" "}

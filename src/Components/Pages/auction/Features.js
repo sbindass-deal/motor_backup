@@ -64,6 +64,8 @@ const Features = () => {
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
+          <div class="col-12 text-center pb_30"><h2>Featured Auctions</h2></div>
+
             <div className="col-12">
               <ul className="postTopOption">
                 <li className="post_search">
