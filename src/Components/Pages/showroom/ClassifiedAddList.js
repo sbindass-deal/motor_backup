@@ -139,9 +139,9 @@ function ClassifiedAddList() {
                                 </span>
                               </li>
                             </ul>
-                            <button className="orange_btn opening_bid_btn">
+                            {/* <button className="orange_btn opening_bid_btn">
                               View Details <i class="fa fa-arrow-right"></i>
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       </div>

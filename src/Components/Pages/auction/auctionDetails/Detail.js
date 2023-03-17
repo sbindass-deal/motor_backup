@@ -228,7 +228,7 @@ function Detail() {
                   </h2>
                   <div className="titleRight">
                     <ul className="labelList">
-                      <li>
+                      { vehicle.displayInAuction !== "classified" && <li>
                         <label>Current bid:</label>{" "}
                         <span>
                           $
@@ -237,7 +237,7 @@ function Detail() {
                             ? toCommas(vehicle?.currentBid?.last_bid)
                             : 0}
                         </span>
-                      </li>
+                      </li>}
                       <li
                         onClick={handleCommentRef}
                         style={{ cursor: "pointer" }}
@@ -401,7 +401,7 @@ function Detail() {
                     <h3 class="cardTitle">Bid On This Listing</h3>
 
                     <ul>
-                      <li style={{ display: "flex" }}>
+                      { vehicle.displayInAuction !== "classified" && <li style={{ display: "flex" }}>
                         <p>Current Bid</p>
                         <p style={{ marginLeft: "40px" }}>
                           $
@@ -410,7 +410,7 @@ function Detail() {
                             ? toCommas(vehicle?.currentBid?.last_bid)
                             : 0}
                         </p>
-                      </li>
+                      </li>}
                       <li style={{ display: "flex" }}>
                         <p>Time Left</p>
                         <p style={{ marginLeft: "55px" }}>
