@@ -241,7 +241,8 @@ function CarRaffle() {
   console.log("showLotary" , showLotary , count);
 
   
-
+  // console.log(9898, showLotary?.image && showLotary?.image[0].imagePath)
+  console.log(9898, showLotary)
   return (
     <>
       <section className=" video_section d-flex align-items-center">
@@ -288,20 +289,23 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary?.images && (
+                        
+                          
+                          {showLotary?.image && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              src={ads_car_2}
-                              // src={
-                              //   showLotary.images[0] &&
-                              //   `${process.env.REACT_APP_URL}/${showLotary.images[0].imagePath}/${showLotary.images[0].imageName}`
-                              // }
-                              // onError={({ currentTarget }) => {
-                              //   currentTarget.onError = null;
-                              //   currentTarget.src =
-                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              // }}
+                              // src={ads_car_2}
+                              src={
+                                showLotary.image[0] &&
+                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
+                                // `https://api.gasguzzlrs.com/upload/lottery_vehicle/Vehicle-1679063358.jfif`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null; 
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
                               alt="Maskgroup1"
                             />
                           )}
@@ -313,20 +317,20 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary?.images && (
+                          {showLotary?.image && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              // src={
-                              //   showLotary.images[1] &&
-                              //   `${process.env.REACT_APP_URL}/${showLotary.images[1].imagePath}/${showLotary.images[1].imageName}`
-                              // }
-                              // onError={({ currentTarget }) => {
-                              //   currentTarget.onError = null;
-                              //   currentTarget.src =
-                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              // }}
-                              src={ads_car_3}
+                              src={
+                                showLotary.image[1] &&
+                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              // src={ads_car_3}
                               alt="Maskgroup1"
                             />
                           )}
@@ -338,20 +342,20 @@ function CarRaffle() {
                           className="carousel-item"
                           style={{ cursor: "pointer" }}
                         >
-                          {showLotary?.images && (
+                          {showLotary?.image && (
                             <img
                               loading="lazy"
                               className="d-block w-100 img-fluid"
-                              src={ads_car_1}
-                              // src={
-                              //   showLotary.images[2] &&
-                              //   `${process.env.REACT_APP_URL}/${showLotary.images[2].imagePath}/${showLotary.images[2].imageName}`
-                              // }
-                              // onError={({ currentTarget }) => {
-                              //   currentTarget.onError = null;
-                              //   currentTarget.src =
-                              //     "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              // }}
+                              // src={ads_car_1}
+                              src={
+                                showLotary.image[2] &&
+                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
                               alt="Maskgroup1"
                             />
                           )}
