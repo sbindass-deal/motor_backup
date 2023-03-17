@@ -6390,7 +6390,7 @@ h3.sliderTile {
 .newDelarSlid.carousel {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 550px;
   align-items: center;
   display: flex;
   overflow: hidden;
