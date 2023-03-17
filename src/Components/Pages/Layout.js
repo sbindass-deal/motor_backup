@@ -57,7 +57,7 @@ import AddGearProduct from "./Dashboard/AddGearProduct";
 import BlogDetail from "./BlogDetail";
 import EditMyAccount from "./MyAccount/EditMyAccount";
 import DealerProfile from "./showroom/DealerProfile";
-import ClassifiedAddList from "./showroom/ClassifiedAddList";
+import ClassifiedAddList from "./auction/ClassifiedAddList";
 import SearchResult from "../UI/SearchResult";
 import ComingSoon from "./ComingSoon";
 import Blogs from "./Blogs";

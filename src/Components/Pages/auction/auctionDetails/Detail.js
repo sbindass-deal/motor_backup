@@ -431,7 +431,7 @@ function Detail() {
                       </li>
                       <li>
                         <p>Bids</p>
-                        <p>-{vehicle?.currentBid?.total_bid}</p>
+                        <p>{vehicle?.currentBid?.total_bid}</p>
                       </li>
                       <li>
                         <p>Place Bid</p>
