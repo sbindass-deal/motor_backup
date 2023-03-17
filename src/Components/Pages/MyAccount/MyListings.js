@@ -98,7 +98,7 @@ function MyListings() {
 
   useEffect(() => {
     const fetchPurchagePlan = async () => {
-      axios
+      await axios
         .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {})
         .then(function (response) {
           setAvailablePlan(response.data.purchasePlan);
@@ -169,16 +169,16 @@ function MyListings() {
 
                 <button
                   onClick={() => {
-                    dispatch(purchagedPlan(true));
                     navigate(
                       `${
-                        availablePlan.length > 0
+                        availablePlan?.listing_available > 0
                           ? "/vechiles"
                           : logingUser.login.user.dealer === "yes"
                           ? "/dealer"
                           : "/submit"
                       }`
                     );
+                    dispatch(purchagedPlan(true));
                   }}
                   className="gry_btn px-3"
                 >

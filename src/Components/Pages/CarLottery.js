@@ -365,8 +365,7 @@ function CarRaffle() {
                   </div>
                   <div className="col-12 col-md-7 pp-0">
                     <div className="" key={showLotary?.id}>
-                      <button onClick={slideLeft}>left</button>
-                      <button onClick={slideRight}>right</button>
+                     
                       <div className="counterCol">
                         <h5>Countdown to the next draw</h5>
                         {t > 0 ? (
@@ -422,8 +421,15 @@ function CarRaffle() {
                           ""
                         )}
                       </div>
+                     
                     </div>
+                    
+                    
                   </div>
+                  <div className="col-md-12 RafelLeftRight">
+                      <button onClick={slideLeft}>left</button>
+                      <button onClick={slideRight}>right</button>
+                    </div>
                 </div>
               </div>
               <div className="card_Gray2 mb-4">

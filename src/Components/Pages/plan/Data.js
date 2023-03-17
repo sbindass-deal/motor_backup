@@ -30,46 +30,54 @@ const Data = ({ curElem, purchagedPlan }) => {
         >
           <div className="plan_cardHead">
             <h4>{curElem.plan_name} </h4>
-            <div className="plan_Price">
-              <div className="dfk">
-                $
-                {planType && planName === curElem.plan_name
-                  ? curElem.annual_price
-                  : curElem.monthly_price}
-                <div className="switch">
-                  <span className="plan_Time"> Monthly</span>
-                  <input
-                    className="react-switch-checkbox"
-                    id={curElem.plan_name}
-                    type="checkbox"
-                    onChange={(e) => {
-                      setPlanName(e.target.name);
-                      setPlanType(e.target.checked);
-                    }}
-                    name={curElem.plan_name}
-                  />
-                  <label
-                    className="react-switch-label"
-                    htmlFor={curElem.plan_name}
-                  >
-                    <span className={`react-switch-button`} />
-                  </label>
-                  <span className="plan_Time"> Annual</span>
+            {curElem.monthly_price !== 0 ? (
+              <div className="plan_Price">
+                <div className="dfk">
+                  $
+                  {planType && planName === curElem.plan_name
+                    ? curElem.annual_price
+                    : curElem.monthly_price}
+                  <div className="switch">
+                    <span className="plan_Time"> Monthly</span>
+                    <input
+                      className="react-switch-checkbox"
+                      id={curElem.plan_name}
+                      type="checkbox"
+                      onChange={(e) => {
+                        setPlanName(e.target.name);
+                        setPlanType(e.target.checked);
+                      }}
+                      name={curElem.plan_name}
+                    />
+                    <label
+                      className="react-switch-label"
+                      htmlFor={curElem.plan_name}
+                    >
+                      <span className={`react-switch-button`} />
+                    </label>
+                    <span className="plan_Time"> Annual</span>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h6>
+                    {curElem.plan_name == "Exclusive" &&
+                    curElem.monthly_listing == 0
+                      ? "Unlimited"
+                      : planName === curElem.plan_name &&
+                        curElem.plan_name != "Exclusive"
+                      ? curElem.annual_listing
+                      : curElem.monthly_listing}{" "}
+                    Listing
+                  </h6>
                 </div>
               </div>
-              <div className="text-center">
-                <h6>
-                  {curElem.plan_name == "Exclusive" &&
-                  curElem.monthly_listing == 0
-                    ? "Unlimited"
-                    : planName === curElem.plan_name &&
-                      curElem.plan_name != "Exclusive"
-                    ? curElem.annual_listing
-                    : curElem.monthly_listing}{" "}
-                  Listing
-                </h6>
+            ) : (
+              <div>
+                <h6>Email: sales@gasguzzlrs.com</h6>
+                <br />
+                <h5>1-817-221-8319</h5>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="plan_cardBody">
@@ -112,6 +120,10 @@ const Data = ({ curElem, purchagedPlan }) => {
               >
                 SUBMIT VEHICLE
               </button>
+            </div>
+          ) : curElem.monthly_price === 0 ? (
+            <div className="plan_cardFooter">
+              <button className="gry_btn">CONTACT</button>
             </div>
           ) : (
             <div className="plan_cardFooter">

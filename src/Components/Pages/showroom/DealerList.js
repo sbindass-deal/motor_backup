@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 
-const DealerList = () => {
+const DealerList = ({handleDealerCount}) => {
   const [dealerData, setDealerData] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const DealerList = () => {
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
         setDealerData([...res.data.featured_dealer]);
+        handleDealerCount(res.data.featured_dealer.length)
       } catch (err) {
         console.log(err);
       }
@@ -34,34 +35,34 @@ const DealerList = () => {
                   <div class="col-12 col-md-4 pb-3">
                     <div class="card_post">
                       <div class="card_postImg">
-                        <Link to={`/dealerprofile/${curElem.id}`}>
-                          {curElem.image_logo && (
+                        <Link to={`/dealerprofile/${curElem?.id}`}>
+                          {curElem?.image_logo && (
                             <img
                               loading="lazy"
                               src={
-                                curElem.image_logo[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem.image_logo[0]?.logo}`
+                                curElem?.image_logo[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
                                   : noImage
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
                                 currentTarget.src = noImage;
                               }}
-                              alt={curElem.username}
+                              alt={curElem?.username}
                             />
                           )}
                         </Link>
                       </div>
                       <div class="card_postInfo">
                         <h4>
-                          <Link to={`/dealerprofile/${curElem.id}`}>
-                            {curElem.title}
+                          <Link to={`/dealerprofile/${curElem?.id}`}>
+                            {curElem?.title}
                           </Link>
                         </h4>
                         <ul class="labelList">
                           <li>October 14, 2022</li>
                           <li>
-                            <i class="fa-solid fa-user mr-2"></i> {curElem.name}
+                            <i class="fa-solid fa-user mr-2"></i> {curElem?.name}
                           </li>
                         </ul>
                         <p>

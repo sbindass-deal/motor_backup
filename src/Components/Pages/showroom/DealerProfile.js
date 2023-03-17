@@ -7,8 +7,10 @@ import DealerVehicleList from "./DealerVehicleList";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Carousal from "./Carousal";
-import Dabout from "../../../Assets/images/Dabout.jpg"
-import caer from "../../../Assets/images/caer.gif"
+import Dabout from "../../../Assets/images/Dabout.jpg";
+import caer from "../../../Assets/images/caer.gif";
+import { strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -85,8 +87,8 @@ const DealerProfile = () => {
                             <div className="galleryImgSect">
                               <img
                                 src={
-                                  curElem.logo &&
-                                  `${process.env.REACT_APP_URL}/${curElem.logo}`
+                                  curElem?.logo &&
+                                  `${process.env.REACT_APP_URL}/${curElem?.logo}`
                                 }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -135,21 +137,26 @@ const DealerProfile = () => {
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
-              <div className="col-lg-6 col-md-12 col-sm-12" style={{padding: "0"}}>
-                <img src={Dabout} alt="aboutImg"/>
-              </div>
-              <div className="col-lg-6 col-md-12 col-sm-12 bgOrange">
-                 
-                    <h3>About Us</h3>
-                    <p>
-                    For nearly 20 years, residents throughout the local area have turned to Car Repair for all of their automotive repair needs. With free estimates and 
-fast turnaround, we are known for our personal service and expertise in all forms of specialized engine repair. We use the latest and most modern 
-diagnostic technology to have you back in your car.
-
-                    </p>
-                    <button className="btn">View More</button>
-                  
-              </div>
+            <div
+              className="col-lg-6 col-md-12 col-sm-12"
+              style={{ padding: "0" }}
+            >
+              <img
+                className="slidImg"
+                src={
+                  dealerData.image_logo &&
+                  `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
+                }
+                alt="aboutImg"
+              />
+            </div>
+            <div className="col-lg-6 col-md-12 col-sm-12 bgOrange">
+              <h3>About Us</h3>
+              <p>
+                {dealerData?.about_us && parse(dealerData?.about_us, strToHtml)}
+              </p>
+              <button className="btn">View More</button>
+            </div>
           </div>
         </div>
       </section>
@@ -159,21 +166,24 @@ diagnostic technology to have you back in your car.
         <div className="container">
           <div className="row ">
             <div className="col-lg-6 col-md-6 col-sm-12">
-              <img src={caer}/>
+              <img src={caer} />
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="contactInfo">
-              <h2>CONTACTS US</h2>
-              <ul>
-                <li><i class="fa-solid fa-location-dot"></i> ADDRESS:</li>
-                <li>4578 MARMORA ROAD, GLASGOW D04 89GR</li>
+                <h2>CONTACTS US</h2>
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-location-dot"></i> ADDRESS:
+                  </li>
+                  <li>4578 MARMORA ROAD, GLASGOW D04 89GR</li>
                 </ul>
                 <ul>
-                <li><i class="fa-solid fa-phone"></i> NUMBER:</li>
-                <li>800-2345-6789</li>
-              </ul>
+                  <li>
+                    <i class="fa-solid fa-phone"></i> NUMBER:
+                  </li>
+                  <li>800-2345-6789</li>
+                </ul>
               </div>
-            
             </div>
           </div>
         </div>

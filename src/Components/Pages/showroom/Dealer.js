@@ -7,12 +7,17 @@ import { Link } from "react-router-dom";
 import DealerList from "./DealerList";
 const Dealer = () => {
   const [filteredModal, setFilteredModal] = useState(false);
+  const [dealerCount, setDealerCount] = useState(null);
 
   const handleFilteredModalClose = () => {
     setFilteredModal(false);
   };
   const handleFilteredModalShow = () => {
     setFilteredModal(true);
+  };
+
+  const handleDealerCount = (count) => {
+    setDealerCount(count);
   };
 
   return (
@@ -28,7 +33,7 @@ const Dealer = () => {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h1>We have over 200 dealers around the world</h1>
+              <h1>We have over {dealerCount} dealers around the world</h1>
               <h5>
                 We help you find your dream car. Select from our exclusive
                 <br /> list of showrooms.
@@ -67,7 +72,7 @@ const Dealer = () => {
                 </li>
               </ul>
             </div>
-            <DealerList />
+            <DealerList handleDealerCount={handleDealerCount} />
           </div>
         </div>
       </section>

@@ -6377,7 +6377,7 @@ h3.sliderTile {
 } */
 .newDelarSlid .carousel-caption {
   position: absolute;
-  background: #00000045;
+  /* background: #00000045; */
   width: 100%;
   height: 100%;
   left: 0;
@@ -6390,7 +6390,7 @@ h3.sliderTile {
 .newDelarSlid.carousel {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 550px;
   align-items: center;
   display: flex;
   overflow: hidden;
@@ -6520,4 +6520,15 @@ h3.sliderTile {
   height: 100%;
 }
 
-.modal-dialog-centered{    min-height: calc(100% - -1.5rem);}
+.modal-dialog-centered { min-height: calc(100% - -3.5rem);}
+.rbc-event, .rbc-day-slot .rbc-background-event { background-color: #f7931a !important;}
+ul.bidOnThis li p{ width: 50%; float: left;}
+ul.bidOnThis li p:first-child { width: 26%;}
+.gry_btn:hover, .gry_btn.active { border-color: transparent;}
+.galleryPh .ant-image .ant-image-img { width: 188px; height: 124px; vertical-align: middle; object-fit: cover;}
+.dark .rbc-off-range-bg { background: #6b6b6b45;}
+.dark .rbc-toolbar button { color: #ffffff;}
+.light .rbc-toolbar button {  color: #000;}
+.rbc-today {   background-color: #ffd9ac !important; }
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {  background-color: #f7931b !important;}
+.rbc-toolbar button:hover { color: #ffffff; background-color: #f7931b;}

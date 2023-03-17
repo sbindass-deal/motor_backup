@@ -228,16 +228,18 @@ function Detail() {
                   </h2>
                   <div className="titleRight">
                     <ul className="labelList">
-                      <li>
-                        <label>Current Bid:</label>{" "}
-                        <span>
-                          $
-                          {vehicle?.currentBid &&
-                          vehicle?.currentBid?.last_bid > 0
-                            ? toCommas(vehicle?.currentBid?.last_bid)
-                            : 0}
-                        </span>
-                      </li>
+                      {vehicle.displayInAuction !== "classified" && (
+                        <li>
+                          <label>Current bid:</label>{" "}
+                          <span>
+                            $
+                            {vehicle?.currentBid &&
+                            vehicle?.currentBid?.last_bid > 0
+                              ? toCommas(vehicle?.currentBid?.last_bid)
+                              : 0}
+                          </span>
+                        </li>
+                      )}
                       <li
                         onClick={handleCommentRef}
                         style={{ cursor: "pointer" }}
@@ -400,10 +402,10 @@ function Detail() {
                   <div className="col-md-12 ">
                     <h3 class="cardTitle">Bid On This Listing</h3>
 
-                    <ul>
-                      <li style={{ display: "flex" }}>
+                    <ul className="bidOnThis">
+                      <li>
                         <p>Current Bid</p>
-                        <p style={{ marginLeft: "40px" }}>
+                        <p>
                           $
                           {vehicle?.currentBid &&
                           vehicle?.currentBid?.last_bid > 0
@@ -411,9 +413,9 @@ function Detail() {
                             : 0}
                         </p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li>
                         <p>Time Left</p>
-                        <p style={{ marginLeft: "55px" }}>
+                        <p>
                           {t > 0 ? (
                             <span>
                               <label>Ends In:&nbsp;</label>
@@ -427,13 +429,11 @@ function Detail() {
                           )}
                         </p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li>
                         <p>Bids</p>
-                        <p style={{ marginLeft: "87px" }}>
-                          {vehicle?.currentBid?.total_bid}
-                        </p>
+                        <p>{vehicle?.currentBid?.total_bid}</p>
                       </li>
-                      <li style={{ display: "flex" }}>
+                      <li>
                         <p>Place Bid</p>
                         {vehicle.displayInAuction === "classified" ? (
                           <button
@@ -445,18 +445,20 @@ function Detail() {
                           </button>
                         ) : (
                           <>
-                            {t > 0 ? (
-                              <button
-                                type="button"
-                                className="gry_btn active bg-dark"
-                                style={{ border: "none" }}
-                                onClick={handleShow}
-                              >
-                                Place a Bid
-                              </button>
-                            ) : (
-                              <ViewResult vehicle={vehicle} />
-                            )}
+                            <p>
+                              {t > 0 ? (
+                                <button
+                                  type="button"
+                                  className="gry_btn active bg-dark"
+                                  style={{ border: "none" }}
+                                  onClick={handleShow}
+                                >
+                                  Place a Bid
+                                </button>
+                              ) : (
+                                <ViewResult vehicle={vehicle} />
+                              )}
+                            </p>
                           </>
                         )}
                       </li>
