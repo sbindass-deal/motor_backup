@@ -65,18 +65,13 @@ const Data = ({ curElem, addFabrity }) => {
               }}
             >
               <li className="w-auto">
-                {curElem.currentAmount ? (
+                {curElem?.currentBid && curElem?.currentBid?.last_bid > 0 && (
                   <span>
-                    <label>Current&nbsp;Bid :</label>
-                    <span className="px-1">
-                      ${curElem.currentAmount.auctionAmmount}
-                    </span>
+                    <label>
+                      Current Bid : ${curElem?.currentBid?.last_bid}
+                    </label>
                   </span>
-                ) : curElem.documentFee ? (
-                  <span>
-                    <label>Current Bid : ${curElem.documentFee}</label>
-                  </span>
-                ) : null}
+                )}
               </li>
               <li>
                 <label>Ends In:</label>{" "}
