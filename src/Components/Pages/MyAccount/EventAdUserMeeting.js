@@ -1,22 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import AdminLeftNav from "./AdminLeftNav";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
-import ms from "ms";
+import MyAccountLeftNav from "./MyAccountLeftNav";
 
-
-const AddCreateMeeting = () => {
+function EventAdUserMeeting() {
   const navigate = useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
-  const [minDate, setMinDate] = useState(null);
-
 
   const handleContent = (e) => {
     setDescription(e);
@@ -60,9 +55,6 @@ const AddCreateMeeting = () => {
   console.log(889, file[0])
 
   const handleSubmit = async (e) => {
-
-    debugger;
-
     e.preventDefault()
     const url = `${process.env.REACT_APP_URL}AddEvent`;
 
@@ -75,8 +67,7 @@ const AddCreateMeeting = () => {
     formData.append('facebook', meetingDetail.facebooklink)
     formData.append('twitter', meetingDetail.twitterlink)
     formData.append('email', meetingDetail.emailid)
-    formData.append('status', 1)
-
+    formData.append('status', 0)
     formData.append(
       "description",
       draftToHtml(convertToRaw(description.getCurrentContent()))
@@ -85,11 +76,11 @@ const AddCreateMeeting = () => {
     formData.append("image", file[0]);
 
 
-
+    
 
     await axios.post(url, formData)
       .then(function (response) {
-        navigate('/admin-meeting')
+        navigate('/event')
         console.log(109, response);
       })
       .catch(function (error) {
@@ -104,36 +95,28 @@ const AddCreateMeeting = () => {
       facebooklink: "",
       twitterlink: "",
       emailid: "",
-      status: 1
+      status:0
 
     });
 
 
   }
 
-
-  useEffect(() => {
-    const minsec = ms("0d");
-    console.log("minsec", minsec);
-    const min_date = new Date(+new Date() - minsec);
-    setMinDate(moment(min_date).format("YYYY-MM-DD"));
-  }, []);
-
   return (
-    <>
+    <div>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-4 col-lg-3">
-              <div className="card_Gray mb-5 mb-md-0 divSticky">
-                <AdminLeftNav />
+            {/* <div className="col-12 col-md-4 col-lg-3">
+              <div className="card_Gray mb-5 mb-md-0">
+                <h5>My Account</h5>
+                <hr />
+                <MyAccountLeftNav />
               </div>
-            </div>
-
-            <div className="col-12 col-md-8 col-lg-9">
-              <h3>Create Events</h3>
-
-              <hr id="hr" />
+            </div> */}
+            <div className="">
+              <h3>Events</h3>
+              <hr />
               <form onSubmit={handleSubmit}>
                 <div class="row">
                   <div class="col-md-6">
@@ -150,7 +133,6 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
-                      min={minDate}
                       type="datetime-local"
                       class="form-control"
                       placeholder="First name"
@@ -162,8 +144,7 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      min={minDate}
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"
@@ -297,107 +278,8 @@ const AddCreateMeeting = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
-};
+}
 
-export default AddCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default EventAdUserMeeting;

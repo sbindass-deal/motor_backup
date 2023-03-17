@@ -37,15 +37,32 @@ const AddRaffle = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formData = new FormData()
+
+    formData.append('name', raffle.name)
+    formData.append('dealEndDate', raffle.dedline)
+    formData.append('price', raffle.price)
+    formData.append('description', raffle.desc)
+    formData.append('stock', raffle.stock)
+    formData.append('drawdate', raffle.dedline)
+    formData.append('image[]', [image])
+    // formData.append('lottery_id',)
+    // formData.append('id', vehicleId)
+
     axios
-      .post(`${process.env.REACT_APP_URL}addlotteryvehicle`, {
-        name: raffle.name,
-        dealEndDate: raffle.dedline,
-        price: raffle.price,
-        description: raffle.desc,
-        stock: raffle.stock,
-        drawdate: raffle.dedline,
-      })
+      .post(`${process.env.REACT_APP_URL}addlotteryvehicle`, formData
+
+        //   {
+
+
+        //   name: raffle.name,
+        //   dealEndDate: raffle.dedline,
+        //   price: raffle.price,
+        //   description: raffle.desc,
+        //   stock: raffle.stock,
+        //   drawdate: raffle.dedline,
+        // }
+      )
       .then(async (response) => {
         if (response.status === 200) {
           console.log("@@@@@@@@@@@", response.data)
@@ -58,12 +75,12 @@ const AddRaffle = () => {
         console.log(error);
       });
   };
-  
+
   const [image, setImage] = useState([])
 
   const uploadImage = async (vehicleId) => {
     const url = process.env.REACT_APP_URL + "lottery-image";
-    const formData = new FormData();              
+    const formData = new FormData();
     [...image]?.forEach((img) => formData.append("image", img))
     formData.append("vehicleId", vehicleId);
     const config = {
@@ -96,14 +113,16 @@ const AddRaffle = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if(file.size > maxAllowedSize){
+    if (file.size > maxAllowedSize) {
       alert("Video size must be less than 3 mb")
-      return 
+      return
     }
     setVideoSource(file);
     const url = URL.createObjectURL(file);
     setVideoBlob(url)
   };
+
+  console.log(8989, image)
 
   return (
     <div className="container">
@@ -229,9 +248,9 @@ const AddRaffle = () => {
                     src={videoBlob}
                   />
                 )}
-              
 
-              
+
+
               </div>
             </div>
             <div className="col-md-12 mb-3">

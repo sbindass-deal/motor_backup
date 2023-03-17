@@ -87,6 +87,7 @@ import EditCreateMeeting from "./Dashboard/EditCreateMeeting";
 import UserCreateMeeting from "./MyAccount/UserCreateMeeting";
 import AdUserMeeting from "./MyAccount/AdUserMeeting";
 import EditUserMeeting from "./MyAccount/EditUserMeeting";
+import EventAdUserMeeting from "./MyAccount/EventAdUserMeeting";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -113,6 +114,7 @@ const Layout = () => {
               <Route path="user-blog" element={<UserBlog />} />
               <Route path="add-user-blog" element={<AdUserBlog />} />
               <Route path="add-user-meeting" element={<AdUserMeeting />} />
+              <Route path="add-user-meeting-event" element={<EventAdUserMeeting />} />
               <Route path="edit-user-blog/:id" element={<EditUserBlog />} />
               <Route path="user-meeting" element={<UserCreateMeeting />} />
 
