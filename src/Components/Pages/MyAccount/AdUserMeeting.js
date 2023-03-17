@@ -115,7 +115,7 @@ function AdUserMeeting() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Create Event</h3>
+              <h3>Events</h3>
               <hr />
               <form onSubmit={handleSubmit}>
                 <div class="row">

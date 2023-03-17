@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 
-const DealerList = () => {
+const DealerList = ({handleDealerCount}) => {
   const [dealerData, setDealerData] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const DealerList = () => {
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
         setDealerData([...res.data.featured_dealer]);
+        handleDealerCount(res.data.featured_dealer.length)
       } catch (err) {
         console.log(err);
       }

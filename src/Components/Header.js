@@ -342,7 +342,7 @@ function Header() {
                               to="/auctionlive"
                               onClick={() => setShowNav(false)}
                             >
-                              Live now
+                              Live Now
                             </Link>
                           </div>
                         </div>
@@ -640,7 +640,7 @@ function Header() {
                           </Link>
                           <div className="dropdown-content">
                             <Link className="" to="/auctionlive">
-                              Live now
+                              Live Now
                             </Link>
                             <Link className="" to="/auctionfeature">
                               Feature
