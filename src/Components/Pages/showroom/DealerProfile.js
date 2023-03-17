@@ -87,8 +87,8 @@ const DealerProfile = () => {
                             <div className="galleryImgSect">
                               <img
                                 src={
-                                  curElem.logo &&
-                                  `${process.env.REACT_APP_URL}/${curElem.logo}`
+                                  curElem?.logo &&
+                                  `${process.env.REACT_APP_URL}/${curElem?.logo}`
                                 }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -145,7 +145,7 @@ const DealerProfile = () => {
                 className="slidImg"
                 src={
                   dealerData.image_logo &&
-                  `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0].logo}`
+                  `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
                 }
                 alt="aboutImg"
               />
