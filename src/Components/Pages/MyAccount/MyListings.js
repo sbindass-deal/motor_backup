@@ -2,12 +2,14 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { noImage } from "../../UI/globaleVar";
+import { getPlan, purchagedPlan } from "../../../redux/reducers/planReducer";
 
 function MyListings() {
+  const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
   const [data, setData] = useState([]);
@@ -18,8 +20,10 @@ function MyListings() {
   const [filterValue, setFilterValue] = useState("All");
   const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
+  const [availablePlan, setAvailablePlan] = useState([]);
 
   const handleClose = () => setShow(false);
+  const navigate = useNavigate();
   const handleShow = (id) => {
     setVehicleId(id);
     setShow(true);
@@ -34,7 +38,6 @@ function MyListings() {
             (item) => item.userId === res.data.data.id
           );
           // setData(filteredVehicle)
-          console.log(1111, filteredVehicle);
         }
       } catch (err) {
         console.log(err);
@@ -49,6 +52,7 @@ function MyListings() {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}byUserVehicle?veicleStatus=${filterValue}`
       );
+      console.log(9898, res);
       if (res.data.status === 200) {
         setData(res.data.data);
       }
@@ -92,6 +96,20 @@ function MyListings() {
       });
   };
 
+  useEffect(() => {
+    const fetchPurchagePlan = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {})
+        .then(function (response) {
+          setAvailablePlan(response.data.purchasePlan);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchPurchagePlan();
+  }, []);
+
   if (vehicleLoding) {
     return (
       <div
@@ -109,7 +127,7 @@ function MyListings() {
       </div>
     );
   }
-
+  // console.log(1111, logingUser.login.user.dealer);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -131,7 +149,7 @@ function MyListings() {
                   alignItems: "center",
                 }}
               >
-                <h3>My Listing</h3>
+                <h3>Listing</h3>
                 <ul>
                   <li className="">
                     <select
@@ -148,9 +166,24 @@ function MyListings() {
                     </select>
                   </li>
                 </ul>
-                <Link to="/submit" className="gry_btn px-3">
+
+                <button
+                  onClick={() => {
+                    dispatch(purchagedPlan(true));
+                    navigate(
+                      `${
+                        availablePlan.length > 0
+                          ? "/vechiles"
+                          : logingUser.login.user.dealer === "yes"
+                          ? "/dealer"
+                          : "/submit"
+                      }`
+                    );
+                  }}
+                  className="gry_btn px-3"
+                >
                   + Add new listing
-                </Link>
+                </button>
               </div>
               <hr />
               <div className="row">

@@ -18,6 +18,7 @@ const ShopDetails = () => {
   const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const [addButton , setAddButton] = useState(false)
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -30,28 +31,33 @@ const ShopDetails = () => {
       theme: "light",
     });
 
+
   useEffect(() => {
-    const fetchProduct = async () => {
+
       setLoading(true);
       try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}allproduct/${id}`
-        );
-        if (res.status === 200) {
-          setProduct(res.data.data);
-        }
+        axios.get(
+          `${process.env.REACT_APP_URL}allproduct`
+        ).then((d) => {
+          console.log(d?.data?.data?.map((d, i) => {
+            if (d?.id == id) {
+              setProduct(d);
+            }
+
+          }));
+        })
         setLoading(false);
       } catch (err) {
         console.log(err);
         setLoading(false);
       }
-    };
-    fetchProduct();
+
   }, [id]);
 
   const handleProduct = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));
     notify("Added to cart.");
+    setAddButton(true)
   };
   const contentStyle = {
     maxHeight: "60vh",
@@ -72,14 +78,10 @@ const ShopDetails = () => {
         ) : (
           <div className="row">
             <div className="col-md-6 sliderSec ">
-              {/* <img
-                src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
-                alt={product.title}
-              /> */}
               <Carousel autoplay>
                 <div>
                   <img
-                    src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
+                    src={`${process.env.REACT_APP_URL}upload/products/${product?.image}`}
                     alt={product.title}
                     style={contentStyle}
                     className="img-fluid"
@@ -120,7 +122,7 @@ const ShopDetails = () => {
                 <div className="size">Size: {product.size}</div>
               </div>
               <p className="product_dec">Stock: {product.stocks}</p>
-              <button onClick={handleProduct} type="button" className="btn">
+              <button onClick={handleProduct} type="button" className="btn" disabled ={addButton}>
                 Add to Cart
               </button>
             </div>

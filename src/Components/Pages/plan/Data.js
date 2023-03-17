@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../../redux/reducers/planReducer";
 
-const Data = ({ curElem }) => {
+const Data = ({ curElem, purchagedPlan }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [planName, setPlanName] = useState("");
@@ -79,40 +79,75 @@ const Data = ({ curElem }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          <div className="plan_cardFooter">
-            <button
-              onClick={() => {
-                console.log(1111, curElem);
-                handleSubmit({
-                  planId: curElem.id,
-                  listingType: `${
-                    planType && planName === curElem.plan_name
-                      ? "annual"
-                      : "monthly"
-                  }`,
-                  name: curElem.plan_name,
-                  price: `${
-                    planType && planName === curElem.plan_name
-                      ? curElem.annual_price
-                      : curElem.monthly_price
-                  }`,
-                  desc: `${
-                    planType && planName === curElem.plan_name
-                      ? curElem.annual_description
-                      : curElem.monthly_description
-                  }`,
-                  playQuantity: `${
-                    planType && planName === curElem.plan_name
-                      ? curElem.annual_listing
-                      : curElem.monthly_listing
-                  }`,
-                });
-              }}
-              className="gry_btn"
-            >
-              SUBMIT VEHICLE
-            </button>
-          </div>
+          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
+            <div className="plan_cardFooter">
+              <button
+                onClick={() => {
+                  handleSubmit({
+                    planId: curElem.id,
+                    listingType: `${
+                      planType && planName === curElem.plan_name
+                        ? "annual"
+                        : "monthly"
+                    }`,
+                    name: curElem.plan_name,
+                    price: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_price
+                        : curElem.monthly_price
+                    }`,
+                    desc: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_description
+                        : curElem.monthly_description
+                    }`,
+                    playQuantity: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_listing
+                        : curElem.monthly_listing
+                    }`,
+                  });
+                }}
+                className="gry_btn"
+              >
+                SUBMIT VEHICLE
+              </button>
+            </div>
+          ) : (
+            <div className="plan_cardFooter">
+              <button
+                onClick={() => {
+                  handleSubmit({
+                    planId: curElem.id,
+                    listingType: `${
+                      planType && planName === curElem.plan_name
+                        ? "annual"
+                        : "monthly"
+                    }`,
+                    name: curElem.plan_name,
+                    price: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_price
+                        : curElem.monthly_price
+                    }`,
+                    desc: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_description
+                        : curElem.monthly_description
+                    }`,
+                    playQuantity: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_listing
+                        : curElem.monthly_listing
+                    }`,
+                  });
+                }}
+                className="gry_btn"
+              >
+                UPGRADE PLAN
+              </button>
+            </div>
+          )}
         </div>
 
         <Link to="/works" className="works_btn HIW_BTN">

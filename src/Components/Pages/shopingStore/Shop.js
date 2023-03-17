@@ -72,7 +72,7 @@ const Shop = () => {
                       key={curElem.id}
                       id={curElem.id}
                       price={curElem.price}
-                      image={curElem.image}
+                      images={curElem.images}
                       title={curElem.title}
                       curElem={curElem}
                     />

@@ -20,7 +20,7 @@ const EditCreateMeeting = () => {
 const navigate=  useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
-
+  const [file1, setFile1] = useState([]);
   const handleContent = (e) => {
     setDescription(e);
     console.log(111, e);
@@ -54,7 +54,7 @@ const navigate=  useNavigate()
           `${process.env.REACT_APP_URL}getEventBYId/${id}`
         );
 
-        console.log(989, res)
+        console.log(989, res.data.data)
         if (res.data.status === 200 && res.data.data) {
           setMeetingDetail({
             title: res.data.data.title, 
@@ -65,6 +65,7 @@ const navigate=  useNavigate()
             twitterlink: res.data.data.twitter,
             emailid: res.data.data.email,
           });
+          setFile1(res.data.data.image)
           // setBlogDataById(res.data.data);
           setDescription(
             EditorState.createWithContent(
@@ -119,13 +120,8 @@ const navigate=  useNavigate()
     formData.append("image", file[0]);
 
 
-    const config = {
-      headers: {
-        Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
-      },
-    };
-  
-    await axios.post(url, formData, config)
+    
+    await axios.post(url, formData)
       .then(function (response) {
         navigate("/admin-meeting");
         console.log(109,response);
@@ -147,6 +143,8 @@ const navigate=  useNavigate()
 
 
   }
+
+  console.log(8989, meetingDetail.startdate)
    
   return (
     <>
@@ -179,7 +177,7 @@ const navigate=  useNavigate()
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="startdate"
@@ -190,7 +188,7 @@ const navigate=  useNavigate()
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"
@@ -267,7 +265,19 @@ const navigate=  useNavigate()
                   </div>
                   <div className="col-12 col-md-12">
                     <label>Upload Photos</label>
+
+
                     <div className="row">
+                      {file && file.length <= 0 &&
+                        
+                        <img style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }} src={`https://api.gasguzzlrs.com/upload/event/${file1}`} alt="" />
+}
+
                       {Array.from(file).map((items) => {
                         return (
                           <span>

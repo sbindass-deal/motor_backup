@@ -1,144 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import AdminLeftNav from "./AdminLeftNav";
-// import axios from "axios";
-// import parse from "html-react-parser";
-
-
-// const AddCreateMeeting = () => {
-//   // const [dealerData, setDealerData] = useState([]);
-//   // const [loading, setLoading] = useState(true);
-
-//   // useEffect(() => {
-//   //   const fetchDealer = async () => {
-//   //     try {
-//   //       const res = await axios.get(
-//   //         `${process.env.REACT_APP_URL}get_all_dealers`
-//   //       );
-//   //       setDealerData([...res.data.featured_dealer]);
-//   //       setLoading(false);
-//   //     } catch (err) {
-//   //       console.log(err);
-//   //     }
-//   //   };
-//   //   fetchDealer();
-//   // }, []);
-
-//   // const handleDelete = async (id) => {
-//   //   try {
-//   //     const res = await axios.get(
-//   //       `${process.env.REACT_APP_URL}destroy_dealer_featured/${id}`
-//   //     );
-//   //     if (res.data.status === 200) {
-//   //       window.location.reload(false);
-//   //     }
-//   //   } catch (err) {
-//   //     console.log(err);
-//   //   }
-//   // };
-
-//   return (
-//     <>
-//       <div>
-//         <section className="ptb_80 pt_sm_50">
-//           <div className="container">
-//             <div className="row">
-//               <div className="col-12 col-md-4 col-lg-3">
-//                 <div className="card_Gray mb-5 mb-md-0 divSticky">
-//                   <AdminLeftNav />
-//                 </div>
-//               </div>
-
-//               <div className="col-12 col-md-8 col-lg-9">
-//                 <div
-//                   className="d-flex"
-//                   id="widthChnge"
-//                   style={{ justifyContent: "space-between" }}
-//                 >
-//                   <h3>Dealer List </h3>
-
-//                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
-//                     Add Dealer
-//                   </Link>
-//                 </div>
-
-//                 <hr id="hr" />
-//                 <div
-//                   class="card_Gray table-responsive vehicleSub"
-//                   id="scrollable"
-//                 >
-                  
-//                     <table class="table table-striped">
-//                       <thead>
-//                         <tr>
-//                           <th scope="col">Sr.No</th>
-//                           <th scope="col">Image</th>
-
-//                           <th scope="col">Name</th>
-//                           <th scope="col">Description </th>
-//                           <th scope="col">Action</th>
-//                         </tr>
-//                       </thead>
-//                       <tbody>
-                        
-                          
-//                               <tr key={"curElem.id"}>
-//                                 <td>{1}</td>
-//                                 <td>
-//                                   <img src="" alt="" />
-//                                 </td>
-//                                 <td>{"curElem?.name"}</td>
-//                                 <td>
-//                                   {9}
-//                                 </td>
-
-//                                 <td className="">
-//                                   <div
-//                                     // onClick={() => handleDelete(curElem.id)}
-//                                     className="p-2"
-//                                     style={{ cursor: "pointer" }}
-//                                   >
-//                                     <i class="fa-solid fa-trash-can"></i>
-//                                   </div>
-//                                 </td>
-//                               </tr>
-                            
-                        
-//                       </tbody>
-//                     </table>
-                  
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default AddCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
@@ -195,7 +54,10 @@ const AddCreateMeeting = () => {
 
   console.log(889,file[0])
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
+    
+    debugger;
+
     e.preventDefault()
     const url = `${process.env.REACT_APP_URL}AddEvent`;
 
@@ -208,6 +70,8 @@ const AddCreateMeeting = () => {
     formData.append('facebook', meetingDetail.facebooklink)
     formData.append('twitter', meetingDetail.twitterlink)
     formData.append('email', meetingDetail.emailid)
+    formData.append('status', 1)
+
     formData.append(
       "description",
       draftToHtml(convertToRaw(description.getCurrentContent()))
@@ -216,13 +80,9 @@ const AddCreateMeeting = () => {
     formData.append("image", file[0]);
 
 
-    const config = {
-      headers: {
-        Authorization: "eyJpdiI6IngrZ1AreGVkSFRlUHJjQTc2WjM4U2c9PSIsInZhbHVlIjoiS0lQa2g3UnY4UzJDZU5IN3VlYi9tZ00rNDFXY05oM01mMnMzbmZqVGthMD0iLCJtYWMiOiIzZDgyNjI4MmI5NDJkZjE2YzYxYjcxMjcyOTgxZGZlZWNjODBjYjFlYWY1NjA3YWNmNjE0MGIwMTY3MDc3MThmIiwidGFnIjoiIn0=",
-      },
-    };
+    
   
-    await axios.post(url, formData, config)
+    await axios.post(url, formData)
       .then(function (response) {
         navigate('/admin-meeting')
         console.log(109,response);
@@ -239,6 +99,7 @@ const AddCreateMeeting = () => {
       facebooklink: "",
       twitterlink: "",
       emailid: "",
+      status:1
       
     });
 
@@ -276,7 +137,7 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="startdate"
@@ -287,7 +148,7 @@ const AddCreateMeeting = () => {
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"

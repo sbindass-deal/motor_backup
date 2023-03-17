@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 
 function ClassifiedAddList() {
   const [userInfo, setUserinfo] = useState({});
@@ -84,10 +87,11 @@ function ClassifiedAddList() {
                       <div key={curElem.id} class="col-12 col-md-6 pb-3">
                         <div class="card_post box_shadow_common">
                           <div class="card_postImg">
-                            <a
-                              target="_blank"
-                              rel="noopener"
-                              href={curElem.externalLink}
+                            <Link
+                              to={`/detail/${curElem.id}`}
+                              // target="_blank"
+                              // rel="noopener"
+                              // href={curElem.externalLink}
                               className="card_postImg card_postImg_200"
                             >
                               {curElem.stepOneImage ? (
@@ -111,7 +115,7 @@ function ClassifiedAddList() {
                                   alt="Maskgroup1"
                                 />
                               )}
-                            </a>
+                            </Link>
                           </div>
                           <div class="card_postInfo">
                             <h4 className="auction_heading header_size">
@@ -126,11 +130,12 @@ function ClassifiedAddList() {
 
                             <ul class="labelList ">
                               <li>
-                                <label className="color_grey normal_font">
-                                  Description:
-                                </label>{" "}
                                 <span className="color_grey normal_font">
-                                  {curElem.moreDescription}
+                                  {curElem?.moreDescription &&
+                                    parse(
+                                      curElem?.moreDescription?.substr(0, 300),
+                                      strToHtml
+                                    )}
                                 </span>
                               </li>
                             </ul>

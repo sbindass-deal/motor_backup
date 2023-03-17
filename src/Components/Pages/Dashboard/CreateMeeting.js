@@ -14,10 +14,10 @@ const CreateMeeting = () => {
     const fetchMeetingDetail = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}getAllEvent`
+          `${process.env.REACT_APP_URL}admin/getEvent`
         );
         console.log(7676, res.data.data.allevent)
-        setMeetingData(res.data.data.allevent);
+        setMeetingData(res.data.data);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -40,6 +40,26 @@ const CreateMeeting = () => {
   };
 
 
+  const VechilesApprove = (id, dis) => {
+    debugger
+    axios
+      .post(`${process.env.REACT_APP_URL}approveEvent`, {
+        id: id,
+        status: dis,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          console.log(798989, response)
+          // fetchUserVehicleListApi(filterValue);
+          window.location.reload(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+
   return (
     <>
       <div>
@@ -58,10 +78,10 @@ const CreateMeeting = () => {
                   id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Create Meeting </h3>
+                  <h3>Create Events</h3>
 
                   <Link to="/admin-add-meeting/add-meeting" className="orange_btn">
-                    Add New Meeting
+                    Add Create Event
                   </Link>
                 </div>
 
@@ -126,6 +146,78 @@ const CreateMeeting = () => {
                                 </Link>
                                 <button onClick={() => handleDelete(curVal.id)}>Delete</button>
                               </td>
+                              <div className="pl-md-3 d-flex">
+                                {/* {curVal?.status == "1" ? (
+                                  <button
+                                    onClick={() => VechilesApprove(curVal.id, 0)}
+                                    className="gry_btn mr-2"
+                                  >
+                                    Disapprove
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => VechilesApprove(curVal.id, 1)}
+                                    className="gry_btn mr-2"
+                                  >
+                                    Approve
+                                  </button>
+                                )
+
+                                } */}
+
+                                {
+                                  curVal?.status == "0" && (
+                                    <>
+                                    <button
+                                      onClick={() => VechilesApprove(curVal.id, 1)}
+                                      className="gry_btn mr-2"
+                                    >
+                                        Approve
+                                    </button>
+                                     <button
+                                    onClick={() => VechilesApprove(curVal.id, 3)}
+                                    className="gry_btn mr-2"
+                                  >
+                                        Reject
+                                      </button>
+                                    </>
+                                  )
+                                }
+
+                                {
+                                  curVal.status == "1" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id, 1)}
+                                      className=""
+                                    >
+                                      Approved
+                                    </p>
+                                  )
+                                }
+                                {
+                                  curVal.status == "2" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id, 1)}
+                                      className=""
+                                    >
+                                      Published
+                                    </p>
+                                  )
+                                }
+                                {
+                                  curVal.status == "3" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id, 1)}
+                                      className=""
+                                    >
+                                      Rejected
+                                    </p>
+                                  )
+                                }
+
+
+
+                              </div>
                             </tr>
                           })
                         }

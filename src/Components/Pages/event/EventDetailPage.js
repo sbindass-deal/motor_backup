@@ -8,6 +8,8 @@ import parse from "html-react-parser";
 const EventDetailPage = () => {
     const { id } = useParams()
     const [getEventdata, setGetEventdata]=useState([])
+    const [getRecentEventdata, setRecentGetEventdata]=useState([])
+    const [getUpcomingEventdata, setUpcomingGetEventdata]=useState([])
     const handleSubmit = (e) => {
         e.preventDefault()
     }
@@ -19,13 +21,18 @@ const EventDetailPage = () => {
                     `${process.env.REACT_APP_URL}getEventBYId/${id}`
                 );
                 setGetEventdata(res.data.data)
-                console.log(56565,res.data.data)
+                setUpcomingGetEventdata(res.data.data.upcommingEvents)
+                setRecentGetEventdata(res.data.data.recentEvents)
+                console.log(56565, res.data.data)
+                console.log(56565,'r' ,res.data.data.recentEvents)
+                console.log(56565, 'u', res.data.data.upcommingEvents)
             } catch (err) {
                 console.log(err);
             }
         };
         fetchMeeting();
     }, []);
+
 
 
     return (
@@ -162,10 +169,50 @@ const EventDetailPage = () => {
             <div className="row">
                 <div className="col-md-7 p-4"></div>
                 <div className="col-md-3 topmargin">
-                    <h6 className='textHeading'>Recent Shibnobi Features</h6>
+                    <h6 className='textHeading'>Recent Event</h6>
+                    {
+                        getRecentEventdata.map((curVal) => {
+                            console.log(787989, curVal)
+                            return <p className='imagepart '>
+                                <p>
+                                    <img width={200} src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" />
+                                    <p>{curVal.description && parse(
+                                        curVal.description,
+                                        strToHtml
+                                    )}</p>
+                                    <p>
+                                        <span >Start Date : {curVal.start_date}</span> - <span >End Date : {curVal.end_date}</span>	
+                                    </p>
+                                </p>
+
+                            </p>
+                        })
+}
+                    
+                    {/* <p className='imagepart'>
+                      <p>
+                                    <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/06/Site-Header-85994.png?resize=235%2C159" alt="" />
+                                    <p>New Make and Model Pages</p>
+                                </p>
+                    
+                    </p> */}
+                    {/* <p className='imagepart'>
+                      <p>
+                                    <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/06/Site-Header-85994.png?resize=235%2C159" alt="" />
+                                    <p>New Make and Model Pages</p>
+                                </p>
+            
+
+
+                        <p>
+                            <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/06/Site-Header-85994.png?resize=235%2C159" alt="" />
+                            <p>New Make and Model Pages</p>
+                        </p>
+                    
+                    </p> */}
 
                     
-                    <p className='imagepart'>
+                    {/* <p className='imagepart'>
                         <p>
                             <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/06/Site-Header-85994.png?resize=235%2C159" alt="" />
                             <p>New Make and Model Pages</p>
@@ -194,90 +241,97 @@ const EventDetailPage = () => {
                             <img width={120} src="https://bringatrailer.com/wp-content/uploads/2023/04/Screen-Shot-2023-02-22-at-3.12.38-PM-07690-e1677107728372.png?resize=235%2C159" alt="" />
                             <p>Shibnobi Auction Success Story: <br /> This Prewar Pickup is a Shibnobi Hat Trick</p>
                         </p>
-                    </p>
+                    </p> */}
 
                     <div ><h5 class="widget-title">Upcoming Events</h5>
-                        <ol >
-                            <li >
+                        {
+                            getUpcomingEventdata.map((curVal) => {
+                                console.log(888, curVal)
+                                return <ol >
+                                    <li >
 
 
 
-                                <span >
-                                    WRC Guanajuato Rally México					</span>
-
-
-
-
-
-                                <div >
-                                    <span >March 16</span> - <span >19, 2023</span>					</div>
-
-                                <hr />
-                            </li>
-                            <li >
-
-                                <span >
-                                    Rally In The 100 Acre Wood					</span>
+                                        <span >
+                                            {curVal.title}				</span>
 
 
 
 
 
-                                <div >
-                                    <span >March 17</span> - <span >18, 2023</span>					</div>
+                                        <div >
+                                            <span >Start Date : {curVal.start_date}</span> - <span >End Date : {curVal.end_date}</span>					</div>
 
+                                        <hr />
+                                    </li>
+                                    {/* <li >
 
-                            </li>
-                            <hr />
-                            <li >
-
-                                <span >
-                                    2023 SVRA Road Atlanta Speedtour					</span>
-
-
-
-                                <div >
-                                    <span >March 23</span> - <span >26, 2023</span>					</div>
-
-
-                            </li>
-                            <hr />
-                            <li >
-
-                                <span >
-                                    AACA Southeastern Spring Nationals					</span>
-
-
-
-
-                                <div >
-                                    <span >April 13</span> - <span >15, 2023</span>					</div>
-
-                            </li>
-                            <hr />
-                            <li >
-
-                                <span >
-                                    Copperstate 1000					</span>
+                                        <span >
+                                            Rally In The 100 Acre Wood					</span>
 
 
 
 
 
-                                <div >
-                                    <span >April 15</span> - <span >19, 2023</span>					</div>
+                                        <div >
+                                            <span >March 17</span> - <span >18, 2023</span>					</div>
 
 
-                            </li>
-                            <hr />
-                        </ol>
+                                    </li>
+                                    <hr />
+                                    <li >
+
+                                        <span >
+                                            2023 SVRA Road Atlanta Speedtour					</span>
+
+
+
+                                        <div >
+                                            <span >March 23</span> - <span >26, 2023</span>					</div>
+
+
+                                    </li>
+                                    <hr />
+                                    <li >
+
+                                        <span >
+                                            AACA Southeastern Spring Nationals					</span>
+
+
+
+
+                                        <div >
+                                            <span >April 13</span> - <span >15, 2023</span>					</div>
+
+                                    </li>
+                                    <hr />
+                                    <li >
+
+                                        <span >
+                                            Copperstate 1000					</span>
+
+
+
+
+
+                                        <div >
+                                            <span >April 15</span> - <span >19, 2023</span>					</div>
+
+
+                                    </li>
+                                    <hr /> */}
+                                </ol>
+                            })
+                        }
+
+                       
 
                     </div>
 
 
 
 
-                    <div ><h5 >Current Shibnobi Auctions</h5>
+                    {/* <div ><h5 >Current Shibnobi Auctions</h5>
 
                         <div class="current-auctions group">
 
@@ -485,7 +539,7 @@ const EventDetailPage = () => {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
 
             </div>
