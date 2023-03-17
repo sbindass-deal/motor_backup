@@ -19,7 +19,7 @@ function UserCreateMeeting() {
     const fetchMeetingDetail = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}getAllEvent`
+          `${process.env.REACT_APP_URL}admin/getEvent`
         );
         console.log(7676, res.data.data)
         setMeetingData(res.data.data);
@@ -81,9 +81,9 @@ function UserCreateMeeting() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>Create Event</h3>
+                <h3>Events</h3>
 
-                <ul>
+                {/* <ul>
                   <li className="">
                     <select
                       value={filterValue}
@@ -96,7 +96,7 @@ function UserCreateMeeting() {
                       <option value="REVIEWD_BY_ADMIN">Approve</option>
                       <option value="PENDING_ADMIN_APPROVAL">Pending</option> </select>
                   </li>
-                </ul>
+                </ul> */}
 
                 <Link to="/add-user-meeting" className="orange_btn">
                   Add Create Event

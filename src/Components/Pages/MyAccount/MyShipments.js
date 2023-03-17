@@ -18,7 +18,7 @@ function MyShipments() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>My Shipments</h3>
+              <h3>Shipments</h3>
               <hr />
 
               <div className="row">

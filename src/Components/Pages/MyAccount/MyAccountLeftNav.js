@@ -57,7 +57,7 @@ function MyAccountLeftNav() {
             className={`${location.pathname === "/user-blog" ? "active" : ""}`}
             to="/user-blog"
           >
-            Blog
+            Blogs
           </Link>
         </li>
         <li>
@@ -65,7 +65,7 @@ function MyAccountLeftNav() {
             className={`${location.pathname === "/user-meeting" ? "active" : ""}`}
             to="/user-meeting"
           >
-            Create Event
+          Events
           </Link>
         </li>
       </ul>

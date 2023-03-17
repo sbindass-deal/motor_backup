@@ -149,7 +149,7 @@ function MyListings() {
                   alignItems: "center",
                 }}
               >
-                <h3>Listing</h3>
+                <h3>Listings</h3>
                 <ul>
                   <li className="">
                     <select

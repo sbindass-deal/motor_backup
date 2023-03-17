@@ -158,7 +158,7 @@ const navigate=  useNavigate()
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Create Events</h3>
+              <h3>Edit Event</h3>
 
               <hr id="hr" />
               <form onSubmit={handleSubmit}>
