@@ -229,7 +229,7 @@ function Detail() {
                   <div className="titleRight">
                     <ul className="labelList">
                       <li>
-                        <label>Current bid:</label>{" "}
+                        <label>Current Bid:</label>{" "}
                         <span>
                           $
                           {vehicle?.currentBid &&
@@ -283,7 +283,7 @@ function Detail() {
                             style={{ border: "none" }}
                             onClick={handleShow}
                           >
-                            Place a bid
+                            Place a Bid
                           </button>
                         ) : (
                           <ViewResult vehicle={vehicle} />
@@ -452,7 +452,7 @@ function Detail() {
                                 style={{ border: "none" }}
                                 onClick={handleShow}
                               >
-                                Place a bid
+                                Place a Bid
                               </button>
                             ) : (
                               <ViewResult vehicle={vehicle} />
@@ -486,7 +486,7 @@ function Detail() {
           <div className="modal-content">
             <div className="modal-header border-0">
               <h4 className="modal-title" style={{ border: "none" }}>
-                Place a bid
+                Place a Bid
               </h4>
               <button
                 onClick={handleClose}
