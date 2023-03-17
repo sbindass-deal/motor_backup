@@ -101,7 +101,8 @@ function MyListings() {
       axios
         .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {})
         .then(function (response) {
-          setAvailablePlan(response.data.purchasePlan);
+          setAvailablePlan([...response.data.purchasePlan]);
+          console.log(111, "kldfsklf");
         })
         .catch(function (error) {
           console.log(error);
@@ -169,7 +170,6 @@ function MyListings() {
 
                 <button
                   onClick={() => {
-                    dispatch(purchagedPlan(true));
                     navigate(
                       `${
                         availablePlan.length > 0
@@ -179,6 +179,7 @@ function MyListings() {
                           : "/submit"
                       }`
                     );
+                    dispatch(purchagedPlan(true));
                   }}
                   className="gry_btn px-3"
                 >

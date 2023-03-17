@@ -228,16 +228,18 @@ function Detail() {
                   </h2>
                   <div className="titleRight">
                     <ul className="labelList">
-                      <li>
-                        <label>Current Bid:</label>{" "}
-                        <span>
-                          $
-                          {vehicle?.currentBid &&
-                          vehicle?.currentBid?.last_bid > 0
-                            ? toCommas(vehicle?.currentBid?.last_bid)
-                            : 0}
-                        </span>
-                      </li>
+                      {vehicle.displayInAuction !== "classified" && (
+                        <li>
+                          <label>Current bid:</label>{" "}
+                          <span>
+                            $
+                            {vehicle?.currentBid &&
+                            vehicle?.currentBid?.last_bid > 0
+                              ? toCommas(vehicle?.currentBid?.last_bid)
+                              : 0}
+                          </span>
+                        </li>
+                      )}
                       <li
                         onClick={handleCommentRef}
                         style={{ cursor: "pointer" }}
@@ -401,9 +403,9 @@ function Detail() {
                     <h3 class="cardTitle">Bid On This Listing</h3>
 
                     <ul className="bidOnThis">
-                      <li >
+                      <li>
                         <p>Current Bid</p>
-                        <p >
+                        <p>
                           $
                           {vehicle?.currentBid &&
                           vehicle?.currentBid?.last_bid > 0
@@ -413,7 +415,7 @@ function Detail() {
                       </li>
                       <li>
                         <p>Time Left</p>
-                        <p >
+                        <p>
                           {t > 0 ? (
                             <span>
                               <label>Ends In:&nbsp;</label>
@@ -427,11 +429,9 @@ function Detail() {
                           )}
                         </p>
                       </li>
-                      <li >
+                      <li>
                         <p>Bids</p>
-                        <p >
-                          -{vehicle?.currentBid?.total_bid}
-                        </p>
+                        <p>-{vehicle?.currentBid?.total_bid}</p>
                       </li>
                       <li>
                         <p>Place Bid</p>
@@ -445,20 +445,19 @@ function Detail() {
                           </button>
                         ) : (
                           <>
-                          <p>
-                            {t > 0 ? (
-                              
-                              <button
-                                type="button"
-                                className="gry_btn active bg-dark"
-                                style={{ border: "none" }}
-                                onClick={handleShow}
-                              >
-                                Place a Bid
-                              </button>
-                            ) : (
-                              <ViewResult vehicle={vehicle} />
-                            )}
+                            <p>
+                              {t > 0 ? (
+                                <button
+                                  type="button"
+                                  className="gry_btn active bg-dark"
+                                  style={{ border: "none" }}
+                                  onClick={handleShow}
+                                >
+                                  Place a Bid
+                                </button>
+                              ) : (
+                                <ViewResult vehicle={vehicle} />
+                              )}
                             </p>
                           </>
                         )}

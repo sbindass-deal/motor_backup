@@ -236,7 +236,7 @@ function Header() {
                                   </Link>
                                 </li>
                               )}
-                            {logingUser.login.token &&
+                            {/* {logingUser.login.token &&
                               !logingUser.login.admin && (
                                 <li className="nav-item">
                                   <Link
@@ -250,7 +250,7 @@ function Header() {
                                     My Orders
                                   </Link>
                                 </li>
-                              )}
+                              )} */}
                           </div>
                         </div>
                       </li>
@@ -542,7 +542,7 @@ function Header() {
                               </Link>
                             </li>
                           )}
-                          {logingUser.login.token &&
+                          {/* {logingUser.login.token &&
                             !logingUser.login.admin && (
                               <li className="nav-item">
                                 <Link
@@ -555,7 +555,7 @@ function Header() {
                                   My Orders
                                 </Link>
                               </li>
-                            )}
+                            )} */}
                         </div>
                       </div>
                     </li>

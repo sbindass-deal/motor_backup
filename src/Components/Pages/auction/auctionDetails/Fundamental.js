@@ -16,14 +16,17 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
           </a>
         </div>
         <ul className="listFund">
-        <li>
-        Private Party or Dealer: <span>{vehicle.dealerId ? "Dealer " : "Private Party"}</span>
+          <li>
+            Private Party or Dealer:{" "}
+            <span>{vehicle.dealerId ? "Dealer " : "Private Party"}</span>
           </li>
           <li>
-            Location: {" "}
+            Location:{" "}
             <span>
-              <a href={`https://www.google.com/maps/place/${vehicle.country_name},${vehicle.city}`}>
-              {vehicle.country_name} , {vehicle.city}
+              <a
+                href={`https://www.google.com/maps/place/${vehicle.country_name},${vehicle.city}`}
+              >
+                {vehicle.country_name} , {vehicle.city}
               </a>
             </span>
           </li>
@@ -37,8 +40,13 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
             Miles: <span>{vehicle.odmeter} Miles Shown, TMU</span>
           </li>
           <li>
-            Engine :<span>{vehicle.fuel}</span>
+            Engine : <span>{vehicle.fuel}</span>
           </li>
+          {vehicle.displayInAuction === "classified" && (
+            <li>
+              Document fee : <span>{vehicle.documentFee}</span>
+            </li>
+          )}
           {/* <li>
             Transmission: <span>#NA</span>
           </li> */}
