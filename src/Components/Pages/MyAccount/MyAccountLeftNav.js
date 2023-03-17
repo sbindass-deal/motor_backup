@@ -62,10 +62,22 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={`${location.pathname === "/user-meeting" ? "active" : ""}`}
+            className={`${
+              location.pathname === "/user-meeting" ? "active" : ""
+            }`}
             to="/user-meeting"
           >
             Create Event
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/orders-cart" && "navActive"
+            }`}
+            to="/orders-cart"
+          >
+            My Orders
           </Link>
         </li>
       </ul>
