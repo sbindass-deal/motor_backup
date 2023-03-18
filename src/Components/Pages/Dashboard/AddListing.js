@@ -1,7 +1,7 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import FormInput from '../../UI/FormInput'
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FormInput from "../../UI/FormInput";
 
 const AddListing = () => {
   const [addListing, setAddListing] = useState({
@@ -9,15 +9,15 @@ const AddListing = () => {
     singleprice: "",
     fivesingleprice: "",
     description: "",
-      category :"",
-     monthlyListing :"",
-     annualListing :"",
-     annualDescription :"",
-  })
-  const navigate = useNavigate()
+    category: "",
+    monthlyListing: "",
+    annualListing: "",
+    annualDescription: "",
+  });
+  const navigate = useNavigate();
   const handleChange = (e) => {
-    setAddListing((pre) => ({ ...pre, [e.target.name]: e.target.value }))
-  }
+    setAddListing((pre) => ({ ...pre, [e.target.name]: e.target.value }));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -30,31 +30,28 @@ const AddListing = () => {
         monthly_listing: addListing.monthlyListing,
         annual_listing: addListing.annualListing,
         annual_description: addListing.annualDescription,
-
       })
       .then((response) => {
         if (response.status === 200) {
-          navigate('/admin/vehicle-listing')
+          navigate("/admin/vehicle-listing");
         }
       })
       .catch((error) => {
         console.log(error);
       });
 
-    console.log("####", addListing)
-  }
-
-
-
-
+    console.log("####", addListing);
+  };
 
   return (
     <div className="container mt-3 d-flex justify-content-center">
-      <div className="col-6">
+      <div className="">
         <form onSubmit={handleSubmit} className="p-md-5">
-          <h3><u>Add Listing Details</u></h3>
+          <h3 className="pb-4 text-center">
+            <span>Add Listing Details</span>
+          </h3>
           <div className="row row_gap_5">
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -62,15 +59,15 @@ const AddListing = () => {
                   onChange={handleChange}
                   name="name"
                   className="field"
-                  placeholder="name"
+                  placeholder="Name"
                   //   pattern="^[a-z A-Z]$"
-                  label="name"
-                //   errorMessage="use only numbers($)"
-                //   required={true}
+                  label="Name"
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
                 />
               </div>
             </div>
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
                   value={addListing.category}
@@ -79,16 +76,15 @@ const AddListing = () => {
                   className="field"
                   label="Category"
                   placeholder="Category"
-                //   pattern="^[0-9]$"
+                  //   pattern="^[0-9]$"
 
-                //   errorMessage="use only alphabet no special character"
-                //   required={true}
+                  //   errorMessage="use only alphabet no special character"
+                  //   required={true}
                 />
               </div>
             </div>
 
-
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -99,15 +95,13 @@ const AddListing = () => {
                   placeholder="Monthly Listing"
                   //   pattern="^[0-9]$"
                   label="Monthly Listing"
-                //   errorMessage="use only numbers($)"
-                //   required={true}
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
                 />
               </div>
             </div>
 
-
-
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
                   value={addListing.singleprice}
@@ -116,23 +110,15 @@ const AddListing = () => {
                   className="field"
                   label="Monthly Price"
                   placeholder="Monthly Price"
-                //   pattern="^[0-9]$"
+                  //   pattern="^[0-9]$"
 
-                //   errorMessage="use only alphabet no special character"
-                //   required={true}
+                  //   errorMessage="use only alphabet no special character"
+                  //   required={true}
                 />
               </div>
             </div>
 
-
-
-
-
-
-
-
-
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
                   type="text"
@@ -143,13 +129,28 @@ const AddListing = () => {
                   placeholder="Annual Price"
                   //   pattern="^[0-9]$"
                   label="Annual Price"
-                //   errorMessage="use only numbers($)"
-                //   required={true}
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
                 />
               </div>
             </div>
 
-
+            <div className="col-12 col-md-6">
+              <div className="form-group">
+                <FormInput
+                  type="text"
+                  value={addListing.annualListing}
+                  onChange={handleChange}
+                  name="annualListing"
+                  className="field"
+                  placeholder="Annual Listing"
+                  //   pattern="^[0-9]$"
+                  label="Annual Listing"
+                  //   errorMessage="use only numbers($)"
+                  //   required={true}
+                />
+              </div>
+            </div>
 
             <div className="col-12 col-md-12">
               <label>Monthly Description</label>
@@ -166,24 +167,6 @@ const AddListing = () => {
             </div>
 
             <div className="col-12 col-md-12">
-              <div className="form-group">
-                <FormInput
-                  type="text"
-                  value={addListing.annualListing}
-                  onChange={handleChange}
-                  name="annualListing"
-                  className="field"
-                  placeholder="Annual Listing"
-                  //   pattern="^[0-9]$"
-                  label="Annual Listing"
-                //   errorMessage="use only numbers($)"
-                //   required={true}
-                />
-              </div>
-            </div>
-
-
-            <div className="col-12 col-md-12">
               <label>Annual Description</label>
               <div className="form-group">
                 <textarea
@@ -196,18 +179,16 @@ const AddListing = () => {
                 ></textarea>
               </div>
             </div>
-
-
           </div>
           <div className="form-group">
-            <button type="submit" className="btn w-100"  >
-              ADD
+            <button type="submit" className="btn w-100">
+              SUBMIT
             </button>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddListing
+export default AddListing;

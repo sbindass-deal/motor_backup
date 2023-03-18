@@ -7,17 +7,12 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { useNavigate, useParams } from "react-router-dom";
-import {  notification } from 'antd';
-import {
-
-  ContentState,
-  convertFromHTML,
- 
-} from "draft-js";
+import { notification } from "antd";
+import { ContentState, convertFromHTML } from "draft-js";
 
 const EditCreateMeeting = () => {
-  const { id } = useParams()
-const navigate=  useNavigate()
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
@@ -33,20 +28,16 @@ const navigate=  useNavigate()
     websitelink: "",
     facebooklink: "",
     twitterlink: "",
-    emailid:""
-  })
+    emailid: "",
+  });
 
-
- 
   const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    
-    setMeetingDetail({...meetingDetail,[name]:value})
+    const name = e.target.name;
+    const value = e.target.value;
 
-  }
+    setMeetingDetail({ ...meetingDetail, [name]: value });
+  };
 
-  
   useEffect(() => {
     const fetchMeeting = async () => {
       try {
@@ -54,10 +45,10 @@ const navigate=  useNavigate()
           `${process.env.REACT_APP_URL}getEventBYId/${id}`
         );
 
-        console.log(989, res.data.data)
+        console.log(989, res.data.data);
         if (res.data.status === 200 && res.data.data) {
           setMeetingDetail({
-            title: res.data.data.title, 
+            title: res.data.data.title,
             startdate: res.data.data.start_date,
             enddate: res.data.data.end_date,
             websitelink: res.data.data.url,
@@ -65,7 +56,7 @@ const navigate=  useNavigate()
             twitterlink: res.data.data.twitter,
             emailid: res.data.data.email,
           });
-          setFile1(res.data.data.image)
+          setFile1(res.data.data.image);
           // setBlogDataById(res.data.data);
           setDescription(
             EditorState.createWithContent(
@@ -82,9 +73,6 @@ const navigate=  useNavigate()
     fetchMeeting();
   }, []);
 
-  
-
-
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -96,22 +84,21 @@ const navigate=  useNavigate()
     setFile((prevState) => [...event.dataTransfer.files[0]]);
   };
 
-  console.log(889,file[0])
+  console.log(889, file[0]);
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const url = `${process.env.REACT_APP_URL}UpdateEvent`;
 
-
-    const formData=new FormData()
-    formData.append('id', id)
-    formData.append('title', meetingDetail.title)
-    formData.append('url', meetingDetail.websitelink)
-    formData.append('start_date', meetingDetail.startdate)
-    formData.append('end_date', meetingDetail.enddate)
-    formData.append('facebook', meetingDetail.facebooklink)
-    formData.append('twitter', meetingDetail.twitterlink)
-    formData.append('email', meetingDetail.emailid)
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("title", meetingDetail.title);
+    formData.append("url", meetingDetail.websitelink);
+    formData.append("start_date", meetingDetail.startdate);
+    formData.append("end_date", meetingDetail.enddate);
+    formData.append("facebook", meetingDetail.facebooklink);
+    formData.append("twitter", meetingDetail.twitterlink);
+    formData.append("email", meetingDetail.emailid);
     formData.append(
       "description",
       draftToHtml(convertToRaw(description.getCurrentContent()))
@@ -119,12 +106,11 @@ const navigate=  useNavigate()
 
     formData.append("image", file[0]);
 
-
-    
-    await axios.post(url, formData)
+    await axios
+      .post(url, formData)
       .then(function (response) {
         navigate("/admin-meeting");
-        console.log(109,response);
+        console.log(109, response);
       })
       .catch(function (error) {
         console.log(error);
@@ -138,14 +124,11 @@ const navigate=  useNavigate()
       facebooklink: "",
       twitterlink: "",
       emailid: "",
-      
     });
+  };
 
+  console.log(8989, meetingDetail.startdate);
 
-  }
-
-  console.log(8989, meetingDetail.startdate)
-   
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -162,80 +145,80 @@ const navigate=  useNavigate()
 
               <hr id="hr" />
               <form onSubmit={handleSubmit}>
-                <div class="row">
-                  <div class="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
                     <label htmlFor="">Title</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      className="form-control"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      className="form-control"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Website Link</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Facebook Link</label>
 
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Twitter Link</label>
 
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
                       value={meetingDetail.twitterlink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Email Id</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
@@ -266,17 +249,19 @@ const navigate=  useNavigate()
                   <div className="col-12 col-md-12">
                     <label>Upload Photos</label>
 
-
                     <div className="row">
-                      {file && file.length <= 0 &&
-                        
-                        <img style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                          padding: "15px",
-                        }} src={`https://api.gasguzzlrs.com/upload/event/${file1}`} alt="" />
-}
+                      {file && file.length <= 0 && (
+                        <img
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            objectFit: "cover",
+                            padding: "15px",
+                          }}
+                          src={`https://api.gasguzzlrs.com/upload/event/${file1}`}
+                          alt=""
+                        />
+                      )}
 
                       {Array.from(file).map((items) => {
                         return (
@@ -311,7 +296,6 @@ const navigate=  useNavigate()
                         ref={inputRef}
                         multiple
                         hidden
-                        
                       />
                       <button
                         className="orange_btn"
@@ -339,102 +323,3 @@ const navigate=  useNavigate()
 };
 
 export default EditCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

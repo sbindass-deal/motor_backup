@@ -199,12 +199,22 @@ function Home() {
                                   <ul className="labelList">
                                     <li>
                                       <label>Current Bid:</label>{" "}
-                                      <span>
-                                        $
-                                        {curElem.currentAmount
-                                          ? curElem.currentAmount.auctionAmmount
-                                          : curElem.documentFee}
-                                      </span>
+                                      {curElem?.currentBid &&
+                                      curElem?.currentBid?.last_bid > 0 ? (
+                                        <span>
+                                          <label>
+                                            Current Bid : $
+                                            {curElem?.currentBid?.last_bid}
+                                          </label>
+                                        </span>
+                                      ) : curElem?.displayInAuction ===
+                                        "classified" ? (
+                                        <span>
+                                          Document fee : ${curElem?.documentFee}
+                                        </span>
+                                      ) : (
+                                        <label>No Biding yet</label>
+                                      )}
                                     </li>
                                     <li>
                                       <label>Ends In:</label>{" "}

@@ -36,8 +36,8 @@ const OrderDetail = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12 col-lg-12">
-              <h2 class="title_combo title_Center casrt">Order details</h2>
-              <div class="table-responsive">
+              <h2 className="title_combo title_Center casrt">Order details</h2>
+              <div className="table-responsive">
                 <table width={"100%"} className="cartSection">
                   <tr>
                     <th></th>

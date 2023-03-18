@@ -43,13 +43,13 @@ const Enquiry = () => {
                 </li>
               </ul>
 
-              <div class="card_Gray table-responsive merchant vehicleSub" id="scrollable">
+              <div className="card_Gray table-responsive merchant vehicleSub" id="scrollable">
                 {
-                  loading ? <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                      <span class="sr-only">Loading...</span>
+                  loading ? <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="sr-only">Loading...</span>
                     </div>
-                  </div> : <table class="table table-striped">
+                  </div> : <table className="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>

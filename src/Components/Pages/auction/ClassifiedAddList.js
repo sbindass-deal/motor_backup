@@ -56,7 +56,7 @@ function ClassifiedAddList() {
               <div className="card_Gray mb-5 mb-md-0 divSticky">
                 <h5>Dealer Name</h5>
                 <hr />
-                <ul class="sideBar__">
+                <ul className="sideBar__">
                   <li onClick={() => window.location.reload(false)}>
                     <span style={{ cursor: "pointer" }}>All</span>
                   </li>
@@ -81,18 +81,16 @@ function ClassifiedAddList() {
             <div className="col-12 col-md-8 col-lg-9">
               <h3>{addName}</h3>
               <hr />
-              <div class="row pt-4 row_gridList ">
+              <div className="row pt-4 row_gridList ">
                 {classifiedAds.length > 0 &&
                   classifiedAds.map((curElem, i) => {
-                    return (
-                      <Data key={i} curElem={curElem} />
-                    );
+                    return <Data key={i} curElem={curElem} />;
                   })}
               </div>
             </div>
-            {/* <div key={curElem.id} class="col-12 col-md-6 pb-3">
-                        <div class="card_post box_shadow_common">
-                          <div class="card_postImg">
+            {/* <div key={curElem.id} className="col-12 col-md-6 pb-3">
+                        <div className="card_post box_shadow_common">
+                          <div className="card_postImg">
                             <Link
                               to={`/detail/${curElem.id}`}
                               
@@ -121,7 +119,7 @@ function ClassifiedAddList() {
                               )}
                             </Link>
                           </div>
-                          <div class="card_postInfo">
+                          <div className="card_postInfo">
                             <h4 className="auction_heading header_size">
                               <a
                                 target="_blank"

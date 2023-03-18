@@ -8,7 +8,7 @@ function GearProducts() {
   const [searchTerm, setSearchTerm] = useState("");
   const data = useSelector((state) => state);
   const products = data.gearReducer.gearData;
-  
+
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
@@ -36,7 +36,7 @@ function GearProducts() {
             <div className="col-12 col-md-8 col-lg-9">
               {/* <h3>Gear Products</h3>
               <Link to="/add/gear-product" className="orange_btn">
-                <i class="fa-sharp fa-solid fa-plus"></i>
+                <i className="fa-sharp fa-solid fa-plus"></i>
               </Link> */}
 
               <div
@@ -64,10 +64,10 @@ function GearProducts() {
                 </li>
               </ul>
               <div
-                class="card_Gray table-responsive merchant vehicleSub"
+                className="card_Gray table-responsive merchant vehicleSub"
                 id="scrollable"
               >
-                <table class="table table-striped">
+                <table className="table table-striped">
                   <thead>
                     <tr>
                       <th scope="col">Sr.No</th>
@@ -129,13 +129,13 @@ function GearProducts() {
                                   data-toggle="modal"
                                   data-target="#MerchandiseEdit"
                                 >
-                                  <i class="fa-solid fa-pencil"></i>
+                                  <i className="fa-solid fa-pencil"></i>
                                 </button>
                               </Link>
 
-                              {/* <button><i class="fa-sharp fa-solid fa-plus"></i></button> */}
+                              {/* <button><i className="fa-sharp fa-solid fa-plus"></i></button> */}
                               <button onClick={() => handleDelete(curElem.id)}>
-                                <i class="fa-solid fa-trash-can"></i>
+                                <i className="fa-solid fa-trash-can"></i>
                               </button>
                             </td>
                           </tr>
@@ -143,7 +143,7 @@ function GearProducts() {
                       })}
 
                     {/* <Link to="/add/gear-product" className="btn mt-4">
-                      <i class="fa-sharp fa-solid fa-plus"></i>
+                      <i className="fa-sharp fa-solid fa-plus"></i>
                     </Link> */}
                   </tbody>
                 </table>

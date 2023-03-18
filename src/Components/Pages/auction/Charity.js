@@ -104,7 +104,7 @@ const Charity = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i class="fa-solid fa-star mr-2"></i>Watch
+                    <i class="fa-solid fa-star mr-2"></i>watched
                   </button>
                 </li>
                 <li className="d-flex">

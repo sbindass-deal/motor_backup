@@ -363,10 +363,10 @@ function Header() {
                             to="/carraffle"
                             onClick={() => setShowNav(false)}
                           >
-                            Raffles
+                            Give Aways
                           </Link>
                         ) : (
-                          <Link className="nav-link">Raffles</Link>
+                          <Link className="nav-link">Give Aways</Link>
                         )}
                       </li> */}
                       {/* <li className="nav-item">
@@ -457,7 +457,7 @@ function Header() {
                           to="/shop"
                           onClick={() => setShowNav(false)}
                         >
-                          Gear
+                          Gear Store
                         </Link>
                       </li> */}
                     </ul>
@@ -643,13 +643,14 @@ function Header() {
                               Live Now
                             </Link>
                             <Link className="" to="/auctionfeature">
-                              Feature
+                              Featured
                             </Link>
-                            <Link className="" to="/auctionresult">
-                              Result
-                            </Link>
+
                             <Link className="" to="/auctionnoreserve">
                               No Reserve
+                            </Link>
+                            <Link className="" to="/auctionresult">
+                              Results
                             </Link>
                           </div>
                         </div>
@@ -682,10 +683,10 @@ function Header() {
                             className="nav-link"
                             to="/carraffle"
                           >
-                            Raffles
+                            Give Aways
                           </Link>
                         ) : (
-                          <Link className="nav-link">Raffles</Link>
+                          <Link className="nav-link">Give Aways</Link>
                         )}
                       </li>
 
@@ -800,7 +801,7 @@ function Header() {
                           }}
                           to="/shop"
                         >
-                          Gear
+                          Gear Store
                         </Link>
                       </li>
                       <li className="nav-item AddtCrt">
