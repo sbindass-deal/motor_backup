@@ -11,37 +11,36 @@ import draftToHtml from "draftjs-to-html";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
+  const [raffle, setRaffle] = useState({
+    name: "",
+    price: "",
+    stock: "",
+    dedline: "",
+    luckyDrawDate: "",
+  });
   const [minDate, setMinDate] = useState(null);
-  // const [videoFile, setVideoFile] = useState([]);
   const [htmlDescription, setHtmlDescription] = useState(
     EditorState.createEmpty()
   );
-
-  const [file, setFile] = useState([]);
   const [fileVideo, setFileVideo] = useState([]);
-
+  // image upload
+  const [file, setFile] = useState([]);
   const inputRef = useRef();
-
   const handleDragOver = (event) => {
     event.preventDefault();
   };
-
   const handleDrop = (event) => {
     event.preventDefault();
     setFile((prevState) => [...event.dataTransfer.files]);
   };
-
   const inputRefVideo = useRef();
-
   const handleDragOverVideo = (event) => {
     event.preventDefault();
   };
-
   const handleDropVideo = (event) => {
     event.preventDefault();
     setFileVideo((prevState) => [...event.dataTransfer.files]);
   };
-
   useEffect(() => {
     const minsec = ms("0d");
     console.log("minsec", minsec);
@@ -55,23 +54,13 @@ const AddRaffle = () => {
     }
   };
 
-  const [raffle, setRaffle] = useState({
-    name: "",
-    price: "",
-    stock: "",
-    dedline: "",
-    luckyDrawDate: "",
-    desc: "",
-  });
   const handleChange = (e) => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
-
     formData.append("name", raffle.name);
     formData.append("dealEndDate", raffle.dedline);
     formData.append("price", raffle.price);
@@ -81,84 +70,17 @@ const AddRaffle = () => {
     );
     formData.append("stock", raffle.stock);
     formData.append("drawdate", raffle.dedline);
-    formData.append("image[]", [image]);
-    // formData.append('lottery_id',)
-    // formData.append('id', vehicleId)
-
     axios
-      .post(
-        `${process.env.REACT_APP_URL}addlotteryvehicle`,
-        formData
-
-        //   {
-
-        //   name: raffle.name,
-        //   dealEndDate: raffle.dedline,
-        //   price: raffle.price,
-        //   description: raffle.desc,
-        //   stock: raffle.stock,
-        //   drawdate: raffle.dedline,
-        // }
-      )
+      .post(`${process.env.REACT_APP_URL}addlotteryvehicle`, formData)
       .then(async (response) => {
         if (response.status === 200) {
-          console.log("@@@@@@@@@@@", response.data);
-          uploadImage(response.data.vehicleId);
-          await uploadFileVideo(response.data.vehicleId);
-          navigate("/raffleadmin");
+          // navigate("/raffleadmin");
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  const [image, setImage] = useState([]);
-
-  const uploadImage = async (vehicleId) => {
-    const url = process.env.REACT_APP_URL + "lottery-image";
-    const formData = new FormData();
-    [...image]?.forEach((img) => formData.append("image", img));
-    formData.append("vehicleId", vehicleId);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    const data = await axios.post(url, formData, config);
-  };
-
-  const maxAllowedSize = 3 * 1024 * 1024;
-  const [videoSource, setVideoSource] = React.useState([]);
-  const [videoBlob, setVideoBlob] = React.useState("");
-
-  const uploadFileVideo = async (vehicleId) => {
-    console.log("###############", videoSource, vehicleId);
-
-    const url = process.env.REACT_APP_URL + "lottery-image";
-    const formData = new FormData();
-    formData.append("video", videoSource);
-    formData.append("id", vehicleId);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    const data = await axios.post(url, formData, config);
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file.size > maxAllowedSize) {
-      alert("Video size must be less than 3 mb");
-      return;
-    }
-    setVideoSource(file);
-    const url = URL.createObjectURL(file);
-    setVideoBlob(url);
-  };
-
-  console.log(8989, image);
 
   return (
     <div className="container">
@@ -300,7 +222,6 @@ const AddRaffle = () => {
                   type="file"
                   accept="image/gif, image/jpeg, image/png, image/jpg"
                   ref={inputRef}
-                  required
                   hidden
                 />
                 <button
@@ -350,7 +271,6 @@ const AddRaffle = () => {
                   type="file"
                   accept="image/gif, image/jpeg, image/png, image/jpg"
                   ref={inputRefVideo}
-                  required
                   hidden
                 />
                 <button
