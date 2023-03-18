@@ -6389,7 +6389,7 @@ h3.sliderTile {
 }
 .newDelarSlid.carousel {
   position: relative;
-  width: 100%;
+  width: 100% !important;
   height: 550px;
   align-items: center;
   display: flex;
@@ -6604,4 +6604,15 @@ ul.bidOnThis li p:first-child { width: 26%;}
   right: 0;
   top: 0;
   transform: rotateZ(100deg);
+}
+.firstImg img {
+  min-width: 390px;
+  min-height: 266px;
+}
+.rightGallery>div {
+  float: left;
+  width: 32.8%;
+}
+.row.rightGallery.moreSh>div {
+  width: 19.99%;
 }
