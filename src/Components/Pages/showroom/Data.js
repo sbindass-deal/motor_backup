@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Data = ({ curElem }) => {
   return (
     <>
-      <div key={curElem?.id} className="col-lg-6 col-sm-12 inner-slider">
+      <div key={curElem?.id} className="col-lg-6 col-sm-12 inner-slider drl">
         {curElem?.displayInAuction === "classified" ? (
           <a target="_blank" rel="noopener" href={curElem?.externalLink}>
             <div className="card_post">

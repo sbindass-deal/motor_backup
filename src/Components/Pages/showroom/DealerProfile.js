@@ -65,8 +65,9 @@ const DealerProfile = () => {
               <h2>Gallery</h2>
             </div>
             {dealerData?.image_gallery && (
+              <div className="col-lg-12">
               <div className="row showGallery">
-                <div className="col-5">
+                <div className="col-lg-5 col-sm-12">
                   <img
                     loading="lazy"
                     src={
@@ -81,9 +82,9 @@ const DealerProfile = () => {
                     alt="gallery"
                   />
                 </div>
-                <div className="col-7">
+                <div className="col-lg-7 col-sm-12">
                   <div className="row">
-                    <div className="col-6">
+                    <div className="col-lg-6 col-sm-12">
                       <img
                         loading="lazy"
                         src={
@@ -98,7 +99,7 @@ const DealerProfile = () => {
                         alt="gallery"
                       />
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6 col-sm-12">
                       <img
                         loading="lazy"
                         src={
@@ -113,7 +114,7 @@ const DealerProfile = () => {
                         alt="gallery"
                       />
                     </div>
-                    <div className="col-12">
+                    <div className="col-lg-12">
                       <img
                         loading="lazy"
                         src={
@@ -131,8 +132,9 @@ const DealerProfile = () => {
                   </div>
                 </div>
               </div>
+              </div>
             )}
-            <div className="col-12 gallery">
+            <div className="col-12 gallery ghhh">
               <div className="row">
                 {/* <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
                   <div className="galleryImgSect">
@@ -163,7 +165,7 @@ const DealerProfile = () => {
                         dealerData?.image_gallery.map((curElem, i) => {
                           return (
                             <div key={i} className="col-6 col-md-2">
-                              <div className="galleryImgSect">
+                              <div className="galleryImgSect gg">
                                 <Image
                                   loading="lazy"
                                   src={
@@ -202,8 +204,8 @@ const DealerProfile = () => {
         <div className="container">
           <div className="row ">
             <div
-              className="col-lg-6 col-md-12 col-sm-12"
-              style={{ padding: "0" }}
+              className="col-lg-6 col-md-12 col-sm-12 logoImg"
+             
             >
               <img
                 className="slidImg"
@@ -234,7 +236,7 @@ const DealerProfile = () => {
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="contactInfo">
-                <h2>CONTACTS US</h2>
+                <h2>Contact Us</h2>
                 <ul>
                   <li>
                     <i class="fa-solid fa-location-dot"></i> ADDRESS:
