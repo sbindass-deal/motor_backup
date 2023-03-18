@@ -17,6 +17,8 @@ function Home() {
   const blogs = data.blogReducer.blogData;
   const vehicleData = data.vehicleReducer.vehicleData;
   const [sliderData, setSliderData] = useState([]);
+  const [lottery, setLottery] = useState();
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -27,7 +29,12 @@ function Home() {
       }
     };
     fetchBlogs();
+
+    axios.get(`${process.env.REACT_APP_URL}getLotteryDetail`).then((d) => { setLottery(d?.data.data) })
+
   }, []);
+
+
   useEffect(() => {
     const filteredAuctionVehicle = vehicleData.filter(
       (item) =>
@@ -278,9 +285,8 @@ function Home() {
                   return (
                     <div key={i} className="row pb_30">
                       <div
-                        className={`order-md-${
-                          i % 2 === 0 ? 0 : 1
-                        } col-12 col-md-6 col-lg-7`}
+                        className={`order-md-${i % 2 === 0 ? 0 : 1
+                          } col-12 col-md-6 col-lg-7`}
                       >
                         <div className="blogPost">
                           <img
@@ -338,25 +344,37 @@ function Home() {
       <section className="ptb_80 blogPostText rf">
         <div className="container">
           <div className="row">
-            <a href="/carraffle" className="full">
-              <div className="col-lg-6 col-sm-12 pb_30 rafSect">
-                <h2>Win this car !</h2>
-                <p>Win the car of your dreams</p>
-                <div className="price_">
-                  <p>
-                    Ends In:{" "}
-                    {new Date(data.lotteryReducer.date).toLocaleDateString()}
-                  </p>
+              <div
+                className={`disFlex .slider`}
+              >
+                <div className={`p-2 slideTrack`}>
+                  {
+                    lottery?.map((d, i) => {
+                      return (
+                        <div key={i} className={`slide`}>
+                          <a href="/carraffle" className="full">
+                          <div className="col-lg-6 col-sm-12 pb_30 rafSect">
+                            <h2>{d?.name}</h2>
+                            <p>{d?.description}</p>
+                            <div className="price_">
+                              <p>{d?.dealEndDate}</p>
+                            </div>
+                            <button className="orange_btn">Buy Tickets</button>
+                          </div>
+                          <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
+                            <img src={ads_car_2} className="addBanner" />
+                          </div>
+                          </a>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
-                <button className="orange_btn">Buy Tickets</button>
               </div>
-              <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
-                <img src={ads_car_2} className="addBanner" />
-              </div>
-            </a>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

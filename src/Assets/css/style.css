@@ -6532,3 +6532,76 @@ ul.bidOnThis li p:first-child { width: 26%;}
 .rbc-today {   background-color: #ffd9ac !important; }
 .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {  background-color: #f7931b !important;}
 .rbc-toolbar button:hover { color: #ffffff; background-color: #f7931b;}
+
+
+.slider {
+  /* / height: 250px; / */
+  margin: auto;
+  position: relative;
+  width: 90%;
+  /* / display: grid; / */
+  place-items: center;
+  overflow: hidden;
+}
+
+.slideTrack {
+  display: flex;
+  width: calc(250px * 18);
+  animation: scroll 50s linear infinite;
+}
+
+.slideTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-250px * 9));
+  }
+}
+
+.slide {
+  height: 255px;
+  width: 450px !important;
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  border-radius: 12.9515px;
+  perspective: 100px;
+}
+
+.slideTrack img {
+  width: 100%;
+  transition: transform 3s;
+  /* transform: perspective(10px);  */
+}
+
+.slideTrack img:hover {
+  transform: translateZ(10px);
+}
+
+.slider::before,
+.slider::after {
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 1) 0% rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 15%;
+  z-index: 2;
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(100deg);
+}
