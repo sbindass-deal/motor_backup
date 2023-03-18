@@ -17,6 +17,8 @@ function Home() {
   const blogs = data.blogReducer.blogData;
   const vehicleData = data.vehicleReducer.vehicleData;
   const [sliderData, setSliderData] = useState([]);
+  const [lottery, setLottery] = useState();
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -27,7 +29,12 @@ function Home() {
       }
     };
     fetchBlogs();
+
+    axios.get(`${process.env.REACT_APP_URL}getLotteryDetail`).then((d) => { setLottery(d?.data.data) })
+
   }, []);
+
+
   useEffect(() => {
     const filteredAuctionVehicle = vehicleData.filter(
       (item) =>
@@ -156,70 +163,70 @@ function Home() {
                           {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                             parseInt(new Date().getTime(), 10) >
                             0 && (
-                            <div key={curElem.id}>
-                              <div className="card_post">
-                                <div className="card_postImg">
-                                  {curElem.image_banner ? (
-                                    <img
-                                      loading="lazy"
-                                      src={
-                                        curElem.image_banner[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
-                                      }
-                                      onError={({ currentTarget }) => {
-                                        currentTarget.onError = null;
-                                        currentTarget.src =
-                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                      }}
-                                      alt="Maskgroup1"
-                                    />
-                                  ) : (
-                                    <img
-                                      loading="lazy"
-                                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                      alt="Maskgroup1"
-                                    />
-                                  )}
-                                </div>
-                                <div className="card_postInfo">
-                                  <h4>
-                                    {curElem.make} {curElem.model}{" "}
-                                    {curElem.year}
-                                  </h4>
-                                  <p>
-                                    {curElem?.moreDescription &&
-                                      parse(
-                                        curElem?.moreDescription?.substr(
-                                          0,
-                                          300
-                                        ),
-                                        strToHtml
-                                      )}
-                                  </p>
-                                  <ul className="labelList">
-                                    <li>
-                                      <label>Current Bid:</label>{" "}
-                                      <span>
-                                        $
-                                        {curElem.currentAmount
-                                          ? curElem.currentAmount.auctionAmmount
-                                          : curElem.documentFee}
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <label>Ends In:</label>{" "}
-                                      <span>
-                                        {curElem.EndTime &&
-                                          new Date(
-                                            curElem.EndTime
-                                          ).toDateString()}
-                                      </span>
-                                    </li>
-                                  </ul>
+                              <div key={curElem.id}>
+                                <div className="card_post">
+                                  <div className="card_postImg">
+                                    {curElem.image_banner ? (
+                                      <img
+                                        loading="lazy"
+                                        src={
+                                          curElem.image_banner[0] &&
+                                          `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                                        }
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onError = null;
+                                          currentTarget.src =
+                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                        }}
+                                        alt="Maskgroup1"
+                                      />
+                                    ) : (
+                                      <img
+                                        loading="lazy"
+                                        src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                        alt="Maskgroup1"
+                                      />
+                                    )}
+                                  </div>
+                                  <div className="card_postInfo">
+                                    <h4>
+                                      {curElem.make} {curElem.model}{" "}
+                                      {curElem.year}
+                                    </h4>
+                                    <p>
+                                      {curElem?.moreDescription &&
+                                        parse(
+                                          curElem?.moreDescription?.substr(
+                                            0,
+                                            300
+                                          ),
+                                          strToHtml
+                                        )}
+                                    </p>
+                                    <ul className="labelList">
+                                      <li>
+                                        <label>Current Bid:</label>{" "}
+                                        <span>
+                                          $
+                                          {curElem.currentAmount
+                                            ? curElem.currentAmount.auctionAmmount
+                                            : curElem.documentFee}
+                                        </span>
+                                      </li>
+                                      <li>
+                                        <label>Ends In:</label>{" "}
+                                        <span>
+                                          {curElem.EndTime &&
+                                            new Date(
+                                              curElem.EndTime
+                                            ).toDateString()}
+                                        </span>
+                                      </li>
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          )}
+                            )}
                         </Link>
                       );
                     })}
@@ -268,9 +275,8 @@ function Home() {
                   return (
                     <div key={i} className="row pb_30">
                       <div
-                        className={`order-md-${
-                          i % 2 === 0 ? 0 : 1
-                        } col-12 col-md-6 col-lg-7`}
+                        className={`order-md-${i % 2 === 0 ? 0 : 1
+                          } col-12 col-md-6 col-lg-7`}
                       >
                         <div className="blogPost">
                           <img
@@ -328,25 +334,37 @@ function Home() {
       <section className="ptb_80 blogPostText rf">
         <div className="container">
           <div className="row">
-            <a href="/carraffle" className="full">
-              <div className="col-lg-6 col-sm-12 pb_30 rafSect">
-                <h2>Win this car !</h2>
-                <p>Win the car of your dreams</p>
-                <div className="price_">
-                  <p>
-                    Ends In:{" "}
-                    {new Date(data.lotteryReducer.date).toLocaleDateString()}
-                  </p>
+              <div
+                className={`disFlex .slider`}
+              >
+                <div className={`p-2 slideTrack`}>
+                  {
+                    lottery?.map((d, i) => {
+                      return (
+                        <div key={i} className={`slide`}>
+                          <a href="/carraffle" className="full">
+                          <div className="col-lg-6 col-sm-12 pb_30 rafSect">
+                            <h2>{d?.name}</h2>
+                            <p>{d?.description}</p>
+                            <div className="price_">
+                              <p>{d?.dealEndDate}</p>
+                            </div>
+                            <button className="orange_btn">Buy Tickets</button>
+                          </div>
+                          <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
+                            <img src={ads_car_2} className="addBanner" />
+                          </div>
+                          </a>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
-                <button className="orange_btn">Buy Tickets</button>
               </div>
-              <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
-                <img src={ads_car_2} className="addBanner" />
-              </div>
-            </a>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
