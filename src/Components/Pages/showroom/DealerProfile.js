@@ -12,6 +12,9 @@ import caer from "../../../Assets/images/caer.gif";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
+import Dealer from '../../../Assets/images/Dealer-1.jpg'
+import Dealer2 from '../../../Assets/images/Dealer-2.jpg'
+import Dealer3 from '../../../Assets/images/Dealer-3.jpg'
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -61,6 +64,25 @@ const DealerProfile = () => {
           <div className="row ">
             <div className="col-12 text-center pb_30">
               <h2>Gallery</h2>
+            </div>
+            <div className="row showGallery">
+              <div className="col-5">
+                <img src={Dealer2}/>
+              </div>
+              <div className="col-7">
+               <div className="row">
+                  <div className="col-6">
+                    <img src={Dealer}/>
+                  </div>
+                  <div className="col-6">
+                    <img src={Dealer3}/>
+                  </div>
+                  <div className="col-12">
+                    <img src={Dealer3}/>
+                  </div>
+               </div>
+              </div>
+
             </div>
             <div className="col-12 gallery">
               <div className="row">

@@ -11,7 +11,7 @@ const Gallery = ({ vehicle }) => {
       <div className="card_ ptb_40">
         <h3 className="cardTitle">Gallery</h3>
         <div className="row galleryPh">
-          {/* <div className={`col-lg-5 firstImg col-sm-12`}>
+          <div className={`col-lg-5 firstImg col-sm-12`}>
             {vehicle.image_gallery && (
               <Image
                 loading="lazy"
@@ -25,8 +25,8 @@ const Gallery = ({ vehicle }) => {
                 alt="Maskgroup1"
               />
             )}
-          </div> */}
-          <div className={` col-lg-12 col-sm-12 `}>
+          </div>
+          <div className={` col-lg-7 col-sm-12 `}>
             <div className="row rightGallery">
               <Image.PreviewGroup>
                 {vehicle.image_gallery &&
@@ -54,7 +54,7 @@ const Gallery = ({ vehicle }) => {
             className={` col-12`}
             style={{ display: `${showAuctionGallery ? "" : "none"}` }}
           >
-            <div className="row rightGallery">
+            <div className="row rightGallery moreSh">
               <Image.PreviewGroup>
                 {vehicle.image_gallery &&
                   vehicle.image_document &&
