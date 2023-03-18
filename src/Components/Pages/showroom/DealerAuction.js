@@ -24,7 +24,7 @@ const DealerAuction = ({ userId: id, dealerName }) => {
 
   return (
     <>
-      <section className="pt_80 mobileSpec" id="">
+      <section className="pt_80 mobileSpec dlr" id="">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
