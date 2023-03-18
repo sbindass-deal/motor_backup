@@ -62,7 +62,7 @@ function AdminLeftNav() {
             className={` ${location.pathname === "/blog" ? "active" : ""} `}
             to="/blog"
           >
-            My Blogs
+            Blogs
           </Link>
         </li>
         <li>
@@ -75,7 +75,7 @@ function AdminLeftNav() {
             Dealer List
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-vehicle-ad" ? "active" : ""
@@ -83,6 +83,17 @@ function AdminLeftNav() {
             to="/admin-vehicle-ad"
           >
             Classified Vehicle List
+          </Link>
+        </li> */}
+
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-meeting" ? "active" : ""
+            } `}
+            to="/admin-meeting"
+          >
+            Events
           </Link>
         </li>
         <li>
@@ -93,17 +104,6 @@ function AdminLeftNav() {
             to="/admin-enquiry"
           >
             Customer Enquiry
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            className={` ${
-              location.pathname === "/admin-meeting" ? "active" : ""
-            } `}
-            to="/admin-meeting"
-          >
-            Events
           </Link>
         </li>
       </ul>

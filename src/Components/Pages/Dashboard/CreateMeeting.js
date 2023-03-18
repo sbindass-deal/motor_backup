@@ -81,7 +81,7 @@ const CreateMeeting = () => {
                     to="/admin-add-meeting/add-meeting"
                     className="orange_btn"
                   >
-                    Add Create Event
+                    Add Event
                   </Link>
                 </div>
 
@@ -107,9 +107,9 @@ const CreateMeeting = () => {
                           <th scope="col">Start Date</th>
                           <th scope="col">End Date </th>
                           <th scope="col">Website Link</th>
-                          <th scope="col">Facebook Link</th>
+                          {/* <th scope="col">Facebook Link</th>
                           <th scope="col">Twitter Link</th>
-                          <th scope="col">Email</th>
+                          <th scope="col">Email</th> */}
                           <th scope="col">Description</th>
                           <th scope="col">Action</th>
                         </tr>
@@ -131,9 +131,9 @@ const CreateMeeting = () => {
                               <td>{curVal.start_date}</td>
                               <td>{curVal.end_date}</td>
                               <td>{curVal.url}</td>
-                              <td>{curVal.facebook}</td>
+                              {/* <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>
-                              <td>{curVal.email}</td>
+                              <td>{curVal.email}</td> */}
                               {/* <td>{curVal.description.substr(0,100)}</td> */}
                               <td>
                                 {parse(

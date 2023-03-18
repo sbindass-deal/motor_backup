@@ -1,16 +1,46 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
 import ms from "ms";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
   const [minDate, setMinDate] = useState(null);
   // const [videoFile, setVideoFile] = useState([]);
+  const [htmlDescription, setHtmlDescription] = useState(
+    EditorState.createEmpty()
+  );
+
   const [file, setFile] = useState([]);
+  const [fileVideo, setFileVideo] = useState([]);
+
+  const inputRef = useRef();
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setFile((prevState) => [...event.dataTransfer.files]);
+  };
+
+  const inputRefVideo = useRef();
+
+  const handleDragOverVideo = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropVideo = (event) => {
+    event.preventDefault();
+    setFileVideo((prevState) => [...event.dataTransfer.files]);
+  };
 
   useEffect(() => {
     const minsec = ms("0d");
@@ -18,6 +48,12 @@ const AddRaffle = () => {
     const min_date = new Date(+new Date() - minsec);
     setMinDate(moment(min_date).format("YYYY-MM-DD"));
   }, []);
+  const handlePaste = (e) => {
+    const text = e.clipboardData.getData("text/plain");
+    if (text.length > 100) {
+      e.preventDefault();
+    }
+  };
 
   const [raffle, setRaffle] = useState({
     name: "",
@@ -39,7 +75,10 @@ const AddRaffle = () => {
     formData.append("name", raffle.name);
     formData.append("dealEndDate", raffle.dedline);
     formData.append("price", raffle.price);
-    formData.append("description", raffle.desc);
+    formData.append(
+      "description",
+      draftToHtml(convertToRaw(htmlDescription.getCurrentContent()))
+    );
     formData.append("stock", raffle.stock);
     formData.append("drawdate", raffle.dedline);
     formData.append("image[]", [image]);
@@ -125,6 +164,8 @@ const AddRaffle = () => {
     <div className="container">
       <div className="row">
         <form onSubmit={handleSubmit} className="p-md-5">
+          <h3 className="p-4 text-center">Give Away Details</h3>
+
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
               <div className="form-group">
@@ -135,7 +176,7 @@ const AddRaffle = () => {
                   name="name"
                   className="field"
                   placeholder="Name of the Lottery"
-                  label="Raffle Name"
+                  label="Name"
                   errorMessage="no special character only use alphabet"
                   required={true}
                 />
@@ -149,7 +190,7 @@ const AddRaffle = () => {
                   name="price"
                   className="field"
                   placeholder="2023"
-                  label="Price od 1 ticket"
+                  label="Price of one ticket"
                   pattern="^[0-9]{1,10}$"
                   errorMessage="only number"
                   required={true}
@@ -202,72 +243,130 @@ const AddRaffle = () => {
                 />
               </div>
             </div>
-            {/* ---------------------img upload--keshav------------- */}
-            <div className="col-12 col-md-6">
+            {/* ============================== description start */}
+            <div className="col-md-12">
+              <label htmlFor="description">Description</label>
+              <div className="border border-2 border-dark">
+                <Editor
+                  editorStyle={{
+                    background: "white",
+                    padding: "15px",
+                    minHeight: "30vh",
+                    color: "black",
+                  }}
+                  editorState={htmlDescription}
+                  toolbarClassName="toolbarClassName"
+                  wrapperClassName="wrapperClassName"
+                  editorClassName="editorClassName"
+                  onEditorStateChange={(e) => setHtmlDescription(e)}
+                  onPaste={handlePaste}
+                  placeholder="Please enter description"
+                />
+              </div>
+            </div>
+            {/* ============================== description end */}
+            {/* ============================== image upload start */}
+            <div className="col-12 col-md-12">
               <label>Upload Photos</label>
-              <div className="form-group">
-                {Array.from(image).map((items) => {
+              <div className="row">
+                {Array.from(file).map((items) => {
                   return (
                     <span>
                       <img
                         src={items ? URL.createObjectURL(items) : null}
                         style={{
-                          padding: "15px",
+                          width: "100px",
+                          height: "100px",
                           objectFit: "cover",
-                          width: "90px",
+                          padding: "15px",
                         }}
                       />
                     </span>
                   );
                 })}
-
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
                 <input
-                  type="file"
-                  // controls
                   onChange={(e) => {
-                    setImage(e.target.files);
+                    return setFile((prevState) => [...e.target.files]);
                   }}
-                  multiple
-                />
-              </div>
-            </div>
-            {/* ---------------------video upload--keshav------------ */}
-            <div className="col-12 col-md-6">
-              <label>Upload Videos</label>
-              <div className="form-group">
-                <input
+                  name="file"
                   type="file"
-                  onChange={handleFileChange}
-                  accept=".mov,.mp4"
-                />
-
-                {videoBlob && (
-                  <video width="80%" height={100} controls src={videoBlob} />
-                )}
-              </div>
-            </div>
-            <div className="col-md-12 mb-3">
-              <small>
-                (Accepted file types: jpg, jpeg, png, Max. file size: 10 MB,
-                Max. files: 200.)
-              </small>
-            </div>
-            <div className="col-12 col-md-12">
-              <label>Description</label>
-              <div className="form-group">
-                <textarea
-                  className="field"
-                  value={raffle.desc}
-                  onChange={handleChange}
-                  name="desc"
-                  placeholder="Description here"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRef}
                   required
-                ></textarea>
+                  hidden
+                />
+                <button
+                  className="orange_btn"
+                  type="button"
+                  onClick={() => inputRef.current.click()}
+                >
+                  Select Files
+                </button>
               </div>
             </div>
+
+            {/* ============================= upload end */}
+
+            {/* ============================= upload video start */}
+            <div className="col-12 col-md-12">
+              <label>Upload Video</label>
+              <div className="row">
+                {Array.from(fileVideo).map((items) => {
+                  return (
+                    <span>
+                      <img
+                        src={items ? URL.createObjectURL(items) : null}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                          padding: "15px",
+                        }}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOverVideo}
+                onDrop={handleDropVideo}
+              >
+                <h3>Drag and Drop Files to Upload</h3>
+                <h3>Or</h3>
+                <input
+                  onChange={(e) => {
+                    return setFileVideo((prevState) => [...e.target.files]);
+                  }}
+                  name="file"
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  ref={inputRefVideo}
+                  required
+                  hidden
+                />
+                <button
+                  className="orange_btn"
+                  type="button"
+                  onClick={() => inputRefVideo.current.click()}
+                >
+                  Select Files
+                </button>
+              </div>
+            </div>
+
+            {/* ============================= upload video end */}
           </div>
-          <div className="form-group">
-            <button type="submit" className="btn">
+          <div className="form-group text-center">
+            <button type="submit" className="btn my-5">
               Submit
             </button>
           </div>
