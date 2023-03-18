@@ -37,7 +37,10 @@ const Data = ({ curElem, addFabrity }) => {
           </div>
           <div className="card_postInfo">
             <h4 className="car_title">
-              <Link to={`/detail/${curElem.id}`}>{curElem.make}</Link>
+              <Link to={`/detail/${curElem.id}`}>
+                {curElem?.reserve === "No" ? "No Reserve :" : null}{" "}
+                {curElem.make}
+              </Link>
 
               <button
                 onClick={() => addFabrity(curElem.id)}
@@ -79,7 +82,7 @@ const Data = ({ curElem, addFabrity }) => {
               </li>
               <li>
                 <label>Ends In:</label>{" "}
-                <span>{new Date(curElem?.EndTime).toLocaleDateString()}</span>
+                <span>{new Date(curElem?.EndTime).toDateString()}</span>
               </li>
             </ul>
           </div>

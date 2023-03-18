@@ -22,7 +22,7 @@ const EditGearProduct = () => {
     size: [],
     color: [],
     desc: "",
-    youtube_link: ""
+    youtube_link: "",
   });
   const inputRef = useRef();
 
@@ -93,12 +93,11 @@ const EditGearProduct = () => {
           },
         };
         let a = await axios.post(url, newImagedata, config);
-        if(a.status==200){
-          return true
+        if (a.status == 200) {
+          return true;
+        } else {
+          return false;
         }
-        else {
-          return false}
-
       }
     })();
   };
@@ -114,7 +113,7 @@ const EditGearProduct = () => {
         title: getInputData.tittle,
         description: getInputData.desc,
         category: getInputData.category,
-        youtube_link: getInputData.youtube_link
+        youtube_link: getInputData.youtube_link,
       })
       .then(async function (response) {
         if (response.status == 200) {
@@ -180,7 +179,12 @@ const EditGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="tittle"
-                  onChange={(e) => { setGetInputData({ ...getInputData, tittle: e.target.value }) }}
+                  onChange={(e) => {
+                    setGetInputData({
+                      ...getInputData,
+                      tittle: e.target.value,
+                    });
+                  }}
                   value={getInputData.tittle}
                   placeholder="Enter Name"
                   errorMessage="Name should be 2-80 characters and shouldn't include any number!"
@@ -215,7 +219,10 @@ const EditGearProduct = () => {
                   name="price"
                   onChange={(e) => {
                     if (e.target.value.length <= 10) {
-                      setGetInputData({ ...getInputData, price: e.target.value })
+                      setGetInputData({
+                        ...getInputData,
+                        price: e.target.value,
+                      });
                     }
                   }}
                   value={getInputData.price}
@@ -233,7 +240,10 @@ const EditGearProduct = () => {
                   placeholder="Enter stock"
                   onChange={(e) => {
                     if (e.target.value.length <= 10) {
-                      setGetInputData({ ...getInputData, stocks: e.target.value });
+                      setGetInputData({
+                        ...getInputData,
+                        stocks: e.target.value,
+                      });
                     }
                   }}
                   type="number"
@@ -243,7 +253,12 @@ const EditGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="size"
-                  onChange={(e) => { setGetInputData({ ...getInputData, size: [e.target.value] }) }}
+                  onChange={(e) => {
+                    setGetInputData({
+                      ...getInputData,
+                      size: [e.target.value],
+                    });
+                  }}
                   value={getInputData.size}
                   placeholder="Enter size"
                   errorMessage="Size should be 1-80 characters and shouldn't include any number!"
@@ -255,7 +270,12 @@ const EditGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="color"
-                  onChange={(e) => { setGetInputData({ ...getInputData, color: [e.target.value] }) }}
+                  onChange={(e) => {
+                    setGetInputData({
+                      ...getInputData,
+                      color: [e.target.value],
+                    });
+                  }}
                   value={getInputData.color}
                   placeholder="Enter color"
                   errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
@@ -267,7 +287,12 @@ const EditGearProduct = () => {
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="youtube_link"
-                  onChange={(e) => { setGetInputData({ ...getInputData, youtube_link: e.target.value }) }}
+                  onChange={(e) => {
+                    setGetInputData({
+                      ...getInputData,
+                      youtube_link: e.target.value,
+                    });
+                  }}
                   value={getInputData.youtube_link}
                   placeholder="Enter Link"
                   // errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
@@ -277,7 +302,10 @@ const EditGearProduct = () => {
                 />
               </div>
               <div className="col-md-12 col-sm-12 mb-3">
-                <label htmlFor="exampleFormControlTextarea1" class="form-label">
+                <label
+                  htmlFor="exampleFormControlTextarea1"
+                  className="form-label"
+                >
                   Description
                 </label>
                 <textarea
@@ -299,7 +327,7 @@ const EditGearProduct = () => {
               {/* <div className="col-12 col-md-6">
                 <label>Update Photos</label>
                 {file.length === 0 && (
-                  <div class="position-relative py-4 py-md-1">
+                  <div className="position-relative py-4 py-md-1">
                     <img
                       src={`${process.env.REACT_APP_URL}upload/products/${showImage}`}
                       alt="Product image"
@@ -325,7 +353,7 @@ const EditGearProduct = () => {
                 <label>Upload Photos</label>
                 <div className="row">
                   {file.length === 0 && (
-                    <div class="position-relative py-4 py-md-1">
+                    <div className="position-relative py-4 py-md-1">
                       <img
                         src={`${process.env.REACT_APP_URL}upload/products/${showImage}`}
                         alt="Product image"

@@ -61,11 +61,13 @@ const VehicleAdsList = () => {
                   <Link
                     to="/admin-vehicle-ad/add-vehicle-ads"
                     className="orange_btn"
-                    style={{
-                      // padding: "6px",
-                      // fontSize: "18px",
-                      // fontWeight: "100",
-                    }}
+                    style={
+                      {
+                        // padding: "6px",
+                        // fontSize: "18px",
+                        // fontWeight: "100",
+                      }
+                    }
                   >
                     Add Vehicle
                   </Link>
@@ -73,17 +75,17 @@ const VehicleAdsList = () => {
 
                 <hr id="hr" />
                 <div
-                  class="card_Gray table-responsive vehicleSub"
+                  className="card_Gray table-responsive vehicleSub"
                   id="scrollable"
                 >
                   {loading ? (
-                    <div class="d-flex justify-content-center">
-                      <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
+                    <div className="d-flex justify-content-center">
+                      <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
                       </div>
                     </div>
                   ) : (
-                    <table class="table table-striped">
+                    <table className="table table-striped">
                       <thead>
                         <tr>
                           <th scope="col">Sr.No</th>
@@ -123,21 +125,24 @@ const VehicleAdsList = () => {
                                   )}
                                 </td>
                                 <td>{curElem.make}</td>
-                                <td>{curElem?.moreDescription.substr(0, 100)}</td>
+                                <td>
+                                  {curElem?.moreDescription.substr(0, 100)}
+                                </td>
                                 <td>{curElem.year}</td>
 
                                 {/* <td>
                           <Link to={``} className="btn">
-                            <i class="fa-solid fa-pencil"></i>
+                            <i className="fa-solid fa-pencil"></i>
                           </Link>
                         </td> */}
                                 <td>
-                                  <Link id="linkTag"
+                                  <Link
+                                    id="linkTag"
                                     onClick={() => handleDelete(curElem.id)}
                                     to={``}
                                     // className="btn"
                                   >
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    <i className="fa-solid fa-trash-can"></i>
                                   </Link>
                                 </td>
                               </tr>

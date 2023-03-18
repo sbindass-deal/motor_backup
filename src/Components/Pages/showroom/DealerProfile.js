@@ -11,6 +11,7 @@ import Dabout from "../../../Assets/images/Dabout.jpg";
 import caer from "../../../Assets/images/caer.gif";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import { Image } from "antd";
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const DealerProfile = () => {
 
   const [dealerData, setDealerData] = useState({});
   const [userVehicleImage, setUserVehicleImage] = useState([]);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     const fetchDealer = async () => {
@@ -79,45 +81,37 @@ const DealerProfile = () => {
                   </div>
                 </div> */}
                 <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div className="row">
-                    {dealerData?.image_gallery &&
-                      dealerData?.image_gallery.map((curElem, i) => {
-                        return (
-                          <div key={i} className="col-4 col-md-4 col-sm-12">
-                            <div className="galleryImgSect">
-                              <img
-                                src={
-                                  curElem?.logo &&
-                                  `${process.env.REACT_APP_URL}/${curElem?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
-                              />
+                  <div
+                    className="row"
+                    style={{
+                      height: `${showMore ? "100%" : "400px"}`,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <Image.PreviewGroup>
+                      {dealerData?.image_gallery &&
+                        dealerData?.image_gallery.map((curElem, i) => {
+                          return (
+                            <div key={i} className="col-6 col-md-2">
+                              <div className="galleryImgSect">
+                                <Image
+                                  loading="lazy"
+                                  src={
+                                    curElem?.logo &&
+                                    `${process.env.REACT_APP_URL}/${curElem?.logo}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
-
-                    {/* <div className="col-6 col-md-6 col-sm-12">
-                      <div className="galleryImgSect">
-                        <img
-                          src={
-                            userVehicleImage[2] &&
-                            `${process.env.REACT_APP_URL}/${userVehicleImage[2].imagePath}/${userVehicleImage[2].imageName}`
-                          }
-                          onError={({ currentTarget }) => {
-                            currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                          }}
-                          alt="Maskgroup1"
-                        />
-                      </div>
-                    </div> */}
+                          );
+                        })}
+                    </Image.PreviewGroup>
                   </div>
                 </div>
               </div>
@@ -127,9 +121,9 @@ const DealerProfile = () => {
               className="col-12"
               style={{ textAlign: "center", margin: "20px auto" }}
             >
-              <Link class="btn mt-2" t0="">
-                VIEW MORE
-              </Link>
+              <button onClick={() => setShowMore(!showMore)} class="btn mt-2">
+                {!showMore ? "VIEW MORE" : "VIEW LESS"}
+              </button>
             </div>
           </div>
         </div>

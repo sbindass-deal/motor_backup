@@ -90,7 +90,7 @@ const AuctionNoReserve = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-star mr-2"></i>Watch
+                    <i class="fa-solid fa-star mr-2"></i>watched
                   </button>
                 </li>
                 <li className="d-flex gv">

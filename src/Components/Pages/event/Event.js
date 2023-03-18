@@ -3,10 +3,12 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import events from "./Data";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import ShowMeeting from "../Dashboard/ShowMeeting";
+import { useSelector } from "react-redux";
+
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
@@ -14,7 +16,8 @@ const Event = () => {
   const navigate = useNavigate();
   const [eventsData, setEventsData] = useState(events);
   const [getId, setGetId] = useState('')
-  
+  const logingUser = useSelector((state) => state);
+
 
   useEffect(() => {
     const fetchEventApi = async () => {
@@ -54,9 +57,19 @@ const Event = () => {
       ]);
   };
 
+  console.log(89,logingUser.login.token)
+
   return (
     
     <div className="container clenderStyle pb-5 mb-5 px-5">
+      <div className="text-right mb-1">
+        {
+          logingUser.login.token && <Link to="/add-user-meeting-event" className="orange_btn">
+            Add Create Event
+          </Link>
+        }
+     </div>
+     
       <Calendar
         // onSelectSlot={handleSelect}
         views={["day", "agenda", "work_week", "month"]}

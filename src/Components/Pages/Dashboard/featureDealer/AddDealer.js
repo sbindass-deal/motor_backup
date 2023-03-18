@@ -89,60 +89,125 @@ const AddDealer = () => {
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
-  const uploadLogeImg = async (dealer_id) => {
-    const url = `${process.env.REACT_APP_URL}dealer_img`;
-    let formData = new FormData();
+  // ============================= logo
+  const uploadLogeImg = (dealer_id) => {
     (async () => {
       for await (const item of logoImg) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "logo");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
       }
     })();
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios.post(url, formData, config);
   };
+  // =============================
 
-  const uploadCoverImg = async (dealer_id) => {
-    const url = `${process.env.REACT_APP_URL}dealer_img`;
-    let formData = new FormData();
+  // const uploadLogeImg = async (dealer_id) => {
+  //   const url = `${process.env.REACT_APP_URL}dealer_img`;
+  //   let formData = new FormData();
+  //   (() => {
+  //     for (const item of logoImg) {
+  //       formData.append("logo[]", item);
+  //       formData.append("dealerId", dealer_id);
+  //       formData.append("category", "logo");
+  //     }
+  //   })();
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   await axios.post(url, formData, config);
+  // };
 
+  // ================================= banner
+  const uploadCoverImg = (dealer_id) => {
     (async () => {
       for await (const item of bannerImg) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "banner");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
       }
     })();
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios.post(url, formData, config);
   };
 
-  const uploadGallery = async (dealer_id) => {
-    const url = `${process.env.REACT_APP_URL}dealer_img`;
-    let formData = new FormData();
+  // =================================
+
+  // const uploadCoverImg = async (dealer_id) => {
+  //   const url = `${process.env.REACT_APP_URL}dealer_img`;
+  //   let formData = new FormData();
+
+  //   (() => {
+  //     for (const item of bannerImg) {
+  //       formData.append("logo[]", item);
+  //       formData.append("dealerId", dealer_id);
+  //       formData.append("category", "banner");
+  //     }
+  //   })();
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   await axios.post(url, formData, config);
+  // };
+
+  // =========================== Gallery
+  const uploadGallery = (dealer_id) => {
     (async () => {
       for await (const item of file) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("dealerId", dealer_id);
         formData.append("category", "gallery");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
       }
     })();
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    await axios.post(url, formData, config);
   };
+
+  // ===========================
+
+  // const uploadGallery = async (dealer_id) => {
+  //   const url = `${process.env.REACT_APP_URL}dealer_img`;
+  //   let formData = new FormData();
+  //   (() => {
+  //     for (const item of file) {
+  //       formData.append("logo[]", item);
+  //       formData.append("dealerId", dealer_id);
+  //       formData.append("category", "gallery");
+  //     }
+  //   })();
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   await axios.post(url, formData, config);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -197,7 +262,7 @@ const AddDealer = () => {
     >
       <div className="row">
         <div className="col-12 text-center pb-5">
-          <h2>Add Dealers</h2>
+          <h2>Add Dealer</h2>
         </div>
         <form onSubmit={handleSubmit} className="container px-5">
           <div className="row row_gap_5">

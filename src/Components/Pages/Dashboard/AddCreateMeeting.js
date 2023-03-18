@@ -7,11 +7,14 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import ms from "ms";
 
 const AddCreateMeeting = () => {
- const navigate= useNavigate()
+  const navigate = useNavigate();
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
+  const [minDate, setMinDate] = useState(null);
 
   const handleContent = (e) => {
     setDescription(e);
@@ -25,21 +28,15 @@ const AddCreateMeeting = () => {
     websitelink: "",
     facebooklink: "",
     twitterlink: "",
-    emailid:""
-  })
+    emailid: "",
+  });
 
-
- 
   const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    
-    setMeetingDetail({...meetingDetail,[name]:value})
+    const name = e.target.name;
+    const value = e.target.value;
 
-  }
-
-  
-
+    setMeetingDetail({ ...meetingDetail, [name]: value });
+  };
 
   const inputRef = useRef();
 
@@ -52,25 +49,23 @@ const AddCreateMeeting = () => {
     setFile((prevState) => [...event.dataTransfer.files[0]]);
   };
 
-  console.log(889,file[0])
+  console.log(889, file[0]);
 
   const handleSubmit = async (e) => {
-    
     debugger;
 
-    e.preventDefault()
+    e.preventDefault();
     const url = `${process.env.REACT_APP_URL}AddEvent`;
 
-
-    const formData=new FormData()
-    formData.append('title', meetingDetail.title)
-    formData.append('url', meetingDetail.websitelink)
-    formData.append('start_date', meetingDetail.startdate)
-    formData.append('end_date', meetingDetail.enddate)
-    formData.append('facebook', meetingDetail.facebooklink)
-    formData.append('twitter', meetingDetail.twitterlink)
-    formData.append('email', meetingDetail.emailid)
-    formData.append('status', 1)
+    const formData = new FormData();
+    formData.append("title", meetingDetail.title);
+    formData.append("url", meetingDetail.websitelink);
+    formData.append("start_date", meetingDetail.startdate);
+    formData.append("end_date", meetingDetail.enddate);
+    formData.append("facebook", meetingDetail.facebooklink);
+    formData.append("twitter", meetingDetail.twitterlink);
+    formData.append("email", meetingDetail.emailid);
+    formData.append("status", 1);
 
     formData.append(
       "description",
@@ -79,13 +74,11 @@ const AddCreateMeeting = () => {
 
     formData.append("image", file[0]);
 
-
-    
-  
-    await axios.post(url, formData)
+    await axios
+      .post(url, formData)
       .then(function (response) {
-        navigate('/admin-meeting')
-        console.log(109,response);
+        navigate("/admin-meeting");
+        console.log(109, response);
       })
       .catch(function (error) {
         console.log(error);
@@ -99,13 +92,17 @@ const AddCreateMeeting = () => {
       facebooklink: "",
       twitterlink: "",
       emailid: "",
-      status:1
-      
+      status: 1,
     });
+  };
 
+  useEffect(() => {
+    const minsec = ms("0d");
+    console.log("minsec", minsec);
+    const min_date = new Date(+new Date() - minsec);
+    setMinDate(moment(min_date).format("YYYY-MM-DD"));
+  }, []);
 
-  }
-   
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -122,80 +119,82 @@ const AddCreateMeeting = () => {
 
               <hr id="hr" />
               <form onSubmit={handleSubmit}>
-                <div class="row">
-                  <div class="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
                     <label htmlFor="">Title</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Start Date</label>
                     <input
+                      min={minDate}
                       type="datetime-local"
-                      class="form-control"
+                      className="form-control"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">End Date</label>
                     <input
-                      type="datetime-local"
-                      class="form-control"
+                      min={minDate}
+                      type="date"
+                      className="form-control"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Website Link</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Facebook Link</label>
 
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Twitter Link</label>
 
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
                       value={meetingDetail.twitterlink}
                     />
                   </div>
-                  <div class="col-md-6">
+                  <div className="col-md-6">
                     <label htmlFor="">Email Id</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
@@ -259,7 +258,6 @@ const AddCreateMeeting = () => {
                         ref={inputRef}
                         multiple
                         hidden
-                        
                       />
                       <button
                         className="orange_btn"
@@ -287,102 +285,3 @@ const AddCreateMeeting = () => {
 };
 
 export default AddCreateMeeting;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

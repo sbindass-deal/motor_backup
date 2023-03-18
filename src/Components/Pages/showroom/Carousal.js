@@ -10,6 +10,7 @@ const Carousal = ({ dealerData }) => {
               <Carousel.Item key={i}>
                 <img
                   className="slidImg"
+                  loading="lazy"
                   src={
                     curElem.logo &&
                     `${process.env.REACT_APP_URL}/${curElem.logo}`

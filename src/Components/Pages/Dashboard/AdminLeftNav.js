@@ -7,20 +7,22 @@ function AdminLeftNav() {
     <div className="">
       <h5>Admin Dashboard </h5>
       <hr />
-      <ul class="sideBar__">
+      <ul className="sideBar__">
         <li>
           <Link
             to="/vehicle-submission"
-            className={` ${location.pathname === "/vehicle-submission" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/vehicle-submission" ? "active" : ""
+            } `}
           >
             Vehicle Submission
           </Link>
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/admin/vehicle-listing" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/admin/vehicle-listing" ? "active" : ""
+            } `}
             to="/admin/vehicle-listing"
           >
             Listing Plan
@@ -28,17 +30,19 @@ function AdminLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/raffleadmin" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/raffleadmin" ? "active" : ""
+            } `}
             to="/raffleadmin"
           >
-            Raffle Admin
+            Give Away
           </Link>
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/gear-product" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/gear-product" ? "active" : ""
+            } `}
             to="/gear-product"
           >
             Gear Products
@@ -63,8 +67,9 @@ function AdminLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/admin-dealer" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/admin-dealer" ? "active" : ""
+            } `}
             to="/admin-dealer"
           >
             Dealer List
@@ -72,8 +77,9 @@ function AdminLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/admin-vehicle-ad" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/admin-vehicle-ad" ? "active" : ""
+            } `}
             to="/admin-vehicle-ad"
           >
             Classified Vehicle List
@@ -81,8 +87,9 @@ function AdminLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/admin-enquiry" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/admin-enquiry" ? "active" : ""
+            } `}
             to="/admin-enquiry"
           >
             Customer Enquiry
@@ -91,8 +98,9 @@ function AdminLeftNav() {
 
         <li>
           <Link
-            className={` ${location.pathname === "/admin-meeting" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/admin-meeting" ? "active" : ""
+            } `}
             to="/admin-meeting"
           >
             Events

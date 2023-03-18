@@ -10,39 +10,34 @@ import AdminLeftNav from "./AdminLeftNav";
 const Admin = () => {
   // const location = useLocation();
   return (
-    
-
     <>
-    
-     <section className="ptb_80 pt_sm_50">
+      <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
-                <AdminLeftNav/>
+                <AdminLeftNav />
               </div>
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
               <h3>Basic Info</h3>
               <hr />
-             
             </div>
           </div>
         </div>
       </section>
-     
-    
+
       {/* <div className="row">
-        <div class="d-flex align-items-start">
+        <div className="d-flex align-items-start">
           <div
-            class="nav flex-column nav-pills me-3"
+            className="nav flex-column nav-pills me-3"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
           >
             <button
-              class="nav-link active"
+              className="nav-link active"
               id="v-pills-home-tab"
               data-bs-toggle="pill"
               data-bs-target="#v-pills-home"
@@ -54,7 +49,7 @@ const Admin = () => {
               Home
             </button>
             <button
-              class="nav-link"
+              className="nav-link"
               id="v-pills-profile-tab"
               data-bs-toggle="pill"
               data-bs-target="#v-pills-profile"
@@ -66,7 +61,7 @@ const Admin = () => {
               Profile
             </button>
             <button
-              class="nav-link"
+              className="nav-link"
               id="v-pills-messages-tab"
               data-bs-toggle="pill"
               data-bs-target="#v-pills-messages"
@@ -78,7 +73,7 @@ const Admin = () => {
               Messages
             </button>
             <button
-              class="nav-link"
+              className="nav-link"
               id="v-pills-settings-tab"
               data-bs-toggle="pill"
               data-bs-target="#v-pills-settings"
@@ -90,9 +85,9 @@ const Admin = () => {
               Settings
             </button>
           </div>
-          <div class="tab-content" id="v-pills-tabContent">
+          <div className="tab-content" id="v-pills-tabContent">
             <div
-              class="tab-pane fade show active"
+              className="tab-pane fade show active"
               id="v-pills-home"
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
@@ -101,7 +96,7 @@ const Admin = () => {
               <AdminHome />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="v-pills-profile"
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
@@ -110,7 +105,7 @@ const Admin = () => {
               <Profile />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="v-pills-messages"
               role="tabpanel"
               aria-labelledby="v-pills-messages-tab"
@@ -119,7 +114,7 @@ const Admin = () => {
               <Message />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="v-pills-settings"
               role="tabpanel"
               aria-labelledby="v-pills-settings-tab"

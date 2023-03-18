@@ -68,17 +68,17 @@ function VehicleSubmission() {
                 </li>
               </ul>
               <div
-                class="card_Gray table-responsive vehicleSub"
+                className="card_Gray table-responsive vehicleSub"
                 id="scrollable"
               >
                 {loading ? (
-                  <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                      <span class="sr-only">Loading...</span>
+                  <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="sr-only">Loading...</span>
                     </div>
                   </div>
                 ) : (
-                  <table class="table table-striped">
+                  <table className="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
@@ -149,7 +149,7 @@ function VehicleSubmission() {
                                 <td className="actionBtn vs">
                                   <Dropdown className="neWm">
                                     <Dropdown.Toggle variant="success" id="">
-                                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                                      <i className="fa-solid fa-ellipsis-vertical"></i>
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>

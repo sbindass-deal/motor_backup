@@ -163,70 +163,80 @@ function Home() {
                           {parseInt(new Date(curElem.EndTime).getTime(), 10) -
                             parseInt(new Date().getTime(), 10) >
                             0 && (
-                              <div key={curElem.id}>
-                                <div className="card_post">
-                                  <div className="card_postImg">
-                                    {curElem.image_banner ? (
-                                      <img
-                                        loading="lazy"
-                                        src={
-                                          curElem.image_banner[0] &&
-                                          `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
-                                        }
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src =
-                                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                        }}
-                                        alt="Maskgroup1"
-                                      />
-                                    ) : (
-                                      <img
-                                        loading="lazy"
-                                        src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                        alt="Maskgroup1"
-                                      />
-                                    )}
-                                  </div>
-                                  <div className="card_postInfo">
-                                    <h4>
-                                      {curElem.make} {curElem.model}{" "}
-                                      {curElem.year}
-                                    </h4>
-                                    <p>
-                                      {curElem?.moreDescription &&
-                                        parse(
-                                          curElem?.moreDescription?.substr(
-                                            0,
-                                            300
-                                          ),
-                                          strToHtml
-                                        )}
-                                    </p>
-                                    <ul className="labelList">
-                                      <li>
-                                        <label>Current Bid:</label>{" "}
+                            <div key={curElem.id}>
+                              <div className="card_post">
+                                <div className="card_postImg">
+                                  {curElem.image_banner ? (
+                                    <img
+                                      loading="lazy"
+                                      src={
+                                        curElem.image_banner[0] &&
+                                        `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src =
+                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      }}
+                                      alt="Maskgroup1"
+                                    />
+                                  ) : (
+                                    <img
+                                      loading="lazy"
+                                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                      alt="Maskgroup1"
+                                    />
+                                  )}
+                                </div>
+                                <div className="card_postInfo">
+                                  <h4>
+                                    {curElem.make} {curElem.model}{" "}
+                                    {curElem.year}
+                                  </h4>
+                                  <p>
+                                    {curElem?.moreDescription &&
+                                      parse(
+                                        curElem?.moreDescription?.substr(
+                                          0,
+                                          300
+                                        ),
+                                        strToHtml
+                                      )}
+                                  </p>
+                                  <ul className="labelList">
+                                    <li>
+                                      <label>Current Bid:</label>{" "}
+                                      {curElem?.currentBid &&
+                                      curElem?.currentBid?.last_bid > 0 ? (
                                         <span>
-                                          $
-                                          {curElem.currentAmount
-                                            ? curElem.currentAmount.auctionAmmount
-                                            : curElem.documentFee}
+                                          <label>
+                                            Current Bid : $
+                                            {curElem?.currentBid?.last_bid}
+                                          </label>
                                         </span>
-                                      </li>
-                                      <li>
-                                        <label>Ends In:</label>{" "}
+                                      ) : curElem?.displayInAuction ===
+                                        "classified" ? (
                                         <span>
-                                          {curElem.EndTime &&
-                                            new Date(
-                                              curElem.EndTime
-                                            ).toDateString()}
+                                          Document fee : ${curElem?.documentFee}
                                         </span>
-                                      </li>
-                                    </ul>
-                                  </div>
+                                      ) : (
+                                        <label>No Biding yet</label>
+                                      )}
+                                    </li>
+                                    <li>
+                                      <label>Ends In:</label>{" "}
+                                      <span>
+                                        {curElem.EndTime &&
+                                          new Date(
+                                            curElem.EndTime
+                                          ).toDateString()}
+                                      </span>
+                                    </li>
+                                  </ul>
                                 </div>
                               </div>
-                            )}
+                            </div>
+                          )}
                         </Link>
                       );
                     })}
