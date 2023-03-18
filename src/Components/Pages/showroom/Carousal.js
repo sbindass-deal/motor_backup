@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 const Carousal = ({ dealerData }) => {
   return (
     <>
-      <Carousel fade className="newDelarSlid">
+      <Carousel interval={3000} fade className="newDelarSlid">
         {dealerData?.image_banner &&
           dealerData?.image_banner.map((curElem, i) => {
             return (

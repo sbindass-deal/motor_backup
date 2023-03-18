@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.35681387.css",
-    "main.js": "/static/js/main.5acd912a.js",
+    "main.css": "/static/css/main.b6614d93.css",
+    "main.js": "/static/js/main.35b2ffa2.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -42,6 +42,9 @@
     "static/js/419.908e7079.chunk.js": "/static/js/419.908e7079.chunk.js",
     "static/js/48.3ac00179.chunk.js": "/static/js/48.3ac00179.chunk.js",
     "static/media/about-2.jpeg": "/static/media/about-2.22ccb1cfa96bceb1548e.jpeg",
+    "static/media/Dealer-1.jpg": "/static/media/Dealer-1.19b859fc889797370089.jpg",
+    "static/media/Dealer-2.jpg": "/static/media/Dealer-2.833e0082195be2cb2490.jpg",
+    "static/media/Dealer-3.jpg": "/static/media/Dealer-3.b2d48fd81c7a6ffc2060.jpg",
     "static/media/SUPER_SNAKE_GT500.png": "/static/media/SUPER_SNAKE_GT500.3545253deea0f30380fb.png",
     "static/media/rrrr.png": "/static/media/rrrr.c612b2c7bf49669fff19.png",
     "static/media/charity.png": "/static/media/charity.0acb5bcf2e136c674772.png",
@@ -127,8 +130,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.35681387.css.map": "/static/css/main.35681387.css.map",
-    "main.5acd912a.js.map": "/static/js/main.5acd912a.js.map",
+    "main.b6614d93.css.map": "/static/css/main.b6614d93.css.map",
+    "main.35b2ffa2.js.map": "/static/js/main.35b2ffa2.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -168,7 +171,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.35681387.css",
-    "static/js/main.5acd912a.js"
+    "static/css/main.b6614d93.css",
+    "static/js/main.35b2ffa2.js"
   ]
 }

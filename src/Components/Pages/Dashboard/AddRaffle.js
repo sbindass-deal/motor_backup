@@ -58,6 +58,25 @@ const AddRaffle = () => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
 
+  const uploadImg = (lottery_id) => {
+    (async () => {
+      for await (const item of file) {
+        const url = `${process.env.REACT_APP_URL}addlotteryvehicleimg`;
+        const formData = new FormData();
+        formData.append("image[]", item);
+        formData.append("id", lottery_id);
+        formData.append("category", "lottery_img");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -75,6 +94,7 @@ const AddRaffle = () => {
       .then(async (response) => {
         if (response.status === 200) {
           // navigate("/raffleadmin");
+          uploadImg(response.data.data.id);
         }
       })
       .catch((error) => {
@@ -222,6 +242,7 @@ const AddRaffle = () => {
                   type="file"
                   accept="image/gif, image/jpeg, image/png, image/jpg"
                   ref={inputRef}
+                  multiple
                   hidden
                 />
                 <button
