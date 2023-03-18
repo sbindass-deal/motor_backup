@@ -4507,14 +4507,14 @@ input.ant-select-selection-search-input {
 }
 
 .galleryImgSect {
-  width: 450px;
-  height: 350px;
+  width: 100%;
+  height: 200px;
   overflow: hidden;
 }
 
 .col-12 .galleryImgSect {
   width: 100%;
-  height: 350px;
+  height: 200px;
   overflow: hidden;
 }
 
