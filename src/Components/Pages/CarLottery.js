@@ -27,6 +27,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import { showModalLogin } from "../../redux/reducers/login";
 import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
+import { Image } from "antd";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -71,8 +72,8 @@ function CarRaffle() {
   );
   const now = new Date().getTime();
   const t = newTiem - now;
-  const [lotteryAPI , setLotteryAPI] = useState({});
-  const [count , setCount] = useState(0);
+  const [lotteryAPI, setLotteryAPI] = useState({});
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -128,7 +129,7 @@ function CarRaffle() {
         process.env.REACT_APP_URL + "getLotteryDetail"
       );
       if (response.data.data.length > 0) {
-        setLotteryAPI(response.data.data)
+        setLotteryAPI(response.data.data);
         setShowLotary(response.data.data[0]);
       } else {
         console.log("Data is empty");
@@ -159,17 +160,18 @@ function CarRaffle() {
 
   useEffect(() => {
     setShowLotary(lotteryAPI[count]);
-  }, [count])
+  }, [count]);
 
   useEffect(() => {
     fetchLotaryApi();
-  }, [])
-  
-  
+  }, []);
 
   useEffect(() => {
-
-    const value = { earning: 5, total_reffaral: 15, lottery_id: showLotary?.id };
+    const value = {
+      earning: 5,
+      total_reffaral: 15,
+      lottery_id: showLotary?.id,
+    };
     var ciphertext = CryptoJS.AES.encrypt(
       JSON.stringify(value),
       "my-gas-guzzelers@123"
@@ -225,24 +227,18 @@ function CarRaffle() {
   }, []);
 
   const slideLeft = () => {
-    if(count > 0){
-      setCount(count-1);
+    if (count > 0) {
+      setCount(count - 1);
     }
-    
-    
-  }
+  };
 
   const slideRight = () => {
-    if(count < lotteryAPI.length-1){
-      setCount(count+1);
+    if (count < lotteryAPI.length - 1) {
+      setCount(count + 1);
     }
-  }
+  };
 
-  console.log("showLotary" , showLotary , count);
-
-  
   // console.log(9898, showLotary?.image && showLotary?.image[0].imagePath)
-  console.log(9898, showLotary)
   return (
     <>
       <section className=" video_section d-flex align-items-center">
@@ -276,96 +272,31 @@ function CarRaffle() {
                         <li data-target="#adsSlide" data-slide-to="1"></li>
                         <li data-target="#adsSlide" data-slide-to="2"></li>
                       </ul>
-                      <Carousel
-                        nextLabel=""
-                        prevLabel=""
-                        activeIndex={index}
-                        onSelect={handleSelect}
-                        play={true}
-                        interval={2000}
-                      >
-                        <Carousel.Item
-                          // onClick={() => handleImageHow(0)}
-                          className="carousel-item"
-                          style={{ cursor: "pointer" }}
-                        >
-                        
-                          
-                          {showLotary?.image && (
-                            <img
-                              loading="lazy"
-                              className="d-block w-100 img-fluid"
-                              // src={ads_car_2}
-                              src={
-                                showLotary.image[0] &&
-                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
-                                // `https://api.gasguzzlrs.com/upload/lottery_vehicle/Vehicle-1679063358.jfif`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null; 
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt="Maskgroup1"
-                            />
-                          )}
-                          <Carousel.Caption></Carousel.Caption>
-                        </Carousel.Item>
-
-                        <Carousel.Item
-                          // onClick={() => handleImageHow(0)}
-                          className="carousel-item"
-                          style={{ cursor: "pointer" }}
-                        >
-                          {showLotary?.image && (
-                            <img
-                              loading="lazy"
-                              className="d-block w-100 img-fluid"
-                              src={
-                                showLotary.image[1] &&
-                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              // src={ads_car_3}
-                              alt="Maskgroup1"
-                            />
-                          )}
-                          <Carousel.Caption></Carousel.Caption>
-                        </Carousel.Item>
-
-                        <Carousel.Item
-                          // onClick={() => handleImageHow(0)}
-                          className="carousel-item"
-                          style={{ cursor: "pointer" }}
-                        >
-                          {showLotary?.image && (
-                            <img
-                              loading="lazy"
-                              className="d-block w-100 img-fluid"
-                              // src={ads_car_1}
-                              src={
-                                showLotary.image[2] &&
-                                `${process.env.REACT_APP_URL}/${showLotary?.image[0].imagePath}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src =
-                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                              }}
-                              alt="Maskgroup1"
-                            />
-                          )}
-                        </Carousel.Item>
-                      </Carousel>
+                      <Image.PreviewGroup>
+                        <Carousel interval={3000} fade className="">
+                          {showLotary?.image &&
+                            showLotary?.image.map((curElem, i) => {
+                              return (
+                                <Carousel.Item key={i}>
+                                  <Image
+                                    className="slidImg"
+                                    loading="lazy"
+                                    src={
+                                      curElem.imagePath &&
+                                      `${process.env.REACT_APP_URL}/${curElem.imagePath}`
+                                    }
+                                    alt="First slide"
+                                  />
+                                  <Carousel.Caption></Carousel.Caption>
+                                </Carousel.Item>
+                              );
+                            })}
+                        </Carousel>
+                      </Image.PreviewGroup>
                     </div>
                   </div>
                   <div className="col-12 col-md-7 pp-0">
                     <div className="" key={showLotary?.id}>
-                     
                       <div className="counterCol">
                         <h5>Countdown to the next draw</h5>
                         {t > 0 ? (
@@ -421,15 +352,12 @@ function CarRaffle() {
                           ""
                         )}
                       </div>
-                     
                     </div>
-                    
-                    
                   </div>
                   <div className="col-md-12 RafelLeftRight">
-                      <button onClick={slideLeft}>left</button>
-                      <button onClick={slideRight}>right</button>
-                    </div>
+                    <button onClick={slideLeft}>left</button>
+                    <button onClick={slideRight}>right</button>
+                  </div>
                 </div>
               </div>
               <div className="card_Gray2 mb-4">
@@ -493,7 +421,6 @@ function CarRaffle() {
                        src={bnb_coin} className="mr-2" /> Enter Car Lottery
                     </h5>
                   </div> */}
-                    
 
                     <div class="col-12 col-md-12">
                       <div class="form-group">
@@ -520,7 +447,9 @@ function CarRaffle() {
                           </div>
                           <div class="">
                             <div class="">
-                              <button type="submit" class="btn w-full">Enter Lottery</button>
+                              <button type="submit" class="btn w-full">
+                                Enter Lottery
+                              </button>
                             </div>
                           </div>
                         </form>
@@ -596,39 +525,36 @@ function CarRaffle() {
                     </div>
                   </div> */}
 
-
                   <div class="cardBorder">
                     <h6>My Tickets</h6>
                     <div class="myTicketRow">
                       <div class="myTicketCol">
-                        <div class="MT_ic"><img src={bi_ticket} /></div>
+                        <div class="MT_ic">
+                          <img src={bi_ticket} />
+                        </div>
                         <div class="MT_Count">
-                          {
-                            logingUser.login.token == null ?
-                              0 : setUserLotteryDetails.data
-                          }
-
+                          {logingUser.login.token == null
+                            ? 0
+                            : setUserLotteryDetails.data}
                         </div>
                         <div class="MT_Price">
                           <>
-                            <span>$
-                              {
-                                logingUser.login.token == null ?
-                                  0 : logingUser.login.token &&
+                            <span>
+                              $
+                              {logingUser.login.token == null
+                                ? 0
+                                : logingUser.login.token &&
                                   showLotary?.price &&
                                   setUserLotteryDetails.data &&
-                                  showLotary?.price * setUserLotteryDetails.data
-                              }
+                                  showLotary?.price *
+                                    setUserLotteryDetails.data}
                             </span>
                           </>
-
-
                         </div>
                       </div>
                       <div class="">1 Ticket = $0.01 </div>
                     </div>
                   </div>
-
 
                   <hr />
 

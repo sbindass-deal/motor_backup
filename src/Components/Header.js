@@ -363,10 +363,10 @@ function Header() {
                             to="/carraffle"
                             onClick={() => setShowNav(false)}
                           >
-                            Give Aways
+                            Giveaways
                           </Link>
                         ) : (
-                          <Link className="nav-link">Give Aways</Link>
+                          <Link className="nav-link">Giveaways</Link>
                         )}
                       </li> */}
                       {/* <li className="nav-item">
@@ -683,10 +683,10 @@ function Header() {
                             className="nav-link"
                             to="/carraffle"
                           >
-                            Give Aways
+                            Giveaways
                           </Link>
                         ) : (
-                          <Link className="nav-link">Give Aways</Link>
+                          <Link className="nav-link">Giveaways</Link>
                         )}
                       </li>
 

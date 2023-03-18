@@ -35,7 +35,7 @@ function AdminLeftNav() {
             } `}
             to="/raffleadmin"
           >
-            Give Away
+            Giveaways
           </Link>
         </li>
         <li>

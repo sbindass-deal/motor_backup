@@ -53,7 +53,7 @@ function RaffleAdmin() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <div className="reffAdmn">
-                <h3>Give Away</h3>
+                <h3>Giveaways</h3>
                 <div style={{ marginLeft: "auto" }}></div>
                 <Link
                   to="/raffleadmin/add-raffel"
@@ -61,7 +61,7 @@ function RaffleAdmin() {
                   className="orange_btn"
                 >
                   {" "}
-                  Add Give Away{" "}
+                  Add Giveaways{" "}
                 </Link>
                 <div className="dropdown">
                   <a

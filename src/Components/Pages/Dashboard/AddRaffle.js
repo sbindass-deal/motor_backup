@@ -57,7 +57,7 @@ const AddRaffle = () => {
   const handleChange = (e) => {
     setRaffle({ ...raffle, [e.target.name]: e.target.value });
   };
-
+  // image upload
   const uploadImg = (lottery_id) => {
     (async () => {
       for await (const item of file) {
@@ -66,6 +66,26 @@ const AddRaffle = () => {
         formData.append("image[]", item);
         formData.append("id", lottery_id);
         formData.append("category", "lottery_img");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+  // ============ video upload
+
+  const uploadVideo = (lottery_id) => {
+    (async () => {
+      for await (const item of fileVideo) {
+        const url = `${process.env.REACT_APP_URL}addlotteryvehicleimg`;
+        const formData = new FormData();
+        formData.append("image[]", item);
+        formData.append("id", lottery_id);
+        formData.append("category", "lottery_video");
         const newImagedata = formData;
         const config = {
           headers: {
@@ -93,8 +113,9 @@ const AddRaffle = () => {
       .post(`${process.env.REACT_APP_URL}addlotteryvehicle`, formData)
       .then(async (response) => {
         if (response.status === 200) {
-          // navigate("/raffleadmin");
           uploadImg(response.data.data.id);
+          uploadVideo(response.data.data.id);
+          navigate("/raffleadmin");
         }
       })
       .catch((error) => {
@@ -106,7 +127,7 @@ const AddRaffle = () => {
     <div className="container">
       <div className="row">
         <form onSubmit={handleSubmit} className="p-md-5">
-          <h3 className="p-4 text-center">Give Away Details</h3>
+          <h3 className="p-4 text-center">Giveaways Details</h3>
 
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
@@ -264,15 +285,23 @@ const AddRaffle = () => {
                 {Array.from(fileVideo).map((items) => {
                   return (
                     <span>
-                      <img
-                        src={items ? URL.createObjectURL(items) : null}
+                      <video
                         style={{
-                          width: "100px",
-                          height: "100px",
+                          width: "300px",
+                          height: "300px",
                           objectFit: "cover",
                           padding: "15px",
                         }}
-                      />
+                        muted="false"
+                        id="myVideo"
+                        controls
+                      >
+                        <source
+                          src={items ? URL.createObjectURL(items) : null}
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
                     </span>
                   );
                 })}
@@ -290,7 +319,8 @@ const AddRaffle = () => {
                   }}
                   name="file"
                   type="file"
-                  accept="image/gif, image/jpeg, image/png, image/jpg"
+                  // accept="image/gif, image/jpeg, image/png, image/jpg"
+                  accept="video/mp4,video/x-m4v,video/*"
                   ref={inputRefVideo}
                   hidden
                 />
