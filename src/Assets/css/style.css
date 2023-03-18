@@ -6619,6 +6619,21 @@ ul.bidOnThis li p:first-child { width: 26%;}
   width: 19.99%;
 }
 
-.showGallery .col-5, .showGallery .col-12, .showGallery .col-6 {
-  padding: 0;
+.showGallery .col-lg-5, .showGallery .col-lg-12, .showGallery .col-lg-6 {
+  padding: 3px;
+}
+
+.showGallery .col-lg-6,.showGallery .col-lg-12 {
+  height: 360px;
+}
+
+.showGallery .col-lg-6 img,.showGallery .col-lg-12 img,.showGallery .col-lg-5 img {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  object-fit: cover;
+}
+.showGallery .col-lg-5 {
+  height: 720px;
 }
