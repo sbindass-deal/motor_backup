@@ -12,9 +12,9 @@ import caer from "../../../Assets/images/caer.gif";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
-import Dealer from '../../../Assets/images/Dealer-1.jpg'
-import Dealer2 from '../../../Assets/images/Dealer-2.jpg'
-import Dealer3 from '../../../Assets/images/Dealer-3.jpg'
+import Dealer from "../../../Assets/images/Dealer-1.jpg";
+import Dealer2 from "../../../Assets/images/Dealer-2.jpg";
+import Dealer3 from "../../../Assets/images/Dealer-3.jpg";
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -58,32 +58,80 @@ const DealerProfile = () => {
   return (
     <>
       <Carousal dealerData={dealerData} />
-
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
               <h2>Gallery</h2>
             </div>
-            <div className="row showGallery">
-              <div className="col-5">
-                <img src={Dealer2}/>
+            {dealerData?.image_gallery && (
+              <div className="row showGallery">
+                <div className="col-5">
+                  <img
+                    loading="lazy"
+                    src={
+                      dealerData?.image_gallery[0]?.logo &&
+                      `${process.env.REACT_APP_URL}/${dealerData?.image_gallery[0]?.logo}`
+                    }
+                    onError={({ currentTarget }) => {
+                      currentTarget.onError = null;
+                      currentTarget.src =
+                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                    }}
+                    alt="gallery"
+                  />
+                </div>
+                <div className="col-7">
+                  <div className="row">
+                    <div className="col-6">
+                      <img
+                        loading="lazy"
+                        src={
+                          dealerData?.image_gallery[1]?.logo &&
+                          `${process.env.REACT_APP_URL}/${dealerData?.image_gallery[1]?.logo}`
+                        }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src =
+                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        }}
+                        alt="gallery"
+                      />
+                    </div>
+                    <div className="col-6">
+                      <img
+                        loading="lazy"
+                        src={
+                          dealerData?.image_gallery[2]?.logo &&
+                          `${process.env.REACT_APP_URL}/${dealerData?.image_gallery[2]?.logo}`
+                        }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src =
+                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        }}
+                        alt="gallery"
+                      />
+                    </div>
+                    <div className="col-12">
+                      <img
+                        loading="lazy"
+                        src={
+                          dealerData?.image_gallery[3]?.logo &&
+                          `${process.env.REACT_APP_URL}/${dealerData?.image_gallery[3]?.logo}`
+                        }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src =
+                            "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        }}
+                        alt="gallery"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-7">
-               <div className="row">
-                  <div className="col-6">
-                    <img src={Dealer}/>
-                  </div>
-                  <div className="col-6">
-                    <img src={Dealer3}/>
-                  </div>
-                  <div className="col-12">
-                    <img src={Dealer3}/>
-                  </div>
-               </div>
-              </div>
-
-            </div>
+            )}
             <div className="col-12 gallery">
               <div className="row">
                 {/* <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
@@ -106,7 +154,7 @@ const DealerProfile = () => {
                   <div
                     className="row"
                     style={{
-                      height: `${showMore ? "100%" : "400px"}`,
+                      height: `${showMore ? "100%" : "0px"}`,
                       overflow: "hidden",
                     }}
                   >

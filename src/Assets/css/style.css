@@ -4858,7 +4858,7 @@ html {
 }
 
 .inner-slider .card_post {
-  border: 1px solid rgb(180, 180, 180);
+  /* border: 1px solid rgb(180, 180, 180); */
   margin-bottom: 30px;
 }
 
