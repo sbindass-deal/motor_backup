@@ -6390,10 +6390,12 @@ h3.sliderTile {
 .newDelarSlid.carousel {
   position: relative;
   width: 100% !important;
-  height: 550px;
+  height: 650px;
   align-items: center;
   display: flex;
   overflow: hidden;
+  margin: 0;
+  border-radius: 0;
 }
 .newDelarSlid .carousel-indicators button.active {
   border: 1px solid white;
@@ -6615,4 +6617,8 @@ ul.bidOnThis li p:first-child { width: 26%;}
 }
 .row.rightGallery.moreSh>div {
   width: 19.99%;
+}
+
+.showGallery .col-5, .showGallery .col-12, .showGallery .col-6 {
+  padding: 0;
 }

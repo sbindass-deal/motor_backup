@@ -184,6 +184,9 @@
 	.secondNavbar {
 		top: -23px;
 	}
+	.newDelarSlid.carousel {
+		height: 650px;
+	}
 
 }
 
