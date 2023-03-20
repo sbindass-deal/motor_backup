@@ -6623,7 +6623,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
   padding: 3px;
 }
 
-.showGallery .col-lg-6 .ant-image.css-dev-only-do-not-override-1hyej8k,.showGallery .col-lg-12 .ant-image.css-dev-only-do-not-override-1hyej8k {
+.showGallery .col-lg-6 .ant-image,.showGallery .col-lg-12 .ant-image {
   height: 450px;
   width: 100%;
 }
@@ -6635,8 +6635,8 @@ ul.bidOnThis li p:first-child { width: 26%;}
   display: flex;
   object-fit: cover;
 }
-.showGallery .col-lg-5 .ant-image.css-dev-only-do-not-override-1hyej8k {
-  height: 815px;
+.showGallery .col-lg-5 .ant-image {
+  height: 814px;
   width: 100%;
 }
 
@@ -6666,7 +6666,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
 
 #sticky { top: 105px !important;}
 
-.showGallery .col-lg-6 .ant-image.css-dev-only-do-not-override-1hyej8k {
+.showGallery .col-lg-6 .ant-image {
   height: 353px;
   width: 100%;
 }
