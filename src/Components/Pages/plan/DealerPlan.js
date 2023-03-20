@@ -13,7 +13,6 @@ const DealerPlan = () => {
   const [planData, setPlanData] = useState([]);
   const [callPlanApi, setCallPlanApi] = useState(null);
   const [showTab, setShowTab] = useState({
-    normal: false,
     auction: true,
     classified: false,
   });
@@ -23,7 +22,7 @@ const DealerPlan = () => {
     setLoading(true);
     await axios
       .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {
-        category: "dealer",
+        category: `${showTab.auction ? "dealer" : "classified"}`,
       })
       .then(function (response) {
         if (response.data.status === 200) {
@@ -83,7 +82,6 @@ const DealerPlan = () => {
                 className={`nav-link ${showTab.auction ? "active" : ""}`}
                 onClick={() => {
                   setShowTab({
-                    normal: false,
                     auction: true,
                     classified: false,
                   });
@@ -97,7 +95,6 @@ const DealerPlan = () => {
                 className={`nav-link ${showTab.classified ? "active" : ""}`}
                 onClick={() => {
                   setShowTab({
-                    normal: false,
                     auction: false,
                     classified: true,
                   });
