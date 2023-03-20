@@ -50,15 +50,16 @@ const SearchResult = () => {
           <div className="container">
             <div className="row">
               <div className="topTile">
-                <h5>
+                <h1>
                   {searchedData.make || relatedData[0].make}{" "}
                   {/* {searchedData.model || relatedData[0].model}{" "}
                   {searchedData.year || relatedData[0].year} */}
-                </h5>
+                </h1>
               </div>
             </div>
             <div className="col-12 col-lg-12">
               <div className="heroText">
+                
                 <h5>
                   {searchedData.moreDescription ||
                     relatedData[0].moreDescription}
@@ -92,7 +93,7 @@ const SearchResult = () => {
         )}
       </section>
 
-      <section className="pt_40">
+      <section className="pt_40 searchResult">
         <div className="container">
           <div className="col-12 col-lg-12 py-2">
             <h4 className="text-center">

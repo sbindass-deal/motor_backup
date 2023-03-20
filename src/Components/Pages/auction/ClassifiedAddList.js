@@ -79,7 +79,7 @@ function ClassifiedAddList() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>{addName}</h3>
+              <h3 className="p-15">{addName}</h3>
               <hr />
               <div className="row pt-4 row_gridList ">
                 {classifiedAds.length > 0 &&

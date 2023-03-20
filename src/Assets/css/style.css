@@ -6131,7 +6131,7 @@ a.dfr {
 }
 
 .labelList li:last-child {
-  width: 220px;
+  width: 120px;
 }
 
 .blogDesc h2 span strong {
@@ -6689,4 +6689,37 @@ ul.bidOnThis li p:first-child { width: 26%;}
 .eventRightSide .card_ p span {
   color: #f7931a;
   font-size: 15px;
+}
+
+.rafel .carousel-inner {
+  max-height: 310px;
+  justify-content: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.RafelLeftRight {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 160px;
+  z-index: 99;
+}
+.RafelLeftRight svg {
+  font-size: 25px;
+  background: #333333;
+  padding: 10px;
+  display: block;
+}
+.featuredAuctions_Slide .labelList li{ color:#f7931a ;}
+h3.p-15 { padding: 6px;}
+.searchResult h4.text-center {
+  font-size: 25px;
+  padding-bottom: 25px;
+}
+.searchResult .card_post.SearchResult.auction {
+  box-shadow: 1px 15px 15px 1px #3939393b;
+  margin-bottom: 30px;
 }
