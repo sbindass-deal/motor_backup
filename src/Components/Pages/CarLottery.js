@@ -355,8 +355,8 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-md-12 RafelLeftRight">
-                    <button onClick={slideLeft}>left</button>
-                    <button onClick={slideRight}>right</button>
+                    <p onClick={slideLeft}><i class="fa-solid fa-arrow-left"></i></p>
+                    <p onClick={slideRight}><i class="fa-solid fa-arrow-right"></i></p>
                   </div>
                 </div>
               </div>
