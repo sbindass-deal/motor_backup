@@ -45,6 +45,7 @@ function Home() {
   }, []);
 
   const slide = useRef(null);
+  // const blogSlide = useRef(null);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -106,6 +107,41 @@ function Home() {
         },
       },
     ],
+  };
+
+  const latestBlogSetting = {
+    dots: true,
+    infinite: true,
+    arrows: false,
+    speed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   return (
@@ -344,7 +380,7 @@ function Home() {
       <section className="ptb_80 blogPostText rf">
         <div className="container">
           <div className="row">
-              <div
+              {/* <div
                 className={`disFlex .slider`}
               >
                 <div className={`p-2 slideTrack`}>
@@ -370,6 +406,38 @@ function Home() {
                     })
                   }
                 </div>
+              </div> */}
+              <div className="col-12">
+                <div className="latestBlogCard">
+                  <Slider {...latestBlogSetting}>
+                  {
+                    lottery?.map((d, i) => {
+                      return (
+                        <div key={i} className={`latestBlogSlide`}>
+                          <a href="/carraffle" className="full">
+                          <div className="col-lg-6 col-sm-12 pb_30 rafSect">
+                            <h2>{d?.name}</h2>
+                            <p>{parse(d?.description, strToHtml)}</p>
+                            <div className="price_">
+                              <p>{d?.dealEndDate}</p>
+                            </div>
+                            <button className="orange_btn">Buy Tickets</button>
+                          </div>
+                          <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
+                            <img src={ads_car_2} className="addBanner" />
+                          </div>
+                          </a>
+                        </div>
+                      )
+                    })
+                  }
+                  </Slider>
+
+                </div>
+                {/* <div className="d-flex justify-content-center mt-1">
+                  <button onClick={() => blogSlide.current.slickPrev()} className="orange_btn">Prev</button>
+                  <button onClick={() => blogSlide.current.slickNext()} className="orange_btn ml-2">Next</button>
+                </div> */}
               </div>
           </div>
         </div>

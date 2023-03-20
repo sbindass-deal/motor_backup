@@ -35,15 +35,16 @@ const EventDetailPage = () => {
   return (
     <div className="container mt-3">
       <div className="row">
-        <div className="col-md-3">
-          <h6 className="textHeading">Recent Event</h6>
+        <div className="col-md-3 ">
+          <div className="box_backgroundD">
+          <h3 class="cardTitle">Recent Event</h3>
+          
           {getRecentEventdata.map((curVal) => {
             console.log(787989, curVal);
             return (
-              <p className="imagepart ">
+              <p className="carFlx ">
                 <p>
                   <img
-                    width={200}
                     src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`}
                     alt=""
                   />
@@ -51,16 +52,19 @@ const EventDetailPage = () => {
                     {curVal.description && parse(curVal.description, strToHtml)}
                   </p>
                   <p>
-                    <span>Start Date : {curVal.start_date}</span> -{" "}
+                    <span>Start Date : {curVal.start_date}</span>
+                    <br/>
                     <span>End Date : {curVal.end_date}</span>
                   </p>
                 </p>
               </p>
             );
           })}
-
-          <div>
-            <h5 class="widget-title">Upcoming Events</h5>
+          </div>
+         
+          <div className="box_backgroundD mt-15">
+          <h3 class="cardTitle">Upcoming Events</h3>
+          
             {getUpcomingEventdata.map((curVal) => {
               console.log(888, curVal);
               return (
@@ -79,49 +83,38 @@ const EventDetailPage = () => {
               );
             })}
           </div>
+         
         </div>
-        <div className="col-md-7">
-          <p>All Event</p>
+        <div className="col-md-9 eventRightSide">
+          {/* <p>All Event</p> */}
           <h1 className="textHeading">{getEventdata.title}</h1>
-          <p>
-            <img
+          <div className="postHero pb_30 detail">
+          <img
               className="img-fluid"
               src={`https://api.gasguzzlrs.com/upload/event/${getEventdata.image}`}
               alt=""
             />
-          </p>
-
-          <br />
-          <br />
-          <hr />
-          <h3>From the organizer:</h3>
-          <p>
-            {getEventdata.description &&
+          </div>
+         
+          <div class="card_">
+            <h3 class="cardTitle">From the organizer</h3>
+           
+           <p> {getEventdata.description &&
               parse(getEventdata.description, strToHtml)}
-          </p>
-          <br />
-          <br />
-          <hr />
-          <h5 className="textHeading">details</h5>
-          <div>
-            <span>Start</span>
-            <p>{getEventdata.start_date}</p>
+           </p>
           </div>
 
-          <div>
-            <span>End</span>
-            <p>{getEventdata.end_date}</p>
+          <div class="card_">
+            <h3 class="cardTitle">Details</h3>
+            <p><span>Start</span> {getEventdata.start_date}</p>
+            <p><span>End</span> {getEventdata.end_date}</p>
+            <p><span>Website</span> {getEventdata.url}</p>
           </div>
 
-          <div>
-            <span>Website</span>
-            <p>{getEventdata.url}</p>
-          </div>
-          <br />
-          <br />
-          <hr />
+          <div class="card_">
 
-          <div class="post-share">
+            <h3 class="cardTitle">Share Post</h3>
+            <div class="post-share">
             <a
               class="post-share-link post-share-link-facebook"
               href={getEventdata.facebook}
@@ -131,11 +124,7 @@ const EventDetailPage = () => {
               data-share-height="300"
               data-share-width="609"
             >
-              <img
-                src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-facebook.svg"
-                alt="Facebook icon"
-                aria-hidden="true"
-              />{" "}
+              <i class="fa-brands fa-facebook"></i>
             </a>
 
             <a
@@ -147,11 +136,7 @@ const EventDetailPage = () => {
               data-share-height="257"
               data-share-width="626"
             >
-              <img
-                src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-twitter.svg"
-                alt="Twitter icon"
-                aria-hidden="true"
-              />{" "}
+              <i class="fa-brands fa-twitter"></i>
             </a>
 
             <a
@@ -160,15 +145,44 @@ const EventDetailPage = () => {
               target="_blank"
               aria-label="Share this listing on email"
             >
-              <img
-                src="https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/social-email.svg"
-                alt="Email icon"
-                aria-hidden="true"
-              />{" "}
+              <i class="fa-solid fa-envelope"></i>
             </a>
+            </div>
           </div>
 
-          <div class="comments-header">
+        
+
+         
+          <div className="card_ ">
+            <div className="row">
+              <div className="col-12">
+              <h3 class="cardTitle">Comments</h3>
+              <form action="" onSubmit={handleSubmit}>
+              <textarea name="" id="" cols="74" rows="3" class="field"></textarea>
+              <span class="subscribe-to-comments">
+                    Keep me in this conversation via email
+                  </span><br/><br/>
+              <input
+                    type="submit"
+                    class="btn"
+                    value="Submit"
+                  />
+              <div class="comment-submission-actions">
+                <div class="comment-submission-actions-subscribe">
+                 
+                </div>
+                <div class="comment-submission-actions-submit">
+                 
+                </div>
+              </div>
+            </form>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* <div class="comments-header">
             <a id="comments-anchor"></a>
             <h4
               class="comments-title"
@@ -177,26 +191,10 @@ const EventDetailPage = () => {
             >
               No Comments
             </h4>
-          </div>
+          </div> */}
 
           <div>
-            <form action="" onSubmit={handleSubmit}>
-              <textarea name="" id="" cols="74" rows="3"></textarea>
-              <div class="comment-submission-actions">
-                <div class="comment-submission-actions-subscribe">
-                  <span class="subscribe-to-comments">
-                    Keep me in this conversation via email
-                  </span>
-                </div>
-                <div class="comment-submission-actions-submit">
-                  <input
-                    type="submit"
-                    class="submit button button-white button-narrow "
-                    value="Submit"
-                  />
-                </div>
-              </div>
-            </form>
+           
           </div>
         </div>
       </div>

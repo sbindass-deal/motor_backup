@@ -260,7 +260,7 @@ function CarRaffle() {
                   <div className="col-12 col-md-5">
                     <div
                       id="adsSlide"
-                      className="carousel slide"
+                      className="carousel slide rafel"
                       data-ride="carousel"
                     >
                       <ul className="carousel-indicators">
