@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,7 +7,13 @@ import { useSelector } from "react-redux";
 function GearProducts() {
   const [searchTerm, setSearchTerm] = useState("");
   const data = useSelector((state) => state);
-  const products = data.gearReducer.gearData;
+  // const products = data?.gearReducer?.gearData;
+  const [products , setProducts] = useState();
+
+  useEffect(() => {
+    axios.get("https://api.gasguzzlrs.com/allproduct").then((d)=>{setProducts(d.data.data.product)})
+  }, [])
+  
 
   const handleDelete = (id) => {
     axios
@@ -84,7 +90,7 @@ function GearProducts() {
                   </thead>
                   <tbody>
                     {products
-                      .filter((curElem, i) => {
+                      ?.filter((curElem, i) => {
                         if (searchTerm == "") {
                           return curElem;
                         } else if (
@@ -104,27 +110,28 @@ function GearProducts() {
                           return curElem;
                         }
                       })
-                      .map((curElem, i) => {
+                      ?.map((curElem, i) => {
+                        console.log(`${process.env.REACT_APP_URL}upload/products/${curElem?.images[0]}`);
                         return (
-                          <tr key={curElem.id}>
+                          <tr key={curElem?.id}>
                             <th scope="row">{i + 1}</th>
                             <td>
                               <div className="">
                                 <img
                                   width={100}
                                   className="img-fluid"
-                                  src={`${process.env.REACT_APP_URL}upload/products/${curElem.image}`}
+                                  src={`${process.env.REACT_APP_URL}upload/products/${curElem?.images[0].image}`}
                                   alt={curElem.title}
                                 />
                               </div>
                             </td>
-                            <td>{curElem.title}</td>
-                            <td>${curElem.price}</td>
-                            <td>{curElem.color}</td>
-                            <td>{curElem.size}</td>
-                            <td>{curElem.category}</td>
+                            <td>{curElem?.title}</td>
+                            <td>{curElem?.price}</td>
+                            <td>{curElem?.color}</td>
+                            <td>{curElem?.size}</td>
+                            <td>{curElem?.category}</td>
                             <td className="actionBtn">
-                              <Link to={`/gear-product/${curElem.id}`}>
+                              <Link to={`/gear-product/${curElem?.id}`}>
                                 <button
                                   data-toggle="modal"
                                   data-target="#MerchandiseEdit"
@@ -134,7 +141,7 @@ function GearProducts() {
                               </Link>
 
                               {/* <button><i className="fa-sharp fa-solid fa-plus"></i></button> */}
-                              <button onClick={() => handleDelete(curElem.id)}>
+                              <button onClick={() => handleDelete(curElem?.id)}>
                                 <i className="fa-solid fa-trash-can"></i>
                               </button>
                             </td>
