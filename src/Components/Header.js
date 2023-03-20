@@ -347,7 +347,7 @@ function Header() {
                           </div>
                         </div>
                       </li>
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           to="/showroom"
@@ -355,8 +355,8 @@ function Header() {
                         >
                           Showrooms
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item">
+                      </li>
+                      <li className="nav-item">
                         {true ? (
                           <Link
                             className="nav-link"
@@ -368,7 +368,7 @@ function Header() {
                         ) : (
                           <Link className="nav-link">Giveaways</Link>
                         )}
-                      </li> */}
+                      </li>
                       {/* <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -378,7 +378,7 @@ function Header() {
                           Featured
                         </Link>
                       </li> */}
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link "
                           to="/charity"
@@ -386,17 +386,16 @@ function Header() {
                         >
                           Charity Auctions
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item">
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
-                          
                           to="/event"
                           onClick={() => setShowNav(false)}
                         >
                           Event Calendar
                         </Link>
-                      </li> */}
+                      </li>
                       {/* <li className="nav-item">
                         <div className="dropdown">
                           <Link
@@ -432,7 +431,7 @@ function Header() {
                           </div>
                         </div>
                       </li> */}
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           // style={{
@@ -445,8 +444,8 @@ function Header() {
                         >
                           FAQ
                         </Link>
-                      </li> */}
-                      {/* <li className="nav-item">
+                      </li>
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           // style={{
@@ -459,7 +458,7 @@ function Header() {
                         >
                           Gear Store
                         </Link>
-                      </li> */}
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -690,7 +689,7 @@ function Header() {
                         )}
                       </li>
 
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -702,7 +701,7 @@ function Header() {
                         >
                           Featured
                         </Link>
-                      </li>
+                      </li> */}
 
                       <li className="nav-item">
                         <Link
