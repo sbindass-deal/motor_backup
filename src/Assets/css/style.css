@@ -2395,9 +2395,9 @@ form .gry_btn {
 }
 
 .latestBlogCard {
-  background-color: #fbfbfb;
+  /* background-color: #fbfbfb; */
   border-radius: 16px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .orangeCard {
