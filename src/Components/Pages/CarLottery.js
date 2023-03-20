@@ -28,6 +28,8 @@ import { toast } from "react-toastify";
 import { showModalLogin } from "../../redux/reducers/login";
 import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
 import { Image } from "antd";
+import parse from "html-react-parser";
+import { strToHtml } from "../UI/globaleVar";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -338,8 +340,11 @@ function CarRaffle() {
                         {showLotary?.description ? (
                           <p className="py-4">
                             {showLotary?.description && !showReadMore
-                              ? showLotary?.description.substr(0, 100)
-                              : showLotary?.description}
+                              ? parse(
+                                  showLotary?.description?.substr(0, 100),
+                                  strToHtml
+                                )
+                              : parse(showLotary?.description, strToHtml)}
                             <p
                               type="text"
                               onClick={() => setshowReadMore(!showReadMore)}
@@ -355,8 +360,12 @@ function CarRaffle() {
                     </div>
                   </div>
                   <div className="col-md-12 RafelLeftRight">
-                    <p onClick={slideLeft}><i class="fa-solid fa-arrow-left"></i></p>
-                    <p onClick={slideRight}><i class="fa-solid fa-arrow-right"></i></p>
+                    <p onClick={slideLeft}>
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </p>
+                    <p onClick={slideRight}>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -556,9 +565,9 @@ function CarRaffle() {
                     </div>
                   </div>
 
-                  <hr />
+                  {/* <hr /> */}
 
-                  <div className="cardBorder">
+                  {/* <div className="cardBorder">
                     <h5>Refer Friend </h5>
                     <ul className="refferFriendList mt-3">
                       <li>
@@ -601,14 +610,8 @@ function CarRaffle() {
                       </button>
                     </div>
 
-                    {/* <button type="button" className="gry_btn w-full">
-                      Copy Reffer al Link
-                    </button> */}
-                    <p className="small mt-2">
-                      <i className="fa-solid fa-circle-info"></i> 3% of their
-                      purchased ticket will be shared with you
-                    </p>
-                  </div>
+                   
+                  </div> */}
                 </div>
               </div>
             </div>

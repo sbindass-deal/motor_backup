@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
@@ -8,17 +8,10 @@ const AddGearProduct = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [getInputData, setGetInputData] = useState({
-    tittle: "",
-    category: "",
-    price: "",
-    stocks: "",
-    size: [],
-    color: [],
-    desc: "",
-    youtube_link: "",
-  });
+  const [inventry, setInventry] = useState({ category: [], size: [], color: [] });
+  const [getInputData, setGetInputData] = useState({ tittle: "", category: [], price: "", stocks: "", size: [], color: [], desc: "", youtube_link: "", });
   const inputRef = useRef();
+  const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -46,7 +39,7 @@ const AddGearProduct = () => {
       formData.append("image[]", file1);
       formData.append("product_id", vehicleId);
       const newImagedata = formData;
-      console.log(file, formData);
+      // console.log(file, formData);
     }
     let a = await axios.post(url, formData, config);
     if (a.status == 200) {
@@ -82,6 +75,33 @@ const AddGearProduct = () => {
         console.log(error);
       });
   };
+
+  console.log(inventry);
+
+  useEffect(() => {
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}gatAllColors`,
+      "Authorization": TOKEN
+    }).then((d) => { setInventry({ ...inventry, color: d.data.data });  });
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}gatAllSize`,
+      "Authorization": TOKEN
+    }).then((d) => { setInventry({ ...inventry, size: d.data.data });});
+
+    axios({
+      method : "get" ,
+      url : `${process.env.REACT_APP_URL}gatAllCategory`,
+      "Authorization" : TOKEN
+     }).then((d) => {setInventry({...inventry , category : d.data.data});});
+
+  }, [getInputData])
+  
+
+
 
   // const handleApi = async (e) => {
   //   e.preventDefault();
@@ -142,7 +162,7 @@ const AddGearProduct = () => {
                   <label htmlFor="">Category</label>
                   <select
                     name="category"
-                    onChange={handleOnChange}
+                    onChange={(e) => { setGetInputData({...getInputData , category : [e.target.value]})}}
                     value={getInputData.category}
                     className="field"
                     required
@@ -150,8 +170,13 @@ const AddGearProduct = () => {
                     <option selected disabled value="">
                       Select
                     </option>
-                    <option value="Car Accessories">Car Accessories</option>
-                    <option value="Home and Living">Home and Living</option>
+                    {
+                      inventry?.category?.map((d , i) => {
+                        return(
+                          <option key={i} value={`${d?.category}`} >{d?.category}</option>
+                        )
+                      })
+                    }
                   </select>
                 </div>
               </div>
@@ -223,7 +248,7 @@ const AddGearProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              {/* <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="size"
                   onChange={(e) => {
@@ -239,8 +264,31 @@ const AddGearProduct = () => {
                   pattern="^[A-Za-z0-9-:/ ]{1,80}$"
                   required={true}
                 />
-              </div>
+              </div> */}
               <div className="col-md-12 col-lg-6 col-sm-12">
+                <div className="form-group">
+                  <label htmlFor="">Size</label>
+                  <select
+                    name="size"
+                    onChange={(e) => {setGetInputData({...getInputData , size : [e.target.value]})}}
+                    value={getInputData.size}
+                    className="field"
+                    required
+                  >
+                    <option selected disabled value="">
+                      Select
+                    </option>
+                    {
+                      inventry?.size?.map((d , i) => {
+                        return(
+                          <option key={i} value={`${d?.size}`} >{d?.size}</option>
+                        )
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
+              {/* <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="color"
                   onChange={(e) => {
@@ -256,6 +304,29 @@ const AddGearProduct = () => {
                   pattern="^[A-Za-z ]{1,80}$"
                   required={true}
                 />
+              </div> */}
+              <div className="col-md-12 col-lg-6 col-sm-12">
+                <div className="form-group">
+                  <label htmlFor="">Color</label>
+                  <select
+                    name="color"
+                    onChange={(e) => {setGetInputData({...getInputData , color : [e.target.value]})}}
+                    value={getInputData.color}
+                    className="field"
+                    required
+                  >
+                    <option selected disabled value="">
+                      Select
+                    </option>
+                    {
+                      inventry?.color?.map((d , i) => {
+                        return(
+                          <option key={i} value={`${d?.color}`} >{d?.color}</option>
+                        )
+                      })
+                    }
+                  </select>
+                </div>
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput

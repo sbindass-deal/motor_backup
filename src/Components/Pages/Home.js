@@ -22,10 +22,13 @@ function Home() {
   useEffect(() => {
     const fetchBlogs = async () => {
       const blogData = {
-        'limit': '5'
-      }
+        limit: "5",
+      };
       try {
-        const res = await axios.post(`${process.env.REACT_APP_URL}/getblogs`, blogData);
+        const res = await axios.post(
+          `${process.env.REACT_APP_URL}/getblogs`,
+          blogData
+        );
         dispatch(storeBlogData(res.data.data));
         console.log(res);
       } catch (err) {
@@ -34,10 +37,10 @@ function Home() {
     };
     fetchBlogs();
 
-    axios.get(`${process.env.REACT_APP_URL}getLotteryDetail`).then((d) => { setLottery(d?.data.data) })
-
+    axios.get(`${process.env.REACT_APP_URL}getLotteryDetail`).then((d) => {
+      setLottery(d?.data.data);
+    });
   }, []);
-
 
   useEffect(() => {
     const filteredAuctionVehicle = vehicleData.filter(
@@ -128,24 +131,24 @@ function Home() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
+          slidesToScroll: 1,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
+          slidesToScroll: 1,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -200,83 +203,75 @@ function Home() {
                     sliderData.map((curElem) => {
                       return (
                         <Link to={`/detail/${curElem.id}`}>
-                          {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                            parseInt(new Date().getTime(), 10) >
-                            0 && (
-                            <div key={curElem.id}>
-                              <div className="card_post">
-                                <div className="card_postImg">
-                                  {curElem.image_banner ? (
-                                    <img
-                                      loading="lazy"
-                                      src={
-                                        curElem.image_banner[0] &&
-                                        `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
-                                      }
-                                      onError={({ currentTarget }) => {
-                                        currentTarget.onError = null;
-                                        currentTarget.src =
-                                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                      }}
-                                      alt="Maskgroup1"
-                                    />
-                                  ) : (
-                                    <img
-                                      loading="lazy"
-                                      src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                      alt="Maskgroup1"
-                                    />
-                                  )}
-                                </div>
-                                <div className="card_postInfo">
-                                  <h4>
-                                    {curElem.make} {curElem.model}{" "}
-                                    {curElem.year}
-                                  </h4>
-                                  <p>
-                                    {curElem?.moreDescription &&
-                                      parse(
-                                        curElem?.moreDescription?.substr(
-                                          0,
-                                          300
-                                        ),
-                                        strToHtml
-                                      )}
-                                  </p>
-                                  <ul className="labelList">
-                                    <li>
-                                      <label>Current Bid:</label>{" "}
-                                      {curElem?.currentBid &&
-                                      curElem?.currentBid?.last_bid > 0 ? (
-                                        <span>
-                                          <label>
-                                            Current Bid : $
-                                            {curElem?.currentBid?.last_bid}
-                                          </label>
-                                        </span>
-                                      ) : curElem?.displayInAuction ===
-                                        "classified" ? (
-                                        <span>
-                                          Document fee : ${curElem?.documentFee}
-                                        </span>
-                                      ) : (
-                                        <label>No Biding yet</label>
-                                      )}
-                                    </li>
-                                    <li>
-                                      <label>Ends In:</label>{" "}
+                          <div key={curElem.id}>
+                            <div className="card_post">
+                              <div className="card_postImg">
+                                {curElem.image_banner ? (
+                                  <img
+                                    loading="lazy"
+                                    src={
+                                      curElem.image_banner[0] &&
+                                      `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                ) : (
+                                  <img
+                                    loading="lazy"
+                                    src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                    alt="Maskgroup1"
+                                  />
+                                )}
+                              </div>
+                              <div className="card_postInfo">
+                                <h4>
+                                  {curElem.make} {curElem.model} {curElem.year}
+                                </h4>
+                                <p>
+                                  {curElem?.moreDescription &&
+                                    parse(
+                                      curElem?.moreDescription?.substr(0, 300),
+                                      strToHtml
+                                    )}
+                                </p>
+                                <ul className="labelList">
+                                  <li>
+                                    <label>Current Bid:</label>{" "}
+                                    {curElem?.currentBid &&
+                                    curElem?.currentBid?.last_bid > 0 ? (
                                       <span>
-                                        {curElem.EndTime &&
-                                          new Date(
-                                            curElem.EndTime
-                                          ).toDateString()}
+                                        <label>
+                                          Current Bid : $
+                                          {curElem?.currentBid?.last_bid}
+                                        </label>
                                       </span>
-                                    </li>
-                                  </ul>
-                                </div>
+                                    ) : curElem?.displayInAuction ===
+                                      "classified" ? (
+                                      <span>
+                                        Document fee : ${curElem?.documentFee}
+                                      </span>
+                                    ) : (
+                                      <label>No Biding yet</label>
+                                    )}
+                                  </li>
+                                  <li>
+                                    <label>Ends In:</label>{" "}
+                                    <span>
+                                      {curElem.EndTime &&
+                                        new Date(
+                                          curElem.EndTime
+                                        ).toDateString()}
+                                    </span>
+                                  </li>
+                                </ul>
                               </div>
                             </div>
-                          )}
+                          </div>
                         </Link>
                       );
                     })}
@@ -325,8 +320,9 @@ function Home() {
                   return (
                     <div key={i} className="row pb_30">
                       <div
-                        className={`order-md-${i % 2 === 0 ? 0 : 1
-                          } col-12 col-md-6 col-lg-7`}
+                        className={`order-md-${
+                          i % 2 === 0 ? 0 : 1
+                        } col-12 col-md-6 col-lg-7`}
                       >
                         <div className="blogPost">
                           <img
@@ -384,7 +380,7 @@ function Home() {
       <section className="ptb_80 blogPostText rf">
         <div className="container">
           <div className="row">
-              {/* <div
+            {/* <div
                 className={`disFlex .slider`}
               >
                 <div className={`p-2 slideTrack`}>
@@ -411,14 +407,13 @@ function Home() {
                   }
                 </div>
               </div> */}
-              <div className="col-12">
-                <div className="latestBlogCard">
-                  <Slider {...latestBlogSetting}>
-                  {
-                    lottery?.map((d, i) => {
-                      return (
-                        <div key={i} className={`latestBlogSlide`}>
-                          <a href="/carraffle" className="full">
+            <div className="col-12">
+              <div className="latestBlogCard">
+                <Slider {...latestBlogSetting}>
+                  {lottery?.map((d, i) => {
+                    return (
+                      <div key={i} className={`latestBlogSlide`}>
+                        <a href="/carraffle" className="full">
                           <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                             <h2>{d?.name}</h2>
                             <p>{parse(d?.description, strToHtml)}</p>
@@ -430,23 +425,20 @@ function Home() {
                           <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
                             <img src={ads_car_2} className="addBanner" />
                           </div>
-                          </a>
-                        </div>
-                      )
-                    })
-                  }
-                  </Slider>
-
-                </div>
-                {/* <div className="d-flex justify-content-center mt-1">
+                        </a>
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </div>
+              {/* <div className="d-flex justify-content-center mt-1">
                   <button onClick={() => blogSlide.current.slickPrev()} className="orange_btn">Prev</button>
                   <button onClick={() => blogSlide.current.slickNext()} className="orange_btn ml-2">Next</button>
                 </div> */}
-              </div>
+            </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
