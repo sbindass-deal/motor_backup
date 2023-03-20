@@ -4,6 +4,9 @@ import img_01 from "../../../Assets/images/img_001.webp";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import parse from "html-react-parser";
+import { strToHtml } from "../../UI/globaleVar";
+
 
 function RaffleAdmin() {
   const [showLotary, setShowLotary] = useState([]);
@@ -204,7 +207,12 @@ function RaffleAdmin() {
                               <tr>
                                 <th scope="row">{index + 1}</th>
                                 <td> {data?.name}</td>
-                                <td>{data?.description?.substr(0, 50)}</td>
+                                <td>{parse(
+                                  data?.description?.substr(0, 50), 
+                                  strToHtml
+                                )
+                                  
+                                }</td>
                                 <td>{data?.price}</td>
                                 <td>20</td>
                                 <td>{data?.created_at}</td>

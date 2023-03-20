@@ -2394,6 +2394,12 @@ form .gry_btn {
   text-transform: uppercase;
 }
 
+.latestBlogCard {
+  /* background-color: #fbfbfb; */
+  border-radius: 16px;
+  /* padding: 20px; */
+}
+
 .orangeCard {
   background-color: #f7931a;
   border-radius: 16px;
@@ -6566,6 +6572,25 @@ ul.bidOnThis li p:first-child { width: 26%;}
   }
 }
 
+.latestBlogSlide {
+  height: 255px;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center;
+  margin: 0 0x;
+  border-radius: 12.9515px;
+  perspective: 100px;
+}
+
+.slide {
+  height: 255px;
+  width: 450px !important;
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  border-radius: 12.9515px;
+  perspective: 100px;
+}
   /* .slide {
     height: 255px;
     width: 450px !important;
