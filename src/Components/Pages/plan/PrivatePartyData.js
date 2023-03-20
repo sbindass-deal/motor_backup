@@ -47,6 +47,10 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                   <div className="switch">
                     <span className="plan_Time"> 1 Listing</span>
                     <br />
+                    {/* <div className="btnBlk">
+                      <span className="sub">-</span><span className="add">+</span>
+                    </div> */}
+                   
                     <input
                       className="react-switch-checkbox"
                       id={curElem.plan_name}
@@ -65,7 +69,10 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </label>
                     <span className="plan_Time">5 Listing</span>
                   </div>
+                 
+                    
                 </div>
+                <p className="dicount"><span><i class="fa-solid fa-circle-check"></i></span> Annualy Save $809</p>
                 <div className="text-center">
                   {/* <h6>
                   {curElem.plan_name == "Exclusive" &&

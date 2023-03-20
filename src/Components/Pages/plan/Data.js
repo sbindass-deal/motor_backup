@@ -59,7 +59,9 @@ const Data = ({ curElem, purchagedPlan }) => {
                   </div>
                 </div>
                 <div className="text-center">
+                  <p className="dicount"><span><i class="fa-solid fa-circle-check"></i></span> Annualy Save $809</p>
                   <h6>
+
                     {curElem.plan_name == "Exclusive" &&
                     curElem.monthly_listing == 0
                       ? "Unlimited"
@@ -69,6 +71,7 @@ const Data = ({ curElem, purchagedPlan }) => {
                       : curElem.monthly_listing}{" "}
                     Listing
                   </h6>
+                  
                 </div>
               </div>
             ) : (
