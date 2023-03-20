@@ -164,33 +164,35 @@ const DealerProfile = () => {
                   <div
                     className="row"
                     style={{
-                      height: `${showMore ? "100%" : "0px"}`,
-                      overflow: "hidden",
+                      display: `${showMore ? "" : "none"}`,
+                      height: `100%`,
                     }}
                   >
                     <Image.PreviewGroup>
                       {dealerData?.image_gallery &&
-                        dealerData?.image_gallery.map((curElem, i) => {
-                          return (
-                            <div key={i} className="col-6 col-md-2">
-                              <div className="galleryImgSect gg">
-                                <Image
-                                  loading="lazy"
-                                  src={
-                                    curElem?.logo &&
-                                    `${process.env.REACT_APP_URL}/${curElem?.logo}`
-                                  }
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src =
-                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                  }}
-                                  alt="Maskgroup1"
-                                />
+                        [...dealerData?.image_gallery?.slice(4)].map(
+                          (curElem, i) => {
+                            return (
+                              <div key={i} className="col-6 col-md-2">
+                                <div className="galleryImgSect gg">
+                                  <Image
+                                    loading="lazy"
+                                    src={
+                                      curElem?.logo &&
+                                      `${process.env.REACT_APP_URL}/${curElem?.logo}`
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          }
+                        )}
                     </Image.PreviewGroup>
                   </div>
                 </div>

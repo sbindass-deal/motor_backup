@@ -58,25 +58,26 @@ const Gallery = ({ vehicle }) => {
               <Image.PreviewGroup>
                 {vehicle.image_gallery &&
                   vehicle.image_document &&
-                  [...vehicle.image_document, ...vehicle.image_gallery].map(
-                    (curElem) => {
-                      return (
-                        <div>
-                          <Image
-                            loading="lazy"
-                            className="card-img-top"
-                            src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
-                            onError={({ currentTarget }) => {
-                              currentTarget.onError = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt="Maskgroup1"
-                          />
-                        </div>
-                      );
-                    }
-                  )}
+                  [
+                    ...vehicle.image_gallery?.slice(7),
+                    ...vehicle.image_document,
+                  ].map((curElem) => {
+                    return (
+                      <div>
+                        <Image
+                          loading="lazy"
+                          className="card-img-top"
+                          src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src =
+                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                          }}
+                          alt="Maskgroup1"
+                        />
+                      </div>
+                    );
+                  })}
               </Image.PreviewGroup>
             </div>
           </div>
@@ -92,29 +93,16 @@ const Gallery = ({ vehicle }) => {
       <div className="card_ ptb_40">
         <h3 className="cardTitle">Youtube Videos</h3>
         <div className="card-group videoColl">
-            {vehicle?.description?.map((curElem, i) => {
-              return (
-                <>
+          {vehicle?.description?.map((curElem, i) => {
+            return (
+              <>
                 <div className="col-lg-6 mb-10" key={i}>
-                    <ReactPlayer className="videoWidth" url={curElem} />
-                    
+                  <ReactPlayer className="videoWidth" url={curElem} />
                 </div>
-                <div className="col-lg-6 mb-10" key={i}>
-                    <ReactPlayer className="videoWidth" url={curElem} />
-                    
-                </div>
-                <div className="col-lg-6 mb-10" key={i}>
-                    <ReactPlayer className="videoWidth" url={curElem} />
-                    
-                </div>
-                
-                </>
-                
-               
-                
-              );
-            })}
-          </div>
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );
