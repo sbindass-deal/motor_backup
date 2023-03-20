@@ -11,10 +11,14 @@ const Features = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
 
+  console.log(99890, data)
+
+  console.log(8787, highlightWatch)
   const fetchNoreserveData = async () => {
     setLoading(true);
     try {
@@ -23,6 +27,7 @@ const Features = () => {
       );
       if (res.data.status === 200) {
         setData(res.data.data);
+        setAllData(res.data.data)
       }
       setLoading(false);
     } catch (err) {
@@ -41,14 +46,31 @@ const Features = () => {
 
   //   return startDate.toString();
   // };
+
+  const filterData = (data) => {
+    const dataFilter = allData.filter((curElem) => {
+      return (data == 1 ? curElem.like == data : curElem)
+    })
+    setData(dataFilter)
+  }
+
+
+
+
+  console.log(87878, new Date().toString())
+  const data3 = new Date().toLocaleDateString()
+  console.log(89, data3)
+
   const addFabrity = (id) => {
     axios
       .post(process.env.REACT_APP_URL + "createLikes", {
         vehicleId: id,
-        date: new Date().toString(),
+        // date: new Date().toString(),
       })
       .then((res) => {
+        console.log(989, res)
         if (res.data.status === 200) {
+
           dispatch(clearData());
           window.location.reload(false);
         }
@@ -58,7 +80,7 @@ const Features = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
-
+  console.log(989898, allData)
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -81,9 +103,18 @@ const Features = () => {
                     placeholder="Filter auctions for make, model, category…"
                   />
                 </li>
+
                 <li className="">
                   <button
-                    onClick={() => setHighlightWatch(!highlightWatch)}
+                    onClick={() => {
+                      setHighlightWatch(!highlightWatch)
+                      if (highlightWatch) {
+                        filterData(0)
+                      } else {
+                        filterData(1)
+                      }
+
+                    }}
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
@@ -95,18 +126,16 @@ const Features = () => {
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${
-                      !viewListActive ? "active" : ""
-                    }`}
+                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
+                      }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${
-                      viewListActive ? "active" : ""
-                    }`}
+                    className={`gry_btn listView ${viewListActive ? "active" : ""
+                      }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -125,9 +154,8 @@ const Features = () => {
           </div>
 
           <div
-            className={`row pt-4 row_gridList ${
-              viewListActive && "activeListView"
-            }`}
+            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
+              }`}
           >
             {data.length > 0 &&
               data.map((curElem) => {

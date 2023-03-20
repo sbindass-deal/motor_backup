@@ -424,6 +424,12 @@
 		display: block;
 	}
 
+	.latestBlogSlide {
+		height: 500px;
+		width: 100%;
+		display: inline-block;
+	}
+
 	.secondNavbar .navbar-nav:before {
 		width: 85%;
 	}
@@ -957,6 +963,11 @@
 		justify-content: center;
 	}
 
+	.latestBlogSlide {
+		height: 500px;
+		width: 100%;
+		display: inline-block;
+	}
 	a.full {
 		width: 100%;
 		display: block;

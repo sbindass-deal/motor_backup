@@ -48,7 +48,7 @@ const Data = ({ curElem, addFabrity }) => {
                 className="watchedIc"
               >
                 <i
-                  className={`fa-solid fa-star ${
+                  className={`fa-solid fa-star  ${
                     curElem.like >= 1 ? "faList" : ""
                   }`}
                 ></i>
