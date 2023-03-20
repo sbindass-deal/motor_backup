@@ -6582,7 +6582,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
   perspective: 100px;
 }
 
-.slide {
+/* .slide {
   height: 255px;
   width: 450px !important;
   display: flex;
@@ -6590,7 +6590,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
   margin: 0 15px;
   border-radius: 12.9515px;
   perspective: 100px;
-}
+} */
   /* .slide {
     height: 255px;
     width: 450px !important;
