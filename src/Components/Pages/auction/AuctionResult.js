@@ -2,46 +2,49 @@ import React, { useEffect, useState } from "react";
 import icGrid from "../../../Assets/images/icGrid.svg";
 import axios from "axios";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
+import SmallSpinner from "../../UI/SmallSpinner";
+import { Link } from "react-router-dom";
+import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
+import parse from "html-react-parser";
+
 const AuctionResult = () => {
   const dispatch = useDispatch();
-  const logingUser = useSelector((state) => state);
-  const vehicleData = logingUser.vehicleReducer.vehicleData;
-  const [data, setauctions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState([]);
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
+
+  const fetchAuctionLiveApi = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}getAllWinner`);
+      if (res.data.status === 200) {
+        setData(res.data.data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const filteredAuctionVehicle = vehicleData.filter(
-      (item) => item.displayInAuction === "Yes"
-    );
-    setauctions(filteredAuctionVehicle);
-    setFilteredUsers(filteredAuctionVehicle);
-  }, [vehicleData]);
+    fetchAuctionLiveApi();
+  }, []);
 
-  const getEndDate = (cal) => {
-    let data = cal.split("T");
-    let endDate = moment().format("YYYY-MM-DD");
-    let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
+  // const getEndDate = (cal) => {
+  //   let data = cal.split("T");
+  //   let endDate = moment().format("YYYY-MM-DD");
+  //   let startDate = moment(data[0]).add(5, "days").format("YYYY-MM-DD");
 
-    return startDate.toString();
-  };
-  const addFabrity = (id) => {
-    axios
-      .post(process.env.REACT_APP_URL + "createLikes", {
-        vehicleId: id,
-        date: new Date().toString(),
-      })
-      .then((res) => {
-        if (res.data.status === 200) {
-          dispatch(clearData());
-          window.location.reload(false);
-        }
-      });
-  };
+  //   return startDate.toString();
+  // };
+
+  if (loading) {
+    return <SmallSpinner spin={true} />;
+  }
 
   return (
     <>
@@ -50,15 +53,8 @@ const AuctionResult = () => {
           <div className="row">
             <div className="col-12 text-center pb_30">
               <h2 className="title_combo title_Center">
-                Auctions Result{" "}
-                <span>
-                  {
-                    data
-                      .filter((data) => data.done === 1 && data.premium === 1)
-                      .map((data) => data).length
-                  }{" "}
-                  AUCTIONS NOW LIVE
-                </span>
+                Result Auctions{" "}
+                <span>{data?.length}&nbsp; AUCTIONS RESULT</span>
               </h2>
             </div>
             <div className="col-12">
@@ -67,26 +63,11 @@ const AuctionResult = () => {
                   <input
                     value={searchValue}
                     onChange={(e) => {
-                      let value = e.target.value;
-                      setSearchValue(value);
-                      setauctions(
-                        filteredUsers
-                          .filter(
-                            (data) =>
-                              data.make
-                                .toLowerCase()
-                                .includes(value.toLowerCase()) ||
-                              data.year.includes(value) ||
-                              data.model
-                                .toLowerCase()
-                                .includes(value.toLowerCase())
-                          )
-                          .map((data) => data)
-                      );
+                      setSearchValue(e.target.value);
                     }}
                     type="text"
                     name=""
-                    placeholder="Filter auctions for make, model, category…"
+                    placeholder="Filter auction result by make, model"
                   />
                 </li>
                 <li className="">
@@ -136,17 +117,10 @@ const AuctionResult = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {(data.length > 0 && highlightWatch
-              ? data.filter((item) => item.like > 0)
-              : data
-            )
-              .filter((data) => data.done === 1 && data.premium === 1)
-              .map((curElem) => {
+            {data.length > 0 &&
+              data.map((curElem) => {
                 return (
-                  <div
-                    key={curElem.id}
-                    className="col-12 col-lg-6 col-md-6 pb-3 auctionLive"
-                  >
+                  <div className="col-12 col-lg-6 col-md-6 pb-3 auctionLive">
                     <div className="card_post">
                       <div className="card_postImg">
                         <div className="list_wrapper">
@@ -154,51 +128,27 @@ const AuctionResult = () => {
                             className="auction_image"
                             to={`/detail/${curElem.id}`}
                           >
-                            {curElem.images[0] ? (
+                            {curElem?.img_logo?.length > 0 ? (
                               <>
-                                <button
-                                  // onClick={() => addFabrity(curElem.id)}
-                                  type="button"
-                                  className="watchedIc"
-                                  style={{ margin: "8px" }}
-                                >
-                                  <i
-                                    className={`fa-solid fa-star ${
-                                      curElem.like >= 1 ? "faList" : ""
-                                    }`}
-                                  ></i>
-                                </button>
                                 <img
                                   loading="lazy"
                                   src={
-                                    curElem.images[0] &&
-                                    `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                    curElem?.img_logo[0]
+                                      ? `${process.env.REACT_APP_URL}/${curElem?.img_logo[0]?.imagePath}/${curElem?.img_logo[0]?.imageName}`
+                                      : noImage
                                   }
                                   onError={({ currentTarget }) => {
                                     currentTarget.onError = null;
-                                    currentTarget.src =
-                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    currentTarget.src = noImage;
                                   }}
                                   alt="Maskgroup1"
                                 />
                               </>
                             ) : (
                               <>
-                                <button
-                                  // onClick={() => addFabrity(curElem.id)}
-                                  type="button"
-                                  className="watchedIc"
-                                  style={{ margin: "8px" }}
-                                >
-                                  <i
-                                    className={`fa-solid fa-star ${
-                                      curElem.like >= 1 ? "faList" : ""
-                                    }`}
-                                  ></i>
-                                </button>
                                 <img
                                   loading="lazy"
-                                  src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
+                                  src={noImage}
                                   alt="Maskgroup1"
                                 />
                               </>
@@ -209,15 +159,10 @@ const AuctionResult = () => {
                       <div className="card_postInfo">
                         <h4 className="car_title">
                           <Link to={`/detail/${curElem.id}`}>
-                            {curElem.make} {curElem.model}-{curElem.year}-
-                            {curElem.odmeter}
+                            {curElem?.vehicle_data?.make}
                           </Link>
 
-                          {/* <button
-                            onClick={() => addFabrity(curElem.id)}
-                            type="button"
-                            className="watchedIc"
-                          >
+                          {/* <button type="button" className="watchedIc">
                             <i
                               className={`fa-solid fa-star ${
                                 curElem.like >= 1 ? "faList" : ""
@@ -226,12 +171,15 @@ const AuctionResult = () => {
                           </button> */}
                         </h4>
                         <p className="color_grey">
-                          {curElem?.moreDescription.substr(0, 123)}
+                          {curElem?.vehicle_data?.moreDescription &&
+                            parse(
+                              curElem?.vehicle_data?.moreDescription?.substr(
+                                0,
+                                300
+                              ),
+                              strToHtml
+                            )}
                         </p>
-                        {/* <div className="opening_bid">
-                          <p>Opening Bid: $980000 </p>
-                          <p>Upcoming Auction</p>
-                        </div> */}
 
                         <ul
                           className="labelList"
@@ -241,55 +189,29 @@ const AuctionResult = () => {
                           }}
                         >
                           <li className="w-auto">
-                            {curElem.currentAmount ? (
-                              <span>
-                                <label>Current&nbsp;Bid :</label>
-                                <span className="px-1">
-                                  ${curElem.currentAmount.auctionAmmount}
-                                </span>
-                              </span>
-                            ) : curElem.documentFee ? (
-                              <span>
-                                <label>
-                                  Current Bid : ${curElem.documentFee}
-                                </label>
-                              </span>
-                            ) : null}
-                          </li>
-
-                          {console.log(97989, curElem)}
-                          <li>
-                            <label>Ends In:</label>{" "}
-                            <span>
-                              {new Date(curElem.EndTime).toLocaleTimeString()}
-                            </span>
+                            <label>
+                              Sold for $
+                              {curElem?.auctionAmmount &&
+                                toCommas(curElem?.auctionAmmount)}{" "}
+                              on{" "}
+                              {curElem?.vehicle_data?.EndTime &&
+                                new Date(
+                                  curElem?.vehicle_data?.EndTime
+                                ).toLocaleDateString()}
+                            </label>
                           </li>
                           {/* <li>
-                            {parseInt(new Date(curElem.EndTime).getTime(), 10) -
-                              parseInt(new Date().getTime(), 10) >
-                              0 && curElem.approved === "1" ? (
-                              <label>Auction Open</label>
-                            ) : parseInt(
-                                new Date(curElem.EndTime).getTime(),
-                                10
-                              ) -
-                                parseInt(new Date().getTime(), 10) >
-                                0 &&
-                              (curElem.approved === null ||
-                                curElem.approved === "11") ? (
-                              <label>Upcoming Auction</label>
-                            ) : (
-                              // <label>Auction Closed</label>
-                              <label>End In : 5 days</label>
-                            )}
+                            <label>
+                              Ends In:{" "}
+                              {curElem?.vehicle_data?.EndTime &&
+                                new Date(
+                                  curElem?.vehicle_data?.EndTime
+                                ).toLocaleDateString()}
+                            </label>{" "}
+                            <span>
+                            </span>
                           </li> */}
                         </ul>
-                        {/* <Link
-                          to={`/detail/${curElem.id}`}
-                          className="orange_btn opening_bid_btn"
-                        >
-                          View Details <i class="fa fa-arrow-right"></i>
-                        </Link> */}
                       </div>
                     </div>
                   </div>

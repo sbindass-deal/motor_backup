@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { noImage, strToHtml } from "../../UI/globaleVar";
+import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 
 const Data = ({ curElem, addFabrity }) => {
@@ -71,7 +71,9 @@ const Data = ({ curElem, addFabrity }) => {
                 {curElem?.currentBid && curElem?.currentBid?.last_bid > 0 ? (
                   <span>
                     <label>
-                      Current Bid : ${curElem?.currentBid?.last_bid}
+                      Current Bid : $
+                      {curElem?.currentBid?.last_bid &&
+                        toCommas(curElem?.currentBid?.last_bid)}
                     </label>
                   </span>
                 ) : curElem?.displayInAuction === "classified" ? (
