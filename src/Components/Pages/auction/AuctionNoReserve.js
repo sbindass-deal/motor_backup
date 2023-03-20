@@ -11,6 +11,8 @@ const AuctionNoReserve = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
@@ -23,6 +25,7 @@ const AuctionNoReserve = () => {
       );
       if (res.data.status === 200) {
         setData(res.data.data);
+        setAllData(res.data.data)
       }
       setLoading(false);
     } catch (err) {
@@ -59,6 +62,13 @@ const AuctionNoReserve = () => {
     return <SmallSpinner spin={true} />;
   }
 
+  const filterData = (data) => {
+    const dataFilter = allData.filter((curElem) => {
+      return (data == 1 ? curElem.like == data : curElem)
+    })
+    setData(dataFilter)
+  }
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -85,7 +95,17 @@ const AuctionNoReserve = () => {
                 </li>
                 <li className="">
                   <button
-                    onClick={() => setHighlightWatch(!highlightWatch)}
+                    onClick={() => {
+                      setHighlightWatch(!highlightWatch)
+                      if (highlightWatch) {
+                        filterData(0)
+                      } else {
+                        filterData(1)
+                      }
+
+
+
+                    }}
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
