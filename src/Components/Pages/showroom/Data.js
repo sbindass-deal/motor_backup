@@ -47,7 +47,11 @@ const Data = ({ curElem }) => {
                     </span>
                   </li>
                   <li>
-                    <label>Ends In:</label> <span>5 days</span>
+                    <label>Ends In:</label>{" "}
+                    <span>
+                      {curElem?.EndTime &&
+                        new Date(curElem.EndTime).toDateString()}
+                    </span>
                   </li>
                 </ul>
                 <button className="btn bidnW">
@@ -111,7 +115,11 @@ const Data = ({ curElem }) => {
                     </span>
                   </li>
                   <li>
-                    <label>Ends In:</label> <span>5 days</span>
+                    <label>Ends In:</label>{" "}
+                    <span>
+                      {curElem?.EndTime &&
+                        new Date(curElem.EndTime).toDateString()}
+                    </span>
                   </li>
                 </ul>
                 <button className="btn bidnW">
