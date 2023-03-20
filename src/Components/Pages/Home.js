@@ -21,9 +21,13 @@ function Home() {
 
   useEffect(() => {
     const fetchBlogs = async () => {
+      const blogData = {
+        'limit': '5'
+      }
       try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}/getblogs`);
+        const res = await axios.post(`${process.env.REACT_APP_URL}/getblogs`, blogData);
         dispatch(storeBlogData(res.data.data));
+        console.log(res);
       } catch (err) {
         console.log(err);
       }
