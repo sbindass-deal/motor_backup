@@ -604,10 +604,10 @@ function CarRaffle() {
                     {/* <button type="button" className="gry_btn w-full">
                       Copy Reffer al Link
                     </button> */}
-                    <p className="small mt-2">
+                    {/* <p className="small mt-2">
                       <i className="fa-solid fa-circle-info"></i> 3% of their
                       purchased ticket will be shared with you
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
