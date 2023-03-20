@@ -11,8 +11,10 @@ function GearProducts() {
   const [products , setProducts] = useState();
 
   useEffect(() => {
-    axios.get("https://api.gasguzzlrs.com/allproduct").then((d)=>{setProducts(d.data.data.product)})
+    axios.get(`${process.env.REACT_APP_URL}allproduct`).then((d)=>{setProducts(d.data.data.product)})
   }, [])
+
+  console.log(products);
   
 
   const handleDelete = (id) => {
@@ -110,8 +112,8 @@ function GearProducts() {
                           return curElem;
                         }
                       })
-                      ?.map((curElem, i) => {
-                        console.log(`${process.env.REACT_APP_URL}upload/products/${curElem?.images[0]}`);
+                      ?.slice(0,1)?.map((curElem, i) => {
+                        
                         return (
                           <tr key={curElem?.id}>
                             <th scope="row">{i + 1}</th>
