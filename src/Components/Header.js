@@ -26,7 +26,7 @@ function Header() {
   const [showNav, setShowNav] = useState(false);
 
   const notify = (val) =>
-    toast.warn(val, {
+    toast.success(val, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,

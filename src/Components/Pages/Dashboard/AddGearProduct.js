@@ -8,8 +8,10 @@ const AddGearProduct = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [inventry, setInventry] = useState({ category: [], size: [], color: [] });
-  const [getInputData, setGetInputData] = useState({ tittle: "", category: [], price: "", stocks: "", size: [], color: [], desc: "", youtube_link: "", });
+  const [category , setCategory] = useState();
+  const [size , setSize] = useState();
+  const [color , setColor] = useState();
+  const [getInputData, setGetInputData] = useState({ title: "", category: "" , price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
 
@@ -39,7 +41,6 @@ const AddGearProduct = () => {
       formData.append("image[]", file1);
       formData.append("product_id", vehicleId);
       const newImagedata = formData;
-      // console.log(file, formData);
     }
     let a = await axios.post(url, formData, config);
     if (a.status == 200) {
@@ -53,12 +54,12 @@ const AddGearProduct = () => {
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_URL}addproduct`, {
-        stocks: getInputData.stocks,
-        color: getInputData.color,
-        size: getInputData.size,
+        stock: getInputData.stock,
+        colorId: getInputData.colorId,
+        sizeId: getInputData.sizeId,
         price: getInputData.price,
-        title: getInputData.tittle,
-        description: getInputData.desc,
+        title: getInputData.title,
+        description: getInputData.description,
         category: getInputData.category,
         youtube_link: getInputData.youtube_link,
       })
@@ -76,7 +77,6 @@ const AddGearProduct = () => {
       });
   };
 
-  console.log(inventry);
 
   useEffect(() => {
 
@@ -84,23 +84,23 @@ const AddGearProduct = () => {
       method: "get",
       url: `${process.env.REACT_APP_URL}gatAllColors`,
       "Authorization": TOKEN
-    }).then((d) => { setInventry({ ...inventry, color: d.data.data });  });
+    }).then((d) => { setColor( d.data.data );  });
 
     axios({
       method: "get",
       url: `${process.env.REACT_APP_URL}gatAllSize`,
       "Authorization": TOKEN
-    }).then((d) => { setInventry({ ...inventry, size: d.data.data });});
+    }).then((d) => { setSize(d.data.data);});
 
     axios({
       method : "get" ,
       url : `${process.env.REACT_APP_URL}gatAllCategory`,
       "Authorization" : TOKEN
-     }).then((d) => {setInventry({...inventry , category : d.data.data});});
+     }).then((d) => {setCategory(d.data.data);});
 
-  }, [getInputData])
+  }, [])
   
-
+console.log(getInputData);
 
 
   // const handleApi = async (e) => {
@@ -162,7 +162,7 @@ const AddGearProduct = () => {
                   <label htmlFor="">Category</label>
                   <select
                     name="category"
-                    onChange={(e) => { setGetInputData({...getInputData , category : [e.target.value]})}}
+                    onChange={(e) => { setGetInputData({...getInputData , category : e.target.value})}}
                     value={getInputData.category}
                     className="field"
                     required
@@ -171,7 +171,7 @@ const AddGearProduct = () => {
                       Select
                     </option>
                     {
-                      inventry?.category?.map((d , i) => {
+                      category?.map((d , i) => {
                         return(
                           <option key={i} value={`${d?.category}`} >{d?.category}</option>
                         )
@@ -238,7 +238,7 @@ const AddGearProduct = () => {
                         if (e.target.value.length <= 10) {
                           setGetInputData({
                             ...getInputData,
-                            stocks: e.target.value,
+                            stocks: [e.target.value],
                           });
                         }
                       }}
@@ -279,7 +279,7 @@ const AddGearProduct = () => {
                       Select
                     </option>
                     {
-                      inventry?.size?.map((d , i) => {
+                      size?.map((d , i) => {
                         return(
                           <option key={i} value={`${d?.size}`} >{d?.size}</option>
                         )
@@ -319,7 +319,7 @@ const AddGearProduct = () => {
                       Select
                     </option>
                     {
-                      inventry?.color?.map((d , i) => {
+                      color?.map((d , i) => {
                         return(
                           <option key={i} value={`${d?.color}`} >{d?.color}</option>
                         )
