@@ -70,10 +70,10 @@ const Data = ({ curElem, purchagedPlan }) => {
                     {planName === curElem.plan_name
                       ? curElem.annual_listing == 0
                         ? "Unlimited"
-                        : curElem.annual_listing
+                        : `Up to ${curElem.annual_listing}`
                       : curElem.monthly_listing == 0
                       ? "Unlimited"
-                      : curElem.monthly_listing}{" "}
+                      : `Up to ${curElem.monthly_listing}`}{" "}
                     Listing
                   </h6>
                 </div>
