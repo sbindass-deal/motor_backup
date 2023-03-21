@@ -1232,6 +1232,9 @@
 	.postHero.detail {
 		height: 22vh;
 	}
+	.auctionLive .labelList li:last-child {
+		width: 63%;
+	}
 }
 
 @media (max-width: 575px) {
