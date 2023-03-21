@@ -141,12 +141,46 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 }
                 className="gry_btn"
               >
-                SUBMIT VEHICLE
+                ACTIVE PLAN
               </button>
             </div>
           ) : curElem.monthly_price === 0 ? (
             <div className="plan_cardFooter">
               <button className="gry_btn">CONTACT</button>
+            </div>
+          ) : purchagedPlan == null ? (
+            <div className="plan_cardFooter">
+              <button
+                onClick={() =>
+                  handleSubmit({
+                    planId: curElem.id,
+                    listingType: `${
+                      planType && planName === curElem.plan_name
+                        ? "annual"
+                        : "monthly"
+                    }`,
+                    name: curElem.plan_name,
+                    price: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_price
+                        : curElem.monthly_price
+                    }`,
+                    desc: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_description
+                        : curElem.monthly_description
+                    }`,
+                    playQuantity: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_listing
+                        : curElem.monthly_listing
+                    }`,
+                  })
+                }
+                className="gry_btn"
+              >
+                SUBMIT VEHICLE
+              </button>
             </div>
           ) : (
             <div className="plan_cardFooter">
