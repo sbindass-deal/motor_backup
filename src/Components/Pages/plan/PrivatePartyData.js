@@ -45,18 +45,21 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </span>
                   )}
                   <div className="switch">
-                    <span className="plan_Time"> 1 Listing</span>
+                    <span className="plan_Time">
+                      {" "}
+                      {curElem.monthly_listing} Listing
+                    </span>
                     <br />
                     {/* <div className="btnBlk">
                       <span className="sub">-</span><span className="add">+</span>
                     </div> */}
-                   
+
                     <input
                       className="react-switch-checkbox"
                       id={curElem.plan_name}
                       type="checkbox"
                       onChange={(e) => {
-                        setPlanName(e.target.name);
+                        setPlanName(e.target.checked ? e.target.name : "");
                         setPlanType(e.target.checked);
                       }}
                       name={curElem.plan_name}
@@ -67,12 +70,17 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     >
                       <span className={`react-switch-button`} />
                     </label>
-                    <span className="plan_Time">5 Listing</span>
+                    <span className="plan_Time">
+                      {curElem.annual_listing} Listing
+                    </span>
                   </div>
-                 
-                    
                 </div>
-                <p className="dicount"><span><i class="fa-solid fa-circle-check"></i></span> Annualy Save $809</p>
+                <p className="dicount">
+                  <span>
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>{" "}
+                  Annually Save ${curElem?.discount}
+                </p>
                 <div className="text-center">
                   {/* <h6>
                   {curElem.plan_name == "Exclusive" &&
@@ -102,7 +110,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
+          {purchagedPlan?.active_plan == curElem.id ? (
             <div className="plan_cardFooter">
               <button
                 onClick={() =>
