@@ -16,7 +16,7 @@ const Data = ({ curElem, purchagedPlan }) => {
 
   return (
     <>
-      <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+      <div className="col-lg-4 col-md-6 col-sm-12  mb-4 mobile-mt-50">
         <div
           className={`plan_card ${
             curElem.plan_name === "Pro"
@@ -44,7 +44,7 @@ const Data = ({ curElem, purchagedPlan }) => {
                       id={curElem.plan_name}
                       type="checkbox"
                       onChange={(e) => {
-                        setPlanName(e.target.name);
+                        setPlanName(e.target.checked ? e.target.name : "");
                         setPlanType(e.target.checked);
                       }}
                       name={curElem.plan_name}
@@ -59,19 +59,23 @@ const Data = ({ curElem, purchagedPlan }) => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <p className="dicount"><span><i class="fa-solid fa-circle-check"></i></span> Annualy Save $809</p>
-                  <h6>
+                  <p className="dicount">
+                    <span>
+                      <i class="fa-solid fa-circle-check"></i>
+                    </span>{" "}
+                    Annually Save ${curElem?.discount}
+                  </p>
 
-                    {curElem.plan_name == "Exclusive" &&
-                    curElem.monthly_listing == 0
+                  <h6>
+                    {planName === curElem.plan_name
+                      ? curElem.annual_listing == 0
+                        ? "Unlimited"
+                        : `Up to ${curElem.annual_listing}`
+                      : curElem.monthly_listing == 0
                       ? "Unlimited"
-                      : planName === curElem.plan_name &&
-                        curElem.plan_name != "Exclusive"
-                      ? curElem.annual_listing
-                      : curElem.monthly_listing}{" "}
+                      : `Up to ${curElem.monthly_listing}`}{" "}
                     Listing
                   </h6>
-                  
                 </div>
               </div>
             ) : (
@@ -90,7 +94,45 @@ const Data = ({ curElem, purchagedPlan }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
+          {purchagedPlan?.active_plan == curElem.id ? (
+            <div className="plan_cardFooter">
+              <button
+                onClick={() => {
+                  handleSubmit({
+                    planId: curElem.id,
+                    listingType: `${
+                      planType && planName === curElem.plan_name
+                        ? "annual"
+                        : "monthly"
+                    }`,
+                    name: curElem.plan_name,
+                    price: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_price
+                        : curElem.monthly_price
+                    }`,
+                    desc: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_description
+                        : curElem.monthly_description
+                    }`,
+                    playQuantity: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_listing
+                        : curElem.monthly_listing
+                    }`,
+                  });
+                }}
+                className="gry_btn"
+              >
+                ACTIVE PLAN
+              </button>
+            </div>
+          ) : curElem.monthly_price === 0 ? (
+            <div className="plan_cardFooter">
+              <button className="gry_btn">CONTACT</button>
+            </div>
+          ) : purchagedPlan == null ? (
             <div className="plan_cardFooter">
               <button
                 onClick={() => {
@@ -123,10 +165,6 @@ const Data = ({ curElem, purchagedPlan }) => {
               >
                 SUBMIT VEHICLE
               </button>
-            </div>
-          ) : curElem.monthly_price === 0 ? (
-            <div className="plan_cardFooter">
-              <button className="gry_btn">CONTACT</button>
             </div>
           ) : (
             <div className="plan_cardFooter">
