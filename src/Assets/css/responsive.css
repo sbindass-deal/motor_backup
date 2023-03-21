@@ -1223,6 +1223,15 @@
 		font-size: 20px;
 		padding-top: 20px;
 	}
+	.counterCol {
+		padding: 50px 0px;
+	}
+	.col-md-3.iconSecT {
+		width: 50%;
+	}
+	.postHero.detail {
+		height: 22vh;
+	}
 }
 
 @media (max-width: 575px) {

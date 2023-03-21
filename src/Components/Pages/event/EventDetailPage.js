@@ -87,7 +87,8 @@ const EventDetailPage = () => {
         </div>
         <div className="col-md-9 eventRightSide">
           {/* <p>All Event</p> */}
-          <h1 className="textHeading">{getEventdata.title}</h1>
+          <div class="col-12 "><h2>{getEventdata.title}</h2></div>
+          {/* <h1 className="textHeading"></h1> */}
           <div className="postHero pb_30 detail">
           <img
               className="img-fluid"
