@@ -8,6 +8,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import { Link } from "react-router-dom";
 import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import Pagination from "./Pagination";
 
 const AuctionResult = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,13 @@ const AuctionResult = () => {
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
 
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
@@ -117,8 +125,8 @@ const AuctionResult = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {data.length > 0 &&
-              data.map((curElem) => {
+            {currentPosts.length > 0 &&
+              currentPosts.map((curElem) => {
                 return (
                   <div className="col-12 col-lg-6 col-md-6 pb-3 auctionLive">
                     <div className="card_post">
@@ -214,6 +222,8 @@ const AuctionResult = () => {
                   </div>
                 );
               })}
+
+              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>
         </div>
       </section>

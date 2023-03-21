@@ -36,7 +36,7 @@ const OrderCartDetails = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12 col-lg-12">
-              <h2 class="title_combo title_Center casrt">My Orders</h2>
+              <h2 class="title_combo title_Center casrt">Orders</h2>
               <div class="table-responsive">
                 <table width={"100%"} className="cartSection">
                   <tr>

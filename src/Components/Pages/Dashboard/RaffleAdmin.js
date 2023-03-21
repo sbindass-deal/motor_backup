@@ -64,7 +64,7 @@ function RaffleAdmin() {
                   className="orange_btn"
                 >
                   {" "}
-                  Add Giveaways{" "}
+                 + Add Giveaways{" "}
                 </Link>
                 <div className="dropdown">
                   <a

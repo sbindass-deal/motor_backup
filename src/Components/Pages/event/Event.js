@@ -32,6 +32,7 @@ const Event = () => {
             title: curElem.title,
             start: new Date(curElem.start_date),
             end: new Date(curElem.end_date),
+            resource: curElem.id,
           };
         });
         setEventsData(eventData);
@@ -79,7 +80,7 @@ const Event = () => {
         defaultView="month"
         events={eventsData}
         style={{ height: "100vh" }}
-        onSelectEvent={(event) => navigate("/eventdetail/" + getId)}
+        onSelectEvent={(event) => navigate("/eventdetail/" + event.resource)}
         // onSelectEvent={(event) => alert(event.id)}
       />
 
