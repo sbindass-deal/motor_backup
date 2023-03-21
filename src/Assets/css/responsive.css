@@ -1196,6 +1196,33 @@
 		height: 314px;
 		width: 100%;
 	}
+	.heroSection {
+		height: 65vh;
+	}
+	.firstImg img {
+		min-width: 348px;
+		min-height: 266px;
+	}
+	.detailPostOption {
+		justify-content: flex-start;
+	}
+	.labelList li:last-child {
+		width: 100%;
+		text-align: left;
+	}
+	.auctionLive .card_postImg img {
+		
+		height: 235px;
+	}
+	.auction_container .row{
+		margin-right: 0px !important; 
+    	margin-left: 0px !important;
+	}
+	.auction_container .orangeTextDark {
+		color: #f7931a;
+		font-size: 20px;
+		padding-top: 20px;
+	}
 }
 
 @media (max-width: 575px) {

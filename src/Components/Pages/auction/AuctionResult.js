@@ -182,11 +182,8 @@ const AuctionResult = () => {
                         </p>
 
                         <ul
-                          className="labelList"
-                          style={{
-                            display: "flex",
-                            justifyContent: "flex-start",
-                          }}
+                          className="labelList AucRelt"
+                          
                         >
                           <li className="w-auto">
                             <label>
