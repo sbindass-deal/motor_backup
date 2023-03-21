@@ -41,19 +41,21 @@ function MyBidsWins() {
   const handleClosePayment = () => {
     setShowPayment(false);
   };
-  const handleShowPayment = (data, amount) => {
+  const handleShowPayment = (data, amount, bid_id) => {
     setShowPayment(true);
     setVehicleId(data);
-    setPaymentDetails({ data: data, amount: amount });
+    setPaymentDetails({ data: data, amount: amount, bid_id });
   };
   const onToken = (token, addresses) => {
-    console.log(token, addresses);
+    console.log(111, token.id, addresses, paymentDetails);
     if (token !== null) {
-      setShowPayment(false);
       axios
-        .post(`${process.env.REACT_APP_URL}changeApproved`, {
-          approve: 7,
-          id: vehicleId,
+        .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
+          type: "bid",
+          itemid: paymentDetails.bid_id,
+          amount: parseInt(paymentDetails.amount * 5, 10) / 100,
+          status: "paid",
+          transaction_id: token.id,
         })
         .then(function (response) {
           console.log(response);
@@ -62,6 +64,7 @@ function MyBidsWins() {
           console.log(error);
         });
       // notify("Form submit successfully!");
+      setShowPayment(false);
     }
   };
 
@@ -141,8 +144,9 @@ function MyBidsWins() {
                             <img
                               loading="lazy"
                               src={
-                                curElem.images && curElem.images[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem.images[0].imagePath}/${curElem.images[0].imageName}`
+                                curElem?.image_banner &&
+                                curElem?.image_banner[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
                                   : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                               }
                               onError={({ currentTarget }) => {
@@ -155,29 +159,47 @@ function MyBidsWins() {
                           </div>
                           <div className="bidsInfo">
                             <div className="">
-                              <h6>{curElem.name}</h6>
+                              <h6>{curElem?.name}</h6>
                               <p>
-                                Your BID&nbsp;
+                                Your BID :&nbsp;
                                 <span style={{ color: "#fff" }}>
-                                  {curElem.auctionAmmount}
+                                  ${curElem?.auctionAmmount} USD
                                 </span>
-                                &nbsp;
-                                <i className="fa-solid fa-dollar-sign"></i>
                               </p>
+                              {curElem?.payment_received == 0 ? (
+                                <>
+                                  <p>
+                                    To complete a bid please pay 5% of Auction
+                                    amount.
+                                  </p>
+                                  <p>
+                                    Payable Now : $
+                                    {(parseInt(curElem?.auctionAmmount, 10) *
+                                      5) /
+                                      100}{" "}
+                                    USD
+                                  </p>
+                                </>
+                              ) : (
+                                <p>Paid : ${curElem?.initial_amount} USD</p>
+                              )}
                             </div>
                             <div className="pl-md-3 d-flex">
                               <div className="mx-2">
-                                <button
-                                  onClick={() =>
-                                    handleShowPayment(
-                                      curElem.id,
-                                      curElem.auctionAmmount
-                                    )
-                                  }
-                                  className="gry_btn"
-                                >
-                                  Pay now
-                                </button>
+                                {curElem?.payment_received == 0 && (
+                                  <button
+                                    onClick={() =>
+                                      handleShowPayment(
+                                        curElem.id,
+                                        curElem.auctionAmmount,
+                                        curElem.bid_id
+                                      )
+                                    }
+                                    className="gry_btn"
+                                  >
+                                    Pay now
+                                  </button>
+                                )}
                               </div>
                               {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
@@ -191,11 +213,11 @@ function MyBidsWins() {
                               </div>
                             )} */}
                               {parseInt(
-                                new Date(curElem.EndTime).getTime(),
+                                new Date(curElem?.EndTime).getTime(),
                                 10
                               ) -
                                 new Date().getTime() <
-                                0 && curElem.reserve === "Yes" ? (
+                                0 && curElem?.reserve === "Yes" ? (
                                 <div className="mx-2">
                                   <button
                                     onClick={() => handleShow(curElem.id)}
@@ -208,7 +230,7 @@ function MyBidsWins() {
                               ) : null}
 
                               <Link
-                                to={`/detail/${curElem.id}`}
+                                to={`/detail/${curElem?.id}`}
                                 className="gry_btn"
                               >
                                 <i className="fa-solid fa-eye mr-2"></i> View
@@ -260,7 +282,7 @@ function MyBidsWins() {
               {chateApiData.map((curElem, i) => {
                 return (
                   <span key={i}>
-                    {curElem.message}
+                    {curElem?.message}
                     <br />
                   </span>
                 );
@@ -304,8 +326,17 @@ function MyBidsWins() {
         <Modal.Body>
           <div className="processPy">
             <h2> Name : {userInfo.name} </h2>
-            <h3 className="price__">price: {paymentDetails.amount}</h3>
-            {/* <small className="ticketCount">1 Ticket = $100</small> */}
+            <h3 className="price__">
+              Total bid amount : ${paymentDetails?.amount} USD
+            </h3>
+            <br />
+            <small className="ticketCount">
+              To complete a bid please pay 5% of Auction amount.
+            </small>
+            <h3 className="price__">
+              Payable Now : ${parseInt(paymentDetails?.amount * 5, 10) / 100}{" "}
+              USD
+            </h3>
             <br />
             <p>Select Payment Option:</p>
             <div className="ress">
@@ -320,6 +351,11 @@ function MyBidsWins() {
                   className="Btn"
                   stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
                   token={onToken}
+                  name="GasGuzzlrs Bidding"
+                  currency="USD"
+                  amount={
+                    (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                  }
                 />
               </div>
             </div>
