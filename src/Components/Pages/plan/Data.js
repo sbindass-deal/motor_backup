@@ -16,7 +16,7 @@ const Data = ({ curElem, purchagedPlan }) => {
 
   return (
     <>
-      <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+      <div className="col-lg-4 col-md-6 col-sm-12  mb-4 mobile-mt-50">
         <div
           className={`plan_card ${
             curElem.plan_name === "Pro"

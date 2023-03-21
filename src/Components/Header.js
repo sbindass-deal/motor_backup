@@ -456,7 +456,7 @@ function Header() {
                           to="/shop"
                           onClick={() => setShowNav(false)}
                         >
-                          Gear Store
+                          Gear
                         </Link>
                       </li>
                     </ul>
@@ -800,7 +800,7 @@ function Header() {
                           }}
                           to="/shop"
                         >
-                          Gear Store
+                          Gear
                         </Link>
                       </li>
                       <li className="nav-item AddtCrt">
