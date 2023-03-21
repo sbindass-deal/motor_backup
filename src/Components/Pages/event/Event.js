@@ -62,7 +62,7 @@ const Event = () => {
 
   return (
     
-    <div className="container clenderStyle pb-5 mb-5 px-5">
+    <div className="container clenderStyle ">
       <div className="text-right mb-1">
         {
           logingUser.login.token && <Link to="/add-user-meeting-event" className="orange_btn">
