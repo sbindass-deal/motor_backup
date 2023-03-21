@@ -713,7 +713,6 @@
 
 	
 
-
 	.mobileOnly {
 		display: block;
 	}
@@ -1172,6 +1171,57 @@
 
 	.card_.Dfrt .dropdown {
 		width: 100%;
+	}
+	.col-xs-7 {
+		flex: 0 0 61.666667%;
+		max-width: 51.666667%;
+	}
+	.col-xs-5 {
+		flex: 0 0 47.666667%;
+		max-width: 62.666667%;
+	}
+	.col-xs-6 {
+		flex: 0 0 49.666667%;
+		max-width: 49.666667%;
+	}
+	.showGallery .col-lg-6 .ant-image {
+		height: 132px;
+		width: 100%;
+	}
+	.showGallery .col-lg-6 .ant-image, .showGallery .col-lg-12 .ant-image {
+		height: 150px;
+		width: 100%;
+	}
+	.showGallery .col-lg-5 .ant-image {
+		height: 314px;
+		width: 100%;
+	}
+	.heroSection {
+		height: 65vh;
+	}
+	.firstImg img {
+		min-width: 348px;
+		min-height: 266px;
+	}
+	.detailPostOption {
+		justify-content: flex-start;
+	}
+	.labelList li:last-child {
+		width: 100%;
+		text-align: left;
+	}
+	.auctionLive .card_postImg img {
+		
+		height: 235px;
+	}
+	.auction_container .row{
+		margin-right: 0px !important; 
+    	margin-left: 0px !important;
+	}
+	.auction_container .orangeTextDark {
+		color: #f7931a;
+		font-size: 20px;
+		padding-top: 20px;
 	}
 }
 

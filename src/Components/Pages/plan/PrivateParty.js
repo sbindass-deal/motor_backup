@@ -7,6 +7,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Data from "./Data";
 import PrivatePartyData from "./PrivatePartyData";
 
+
 const PrivateParty = () => {
   const [loading, setLoading] = useState(false);
   const [planData, setPlanData] = useState([]);

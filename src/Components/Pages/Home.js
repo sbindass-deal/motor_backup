@@ -310,7 +310,7 @@ function Home() {
 
       <section className="ptb_50 blogSection">
         <div className="custom_container">
-          <div className="row">
+          <div className="">
             <div className="col-12 text-center pb_30">
               <h2>Latest Blogs</h2>
             </div>

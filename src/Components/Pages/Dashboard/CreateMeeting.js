@@ -81,7 +81,7 @@ const CreateMeeting = () => {
                     to="/admin-add-meeting/add-meeting"
                     className="orange_btn"
                   >
-                    Add Event
+                   + Add Event
                   </Link>
                 </div>
 

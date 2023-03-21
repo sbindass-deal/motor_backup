@@ -67,7 +67,7 @@ const DealerProfile = () => {
             {dealerData?.image_gallery && (
               <div className="col-lg-12">
                 <div className="row showGallery">
-                  <div className="col-lg-5 col-sm-12">
+                  <div className="col-lg-5 col-sm-5 col-xs-5">
                     <Image.PreviewGroup>
                       <Image
                         loading="lazy"
@@ -84,9 +84,9 @@ const DealerProfile = () => {
                       />
                     </Image.PreviewGroup>
                   </div>
-                  <div className="col-lg-7 col-sm-12">
+                  <div className="col-lg-7 col-sm-7 col-xs-7">
                     <div className="row">
-                      <div className="col-lg-6 col-sm-12">
+                      <div className="col-lg-6 col-sm-6 col-xs-6">
                         <Image.PreviewGroup>
                           <Image
                             loading="lazy"
@@ -103,7 +103,7 @@ const DealerProfile = () => {
                           />
                         </Image.PreviewGroup>
                       </div>
-                      <div className="col-lg-6 col-sm-12">
+                      <div className="col-lg-6 col-sm-6 col-xs-6">
                         <Image.PreviewGroup>
                           <Image
                             loading="lazy"
