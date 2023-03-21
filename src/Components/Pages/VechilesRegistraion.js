@@ -1096,7 +1096,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.make}
                                 onChange={handleNameField}
                                 name="make"
-                                placeholder="Enter"
+                                placeholder="Enter make vehicle"
                                 errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
                                 label="what make is your vehicle?"
                                 pattern="^[A-Za-z0-9 ]{3,16}$"
@@ -1110,7 +1110,7 @@ const VechilesRegistraion = () => {
                                 value={namefield.model}
                                 onChange={handleNameField}
                                 name="model"
-                                placeholder="Enter"
+                                placeholder="Enter vehicle model"
                                 errorMessage="This input field contain 1-35 characters and shouldn't include any special character"
                                 label="What model is this vehicle?"
                                 pattern="^[A-Za-z0-9 ]{1,35}$"
@@ -1382,7 +1382,7 @@ const VechilesRegistraion = () => {
                                       value={item.value}
                                       id={i}
                                       className="field"
-                                      placeholder="Enter link"
+                                      placeholder="Enter video link"
                                       type={item.type}
                                     />
                                     {i > 0 && (
@@ -1695,7 +1695,7 @@ const VechilesRegistraion = () => {
                           {basicfact.auctionType === "charity" && (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
-                                <p>Please add description.</p>
+                                <p>Please add name of charity.</p>
                                 <div className="border border-2 border-dark">
                                   <Editor
                                     editorStyle={{
@@ -1832,7 +1832,7 @@ const VechilesRegistraion = () => {
                               type="text"
                               minLength={2}
                               maxLength={31}
-                              placeholder="wheels"
+                              placeholder="Enter wheels"
                               className="field"
                               required
                             />
@@ -2431,7 +2431,7 @@ const VechilesRegistraion = () => {
                                   value={detailsInfo.reserveAmount}
                                   onChange={detailsOnChange}
                                   name="reserveAmount"
-                                  placeholder="Enter"
+                                    placeholder="Enter reserve amount"
                                   errorMessage="Reserve amount should be 1-9 characters and shouldn't include any special character and alphabet!"
                                   label="Please provide reserve amount:"
                                   pattern="^[0-9]{1,9}$"
@@ -2476,7 +2476,7 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 name="documentFee"
                                 type="text"
-                                placeholder="USD $"
+                                  placeholder="Enter document fee"
                                 errorMessage="Amount should be 1-9 characters and shouldn't include any special character, space and alphabet!"
                                 label="What is the amount of the document fee that you
                               will charge buyers above and beyond sale price and

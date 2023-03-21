@@ -9,9 +9,8 @@ function MyAccountLeftNav() {
         <li>
           <Link
             to="/accountinfo"
-            className={` ${
-              location.pathname === "/accountinfo" ? "active" : ""
-            } `}
+            className={` ${location.pathname === "/accountinfo" ? "active" : ""
+              } `}
           >
             Account Info
           </Link>
@@ -44,9 +43,8 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={`${
-              location.pathname === "/myshipments" ? "active" : ""
-            }`}
+            className={`${location.pathname === "/myshipments" ? "active" : ""
+              }`}
             to="/myshipments"
           >
             Shipments
@@ -62,24 +60,33 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={`${
-              location.pathname === "/user-meeting" ? "active" : ""
-            }`}
+            className={`${location.pathname === "/user-meeting" ? "active" : ""
+              }`}
             to="/user-meeting"
           >
-          Events
+            Events
           </Link>
         </li>
         <li>
           <Link
-            className={` ${
-              location.pathname === "/orders-cart" && "navActive"
-            }`}
+            className={` ${location.pathname === "/orders-cart" ? "active" :""
+              }`}
             to="/orders-cart"
           >
-            My Orders
+            Orders
           </Link>
         </li>
+
+        <li>
+          <Link
+            className={`${location.pathname === "/subscription" ? "active" : ""
+              }`}
+            to="/subscription"
+          >
+            Subscription
+          </Link>
+        </li>
+
       </ul>
     </div>
   );

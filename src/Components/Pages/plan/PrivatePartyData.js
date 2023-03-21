@@ -45,14 +45,21 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </span>
                   )}
                   <div className="switch">
-                    <span className="plan_Time"> 1 Listing</span>
+                    <span className="plan_Time">
+                      {" "}
+                      {curElem.monthly_listing} Listing
+                    </span>
                     <br />
+                    {/* <div className="btnBlk">
+                      <span className="sub">-</span><span className="add">+</span>
+                    </div> */}
+
                     <input
                       className="react-switch-checkbox"
                       id={curElem.plan_name}
                       type="checkbox"
                       onChange={(e) => {
-                        setPlanName(e.target.name);
+                        setPlanName(e.target.checked ? e.target.name : "");
                         setPlanType(e.target.checked);
                       }}
                       name={curElem.plan_name}
@@ -63,9 +70,17 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     >
                       <span className={`react-switch-button`} />
                     </label>
-                    <span className="plan_Time">5 Listing</span>
+                    <span className="plan_Time">
+                      {curElem.annual_listing} Listing
+                    </span>
                   </div>
                 </div>
+                <p className="dicount">
+                  <span>
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>{" "}
+                  Annually Save ${curElem?.discount}
+                </p>
                 <div className="text-center">
                   {/* <h6>
                   {curElem.plan_name == "Exclusive" &&
@@ -95,7 +110,45 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
+          {purchagedPlan?.active_plan == curElem.id ? (
+            <div className="plan_cardFooter">
+              <button
+                onClick={() =>
+                  handleSubmit({
+                    planId: curElem.id,
+                    listingType: `${
+                      planType && planName === curElem.plan_name
+                        ? "annual"
+                        : "monthly"
+                    }`,
+                    name: curElem.plan_name,
+                    price: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_price
+                        : curElem.monthly_price
+                    }`,
+                    desc: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_description
+                        : curElem.monthly_description
+                    }`,
+                    playQuantity: `${
+                      planType && planName === curElem.plan_name
+                        ? curElem.annual_listing
+                        : curElem.monthly_listing
+                    }`,
+                  })
+                }
+                className="gry_btn"
+              >
+                ACTIVE PLAN
+              </button>
+            </div>
+          ) : curElem.monthly_price === 0 ? (
+            <div className="plan_cardFooter">
+              <button className="gry_btn">CONTACT</button>
+            </div>
+          ) : purchagedPlan == null ? (
             <div className="plan_cardFooter">
               <button
                 onClick={() =>
@@ -128,10 +181,6 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
               >
                 SUBMIT VEHICLE
               </button>
-            </div>
-          ) : curElem.monthly_price === 0 ? (
-            <div className="plan_cardFooter">
-              <button className="gry_btn">CONTACT</button>
             </div>
           ) : (
             <div className="plan_cardFooter">

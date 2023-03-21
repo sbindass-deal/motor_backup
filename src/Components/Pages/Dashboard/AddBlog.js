@@ -6,6 +6,8 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import { toast } from "react-toastify";
+
 
 const AddBlog = () => {
   const navigate = useNavigate();
@@ -52,6 +54,17 @@ const AddBlog = () => {
       e.preventDefault();
     }
   };
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleApi = async (e) => {
     e.preventDefault();
@@ -74,6 +87,7 @@ const AddBlog = () => {
       .post(url, formdata, config)
       .then((response) => {
         if (response.status === 200) {
+          notify("Added Blog successfully !");
           navigate("/blog");
         }
       })
@@ -98,7 +112,7 @@ const AddBlog = () => {
                   name="title"
                   onChange={handleChange}
                   className="field"
-                  placeholder="Product Name"
+                  placeholder="Enter Blog"
                   maxLength={"50"}
                   minLength={"3"}
                   required

@@ -6723,3 +6723,35 @@ h3.p-15 { padding: 6px;}
   box-shadow: 1px 15px 15px 1px #3939393b;
   margin-bottom: 30px;
 }
+select.dropDownList {
+  background: transparent;
+  font-size: 18px;
+  padding: 10px 15px;
+}
+
+
+select.dropDownList:before {
+  content: '';
+  background-image: url(../images/chevron-down.svg);
+  background-size: cover;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+select.dropDownList {
+  position: relative;
+}
+
+select.dropDownList{    appearance: initial;}
+p.dicount {
+  border: 1px solid #f7931a2b;
+  padding: 10px;
+  border-radius: 10px;
+}
+p.dicount span {
+  color: #f7931a;
+  font-size: 17px;
+  padding-right: 10px;
+}
