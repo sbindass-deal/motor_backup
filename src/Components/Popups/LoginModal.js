@@ -139,7 +139,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   value={email}
                   onChange={handleEmail}
                   name="email"
-                  placeholder="Enter username or email address"
+                  placeholder="Enter email address"
                   type="email"
                   errorMessage="Please enter valid email address"
                   label="Email address"

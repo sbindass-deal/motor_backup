@@ -58,7 +58,7 @@ const DealerListFeature = () => {
                   <h3>Dealer List </h3>
 
                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
-                    Add Dealer
+                   + Add Dealer
                   </Link>
                 </div>
 

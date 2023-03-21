@@ -71,7 +71,7 @@ function Blog() {
                     <i className="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
                   <Link to="/admin/add-blog" className="orange_btn _blog">
-                    Add New Blogs
+                   + Add New Blogs
                   </Link>
                 </div>
               </h3>

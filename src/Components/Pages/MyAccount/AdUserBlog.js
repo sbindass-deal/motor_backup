@@ -6,6 +6,8 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import { toast } from "react-toastify";
+
 
 const AdUserBlog = () => {
   const navigate = useNavigate();
@@ -37,6 +39,20 @@ const AdUserBlog = () => {
     setBlogContent(e);
     console.log(111, e);
   };
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
   const handleApi = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_URL}addblogs`;
@@ -73,6 +89,8 @@ const AdUserBlog = () => {
       .post(url, formdata, config)
       .then((response) => {
         if (response.status === 200) {
+          notify("Added Blog successfully!");
+
           navigate("/user-blog");
         }
       })
@@ -97,7 +115,7 @@ const AdUserBlog = () => {
                   name="title"
                   onChange={handleChange}
                   className="field"
-                  placeholder="Product Name"
+                  placeholder="Enter Blog"
                   required
                 />
               </div>

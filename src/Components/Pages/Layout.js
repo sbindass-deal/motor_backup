@@ -88,6 +88,7 @@ import UserCreateMeeting from "./MyAccount/UserCreateMeeting";
 import AdUserMeeting from "./MyAccount/AdUserMeeting";
 import EditUserMeeting from "./MyAccount/EditUserMeeting";
 import EventAdUserMeeting from "./MyAccount/EventAdUserMeeting";
+import Subscription from "./MyAccount/Subscription";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -108,6 +109,7 @@ const Layout = () => {
               <Route path="bidswins" element={<MyBidsWins />} />
               <Route path="myshipments" element={<MyShipments />} />
               <Route path="orders-cart" element={<OrderCart />} />
+              <Route path="subscription" element={<Subscription />} />
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
               <Route path="vehicle/:id" element={<VehicleRegistered />} />

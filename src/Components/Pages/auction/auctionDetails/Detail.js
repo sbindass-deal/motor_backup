@@ -230,7 +230,7 @@ function Detail() {
                     <ul className="labelList">
                       {vehicle.displayInAuction !== "classified" && (
                         <li>
-                          <label>Current bid:</label>{" "}
+                          <label>Current Bid:</label>{" "}
                           <span>
                             $
                             {vehicle?.currentBid &&
@@ -510,7 +510,7 @@ function Detail() {
                           handleBidInput(e);
                         }}
                         name="bid"
-                        placeholder="Please enter bid amount"
+                        placeholder="Please enter Bid amount"
                         errorMessage="Amount should be 1-8 characters and shouldn't include any special character and alphabet!"
                         label="Bid Amount"
                         pattern="^[0-9]{1,8}$"
@@ -527,7 +527,7 @@ function Detail() {
                         }}
                         name="comment"
                         placeholder="Enter comment"
-                        label="comment"
+                        label="Comment"
                         style={{ height: "15vh" }}
                       />
                     </div>
