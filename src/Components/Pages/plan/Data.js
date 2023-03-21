@@ -44,7 +44,7 @@ const Data = ({ curElem, purchagedPlan }) => {
                       id={curElem.plan_name}
                       type="checkbox"
                       onChange={(e) => {
-                        setPlanName(e.target.name);
+                        setPlanName(e.target.checked ? e.target.name : "");
                         setPlanType(e.target.checked);
                       }}
                       name={curElem.plan_name}
@@ -59,19 +59,23 @@ const Data = ({ curElem, purchagedPlan }) => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <p className="dicount"><span><i class="fa-solid fa-circle-check"></i></span> Annualy Save $809</p>
-                  <h6>
+                  <p className="dicount">
+                    <span>
+                      <i class="fa-solid fa-circle-check"></i>
+                    </span>{" "}
+                    Annually Save ${curElem?.discount}
+                  </p>
 
-                    {curElem.plan_name == "Exclusive" &&
-                    curElem.monthly_listing == 0
+                  <h6>
+                    {planName === curElem.plan_name
+                      ? curElem.annual_listing == 0
+                        ? "Unlimited"
+                        : curElem.annual_listing
+                      : curElem.monthly_listing == 0
                       ? "Unlimited"
-                      : planName === curElem.plan_name &&
-                        curElem.plan_name != "Exclusive"
-                      ? curElem.annual_listing
                       : curElem.monthly_listing}{" "}
                     Listing
                   </h6>
-                  
                 </div>
               </div>
             ) : (
@@ -90,7 +94,7 @@ const Data = ({ curElem, purchagedPlan }) => {
                 : curElem.monthly_description}
             </p>
           </div>
-          {purchagedPlan.length > 0 && purchagedPlan[0].planId == curElem.id ? (
+          {purchagedPlan?.active_plan == curElem.id ? (
             <div className="plan_cardFooter">
               <button
                 onClick={() => {

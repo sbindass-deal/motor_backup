@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Data from "./Data";
-import SmallSpinner from "../../UI/SmallSpinner";
-import NotAvailable from "../../UI/NotAvailable";
 import { useDispatch } from "react-redux";
 import { getPlanByDealerSelect } from "../../../redux/reducers/planReducer";
 
@@ -16,7 +14,7 @@ const DealerPlan = () => {
     auction: true,
     classified: false,
   });
-  const [purchagedPlan, setPurchagedPlan] = useState([]);
+const [purchagedPlan, setPurchagedPlan] = useState({});
 
   const fetchPlan = async () => {
     setLoading(true);
@@ -44,10 +42,6 @@ const DealerPlan = () => {
     dispatch(getPlanByDealerSelect("normal"));
   }, []);
 
-  // if (loading) {
-  //   return <SmallSpinner spin={true} />;
-  // }
-
   return (
     <>
       <section className="pt_80">
@@ -64,20 +58,6 @@ const DealerPlan = () => {
           </div>
           <nav>
             <div className="nav nav-tabs mb-5 tabPlan">
-              {/* <button
-                  className={`nav-link ${showTab.normal ? "active" : ""}`}
-                  onClick={() => {
-                    setShowTab({
-                      normal: true,
-                      auction: false,
-                      classified: false,
-                    });
-                    dispatch(getPlanByDealerSelect("normal"));
-                    setCallPlanApi("normal");
-                  }}
-                >
-                  Normal
-                </button> */}
               <button
                 className={`nav-link ${showTab.auction ? "active" : ""}`}
                 onClick={() => {
@@ -108,15 +88,6 @@ const DealerPlan = () => {
           </nav>
 
           <div className="tab-content" id="nav-tabContent">
-            {/* {showTab.normal && (
-                <div>
-                  <div className="row">
-                    {planData.map((curElem, i) => {
-                      return <Data key={i} curElem={curElem} />;
-                    })}
-                  </div>
-                </div>
-              )} */}
             {showTab.auction && (
               <div>
                 <div className="row">
