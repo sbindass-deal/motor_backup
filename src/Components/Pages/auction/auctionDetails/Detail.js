@@ -207,7 +207,7 @@ function Detail() {
     <>
       <section className="ptb_80 pt_sm_50 ">
         <div className="container" id="sticky">
-          <div className="row">
+          <div className="row reverseCol">
             <div className="col-lg-3 col-sm-12">
               <Fundamental
                 vehicle={vehicle}
@@ -384,10 +384,12 @@ function Detail() {
                 <h3 className="cardTitle">Shipping</h3>
                 <div className="downloadZip">
                   ZIP Code
-                  <input type="text" placeholder="Search ZIP code"></input>
-                  <button className="btn" style={{ marginLeft: "20px" }}>
-                    Get Quote
-                  </button>
+                  <div className="dZip">
+                    <input type="text" placeholder="Search ZIP code"></input>
+                    <button className="btn">
+                      Get Quote
+                    </button>
+                  </div> 
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using

@@ -1235,6 +1235,16 @@
 	.auctionLive .labelList li:last-child {
 		width: 63%;
 	}
+	.reverseCol {
+		display: flex;
+		flex-direction: row-reverse;
+		flex-direction: column-reverse;
+	}
+	
+	.downloadZip {
+		padding: 15px 0px;
+		text-align: center;
+	}
 }
 
 @media (max-width: 575px) {
