@@ -48,6 +48,7 @@ function EditMyAccount() {
     phone: "",
     title: "",
     desc: "",
+    aboutus: "",
   });
   const [addUserInBid, setAddUserInBid] = useState(false);
   const handleEditOnChange = (e) => {
@@ -215,6 +216,22 @@ function EditMyAccount() {
                   )}
                   {userData.dealer === "Yes" && (
                     <div className="col-12 col-sm-12 col-md-12">
+                    <div className="form-group">
+                      <label>About us</label>
+                      <textarea
+                        value={editUser.aboutus}
+                        onChange={handleEditOnChange}
+                        name="aboutus"
+                        placeholder="Enter About us"
+                        className="field"
+                        maxLength={200}
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  )}
+                  {userData.dealer === "Yes" && (
+                    <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
                         <textarea
@@ -233,6 +250,126 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Dealer logo</label>
+                        <div className="drag-area">
+                          <div className="row">
+                            {userData.logo && file.length <= 0 && (
+                              <img
+                                loading="lazy"
+                                style={{
+                                  width: "120px",
+                                  objectFit: "cover",
+                                }}
+                                src={
+                                  userData?.logo &&
+                                  `${process.env.REACT_APP_URL}/${userData?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            )}
+                            {Array.from(file).map((items, i) => {
+                              return (
+                                <span key={i} className="px-1">
+                                  <img
+                                    src={
+                                      items ? URL.createObjectURL(items) : null
+                                    }
+                                    style={{
+                                      width: "120px",
+                                      objectFit: "cover",
+                                    }}
+                                  />
+                                </span>
+                              );
+                            })}
+                          </div>
+
+                          <input
+                            style={{
+                              border: "#EF6031",
+                              fontSize: "1.2rem",
+                              textAlign: "center",
+                              cursor: "pointer",
+                            }}
+                            onChange={(e) => {
+                              setFile(e.target.files);
+                            }}
+                            name="files"
+                            type="file"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {userData.dealer === "Yes" && (
+                    <div className="col-12 col-sm-12 col-md-12">
+                      <div className="form-group">
+                        <label>Dealer banner</label>
+                        <div className="drag-area">
+                          <div className="row">
+                            {userData.logo && file.length <= 0 && (
+                              <img
+                                loading="lazy"
+                                style={{
+                                  width: "120px",
+                                  objectFit: "cover",
+                                }}
+                                src={
+                                  userData?.logo &&
+                                  `${process.env.REACT_APP_URL}/${userData?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src =
+                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            )}
+                            {Array.from(file).map((items, i) => {
+                              return (
+                                <span key={i} className="px-1">
+                                  <img
+                                    src={
+                                      items ? URL.createObjectURL(items) : null
+                                    }
+                                    style={{
+                                      width: "120px",
+                                      objectFit: "cover",
+                                    }}
+                                  />
+                                </span>
+                              );
+                            })}
+                          </div>
+
+                          <input
+                            style={{
+                              border: "#EF6031",
+                              fontSize: "1.2rem",
+                              textAlign: "center",
+                              cursor: "pointer",
+                            }}
+                            onChange={(e) => {
+                              setFile(e.target.files);
+                            }}
+                            name="files"
+                            type="file"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {userData.dealer === "Yes" && (
+                    <div className="col-12 col-sm-12 col-md-12">
+                      <div className="form-group">
+                        <label>Dealer gallery</label>
                         <div className="drag-area">
                           <div className="row">
                             {userData.logo && file.length <= 0 && (
