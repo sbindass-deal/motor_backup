@@ -47,7 +47,7 @@ function MyBidsWins() {
     setPaymentDetails({ data: data, amount: amount, bid_id });
   };
   const onToken = (token, addresses) => {
-    console.log(111, token.id, addresses, paymentDetails);
+    console.log(111, token, addresses);
     if (token !== null) {
       axios
         .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
@@ -55,7 +55,7 @@ function MyBidsWins() {
           itemid: paymentDetails.bid_id,
           amount: parseInt(paymentDetails.amount * 5, 10) / 100,
           status: "paid",
-          transaction_id: token.id,
+          transaction_id: token,
         })
         .then(function (response) {
           console.log(response);
@@ -349,7 +349,7 @@ function MyBidsWins() {
               <div>
                 <StripeCheckout
                   className="Btn"
-                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  stripeKey="pk_test_51M3RecCZKi8tZ8jIKpCNZztWHGVDVvIyvfc54migs4e4aZGhhMt4yhcWGut1wdT9iEL5Hf0vL1rO2jOaAQ8UUIWT00EhK5HDva"
                   token={onToken}
                   name="GasGuzzlrs Bidding"
                   currency="USD"
