@@ -4030,8 +4030,8 @@ h5.cardTitle {
 }
 
 .carBg img {
-  width: 70%;
-  padding: 40px;
+  width: 100%;
+  padding: 0px;
   position: relative;
   top: 10px;
   background-color: #f7931a;
@@ -6775,4 +6775,27 @@ p.dicount span {
   position: absolute;
   width: 84%;
   bottom: 30px;
+}
+
+.carBg {
+  height: 286px;
+  width: 100%;
+  padding-top: 33px;
+}
+.carBg img {
+  max-width: 100%;
+  padding: 0px;
+  position: relative;
+  max-height: 100%;
+  object-fit: cover;
+  background-color: #f7931a;
+  top: 0px;
+}
+
+.light .post-share .post-share-link svg {
+  color: #000;
+}
+
+.light .sidebarPost_text {
+  color: #000;
 }
