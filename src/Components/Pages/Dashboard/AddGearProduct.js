@@ -362,7 +362,7 @@ console.log(getInputData);
                   maxLength={2000}
                   rows="4"
                 ></textarea>
-                {getInputData.desc.trim().length > 500 && (
+                {getInputData?.desc?.trim().length > 500 && (
                   <span className="text-danger">
                     You Can entered maximum 500 characters!
                   </span>
