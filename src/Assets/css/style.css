@@ -6764,3 +6764,7 @@ p.dicount span {
 .labelList.AucRelt li label {
   display: block;
 }
+.dZip {
+		display: flex;
+		padding: 10px;
+	}
