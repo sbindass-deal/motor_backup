@@ -134,7 +134,7 @@ const AuctionResult = () => {
                         <div className="list_wrapper">
                           <Link
                             className="auction_image"
-                            to={`/detail/${curElem.id}`}
+                            to={`/detail/${curElem?.vehicle_data?.id}`}
                           >
                             {curElem?.img_logo?.length > 0 ? (
                               <>
@@ -166,7 +166,7 @@ const AuctionResult = () => {
                       </div>
                       <div className="card_postInfo">
                         <h4 className="car_title">
-                          <Link to={`/detail/${curElem.id}`}>
+                          <Link to={`/detail/${curElem?.vehicle_data?.id}`}>
                             {curElem?.vehicle_data?.make}
                           </Link>
 
@@ -189,10 +189,7 @@ const AuctionResult = () => {
                             )}
                         </p>
 
-                        <ul
-                          className="labelList AucRelt"
-                          
-                        >
+                        <ul className="labelList AucRelt">
                           <li className="w-auto">
                             <label>
                               Sold for $
@@ -223,7 +220,12 @@ const AuctionResult = () => {
                 );
               })}
 
-              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>

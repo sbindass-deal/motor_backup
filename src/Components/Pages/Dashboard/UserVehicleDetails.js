@@ -2130,7 +2130,7 @@ const UserVehicleDetails = () => {
                         onClick={() => fetchVehicleApi("approve")}
                         className="btn btn-warning m-3"
                         type="button"
-                        disabled={vechileInfo.approved == 1 ? true : false}
+                        disabled={vechileInfo.approved == 1 || vechileInfo.approved == 2 ? true : false}
                       >
                         Approve
                       </button>

@@ -7,26 +7,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import ShowMeeting from "../Dashboard/ShowMeeting";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showModalLogin } from "../../../redux/reducers/login";
 
-
-moment.locale("en-GB");
-const localizer = momentLocalizer(moment);
 const Event = () => {
+  moment.locale("en-GB");
+  const localizer = momentLocalizer(moment);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [eventsData, setEventsData] = useState(events);
-  const [getId, setGetId] = useState('')
+  const [getId, setGetId] = useState("");
   const logingUser = useSelector((state) => state);
-
 
   useEffect(() => {
     const fetchEventApi = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}getAllEvent`);
-        console.log(1019, res.data.data)
+        console.log(1019, res.data.data);
 
         const eventData = res.data.data.map((curElem) => {
-          setGetId(curElem.id)
+          setGetId(curElem.id);
           // console.log(1019, res)
           return {
             title: curElem.title,
@@ -44,8 +44,8 @@ const Event = () => {
   }, []);
 
   const handleSelect = ({ start, end }) => {
-    console.log(500,start);
-    console.log(500,end);
+    console.log(500, start);
+    console.log(500, end);
     const title = window.prompt("New Event name");
     if (title)
       setEventsData([
@@ -58,19 +58,26 @@ const Event = () => {
       ]);
   };
 
-  console.log(89,logingUser.login.token)
+  const handleShow = () => {};
+
+  const handleClick = () => {
+    if (logingUser.login.token === null) {
+      dispatch(showModalLogin());
+    } else {
+      navigate("/add-user-meeting-event");
+    }
+  };
 
   return (
-    
     <div className="container clenderStyle ">
       <div className="text-right mb-1">
-        {
-          logingUser.login.token && <Link to="/add-user-meeting-event" className="orange_btn">
-            Add Create Event
-          </Link>
-        }
-     </div>
-     
+        {/* {logingUser.login.token && ( */}
+        <button onClick={handleClick} className="orange_btn">
+          Add Create Event
+        </button>
+        {/* )} */}
+      </div>
+
       <Calendar
         // onSelectSlot={handleSelect}
         views={["day", "agenda", "work_week", "month"]}
@@ -84,7 +91,7 @@ const Event = () => {
         // onSelectEvent={(event) => alert(event.id)}
       />
 
-      <ShowMeeting/>
+      <ShowMeeting />
     </div>
   );
 };
