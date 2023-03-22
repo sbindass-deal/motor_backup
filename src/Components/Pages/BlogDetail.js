@@ -21,9 +21,10 @@ const BlogDetail = () => {
       <div className="container">
         <div className="row ">
         <div class="col-12 col-lg-3">
-            <div class="card_Gray pt-3 pb-3 sidebarPostRow">
+            <div class="box_backgroundD card_Gray pt-3 pb-3 sidebarPostRow">
               <div class="sidebarPostHead">
-                <h6>Recent Blogs</h6>
+              <h3 class="cardTitle">Recent Blogs</h3>
+             
               </div>
               {blogs &&
                 blogs.slice(0, 6).map((curElem) => {

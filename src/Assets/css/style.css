@@ -6791,3 +6791,11 @@ p.dicount span {
   background-color: #f7931a;
   top: 0px;
 }
+
+.light .post-share .post-share-link svg {
+  color: #000;
+}
+
+.light .sidebarPost_text {
+  color: #000;
+}

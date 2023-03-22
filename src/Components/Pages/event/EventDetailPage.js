@@ -80,9 +80,13 @@ const EventDetailPage = () => {
         </div>
         <div className="col-md-9 eventRightSide">
           {/* <p>All Event</p> */}
-          <div class="col-12 ">
-            <h2>{getEventdata.title}</h2>
-          </div>
+
+          <div class=" text-center box_background p-20" id="sticky">
+            <div class="detailPostOption">
+              <h2 class="title_combo " id="">{getEventdata.title}</h2>
+            </div>
+          </div> 
+          
           {/* <h1 className="textHeading"></h1> */}
           <div className="postHero pb_30 detail">
             <img
