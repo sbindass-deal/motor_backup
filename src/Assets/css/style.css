@@ -6755,3 +6755,12 @@ p.dicount span {
   font-size: 17px;
   padding-right: 10px;
 }
+.AucRelt label {
+  font-size: 16px;
+  color: #f7931b;
+}
+.labelList.AucRelt li:first-child{border: none !important;}
+
+.labelList.AucRelt li label {
+  display: block;
+}

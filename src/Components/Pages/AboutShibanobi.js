@@ -15,7 +15,7 @@ function AboutShibanobi() {
             </div>
             <div className="col-12 col-md-6 d-flex align-items-center mission_section">
               <div>
-              <h3 className="text_title">Our vision</h3>
+              <h3 className="orangeTextDark">Our vision</h3>
                 <p>
                 Auctions are designed to provide the best experience for buyers and sellers alike.
                 </p>
@@ -31,7 +31,7 @@ function AboutShibanobi() {
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center mission_section">
               <div>
-              <h3 className="text_title">Our mission</h3>
+              <h3 className="orangeTextDark">Our mission</h3>
                 <p>
                 “To Provide a Fair, Respectful, and Efficient Service to all Customers, Everytime, All the Time.”
                 </p>

@@ -136,7 +136,7 @@ function HowShibnobiMotorWorks() {
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center">
               <div>
                 <h3 className="orangeTextDark">How it will work for the giveway</h3>
-                <p style={{ lineHeight: "2rem" }}>
+                <p >
                   Every dollar amount spent or equivalent ( CRYPTO BUY IN ) on
                   your favorite products in the Gas Guzzlrs store/ticket site
                   gives you the allotted amount of automatic entries for the
@@ -161,7 +161,7 @@ function HowShibnobiMotorWorks() {
             <div className="col-12 col-md-6 d-flex align-items-center">
               <div>
                 <h3 className="orangeTextDark">How we will Select the winner</h3>
-                <p style={{ lineHeight: "2rem" }}>
+                <p >
                   At the completion of the contest, a regulated 3rd party
                   contest agent conducts a computer randomized drawing and
                   immediately provides us with the winner information in which
@@ -182,7 +182,7 @@ function HowShibnobiMotorWorks() {
           <div className="row pt_80">
             <div className="col-12 col-md-8 offset-md-2 text-center">
               <h2 className="orangeTextDark">The Submission Process</h2>
-              <p style={{ lineHeight: "2rem" }}>
+              <p >
                 The car auction submission process is designed to ensure that
                 every submitted vehicle is properly cataloged and documented
                 with photographs, video documentation and any other information

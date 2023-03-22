@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
 import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
+import Pagination from "./Pagination";
 
 const Auctionlive = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,13 @@ const Auctionlive = () => {
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
 
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
@@ -149,8 +157,8 @@ const Auctionlive = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {data.length > 0 &&
-              data.map((curElem) => {
+            {currentPosts.length > 0 &&
+              currentPosts.map((curElem) => {
                 return (
                   <Data
                     key={curElem.id}
@@ -159,6 +167,8 @@ const Auctionlive = () => {
                   />
                 );
               })}
+
+              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </div>
         </div>
       </section>
