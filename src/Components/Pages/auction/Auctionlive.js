@@ -53,13 +53,12 @@ const Auctionlive = () => {
   //   return startDate.toString();
   // };
 
-
   const filterData = (data) => {
     const dataFilter = allData.filter((curElem) => {
-      return (data == 1 ? curElem.like == data : curElem)
-    })
-    setData(dataFilter)
-  }
+      return data == 1 ? curElem.like == data : curElem;
+    });
+    setData(dataFilter);
+  };
 
   const addFabrity = (id) => {
     axios
@@ -106,11 +105,11 @@ const Auctionlive = () => {
                 <li className="">
                   <button
                     onClick={() => {
-                      setHighlightWatch(!highlightWatch)
+                      setHighlightWatch(!highlightWatch);
                       if (highlightWatch) {
-                        filterData(0)
+                        filterData(0);
                       } else {
-                        filterData(1)
+                        filterData(1);
                       }
                     }}
                     type="button"
@@ -168,7 +167,12 @@ const Auctionlive = () => {
                 );
               })}
 
-              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>
