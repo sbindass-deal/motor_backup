@@ -68,7 +68,7 @@ function MyListings() {
 
   const handleDeleteVehicle = (vId) => {
     axios
-      .delete(`${process.env.REACT_APP_URL}deleteVehicle/${vId}`)
+      .get(`${process.env.REACT_APP_URL}deleteVehicle/${vId}`)
       .then((response) => {
         if (response.status === 200) {
           window.location.reload(false);
