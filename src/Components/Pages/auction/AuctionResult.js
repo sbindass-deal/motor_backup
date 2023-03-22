@@ -189,10 +189,7 @@ const AuctionResult = () => {
                             )}
                         </p>
 
-                        <ul
-                          className="labelList AucRelt"
-                          
-                        >
+                        <ul className="labelList AucRelt">
                           <li className="w-auto">
                             <label>
                               Sold for $
@@ -223,7 +220,12 @@ const AuctionResult = () => {
                 );
               })}
 
-              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>
