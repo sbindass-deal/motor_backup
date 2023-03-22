@@ -9,14 +9,28 @@ function GearProducts() {
   const data = useSelector((state) => state);
   // const products = data?.gearReducer?.gearData;
   const [products , setProducts] = useState();
+  const [size , setSize] = useState();
+  const [color , setColor] = useState();
+  const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
+
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_URL}allproduct`).then((d)=>{setProducts(d.data.data.product)})
+    axios.get(`${process.env.REACT_APP_URL}allproduct`).then((d)=>{setProducts(d.data.data.product)});
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllColors`,
+      "Authorization": TOKEN
+    }).then((d) => { setColor( d.data.data );  });
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllSize`,
+      "Authorization": TOKEN
+    }).then((d) => { setSize(d.data.data);});
+
   }, [])
-
-  console.log(products);
   
-
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
@@ -112,7 +126,7 @@ function GearProducts() {
                           return curElem;
                         }
                       })
-                      ?.slice(0,1)?.map((curElem, i) => {
+                      ?.map((curElem, i) => {
                         
                         return (
                           <tr key={curElem?.id}>
@@ -122,15 +136,27 @@ function GearProducts() {
                                 <img
                                   width={100}
                                   className="img-fluid"
-                                  src={`${process.env.REACT_APP_URL}upload/products/${curElem?.images[0].image}`}
+                                  src={`${process.env.REACT_APP_URL}upload/products/${curElem?.images[0]?.image}`}
                                   alt={curElem.title}
                                 />
                               </div>
                             </td>
                             <td>{curElem?.title}</td>
-                            <td>{curElem?.price}</td>
-                            <td>{curElem?.color}</td>
-                            <td>{curElem?.size}</td>
+                            <td>{curElem?.product_inventry[0].price}</td>
+                            <td>{
+                            color?.map((d , i) => {
+                              if(d?.id == curElem?.product_inventry[0]?.color_id){
+                                return d?.color
+                              }
+                            })
+                            }</td>
+                            <td>{
+                              size?.map((d , i) => {
+                                if(d?.id == curElem?.product_inventry[0]?.size_id){
+                                  return d?.size
+                                }
+                              })
+                            }</td>
                             <td>{curElem?.category}</td>
                             <td className="actionBtn">
                               <Link to={`/gear-product/${curElem?.id}`}>

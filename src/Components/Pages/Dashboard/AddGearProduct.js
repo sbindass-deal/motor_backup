@@ -8,12 +8,13 @@ const AddGearProduct = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [category , setCategory] = useState();
-  const [size , setSize] = useState();
-  const [color , setColor] = useState();
-  const [getInputData, setGetInputData] = useState({ title: "", category: "" , price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
+  const [category, setCategory] = useState();
+  const [size, setSize] = useState();
+  const [color, setColor] = useState();
+  const [getInputData, setGetInputData] = useState({ title: "", category: "", price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
+  const [refresh , setRefresh] = useState(false);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -82,25 +83,25 @@ const AddGearProduct = () => {
 
     axios({
       method: "get",
-      url: `${process.env.REACT_APP_URL}gatAllColors`,
+      url: `${process.env.REACT_APP_URL}getAllColors`,
       "Authorization": TOKEN
-    }).then((d) => { setColor( d.data.data );  });
+    }).then((d) => { setColor(d.data.data); });
 
     axios({
       method: "get",
-      url: `${process.env.REACT_APP_URL}gatAllSize`,
+      url: `${process.env.REACT_APP_URL}getAllSize`,
       "Authorization": TOKEN
-    }).then((d) => { setSize(d.data.data);});
+    }).then((d) => { setSize(d.data.data); });
 
     axios({
-      method : "get" ,
-      url : `${process.env.REACT_APP_URL}gatAllCategory`,
-      "Authorization" : TOKEN
-     }).then((d) => {setCategory(d.data.data);});
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllCategory`,
+      "Authorization": TOKEN
+    }).then((d) => { setCategory(d.data.data); });
 
-  }, [])
-  
-console.log(getInputData);
+  }, [refresh])
+
+
 
 
   // const handleApi = async (e) => {
@@ -142,11 +143,11 @@ console.log(getInputData);
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="tittle"
+                  name="title"
                   onChange={(e) => {
                     setGetInputData({
                       ...getInputData,
-                      tittle: e.target.value,
+                      title: e.target.value,
                     });
                   }}
                   value={getInputData.name}
@@ -162,7 +163,7 @@ console.log(getInputData);
                   <label htmlFor="">Category</label>
                   <select
                     name="category"
-                    onChange={(e) => { setGetInputData({...getInputData , category : e.target.value})}}
+                    onChange={(e) => { setGetInputData({ ...getInputData, category: e.target.value }) }}
                     value={getInputData.category}
                     className="field"
                     required
@@ -171,8 +172,8 @@ console.log(getInputData);
                       Select
                     </option>
                     {
-                      category?.map((d , i) => {
-                        return(
+                      category?.map((d, i) => {
+                        return (
                           <option key={i} value={`${d?.category}`} >{d?.category}</option>
                         )
                       })
@@ -203,7 +204,7 @@ console.log(getInputData);
                         if (e.target.value.length <= 10) {
                           setGetInputData({
                             ...getInputData,
-                            price: e.target.value,
+                            price: [e.target.value],
                           });
                         }
                       }}
@@ -230,7 +231,7 @@ console.log(getInputData);
                   <div>
                     <label>Stock</label>
                     <input
-                      name="stocks"
+                      name="stock"
                       className="field"
                       value={getInputData.stock}
                       placeholder="Enter stock"
@@ -238,7 +239,7 @@ console.log(getInputData);
                         if (e.target.value.length <= 10) {
                           setGetInputData({
                             ...getInputData,
-                            stocks: [e.target.value],
+                            stock: [e.target.value],
                           });
                         }
                       }}
@@ -269,8 +270,8 @@ console.log(getInputData);
                 <div className="form-group">
                   <label htmlFor="">Size</label>
                   <select
-                    name="size"
-                    onChange={(e) => {setGetInputData({...getInputData , size : [e.target.value]})}}
+                    name="sizeId"
+                    onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [e.target.value] }) }}
                     value={getInputData.size}
                     className="field"
                     required
@@ -279,9 +280,9 @@ console.log(getInputData);
                       Select
                     </option>
                     {
-                      size?.map((d , i) => {
-                        return(
-                          <option key={i} value={`${d?.size}`} >{d?.size}</option>
+                      size?.map((d, i) => {
+                        return (
+                          <option key={i} value={`${d?.id}`}>{d?.size}</option>
                         )
                       })
                     }
@@ -309,8 +310,8 @@ console.log(getInputData);
                 <div className="form-group">
                   <label htmlFor="">Color</label>
                   <select
-                    name="color"
-                    onChange={(e) => {setGetInputData({...getInputData , color : [e.target.value]})}}
+                    name="colorId"
+                    onChange={(e) => { setGetInputData({ ...getInputData, colorId: [e.target.value] }) }}
                     value={getInputData.color}
                     className="field"
                     required
@@ -319,9 +320,9 @@ console.log(getInputData);
                       Select
                     </option>
                     {
-                      color?.map((d , i) => {
-                        return(
-                          <option key={i} value={`${d?.color}`} >{d?.color}</option>
+                      color?.map((d, i) => {
+                        return (
+                          <option key={i} value={`${d?.id}`} >{d?.color}</option>
                         )
                       })
                     }
@@ -345,6 +346,19 @@ console.log(getInputData);
                   required={true}
                 />
               </div>
+              <div>
+                <div><h6>Add New Color</h6></div>
+                <div className="d-flex"><input type="text" /><button className="px-2">+</button></div>
+                {
+                  color?.map((d, i) => {
+                    return (
+                      <div key={i} className="d-flex">
+                        <p>{d?.color}</p><a onClick={async() => {let a = await axios.delete(`https://api.gasguzzlrs.com/deleteColors/${d.id}`); if(a){window.location.reload()}}}><i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i></a>
+                      </div>
+                    )
+                  })
+                }
+              </div>
               <div className="col-md-12 col-sm-12 mb-3">
                 <label
                   htmlFor="exampleFormControlTextarea1"
@@ -355,7 +369,7 @@ console.log(getInputData);
                 <textarea
                   className="field"
                   value={getInputData.desc}
-                  name="desc"
+                  name="description"
                   onChange={handleOnChange}
                   id="descriptonArea"
                   minLength={1}
