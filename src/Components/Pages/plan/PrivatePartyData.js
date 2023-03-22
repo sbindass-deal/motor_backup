@@ -17,7 +17,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
 
   return (
     <>
-      <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50">
+      <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50 wed">
         <div
           className={`plan_card ${
             curElem.plan_name === "Pro"
@@ -25,7 +25,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
               : curElem.plan_name === "Premiere"
               ? "plan_Plus"
               : curElem.plan_name === "Exclusive"
-              ? "plan_WhiteGlove"
+              ? "plan_WhiteGlove fff"
               : ""
           }`}
         >
@@ -33,7 +33,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
             <h4>{curElem.plan_name} </h4>
             {curElem.monthly_price !== 0 ? (
               <div className="plan_Price">
-                <div className="dfk">
+                <div className="dfk ">
                   {curElem.annual_price == 0 || curElem.monthly_price == 0 ? (
                     "Enquiry"
                   ) : (

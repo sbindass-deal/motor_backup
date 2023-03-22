@@ -6768,3 +6768,11 @@ p.dicount span {
 		display: flex;
 		padding: 10px;
 	}
+  .wed .plan_card {
+    min-height: 90%;
+}
+.wed .plan_cardFooter {
+  position: absolute;
+  width: 84%;
+  bottom: 30px;
+}
