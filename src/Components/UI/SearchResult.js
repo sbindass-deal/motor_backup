@@ -59,11 +59,10 @@ const SearchResult = () => {
             </div>
             <div className="col-12 col-lg-12">
               <div className="heroText">
-                
-                <h5>
+                {/* <h5>
                   {searchedData.moreDescription ||
                     relatedData[0].moreDescription}
-                </h5>
+                </h5> */}
                 <button
                   type="button"
                   onClick={() => {

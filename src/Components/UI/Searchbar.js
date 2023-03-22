@@ -12,8 +12,6 @@ const Searchbar = () => {
   const [searchText, setSearchText] = useState("");
   const vehicleData = logingUser.vehicleReducer.vehicleData;
 
-  console.log("vehicleData is", vehicleData);
-
   const [options, setOptions] = useState([]);
   const searchResult = (query) =>
     vehicleData
@@ -26,7 +24,6 @@ const Searchbar = () => {
             item.moreDescription.toLowerCase().includes(query))
       )
       .map((curElem, idx) => {
-        console.log("current Elemet is", curElem);
         return {
           value: `${curElem.make}`,
           label: (
@@ -46,11 +43,9 @@ const Searchbar = () => {
   const handleSearch = (value) => {
     const values = value.toLowerCase();
     setOptions(value ? searchResult(values) : []);
-    console.log("Line no 48", options);
   };
 
   const onSelect = (value) => {
-    console.log(1111, value, searchText);
     setSearchText(value);
     dispatch(showResult({ searchResult: value, searchKey: searchText }));
   };

@@ -17,7 +17,7 @@ function Home() {
   const blogs = data.blogReducer.blogData;
   const vehicleData = data.vehicleReducer.vehicleData;
   const [sliderData, setSliderData] = useState([]);
-  const [lottery, setLottery] = useState();
+  const [lottery, setLottery] = useState([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -120,12 +120,12 @@ function Home() {
     dots: true,
     infinite: true,
     arrows: false,
-    speed: 2000,
+    // speed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    // autoplay: true,
+    // autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -423,7 +423,11 @@ function Home() {
                             <button className="orange_btn">Buy Tickets</button>
                           </div>
                           <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
-                            <img src={ads_car_2} className="addBanner" />
+                            <img
+                              src={`${process.env.REACT_APP_URL}${d?.image[0].imagePath}`}
+                              alt={d?.name}
+                              className="addBanner"
+                            />
                           </div>
                         </a>
                       </div>
