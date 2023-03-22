@@ -207,7 +207,7 @@ function Detail() {
     <>
       <section className="ptb_80 pt_sm_50 ">
         <div className="container" id="sticky">
-          <div className="row">
+          <div className="row reverseCol">
             <div className="col-lg-3 col-sm-12">
               <Fundamental
                 vehicle={vehicle}
