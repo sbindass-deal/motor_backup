@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 
-const DealerList = ({handleDealerCount}) => {
+const DealerList = ({ handleDealerCount, searchTerm }) => {
   const [dealerData, setDealerData] = useState([]);
-
   useEffect(() => {
     const fetchDealer = async () => {
       try {
@@ -29,7 +28,15 @@ const DealerList = ({handleDealerCount}) => {
       <div className="col-12 ListDealer mt-50">
         <div className="row  pt-4 row_gridList">
           {dealerData.length > 0 &&
-            dealerData.map((curElem) => {
+            dealerData?.filter((curElem) => {
+              if (searchTerm == "") {
+                return curElem
+              }
+              else if (curElem?.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return curElem
+              }
+            })
+              ?.map((curElem) => {
               return (
                 <>
                   <div class="col-12 col-md-4 pb-3">
@@ -61,7 +68,7 @@ const DealerList = ({handleDealerCount}) => {
                         </h4>
                       
                         <ul class="labelList">
-                          <li>{new Date(curElem?.created_at).toLocaleDateString()}</li>
+                          <li>{new Date(curElem?.created_at).toDateString()}</li>
                           <li>
                             <i class="fa-solid fa-user mr-2"></i> {curElem?.name}
                           </li>

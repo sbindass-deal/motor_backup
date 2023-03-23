@@ -88,7 +88,7 @@ const Auctionfeature = () => {
                     name="search"
                     value={searchValue}
                     onChange={(e) =>
-                      setSearchValue(e.target.value.toLowerCase())
+                      setSearchValue(e.target.value)
                     }
                     placeholder="Filter auctions for make, model, category…"
                   />
@@ -151,7 +151,14 @@ const Auctionfeature = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts.map((curElem) => {
+              currentPosts?.filter((curElem) => {
+                if (searchValue == "") {
+                  return curElem
+                } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
+                 return curElem 
+                }
+              })
+                ?.map((curElem) => {
                 return (
                   <Data
                     key={curElem.id}
