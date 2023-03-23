@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 const AddGearProduct = () => {
@@ -51,6 +52,18 @@ const AddGearProduct = () => {
     }
   };
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleApi = async (e) => {
     e.preventDefault();
     axios
@@ -68,7 +81,9 @@ const AddGearProduct = () => {
         if (response.status === 200) {
           let a = await uploadFileOne(response.data.data.id);
           if (a) {
+            notify("Added successfully !");
             navigate("/gear-product");
+            notify("Added successfully !");
             window.location.reload(false);
           }
         }

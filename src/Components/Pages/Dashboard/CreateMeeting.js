@@ -4,6 +4,7 @@ import AdminLeftNav from "./AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
+import { toast } from "react-toastify";
 
 const CreateMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
@@ -25,12 +26,24 @@ const CreateMeeting = () => {
     fetchMeetingDetail();
   }, []);
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
         `${process.env.REACT_APP_URL}deleteEvent/${id}`
       );
       if (res.data.status === 200) {
+        notify("Deleted successfully !");
         window.location.reload(false);
       }
     } catch (err) {

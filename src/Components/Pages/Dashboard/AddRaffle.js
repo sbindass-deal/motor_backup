@@ -8,6 +8,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import { toast } from "react-toastify";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
@@ -97,6 +98,18 @@ const AddRaffle = () => {
     })();
   };
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -115,6 +128,7 @@ const AddRaffle = () => {
         if (response.status === 200) {
           uploadImg(response.data.data.id);
           uploadVideo(response.data.data.id);
+          notify("Added successfully !");
           navigate("/raffleadmin");
         }
       })

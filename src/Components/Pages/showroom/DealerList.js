@@ -59,6 +59,7 @@ const DealerList = ({handleDealerCount}) => {
                             {curElem?.title}
                           </Link>
                         </h4>
+                       
                         <ul class="labelList">
                           <li>October 14, 2022</li>
                           <li>

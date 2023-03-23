@@ -12,6 +12,7 @@ import {
   convertFromHTML,
   convertToRaw,
 } from "draft-js";
+import { toast } from "react-toastify";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -33,6 +34,19 @@ const EditBlog = () => {
     event.preventDefault();
     setFile((prevState) => [...event.dataTransfer.files]);
   };
+
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleChange = (e) => {
     setBlogData({ ...blogData, [e.target.name]: e.target.value });
@@ -87,6 +101,7 @@ const EditBlog = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
+          notify("Save successfully !");
           navigate("/blog");
         }
       })

@@ -9,6 +9,7 @@ import draftToHtml from "draftjs-to-html";
 import { useNavigate, useParams } from "react-router-dom";
 import { notification } from "antd";
 import { ContentState, convertFromHTML } from "draft-js";
+import { toast } from "react-toastify";
 
 const EditCreateMeeting = () => {
   const { id } = useParams();
@@ -73,6 +74,18 @@ const EditCreateMeeting = () => {
     fetchMeeting();
   }, []);
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -109,6 +122,7 @@ const EditCreateMeeting = () => {
     await axios
       .post(url, formData)
       .then(function (response) {
+        notify("Save successfully !");
         navigate("/admin-meeting");
         console.log(109, response);
       })

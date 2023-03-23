@@ -7,6 +7,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router-dom";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import { toast } from "react-toastify";
 
 function AdUserMeeting() {
   const navigate = useNavigate()
@@ -54,6 +55,18 @@ function AdUserMeeting() {
 
   console.log(889, file[0])
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const url = `${process.env.REACT_APP_URL}AddEvent`;
@@ -80,6 +93,7 @@ function AdUserMeeting() {
 
     await axios.post(url, formData)
       .then(function (response) {
+        notify("Added Event successfully !");
         navigate('/user-meeting')
         console.log(109, response);
       })

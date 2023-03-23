@@ -424,7 +424,7 @@ img.addBanner {
 }
 
 .activeListView .card_postInfo p {
-  display: none;
+  /* display: none; */
 }
 
 .activeListView .labelList {

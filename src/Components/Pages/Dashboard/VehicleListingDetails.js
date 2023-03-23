@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 function VehicleListingDetails() {
@@ -22,6 +23,20 @@ function VehicleListingDetails() {
   const handleChange = (e) => {
     setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
+
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -40,6 +55,7 @@ function VehicleListingDetails() {
       })
       .then((response) => {
         if (response.status === 200) {
+          notify("Save successfully !");
           navigate('/admin/vehicle-listing')
         }
       })

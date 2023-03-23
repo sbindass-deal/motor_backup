@@ -3,6 +3,7 @@ import AdminLeftNav from "./AdminLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function GearProducts() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,12 +31,25 @@ function GearProducts() {
     }).then((d) => { setSize(d.data.data);});
 
   }, [])
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteproduct/${id}`)
       .then((response) => {
         if (response.status === 200) {
+          notify("Deleted successfully !");
           window.location.reload(false);
         }
       })
