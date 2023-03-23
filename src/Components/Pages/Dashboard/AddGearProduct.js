@@ -15,7 +15,10 @@ const AddGearProduct = () => {
   const [getInputData, setGetInputData] = useState({ title: "", category: "", price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
-  const [refresh , setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [addNewColor, setAddNewColor] = useState("");
+  const [addNewSize, setAddNewSize] = useState("");
+  
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -117,6 +120,39 @@ const AddGearProduct = () => {
   }, [refresh])
 
 
+  const handleAddColor = () => {
+    if(addNewColor == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        color: addNewColor
+      },
+      url: `${process.env.REACT_APP_URL}addColors`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewColor("");
+      setRefresh(!refresh);
+    })
+  }
+
+
+  const handleAddSize = () => {
+    if(addNewSize == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        size: addNewSize
+      },
+      url: `${process.env.REACT_APP_URL}addSize`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewSize("");
+      setRefresh(!refresh);
+    })
+  }
+  
 
 
   // const handleApi = async (e) => {
@@ -363,12 +399,59 @@ const AddGearProduct = () => {
               </div>
               <div>
                 <div><h6>Add New Color</h6></div>
-                <div className="d-flex"><input type="text" /><button className="px-2">+</button></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} />
+                  <a onClick={handleAddColor} className="px-2">+</a>
+                </div>
                 {
                   color?.map((d, i) => {
                     return (
                       <div key={i} className="d-flex">
-                        <p>{d?.color}</p><a onClick={async() => {let a = await axios.delete(`https://api.gasguzzlrs.com/deleteColors/${d.id}`); if(a){window.location.reload()}}}><i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i></a>
+                        <p>{d?.color}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div>
+                <div><h6>Add New Size</h6></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewSize} placeholder="Add New Size" onChange={(e) => { setAddNewSize(e.target.value) }} />
+                  <a onClick={handleAddSize} className="px-2">+</a>
+                </div>
+                {
+                  color?.map((d, i) => {
+                    return (
+                      <div key={i} className="d-flex">
+                        <p>{d?.color}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div>
+                <div><h6>Add New Category</h6></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} />
+                  <a onClick={handleAddColor} className="px-2">+</a>
+                </div>
+                {
+                  color?.map((d, i) => {
+                    return (
+                      <div key={i} className="d-flex">
+                        <p>{d?.color}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
                       </div>
                     )
                   })
