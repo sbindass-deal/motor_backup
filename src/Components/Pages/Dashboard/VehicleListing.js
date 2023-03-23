@@ -28,6 +28,7 @@ const VehicleListing = () => {
         category: "all",
       })
       .then((respone) => {
+        console.log(789898,respone)
         if (respone.status === 200) {
           setGetData(respone.data.data);
           setLoading(false);
@@ -171,8 +172,8 @@ const VehicleListing = () => {
                                 <td>{id}</td>
                                 <td>{plan_name}</td>
                                 <td>{annual_listing}</td>
-                                <td>{annual_price}</td>
                                 <td>{category}</td>
+                                <td>{annual_price}</td>
                                 <td>{monthly_listing}</td>
                                 <td>{monthly_price}</td>
                                 <td>

@@ -119,7 +119,7 @@ const CreateMeeting = () => {
                           <th scope="col">Title</th>
                           <th scope="col">Start Date</th>
                           <th scope="col">End Date </th>
-                          <th scope="col">Website Link</th>
+                          {/* <th scope="col">Website Link</th> */}
                           {/* <th scope="col">Facebook Link</th>
                           <th scope="col">Twitter Link</th>
                           <th scope="col">Email</th> */}
@@ -143,14 +143,14 @@ const CreateMeeting = () => {
                               <td>{curVal.title}</td>
                               <td>{curVal.start_date}</td>
                               <td>{curVal.end_date}</td>
-                              <td>{curVal.url}</td>
+                              {/* <td>{curVal.url}</td> */}
                               {/* <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>
                               <td>{curVal.email}</td> */}
                               {/* <td>{curVal.description.substr(0,100)}</td> */}
                               <td>
                                 {parse(
-                                  curVal?.description.substr(0, 100),
+                                  curVal?.description.substr(0, 50)+"...",
                                   strToHtml
                                 )}
                               </td>
