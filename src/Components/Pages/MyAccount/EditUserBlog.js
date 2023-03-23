@@ -13,6 +13,9 @@ import {
   convertToRaw,
 } from "draft-js";
 
+import { toast } from "react-toastify";
+
+
 const EditUserBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -33,6 +36,19 @@ const EditUserBlog = () => {
     event.preventDefault();
     setFile((prevState) => [...event.dataTransfer.files]);
   };
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
 
   const handleChange = (e) => {
     setBlogData({ ...blogData, [e.target.name]: e.target.value });
@@ -87,6 +103,7 @@ const EditUserBlog = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
+          notify("Saved successfully !");
           navigate("/user-blog");
         }
       })
@@ -96,6 +113,10 @@ const EditUserBlog = () => {
     setBlogData({ title: "", desc: "", img: "" });
   };
   // console.log(draftToHtml(convertToRaw(blogContent.getCurrentContent())));
+
+
+ 
+
 
   return (
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
@@ -111,7 +132,7 @@ const EditUserBlog = () => {
                   name="title"
                   onChange={handleChange}
                   className="field"
-                  placeholder="Product Name"
+                  placeholder="Enter Blog"
                   required
                 />
               </div>

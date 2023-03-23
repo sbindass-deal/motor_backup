@@ -3,10 +3,24 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminLeftNav from "./AdminLeftNav";
 import Dropdown from "react-bootstrap/Dropdown";
+import { toast } from "react-toastify";
 
 const VehicleListing = () => {
   const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
 
   const addListingData = async () => {
     await axios
@@ -32,6 +46,7 @@ const VehicleListing = () => {
     try {
       const res = await axios.delete(`${process.env.REACT_APP_URL}plans/${id}`);
       if (res.data.status === 200) {
+        notify("Deleted successfully !");
         window.location.reload(false);
       }
     } catch (err) {
