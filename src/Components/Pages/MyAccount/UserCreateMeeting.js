@@ -5,6 +5,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import { toast } from "react-toastify";
 
 function UserCreateMeeting() {
   const [meetingData, setMeetingData] = useState([]);
@@ -30,6 +31,17 @@ function UserCreateMeeting() {
     };
     fetchMeetingDetail();
   }, []);
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const handleDelete = async (id) => {
     try {
@@ -37,6 +49,7 @@ function UserCreateMeeting() {
         `${process.env.REACT_APP_URL}deleteEvent/${id}`
       );
       if (res.data.status === 200) {
+        notify("Deleted Event successfully !");
         window.location.reload(false);
       }
     } catch (err) {
@@ -45,7 +58,6 @@ function UserCreateMeeting() {
   };
 
   const VechilesApprove = (id, dis) => {
-    debugger
     axios
       .post(`${process.env.REACT_APP_URL}approveEvent`, {
         id: id,
@@ -99,7 +111,7 @@ function UserCreateMeeting() {
                 </ul> */}
 
                 <Link to="/add-user-meeting" className="orange_btn">
-                  Add Create Event
+                 + Add Create Event
                 </Link>
               </div>
               <hr />

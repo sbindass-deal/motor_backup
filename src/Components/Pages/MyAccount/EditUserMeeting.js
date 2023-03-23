@@ -13,6 +13,7 @@ import {
 
 } from "draft-js";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import { toast } from "react-toastify";
 
 function EditUserMeeting() {
   const { id } = useParams()
@@ -97,6 +98,19 @@ function EditUserMeeting() {
   };
 
   console.log(889, file[0])
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -124,6 +138,7 @@ function EditUserMeeting() {
 
     await axios.post(url, formData)
       .then(function (response) {
+        notify("Save successfully !");
         navigate("/user-meeting");
         console.log(109, response);
       })

@@ -7,6 +7,7 @@ import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function UserBlog() {
   const data = useSelector((state) => state);
@@ -29,11 +30,26 @@ function UserBlog() {
     fetchBlogs();
   }, []);
 
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteblogs/${id}`)
       .then((response) => {
         if (response.status === 200) {
+          notify("Deleted Blog successfully !");
           window.location.reload(false);
         }
       })

@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 const EditGearProduct = () => {
@@ -39,6 +40,18 @@ const EditGearProduct = () => {
     setGetInputData({ ...getInputData, [e.target.name]: e.target.value });
   };
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   useEffect(() => {
     const filteredData = products.find((item) => item.id == id);
     console.log(11111, filteredData);
@@ -69,6 +82,7 @@ const EditGearProduct = () => {
   //     .post(url, formdata, config)
   //     .then((response) => {
   //       if (response.status === 200) {
+  // notify("Save successfully !");
   //         navigate("/gear-product");
   //         window.location.reload(false);
   //       }

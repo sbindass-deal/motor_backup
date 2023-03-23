@@ -418,7 +418,10 @@ function Home() {
                             <h2>{d?.name}</h2>
                             <p>{parse(d?.description, strToHtml)}</p>
                             <div className="price_">
-                              <p>{d?.dealEndDate}</p>
+                              <p>
+                                {d?.dealEndDate &&
+                                  new Date(d?.dealEndDate).toDateString()}
+                              </p>
                             </div>
                             <button className="orange_btn">Buy Tickets</button>
                           </div>

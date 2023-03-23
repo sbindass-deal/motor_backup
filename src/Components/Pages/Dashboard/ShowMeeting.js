@@ -61,6 +61,17 @@ const ShowMeeting = () => {
                           <h6 className="card-text">
                             {curVal.title}
                           </h6>
+                          <p>
+                            {
+                              curVal?.description && 
+                              parse(
+                                curVal?.description?.substr(0, 150)+"...",
+                                strToHtml
+                              )
+                            }
+                          </p>
+
+                         
                         </div>
                       </Link>
                     </div>

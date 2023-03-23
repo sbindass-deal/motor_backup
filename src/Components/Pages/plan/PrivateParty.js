@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getPlanByDealerSelect } from "../../../redux/reducers/planReducer";
 import NotAvailable from "../../UI/NotAvailable";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Data from "./Data";
 import PrivatePartyData from "./PrivatePartyData";
 
-
 const PrivateParty = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [planData, setPlanData] = useState([]);
   const [purchagedPlan, setPurchagedPlan] = useState([]);
@@ -33,6 +35,10 @@ const PrivateParty = () => {
   };
   useEffect(() => {
     fetchPlan();
+  }, []);
+
+  useEffect(() => {
+    dispatch(getPlanByDealerSelect("auction"));
   }, []);
 
   if (loading) {

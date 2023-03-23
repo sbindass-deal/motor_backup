@@ -59,8 +59,9 @@ const DealerList = ({handleDealerCount}) => {
                             {curElem?.title}
                           </Link>
                         </h4>
+                      
                         <ul class="labelList">
-                          <li>October 14, 2022</li>
+                          <li>{new Date(curElem?.created_at).toLocaleDateString()}</li>
                           <li>
                             <i class="fa-solid fa-user mr-2"></i> {curElem?.name}
                           </li>

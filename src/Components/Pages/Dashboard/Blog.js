@@ -9,6 +9,7 @@ import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import { useSelector } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
+import { toast } from "react-toastify";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -35,11 +36,25 @@ function Blog() {
 
   console.log(blogs);
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
   const handleDelete = (id) => {
     axios
       .delete(`${process.env.REACT_APP_URL}deleteblogs/${id}`)
       .then((response) => {
         if (response.status === 200) {
+          notify("Deleted successfully !");
           window.location.reload(false);
         }
       })

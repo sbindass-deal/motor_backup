@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 const AddGearProduct = () => {
@@ -14,7 +15,11 @@ const AddGearProduct = () => {
   const [getInputData, setGetInputData] = useState({ title: "", category: "", price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
-  const [refresh , setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [addNewColor, setAddNewColor] = useState("");
+  const [addNewSize, setAddNewSize] = useState("");
+  const [addNewCategory, setAddNewCategory] = useState("");
+  
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -51,6 +56,18 @@ const AddGearProduct = () => {
     }
   };
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleApi = async (e) => {
     e.preventDefault();
     axios
@@ -68,7 +85,9 @@ const AddGearProduct = () => {
         if (response.status === 200) {
           let a = await uploadFileOne(response.data.data.id);
           if (a) {
+            notify("Added successfully !");
             navigate("/gear-product");
+            notify("Added successfully !");
             window.location.reload(false);
           }
         }
@@ -102,6 +121,55 @@ const AddGearProduct = () => {
   }, [refresh])
 
 
+  const handleAddColor = () => {
+    if(addNewColor == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        color: addNewColor
+      },
+      url: `${process.env.REACT_APP_URL}addColors`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewColor("");
+      setRefresh(!refresh);
+    })
+  }
+
+
+  const handleAddSize = () => {
+    if(addNewSize == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        size: addNewSize
+      },
+      url: `${process.env.REACT_APP_URL}addSize`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewSize("");
+      setRefresh(!refresh);
+    })
+  }
+
+  const handleAddcategory = () => {
+    if(addNewCategory == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        category: addNewCategory
+      },
+      url: `${process.env.REACT_APP_URL}addproductCategory`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewCategory("");
+      setRefresh(!refresh);
+    })
+  }
+  
 
 
   // const handleApi = async (e) => {
@@ -348,12 +416,59 @@ const AddGearProduct = () => {
               </div>
               <div>
                 <div><h6>Add New Color</h6></div>
-                <div className="d-flex"><input type="text" /><button className="px-2">+</button></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} />
+                  <a onClick={handleAddColor} className="px-2">+</a>
+                </div>
                 {
                   color?.map((d, i) => {
                     return (
                       <div key={i} className="d-flex">
-                        <p>{d?.color}</p><a onClick={async() => {let a = await axios.delete(`https://api.gasguzzlrs.com/deleteColors/${d.id}`); if(a){window.location.reload()}}}><i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i></a>
+                        <p>{d?.color}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div>
+                <div><h6>Add New Size</h6></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewSize} placeholder="Add New Size" onChange={(e) => { setAddNewSize(e.target.value) }} />
+                  <a onClick={handleAddSize} className="px-2">+</a>
+                </div>
+                {
+                  size?.map((d, i) => {
+                    return (
+                      <div key={i} className="d-flex">
+                        <p>{d?.size}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteSize/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div>
+                <div><h6>Add New Category</h6></div>
+                <div className="d-flex">
+                  <input type="text" value={addNewCategory} placeholder="Add New Category" onChange={(e) => { setAddNewCategory(e.target.value) }} />
+                  <a onClick={handleAddcategory} className="px-2">+</a>
+                </div>
+                {
+                  category?.map((d, i) => {
+                    return (
+                      <div key={i} className="d-flex">
+                        <p>{d?.category}
+                        </p>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteCategory/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                          <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
+                        </a>
                       </div>
                     )
                   })
