@@ -9,6 +9,7 @@ import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import ms from "ms";
+import { toast } from "react-toastify";
 
 const AddCreateMeeting = () => {
   const navigate = useNavigate();
@@ -20,6 +21,18 @@ const AddCreateMeeting = () => {
     setDescription(e);
     console.log(111, e);
   };
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const [meetingDetail, setMeetingDetail] = useState({
     title: "",
@@ -77,6 +90,7 @@ const AddCreateMeeting = () => {
     await axios
       .post(url, formData)
       .then(function (response) {
+        notify("Added successfully !");
         navigate("/admin-meeting");
         console.log(109, response);
       })

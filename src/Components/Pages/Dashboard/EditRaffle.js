@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
 import ms from "ms";
+import { toast } from "react-toastify";
 
 const EditRaffle = () => {
   const { id } = useParams();
@@ -31,6 +32,18 @@ const EditRaffle = () => {
     const img = document.querySelector("img");
     img.src = url;
   }
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   useEffect(() => {
     const fetchLottery = async () => {
@@ -104,7 +117,8 @@ const EditRaffle = () => {
           console.log("DATA", response.data)
           uploadEditImage(response.data.id);
           await videoUpload(response.data.id);
-          // navigate("/raffleadmin");
+          notify("Save successfully !");
+          navigate("/raffleadmin");
         }
       })
       .catch((error) => {

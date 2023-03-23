@@ -244,8 +244,8 @@ const AddDealer = () => {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
           uploadGallery(response.data.dealer_id);
+          notify("Added  successfully !");
           navigate("/admin-dealer");
-          notify(response.data.message);
         } else {
           notify(response.data.message);
         }

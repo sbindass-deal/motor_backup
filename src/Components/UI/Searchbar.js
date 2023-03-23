@@ -11,7 +11,6 @@ const Searchbar = () => {
 
   const [searchText, setSearchText] = useState("");
   const vehicleData = logingUser.vehicleReducer.vehicleData;
-
   const [options, setOptions] = useState([]);
   const searchResult = (query) =>
     vehicleData
@@ -25,7 +24,7 @@ const Searchbar = () => {
       )
       .map((curElem, idx) => {
         return {
-          value: `${curElem.make}`,
+          value: `${curElem.model}`,
           label: (
             <Link
               to="/search"
