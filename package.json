@@ -71,5 +71,6 @@
   },
   "devDependencies": {
     "react-router-dom": "^6.4.2"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }
