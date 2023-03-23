@@ -156,7 +156,7 @@ function GearProducts() {
                               </div>
                             </td>
                             <td>{curElem?.title}</td>
-                            <td>{curElem?.product_inventry[0].price}</td>
+                            <td>{curElem?.product_inventry[0]?.price}</td>
                             <td>{
                             color?.map((d , i) => {
                               if(d?.id == curElem?.product_inventry[0]?.color_id){

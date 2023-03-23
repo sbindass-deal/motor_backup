@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -19,9 +20,21 @@ const Products = ({ id, price, images, title, curElem }) => {
 
   const dispatch = useDispatch();
   const [imageValue, setImageValsue] = useState(0);
+  const [size , setSize] = useState();
+  const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
+
   // const [addButton , setAddButton] = useState(false)
 
-  console.log(images[0]);
+useEffect(() => {
+
+  axios({
+    method: "get",
+    url: `${process.env.REACT_APP_URL}getAllSize`,
+    "Authorization": TOKEN
+  }).then((d) => { setSize(d.data.data); });
+
+}, [])
+
 
   return (
     <>
@@ -56,14 +69,20 @@ const Products = ({ id, price, images, title, curElem }) => {
             </h6>
             <p>{curElem.description.substr(0, 80)}...</p>
             <div className="sizeColor">
-              <div className="sizeColor">Category: {curElem.category}</div>
-              <div className="size">Size: {curElem.size}</div>
+              <div className="sizeColor">Category : {curElem.category}</div>
+              <div className="size">Size : {
+                size?.map((d , i) => {
+                  if(d?.id == curElem?.product_inventry[0]?.size_id){
+                    return d?.size
+                  }
+                })
+              }</div>
             </div>
             <ul
               class="priceDateList"
               style={{ justifyContent: "space-between" }}
             >
-              <li class="price__">${price}</li>
+              <li class="price__">${curElem?.product_inventry[0]?.price}</li>
               <li class="">
               <Link to={`/shop/${id}`}><button
                   // onClick={() => {

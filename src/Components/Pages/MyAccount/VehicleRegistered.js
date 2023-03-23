@@ -15,7 +15,12 @@ import {
 import counryData from "../../countryList";
 import FormInput from "../../UI/FormInput";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  ContentState,
+  convertFromHTML,
+} from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 
@@ -310,6 +315,27 @@ const UserVehicleDetails = () => {
         );
         console.log(111, res.data.data, res.data.status);
         if (res.data.status === 200) {
+          setVehicleHistory(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(filteredVehicleData.issuesorproblems)
+              )
+            )
+          );
+          setServiceRecord(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(filteredVehicleData.moreDescription)
+              )
+            )
+          );
+          setIssuesProblems(
+            EditorState.createWithContent(
+              ContentState.createFromBlockArray(
+                convertFromHTML(filteredVehicleData.hereFrom)
+              )
+            )
+          );
           setVehicleData(filteredVehicleData);
           setArr(youtubeLinkMapped);
           setGetfilteredVehicleData(filteredVehicleData.images);
@@ -436,8 +462,6 @@ const UserVehicleDetails = () => {
   };
 
   const submitApprove = (data) => {
-    console.log(5656, data);
-
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
         approve: data === "publish" ? 2 : 3,
@@ -488,7 +512,8 @@ const UserVehicleDetails = () => {
     });
   };
 
-  const fetchVehicleApi = async (data) => {
+  const fetchVehicleApi = async (e) => {
+    e.preventDefault();
     const filteredVehicleData = vehicleData;
     setGetfilteredVehicleData(filteredVehicleData.images);
     setVechileInfo(filteredVehicleData);
@@ -632,8 +657,8 @@ const UserVehicleDetails = () => {
       .then((result) => {
         //navigaget
         if (result.data.status === 200) {
-          navigate("/vehicle-submission");
-          submitApprove(data);
+          // navigate("/vehicle-submission");
+          // submitApprove(data);
           // window.location.reload(false);
         }
       })
@@ -1677,7 +1702,13 @@ const UserVehicleDetails = () => {
                     <h3>Details</h3>
                     <hr />
 
-                    <form className="pt-3" onSubmit={detailsSubmitHandler}>
+                    <form
+                      className="pt-3"
+                      onSubmit={(e) => {
+                        detailsSubmitHandler(e);
+                        fetchVehicleApi(e);
+                      }}
+                    >
                       <div className="row">
                         <div className="col-12">
                           <h5>Description and details</h5>
@@ -2073,7 +2104,7 @@ const UserVehicleDetails = () => {
                             BACK
                           </button>
                           <button type="submit" className="orange_btn">
-                            NEXT
+                            SAVE CHANGES
                           </button>
                         </div>
                       </div>
@@ -2102,8 +2133,8 @@ const UserVehicleDetails = () => {
                     </form>
                     <div className="text-center my-4">
                       <button
-                        // onClick={() => submitApprove("approve")}
-                        onClick={() => fetchVehicleApi("publish")}
+                        onClick={() => submitApprove("approve")}
+                        // onClick={() => fetchVehicleApi("publish")}
                         className="btn btn-warning m-3"
                         type="button"
                         disabled={vechileInfo.approved == 1 ? false : true}
@@ -2111,8 +2142,8 @@ const UserVehicleDetails = () => {
                         Publish
                       </button>
                       <button
-                        // onClick={() => submitApprove("reject")}
-                        onClick={() => fetchVehicleApi("reject")}
+                        onClick={() => submitApprove("reject")}
+                        // onClick={() => fetchVehicleApi("reject")}
                         className="btn btn-warning m-3"
                         type="button"
                         disabled={vechileInfo.approved != 1 ? false : true}

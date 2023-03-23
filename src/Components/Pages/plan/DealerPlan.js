@@ -14,7 +14,7 @@ const DealerPlan = () => {
     auction: true,
     classified: false,
   });
-const [purchagedPlan, setPurchagedPlan] = useState({});
+  const [purchagedPlan, setPurchagedPlan] = useState({});
 
   const fetchPlan = async () => {
     setLoading(true);
@@ -39,7 +39,7 @@ const [purchagedPlan, setPurchagedPlan] = useState({});
   }, [callPlanApi]);
 
   useEffect(() => {
-    dispatch(getPlanByDealerSelect("normal"));
+    dispatch(getPlanByDealerSelect("auction"));
   }, []);
 
   return (

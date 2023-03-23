@@ -4025,9 +4025,9 @@ h5.cardTitle {
   margin-bottom: 30px;
 }
 
-.carBg {
+/* .carBg {
   background-color: #f7931a;
-}
+} */
 
 .carBg img {
   width: 100%;
@@ -4039,7 +4039,8 @@ h5.cardTitle {
 
 .rafSect {
   background: #222;
-  padding: 20px 50px;
+  padding: 30px 50px;
+  height: 300px;
 }
 
 .row.row_gap_5.ssss {
@@ -4050,6 +4051,7 @@ h5.cardTitle {
 a.full {
   width: 100%;
   display: flex;
+  align-items: center;
 }
 
 .svg-inline--fa {
@@ -6131,7 +6133,7 @@ a.dfr {
 }
 
 .labelList li:last-child {
-  width: 120px;
+  width: auto;
 }
 
 .blogDesc h2 span strong {
@@ -6778,9 +6780,9 @@ p.dicount span {
 }
 
 .carBg {
-  height: 286px;
+  height: auto;
   width: 100%;
-  padding-top: 33px;
+  /* padding-top: 33px; */
 }
 .carBg img {
   max-width: 100%;
@@ -6799,3 +6801,4 @@ p.dicount span {
 .light .sidebarPost_text {
   color: #000;
 }
+.anty-select-dropdown-placement-bottomLeft{ z-index: 99999999999oo99}

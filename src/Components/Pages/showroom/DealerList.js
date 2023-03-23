@@ -5,9 +5,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import Pagination from "../../Pagination";
 
 const DealerList = ({ handleDealerCount, searchTerm }) => {
   const [dealerData, setDealerData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = dealerData.slice(firstPostIndex, lastPostIndex);
+
   useEffect(() => {
     const fetchDealer = async () => {
       try {
@@ -86,6 +94,11 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
                 </>
               );
             })}
+
+            <Pagination totalPosts={dealerData.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage} />
         </div>
       </div>
     </>

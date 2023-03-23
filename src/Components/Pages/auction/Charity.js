@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
 import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 
 const Charity = () => {
   const dispatch = useDispatch();
