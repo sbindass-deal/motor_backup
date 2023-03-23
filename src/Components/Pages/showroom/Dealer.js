@@ -8,6 +8,7 @@ import DealerList from "./DealerList";
 const Dealer = () => {
   const [filteredModal, setFilteredModal] = useState(false);
   const [dealerCount, setDealerCount] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleFilteredModalClose = () => {
     setFilteredModal(false);
@@ -56,6 +57,7 @@ const Dealer = () => {
                     autoComplete="off"
                     name="search"
                     placeholder="Search for a Dealer"
+                    onChange={(e)=>setSearchTerm(e.target.value)}
                   />
                 </li>
                 <li className="">
@@ -72,7 +74,7 @@ const Dealer = () => {
                 </li>
               </ul>
             </div>
-            <DealerList handleDealerCount={handleDealerCount} />
+            <DealerList searchTerm={searchTerm} handleDealerCount={handleDealerCount} />
           </div>
         </div>
       </section>

@@ -159,7 +159,14 @@ const AuctionNoReserve = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts.map((curElem) => {
+              currentPosts?.filter((curElem) => {
+                if (searchValue == "") {
+                  return curElem
+                } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
+                  return curElem
+                }
+              })
+                ?.map((curElem) => {
                 return (
                   <Data
                     key={curElem.id}
