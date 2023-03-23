@@ -18,6 +18,7 @@ const AddGearProduct = () => {
   const [refresh, setRefresh] = useState(false);
   const [addNewColor, setAddNewColor] = useState("");
   const [addNewSize, setAddNewSize] = useState("");
+  const [addNewCategory, setAddNewCategory] = useState("");
   
 
   const handleDragOver = (event) => {
@@ -149,6 +150,22 @@ const AddGearProduct = () => {
       "Authorization": TOKEN
     }).then(() => {
       setAddNewSize("");
+      setRefresh(!refresh);
+    })
+  }
+
+  const handleAddcategory = () => {
+    if(addNewCategory == "")
+    return alert("Please Enter Something");
+    axios({
+      method: "post",
+      data: {
+        category: addNewCategory
+      },
+      url: `${process.env.REACT_APP_URL}addproductCategory`,
+      "Authorization": TOKEN
+    }).then(() => {
+      setAddNewCategory("");
       setRefresh(!refresh);
     })
   }
@@ -424,12 +441,12 @@ const AddGearProduct = () => {
                   <a onClick={handleAddSize} className="px-2">+</a>
                 </div>
                 {
-                  color?.map((d, i) => {
+                  size?.map((d, i) => {
                     return (
                       <div key={i} className="d-flex">
-                        <p>{d?.color}
+                        <p>{d?.size}
                         </p>
-                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteSize/${d.id}`); if (a) { setRefresh(!refresh) } }}>
                           <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
                         </a>
                       </div>
@@ -440,16 +457,16 @@ const AddGearProduct = () => {
               <div>
                 <div><h6>Add New Category</h6></div>
                 <div className="d-flex">
-                  <input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} />
-                  <a onClick={handleAddColor} className="px-2">+</a>
+                  <input type="text" value={addNewCategory} placeholder="Add New Category" onChange={(e) => { setAddNewCategory(e.target.value) }} />
+                  <a onClick={handleAddcategory} className="px-2">+</a>
                 </div>
                 {
-                  color?.map((d, i) => {
+                  category?.map((d, i) => {
                     return (
                       <div key={i} className="d-flex">
-                        <p>{d?.color}
+                        <p>{d?.category}
                         </p>
-                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}>
+                        <a onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteCategory/${d.id}`); if (a) { setRefresh(!refresh) } }}>
                           <i class="fa fa-trash ml-3 mt-1" aria-hidden="true"></i>
                         </a>
                       </div>
