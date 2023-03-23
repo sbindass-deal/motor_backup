@@ -8,7 +8,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import { Link } from "react-router-dom";
 import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 
 const AuctionResult = () => {
   const dispatch = useDispatch();
