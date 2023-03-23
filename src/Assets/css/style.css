@@ -6792,10 +6792,20 @@ p.dicount span {
   top: 0px;
 }
 
+.rc-virtual-list .ant-select-dropdown {
+  z-index: 9999999999;
+}
+
 .light .post-share .post-share-link svg {
   color: #000;
 }
 
 .light .sidebarPost_text {
   color: #000;
+}
+.ant-select-dropdown.css-dev-only-do-not-override-1hyej8k.ant-select-dropdown-placement-bottomLeft.ant-select-dropdown-hidden {
+  z-index: 99999999999999 !important;
+}
+.ant-select-dropdown-placement-bottomLeft {
+  z-index: 9999999999999;
 }

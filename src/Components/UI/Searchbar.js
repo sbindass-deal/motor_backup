@@ -25,6 +25,7 @@ const Searchbar = () => {
       )
       .map((curElem, idx) => {
         return {
+        
           value: `${curElem.make}`,
           label: (
             <Link
