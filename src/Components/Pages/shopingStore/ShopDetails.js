@@ -31,7 +31,6 @@ const ShopDetails = () => {
       theme: "light",
     });
 
-
   useEffect(() => {
 
       setLoading(true);
@@ -39,12 +38,10 @@ const ShopDetails = () => {
         axios.get(
           `${process.env.REACT_APP_URL}allproduct`
         ).then((d) => {
-          console.log(d?.data?.data?.map((d, i) => {
-            if (d?.id == id) {
-              setProduct(d);
-            }
-
-          }));
+          d?.data?.data?.product.map((d , i) =>{
+            if(d?.id == id)
+             setProduct(d)
+          })
         })
         setLoading(false);
       } catch (err) {
@@ -81,7 +78,7 @@ const ShopDetails = () => {
               <Carousel autoplay>
                 <div>
                   <img
-                    src={`${process.env.REACT_APP_URL}upload/products/${product?.image}`}
+                    src={`${process.env.REACT_APP_URL}upload/products/${product?.images[0]?.image}`}
                     alt={product.title}
                     style={contentStyle}
                     className="img-fluid"
@@ -110,7 +107,7 @@ const ShopDetails = () => {
             <div className="col-md-6 rightSec">
               <h5 className="catagories">{product.category}</h5>
               <h2>{product.title}</h2>
-              <p className="price__">${product.price}</p>
+              <p className="price__">$ {product?.product_inventry[0].price}</p>
               <p className="product_dec">
                 <b>Product ID: {product.id}</b>
                 <br />
@@ -129,7 +126,7 @@ const ShopDetails = () => {
           </div>
         )}
       </div>
-      <SliderProduct />
+      {/* <SliderProduct /> */}
       {/* <AddtocarPopup /> */}
     </>
   );
