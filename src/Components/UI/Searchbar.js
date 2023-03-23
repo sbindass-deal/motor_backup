@@ -11,7 +11,6 @@ const Searchbar = () => {
 
   const [searchText, setSearchText] = useState("");
   const vehicleData = logingUser.vehicleReducer.vehicleData;
-
   const [options, setOptions] = useState([]);
   const searchResult = (query) =>
     vehicleData
@@ -25,7 +24,7 @@ const Searchbar = () => {
       )
       .map((curElem, idx) => {
         return {
-          value: `${curElem.make}`,
+          value: `${curElem.model}`,
           label: (
             <Link
               to="/search"
@@ -82,3 +81,62 @@ const Searchbar = () => {
   );
 };
 export default Searchbar;
+
+// import { AutoComplete, Input } from "antd";
+// import { useState } from "react";
+// const data = [
+//   { id: 1, name: "mohan" },
+//   { id: 2, name: "sohan" },
+//   { id: 3, name: "ram" },
+//   { id: 4, name: "shyam" },
+//   { id: 5, name: "bablu" },
+// ];
+// const getRandomInt = (max, min = 0) =>
+//   Math.floor(Math.random() * (max - min + 1)) + min;
+// const searchResult = (query) =>
+
+//    data.filter((item) => item.name && item.name.toLowerCase().includes(query)).map((curElem, idx) => {
+//       return {
+//         label: (
+//           <div
+//             style={{
+//               display: "flex",
+//               justifyContent: "space-between",
+//             }}
+//           >
+//             <span>
+//               Found {query} on{" "}
+//               <a
+//                 href={`https://s.taobao.com/search?q=${query}`}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//               >
+//                 {curElem.name}
+//               </a>
+//             </span>
+//             <span>{getRandomInt(200, 100)} results</span>
+//           </div>
+//         ),
+//       };
+//     });
+// const Searchbar = () => {
+//   const [options, setOptions] = useState([]);
+//   const handleSearch = (value) => {
+//     setOptions(value ? searchResult(value) : []);
+//   };
+//   const onSelect = (value) => {
+//     console.log("onSelect", value);
+//   };
+//   return (
+//     <div className="searchX" style={{zIndex:9999}} >
+//       <AutoComplete
+//         dropdownMatchSelectWidth={252}
+//         options={options}
+//         onSelect={onSelect}
+//         onSearch={handleSearch}
+//         className="searchSec"
+//       ></AutoComplete>
+//     </div>
+//   );
+// };
+// export default Searchbar;
