@@ -9,6 +9,14 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import CloseIcon from "@mui/icons-material/Close";
+const inputArr = [
+  {
+    type: "url",
+    id: 1,
+    value: "",
+  },
+];
 
 const AddDealer = () => {
   const navigate = useNavigate();
@@ -17,6 +25,7 @@ const AddDealer = () => {
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
   const [bannerImg, setBannerImg] = useState([]);
+  const [arr, setArr] = useState(inputArr);
   const [logoImg, setLogoImg] = useState([]);
   const [aboutUs, setAboutUs] = useState(EditorState.createEmpty());
   const [userInput, setUserInput] = useState({
@@ -28,6 +37,7 @@ const AddDealer = () => {
     dealerDescription: "",
     password: "",
     cPassword: "",
+    title:""
   });
   // Logo image
   const inputRefLogo = useRef();
@@ -217,6 +227,12 @@ const AddDealer = () => {
     formData.append("email", userInput.email);
     formData.append("mobile", userInput.phone);
     formData.append("username", userInput.userName);
+    formData.append("dealer_title", userInput.title);
+    formData.append(
+      "video_link",
+      `${[...arr.map((curElem) => curElem.value)]}`
+    );
+
     formData.append(
       "dealerDescription",
       draftToHtml(convertToRaw(blogContent.getCurrentContent()))
@@ -254,6 +270,37 @@ const AddDealer = () => {
         notify(error);
       });
   };
+
+  const addInput = () => {
+    setArr((s) => {
+      return [
+        ...s,
+        {
+          type: "url",
+          value: "",
+        },
+      ];
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const index = e.target.id;
+    setArr((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+      return newArr;
+    });
+  };
+
+  function removeArrItem(index) {
+    // create a new array with the item at the specified index removed
+    const newItems = [...arr.slice(0, index), ...arr.slice(index + 1)];
+    // setItems(newItems);
+    // set the state with the new array
+    setArr(newItems);
+  }
 
   return (
     <div
@@ -356,6 +403,20 @@ const AddDealer = () => {
               </div>
             </div>
 
+            <div className="col-md-12 col-lg-12 col-sm-12">
+              {" "}
+              <FormInput
+                value={userInput.title}
+                onChange={handleUserInput}
+                name="title"
+                placeholder="Enter Title"
+                errorMessage="Name should be 2-30 characters and shouldn't include any special character or number!"
+                label="Title"
+                pattern="^[A-Za-z ]{2,30}$"
+                required={true}
+              />
+            </div>
+
             {/* About us */}
 
             <div className="col-12 col-sm-12 col-md-12">
@@ -403,6 +464,61 @@ const AddDealer = () => {
                 </div>
               </div>
             </div>
+            {/* video link start */}
+
+            <div className="col-12 col-sm-12 col-md-12">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label htmlFor="video-link">
+                  Please provide any links to videos (Youtube or Video) here:
+                </label>
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={addInput}
+                  className="link"
+                >
+                  Add more link
+                </a>
+              </div>
+              {arr.map((item, i) => {
+                return (
+                  <div className="form-group">
+                    <div style={{ position: "relative" }}>
+                      <input
+                        onChange={handleChange}
+                        value={item.value}
+                        id={i}
+                        className="field"
+                        placeholder="Enter video link"
+                        type={item.type}
+                      />
+                      {i > 0 && (
+                        <div
+                          className=""
+                          style={{
+                            position: "absolute",
+                            top: "8px",
+                            right: "10px",
+                            textAlign: "center",
+                            alignItems: "center",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => removeArrItem(i)}
+                        >
+                          <CloseIcon style={{ fill: "#000" }} />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* video link end */}
 
             <div className="col-12 col-md-12 mt-4">
               <label>Logo</label>

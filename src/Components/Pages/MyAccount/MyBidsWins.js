@@ -46,28 +46,7 @@ function MyBidsWins() {
     setVehicleId(data);
     setPaymentDetails({ data: data, amount: amount, bid_id });
   };
-  const onToken = (token, addresses) => {
-    console.log(111, token, token.id, addresses);
-    if (token !== null) {
-      axios
-        .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
-          type: "bid",
-          itemid: paymentDetails.bid_id,
-          amount: parseInt(paymentDetails.amount * 5, 10) / 100,
-          token: token.id,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      // notify("Form submit successfully!");
-      setShowPayment(false);
-    }
-  };
-
-  useEffect(() => {
+  const fetchBidingDetails = async () => {
     axios
       .get(process.env.REACT_APP_URL + `biddingDetail/basedOnUser`)
 
@@ -78,10 +57,12 @@ function MyBidsWins() {
             response.data.data.map((item) => [item["id"], item])
           ).values(),
         ];
-        console.log("hello", uniqueObjArray);
 
         setData(uniqueObjArray.reverse());
       });
+  };
+  useEffect(() => {
+    fetchBidingDetails();
   }, []);
   useEffect(() => {
     const getChateMessageApi = async () => {
@@ -113,6 +94,28 @@ function MyBidsWins() {
           setChateApiData(res.data.data);
         }
       });
+  };
+
+  const onToken = (token, addresses) => {
+    if (token !== null) {
+      axios
+        .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
+          type: "bid",
+          itemid: paymentDetails.bid_id,
+          amount: parseInt(paymentDetails.amount * 5, 10) / 100,
+          token: token.id,
+        })
+        .then(function (response) {
+          if (response.data.status === 200) {
+            fetchBidingDetails();
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // notify("Form submit successfully!");
+      setShowPayment(false);
+    }
   };
 
   return (
@@ -350,6 +353,7 @@ function MyBidsWins() {
                   className="Btn"
                   stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
                   token={onToken}
+                  email={userId.login.user.email}
                   name="GasGuzzlrs Bidding"
                   currency="USD"
                   amount={
