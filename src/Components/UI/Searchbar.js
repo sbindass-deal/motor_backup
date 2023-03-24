@@ -42,15 +42,16 @@ const Searchbar = () => {
   //         ),
   //       };
   //     });
-  
+  // ||
+  //       (item.year && item.year.toLowerCase().includes(query)) ||
+  //       (item.model && item.model.toLowerCase().includes(query))
   const searchResults = (query) => 
-      vehicleBrand.filter((item) => 
-        (item.make && item.make.toLowerCase().includes(query)) ||
-        (item.year && item.year.toLowerCase().includes(query)) ||
-        (item.model && item.model.toLowerCase().includes(query))
+      vehicleBrand.filter((item) =>
+        (item.make && item.make.toLowerCase().includes(query))
       )
       .map((curElem, idx) => {
-        return {
+        return curElem &&  {
+        
           value: `${curElem.make}`,
           label: (
             <Link
@@ -61,7 +62,7 @@ const Searchbar = () => {
                 justifyContent: "space-between",
               }}
             >
-              <span>{curElem.label}</span>
+              <span>{curElem.make} {curElem.model}</span>
             </Link>
           ),
         };
@@ -77,19 +78,19 @@ const Searchbar = () => {
   };
 
   useEffect(() => {
-    const searchNew = async () => {
-      let data = {
-        keyword: "",
-      }
-      try {
-        const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        setVehicleBrand(res.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
     searchNew();
-  },[])
+  },[]);
+  const searchNew = async () => {
+    let data = {
+      keyword: "",
+    }
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
+      setVehicleBrand(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className="searchX">

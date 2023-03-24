@@ -10,9 +10,8 @@ const SearchResult = () => {
   const logingUser = useSelector((state) => state);
   const { searchResult: name, searchKey: ser } =
     logingUser.dayAndNightMode.searchData;
-  const [searchedData, setSearchedData] = useState({});
+  // const [searchedData, setSearchedData] = useState({});
   const [relatedData, setRelatedData] = useState([]);
-  console.log('name', name);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -25,37 +24,40 @@ const SearchResult = () => {
       theme: "light",
     });
 
-  useEffect(() => {
     const searchNew = async () => {
       let data = {
         keyword: name,
       }
       try {
         const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        console.log(res.data);
+        setRelatedData(res.data.data);
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }
     }
-    searchNew();
-  }, [])
-  useEffect(() => {
-    const make = name.toLowerCase();
-    const searchText = ser.toLowerCase();
-    const filteredData = logingUser.vehicleReducer.vehicleData.filter(
-      (item) =>
-        (item.make && item.make.toLowerCase().includes(searchText)) ||
-        (item.year && item.year.toLowerCase().includes(searchText)) ||
-        (item.model && item.model.toLowerCase().includes(searchText)) ||
-        (item.moreDescription &&
-          item.moreDescription.toLowerCase().includes(searchText))
-    );
-    const searchedResult = logingUser.vehicleReducer.vehicleData.filter(
-      (item) => item.make && item.make.toLowerCase().includes(make)
-    );
-    setSearchedData(searchedResult.length > 0 ? searchedResult[0] : {});
-    setRelatedData(filteredData);
-  }, [name, ser]);
+    useEffect(() => {
+      searchNew();
+    }, [relatedData]);
+
+  // useEffect(() => {
+  //   const make = name.toLowerCase();
+  //   // const searchText = ser.toLowerCase();
+  //   // const filteredData = logingUser.vehicleReducer.vehicleData.filter(
+  //   //   (item) =>
+  //   //     (item.make && item.make.toLowerCase().includes(searchText)) ||
+  //   //     (item.year && item.year.toLowerCase().includes(searchText)) ||
+  //   //     (item.model && item.model.toLowerCase().includes(searchText)) ||
+  //   //     (item.moreDescription &&
+  //   //       item.moreDescription.toLowerCase().includes(searchText))
+  //   // );
+  //   // console.log(filteredData);
+  //   const searchedResult = logingUser.vehicleReducer.vehicleData.filter(
+  //     (item) => item.make && item.make.toLowerCase().includes(make)
+  //   );
+  //   setSearchedData(searchedResult.length > 0 ? searchedResult[0] : {});
+  //   // setRelatedData(filteredData);
+  // }, [name]);
   return (
     <>
       <section className="storeHeroSection dealer align-items-center">
@@ -68,7 +70,8 @@ const SearchResult = () => {
             <div className="row">
               <div className="topTile">
                 <h1>
-                  {searchedData.make || relatedData[0].make}{" "}
+                  {relatedData[0].make}{" "}
+                  {/* {searchedData.make || relatedData[0].make}{" "} */}
                   {/* {searchedData.model || relatedData[0].model}{" "}
                   {searchedData.year || relatedData[0].year} */}
                 </h1>
@@ -95,11 +98,11 @@ const SearchResult = () => {
 
                 <Link
                   className="btn ml-2"
-                  to={
-                    searchedData.displayInAuction === "Yes"
-                      ? `/detail/${searchedData.id}`
-                      : `/showroom/${searchedData.id}`
-                  }
+                  // to={
+                  //   searchedData.displayInAuction === "Yes"
+                  //     ? `/detail/${searchedData.id}`
+                  //     : `/showroom/${searchedData.id}`
+                  // }
                 >
                   Have one?
                 </Link>
@@ -138,7 +141,7 @@ const SearchResult = () => {
                         >
                           <img
                             src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
+                              process.env.REACT_APP_URL + `${curElem.image_banner[0].imagePath}${curElem.image_banner[0].imageName}`
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null;
@@ -159,7 +162,7 @@ const SearchResult = () => {
                         >
                           <img
                             src={
-                              process.env.REACT_APP_URL + curElem.stepOneImage
+                              process.env.REACT_APP_URL + `${curElem.image_banner[0].imagePath}${curElem.image_banner[0].imageName}`
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null;

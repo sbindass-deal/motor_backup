@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
 import { Modal } from "react-bootstrap";
@@ -21,6 +21,7 @@ import parse from "html-react-parser";
 
 function Detail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const commentRef = useRef();
   const loginUser = useSelector((state) => state.login);
   const [vinDetails, setVinDetails] = useState({});
@@ -77,11 +78,11 @@ function Detail() {
   };
   const handleShow = () => {
     if (loginUser.token === null && loginUser.admin === null) {
-      return notify("Please login or register");
+      return notify("Please login or register", "warning");
     } else if (loginUser.token !== null && loginUser.admin === null) {
       setShow(true);
     } else if (loginUser.admin !== null) {
-      return notify("You are admin so you can't bid.");
+      return notify("You are admin so you can't bid.", "warning");
     }
   };
 
@@ -103,17 +104,31 @@ function Detail() {
       });
   };
 
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const notify = (val, type = 300) => {
+    if (type == 200) {
+      toast.success(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.warning(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   const addBiding = (e) => {
     e.preventDefault();
@@ -131,12 +146,13 @@ function Detail() {
           setBidComment("");
           setBidValue("");
           fetchApi();
+          navigate("/bidswins");
         }
-        notify(res.data.message);
+        notify(res.data.message, res.data.status);
       })
       .catch((err) => {
         setLoadingBiding(false);
-        notify(err.response.data.message);
+        notify(err.response.data.message, err.response.data.status);
       });
   };
   const fetchApi = async () => {
@@ -386,10 +402,8 @@ function Detail() {
                   ZIP Code
                   <div className="dZip">
                     <input type="text" placeholder="Search ZIP code"></input>
-                    <button className="btn">
-                      Get Quote
-                    </button>
-                  </div> 
+                    <button className="btn">Get Quote</button>
+                  </div>
                 </div>
                 <p>
                   Ship this vehicle anywhere in the contiguous 48 states using
