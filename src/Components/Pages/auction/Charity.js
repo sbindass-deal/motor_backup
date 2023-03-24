@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
 import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 
 const Charity = () => {
   const dispatch = useDispatch();
@@ -113,7 +113,7 @@ const Charity = () => {
                     name="search"
                     value={searchValue}
                     onChange={(e) =>
-                      setSearchValue(e.target.value.toLowerCase())
+                      setSearchValue(e.target.value)
                     }
                     placeholder="Filter auctions for make, model, category…"
                   />
@@ -176,7 +176,14 @@ const Charity = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts.map((curElem) => {
+              currentPosts?.filter((curElem) => {
+                if (searchValue == "") {
+                  return curElem
+                } else if (curElem?.make.toLowerCase().includes(searchValue.toLowerCase())) {
+                  return curElem
+                }
+              })
+                ?.map((curElem) => {
                 return (
                   <Data
                     key={curElem.id}

@@ -1,30 +1,57 @@
 import { AutoComplete } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { showResult } from "../../redux/reducers/dayAndNightMode";
+import axios from "axios";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
 
+
   const [searchText, setSearchText] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState([]);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
   const [options, setOptions] = useState([]);
-  const searchResult = (query) =>
-    vehicleData
-      .filter(
-        (item) =>
-          (item.make && item.make.toLowerCase().includes(query)) ||
-          (item.year && item.year.toLowerCase().includes(query)) ||
-          (item.model && item.model.toLowerCase().includes(query)) ||
-          (item.moreDescription &&
-            item.moreDescription.toLowerCase().includes(query))
+  // const searchResult = (query) =>
+  //   vehicleData
+  //     .filter(
+  //       (item) =>
+  //         (item.make && item.make.toLowerCase().includes(query)) ||
+  //         (item.year && item.year.toLowerCase().includes(query)) ||
+  //         (item.model && item.model.toLowerCase().includes(query)) ||
+  //         (item.moreDescription &&
+  //           item.moreDescription.toLowerCase().includes(query))
+  //     )
+  //     .map((curElem, idx) => {
+  //       return {
+  //         value: `${curElem.model}`,
+  //         label: (
+  //           <Link
+  //             to="/search"
+  //             key={idx}
+  //             style={{
+  //               display: "flex",
+  //               justifyContent: "space-between",
+  //             }}
+  //           >
+  //             <span>{curElem.model}</span>
+  //           </Link>
+  //         ),
+  //       };
+  //     });
+  
+  const searchResults = (query) => 
+      vehicleBrand.filter((item) => 
+        (item.make && item.make.toLowerCase().includes(query)) ||
+        (item.year && item.year.toLowerCase().includes(query)) ||
+        (item.model && item.model.toLowerCase().includes(query))
       )
       .map((curElem, idx) => {
         return {
-          value: `${curElem.model}`,
+          value: `${curElem.make}`,
           label: (
             <Link
               to="/search"
@@ -34,20 +61,35 @@ const Searchbar = () => {
                 justifyContent: "space-between",
               }}
             >
-              <span>{curElem.model}</span>
+              <span>{curElem.label}</span>
             </Link>
           ),
         };
-      });
+      })
   const handleSearch = (value) => {
     const values = value.toLowerCase();
-    setOptions(value ? searchResult(values) : []);
+    setOptions(value ? searchResults(values) : []);
   };
 
   const onSelect = (value) => {
     setSearchText(value);
     dispatch(showResult({ searchResult: value, searchKey: searchText }));
   };
+
+  useEffect(() => {
+    const searchNew = async () => {
+      let data = {
+        keyword: "",
+      }
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
+        setVehicleBrand(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    searchNew();
+  },[])
 
   return (
     <div className="searchX">

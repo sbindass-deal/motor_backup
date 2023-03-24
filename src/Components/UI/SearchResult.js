@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const SearchResult = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const SearchResult = () => {
     logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState({});
   const [relatedData, setRelatedData] = useState([]);
+  console.log('name', name);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -22,6 +24,21 @@ const SearchResult = () => {
       progress: undefined,
       theme: "light",
     });
+
+  useEffect(() => {
+    const searchNew = async () => {
+      let data = {
+        keyword: name,
+      }
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    searchNew();
+  }, [])
   useEffect(() => {
     const make = name.toLowerCase();
     const searchText = ser.toLowerCase();
