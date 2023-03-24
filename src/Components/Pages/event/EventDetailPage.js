@@ -275,7 +275,7 @@ const EventDetailPage = () => {
           <div className="col-12 pt-3">
             <div className="commentRow">
               {
-                getCommentData?.map((curVal,i) => {
+                getCommentData?.reverse()?.map((curVal,i) => {
                   return <div key={i}>
                     {/* <div className="commentHead">
                       <p className="com_by">{curVal.description}</p>
