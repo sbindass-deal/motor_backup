@@ -229,6 +229,11 @@ const AddDealer = () => {
     formData.append("username", userInput.userName);
     formData.append("dealer_title", userInput.title);
     formData.append(
+      "video_link",
+      `${[...arr.map((curElem) => curElem.value)]}`
+    );
+
+    formData.append(
       "dealerDescription",
       draftToHtml(convertToRaw(blogContent.getCurrentContent()))
     );
