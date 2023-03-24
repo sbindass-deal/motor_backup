@@ -7,6 +7,8 @@ import CardDetails from "../../Popups/CardDetails";
 import FormInput from "../../UI/FormInput";
 import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import parse from "html-react-parser";
+
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
@@ -60,14 +62,18 @@ function EditMyAccount() {
     const fetchUserDetails = async () => {
       try {
         const res = await axios.get(`${url}user_detail`);
+
+        console.log(68797, res)
+        
         const userLoginData = res.data.data;
         setEditUser({
           name: userLoginData.name,
           userName: userLoginData.username,
           email: userLoginData.email,
           phone: userLoginData.mobile,
-          title: userLoginData.title,
-          desc: userLoginData.description,
+          title: userLoginData.dealer_title,
+          desc: userLoginData.dealerDescription,
+          aboutus: userLoginData.about_us
         });
         setAddUserInBid(userLoginData.bid);
         setUserData(userLoginData);
@@ -106,7 +112,7 @@ function EditMyAccount() {
   const handleApi = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const { name, userName, phone, email } = editUser;
+    const { name, userName, phone, email, aboutus, desc, title } = editUser;
 
     await axios
       .post(`${url}userUpdate`, {
@@ -114,6 +120,10 @@ function EditMyAccount() {
         email: email,
         mobile: phone,
         username: userName,
+        about_us: aboutus,
+        dealerDescription: desc,
+        dealer_title: title,
+
       })
       .then((result) => {
         if (result.data.status === 200 && userData.dealer === "Yes") {

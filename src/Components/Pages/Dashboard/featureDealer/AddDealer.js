@@ -37,6 +37,7 @@ const AddDealer = () => {
     dealerDescription: "",
     password: "",
     cPassword: "",
+    title:""
   });
   // Logo image
   const inputRefLogo = useRef();
@@ -226,6 +227,7 @@ const AddDealer = () => {
     formData.append("email", userInput.email);
     formData.append("mobile", userInput.phone);
     formData.append("username", userInput.userName);
+    formData.append("dealer_title", userInput.title);
     formData.append(
       "video_link",
       `${[...arr.map((curElem) => curElem.value)]}`
@@ -399,6 +401,20 @@ const AddDealer = () => {
               >
                 {showCPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
+            </div>
+
+            <div className="col-md-12 col-lg-12 col-sm-12">
+              {" "}
+              <FormInput
+                value={userInput.title}
+                onChange={handleUserInput}
+                name="title"
+                placeholder="Enter Title"
+                errorMessage="Name should be 2-30 characters and shouldn't include any special character or number!"
+                label="Title"
+                pattern="^[A-Za-z ]{2,30}$"
+                required={true}
+              />
             </div>
 
             {/* About us */}
