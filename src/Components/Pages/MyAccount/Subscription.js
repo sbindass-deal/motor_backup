@@ -99,7 +99,7 @@ function Subscription() {
                               <td>{curVal.plantype}</td>
                               <td>{curVal.purchase_qty}</td>
                               <td>{curVal.remaining_qty}</td>
-                              <td>{new Date(curVal.expire_date).toLocaleDateString()}</td>
+                              <td>{new Date(curVal.expire_date).toDateString()}</td>
                             </tr>
                           })
                         }

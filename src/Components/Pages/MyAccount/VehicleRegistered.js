@@ -589,7 +589,7 @@ const UserVehicleDetails = () => {
         // plantype: logingUser.planReducer.plan.listingType,
         name: iname,
         email: uemail,
-        premium: reduxValue.submitvechilesReducer.submitPlan,
+        // premium: reduxValue.submitvechilesReducer.submitPlan,
         userId: userDataLogin.login.user.id,
         year: year,
         make: make,
@@ -643,7 +643,7 @@ const UserVehicleDetails = () => {
         issuesorproblems: draftToHtml(
           convertToRaw(vehicleHistory.getCurrentContent())
         ),
-        status, // db me check karni h
+        // status, // db me check karni h
         otherTruckTitle,
         otherStatus,
         truckHistory,

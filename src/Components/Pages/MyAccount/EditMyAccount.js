@@ -8,12 +8,23 @@ import FormInput from "../../UI/FormInput";
 import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import parse from "html-react-parser";
+import { Editor } from "react-draft-wysiwyg";
 
+import {
+  EditorState,
+  ContentState,
+  convertFromHTML,
+  convertToRaw,
+} from "draft-js";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
+
+  const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
+
+
   const [file, setFile] = useState([]);
   const notify = (val) =>
     toast.success(val, {
@@ -26,6 +37,10 @@ function EditMyAccount() {
       progress: undefined,
       theme: "light",
     });
+  
+  const handleContent = (e) => {
+    setBlogContent(e);
+  };
 
   const [inputValue, setInputValue] = useState({
     name: "",
@@ -75,6 +90,15 @@ function EditMyAccount() {
           desc: userLoginData.dealerDescription,
           aboutus: userLoginData.about_us
         });
+
+        setBlogContent(
+          EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+              convertFromHTML(res.data.data.aboutus)
+            )
+          )
+        );
+
         setAddUserInBid(userLoginData.bid);
         setUserData(userLoginData);
       } catch (err) {
@@ -236,7 +260,26 @@ function EditMyAccount() {
                         className="field"
                         maxLength={200}
                         required
-                      ></textarea>
+                        ></textarea>
+                        
+
+                        {/* <Editor
+                          editorStyle={{
+                            background: "white",
+                            padding: "15px",
+                            minHeight: "30vh",
+                          }}
+                          editorState={blogContent}
+                          value="dlsjfkljf"
+                          toolbarClassName="toolbarClassName"
+                          wrapperClassName="wrapperClassName"
+                          editorClassName="editorClassName"
+                          onEditorStateChange={handleEditOnChange}
+                          placeholder="Please enter description"
+                        /> */}
+
+
+
                     </div>
                   </div>
                   )}
