@@ -227,6 +227,11 @@ const AddDealer = () => {
     formData.append("mobile", userInput.phone);
     formData.append("username", userInput.userName);
     formData.append(
+      "video_link",
+      `${[...arr.map((curElem) => curElem.value)]}`
+    );
+
+    formData.append(
       "dealerDescription",
       draftToHtml(convertToRaw(blogContent.getCurrentContent()))
     );
