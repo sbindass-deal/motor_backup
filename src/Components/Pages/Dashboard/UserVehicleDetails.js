@@ -15,7 +15,12 @@ import {
 import counryData from "../../countryList";
 import FormInput from "../../UI/FormInput";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  ContentState,
+  convertFromHTML,
+} from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 
@@ -293,98 +298,118 @@ const UserVehicleDetails = () => {
 
   const [getfilteredVehicleData, setGetfilteredVehicleData] = useState([]);
   const [vechileInfo, setVechileInfo] = useState({});
+  const fetchVehicleData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
+      );
+      const filteredVehicleData = res.data.data;
+      const youtubeLinkMapped = filteredVehicleData.description.map(
+        (curElem) => {
+          return { value: curElem, type: "url", id: Math.random() };
+        }
+      );
+      if (res.data.status === 200) {
+        setVehicleHistory(
+          EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+              convertFromHTML(filteredVehicleData.issuesorproblems)
+            )
+          )
+        );
+        setServiceRecord(
+          EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+              convertFromHTML(filteredVehicleData.moreDescription)
+            )
+          )
+        );
+        setIssuesProblems(
+          EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+              convertFromHTML(filteredVehicleData.hereFrom)
+            )
+          )
+        );
+        setVehicleData(filteredVehicleData);
+        setArr(youtubeLinkMapped);
+        setGetfilteredVehicleData(filteredVehicleData.images);
+        setVechileInfo(filteredVehicleData);
+        setBannerImage(filteredVehicleData.image_banner);
+        setGalleryImage(filteredVehicleData.image_gallery);
+        setDocumentImage(filteredVehicleData.image_document);
+        setNamefield({
+          name: filteredVehicleData.name,
+          email: filteredVehicleData.email,
+          year: filteredVehicleData.year,
+          make: filteredVehicleData.make,
+          model: filteredVehicleData.model,
+          vechilelocation: filteredVehicleData.country,
+          city: filteredVehicleData.city,
+          sale: filteredVehicleData.owned,
+          link: filteredVehicleData.link,
+          vehiclepast: filteredVehicleData.engineSize,
+          providelink: filteredVehicleData.transmission,
+          changedvechiles: filteredVehicleData.titleStatus,
+          dealer: filteredVehicleData.dealerId,
+          dealership: filteredVehicleData.dealerName,
+          soldvechiles: filteredVehicleData.consignment,
+          videolink: filteredVehicleData.description,
+        });
+        setbasicfact({
+          vin: filteredVehicleData.detailvin,
+          displayInAuction: filteredVehicleData.displayInAuction,
+          auctionType: filteredVehicleData.auctionType,
+          adWebsiteLink: filteredVehicleData.externalLink,
+          vechilesrace: filteredVehicleData.ownerDetail,
+          ultiumdrive: filteredVehicleData.UltiumDriveeWDsystem,
+          Interstellar: filteredVehicleData.Interstellar,
+          interior: filteredVehicleData.interior,
+          brandandmodel: filteredVehicleData.brandandmodel,
+          sizetires: filteredVehicleData.sizetires,
+          trucktitled: filteredVehicleData.title,
+          other: filteredVehicleData.other,
+          status: filteredVehicleData.status,
+          km: filteredVehicleData.km,
+          wheels: filteredVehicleData.pickOne,
+          kmacc: filteredVehicleData.ogEngine,
+          odometer: filteredVehicleData.odmeter,
+          accurateField: filteredVehicleData.kmacc,
+          otherTruckTitle: filteredVehicleData.otherTruckTitle,
+          otherStatus: filteredVehicleData.otherStatus,
+        });
+        setDetailstab({
+          detailvin: filteredVehicleData.vin,
+          bodywork: filteredVehicleData.bodywork,
+          rustpresent: filteredVehicleData.rustpresent,
+          modificationstock: filteredVehicleData.modificationstock,
+          servicesperformed: filteredVehicleData.ammountOnDocument,
+          issuesorproblems: filteredVehicleData.issuesorproblems,
+          moreDescription: filteredVehicleData.moreDescription,
+          reserve: filteredVehicleData.reserve,
+          reserveAmount: filteredVehicleData.reservAmount,
+          shibnobiabout: filteredVehicleData.hereFrom,
+          shibnobi: filteredVehicleData.shibnobi,
+          documentFee: filteredVehicleData.documentFee,
+          truckHistory: filteredVehicleData.truckHistory,
+          rustDetails: filteredVehicleData.rustDetails,
+          modificationOnTrck: filteredVehicleData.modificationOnTruck,
+          fuel: filteredVehicleData.fuel,
+        });
+        setInformation({
+          uemail: filteredVehicleData.email,
+          iname: filteredVehicleData.name,
+          phone: filteredVehicleData.phone,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     // const filteredVehicleData = vehicleDatas.find((item) => item.id == id);
 
-    const fetchVehicleData = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}/vehicle_detail/${id}`
-        );
-        const filteredVehicleData = res.data.data;
-        const youtubeLinkMapped = filteredVehicleData.description.map(
-          (curElem) => {
-            return { value: curElem, type: "url", id: Math.random() };
-          }
-        );
-        console.log(111, res.data.data, res.data.status);
-        if (res.data.status === 200) {
-          setVehicleData(filteredVehicleData);
-          setArr(youtubeLinkMapped);
-          setGetfilteredVehicleData(filteredVehicleData.images);
-          setVechileInfo(filteredVehicleData);
-          setBannerImage(filteredVehicleData.image_banner);
-          setGalleryImage(filteredVehicleData.image_gallery);
-          setDocumentImage(filteredVehicleData.image_document);
-          setNamefield({
-            name: filteredVehicleData.name,
-            email: filteredVehicleData.email,
-            year: filteredVehicleData.year,
-            make: filteredVehicleData.make,
-            model: filteredVehicleData.model,
-            vechilelocation: filteredVehicleData.country,
-            city: filteredVehicleData.city,
-            sale: filteredVehicleData.owned,
-            link: filteredVehicleData.link,
-            vehiclepast: filteredVehicleData.engineSize,
-            providelink: filteredVehicleData.transmission,
-            changedvechiles: filteredVehicleData.titleStatus,
-            dealer: filteredVehicleData.dealerId,
-            dealership: filteredVehicleData.dealerName,
-            soldvechiles: filteredVehicleData.consignment,
-            videolink: filteredVehicleData.description,
-          });
-          setbasicfact({
-            vin: filteredVehicleData.detailvin,
-            displayInAuction: filteredVehicleData.displayInAuction,
-            auctionType: filteredVehicleData.auctionType,
-            adWebsiteLink: filteredVehicleData.externalLink,
-            vechilesrace: filteredVehicleData.ownerDetail,
-            ultiumdrive: filteredVehicleData.UltiumDriveeWDsystem,
-            Interstellar: filteredVehicleData.Interstellar,
-            interior: filteredVehicleData.interior,
-            brandandmodel: filteredVehicleData.brandandmodel,
-            sizetires: filteredVehicleData.sizetires,
-            trucktitled: filteredVehicleData.title,
-            other: filteredVehicleData.other,
-            status: filteredVehicleData.status,
-            km: filteredVehicleData.km,
-            wheels: filteredVehicleData.pickOne,
-            kmacc: filteredVehicleData.ogEngine,
-            odometer: filteredVehicleData.odmeter,
-            accurateField: filteredVehicleData.kmacc,
-            otherTruckTitle: filteredVehicleData.otherTruckTitle,
-            otherStatus: filteredVehicleData.otherStatus,
-          });
-          setDetailstab({
-            detailvin: filteredVehicleData.vin,
-            bodywork: filteredVehicleData.bodywork,
-            rustpresent: filteredVehicleData.rustpresent,
-            modificationstock: filteredVehicleData.modificationstock,
-            servicesperformed: filteredVehicleData.ammountOnDocument,
-            issuesorproblems: filteredVehicleData.issuesorproblems,
-            moreDescription: filteredVehicleData.moreDescription,
-            reserve: filteredVehicleData.reserve,
-            reserveAmount: filteredVehicleData.reservAmount,
-            shibnobiabout: filteredVehicleData.hereFrom,
-            shibnobi: filteredVehicleData.shibnobi,
-            documentFee: filteredVehicleData.documentFee,
-            truckHistory: filteredVehicleData.truckHistory,
-            rustDetails: filteredVehicleData.rustDetails,
-            modificationOnTrck: filteredVehicleData.modificationOnTruck,
-            fuel: filteredVehicleData.fuel,
-          });
-          setInformation({
-            uemail: filteredVehicleData.email,
-            iname: filteredVehicleData.name,
-            phone: filteredVehicleData.phone,
-          });
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchVehicleData();
   }, [id]);
 
@@ -436,8 +461,6 @@ const UserVehicleDetails = () => {
   };
 
   const submitApprove = (data) => {
-    console.log(5656, data);
-
     axios
       .post(`${process.env.REACT_APP_URL}vehicleApprove`, {
         approve: data === "approve" ? 1 : 3,
@@ -488,7 +511,8 @@ const UserVehicleDetails = () => {
     });
   };
 
-  const fetchVehicleApi = async (data) => {
+  const fetchVehicleApi = async (e) => {
+    e.preventDefault();
     const filteredVehicleData = vehicleData;
     setGetfilteredVehicleData(filteredVehicleData.images);
     setVechileInfo(filteredVehicleData);
@@ -632,12 +656,27 @@ const UserVehicleDetails = () => {
       .then((result) => {
         //navigaget
         if (result.data.status === 200) {
-          navigate("/vehicle-submission");
-          submitApprove(data);
+          // navigate("/vehicle-submission");
+          // submitApprove(data);
           // window.location.reload(false);
         }
       })
       .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteImage = (id) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}deleteImg`, {
+        id: id,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          fetchVehicleData();
+        }
+      })
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -1173,7 +1212,15 @@ const UserVehicleDetails = () => {
                                       }}
                                       alt="Maskgroup1"
                                     />
-                                    <button className="close">x</button>
+                                    <button
+                                      onClick={() =>
+                                        handleDeleteImage(curElem.id)
+                                      }
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button>
                                   </span>
                                 );
                               })}
@@ -1610,7 +1657,15 @@ const UserVehicleDetails = () => {
                                       }}
                                       alt="Maskgroup1"
                                     />
-                                    <button className="close">X</button>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        handleDeleteImage(curElem.id);
+                                      }}
+                                      className="close"
+                                    >
+                                      X
+                                    </button>
                                   </span>
                                 );
                               })}
@@ -1701,7 +1756,13 @@ const UserVehicleDetails = () => {
                     <h3>Details</h3>
                     <hr />
 
-                    <form className="pt-3" onSubmit={detailsSubmitHandler}>
+                    <form
+                      className="pt-3"
+                      onSubmit={(e) => {
+                        detailsSubmitHandler(e);
+                        fetchVehicleApi(e);
+                      }}
+                    >
                       <div className="row">
                         <div className="col-12">
                           <h5>Description and details</h5>
@@ -2097,7 +2158,7 @@ const UserVehicleDetails = () => {
                             BACK
                           </button>
                           <button type="submit" className="orange_btn">
-                            NEXT
+                            SAVE CHANGES
                           </button>
                         </div>
                       </div>
@@ -2126,17 +2187,21 @@ const UserVehicleDetails = () => {
                     </form>
                     <div className="text-center my-4">
                       <button
-                        // onClick={() => submitApprove("approve")}
-                        onClick={() => fetchVehicleApi("approve")}
+                        onClick={() => submitApprove("approve")}
+                        // onClick={() => fetchVehicleApi("approve")}
                         className="btn btn-warning m-3"
                         type="button"
-                        disabled={vechileInfo.approved == 1 || vechileInfo.approved == 2 ? true : false}
+                        disabled={
+                          vechileInfo.approved == 1 || vechileInfo.approved == 2
+                            ? true
+                            : false
+                        }
                       >
                         Approve
                       </button>
                       <button
-                        // onClick={() => submitApprove("reject")}
-                        onClick={() => fetchVehicleApi("reject")}
+                        onClick={() => submitApprove("reject")}
+                        // onClick={() => fetchVehicleApi("reject")}
                         className="btn btn-warning m-3"
                         type="button"
                         disabled={vechileInfo.approved == 3 ? true : false}

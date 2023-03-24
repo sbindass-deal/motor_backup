@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { clearData } from "../../../redux/reducers/vehicleReducer";
 import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 
 const AuctionNoReserve = () => {
   const dispatch = useDispatch();
@@ -159,7 +159,14 @@ const AuctionNoReserve = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts.map((curElem) => {
+              currentPosts?.filter((curElem) => {
+                if (searchValue == "") {
+                  return curElem
+                } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
+                  return curElem
+                }
+              })
+                ?.map((curElem) => {
                 return (
                   <Data
                     key={curElem.id}

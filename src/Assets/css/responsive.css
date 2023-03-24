@@ -421,13 +421,21 @@
 
 	a.full {
 		width: 100%;
-		display: block;
+		display: inline-block;
 	}
 
 	.latestBlogSlide {
 		height: 500px;
 		width: 100%;
 		display: inline-block;
+	}
+	.rafSect {
+		height: 300px;
+		padding: 60px 30px;
+	}
+	.carBg {
+		height: 300px;
+		margin-top: 5px;
 	}
 
 	.secondNavbar .navbar-nav:before {

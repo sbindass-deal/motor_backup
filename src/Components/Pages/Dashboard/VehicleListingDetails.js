@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 function VehicleListingDetails() {
@@ -22,10 +23,52 @@ function VehicleListingDetails() {
   const handleChange = (e) => {
     setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
+
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  useEffect(() => {
+    const fetchMeeting = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_URL}getPlanById/${id}`
+        );
+
+        console.log(88090, res.data.data);
+        if (res.data.status === 200 && res.data.data) {
+          setVehicleDetails({
+            name: res.data.data.plan_name,
+            category: res.data.data.category,
+            monthlyListing: res.data.data.monthly_listing,
+            singleprice: res.data.data.monthly_price,
+            fivesingleprice: res.data.data.annual_price,
+            description: res.data.data.monthly_description,
+            annualListing: res.data.data.annual_listing,
+            annualDescription: res.data.data.annual_description,
+            
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchMeeting();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}updateplans/${id}`, {
+      .post(`${process.env.REACT_APP_URL}updateplans`, {
+        id:id,
         plan_name: vehicleDetails.name,
         monthly_price: vehicleDetails.singleprice,
         annual_price: vehicleDetails.fivesingleprice,
@@ -39,7 +82,9 @@ function VehicleListingDetails() {
 
       })
       .then((response) => {
+        console.log(8989,response)
         if (response.status === 200) {
+          notify("Save successfully !");
           navigate('/admin/vehicle-listing')
         }
       })

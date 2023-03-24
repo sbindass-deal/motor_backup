@@ -8,7 +8,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import { Link } from "react-router-dom";
 import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 
 const AuctionResult = () => {
   const dispatch = useDispatch();
@@ -126,7 +126,14 @@ const AuctionResult = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts.map((curElem) => {
+              currentPosts?.filter((curElem) => {
+                if (searchValue == "") {
+                  return curElem
+                } else if (curElem?.vehicle_data?.make.toLowerCase().includes(searchValue.toLowerCase())) {
+                  return curElem
+                }
+              })
+                ?.map((curElem) => {
                 return (
                   <div className="col-12 col-lg-6 col-md-6 pb-3 auctionLive">
                     <div className="card_post">

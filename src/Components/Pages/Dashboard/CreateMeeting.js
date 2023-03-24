@@ -4,6 +4,7 @@ import AdminLeftNav from "./AdminLeftNav";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
+import { toast } from "react-toastify";
 
 const CreateMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
@@ -25,12 +26,24 @@ const CreateMeeting = () => {
     fetchMeetingDetail();
   }, []);
 
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
         `${process.env.REACT_APP_URL}deleteEvent/${id}`
       );
       if (res.data.status === 200) {
+        notify("Deleted successfully !");
         window.location.reload(false);
       }
     } catch (err) {
@@ -106,7 +119,7 @@ const CreateMeeting = () => {
                           <th scope="col">Title</th>
                           <th scope="col">Start Date</th>
                           <th scope="col">End Date </th>
-                          <th scope="col">Website Link</th>
+                          {/* <th scope="col">Website Link</th> */}
                           {/* <th scope="col">Facebook Link</th>
                           <th scope="col">Twitter Link</th>
                           <th scope="col">Email</th> */}
@@ -130,14 +143,14 @@ const CreateMeeting = () => {
                               <td>{curVal.title}</td>
                               <td>{curVal.start_date}</td>
                               <td>{curVal.end_date}</td>
-                              <td>{curVal.url}</td>
+                              {/* <td>{curVal.url}</td> */}
                               {/* <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>
                               <td>{curVal.email}</td> */}
                               {/* <td>{curVal.description.substr(0,100)}</td> */}
                               <td>
                                 {parse(
-                                  curVal?.description.substr(0, 100),
+                                  curVal?.description.substr(0, 50)+"...",
                                   strToHtml
                                 )}
                               </td>

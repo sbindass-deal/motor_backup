@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
 const AddListing = () => {
@@ -18,6 +19,19 @@ const AddListing = () => {
   const handleChange = (e) => {
     setAddListing((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -33,6 +47,7 @@ const AddListing = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          notify("Added Listing successfully !");
           navigate("/admin/vehicle-listing");
         }
       })

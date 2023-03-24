@@ -26,6 +26,7 @@ const Data = ({ curElem, addFabrity }) => {
                       }}
                       alt="Maskgroup1"
                     />
+                    
                   </>
                 ) : (
                   <>
@@ -55,9 +56,10 @@ const Data = ({ curElem, addFabrity }) => {
               </button>
             </h4>
 
-            <p className="color_grey">
+            <p className="color_grey " >
               {curElem?.moreDescription &&
                 parse(curElem?.moreDescription?.substr(0, 300), strToHtml)}
+
             </p>
 
             <ul
