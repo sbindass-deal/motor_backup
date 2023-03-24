@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import img_01 from "../../../Assets/images/img-1.webp";
@@ -7,6 +7,7 @@ import {
   increaseCart,
   removeFromCart,
 } from "../../../redux/reducers/cartSlice";
+import axios from "axios";
 
 const CartItem = ({
   price,
@@ -20,6 +21,9 @@ const CartItem = ({
   stocks,
 }) => {
   const dispatch = useDispatch();
+  const [size2 , setSize2] = useState();
+  const [color2 , setColor2] = useState();
+
   const notify = (val) =>
     toast.warn(val, {
       position: "bottom-center",
@@ -32,13 +36,26 @@ const CartItem = ({
       theme: "light",
     });
 
+    useEffect(() => {
+      axios.get(`${process.env.REACT_APP_URL}getAllSize`).
+      then((d) => {
+        setSize2(d?.data?.data);
+        })
+
+        axios.get(`${process.env.REACT_APP_URL}getAllColors`).
+      then((d) => {
+        setColor2(d?.data?.data);
+        })
+    }, [])
+    
+
   return (
     <>
       <tr>
         <td className="productImg">
           <div className="cartImg">
             <img
-              src={`${process.env.REACT_APP_URL}upload/products/${image}`}
+              src={`${process.env.REACT_APP_URL}upload/products/${image[0].image}`}
               alt="car_01"
             />
           </div>
@@ -47,10 +64,20 @@ const CartItem = ({
           <p className="proName">{title}</p>
           <p>{description.substr(0, 80)}...</p>
           <p className="size">
-            Size: <span>{size}</span>
+            Size: <span>{size?.map((d) => {return (
+            size2?.map((ele) => {
+              if(ele?.id == d?.size_id)
+              return (ele?.size)
+            })
+              )})}</span>
           </p>
           <p className="color">
-            Color: <span>{color}</span>
+            Color: <span>{color?.map((d) => {return (
+            color2?.map((ele) => {
+              if(ele?.id == d?.color_id)
+              return (ele?.color)
+            })
+              )})}</span>
           </p>
           <button
             onClick={() => {
@@ -62,7 +89,7 @@ const CartItem = ({
             Remove
           </button>
         </td>
-        <td className="text-center">${price}</td>
+        <td className="text-center">${price?.map((d)=>{return d?.price})}</td>
         <td className="text-center">
           <div className="count">
             <button
@@ -74,7 +101,7 @@ const CartItem = ({
             <span>{quantity}</span>
             <button
               onClick={() => {
-                if (stocks > quantity) {
+                if (stocks?.map((d)=>{return d?.stock}) > quantity) {
                   dispatch(increaseCart(id));
                 } else {
                   notify("You reached maximum limit");
@@ -86,7 +113,7 @@ const CartItem = ({
             </button>
           </div>
         </td>
-        <td className="text-center">${quantity * price}</td>
+        <td className="text-center">${quantity * price?.map((d)=>{return d?.price})}</td>
       </tr>
     </>
   );

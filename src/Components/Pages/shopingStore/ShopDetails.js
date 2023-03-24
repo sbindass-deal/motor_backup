@@ -18,7 +18,9 @@ const ShopDetails = () => {
   const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
-  const [addButton , setAddButton] = useState(false)
+  const [addButton, setAddButton] = useState(false);
+  const [index, setIndex] = useState();
+  const [size , setSize] = useState();
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -33,21 +35,26 @@ const ShopDetails = () => {
 
   useEffect(() => {
 
-      setLoading(true);
-      try {
-        axios.get(
-          `${process.env.REACT_APP_URL}allproduct`
-        ).then((d) => {
-          d?.data?.data?.product.map((d , i) =>{
-            if(d?.id == id)
-             setProduct(d)
-          })
+    setLoading(true);
+    try {
+      axios.get(
+        `${process.env.REACT_APP_URL}allproduct`
+      ).then((d) => {
+        d?.data?.data?.product.map((d, i) => {
+          if (d?.id == id)
+            setProduct(d)
         })
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-        setLoading(false);
-      }
+      })
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+
+    axios.get(`${process.env.REACT_APP_URL}getAllSize`).
+      then((d) => {
+        setSize(d?.data?.data);
+        })
 
   }, [id]);
 
@@ -76,15 +83,21 @@ const ShopDetails = () => {
           <div className="row">
             <div className="col-md-6 sliderSec ">
               <Carousel autoplay>
-                <div>
-                  <img
-                    src={`${process.env.REACT_APP_URL}upload/products/${product?.images[0]?.image}`}
-                    alt={product.title}
-                    style={contentStyle}
-                    className="img-fluid"
-                    onClick={() => setVisible(true)}
-                  />
-                </div>
+                {
+                  product?.images?.map((d, i) => {
+                    return (
+                      <div>
+                        <img
+                          src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                          alt={product.title}
+                          style={contentStyle}
+                          className="img-fluid"
+                          onClick={() => { setVisible(true); setIndex(`${process.env.REACT_APP_URL}upload/products/${d?.image}`) }}
+                        />
+                      </div>
+                    )
+                  })
+                }
               </Carousel>
               <div
                 style={{
@@ -98,7 +111,7 @@ const ShopDetails = () => {
                   }}
                 >
                   <Image
-                    src={`${process.env.REACT_APP_URL}upload/products/${product.image}`}
+                    src={`${index}`}
                   />
                 </Image.PreviewGroup>
               </div>
@@ -107,19 +120,34 @@ const ShopDetails = () => {
             <div className="col-md-6 rightSec">
               <h5 className="catagories">{product.category}</h5>
               <h2>{product.title}</h2>
-              <p className="price__">$ {product?.product_inventry[0].price}</p>
+              {
+                product?.product_inventry?.map((d, i) => {
+                  return (
+                    <p className="price__">$ {d?.price}</p>
+                  )
+                })
+              }
               <p className="product_dec">
-                <b>Product ID: {product.id}</b>
+                {/* <b>Product ID: {product.id}</b> */}
                 <br />
                 {product.description}
               </p>
 
               <div className="sizeColor">
-                <div className="sizeColor">Category: {product.category}</div>
-                <div className="size">Size: {product.size}</div>
+                <div className="sizeColor">Category : {product.category}</div>
+                <div className="size">Size : {
+                  product?.product_inventry?.map((d, i) => {
+                          return size?.map((data , index) => {
+                            if(data?.id == d?.size_id)
+                            return(data?.size)
+                          })
+                      })
+                }</div>
               </div>
-              <p className="product_dec">Stock: {product.stocks}</p>
-              <button onClick={handleProduct} type="button" className="btn" disabled ={addButton}>
+              <p className="product_dec">Stock : {product?.product_inventry?.map((d , i) => {
+                return d?.stock
+              })}</p>
+              <button onClick={handleProduct} type="button" className="btn" disabled={addButton}>
                 Add to Cart
               </button>
             </div>
