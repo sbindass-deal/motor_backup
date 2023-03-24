@@ -20,7 +20,7 @@ const Cart = () => {
       progress: undefined,
       theme: "light",
     });
-
+console.log(product);
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -52,21 +52,21 @@ const Cart = () => {
                         <CartItem
                           key={curElem.id}
                           id={curElem.id}
-                          price={curElem.price}
+                          price={curElem.product_inventry}
                           title={curElem.title}
-                          image={curElem.image}
+                          image={curElem.images}
                           quantity={curElem.quantity}
-                          color={curElem.color}
-                          size={curElem.size}
+                          color={curElem.product_inventry}
+                          size={curElem.product_inventry}
                           description={curElem.description}
-                          stocks={curElem.stocks}
+                          stocks={curElem.product_inventry}
                         />
                       );
                     })}
                     <tr className="text-center">
                       <td colSpan="3"></td>
                       <td>Subtotal </td>
-                      <td>${product.total}</td>
+                      <td>${product?.total}</td>
                     </tr>
                     <tr className="right-align">
                       <td colSpan="5">
