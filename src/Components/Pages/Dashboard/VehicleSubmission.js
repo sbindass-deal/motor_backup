@@ -106,7 +106,7 @@ function VehicleSubmission() {
                                 ? data.make
                                     .toUpperCase()
                                     .includes(searchTerm) ||
-                                  data.model
+                                data.name
                                     .toUpperCase()
                                     .includes(searchTerm) ||
                                   data.year.toUpperCase().includes(searchTerm)
