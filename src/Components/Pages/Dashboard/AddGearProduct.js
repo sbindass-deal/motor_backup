@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
+const Input = () => {
+  return <input placeholder="Your input here" />;
+};
+
 const AddGearProduct = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
@@ -19,7 +23,11 @@ const AddGearProduct = () => {
   const [addNewColor, setAddNewColor] = useState("");
   const [addNewSize, setAddNewSize] = useState("");
   const [addNewCategory, setAddNewCategory] = useState("");
-  
+  const [inputList, setInputList] = useState([]);
+
+  const onAddBtnClick = event => {
+    setInputList(inputList.concat(<Input key={inputList.length} />));
+  };
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -122,8 +130,8 @@ const AddGearProduct = () => {
 
 
   const handleAddColor = () => {
-    if(addNewColor == "")
-    return alert("Please Enter Something");
+    if (addNewColor == "")
+      return alert("Please Enter Something");
     axios({
       method: "post",
       data: {
@@ -139,8 +147,8 @@ const AddGearProduct = () => {
 
 
   const handleAddSize = () => {
-    if(addNewSize == "")
-    return alert("Please Enter Something");
+    if (addNewSize == "")
+      return alert("Please Enter Something");
     axios({
       method: "post",
       data: {
@@ -155,8 +163,8 @@ const AddGearProduct = () => {
   }
 
   const handleAddcategory = () => {
-    if(addNewCategory == "")
-    return alert("Please Enter Something");
+    if (addNewCategory == "")
+      return alert("Please Enter Something");
     axios({
       method: "post",
       data: {
@@ -169,7 +177,7 @@ const AddGearProduct = () => {
       setRefresh(!refresh);
     })
   }
-  
+
 
 
   // const handleApi = async (e) => {
@@ -207,6 +215,10 @@ const AddGearProduct = () => {
     <>
       <div className="container">
         <div className="row m-md-5 my-4">
+          <div>
+            <button onClick={onAddBtnClick}>Add input</button>
+            {inputList}
+          </div>
           <form>
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
@@ -249,7 +261,7 @@ const AddGearProduct = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-md-12 col-lg-3 col-sm-12">
                 {/* <FormInput
                   name="price"
                   onChange={handleOnChange}
@@ -284,7 +296,7 @@ const AddGearProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-md-12 col-lg-3 col-sm-12">
                 {/* <FormInput
                   name="stock"
                   onChange={handleOnChange}
@@ -334,7 +346,7 @@ const AddGearProduct = () => {
                   required={true}
                 />
               </div> */}
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-md-12 col-lg-3 col-sm-12">
                 <div className="form-group">
                   <label htmlFor="">Size</label>
                   <select
@@ -374,7 +386,7 @@ const AddGearProduct = () => {
                   required={true}
                 />
               </div> */}
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-md-12 col-lg-2 col-sm-12">
                 <div className="form-group">
                   <label htmlFor="">Color</label>
                   <select
@@ -395,6 +407,11 @@ const AddGearProduct = () => {
                       })
                     }
                   </select>
+                </div>
+              </div>
+              <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
+                <div className="form-group">
+                  <p className="border w-25 pl-1">+</p>
                 </div>
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
