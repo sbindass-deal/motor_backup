@@ -37,7 +37,7 @@ const AddDealer = () => {
     dealerDescription: "",
     password: "",
     cPassword: "",
-    title:""
+    title: "",
   });
   // Logo image
   const inputRefLogo = useRef();
@@ -260,7 +260,7 @@ const AddDealer = () => {
           uploadLogeImg(response.data.dealer_id);
           uploadCoverImg(response.data.dealer_id);
           uploadGallery(response.data.dealer_id);
-          notify("Added  successfully !");
+          notify("Added successfully !");
           navigate("/admin-dealer");
         } else {
           notify(response.data.message);
