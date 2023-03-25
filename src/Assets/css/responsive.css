@@ -1253,6 +1253,9 @@
 		padding: 15px 0px;
 		text-align: center;
 	}
+	.bHide button {
+		display: none;
+	  }
 }
 
 @media (max-width: 575px) {

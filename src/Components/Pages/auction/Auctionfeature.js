@@ -112,7 +112,7 @@ const Auctionfeature = () => {
                     <i class="fa-solid fa-star mr-2"></i>Watch
                   </button>
                 </li>
-                <li className="d-flex">
+                <li className="d-flex bHide">
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"

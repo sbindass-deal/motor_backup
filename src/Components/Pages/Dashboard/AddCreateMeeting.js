@@ -218,14 +218,9 @@ const AddCreateMeeting = () => {
 
                   <div className="col-12 mb-3">
                     <label>Description</label>
-                    <div className="border border-2 border-dark">
+                    <div className="desCrtpion">
                       <Editor
-                        editorStyle={{
-                          background: "white",
-                          padding: "15px",
-                          minHeight: "30vh",
-                          color: "black",
-                        }}
+                      
                         editorState={description}
                         toolbarClassName="toolbarClassName"
                         wrapperClassName="wrapperClassName"
