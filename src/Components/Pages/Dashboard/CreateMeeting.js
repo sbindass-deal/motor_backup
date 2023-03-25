@@ -5,6 +5,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import { toast } from "react-toastify";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const CreateMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
@@ -154,17 +155,33 @@ const CreateMeeting = () => {
                                   strToHtml
                                 )}
                               </td>
-                              <td>
-                                <Link to={`/edit-meeting/${curVal.id}`}>
-                                  <button>
-                                    <i className="fa-solid fa-pencil"></i> Edit
-                                  </button>
-                                </Link>
-                                <button onClick={() => handleDelete(curVal.id)}>
-                                  Delete
-                                </button>
-                              </td>
-                              <div className="pl-md-3 d-flex">
+                              <td className="actionBtn">
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                      <i className="fa-solid fa-ellipsis-vertical"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1">
+                                      <Link to={`/edit-meeting/${curVal.id}`}>
+                                        <button>
+                                          <i className="fa-solid fa-pencil"></i> Edit
+                                        </button>
+                                      </Link>
+                                      
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                        <button
+                                         onClick={() => handleDelete(curVal.id)}
+                                        >
+                                          <i className="fa-solid fa-trash-can"></i>{" "}
+                                          Delete
+                                        </button>
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                </td>
+                            <td><div className="pl-md-3 d-flex">
                                 {/* {curVal?.status == "1" ? (
                                   <button
                                     onClick={() => VechilesApprove(curVal.id, 0)}
@@ -228,7 +245,8 @@ const CreateMeeting = () => {
                                     Rejected
                                   </p>
                                 )}
-                              </div>
+                              </div></td>
+                              
                             </tr>
                           );
                         })}

@@ -6625,252 +6625,61 @@ ul.bidOnThis li p:first-child { width: 26%;}
     top: 0;
     transform: rotateZ(100deg);
   } */
-.firstImg img {
-  min-width: 390px;
-  min-height: 266px;
-}
-.rightGallery>div {
-  float: left;
-  width: 32.8%;
-}
-.row.rightGallery.moreSh>div {
-  width: 19.99%;
-}
-
-.showGallery .col-lg-5, .showGallery .col-lg-12, .showGallery .col-lg-6 {
-  padding: 3px;
-}
-
-.showGallery .col-lg-6 .ant-image,.showGallery .col-lg-12 .ant-image {
-  height: 450px;
-  width: 100%;
-}
-
-.showGallery .col-lg-6 img,.showGallery .col-lg-12 img,.showGallery .col-lg-5 img {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  display: flex;
-  object-fit: cover;
-}
-.showGallery .col-lg-5 .ant-image {
-  height: 814px;
-  width: 100%;
-}
-
-.col-12 .galleryImgSect.gg{
-  width: 100%;
-  height: 120px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-.logoImg img.slidImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.logoImg {
-  padding: 0;
-  height: 290px
-}
-
-
-.light .inner-slider.drl .card_post{
-  background: #f7f7f7;
-}
-
+.firstImg img {  min-width: 390px;  min-height: 266px;}
+.rightGallery>div {  float: left;  width: 32.8%;}
+.row.rightGallery.moreSh>div { width: 19.99%;}
+.showGallery .col-lg-5, .showGallery .col-lg-12, .showGallery .col-lg-6 { padding: 3px;}
+.showGallery .col-lg-6 .ant-image,.showGallery .col-lg-12 .ant-image { height: 450px; width: 100%;}
+.showGallery .col-lg-6 img,.showGallery .col-lg-12 img,.showGallery .col-lg-5 img { width: 100%; height: 100%;  justify-content: center;  display: flex;  object-fit: cover;}
+.showGallery .col-lg-5 .ant-image { height: 814px; width: 100%;}
+.col-12 .galleryImgSect.gg{ width: 100%; height: 120px; overflow: hidden; display: flex; align-items: center;}
+.logoImg img.slidImg { width: 100%; height: 100%; object-fit: cover;}
+.logoImg { padding: 0; height: 290px}
+.light .inner-slider.drl .card_post{ background: #f7f7f7;}
 .ant-image-preview-operations {  top: 14%;}
-
 #sticky { top: 105px !important;}
-
-.showGallery .col-lg-6 .ant-image {
-  height: 353px;
-  width: 100%;
-}
-.eventRightSide .card_ p span {
-  color: #f7931a;
-  font-size: 15px;
-}
-
-.rafel .carousel-inner {
-  max-height: 310px;
-  justify-content: inherit;
-  display: flex;
-  align-items: center;
-}
-
-.RafelLeftRight {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 160px;
-  z-index: 99;
-}
-.RafelLeftRight svg {
-  font-size: 25px;
-  background: #333333;
-  padding: 10px;
-  display: block;
-}
+.showGallery .col-lg-6 .ant-image { height: 353px;width: 100%;}
+.eventRightSide .card_ p span { color: #f7931a; font-size: 15px;}
+.rafel .carousel-inner { max-height: 310px; justify-content: inherit; display: flex; align-items: center;}
+.RafelLeftRight { display: flex; justify-content: space-between; position: absolute; width: 100%; left: 0px; top: 160px; z-index: 99;}
+.RafelLeftRight svg { font-size: 25px; background: #333333; padding: 10px; display: block;}
 .featuredAuctions_Slide .labelList li{ color:#f7931a ;}
 h3.p-15 { padding: 6px;}
-.searchResult h4.text-center {
-  font-size: 25px;
-  padding-bottom: 25px;
-}
-.searchResult .card_post.SearchResult.auction {
-  box-shadow: 1px 15px 15px 1px #3939393b;
-  margin-bottom: 30px;
-}
-select.dropDownList {
-  background: transparent;
-  font-size: 18px;
-  padding: 10px 15px;
-}
-
-
-select.dropDownList:before {
-  content: '';
-  background-image: url(../images/chevron-down.svg);
-  background-size: cover;
-  left: 0;
-  right: 0;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-}
-select.dropDownList {
-  position: relative;
-}
-
-select.dropDownList{    appearance: initial;}
-p.dicount {
-  border: 1px solid #f7931a2b;
-  padding: 10px;
-  border-radius: 10px;
-}
-p.dicount span {
-  color: #f7931a;
-  font-size: 17px;
-  padding-right: 10px;
-}
-.AucRelt label {
-  font-size: 16px;
-  color: #f7931b;
-}
+.searchResult h4.text-center { font-size: 25px; padding-bottom: 25px;}
+.searchResult .card_post.SearchResult.auction { box-shadow: 1px 15px 15px 1px #3939393b; margin-bottom: 30px;}
+select.dropDownList { background: transparent; font-size: 18px; padding: 10px 15px;}
+select.dropDownList:before { content: ''; background-image: url(../images/chevron-down.svg); background-size: cover; left: 0; right: 0; position: absolute; width: 50px; height: 50px;}
+select.dropDownList { position: relative;}
+select.dropDownList{ appearance: initial;}
+p.dicount { border: 1px solid #f7931a2b; padding: 10px; border-radius: 10px;}
+p.dicount span { color: #f7931a; font-size: 17px; padding-right: 10px;}
+.AucRelt label { font-size: 16px; color: #f7931b;}
 .labelList.AucRelt li:first-child{border: none !important;}
-
-.labelList.AucRelt li label {
-  display: block;
-}
-.dZip {
-		display: flex;
-		padding: 10px;
-	}
-  .wed .plan_card {
-    min-height: 90%;
-}
-.wed .plan_cardFooter {
-  position: absolute;
-  width: 84%;
-  bottom: 30px;
-}
-
-.carBg {
-  height: auto;
-  width: 100%;
-  /* padding-top: 33px; */
-}
-.carBg img {
-  max-width: 100%;
-  padding: 0px;
-  position: relative;
-  max-height: 100%;
-  object-fit: cover;
-  background-color: #f7931a;
-  top: 0px;
-}
-
-.rc-virtual-list .ant-select-dropdown {
-  z-index: 9999999999;
-}
-
-
-
-.light .post-share .post-share-link svg {
-  color: #000;
-}
-
-.light .sidebarPost_text {
-  color: #000;
-}
-.ant-select-dropdown.css-dev-only-do-not-override-1hyej8k.ant-select-dropdown-placement-bottomLeft.ant-select-dropdown-hidden {
-  z-index: 99999999999999 !important;
-}
-.ant-select-dropdown-placement-bottomLeft {
-  z-index: 9999999999999;
-}
-
-.ant-select-dropdown-placement-bottomLeft {
-  position: fixed;
-}
-footer {
-  margin-top: 60px;
-}
+.labelList.AucRelt li label { display: block;}
+.dZip {	display: flex;	padding: 10px;}
+.wed .plan_card {  min-height: 90%;}
+.wed .plan_cardFooter { position: absolute; width: 84%; bottom: 30px;}
+.carBg { height: auto; width: 100%;}
+.carBg img { max-width: 100%; padding: 0px; position: relative; max-height: 100%; object-fit: cover; background-color: #f7931a; top: 0px;}
+.rc-virtual-list .ant-select-dropdown { z-index: 9999999999;}
+.light .post-share .post-share-link svg { color: #000;}
+.light .sidebarPost_text { color: #000;}
+.ant-select-dropdown.css-dev-only-do-not-override-1hyej8k.ant-select-dropdown-placement-bottomLeft.ant-select-dropdown-hidden { z-index: 99999999999999 !important;}
+.ant-select-dropdown-placement-bottomLeft { z-index: 9999999999999;}
+.ant-select-dropdown-placement-bottomLeft { position: fixed;}
+footer { margin-top: 60px;}
 .anty-select-dropdown-placement-bottomLeft{ z-index: 99999999999oo99}
-
-
-.light .gry_btn.active {
-  background: #000;
-  border: 1px solid #000;
-}
-.light .activeListView .card_postInfo {
-  display: flow-root;
-}
-.activeListView .auctionLive .card_postImg img{
-  height: 155px;
-}
-.activeListView .labelList li label {
-  display: block;
-}
-.light .auctionLive .card_post{
-  background: #f0f0f0;
-}
-.desCrtpion {
-  min-height: 30vh;
-  border: 1px solid #333333;
-  padding: 10px;
-  border-radius: 5px;
-}
+.light .gry_btn.active { background: #000;  border: 1px solid #000;}
+.activeListView .card_postInfo {  display: flow-root;}
+.activeListView .auctionLive .card_postImg img{  height: 155px;}
+.activeListView .labelList li label {  display: block;}
+.auctionLive .card_post{  background: #f0f0f0;}
+.desCrtpion {  min-height: 30vh;  border: 1px solid #333333;  padding: 10px;  border-radius: 5px;}
 .dropzone {  border: 2px dashed rgb(51 51 51);}
-
-.desCrtpion .rdw-editor-toolbar {
-  background: #ffffff00;
-  border: navajowhite;
-}
-/* .desCrtpion .rdw-option-wrapper{
-  border: 1px solid #f7931a;
-    background: #f7931a;
-}
-.light .desCrtpion .rdw-option-wrapper{
-  border: 1px solid #000;
-    background: transparent;
-} */
-
-.mtb-3{
-  margin: 15px 0px;
-}
-.DraftEditor-editorContainer span{
-  color: #fff;
-}
-.light .DraftEditor-editorContainer span{
-  color: #000;
-}
-.dsds {
-  border: 1px solid #2f2f2f;
-  margin-bottom: 20px;
-  padding: 10px;
-}
+.desCrtpion .rdw-editor-toolbar { background: #ffffff00; border: navajowhite;}
+.mtb-3{ margin: 15px 0px;}
+.DraftEditor-editorContainer span{  color: #fff;}
+.light .DraftEditor-editorContainer span{ color: #000;}
+.dsds { border: 1px solid #2f2f2f; margin-bottom: 20px; padding: 10px;}
+.auctionLive .card_post { background: #121212;}
+.light .auctionLive .card_post {  background: #f0f0f0;}
