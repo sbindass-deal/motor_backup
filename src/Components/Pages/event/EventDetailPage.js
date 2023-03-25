@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { toast } from "react-toastify";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const EventDetailPage = () => {
   const { id } = useParams();
@@ -273,23 +274,51 @@ const EventDetailPage = () => {
 
 
           <div className="col-12 pt-3">
-            <div className="commentRow">
-              {
-                getCommentData?.reverse()?.map((curVal,i) => {
-                  return <div key={i}>
-                    {/* <div className="commentHead">
-                      <p className="com_by">{curVal.description}</p>
-                    </div> */}
-                    <div className="commentBody">
-                      <p>{curVal?.description}</p>
+            {
+              getCommentData?.reverse()?.map((curVal,i) => {
+                return <div key={i} className="commentRow">
+                  <div className="commentHead">
+                    <div className="com_byPic">
+                      <AccountCircleIcon />
                     </div>
-                    <button onClick={() => handleDelete(curVal.id)}>Delete</button>
+                    <div className="com_by">{"User name"}</div>
+                    <div className="com_date">
+                      <i className="fa-solid fa-clock mr-1"></i>{" "}
+                      {
+                        new Date().toLocaleString()
+                      }
+                    </div>
                   </div>
-                })
-              }
+                  <div className="commentBody">
 
+                    <p className="p-2">{curVal?.description}</p>
 
-            </div>
+                  </div>
+
+                  <div className="commentFooter">
+                    <a
+                      // onClick={() => handleLikeDislike(curElem.id, 1)}
+                      className="mr-3"
+                    >
+                      <i
+                        className={`fa-solid fa-thumbs-up `}
+                      ></i>{" "}
+                      {45}
+                    </a>
+                    <a
+                      // onClick={() => handleLikeDislike(curElem.id, 2)}
+                      className="mr-3"
+                    >
+                      <i
+                        className={`fa-solid fa-thumbs-down `}
+                      ></i>{" "}
+                      {8}
+                    </a>
+                  </div>
+
+                </div> 
+              })
+}
           </div>
 
           <div></div>
@@ -300,3 +329,6 @@ const EventDetailPage = () => {
 };
 
 export default EventDetailPage;
+
+
+

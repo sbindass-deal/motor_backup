@@ -3,9 +3,17 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import FormInput from "../../UI/FormInput";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+ 
+
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
       if (res.data.data) {
@@ -15,6 +23,8 @@ function AccountInfo() {
       }
     });
   }, []);
+ 
+
 
   return (
     <div>
@@ -59,11 +69,91 @@ function AccountInfo() {
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
+                <li>
+                  <button className="btn" onClick={handleShow}>Add Credit Card</button>
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </section>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <h4 className="modal-title">Card Details</h4>
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <form  autocomplete="off">
+                <div className="col-md-12">
+                  <FormInput
+                    
+                    name="text"
+                    placeholder="Enter Credit Number"
+                    type="text"
+                    errorMessage="Please Enter Credit Card Number"
+                    label="Enter Credit Card Number"
+                    required={true}
+                  />
+                </div>
+                <div className="col-md-12 eye_arrange ">
+                  <FormInput
+                   
+                    name="date"
+                    placeholder="Enter expiry date"
+                    errorMessage="Enter expiry date"
+                    label="Enter Expiry Date"
+                    type={"text"}
+                    autocomplete="off"
+                    // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                    required={true}
+                  />
+
+                  <FormInput
+
+                    name="text"
+                    placeholder="Enter CVV"
+                    errorMessage="Enter CVV Number"
+                    label="Enter CVV"
+                    type={"text"}
+                    autocomplete="off"
+                    // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
+                    required={true}
+                  />
+
+                 
+                <div className="col-md-12">
+                  <div className="form-group">
+                   
+                      <button button="submit" className="btn w-100">
+                        Submit
+                      </button>
+                  
+                  </div>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </Modal>
+     
     </div>
   );
 }
