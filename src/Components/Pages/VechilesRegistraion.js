@@ -98,7 +98,10 @@ const VechilesRegistraion = () => {
       axios
         .post(`${process.env.REACT_APP_URL}get_subscription_plans`, {})
         .then(function (response) {
-          if (response.data.purchasePlan.length > 0) {
+          if (
+            response.data.purchasePlan != null ||
+            response.data.purchasePlan != undefined
+          ) {
             dispatch(purchagedPlan(true));
             // dispatch(
             //   getPlanByDealerSelect(response?.data?.purchasePlan[0]?.category)
@@ -2431,7 +2434,7 @@ const VechilesRegistraion = () => {
                                   value={detailsInfo.reserveAmount}
                                   onChange={detailsOnChange}
                                   name="reserveAmount"
-                                    placeholder="Enter reserve amount"
+                                  placeholder="Enter reserve amount"
                                   errorMessage="Reserve amount should be 1-9 characters and shouldn't include any special character and alphabet!"
                                   label="Please provide reserve amount:"
                                   pattern="^[0-9]{1,9}$"
@@ -2476,7 +2479,7 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 name="documentFee"
                                 type="text"
-                                  placeholder="Enter document fee"
+                                placeholder="Enter document fee"
                                 errorMessage="Amount should be 1-9 characters and shouldn't include any special character, space and alphabet!"
                                 label="What is the amount of the document fee that you
                               will charge buyers above and beyond sale price and
@@ -2714,9 +2717,10 @@ const VechilesRegistraion = () => {
                 <StripeCheckout
                   className="Btn"
                   name="GasGuzzlrs Subscribe"
+                  email={logingUser.login.user.email}
                   currency="USD"
                   amount={logingUser.planReducer.plan.price * 100}
-                  stripeKey="pk_test_m9Dp6uaJcynCkZNTNS1nDR8B00AQg2m6vJ"
+                  stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
                   token={onToken}
                 />
               </div>
