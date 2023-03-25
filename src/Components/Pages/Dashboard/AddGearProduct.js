@@ -509,7 +509,7 @@ const AddGearProduct = () => {
               <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
                 <div className="form-group">
                   {/* <p className="border w-25 pl-1">+</p> */}
-                  <button onClick={onAddBtnClick}>Add input</button>
+                  <button onClick={onAddBtnClick} className="mt-4 border-0 p-1 bg-success text-light">Add input</button>
                 </div>
               </div>
               {inputList}

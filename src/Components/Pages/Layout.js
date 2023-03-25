@@ -89,6 +89,7 @@ import AdUserMeeting from "./MyAccount/AdUserMeeting";
 import EditUserMeeting from "./MyAccount/EditUserMeeting";
 import EventAdUserMeeting from "./MyAccount/EventAdUserMeeting";
 import Subscription from "./MyAccount/Subscription";
+import GearInventry from "./Dashboard/GearInventry.js"
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -153,7 +154,8 @@ const Layout = () => {
                     path="raffleadmin/edit-raffel/:id"
                     element={<EditRaffle />}
                   />
-                  <Route path="gear-product" element={<GearProduct />} />
+                  <Route path="gear-product" element={<GearProduct/>} />
+                  <Route path="gear-inventry" element={<GearInventry/>} />
                   <Route
                     path="gear-product/:id"
                     element={<EditGearProduct />}
