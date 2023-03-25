@@ -264,7 +264,7 @@ function EventAdUserMeeting() {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
+                  <button className="btn" type="submit">
                     Submit
                   </button>
                 </div>

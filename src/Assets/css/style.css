@@ -6869,3 +6869,8 @@ footer {
 .light .DraftEditor-editorContainer span{
   color: #000;
 }
+.dsds {
+  border: 1px solid #2f2f2f;
+  margin-bottom: 20px;
+  padding: 10px;
+}

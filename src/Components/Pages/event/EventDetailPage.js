@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { toast } from "react-toastify";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const EventDetailPage = () => {
   const { id } = useParams();
@@ -273,23 +274,77 @@ const EventDetailPage = () => {
 
 
           <div className="col-12 pt-3">
-            <div className="commentRow">
+          <div key={i} className="commentRow">
+                  <div className="commentHead">
+                    <div className="com_byPic">
+                      {/* <img src={men_face} /> */}
+                      <AccountCircleIcon />
+                    </div>
+                    <div className="com_by">{curElem.name}</div>
+                    <div className="com_date">
+                      <i className="fa-solid fa-clock mr-1"></i>{" "}
+                      {curElem.created_at &&
+                        new Date(curElem.created_at).toLocaleString()}
+                    </div>
+                  </div>
+                  <div className="commentBody">
+                    {curElem.category === "bid" ? (
+                      <p className=" p-2 text-danger fw-bolder">
+                        <strong>
+                          ${" "}
+                          {curElem?.bid_amount && toCommas(curElem?.bid_amount)}{" "}
+                          bid placed
+                        </strong>
+                      </p>
+                    ) : (
+                      <p className="p-2">{curElem?.description}</p>
+                    )}
+                  </div>
+                  {curElem.category !== "bid" && (
+                    <div className="commentFooter">
+                      <a
+                        onClick={() => handleLikeDislike(curElem.id, 1)}
+                        className="mr-3"
+                      >
+                        <i
+                          className={`fa-solid fa-thumbs-up ${
+                            curElem.user_reaction_on_commnet == 1 &&
+                            "text-warning"
+                          }`}
+                        ></i>{" "}
+                        {curElem?.Like_count}
+                      </a>
+                      <a
+                        onClick={() => handleLikeDislike(curElem.id, 2)}
+                        className="mr-3"
+                      >
+                        <i
+                          className={`fa-solid fa-thumbs-down ${
+                            curElem.user_reaction_on_commnet == 2 &&
+                            "text-warning"
+                          }`}
+                        ></i>{" "}
+                        {curElem?.Dislike_count}
+                      </a>
+                    </div>
+                  )}
+                </div>
+            {/* <div className="commentRow">
               {
                 getCommentData?.reverse()?.map((curVal,i) => {
-                  return <div key={i}>
-                    {/* <div className="commentHead">
-                      <p className="com_by">{curVal.description}</p>
-                    </div> */}
+                  return <div key={i} className="commentRow">
+                  
                     <div className="commentBody">
                       <p>{curVal?.description}</p>
                     </div>
-                    <button onClick={() => handleDelete(curVal.id)}>Delete</button>
+                   
+                    <i onClick={() => handleDelete(curVal.id)} class="fa-solid fa-trash"></i>
                   </div>
                 })
               }
 
 
-            </div>
+            </div> */}
           </div>
 
           <div></div>
