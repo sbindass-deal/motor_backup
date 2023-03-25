@@ -26,7 +26,6 @@ const Data = ({ curElem, addFabrity }) => {
                       }}
                       alt="Maskgroup1"
                     />
-                    
                   </>
                 ) : (
                   <>
@@ -56,19 +55,12 @@ const Data = ({ curElem, addFabrity }) => {
               </button>
             </h4>
 
-            <p className="color_grey " >
+            <p className="color_grey ">
               {curElem?.moreDescription &&
                 parse(curElem?.moreDescription?.substr(0, 300), strToHtml)}
-
             </p>
 
-            <ul
-              className="labelList"
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-              }}
-            >
+            <ul className="labelList btnListShap">
               <li className="w-auto">
                 {curElem?.currentBid && curElem?.currentBid?.last_bid > 0 ? (
                   <span>
@@ -85,8 +77,9 @@ const Data = ({ curElem, addFabrity }) => {
                 )}
               </li>
               <li>
-                <label>Ends In:</label>{" "}
-                <span>{new Date(curElem?.EndTime).toDateString()}</span>
+                <span>
+                  Ends In: {new Date(curElem?.EndTime).toDateString()}
+                </span>
               </li>
             </ul>
           </div>

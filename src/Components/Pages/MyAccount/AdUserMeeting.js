@@ -137,7 +137,7 @@ function AdUserMeeting() {
                     <label htmlFor="">Title</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
@@ -148,7 +148,7 @@ function AdUserMeeting() {
                     <label htmlFor="">Start Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      class="field"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
@@ -159,7 +159,7 @@ function AdUserMeeting() {
                     <label htmlFor="">End Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      class="field"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
@@ -170,7 +170,7 @@ function AdUserMeeting() {
                     <label htmlFor="">Website Link</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
@@ -182,7 +182,7 @@ function AdUserMeeting() {
 
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
@@ -194,7 +194,7 @@ function AdUserMeeting() {
 
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
@@ -205,7 +205,7 @@ function AdUserMeeting() {
                     <label htmlFor="">Email Id</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}

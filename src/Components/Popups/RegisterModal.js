@@ -443,7 +443,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                         type="checkbox"
                         // checked={addUserInBid}
                       />
-                      I want the ability to bid on action?
+                      I want the ability to bid on auction?
                     </label>
                   </div>
                 </div>
