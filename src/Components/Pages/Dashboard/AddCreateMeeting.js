@@ -138,7 +138,7 @@ const AddCreateMeeting = () => {
                     <label htmlFor="">Title</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="field"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
@@ -150,7 +150,7 @@ const AddCreateMeeting = () => {
                     <input
                       min={minDate}
                       type="datetime-local"
-                      className="form-control"
+                      className="field"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
@@ -162,7 +162,7 @@ const AddCreateMeeting = () => {
                     <input
                       min={minDate}
                       type="date"
-                      className="form-control"
+                      className="field"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
@@ -173,7 +173,7 @@ const AddCreateMeeting = () => {
                     <label htmlFor="">Website Link</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="field"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
@@ -185,7 +185,7 @@ const AddCreateMeeting = () => {
 
                     <input
                       type="text"
-                      className="form-control"
+                      className="field"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
@@ -197,7 +197,7 @@ const AddCreateMeeting = () => {
 
                     <input
                       type="text"
-                      className="form-control"
+                      className="field"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
@@ -208,7 +208,7 @@ const AddCreateMeeting = () => {
                     <label htmlFor="">Email Id</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="field"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
