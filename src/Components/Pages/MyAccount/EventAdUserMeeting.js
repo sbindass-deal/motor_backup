@@ -123,7 +123,7 @@ function EventAdUserMeeting() {
                     <label htmlFor="">Title</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
@@ -134,7 +134,7 @@ function EventAdUserMeeting() {
                     <label htmlFor="">Start Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      class="field"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
@@ -145,7 +145,7 @@ function EventAdUserMeeting() {
                     <label htmlFor="">End Date</label>
                     <input
                       type="datetime-local"
-                      class="form-control"
+                      class="field"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
@@ -156,7 +156,7 @@ function EventAdUserMeeting() {
                     <label htmlFor="">Website Link</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
@@ -168,7 +168,7 @@ function EventAdUserMeeting() {
 
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
@@ -180,7 +180,7 @@ function EventAdUserMeeting() {
 
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
@@ -191,7 +191,7 @@ function EventAdUserMeeting() {
                     <label htmlFor="">Email Id</label>
                     <input
                       type="text"
-                      class="form-control"
+                      class="field"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
@@ -201,14 +201,9 @@ function EventAdUserMeeting() {
 
                   <div className="col-12 mb-3">
                     <label>Description</label>
-                    <div className="border border-2 border-dark">
+                    <div className="desCrtpion">
                       <Editor
-                        editorStyle={{
-                          background: "white",
-                          padding: "15px",
-                          minHeight: "30vh",
-                          color: "black",
-                        }}
+                      
                         editorState={description}
                         toolbarClassName="toolbarClassName"
                         wrapperClassName="wrapperClassName"
@@ -269,7 +264,7 @@ function EventAdUserMeeting() {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
+                  <button className="btn" type="submit">
                     Submit
                   </button>
                 </div>

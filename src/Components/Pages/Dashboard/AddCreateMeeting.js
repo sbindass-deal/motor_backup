@@ -132,7 +132,7 @@ const AddCreateMeeting = () => {
               <h3>Create Events</h3>
 
               <hr id="hr" />
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="formD">
                 <div className="row">
                   <div className="col-md-6">
                     <label htmlFor="">Title</label>
@@ -216,7 +216,7 @@ const AddCreateMeeting = () => {
                     />
                   </div>
 
-                  <div className="col-12 mb-3">
+                  <div className="col-12 mtb-3">
                     <label>Description</label>
                     <div className="desCrtpion">
                       <Editor
@@ -280,7 +280,7 @@ const AddCreateMeeting = () => {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
+                  <button className="btn" type="submit">
                     Submit
                   </button>
                 </div>
