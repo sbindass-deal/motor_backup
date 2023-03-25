@@ -27,6 +27,7 @@
     "react-big-calendar": "^1.6.8",
     "react-bootstrap": "^2.6.0",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-infinite-scroll-component": "^6.1.0",
