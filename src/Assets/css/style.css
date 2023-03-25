@@ -6823,8 +6823,27 @@ footer {
 .anty-select-dropdown-placement-bottomLeft{ z-index: 99999999999oo99}
 
 
-
 .light .gry_btn.active {
   background: #000;
   border: 1px solid #000;
 }
+.light .activeListView .card_postInfo {
+  display: flow-root;
+}
+.activeListView .auctionLive .card_postImg img{
+  height: 155px;
+}
+.activeListView .labelList li label {
+  display: block;
+}
+.light .auctionLive .card_post{
+  background: #f0f0f0;
+}
+.desCrtpion {
+  min-height: 30vh;
+  border: 1px solid #cfd4da;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.desCrtpion .rdw-editor-toolbar { background: #ffffff00;}
