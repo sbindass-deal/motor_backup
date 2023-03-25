@@ -63,7 +63,7 @@ function Header() {
   };
   const logout = () => {
     dispatch(reset());
-    notify("Logout successfully ! 😎🤐");
+    // notify("Logout successfully ! 😎🤐");
     navigate("/");
     window.location.reload(false);
   };
