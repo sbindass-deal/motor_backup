@@ -241,7 +241,7 @@ const UserVehicleDetails = () => {
   const uploadFileGallery = async (vehicleId) => {
     (async () => {
       for await (const item of galleryFile) {
-        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
         formData.append("image[]", item);
         formData.append("category", "Gallery");
@@ -259,7 +259,7 @@ const UserVehicleDetails = () => {
   const uploadFileOne = (vehicleId) => {
     (async () => {
       for await (const file1 of file) {
-        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
         formData.append("image[]", file1);
         formData.append("category", "Banner");
@@ -291,10 +291,11 @@ const UserVehicleDetails = () => {
   const uploadFileTwo = async (vehicleId) => {
     (async () => {
       for await (const file11 of file1) {
-        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const url = process.env.REACT_APP_URL + "vehicle-image";
         const formData = new FormData();
-        formData.append("image", file11);
-        formData.append("id", vehicleId);
+        formData.append("image[]", file11);
+        formData.append("category", "Document");
+        formData.append("vehicleId", vehicleId);
         const config = {
           headers: {
             "Content-Type": "multipart/form-data",
