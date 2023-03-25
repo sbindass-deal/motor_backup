@@ -8,9 +8,9 @@ import axios from "axios";
 const SearchResult = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
-  const { searchResult: name, searchKey: ser } =
+  const { searchResult: name } =
     logingUser.dayAndNightMode.searchData;
-  // const [searchedData, setSearchedData] = useState({});
+  const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
   const notify = (val) =>
     toast.success(val, {
@@ -26,19 +26,23 @@ const SearchResult = () => {
 
     const searchNew = async () => {
       let data = {
-        keyword: name,
+        keyword: '',
       }
       try {
         const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        setRelatedData(res.data.data);
-        // console.log(res.data);
+        setSearchedData(res.data.vehicles_result);
       } catch (err) {
         console.log(err);
       }
     }
     useEffect(() => {
       searchNew();
-    }, [relatedData]);
+      searchedData.filter((item) => {
+        if(item.label === name){
+          setRelatedData(item);
+        }
+      });
+    }, [searchedData, relatedData]);
 
   // useEffect(() => {
   //   const make = name.toLowerCase();
@@ -139,17 +143,20 @@ const SearchResult = () => {
                           href={curElem.externalLink}
                           className="card_postImg card_postImg_200"
                         >
-                          <img
-                            src={
-                              process.env.REACT_APP_URL + `${curElem.image_banner[0].imagePath}${curElem.image_banner[0].imageName}`
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.make}
-                          />
+                          {
+                            curElem?.image_banner &&
+                            <img
+                              src={
+                                process.env.REACT_APP_URL + `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.make}
+                            />
+                          }
                         </a>
                       ) : (
                         <Link
@@ -160,9 +167,10 @@ const SearchResult = () => {
                           }
                           className="card_postImg card_postImg_200"
                         >
-                          <img
+                          {curElem?.image_banner &&
+                            <img
                             src={
-                              process.env.REACT_APP_URL + `${curElem.image_banner[0].imagePath}${curElem.image_banner[0].imageName}`
+                              process.env.REACT_APP_URL + `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null;
@@ -171,6 +179,7 @@ const SearchResult = () => {
                             }}
                             alt={curElem.make}
                           />
+                          }
                         </Link>
                       )}
                       <div className="card_postInfo pt-3">
