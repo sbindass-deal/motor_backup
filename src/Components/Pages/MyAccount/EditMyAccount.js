@@ -77,9 +77,6 @@ function EditMyAccount() {
     const fetchUserDetails = async () => {
       try {
         const res = await axios.get(`${url}user_detail`);
-
-        console.log(68797, res)
-        
         const userLoginData = res.data.data;
         setEditUser({
           name: userLoginData.name,

@@ -11,8 +11,18 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
             Seller: <a href="#">{vehicle.name}</a>
             {/* <small>{vehicle.dealerId ? "Dealer" : "Private"}</small> */}
           </div>
+          {/* subscribed_to_seller */}
           <a onClick={handleSubscribe}>
-            <img src={bellIcon} alt="bellIcon" />
+            <img
+              style={{
+                backgroundColor: `${
+                  vehicle.subscribed_to_seller == 1 ? "gray" : ""
+                }`,
+                cursor: "pointer",
+              }}
+              src={bellIcon}
+              alt="bellIcon"
+            />
           </a>
         </div>
         <ul className="listFund">
