@@ -26,8 +26,107 @@ const AddGearProduct = () => {
   const [inputList, setInputList] = useState([]);
 
   const onAddBtnClick = event => {
-    setInputList(inputList.concat(<Input key={inputList.length} />));
+    // setInputList(inputList.concat(<Input key={inputList.length} />));
+    setInputList(inputList.concat(<div key={inputList.length} className="container d-flex">
+      <div className="col-md-12 col-lg-3 col-sm-12">
+        <div className="form-group">
+          <div>
+            <label>Price</label>
+            <input
+              className="field"
+              autoComplete="off"
+              name="price"
+              // onChange={(e) => {
+              //   if (e.target.value.length <= 10) {
+              //     setGetInputData({
+              //       ...getInputData,
+              //       price: [e.target.value],
+              //     });
+              //   }
+              // }}
+              value={getInputData.price[inputList.length]}
+              placeholder="$ Enter price"
+              type="number"
+              required={true}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-md-12 col-lg-3 col-sm-12">
+        <div className="form-group">
+          <div>
+            <label>Stock</label>
+            <input
+              name="stock"
+              className="field"
+              value={getInputData.stock[inputList.length]}
+              placeholder="Enter stock"
+              // onChange={(e) => {
+              //   if (e.target.value.length <= 10) {
+              //     setGetInputData({
+              //       ...getInputData,
+              //       stock: [e.target.value],
+              //     });
+              //   }
+              // }}
+              type="number"
+              required={true}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-md-12 col-lg-3 col-sm-12">
+        <div className="form-group">
+          <label htmlFor="">Size</label>
+          <select
+            name="sizeId"
+            // onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [e.target.value] }) }}
+            value={getInputData.sizeId[inputList.length]}
+            className="field"
+            required
+          >
+            <option selected disabled value="">
+              Select
+            </option>
+            {
+              size?.map((d, i) => {
+                return (
+                  <option key={i} value={`${d?.id}`}>{d?.size}</option>
+                )
+              })
+            }
+          </select>
+        </div>
+      </div>
+      <div className="col-md-12 col-lg-3 col-sm-12">
+        <div className="form-group">
+          <label htmlFor="">Color</label>
+          <select
+            name="colorId"
+            // onChange={(e) => { setGetInputData({ ...getInputData, colorId: [e.target.value] }) }}
+            value={getInputData.colorId[inputList.length]}
+            className="field"
+            required
+          >
+            <option selected disabled value="">
+              Select
+            </option>
+            {
+              color?.map((d, i) => {
+                return (
+                  <option key={i} value={`${d?.id}`} >{d?.color}</option>
+                )
+              })
+            }
+          </select>
+        </div>
+      </div>
+    </div>))
   };
+
+  console.log(inputList.length);
+
+  console.log(getInputData);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -216,8 +315,6 @@ const AddGearProduct = () => {
       <div className="container">
         <div className="row m-md-5 my-4">
           <div>
-            <button onClick={onAddBtnClick}>Add input</button>
-            {inputList}
           </div>
           <form>
             <div className="row">
@@ -281,14 +378,14 @@ const AddGearProduct = () => {
                       autoComplete="off"
                       name="price"
                       onChange={(e) => {
-                        if (e.target.value.length <= 10) {
+                        if (e.target.value.length <= 10 && e.target.value.length > 0) {
                           setGetInputData({
                             ...getInputData,
-                            price: [e.target.value],
+                            price: [...getInputData.price , e.target.value],
                           });
                         }
                       }}
-                      value={getInputData.price}
+                      //value={getInputData.price}
                       placeholder="$ Enter price"
                       type="number"
                       required={true}
@@ -313,13 +410,13 @@ const AddGearProduct = () => {
                     <input
                       name="stock"
                       className="field"
-                      value={getInputData.stock}
+                      // value={getInputData.stock}
                       placeholder="Enter stock"
                       onChange={(e) => {
-                        if (e.target.value.length <= 10) {
+                        if (e.target.value.length <= 10 && e.target.value.length > 0) {
                           setGetInputData({
                             ...getInputData,
-                            stock: [e.target.value],
+                            stock: [...getInputData.stock , e.target.value],
                           });
                         }
                       }}
@@ -351,7 +448,7 @@ const AddGearProduct = () => {
                   <label htmlFor="">Size</label>
                   <select
                     name="sizeId"
-                    onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [e.target.value] }) }}
+                    onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [...getInputData.sizeId , e.target.value] }) }}
                     value={getInputData.size}
                     className="field"
                     required
@@ -391,7 +488,7 @@ const AddGearProduct = () => {
                   <label htmlFor="">Color</label>
                   <select
                     name="colorId"
-                    onChange={(e) => { setGetInputData({ ...getInputData, colorId: [e.target.value] }) }}
+                    onChange={(e) => { setGetInputData({ ...getInputData, colorId: [...getInputData.colorId , e.target.value] }) }}
                     value={getInputData.color}
                     className="field"
                     required
@@ -411,9 +508,11 @@ const AddGearProduct = () => {
               </div>
               <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
                 <div className="form-group">
-                  <p className="border w-25 pl-1">+</p>
+                  {/* <p className="border w-25 pl-1">+</p> */}
+                  <button onClick={onAddBtnClick}>Add input</button>
                 </div>
               </div>
+              {inputList}
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="youtube_link"
