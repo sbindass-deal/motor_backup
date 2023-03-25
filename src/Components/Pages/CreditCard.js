@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import "react-credit-cards/es/styles-compiled.css";
 import Cards from "react-credit-cards";
+import axios from 'axios';
 
 const CreditCard = () => {
     const [number, SetNumber] = useState("");
@@ -12,6 +13,18 @@ const CreditCard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        
+        axios.post(`${process.env.REACT_APP_URL}savecard`, {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
 
   return (
