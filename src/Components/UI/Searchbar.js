@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { showResult } from "../../redux/reducers/dayAndNightMode";
 import axios from "axios";
+import { TextField } from "@mui/material";
 
 const Searchbar = () => {
   const dispatch = useDispatch();
@@ -47,12 +48,12 @@ const Searchbar = () => {
   //       (item.model && item.model.toLowerCase().includes(query))
   const searchResults = (query) => 
       vehicleBrand.filter((item) =>
-        (item.make && item.make.toLowerCase().includes(query))
+        (item.label && item.label.toLowerCase().includes(query))
       )
       .map((curElem, idx) => {
         return curElem &&  {
         
-          value: `${curElem.make}`,
+          value: `${curElem.label}`,
           label: (
             <Link
               to="/search"
@@ -62,7 +63,7 @@ const Searchbar = () => {
                 justifyContent: "space-between",
               }}
             >
-              <span>{curElem.make} {curElem.model}</span>
+              <span>{curElem.label}</span>
             </Link>
           ),
         };
@@ -109,17 +110,20 @@ const Searchbar = () => {
         }}
         onSearch={handleSearch}
         className="searchSec"
-      ></AutoComplete>
+      />
       <Link
         onClick={() => {
           dispatch(
-            showResult({ searchResult: searchText, searchKey: searchText })
+            showResult({ searchResult: searchText })
           );
         }}
         to="/search"
       >
         <i className="fa-solid fa-magnifying-glass"></i>
       </Link>
+      {/* <form>
+        <TextField label='Search' variant="standard" className="searchSec" />
+      </form> */}
     </div>
   );
 };

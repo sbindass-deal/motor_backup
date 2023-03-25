@@ -23,6 +23,7 @@ import {
 } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
+import { useRef } from "react";
 
 const UserVehicleDetails = () => {
   const { id } = useParams();
@@ -50,6 +51,7 @@ const UserVehicleDetails = () => {
   const [vehicleData, setVehicleData] = useState([]);
   const [bannerImage, setBannerImage] = useState([]);
   const [galleryImage, setGalleryImage] = useState([]);
+  const [galleryFile, setGalleryFile] = useState([]);
   const [documentImage, setDocumentImage] = useState([]);
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
@@ -58,6 +60,36 @@ const UserVehicleDetails = () => {
   const [issuesProblems, setIssuesProblems] = useState(
     EditorState.createEmpty()
   );
+  const inputRefBanner = useRef();
+
+  const handleDragOverBanner = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBanner = (event) => {
+    event.preventDefault();
+    setFile(event.dataTransfer.files);
+  };
+
+  const inputRefBannerG = useRef();
+  const handleDragOverBannerG = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBannerG = (event) => {
+    event.preventDefault();
+    setGalleryFile(event.dataTransfer.files);
+  };
+
+  const inputRefBannerD = useRef();
+  const handleDragOverBannerD = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDropBannerD = (event) => {
+    event.preventDefault();
+    setFile1(event.dataTransfer.files);
+  };
 
   const [namefield, setNamefield] = useState({
     name: "",
@@ -206,13 +238,32 @@ const UserVehicleDetails = () => {
     dispatch(step_three(false));
   }, []);
 
+  const uploadFileGallery = async (vehicleId) => {
+    (async () => {
+      for await (const item of galleryFile) {
+        const url = process.env.REACT_APP_URL + "updateVehicleImage";
+        const formData = new FormData();
+        formData.append("image[]", item);
+        formData.append("category", "Gallery");
+        formData.append("vehicleId", vehicleId);
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const data = await axios.post(url, formData, config);
+      }
+    })();
+  };
+
   const uploadFileOne = (vehicleId) => {
     (async () => {
       for await (const file1 of file) {
         const url = process.env.REACT_APP_URL + "updateVehicleImage";
         const formData = new FormData();
-        formData.append("image", file1);
-        formData.append("id", vehicleId);
+        formData.append("image[]", file1);
+        formData.append("category", "Banner");
+        formData.append("vehicleId", vehicleId);
         const newImagedata = formData;
         const config = {
           headers: {
@@ -588,7 +639,7 @@ const UserVehicleDetails = () => {
         // plantype: logingUser.planReducer.plan.listingType,
         name: iname,
         email: uemail,
-        premium: reduxValue.submitvechilesReducer.submitPlan,
+        // premium: reduxValue.submitvechilesReducer.submitPlan,
         userId: userDataLogin.login.user.id,
         year: year,
         make: make,
@@ -642,7 +693,7 @@ const UserVehicleDetails = () => {
         issuesorproblems: draftToHtml(
           convertToRaw(vehicleHistory.getCurrentContent())
         ),
-        status, // db me check karni h
+        // status, // db me check karni h
         otherTruckTitle,
         otherStatus,
         truckHistory,
@@ -656,6 +707,9 @@ const UserVehicleDetails = () => {
       .then((result) => {
         //navigaget
         if (result.data.status === 200) {
+          uploadFileOne(id);
+          uploadFileGallery(id);
+          uploadFileTwo(id);
           // navigate("/vehicle-submission");
           // submitApprove(data);
           // window.location.reload(false);
@@ -679,6 +733,21 @@ const UserVehicleDetails = () => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const handleDocumentImage = (i) => {
+    const newData = [...file1.slice(0, i), ...file1.slice(i + 1)];
+    setFile1(newData);
+  };
+
+  const handleBannerImage = (i) => {
+    const newData = [];
+    setFile(newData);
+  };
+
+  const handleGalleryImage = (i) => {
+    const newData = [...galleryFile.slice(0, i), ...galleryFile.slice(i + 1)];
+    setGalleryFile(newData);
   };
 
   return (
@@ -1154,9 +1223,9 @@ const UserVehicleDetails = () => {
                           <div className="form-group">
                             <label htmlFor="bannerImage">Banner Image</label>
                             <div className="imgCross">
-                              {Array.from(bannerImage).map((curElem) => {
+                              {Array.from(bannerImage).map((curElem, i) => {
                                 return (
-                                  <span>
+                                  <span key={i}>
                                     <img
                                       style={{
                                         maxWidth: "16%",
@@ -1171,25 +1240,86 @@ const UserVehicleDetails = () => {
                                       }}
                                       alt="Maskgroup1"
                                     />
-                                    <button className="close">x</button>
+                                    <button
+                                      onClick={() =>
+                                        handleDeleteImage(curElem.id)
+                                      }
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button>
                                   </span>
                                 );
                               })}
-                              {/* <input
-                                style={{
-                                  fontSize: "1.2rem",
-                                  textAlign: "center",
-                                }}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="row">
+                            <div className="imgCross">
+                              {Array.from(file).map((items, i) => {
+                                return (
+                                  <span>
+                                    <img
+                                      src={
+                                        items
+                                          ? URL.createObjectURL(items)
+                                          : null
+                                      }
+                                      style={{
+                                        width: "100px",
+                                        height: "100px",
+                                        objectFit: "cover",
+                                        padding: "15px",
+                                      }}
+                                    />
+                                    <button
+                                      onClick={() => handleBannerImage(i)}
+                                      type="button"
+                                      className="close"
+                                    >
+                                      X
+                                    </button>
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          <div className="form-group">
+                            <div
+                              className="dropzone"
+                              onDragOver={handleDragOverBanner}
+                              onDrop={handleDropBanner}
+                            >
+                              <h3>Drag and Drop Files to Upload</h3>
+                              <h3>Or</h3>
+                              <input
                                 onChange={(e) => {
-                                  // handleNameField(e);
-                                  setFile(e.target.files);
+                                  return setFile(e.target.files);
                                 }}
                                 name="file"
                                 type="file"
-                                accept="image/png, image/jpeg"
-                              /> */}
+                                accept="image/gif, image/jpeg, image/png, image/jpg"
+                                ref={inputRefBanner}
+                                hidden
+                              />
+                              <button
+                                className="orange_btn"
+                                type="button"
+                                onClick={() => inputRefBanner.current.click()}
+                              >
+                                Select Files
+                              </button>
                             </div>
                           </div>
+                        </div>
+                        <div className="col-12">
+                          <p className="small">
+                            Accepted file types: jpg, jpeg, png, Max. file size:
+                            8 MB
+                          </p>
                         </div>
                         <div className="col-12 col-sm-12 col-md-12">
                           <div className="form-group">
@@ -1224,21 +1354,80 @@ const UserVehicleDetails = () => {
                                   </span>
                                 );
                               })}
-                              {/* <input
-                                style={{
-                                  fontSize: "1.2rem",
-                                  textAlign: "center",
-                                }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <div className="row">
+                              <div className="imgCross">
+                                {Array.from(galleryFile).map((items, i) => {
+                                  return (
+                                    <span key={i}>
+                                      <img
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "100px",
+                                          height: "100px",
+                                          objectFit: "cover",
+                                          padding: "15px",
+                                        }}
+                                      />
+                                      <button
+                                        className="close"
+                                        type="button"
+                                        onClick={() => handleGalleryImage(i)}
+                                      >
+                                        X
+                                      </button>
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            <div
+                              className="dropzone"
+                              onDragOver={handleDragOverBannerG}
+                              onDrop={handleDropBannerG}
+                            >
+                              <h3>Drag and Drop Files to Upload</h3>
+                              <h3>Or</h3>
+                              <input
                                 onChange={(e) => {
-                                  // handleNameField(e);
-                                  setFile(e.target.files);
+                                  setGalleryFile((prevState) => [
+                                    ...prevState,
+                                    ...e.target.files,
+                                  ]);
                                 }}
                                 name="file"
                                 type="file"
-                                accept="image/png, image/jpeg"
-                              /> */}
+                                accept="image/gif, image/jpeg, image/png, image/jpg"
+                                ref={inputRefBannerG}
+                                multiple
+                                hidden
+                              />
+                              <button
+                                className="orange_btn"
+                                type="button"
+                                onClick={() => inputRefBannerG.current.click()}
+                              >
+                                Select Files
+                              </button>
                             </div>
                           </div>
+                        </div>
+
+                        <div className="col-12">
+                          <p className="small">
+                            Accepted file types: jpg, jpeg, png, Max. file size:
+                            8 MB
+                          </p>
                         </div>
 
                         <div className="col-12">
@@ -1669,19 +1858,67 @@ const UserVehicleDetails = () => {
                                   </span>
                                 );
                               })}
-                              {/* <input
-                                style={{
-                                  fontSize: "1.2rem",
-                                  textAlign: "center",
-                                }}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-12">
+                          <div className="form-group">
+                            <div className="row">
+                              <div className="imgCross">
+                                {Array.from(file1).map((items, i) => {
+                                  return (
+                                    <span key={i} className="px-1">
+                                      <img
+                                        src={
+                                          items
+                                            ? URL.createObjectURL(items)
+                                            : null
+                                        }
+                                        style={{
+                                          width: "70px",
+                                          objectFit: "cover",
+                                        }}
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => handleDocumentImage(i)}
+                                        className="close"
+                                      >
+                                        x
+                                      </button>
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            <div
+                              className="dropzone"
+                              onDragOver={handleDragOverBannerD}
+                              onDrop={handleDropBannerD}
+                            >
+                              <h3>Drag and Drop Files to Upload</h3>
+                              <h3>Or</h3>
+                              <input
                                 onChange={(e) => {
-                                  // handleNameField(e);
-                                  setFile(e.target.files);
+                                  setFile1((prevState) => [
+                                    ...prevState,
+                                    ...e.target.files,
+                                  ]);
                                 }}
-                                name="file"
+                                name="files"
                                 type="file"
-                                accept="image/png, image/jpeg"
-                              /> */}
+                                multiple
+                                ref={inputRefBannerD}
+                                hidden
+                              />
+                              <button
+                                className="orange_btn"
+                                type="button"
+                                onClick={() => inputRefBannerD.current.click()}
+                              >
+                                Select Files
+                              </button>
                             </div>
                           </div>
                         </div>
