@@ -274,77 +274,51 @@ const EventDetailPage = () => {
 
 
           <div className="col-12 pt-3">
-          <div key={i} className="commentRow">
+            {
+              getCommentData?.reverse()?.map((curVal,i) => {
+                return <div key={i} className="commentRow">
                   <div className="commentHead">
                     <div className="com_byPic">
-                      {/* <img src={men_face} /> */}
                       <AccountCircleIcon />
                     </div>
-                    <div className="com_by">{"curElem.name"}</div>
+                    <div className="com_by">{"User name"}</div>
                     <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
-                      {curElem.created_at &&
-                        new Date(curElem.created_at).toLocaleString()}
+                      {
+                        new Date().toLocaleString()
+                      }
                     </div>
                   </div>
                   <div className="commentBody">
-                    {curElem.category === "bid" ? (
-                      <p className=" p-2 text-danger fw-bolder">
-                        <strong>
-                          ${" "}
-                          {curElem?.bid_amount && toCommas(curElem?.bid_amount)}{" "}
-                          bid placed
-                        </strong>
-                      </p>
-                    ) : (
-                      <p className="p-2">{curElem?.description}</p>
-                    )}
-                  </div>
-                  {curElem.category !== "bid" && (
-                    <div className="commentFooter">
-                      <a
-                        onClick={() => handleLikeDislike(curElem.id, 1)}
-                        className="mr-3"
-                      >
-                        <i
-                          className={`fa-solid fa-thumbs-up ${
-                            curElem.user_reaction_on_commnet == 1 &&
-                            "text-warning"
-                          }`}
-                        ></i>{" "}
-                        {curElem?.Like_count}
-                      </a>
-                      <a
-                        onClick={() => handleLikeDislike(curElem.id, 2)}
-                        className="mr-3"
-                      >
-                        <i
-                          className={`fa-solid fa-thumbs-down ${
-                            curElem.user_reaction_on_commnet == 2 &&
-                            "text-warning"
-                          }`}
-                        ></i>{" "}
-                        {curElem?.Dislike_count}
-                      </a>
-                    </div>
-                  )}
-                </div>
-            {/* <div className="commentRow">
-              {
-                getCommentData?.reverse()?.map((curVal,i) => {
-                  return <div key={i} className="commentRow">
-                  
-                    <div className="commentBody">
-                      <p>{curVal?.description}</p>
-                    </div>
-                   
-                    <i onClick={() => handleDelete(curVal.id)} class="fa-solid fa-trash"></i>
-                  </div>
-                })
-              }
 
+                    <p className="p-2">{curVal?.description}</p>
 
-            </div> */}
+                  </div>
+
+                  <div className="commentFooter">
+                    <a
+                      // onClick={() => handleLikeDislike(curElem.id, 1)}
+                      className="mr-3"
+                    >
+                      <i
+                        className={`fa-solid fa-thumbs-up `}
+                      ></i>{" "}
+                      {45}
+                    </a>
+                    <a
+                      // onClick={() => handleLikeDislike(curElem.id, 2)}
+                      className="mr-3"
+                    >
+                      <i
+                        className={`fa-solid fa-thumbs-down `}
+                      ></i>{" "}
+                      {8}
+                    </a>
+                  </div>
+
+                </div> 
+              })
+}
           </div>
 
           <div></div>
@@ -355,3 +329,6 @@ const EventDetailPage = () => {
 };
 
 export default EventDetailPage;
+
+
+
