@@ -6841,9 +6841,31 @@ footer {
 }
 .desCrtpion {
   min-height: 30vh;
-  border: 1px solid #cfd4da;
+  border: 1px solid #333333;
   padding: 10px;
   border-radius: 5px;
 }
+.dropzone {  border: 2px dashed rgb(51 51 51);}
 
-.desCrtpion .rdw-editor-toolbar { background: #ffffff00;}
+.desCrtpion .rdw-editor-toolbar {
+  background: #ffffff00;
+  border: navajowhite;
+}
+/* .desCrtpion .rdw-option-wrapper{
+  border: 1px solid #f7931a;
+    background: #f7931a;
+}
+.light .desCrtpion .rdw-option-wrapper{
+  border: 1px solid #000;
+    background: transparent;
+} */
+
+.mtb-3{
+  margin: 15px 0px;
+}
+.DraftEditor-editorContainer span{
+  color: #fff;
+}
+.light .DraftEditor-editorContainer span{
+  color: #000;
+}
