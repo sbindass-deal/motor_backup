@@ -12,8 +12,11 @@ export default function GearInventry() {
     const [category, setCategory] = useState();
     const [size, setSize] = useState();
     const [color, setColor] = useState();
-    const [inputColor , setInputColor] = useState();
+    const [editColor, setEditColor] = useState("");
+    const [editSize, setEditSize] = useState("");
+    const [editCategory, setEditCategory] = useState("");
 
+    console.log(editColor);
 
     useEffect(() => {
 
@@ -107,13 +110,26 @@ export default function GearInventry() {
                                     <div className='d-flex'><input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} /><a onClick={handleAddColor}><i className="fa fa-plus-circle p-2 text-success d-block" aria-hidden="true"></i></a></div>
                                     {
                                         color?.map((d, i) => {
-                                            let a = d?.color
                                             return (
                                                 <div key={i} className='d-flex'>
-                                                    <input value={a} onChange={(e) => {a = e.target.value}} className='border-0' type="text " />
-                                                    <a><i className="fa fa-check p-2 text-success d-block" aria-hidden="true"></i></a>
+                                                    <input placeholder={d?.color} className='border-0' type="text" onChange={(e) => { setEditColor(e.target.value) }} />
                                                     <a
-                                                    onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}
+                                                        onClick={async () => {
+                                                            let a = await axios({
+                                                                method: "post",
+                                                                url: `${process.env.REACT_APP_URL}updateColors`,
+                                                                "Authorization": TOKEN,
+                                                                data: {
+                                                                    color: editColor,
+                                                                    id: d?.id
+                                                                }
+                                                            })
+                                                            if (a) { setRefresh(!refresh) }
+                                                        }
+                                                        }
+                                                    ><i className="fa fa-check p-2 text-success d-block" aria-hidden="true"></i></a>
+                                                    <a
+                                                        onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteColors/${d.id}`); if (a) { setRefresh(!refresh) } }}
                                                     >
                                                         <i className="fa fa-trash p-2 text-danger d-block" aria-hidden="true"></i>
                                                     </a>
@@ -129,9 +145,36 @@ export default function GearInventry() {
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <div className='d-flex'><input type="text" value={addNewSize} placeholder="Add New Size" onChange={(e) => { setAddNewSize(e.target.value) }} /><a onClick={handleAddSize}><i className="fa fa-plus-circle p-2 text-success d-block" aria-hidden="true"></i></a></div>
+                                    {
+                                        size?.map((d, i) => {
+                                            return (
+                                                <div key={i} className='d-flex'>
+                                                    <input placeholder={d?.size} className='border-0' type="text" onChange={(e) => { setEditSize(e.target.value) }} />
+                                                    <a
+                                                        onClick={async () => {
+                                                            let a = await axios({
+                                                                method: "post",
+                                                                url: `${process.env.REACT_APP_URL}updateSize`,
+                                                                "Authorization": TOKEN,
+                                                                data: {
+                                                                    size: editSize,
+                                                                    id: d?.id
+                                                                }
+                                                            })
+                                                            if (a) { setRefresh(!refresh) }
+                                                        }
+                                                        }
+                                                    ><i className="fa fa-check p-2 text-success d-block" aria-hidden="true"></i></a>
+                                                    <a
+                                                        onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteSize/${d.id}`); if (a) { setRefresh(!refresh) } }}
+                                                    >
+                                                        <i className="fa fa-trash p-2 text-danger d-block" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </ul>
                             </div>
                             <div class="dropdown">
@@ -140,13 +183,41 @@ export default function GearInventry() {
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <div className='d-flex'><input type="text" value={addNewCategory} placeholder="Add New Category" onChange={(e) => { setAddNewCategory(e.target.value) }} /><a onClick={handleAddcategory}><i className="fa fa-plus-circle p-2 text-success d-block" aria-hidden="true"></i></a></div>
+                                    {
+                                        category?.map((d, i) => {
+                                            return (
+                                                <div key={i} className='d-flex'>
+                                                    <input placeholder={d?.category} className='border-0' type="text" onChange={(e) => { setEditCategory(e.target.value) }} />
+                                                    <a
+                                                        onClick={async () => {
+                                                            let a = await axios({
+                                                                method: "post",
+                                                                url: `${process.env.REACT_APP_URL}updateCategory`,
+                                                                "Authorization": TOKEN,
+                                                                data: {
+                                                                    category: editCategory,
+                                                                    id: d?.id ,
+                                                                    description : ""
+                                                                }
+                                                            })
+                                                            if (a) { setRefresh(!refresh) }
+                                                        }
+                                                        }
+                                                    ><i className="fa fa-check p-2 text-success d-block" aria-hidden="true"></i></a>
+                                                    <a
+                                                        onClick={async () => { let a = await axios.delete(`${process.env.REACT_APP_URL}deleteCategory/${d.id}`); if (a) { setRefresh(!refresh) } }}
+                                                    >
+                                                        <i className="fa fa-trash p-2 text-danger d-block" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </ul>
                             </div>
                         </div>
-                        <div className='d-flex'>
+                        {/* <div className='d-flex'>
                             <div>
                                 <div><h6>Add New Color</h6></div>
                                 <div className="d-flex">
@@ -207,7 +278,7 @@ export default function GearInventry() {
                                     })
                                 }
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
