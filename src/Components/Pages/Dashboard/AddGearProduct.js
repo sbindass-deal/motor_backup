@@ -24,9 +24,26 @@ const AddGearProduct = () => {
   const [addNewSize, setAddNewSize] = useState("");
   const [addNewCategory, setAddNewCategory] = useState("");
   const [inputList, setInputList] = useState([]);
+  const [pushColor , setPushColor] = useState();
+  const [pushStock , setPushStock] = useState();
+
+  const handlePrice = () => {
+    // setGetInputData({
+    //   ...getInputData,
+    //   stock: [...getInputData.stock ,pushStock],
+    // });
+
+    setGetInputData({
+      ...getInputData,
+      price: [...getInputData.price , pushColor],
+      stock: [...getInputData.stock ,pushStock],
+    });
+  }
 
   const onAddBtnClick = event => {
-    // setInputList(inputList.concat(<Input key={inputList.length} />));
+
+    
+    
     setInputList(inputList.concat(<div key={inputList.length} className="container d-flex">
       <div className="col-md-12 col-lg-3 col-sm-12">
         <div className="form-group">
@@ -123,8 +140,6 @@ const AddGearProduct = () => {
       </div>
     </div>))
   };
-
-  console.log(inputList.length);
 
   console.log(getInputData);
 
@@ -379,10 +394,11 @@ const AddGearProduct = () => {
                       name="price"
                       onChange={(e) => {
                         if (e.target.value.length <= 10 && e.target.value.length > 0) {
-                          setGetInputData({
-                            ...getInputData,
-                            price: [...getInputData.price , e.target.value],
-                          });
+                          // setGetInputData({
+                          //   ...getInputData,
+                          //   price: [...getInputData.price , e.target.value],
+                          // });
+                          setPushColor(e.target.value)
                         }
                       }}
                       //value={getInputData.price}
@@ -393,6 +409,7 @@ const AddGearProduct = () => {
                   </div>
                 </div>
               </div>
+              
               <div className="col-md-12 col-lg-3 col-sm-12">
                 {/* <FormInput
                   name="stock"
@@ -414,10 +431,7 @@ const AddGearProduct = () => {
                       placeholder="Enter stock"
                       onChange={(e) => {
                         if (e.target.value.length <= 10 && e.target.value.length > 0) {
-                          setGetInputData({
-                            ...getInputData,
-                            stock: [...getInputData.stock , e.target.value],
-                          });
+                          setPushStock(e.target.value)
                         }
                       }}
                       type="number"
@@ -510,6 +524,7 @@ const AddGearProduct = () => {
                 <div className="form-group">
                   {/* <p className="border w-25 pl-1">+</p> */}
                   <button onClick={onAddBtnClick} className="mt-4 border-0 p-1 bg-success text-light">Add input</button>
+                  <a onClick={handlePrice}>+</a>
                 </div>
               </div>
               {inputList}
@@ -530,7 +545,7 @@ const AddGearProduct = () => {
                   required={true}
                 />
               </div>
-              <div>
+              {/* <div>
                 <div><h6>Add New Color</h6></div>
                 <div className="d-flex">
                   <input type="text" value={addNewColor} placeholder="Add New Color" onChange={(e) => { setAddNewColor(e.target.value) }} />
@@ -589,7 +604,7 @@ const AddGearProduct = () => {
                     )
                   })
                 }
-              </div>
+              </div> */}
               <div className="col-md-12 col-sm-12 mb-3">
                 <label
                   htmlFor="exampleFormControlTextarea1"
