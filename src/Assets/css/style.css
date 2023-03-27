@@ -912,7 +912,8 @@ footer h6:before {
 .postHero img {
   min-width: 100%;
   min-height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  border: 1px solid #f7f7f7;
 }
 
 .dropdownCol {
@@ -3637,7 +3638,7 @@ table.tikTable tr td:first-child {
 video#myVideo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: unset; */
 }
 
 .carLottery .container-fluid,
@@ -6685,3 +6686,10 @@ footer { margin-top: 60px;}
 .light .auctionLive .card_post { background: #f0f0f0;}
 .commentHead svg.MuiSvgIcon-root { filter: drop-shadow(2px 4px 6px black);}
 .light .commentHead svg.MuiSvgIcon-root { filter: invert(1);}
+
+.eye_child.eye_login {
+  filter: invert(1);
+}
+.light .eye_child.eye_login {
+  filter: initial;
+}
