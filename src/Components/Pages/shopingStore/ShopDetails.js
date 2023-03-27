@@ -12,7 +12,7 @@ import { addProduct } from "../../../redux/reducers/cartSlice";
 import { toast } from "react-toastify";
 import { Carousel } from "antd";
 import { Image } from "antd";
-const ShopDetails = () => {
+const   ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
@@ -42,9 +42,12 @@ const ShopDetails = () => {
         `${process.env.REACT_APP_URL}allproduct`
       ).then((d) => {
         d?.data?.data?.product.map((d, i) => {
-          if (d?.id == id)
+          if (d?.id == id){
+            setProductId(d?.product_inventry[0].id)
             setProduct(d)
-        })
+          }
+        });
+        
       })
       setLoading(false);
     } catch (err) {
@@ -57,9 +60,16 @@ const ShopDetails = () => {
         setSize(d?.data?.data);
         })
 
-        setProductId( product?.product_inventry[0]?.id)
+        // setProductId( product?.product_inventry?.filter((d , i) => {
+        //   if(i == 0)
+        //   return d?.id
+        // }))
+
+
+        console.log(productId);
 
   }, [id]);
+
 
   const handleProduct = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));

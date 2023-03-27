@@ -4,12 +4,10 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
-
-const Input = () => {
-  return <input placeholder="Your input here" />;
-};
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const AddGearProduct = () => {
+
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,129 +17,23 @@ const AddGearProduct = () => {
   const [getInputData, setGetInputData] = useState({ title: "", category: "", price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
-  const [refresh, setRefresh] = useState(false);
-  const [addNewColor, setAddNewColor] = useState("");
-  const [addNewSize, setAddNewSize] = useState("");
-  const [addNewCategory, setAddNewCategory] = useState("");
-  const [inputList, setInputList] = useState([]);
-  const [pushColor , setPushColor] = useState();
-  const [pushStock , setPushStock] = useState();
+  const inventry = { price: [], stock: [], sizeId: [], colorId: [] };
+  const [dataInventry, setDataInventry] = useState([inventry]);
 
-  const handlePrice = () => {
-    // setGetInputData({
-    //   ...getInputData,
-    //   stock: [...getInputData.stock ,pushStock],
-    // });
-
-    setGetInputData({
-      ...getInputData,
-      price: [...getInputData.price , pushColor],
-      stock: [...getInputData.stock ,pushStock],
-    });
+  const addInventry = (e, index) => {
+    setDataInventry([...dataInventry, inventry])
   }
 
-  const onAddBtnClick = event => {
+  const onchangeInventry = (e, index) => {
+    const updatedInventry = dataInventry?.map((d, i) => index == i ?
+      Object.assign(d, { [e.target.name]: e.target.value })
+      : d
+    )
 
-    
-    
-    setInputList(inputList.concat(<div key={inputList.length} className="container d-flex">
-      <div className="col-md-12 col-lg-3 col-sm-12">
-        <div className="form-group">
-          <div>
-            <label>Price</label>
-            <input
-              className="field"
-              autoComplete="off"
-              name="price"
-              // onChange={(e) => {
-              //   if (e.target.value.length <= 10) {
-              //     setGetInputData({
-              //       ...getInputData,
-              //       price: [e.target.value],
-              //     });
-              //   }
-              // }}
-              value={getInputData.price[inputList.length]}
-              placeholder="$ Enter price"
-              type="number"
-              required={true}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="col-md-12 col-lg-3 col-sm-12">
-        <div className="form-group">
-          <div>
-            <label>Stock</label>
-            <input
-              name="stock"
-              className="field"
-              value={getInputData.stock[inputList.length]}
-              placeholder="Enter stock"
-              // onChange={(e) => {
-              //   if (e.target.value.length <= 10) {
-              //     setGetInputData({
-              //       ...getInputData,
-              //       stock: [e.target.value],
-              //     });
-              //   }
-              // }}
-              type="number"
-              required={true}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="col-md-12 col-lg-3 col-sm-12">
-        <div className="form-group">
-          <label htmlFor="">Size</label>
-          <select
-            name="sizeId"
-            // onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [e.target.value] }) }}
-            value={getInputData.sizeId[inputList.length]}
-            className="field"
-            required
-          >
-            <option selected disabled value="">
-              Select
-            </option>
-            {
-              size?.map((d, i) => {
-                return (
-                  <option key={i} value={`${d?.id}`}>{d?.size}</option>
-                )
-              })
-            }
-          </select>
-        </div>
-      </div>
-      <div className="col-md-12 col-lg-3 col-sm-12">
-        <div className="form-group">
-          <label htmlFor="">Color</label>
-          <select
-            name="colorId"
-            // onChange={(e) => { setGetInputData({ ...getInputData, colorId: [e.target.value] }) }}
-            value={getInputData.colorId[inputList.length]}
-            className="field"
-            required
-          >
-            <option selected disabled value="">
-              Select
-            </option>
-            {
-              color?.map((d, i) => {
-                return (
-                  <option key={i} value={`${d?.id}`} >{d?.color}</option>
-                )
-              })
-            }
-          </select>
-        </div>
-      </div>
-    </div>))
-  };
+    setDataInventry(updatedInventry);
+  }
 
-  console.log(getInputData);
+  console.log()
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -191,13 +83,15 @@ const AddGearProduct = () => {
     });
 
   const handleApi = async (e) => {
+    
     e.preventDefault();
+    
     axios
       .post(`${process.env.REACT_APP_URL}addproduct`, {
-        stock: getInputData.stock,
-        colorId: getInputData.colorId,
-        sizeId: getInputData.sizeId,
-        price: getInputData.price,
+        stock: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.stock),
+        colorId: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.colorId),
+        sizeId: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.sizeId),
+        price: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.price),
         title: getInputData.title,
         description: getInputData.description,
         category: getInputData.category,
@@ -205,18 +99,21 @@ const AddGearProduct = () => {
       })
       .then(async function (response) {
         if (response.status === 200) {
+          setLoading(true)
           let a = await uploadFileOne(response.data.data.id);
           if (a) {
             notify("Added successfully !");
             navigate("/gear-product");
             notify("Added successfully !");
             window.location.reload(false);
+            setLoading(false)
           }
         }
       })
       .catch(function (error) {
         console.log(error);
       });
+     
   };
 
 
@@ -240,91 +137,11 @@ const AddGearProduct = () => {
       "Authorization": TOKEN
     }).then((d) => { setCategory(d.data.data); });
 
-  }, [refresh])
+  }, [])
 
-
-  const handleAddColor = () => {
-    if (addNewColor == "")
-      return alert("Please Enter Something");
-    axios({
-      method: "post",
-      data: {
-        color: addNewColor
-      },
-      url: `${process.env.REACT_APP_URL}addColors`,
-      "Authorization": TOKEN
-    }).then(() => {
-      setAddNewColor("");
-      setRefresh(!refresh);
-    })
+  if (loading) {
+    return <SmallSpinner spin={true} />;
   }
-
-
-  const handleAddSize = () => {
-    if (addNewSize == "")
-      return alert("Please Enter Something");
-    axios({
-      method: "post",
-      data: {
-        size: addNewSize
-      },
-      url: `${process.env.REACT_APP_URL}addSize`,
-      "Authorization": TOKEN
-    }).then(() => {
-      setAddNewSize("");
-      setRefresh(!refresh);
-    })
-  }
-
-  const handleAddcategory = () => {
-    if (addNewCategory == "")
-      return alert("Please Enter Something");
-    axios({
-      method: "post",
-      data: {
-        category: addNewCategory
-      },
-      url: `${process.env.REACT_APP_URL}addproductCategory`,
-      "Authorization": TOKEN
-    }).then(() => {
-      setAddNewCategory("");
-      setRefresh(!refresh);
-    })
-  }
-
-
-
-  // const handleApi = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   const url = `${process.env.REACT_APP_URL}addproduct`;
-  //   let formdata = new FormData();
-  //   formdata.append("title", getInputData.name);
-  //   formdata.append("price", getInputData.price);
-  //   formdata.append("description", getInputData.desc);
-  //   formdata.append("category", getInputData.category);
-  //   formdata.append("stocks", getInputData.stock);
-  //   formdata.append("color", getInputData.color);
-  //   formdata.append("size", getInputData.size);
-  //   formdata.append("image", file);
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-
-  //   await axios
-  //     .post(url, formdata, config)
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         navigate("/gear-product");
-  //         window.location.reload(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
   return (
     <>
       <div className="container">
@@ -373,161 +190,106 @@ const AddGearProduct = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-md-12 col-lg-3 col-sm-12">
-                {/* <FormInput
-                  name="price"
-                  onChange={handleOnChange}
-                  value={getInputData.price}
-                  placeholder="$ Enter price"
-                  // errorMessage="Price should be 1-9 characters and shouldn't include any special character and alphabet!"
-                  label="Price"
-                  type="number"
-                  // pattern="^[0-9.]{1,9}$"
-                  required={true}
-                /> */}
-                <div className="form-group">
-                  <div>
-                    <label>Price</label>
-                    <input
-                      className="field"
-                      autoComplete="off"
-                      name="price"
-                      onChange={(e) => {
-                        if (e.target.value.length <= 10 && e.target.value.length > 0) {
-                          // setGetInputData({
-                          //   ...getInputData,
-                          //   price: [...getInputData.price , e.target.value],
-                          // });
-                          setPushColor(e.target.value)
-                        }
-                      }}
-                      //value={getInputData.price}
-                      placeholder="$ Enter price"
-                      type="number"
-                      required={true}
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="col-md-12 col-lg-3 col-sm-12">
-                {/* <FormInput
-                  name="stock"
-                  onChange={handleOnChange}
-                  value={getInputData.stock}
-                  placeholder="Enter stock"
-                  errorMessage="Stock should be 1-9 characters and shouldn't include any special character and alphabet!"
-                  label="Stock"
-                  pattern="^[0-9]{1,9}$"
-                  required={true}
-                /> */}
-                <div className="form-group">
-                  <div>
-                    <label>Stock</label>
-                    <input
-                      name="stock"
-                      className="field"
-                      // value={getInputData.stock}
-                      placeholder="Enter stock"
-                      onChange={(e) => {
-                        if (e.target.value.length <= 10 && e.target.value.length > 0) {
-                          setPushStock(e.target.value)
-                        }
-                      }}
-                      type="number"
-                      required={true}
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* <div className="col-md-12 col-lg-6 col-sm-12">
-                <FormInput
-                  name="size"
-                  onChange={(e) => {
-                    setGetInputData({
-                      ...getInputData,
-                      size: [e.target.value],
-                    });
-                  }}
-                  value={getInputData.size}
-                  placeholder="Enter size"
-                  errorMessage="Size should be 1-80 characters and shouldn't include any number!"
-                  label="Size"
-                  pattern="^[A-Za-z0-9-:/ ]{1,80}$"
-                  required={true}
-                />
-              </div> */}
-              <div className="col-md-12 col-lg-3 col-sm-12">
-                <div className="form-group">
-                  <label htmlFor="">Size</label>
-                  <select
-                    name="sizeId"
-                    onChange={(e) => { setGetInputData({ ...getInputData, sizeId: [...getInputData.sizeId , e.target.value] }) }}
-                    value={getInputData.size}
-                    className="field"
-                    required
-                  >
-                    <option selected disabled value="">
-                      Select
-                    </option>
-                    {
-                      size?.map((d, i) => {
-                        return (
-                          <option key={i} value={`${d?.id}`}>{d?.size}</option>
-                        )
-                      })
-                    }
-                  </select>
-                </div>
-              </div>
-              {/* <div className="col-md-12 col-lg-6 col-sm-12">
-                <FormInput
-                  name="color"
-                  onChange={(e) => {
-                    setGetInputData({
-                      ...getInputData,
-                      color: [e.target.value],
-                    });
-                  }}
-                  value={getInputData.color}
-                  placeholder="Enter color"
-                  errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
-                  label="Color"
-                  pattern="^[A-Za-z ]{1,80}$"
-                  required={true}
-                />
-              </div> */}
-              <div className="col-md-12 col-lg-2 col-sm-12">
-                <div className="form-group">
-                  <label htmlFor="">Color</label>
-                  <select
-                    name="colorId"
-                    onChange={(e) => { setGetInputData({ ...getInputData, colorId: [...getInputData.colorId , e.target.value] }) }}
-                    value={getInputData.color}
-                    className="field"
-                    required
-                  >
-                    <option selected disabled value="">
-                      Select
-                    </option>
-                    {
-                      color?.map((d, i) => {
-                        return (
-                          <option key={i} value={`${d?.id}`} >{d?.color}</option>
-                        )
-                      })
-                    }
-                  </select>
-                </div>
-              </div>
+              {
+                dataInventry?.map((dataInventry2, index) => {
+                  return (
+                    <>
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <div>
+                            <label>Price</label>
+                            <input
+                              className="field"
+                              autoComplete="off"
+                              name="price"
+                              onChange={(e) => {
+                                if (e.target.value.length <= 10 && e.target.value.length > 0) {
+                                  onchangeInventry(e, index)
+                                }
+                              }}
+                              placeholder="$ Enter price"
+                              type="number"
+                              required={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <div>
+                            <label>Stock</label>
+                            <input
+                              name="stock"
+                              className="field"
+                              placeholder="Enter stock"
+                              onChange={(e) => {
+                                if (e.target.value.length <= 10 && e.target.value.length > 0) {
+                                  onchangeInventry(e, index)
+                                }
+                              }}
+                              type="number"
+                              required={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="">Size</label>
+                          <select
+                            name="sizeId"
+                            onChange={(e) => { onchangeInventry(e, index) }}
+                            value={getInputData.size}
+                            className="field"
+                            required
+                          >
+                            <option selected disabled value="">
+                              Select
+                            </option>
+                            {
+                              size?.map((d, i) => {
+                                return (
+                                  <option key={i} value={`${d?.id}`}>{d?.size}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-2 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="">Color</label>
+                          <select
+                            name="colorId"
+                            onChange={(e) => { onchangeInventry(e, index)}}
+                            value={getInputData.color}
+                            className="field"
+                            required
+                          >
+                            <option selected disabled value="">
+                              Select
+                            </option>
+                            {
+                              color?.map((d, i) => {
+                                return (
+                                  <option key={i} value={`${d?.id}`} >{d?.color}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    </>
+                  )
+                })
+              }
               <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
                 <div className="form-group">
                   {/* <p className="border w-25 pl-1">+</p> */}
-                  <button onClick={onAddBtnClick} className="mt-4 border-0 p-1 bg-success text-light">Add input</button>
-                  <a onClick={handlePrice}>+</a>
+                  <button onClick={addInventry} className="mt-4 border-0 p-1 bg-success text-light">Add input</button>
                 </div>
               </div>
-              {inputList}
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="youtube_link"
@@ -696,15 +458,11 @@ const AddGearProduct = () => {
               </div>
             </div>
             <div className="text-center my-5">
-              {loading ? (
-                <button type="button" className="btn btn-secondary " disabled>
-                  Loading...
-                </button>
-              ) : (
+              {
                 <button onClick={handleApi} type="button" className="btn">
                   Submit
                 </button>
-              )}
+              }
             </div>
           </form>
         </div>

@@ -43,11 +43,11 @@ useEffect(() => {
           <div className="d-flex border">
             <div className="w-25">
               {
-                images.map((d, i) => {
+                images?.map((d, i) => {
                   return (
                     <img
                       onClick={() => setImageValsue(i)}
-                      src={`${process.env.REACT_APP_URL}upload/products/${d.image}`}
+                      src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
                       alt={title}
                     />
                   )
@@ -57,7 +57,7 @@ useEffect(() => {
             <div className="w-100">
               <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
                 <img
-                  src={`${process.env.REACT_APP_URL}upload/products/${images[imageValue].image}`}
+                  src={`${process.env.REACT_APP_URL}upload/products/${images[imageValue]?.image}`}
                   alt={title}
                 />
               </Link>

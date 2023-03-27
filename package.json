@@ -20,6 +20,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "ethers": "^5.7.2",
+    "force": "^0.0.3",
     "html-react-parser": "^3.0.9",
     "mdb-react-ui-kit": "^5.0.0",
     "moment": "^2.29.4",
