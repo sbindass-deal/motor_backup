@@ -12,7 +12,7 @@ import { addProduct } from "../../../redux/reducers/cartSlice";
 import { toast } from "react-toastify";
 import { Carousel } from "antd";
 import { Image } from "antd";
-const ShopDetails = () => {
+const   ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
@@ -21,6 +21,7 @@ const ShopDetails = () => {
   const [addButton, setAddButton] = useState(false);
   const [index, setIndex] = useState();
   const [size , setSize] = useState();
+  const [productId , setProductId] = useState();
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -41,9 +42,12 @@ const ShopDetails = () => {
         `${process.env.REACT_APP_URL}allproduct`
       ).then((d) => {
         d?.data?.data?.product.map((d, i) => {
-          if (d?.id == id)
+          if (d?.id == id){
+            setProductId(d?.product_inventry[0].id)
             setProduct(d)
-        })
+          }
+        });
+        
       })
       setLoading(false);
     } catch (err) {
@@ -56,7 +60,16 @@ const ShopDetails = () => {
         setSize(d?.data?.data);
         })
 
+        // setProductId( product?.product_inventry?.filter((d , i) => {
+        //   if(i == 0)
+        //   return d?.id
+        // }))
+
+
+        console.log(productId);
+
   }, [id]);
+
 
   const handleProduct = () => {
     dispatch(addProduct({ ...product, quantity: 1 }));
@@ -118,10 +131,11 @@ const ShopDetails = () => {
             </div>
 
             <div className="col-md-6 rightSec">
-              <h5 className="catagories">{product.category}</h5>
+              <h5 className="catagories">{product?.category}</h5>
               <h2>{product.title}</h2>
               {
                 product?.product_inventry?.map((d, i) => {
+                  if(productId == d?.id)
                   return (
                     <p className="price__">$ {d?.price}</p>
                   )
@@ -135,17 +149,18 @@ const ShopDetails = () => {
 
               <div className="sizeColor">
                 <div className="sizeColor">Category : {product.category}</div>
-                <div className="size">Size : {
+                <div className="size d-flex">Size : {
                   product?.product_inventry?.map((d, i) => {
                           return size?.map((data , index) => {
                             if(data?.id == d?.size_id)
-                            return(data?.size)
+                            return(<p className="mx-2" onClick={() => {setProductId(d?.id)}}>{data?.size}</p>)
                           })
                       })
                 }</div>
               </div>
               <p className="product_dec">Stock : {product?.product_inventry?.map((d , i) => {
-                return d?.stock
+                if(productId == d?.id)
+                return d?.stock + " "
               })}</p>
               <button onClick={handleProduct} type="button" className="btn" disabled={addButton}>
                 Add to Cart

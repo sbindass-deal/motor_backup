@@ -202,6 +202,9 @@ function Detail() {
         subscribeTo: vehicle.userId,
       })
       .then(function (response) {
+        if (response.data.status === 200) {
+          fetchApi();
+        }
         console.log(response);
       })
       .catch(function (error) {
@@ -245,16 +248,20 @@ function Detail() {
                   <div className="titleRight">
                     <ul className="labelList">
                       {vehicle.displayInAuction !== "classified" && (
-                        <li>
-                          <label>Current Bid:</label>{" "}
-                          <span>
-                            $
-                            {vehicle?.currentBid &&
-                            vehicle?.currentBid?.last_bid > 0
-                              ? toCommas(vehicle?.currentBid?.last_bid)
-                              : 0}
-                          </span>
-                        </li>
+                        <>
+                          {vehicle?.currentBid?.last_bid > 0 ? (
+                            <li>
+                              <label>Current Bid:</label>{" "}
+                              <span>
+                                ${toCommas(vehicle?.currentBid?.last_bid)}
+                              </span>
+                            </li>
+                          ) : (
+                            <li>
+                              <label>No Bidding</label>
+                            </li>
+                          )}
+                        </>
                       )}
                       <li
                         onClick={handleCommentRef}
@@ -281,7 +288,11 @@ function Detail() {
                           </span>
                         </li>
                       ) : (
-                        <li className="text-danger">BIDDING CLOSED</li>
+                        <>
+                          {vehicle.displayInAuction !== "classified" && (
+                            <li className="text-danger">BIDDING CLOSED</li>
+                          )}
+                        </>
                       )}
                     </ul>
                     {vehicle.displayInAuction === "classified" ? (
