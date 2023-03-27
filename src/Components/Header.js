@@ -271,20 +271,7 @@ function Header() {
                           About
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
-                            "navActive"
-                              ? "active"
-                              : ""
-                          }`}
-                          to="/classifiedaddList"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Classifieds
-                        </Link>
-                      </li>
+                      
 
                       <li className="nav-item">
                         <Link
@@ -406,7 +393,7 @@ function Header() {
                           Event Calendar
                         </Link>
                       </li>
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <div className="dropdown">
                           <Link
                             className="nav-link"
@@ -440,7 +427,7 @@ function Header() {
                             </a>
                           </div>
                         </div>
-                      </li> */}
+                      </li>
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -453,6 +440,20 @@ function Header() {
                           onClick={() => setShowNav(false)}
                         >
                           FAQ
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/classifiedaddList" &&
+                            "navActive"
+                              ? "active"
+                              : ""
+                          }`}
+                          to="/classifiedaddList"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Classifieds
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -739,7 +740,7 @@ function Header() {
                           Event Calendar
                         </Link>
                       </li>
-
+                      <li className="nav-item">
                       <div className="dropdown">
                         <Link
                           className="nav-link"
@@ -771,7 +772,7 @@ function Header() {
                           </a>
                         </div>
                       </div>
-
+                          </li>
                       <li className="nav-item">
                         <Link
                           className="nav-link"
