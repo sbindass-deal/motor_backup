@@ -12,6 +12,7 @@ const SearchResult = () => {
     logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
+  // console.log(name);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -37,13 +38,16 @@ const SearchResult = () => {
     }
     useEffect(() => {
       searchNew();
-      searchedData.filter((item) => {
-        if(item.label === name){
-          setRelatedData(item);
-        }
-      });
-    }, [searchedData, relatedData]);
+    }, [searchedData]);
 
+    useEffect(() => {
+      searchedData?.filter((item) => {
+        if(item?.label == name){
+          return setRelatedData([item]);
+        }
+      });     
+    }, [name]);
+    console.log(relatedData);
   // useEffect(() => {
   //   const make = name.toLowerCase();
   //   // const searchText = ser.toLowerCase();
