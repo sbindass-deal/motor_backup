@@ -114,7 +114,7 @@ const Searchbar = () => {
       <Link
         onClick={() => {
           dispatch(
-            showResult({ searchResult: searchText })
+            showResult({ searchResult: searchText, searchKey: searchText })
           );
         }}
         to="/search"
