@@ -6,13 +6,14 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FormInput from "../../UI/FormInput";
+import CreditCard from "../CreditCard";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
- 
+
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
@@ -23,7 +24,7 @@ function AccountInfo() {
       }
     });
   }, []);
- 
+
 
 
   return (
@@ -100,7 +101,7 @@ function AccountInfo() {
             </div>
 
             <div className="modal-body">
-              <form  autocomplete="off">
+              {/* <form  autocomplete="off">
                 <div className="col-md-12">
                   <FormInput
                     
@@ -148,11 +149,13 @@ function AccountInfo() {
                   </div>
                 </div>
                 </div>
-              </form>
+              </form> */}
+              <CreditCard />
             </div>
           </div>
         </div>
       </Modal>
+
      
     </div>
   );
