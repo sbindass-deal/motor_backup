@@ -315,16 +315,26 @@ function Header() {
                       </li>
                       {/* day and night mode end */}
                       <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/submit" && "navActive"
-                          }`}
-                          to="/submit"
-                          onClick={() => setShowNav(false)}
-                        >
-                          List Your Vehicles
-                        </Link>
+                      <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/submit" && "navActive"
+                            }`}
+                            to="#"
+                          >
+                            List Your Vehicles
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link className="" to="/submit">
+                              Private Party
+                            </Link>
+                            <Link className="" to="/dealer">
+                              Dealer
+                            </Link>
+                          </div>
+                        </div>
                       </li>
+                      
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
