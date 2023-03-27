@@ -743,6 +743,11 @@
 }
 
 @media (max-width: 767px) {
+	.hScroll {
+		overflow: auto;
+		white-space: nowrap;
+		height: 55px;
+	}
 
 	.nav-item a:hover,.nav-item a:active {
 		color: #000000;
@@ -1092,9 +1097,7 @@
 		display: none !important;
 	}
 
-	.dropdown-content {
-		right: -89px;
-	}
+	
 
 	a.nav-link.active {
 		color: #000 !important;
@@ -1166,10 +1169,11 @@
 
 	.auctionHistory {
 		z-index: 9;
-		width: 100%;
-		display: block;
-		padding: 10px;
-		background: #f7811b;
+    width: 58%;
+    display: block;
+    padding: 10px;
+    background: #f7811b;
+    margin: 0 auto;
 	}
 
 	.Dfrt {
@@ -1181,9 +1185,7 @@
 		text-align: center;
 	}
 
-	.card_.Dfrt .dropdown {
-		width: 100%;
-	}
+	
 	.col-xs-7 {
 		flex: 0 0 61.666667%;
 		max-width: 51.666667%;
@@ -1262,6 +1264,18 @@
 	  }
 	  .detailPostOption .labelList li:nth-child(2) {
 		border-right: 0;
+	}
+	ul.labelList li:nth-child(3) {
+		display: none;
+	}
+	.mobileOnlyV {
+		display: block;
+	}
+	.mobileOnlyD{
+		display: none;
+	}
+	.p-10{
+		padding: 10px;
 	}
 }
 
@@ -1382,6 +1396,11 @@
 
 	.nextArrow {
 		bottom: -8px;
+	}
+	.detailPostOption .gry_btn {
+		margin-bottom: 5px;
+		margin-left: auto;
+		font-size: 12px;
 	}
 
 }
