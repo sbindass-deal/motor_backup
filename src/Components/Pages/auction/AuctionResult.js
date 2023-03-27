@@ -190,8 +190,8 @@ const AuctionResult = () => {
                             parse(
                               curElem?.vehicle_data?.moreDescription?.substr(
                                 0,
-                                300
-                              ),
+                                120
+                              )+"...",
                               strToHtml
                             )}
                         </p>
@@ -206,7 +206,7 @@ const AuctionResult = () => {
                               {curElem?.vehicle_data?.EndTime &&
                                 new Date(
                                   curElem?.vehicle_data?.EndTime
-                                ).toLocaleDateString()}
+                                ).toDateString()}
                             </label>
                           </li>
                           {/* <li>

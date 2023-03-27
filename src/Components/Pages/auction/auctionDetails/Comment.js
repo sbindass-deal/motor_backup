@@ -127,7 +127,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                     <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
                       {curElem.created_at &&
-                        new Date(curElem.created_at).toLocaleString()}
+                        new Date(curElem.created_at).toDateString()}
                     </div>
                   </div>
                   <div className="commentBody">

@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 const Data = ({ curElem, addFabrity }) => {
   return (
     <>
-      <div className="col-12 col-lg-6 col-md-6 pb-3 auctionLive">
+      <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
         <div className="card_post">
           <div className="card_postImg">
             <div className="list_wrapper">
@@ -55,10 +55,10 @@ const Data = ({ curElem, addFabrity }) => {
               </button>
             </h4>
 
-            <p className="color_grey ">
+            {/* <p className="color_grey ">
               {curElem?.moreDescription &&
-                parse(curElem?.moreDescription?.substr(0, 300), strToHtml)}
-            </p>
+                parse(curElem?.moreDescription?.substr(0, 120)+"...", strToHtml)}
+            </p> */}
 
             <ul className="labelList btnListShap">
               <li className="w-auto">

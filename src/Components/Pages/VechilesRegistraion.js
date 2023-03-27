@@ -1699,14 +1699,8 @@ const VechilesRegistraion = () => {
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
                                 <p>Please add name of charity.</p>
-                                <div className="border border-2 border-dark">
+                                <div className="desCrtpion">
                                   <Editor
-                                    editorStyle={{
-                                      background: "white",
-                                      padding: "15px",
-                                      minHeight: "30vh",
-                                      color: "black",
-                                    }}
                                     editorState={charityEditor}
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="wrapperClassName"

@@ -160,16 +160,11 @@ const EditBlog = () => {
                 ></textarea>
               </div> */}
               <div
-                className="border border-2 border-dark"
-                style={{ background: "white", color: "black" }}
+                className="desCrtpion"
+                
               >
                 <Editor
-                  editorStyle={{
-                    background: "white",
-                    padding: "15px",
-                    minHeight: "30vh",
-                    color: "black",
-                  }}
+                 
                   editorState={blogContent}
                   value="dlsjfkljf"
                   toolbarClassName="toolbarClassName"

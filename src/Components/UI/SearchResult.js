@@ -12,6 +12,7 @@ const SearchResult = () => {
     logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
+  // console.log(name);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -30,20 +31,21 @@ const SearchResult = () => {
       }
       try {
         const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        setSearchedData(res.data.vehicles_result);
+        // setSearchedData(res.data.vehicles_result);
+        const filterData = res.data.vehicles_result?.filter((item) => item?.label == name);
+        setRelatedData(filterData);
       } catch (err) {
         console.log(err);
       }
     }
     useEffect(() => {
       searchNew();
-      searchedData.filter((item) => {
-        if(item.label === name){
-          setRelatedData(item);
-        }
-      });
-    }, [searchedData, relatedData]);
+    }, [name, relatedData]);
 
+    // useEffect(() => {
+           
+    // }, [name, searchedData]);
+    // console.log(relatedData);
   // useEffect(() => {
   //   const make = name.toLowerCase();
   //   // const searchText = ser.toLowerCase();

@@ -229,6 +229,7 @@ function Detail() {
           <div className="row reverseCol">
             <div className="col-lg-3 col-sm-12">
               <Fundamental
+                className="mobileOnlySd"
                 vehicle={vehicle}
                 handleSubscribe={handleSubscribe}
               />
@@ -240,18 +241,21 @@ function Detail() {
               <LatestGuzzlrsAuction />
             </div>
             <div className="col-lg-9 col-sm-12">
-              <div className=" text-center box_background p-20" id="sticky">
+            <h2 className="title_combo title_Center mobileOnlyV" id="sticky2">
+                    {vehicle.make}
+                  </h2>
+              <div className=" text-center box_background p-10" id="sticky">
                 <div className="detailPostOption">
-                  <h2 className="title_combo title_Center" id="sticky2">
+                <h2 className="title_combo title_Center mobileOnlyD" id="sticky2">
                     {vehicle.make}
                   </h2>
                   <div className="titleRight">
-                    <ul className="labelList">
+                    <ul className="labelList ddertg">
                       {vehicle.displayInAuction !== "classified" && (
                         <>
                           {vehicle?.currentBid?.last_bid > 0 ? (
                             <li>
-                              <label>Current Bid:</label>{" "}
+                              <label>Bid:</label>{" "}
                               <span>
                                 ${toCommas(vehicle?.currentBid?.last_bid)}
                               </span>
@@ -342,7 +346,7 @@ function Detail() {
                 )}
               </div>
               <div className="card_ Dfrt">
-                <div>
+                <div className="hScroll">
                   <div className="dropdown mr-2 tagBtns">
                     <p type="button" data-toggle="dropdown">
                       Make: {vehicle.make}
@@ -392,6 +396,12 @@ function Detail() {
                   </div>
                 </div>
                 <AuctionHistory vId={vehicle.userId} />
+              </div>
+              <div className="card_ mobileOnlyV">
+              <Fundamental
+                vehicle={vehicle}
+                handleSubscribe={handleSubscribe}
+              />
               </div>
               <div className="card_">
                 <h3 className="cardTitle">Description</h3>

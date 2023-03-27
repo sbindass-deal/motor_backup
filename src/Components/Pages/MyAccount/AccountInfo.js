@@ -3,17 +3,19 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
+import StripeCheckout from "react-stripe-checkout";
+import { useSelector } from "react-redux";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const userId = useSelector((state) => state);
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
@@ -25,7 +27,24 @@ function AccountInfo() {
     });
   }, []);
 
-
+  const onToken = (token, addresses) => {
+    if (token !== null) {
+      console.log(111, token);
+      axios
+        .post(`${process.env.REACT_APP_URL}savecard`, {
+          token: token.id,
+          last4: token.card.last4,
+        })
+        .then(function (response) {
+          if (response.data.status === 200) {
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // notify("Form submit successfully!");
+    }
+  };
 
   return (
     <div>
@@ -71,7 +90,23 @@ function AccountInfo() {
                   </div>
                 </li>
                 <li>
-                  <button className="btn" onClick={handleShow}>Add Credit Card</button>
+                  {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
+
+                  <StripeCheckout
+                    className="Btn"
+                    stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
+                    token={onToken}
+                    email={userId.login.user.email}
+                    name="Save Card Details For Bidding"
+                    currency="USD"
+                    ComponentClass="div"
+                    panelLabel="Save"
+                    // amount={
+                    //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                    // }
+                  >
+                    <button className="btn">Save Card Details</button>
+                  </StripeCheckout>
                 </li>
               </ul>
             </div>
@@ -155,8 +190,6 @@ function AccountInfo() {
           </div>
         </div>
       </Modal>
-
-     
     </div>
   );
 }

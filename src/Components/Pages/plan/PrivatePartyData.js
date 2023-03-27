@@ -75,12 +75,12 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </span>
                   </div>
                 </div>
-                <p className="dicount">
+                {/* <p className="dicount">
                   <span>
                     <i class="fa-solid fa-circle-check"></i>
                   </span>{" "}
                   Annually Save ${curElem?.discount}
-                </p>
+                </p> */}
                 <div className="text-center">
                   {/* <h6>
                   {curElem.plan_name == "Exclusive" &&
