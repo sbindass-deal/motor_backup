@@ -214,6 +214,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     onChange={handleUserInput}
                     name="email"
                     placeholder="Enter Email address"
+                    pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$"
                     errorMessage="It should be a valid email address!"
                     label="Email address"
                     required={true}
@@ -503,8 +504,15 @@ function RegisterModal({ showReg, handleCloseReg }) {
                   <div className="form-group">
                     <p className="small">
                       This site is protected by reCAPTCHA and the Google{" "}
-                      <a href="/privacy" target="_blank"> Privacy Policy</a> and{" "}
-                      <a href="/termsandconditions" target="_blank">Terms of Service</a> apply
+                      <a href="/privacy" target="_blank">
+                        {" "}
+                        Privacy Policy
+                      </a>{" "}
+                      and{" "}
+                      <a href="/termsandconditions" target="_blank">
+                        Terms of Service
+                      </a>{" "}
+                      apply
                     </p>
                   </div>
                 </div>
