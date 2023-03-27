@@ -31,23 +31,21 @@ const SearchResult = () => {
       }
       try {
         const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        setSearchedData(res.data.vehicles_result);
+        // setSearchedData(res.data.vehicles_result);
+        const filterData = res.data.vehicles_result?.filter((item) => item?.label == name);
+        setRelatedData(filterData);
       } catch (err) {
         console.log(err);
       }
     }
     useEffect(() => {
       searchNew();
-    }, [searchedData]);
+    }, [name, relatedData]);
 
-    useEffect(() => {
-      searchedData?.filter((item) => {
-        if(item?.label == name){
-          return setRelatedData([item]);
-        }
-      });     
-    }, [name]);
-    console.log(relatedData);
+    // useEffect(() => {
+           
+    // }, [name, searchedData]);
+    // console.log(relatedData);
   // useEffect(() => {
   //   const make = name.toLowerCase();
   //   // const searchText = ser.toLowerCase();
