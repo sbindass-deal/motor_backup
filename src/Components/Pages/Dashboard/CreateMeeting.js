@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 const CreateMeeting = () => {
   const [meetingData, setMeetingData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchMeetingDetail = async () => {
@@ -100,6 +101,21 @@ const CreateMeeting = () => {
                 </div>
 
                 <hr id="hr" />
+
+                <ul className="postTopOption" id="widthChnge">
+                  <li className="post_search">
+                    <input
+                      type="search"
+                      name="search"
+                      placeholder="Search…"
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    />
+                  </li>
+                </ul>
+                
+
                 <div
                   className="card_Gray table-responsive vehicleSub"
                   id="scrollable"
@@ -130,7 +146,14 @@ const CreateMeeting = () => {
                       </thead>
 
                       <tbody>
-                        {meetingData.map((curVal, index) => {
+                          {meetingData?.filter((curVal) => {
+                            if (searchTerm == "") {
+                              return curVal
+                            } else if (curVal.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                              return curVal
+                            }
+                          })
+                            ?.map((curVal, index) => {
                           console.log(989, curVal, index);
                           return (
                             <tr>
@@ -142,8 +165,8 @@ const CreateMeeting = () => {
                                 />
                               </td>
                               <td>{curVal.title}</td>
-                              <td>{curVal.start_date}</td>
-                              <td>{curVal.end_date}</td>
+                              <td>{new Date(curVal.start_date).toDateString()}</td>
+                              <td>{new Date(curVal.end_date).toDateString()}</td>
                               {/* <td>{curVal.url}</td> */}
                               {/* <td>{curVal.facebook}</td>
                               <td>{curVal.twitter}</td>

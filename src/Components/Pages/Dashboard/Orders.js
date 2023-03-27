@@ -98,7 +98,7 @@ function Orders() {
                                   {curElem.created_at &&
                                     new Date(
                                       curElem.created_at
-                                    ).toLocaleDateString()}
+                                    ).toDateString()}
                                 </td>
                                 <td> {curElem.name} </td>
                                 <td>{curElem.order_id}</td>
