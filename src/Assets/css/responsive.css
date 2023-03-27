@@ -743,6 +743,10 @@
 }
 
 @media (max-width: 767px) {
+
+	.nav-item a:hover,.nav-item a:active {
+		color: #000000;
+	}
 	.videoColl .col-lg-6 {
 		height: 216px;
 		margin: 0px;

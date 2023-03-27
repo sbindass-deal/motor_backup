@@ -271,20 +271,7 @@ function Header() {
                           About
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
-                            "navActive"
-                              ? "active"
-                              : ""
-                          }`}
-                          to="/classifiedaddList"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Classifieds
-                        </Link>
-                      </li>
+                      
 
                       <li className="nav-item">
                         <Link
@@ -347,12 +334,18 @@ function Header() {
                             Auctions
                           </Link>
                           <div className="dropdown-content">
-                            <Link
-                              className=""
-                              to="/auctionlive"
-                              onClick={() => setShowNav(false)}
-                            >
+                            <Link className="" to="/auctionlive">
                               Live Now
+                            </Link>
+                            <Link className="" to="/auctionfeature">
+                              Featured
+                            </Link>
+
+                            <Link className="" to="/auctionnoreserve">
+                              No Reserve
+                            </Link>
+                            <Link className="" to="/auctionresult">
+                              Results
                             </Link>
                           </div>
                         </div>
@@ -406,20 +399,14 @@ function Header() {
                           Event Calendar
                         </Link>
                       </li>
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <div className="dropdown">
-                          <Link
-                            className="nav-link"
-                            style={{
-                              color: `${
-                                location.pathname === "/shipping" ||
-                                location.pathname === "/myshipments"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
-                            }}
-                            to="/shipping"
-                            onClick={() => setShowNav(false)}
+                        <Link
+                            className={`nav-link ${
+                              location.pathname === "/auctionlive" &&
+                              "navActive"
+                            }`}
+                            to="#"
                           >
                             Shipping
                           </Link>
@@ -440,7 +427,7 @@ function Header() {
                             </a>
                           </div>
                         </div>
-                      </li> */}
+                      </li>
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -453,6 +440,20 @@ function Header() {
                           onClick={() => setShowNav(false)}
                         >
                           FAQ
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${
+                            location.pathname === "/classifiedaddList" &&
+                            "navActive"
+                              ? "active"
+                              : ""
+                          }`}
+                          to="/classifiedaddList"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Classifieds
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -739,7 +740,7 @@ function Header() {
                           Event Calendar
                         </Link>
                       </li>
-
+                      <li className="nav-item">
                       <div className="dropdown">
                         <Link
                           className="nav-link"
@@ -771,7 +772,7 @@ function Header() {
                           </a>
                         </div>
                       </div>
-
+                          </li>
                       <li className="nav-item">
                         <Link
                           className="nav-link"
