@@ -156,27 +156,29 @@ const Auctionlive = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {currentPosts.length > 0 &&
-              currentPosts?.filter((curElem) => {
-                console.log(8989, curElem)
-                if (searchValue == '') {
-                  return curElem
-                } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
-                  return curElem
-                }
-              })
-              ?.map((curElem) => {
-                return (
-                  <Data
-                    key={curElem.id}
-                    curElem={curElem}
-                    addFabrity={addFabrity}
-                  />
-                );
-              })}
+            {currentPosts?.length > 0 &&
+              currentPosts
+                ?.filter((curElem) => {
+                  if (searchValue == "") {
+                    return curElem;
+                  } else if (
+                    curElem?.make?.toLowerCase()?.includes(searchValue.toLowerCase())
+                  ) {
+                    return curElem;
+                  }
+                })
+                ?.map((curElem) => {
+                  return (
+                    <Data
+                      key={curElem?.id}
+                      curElem={curElem}
+                      addFabrity={addFabrity}
+                    />
+                  );
+                })}
 
             <Pagination
-              totalPosts={data.length}
+              totalPosts={data?.length}
               postsPerPage={postsPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

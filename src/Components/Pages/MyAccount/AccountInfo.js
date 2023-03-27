@@ -8,14 +8,12 @@ import Modal from "react-bootstrap/Modal";
 import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
 import StripeCheckout from "react-stripe-checkout";
-import { useSelector } from "react-redux";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const userId = useSelector((state) => state);
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
@@ -90,13 +88,19 @@ function AccountInfo() {
                   </div>
                 </li>
                 <li>
+                  <div className="labelList_label">Card Number</div>
+                  <div className="labelList_text">
+                    ************4242 <br />
+                  </div>
+                </li>
+                <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
                   <StripeCheckout
                     className="Btn"
                     stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
                     token={onToken}
-                    email={userId.login.user.email}
+                    email={userInfo.email}
                     name="Save Card Details For Bidding"
                     currency="USD"
                     ComponentClass="div"
