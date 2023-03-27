@@ -190,10 +190,10 @@ const EventDetailPage = () => {
           <div class="card_">
             <h3 class="cardTitle">Details</h3>
             <p>
-              <span>Start</span> {getEventdata.start_date}
+              <span>Start</span> {new Date(getEventdata.start_date).toDateString()}
             </p>
             <p>
-              <span>End</span> {getEventdata.end_date}
+              <span>End</span> {new Date(getEventdata.end_date).toDateString()}
             </p>
             <p>
               <span>Website</span> {getEventdata.url}
@@ -251,9 +251,7 @@ const EventDetailPage = () => {
                     value={commentAdd}
 
                   ></textarea>
-                  <span class="subscribe-to-comments">
-                    Keep me in this conversation via email
-                  </span>
+                  
                   <br />
                   <br />
                   {/* <input type="submit" class="btn" value="Submit" />
@@ -281,13 +279,13 @@ const EventDetailPage = () => {
                     <div className="com_byPic">
                       <AccountCircleIcon />
                     </div>
-                    <div className="com_by">{"User name"}</div>
-                    <div className="com_date">
+                    <div className="commentBody">{curVal.user?.map((curVal, i) => curVal.name)}</div>
+                    {/* <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
                       {
-                        new Date().toLocaleString()
+                        new Date().toDateString()
                       }
-                    </div>
+                    </div> */}
                   </div>
                   <div className="commentBody">
 
@@ -295,7 +293,7 @@ const EventDetailPage = () => {
 
                   </div>
 
-                  <div className="commentFooter">
+                  {/* <div className="commentFooter">
                     <a
                       // onClick={() => handleLikeDislike(curElem.id, 1)}
                       className="mr-3"
@@ -314,7 +312,7 @@ const EventDetailPage = () => {
                       ></i>{" "}
                       {8}
                     </a>
-                  </div>
+                  </div> */}
 
                 </div> 
               })

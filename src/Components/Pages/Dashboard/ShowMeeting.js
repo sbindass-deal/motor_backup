@@ -65,7 +65,7 @@ const ShowMeeting = () => {
                             {
                               curVal?.description && 
                               parse(
-                                curVal?.description?.substr(0, 150)+"...",
+                                curVal?.description?.substr(0, 70)+"...",
                                 strToHtml
                               )
                             }

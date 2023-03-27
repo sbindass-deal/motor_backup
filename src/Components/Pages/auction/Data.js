@@ -57,7 +57,7 @@ const Data = ({ curElem, addFabrity }) => {
 
             <p className="color_grey ">
               {curElem?.moreDescription &&
-                parse(curElem?.moreDescription?.substr(0, 300), strToHtml)}
+                parse(curElem?.moreDescription?.substr(0, 120)+"...", strToHtml)}
             </p>
 
             <ul className="labelList btnListShap">
