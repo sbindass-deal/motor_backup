@@ -6682,4 +6682,6 @@ footer { margin-top: 60px;}
 .light .DraftEditor-editorContainer span{ color: #000;}
 .dsds { border: 1px solid #2f2f2f; margin-bottom: 20px; padding: 10px;}
 .auctionLive .card_post { background: #121212;}
-.light .auctionLive .card_post {  background: #f0f0f0;}
+.light .auctionLive .card_post { background: #f0f0f0;}
+.commentHead svg.MuiSvgIcon-root { filter: drop-shadow(2px 4px 6px black);}
+.light .commentHead svg.MuiSvgIcon-root { filter: invert(1);}
