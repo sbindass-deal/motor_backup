@@ -8,7 +8,7 @@ const Interior = ({ vinDetails }) => {
     <>
       <div className="box_backgroundD mt-15">
         <h3 className="cardTitle riTArrow">
-          {vinDetails.options && vinDetails?.options[0]?.category}
+          {vinDetails?.options && vinDetails?.options[0]?.category}
           <i class="fa-solid fa-chevron-down"></i>
         </h3>
         <ul
@@ -18,9 +18,9 @@ const Interior = ({ vinDetails }) => {
             overflow: "hidden",
           }}
         >
-          {vinDetails.options &&
-            vinDetails?.options[0]?.options.map((curElem, i) => {
-              return <li key={i}>{curElem.name}</li>;
+          {vinDetails?.options &&
+            vinDetails?.options[0]?.options?.map((curElem, i) => {
+              return <li key={i}>{curElem?.name}</li>;
             })}
         </ul>
         <button

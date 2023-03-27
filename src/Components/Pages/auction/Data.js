@@ -16,8 +16,8 @@ const Data = ({ curElem, addFabrity }) => {
                     <img
                       loading="lazy"
                       src={
-                        curElem.image_banner[0]
-                          ? `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                        curElem?.image_banner[0]
+                          ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
                           : noImage
                       }
                       onError={({ currentTarget }) => {
@@ -37,13 +37,13 @@ const Data = ({ curElem, addFabrity }) => {
           </div>
           <div className="card_postInfo">
             <h4 className="car_title">
-              <Link to={`/detail/${curElem.id}`}>
+              <Link to={`/detail/${curElem?.id}`}>
                 {curElem?.reserve === "No" ? "No Reserve :" : null}{" "}
-                {curElem.make}
+                {curElem?.make}
               </Link>
 
               <button
-                onClick={() => addFabrity(curElem.id)}
+                onClick={() => addFabrity(curElem?.id)}
                 type="button"
                 className="watchedIc"
               >
@@ -78,7 +78,7 @@ const Data = ({ curElem, addFabrity }) => {
               </li>
               <li>
                 <span>
-                  Ends In: {new Date(curElem?.EndTime).toDateString()}
+                  Ends In: {new Date(curElem?.EndTime)?.toDateString()}
                 </span>
               </li>
             </ul>
