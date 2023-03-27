@@ -7,8 +7,9 @@ const External = ({ vinDetails }) => {
   return (
     <>
       <div className="box_backgroundD mt-15">
-        <h3 className="cardTitle">
+        <h3 className="cardTitle riTArrow">
           {vinDetails.options && vinDetails?.options[1]?.category}
+          <i class="fa-solid fa-chevron-down"></i>
         </h3>
         <ul
           className="UlList"

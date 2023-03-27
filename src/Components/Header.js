@@ -182,7 +182,7 @@ function Header() {
                         <div className="dropdown">
                           <AccountCircleIcon />
 
-                          <div className="dropdown-content">
+                          <div className="dropdown-content  myACt">
                             {logingUser.login.token && (
                               <Link
                                 className={`nav-link ${
@@ -512,7 +512,7 @@ function Header() {
                       <div className="dropdown">
                         <AccountCircleIcon />
 
-                        <div className="dropdown-content">
+                        <div className="dropdown-content myACt">
                           {logingUser.login.token && (
                             <Link
                               className={`nav-link ${
