@@ -35,7 +35,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
         console.log(result);
         notify(result);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   return (
@@ -95,7 +95,7 @@ function ForgotPasswordModal({ showForgPass, handleCloseForgPass }) {
                 <div className="form-group">
                   <p>
                     Having trouble? Email us at{" "}
-                    <a href="mailto:vikassharma85109@gmail.com?subject=Testing out mailto!">Xavier@GasGuzzlrs.com</a> with
+                    <a href="mailto:Xavier@GasGuzzlrs.com?subject=Testing out mailto!">Xavier@GasGuzzlrs.com</a> with
                     any questions.
                   </p>
                 </div>
