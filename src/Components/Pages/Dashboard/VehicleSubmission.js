@@ -125,7 +125,7 @@ function VehicleSubmission() {
                                 <td>
                                   {new Date(
                                     data.updated_at
-                                  ).toLocaleDateString()}{" "}
+                                  ).toDateString()}{" "}<br/>
                                   {new Date(
                                     data.updated_at
                                   ).toLocaleTimeString()}

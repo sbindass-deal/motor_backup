@@ -11,6 +11,7 @@ import MyAccountLeftNav from "../MyAccount/MyAccountLeftNav";
 const OrderCart = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     const fetchOrders = async () => {
       setLoading(true);
@@ -62,7 +63,18 @@ const OrderCart = () => {
                 <h3>My Orders</h3>
               </div>
               <hr />
-
+              <ul className="postTopOption" id="widthChnge">
+                <li className="post_search">
+                  <input
+                    type="search"
+                    name="search"
+                    placeholder="Search…"
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
+                  />
+                </li>
+              </ul>
               <div className="row">
                 <div className="col-12">
                   <div className="col-12 col-md-12 col-lg-12">
@@ -78,7 +90,13 @@ const OrderCart = () => {
                           <th>Action</th>
                           <th>View</th>
                         </tr>
-                        {order.map((curElem) => {
+                        {order?.filter((curVal) => {
+                          if (searchTerm == '') {
+                            return curVal
+                          } else if (curVal.order_id.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return curVal
+                          }
+                        })?.map((curElem) => {
                           return (
                             <tr>
                               <td className="productImg">
@@ -88,7 +106,7 @@ const OrderCart = () => {
                               <td>
                                 {new Date(
                                   curElem.created_at
-                                ).toLocaleDateString()}
+                                ).toDateString()}
                               </td>
                               {/* <td>2</td> */}
                               <td>Shipped</td>

@@ -71,7 +71,8 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                       <span className={`react-switch-button`} />
                     </label>
                     <span className="plan_Time">
-                      {curElem.annual_listing} Listing
+                      {curElem.annual_listing} Listing <br />
+                      <span>within 30 days</span>
                     </span>
                   </div>
                 </div>

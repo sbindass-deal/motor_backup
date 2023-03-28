@@ -72,7 +72,7 @@ function UserBlog() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3
+              <div
                 className="d-flex"
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
@@ -85,16 +85,16 @@ function UserBlog() {
                   <Link
                     to="/add-user-blog"
                     className="orange_btn"
-                    style={{
-                      padding: "4px",
-                      fontSize: "18px",
-                      fontWeight: "100",
-                    }}
+                    // style={{
+                    //   padding: "4px",
+                    //   fontSize: "18px",
+                    //   fontWeight: "100",
+                    // }}
                   >
                     + Add New Blogs
                   </Link>
                 </div>
-              </h3>
+              </div>
 
               <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
@@ -173,7 +173,7 @@ function UserBlog() {
                                   {curElem.created_at &&
                                     new Date(
                                       curElem.created_at
-                                    ).toLocaleDateString()}
+                                    ).toDateString()}
                                 </td>
                                 <td className="actionBtn">
                                   <Link to={`/edit-user-blog/${curElem.id}`}>

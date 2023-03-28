@@ -59,12 +59,12 @@ const Data = ({ curElem, purchagedPlan }) => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <p className="dicount">
+                  {/* <p className="dicount">
                     <span>
                       <i class="fa-solid fa-circle-check"></i>
                     </span>{" "}
                     Annually Save ${curElem?.discount}
-                  </p>
+                  </p> */}
 
                   <h6>
                     {planName === curElem.plan_name

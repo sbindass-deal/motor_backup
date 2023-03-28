@@ -126,20 +126,22 @@ function GearProducts() {
                         } else if (
                           curElem.title
                             .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ||
-                          curElem.color
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ||
-                          curElem.size
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ||
-                          curElem.category
-                            .toLowerCase()
                             .includes(searchTerm.toLowerCase())
+                          // ||
+                          // curElem.color
+                          //   .toLowerCase()
+                          //   .includes(searchTerm.toLowerCase()) ||
+                          // curElem.size
+                          //   .toLowerCase()
+                          //   .includes(searchTerm.toLowerCase()) ||
+                          // curElem.category
+                          //   .toLowerCase()
+                          //   .includes(searchTerm.toLowerCase())
                         ) {
                           return curElem;
                         }
-                      })
+                      }
+                      )
                       ?.map((curElem, i) => {
                         
                         return (

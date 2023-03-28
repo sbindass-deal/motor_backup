@@ -11,6 +11,7 @@ function UserCreateMeeting() {
   const [meetingData, setMeetingData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterValue, setFilterValue] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
 
 
@@ -115,6 +116,18 @@ function UserCreateMeeting() {
                 </Link>
               </div>
               <hr />
+              <ul className="postTopOption" id="widthChnge">
+                <li className="post_search">
+                  <input
+                    type="search"
+                    name="search"
+                    placeholder="Search…"
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
+                  />
+                </li>
+              </ul>
               <div
                 class="card_Gray table-responsive vehicleSub"
                 id="scrollable"
@@ -146,7 +159,14 @@ function UserCreateMeeting() {
 
                     <tbody>
                       {
-                        meetingData?.map((curVal, index) => {
+                          meetingData?.filter((curVal) => {
+                            if (searchTerm == '') {
+                              return curVal
+                            } else if (curVal.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                             return curVal
+                            }
+                          })
+                        ?.map((curVal, index) => {
                           console.log(989, curVal, index)
                           return <tr>
                             <td>{index + 1}</td>
@@ -154,9 +174,9 @@ function UserCreateMeeting() {
                               <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" />
                             </td>
                             <td>{curVal.title}</td>
-                            <td>{curVal.start_date}</td>
-                            <td>{curVal.end_date}</td>
-                            <td>{curVal.url}</td>
+                            <td>{new Date(curVal.start_date).toDateString()}</td>
+                            <td>{new Date(curVal.end_date).toDateString()}</td>
+                           <td>{curVal.url}</td>
                             <td>{curVal.facebook}</td>
                             <td>{curVal.twitter}</td>
                             <td>{curVal.email}</td>
