@@ -6083,6 +6083,7 @@ a.dfr {
 .galleryPh .col-lg-7 {
   padding: 1px 1px;
   margin: 0;
+  overflow: hidden;
 }
 
 .firstImg .ant-image {
