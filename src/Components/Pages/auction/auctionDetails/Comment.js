@@ -80,7 +80,15 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
         like_or_dislike: type,
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data.data.like_or_dislike == 1) {
+          notify("Like successfully")
+          window.location.reload(false)
+
+        } else {
+          notify("DisLike successfully")
+          window.location.reload(false)
+          
+        }
       })
       .catch(function (error) {
         console.log(error);

@@ -900,7 +900,7 @@ const UserVehicleDetails = () => {
                               name="make"
                               placeholder="Enter"
                               // errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
-                              label="what make is your vehicle?"
+                              label="What make is your vehicle?"
                               // pattern="^[A-Za-z0-9 ]{3,16}$"
                               required={true}
                             />
