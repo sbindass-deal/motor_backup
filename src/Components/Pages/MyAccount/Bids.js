@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
 
-function MyBidsWins() {
+function Bids() {
   const [data, setData] = useState([]);
   const userId = useSelector((state) => state);
   const [chatMessage, setChatMessage] = useState("");
@@ -369,4 +369,4 @@ function MyBidsWins() {
   );
 }
 
-export default MyBidsWins;
+export default Bids;

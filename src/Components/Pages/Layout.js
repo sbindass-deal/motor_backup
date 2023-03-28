@@ -6,7 +6,6 @@ import Home from "./Home";
 import MyListings from "./MyAccount/MyListings";
 import AccountInfo from "./MyAccount/AccountInfo";
 import Notifications from "./MyAccount/Notifications";
-import MyBidsWins from "./MyAccount/MyBidsWins";
 import HowShibnobiMotorWorks from "./HowShibnobiMotorWorks";
 import PhotoGallery from "./PhotoGallery";
 import PrivateParty from "./plan/PrivateParty";
@@ -89,7 +88,9 @@ import AdUserMeeting from "./MyAccount/AdUserMeeting";
 import EditUserMeeting from "./MyAccount/EditUserMeeting";
 import EventAdUserMeeting from "./MyAccount/EventAdUserMeeting";
 import Subscription from "./MyAccount/Subscription";
-import GearInventry from "./Dashboard/GearInventry.js"
+import GearInventry from "./Dashboard/GearInventry.js";
+import Wins from "./MyAccount/Wins";
+import Bids from "./MyAccount/Bids";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -107,7 +108,8 @@ const Layout = () => {
               <Route path="accountinfo" element={<AccountInfo />} />
               <Route path="detailNew" element={<DetailNew />} />
               <Route path="listing" element={<MyListings />} />
-              <Route path="bidswins" element={<MyBidsWins />} />
+              <Route path="bids" element={<Bids />} />
+              <Route path="wins" element={<Wins />} />
               <Route path="myshipments" element={<MyShipments />} />
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="subscription" element={<Subscription />} />
@@ -117,7 +119,10 @@ const Layout = () => {
               <Route path="user-blog" element={<UserBlog />} />
               <Route path="add-user-blog" element={<AdUserBlog />} />
               <Route path="add-user-meeting" element={<AdUserMeeting />} />
-              <Route path="add-user-meeting-event" element={<EventAdUserMeeting />} />
+              <Route
+                path="add-user-meeting-event"
+                element={<EventAdUserMeeting />}
+              />
               <Route path="edit-user-blog/:id" element={<EditUserBlog />} />
               <Route path="user-meeting" element={<UserCreateMeeting />} />
 
@@ -154,8 +159,8 @@ const Layout = () => {
                     path="raffleadmin/edit-raffel/:id"
                     element={<EditRaffle />}
                   />
-                  <Route path="gear-product" element={<GearProduct/>} />
-                  <Route path="gear-inventry" element={<GearInventry/>} />
+                  <Route path="gear-product" element={<GearProduct />} />
+                  <Route path="gear-inventry" element={<GearInventry />} />
                   <Route
                     path="gear-product/:id"
                     element={<EditGearProduct />}
@@ -177,7 +182,7 @@ const Layout = () => {
                     path="admin-vehicle-ad/add-vehicle-ads"
                     element={<AddVehicleAds />}
                   />
-                   <Route
+                  <Route
                     path="admin-add-meeting/add-meeting"
                     element={<AddCreateMeeting />}
                   />
@@ -185,8 +190,6 @@ const Layout = () => {
                     path="edit-meeting/:id"
                     element={<EditCreateMeeting />}
                   />
-
-                  
 
                   <Route path="admin-enquiry" element={<Enquiry />} />
                   <Route path="admin-meeting" element={<CreateMeeting />} />
@@ -198,7 +201,7 @@ const Layout = () => {
           {/* After user login end */}
           <Route path="cart" element={<Cart />} />
           <Route path="notification" element={<Notifications />} />
-          <Route path="biding" element={<MyBidsWins />} />
+          {/* <Route path="biding" element={<Bids />} /> */}
           <Route path="works" element={<HowShibnobiMotorWorks />} />
           <Route path="gallary" element={<PhotoGallery />} />
           <Route path="submit" element={<PrivateParty />} />
@@ -235,16 +238,13 @@ const Layout = () => {
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
 
-          <Route
-            path="edit-user-meeting/:id"
-            element={<EditUserMeeting />}
-          />
+          <Route path="edit-user-meeting/:id" element={<EditUserMeeting />} />
 
           <Route path="vechiles" element={<VechilesRegistraion />} />
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
           <Route path="charity" element={<Charity />} />
-          <Route path="shop" element={<Shop/>} />
+          <Route path="shop" element={<Shop />} />
           <Route path="shop/:id" element={<ShopDetails />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="blogs" element={<Blogs />} />
@@ -252,7 +252,7 @@ const Layout = () => {
           <Route path="search" element={<SearchResult />} />
           <Route path="comingsoon" element={<ComingSoon />} />
           <Route path="event" element={<Event />} />
-          <Route path="eventdetail/:id" element={<EventDetailPage/>} />
+          <Route path="eventdetail/:id" element={<EventDetailPage />} />
         </Routes>
         <ToastContainer
           position="bottom-center"

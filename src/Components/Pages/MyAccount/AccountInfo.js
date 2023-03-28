@@ -8,9 +8,11 @@ import Modal from "react-bootstrap/Modal";
 import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
 import StripeCheckout from "react-stripe-checkout";
+import { useSelector } from "react-redux";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
+  const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -89,9 +91,11 @@ function AccountInfo() {
                 </li>
                 <li>
                   <div className="labelList_label">Card Number</div>
-                  <div className="labelList_text">
-                    ************4242 <br />
-                  </div>
+                  {userId.login.user.cn_no !== null && (
+                    <div className="labelList_text">
+                      ************{userId.login.user.cn_no} <br />
+                    </div>
+                  )}
                 </li>
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}

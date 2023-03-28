@@ -131,24 +131,28 @@ function Detail() {
   };
 
   const addBiding = (e) => {
+    // biddings before payment bidding api end point
     e.preventDefault();
     setLoadingBiding(true);
     axios
-      .post(`${process.env.REACT_APP_URL}biddings`, {
+      .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
         vehicle_id: id,
         auctionAmmount: bidValue,
         comment: bidComment,
+        initial_amount: `${bidValue && (parseInt(bidValue, 10) * 5) / 100}`,
       })
       .then((res) => {
         setLoadingBiding(false);
-        if (res.data.status === 200) {
+        if (res.data.status === 200 && loginUser.user.cn_no) {
           handleClose();
           setBidComment("");
           setBidValue("");
           fetchApi();
-          navigate("/bidswins");
+          // navigate("/bidswins");
+          notify(res.data.message, res.data.status);
+        } else {
+          notify(res.data.message, res.data.status);
         }
-        notify(res.data.message, res.data.status);
       })
       .catch((err) => {
         setLoadingBiding(false);
@@ -572,6 +576,13 @@ function Detail() {
                         style={{ height: "15vh" }}
                       />
                     </div>
+                  </div>
+                  <div className="col-12">
+                    <p>To complete a bid we will hold 5% of Auction amount.</p>
+                    <p>
+                      Payable Now : $
+                      {bidValue && (parseInt(bidValue, 10) * 5) / 100} USD
+                    </p>
                   </div>
                   <div className="col-12 d-flex justify-content-center pt-4 ">
                     {loadingBiding ? (

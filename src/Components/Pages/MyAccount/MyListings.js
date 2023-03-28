@@ -160,9 +160,10 @@ function MyListings() {
                       className=" field"
                     >
                       <option value="All">All</option>
-                      <option value="PUBLISHED">Publish</option>
-                      <option value="REVIEWD_BY_ADMIN">Approve</option>
+                      <option value="PUBLISHED">Published</option>
+                      <option value="REVIEWD_BY_ADMIN">Approved</option>
                       <option value="PENDING_ADMIN_APPROVAL">Pending</option>
+                      <option value="PENDING_ADMIN_APPROVAL">Rejected</option>
                     </select>
                   </li>
                 </ul>
