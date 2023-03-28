@@ -56,7 +56,21 @@ const cartSlice = createSlice({
     getTotals(state, action) {
       let { total, quantity, payableAmount } = state.products.reduce(
         (cartTotal, products) => {
-          const { price, quantity } = products;
+          // console.log("rrr " , JSON.stringify(products.product_inventry.map((d) => {
+          //   if(d?.size_id == products?.size_id)
+          //        return d.price
+          // }).filter((d) => {
+          //    if(d != null)
+          //        return d
+          // }).pop()));
+          const price = products.product_inventry.map((d) => {
+            if(d?.size_id == products?.size_id)
+                 return d.price
+          }).filter((d) => {
+             if(d != null)
+                 return d
+          }).pop()
+          const { quantity } = products;
           const itemTotal = price * quantity;
           const totalAmount = itemTotal;
           cartTotal.total += itemTotal;

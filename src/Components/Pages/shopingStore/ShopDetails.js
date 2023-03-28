@@ -24,6 +24,8 @@ const   ShopDetails = () => {
   const [size , setSize] = useState();
   const [productId , setProductId] = useState();
   const [size_id , setSize_id] =useState();
+  const [color_id , setColor_id] =useState();
+
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -62,6 +64,11 @@ const   ShopDetails = () => {
         setSize(d?.data?.data);
         })
 
+        axios.get(`${process.env.REACT_APP_URL}getAllColors`).
+      then((d) => {
+        setColor_id(d?.data?.data);
+        })
+
   }, [id]);
 
   const handleProduct = () => {
@@ -77,10 +84,11 @@ const   ShopDetails = () => {
       theme: "light",
     });
     }
-    dispatch(addProduct({ ...product, quantity: 1 , size_id : size_id}));
+    dispatch(addProduct({ ...product, quantity: 1 , size_id : size_id , productId : productId}));
     notify("Added to cart.");
     setAddButton(true)
   };
+
   const contentStyle = {
     maxHeight: "60vh",
     color: "#fff",
@@ -89,6 +97,7 @@ const   ShopDetails = () => {
     background: "#364d79",
     cursor: "pointer",
   };
+
   return (
     <>
       <div className="container">
@@ -158,11 +167,25 @@ const   ShopDetails = () => {
                           return size?.map((data , index) => {
                             if(data?.id == d?.size_id)
                             {
-                              return(<p className="mx-2" onClick={() => {setProductId(d?.id); setSize_id(d?.size_id)}}>{data?.size}</p>)
+                              return(<button className={`mx-2 `} onClick={() => {setProductId(d?.id); setSize_id(d?.size_id)}}>{data?.size}</button>)
                             }
                           })
                       })
-                }</div>
+                }
+                </div>
+
+                <div className="size d-flex">Color : {
+                  product?.product_inventry?.map((d, i) => {
+                      if(d?.id == productId)
+                          return color_id?.map((data , index) => {
+                            if(d?.color_id == data.id)
+                            {
+                              return(<p className={`mx-2 `} >{data?.color}</p>)
+                            }
+                          })
+                      })
+                }
+                </div>
               </div>
               <p className="product_dec">Stock : {product?.product_inventry?.map((d , i) => {
                 if(productId == d?.id)
