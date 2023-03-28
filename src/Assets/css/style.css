@@ -6718,22 +6718,12 @@ h3.cardTitle.riTArrow {
   background-image: url(../images/carraffle-bg.png);
   background-position: center;
 }
-.dropdown-content.myACt {
-  right: -55px;
-}
-input[type=checkbox], input[type=radio] {
-  cursor: pointer;
-}
-.detailPostOption {
-  padding: 20px;
-}
-.eventRightSide .detailPostOption {
-  padding: 0;
-}
-ul.labelList.btnListShap li span {
-  color: #fff;
-  opacity: 9;
-}
+.dropdown-content.myACt { right: -55px;}
+input[type=checkbox], input[type=radio] { cursor: pointer;}
+.detailPostOption { padding: 20px;}
+.eventRightSide .detailPostOption { padding: 0;}
+ul.labelList.btnListShap li span { color: #fff; opacity: 9;}
 
-.light ul.labelList.btnListShap li span {
-  color: #000;}
+.light ul.labelList.btnListShap li span { color: #000;}
+
+  .car_title { font-size: 15px;  font-weight: 500;}
