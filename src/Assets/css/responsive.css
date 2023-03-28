@@ -1285,6 +1285,9 @@
 	.detailPostOption {
 		padding: 0px 5px;
 	}
+	.commentHead .com_date {
+		display: none;
+	}
 }
 
 @media (max-width: 575px) {
@@ -1460,6 +1463,9 @@
 	.detailPostOption .labelList {	flex-wrap: inherit;	}
 	ul.bidOnThis li p:first-child {
 		width: 46%;
+	}
+	.card_.mobileOnlyV.p0 .box_backgroundD {
+		padding: 0;
 	}
 
 }

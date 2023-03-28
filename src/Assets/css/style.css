@@ -6731,6 +6731,9 @@ input[type=checkbox], input[type=radio] {
   padding: 0;
 }
 ul.labelList.btnListShap li span {
-  color: #000;
+  color: #fff;
   opacity: 9;
 }
+
+.light ul.labelList.btnListShap li span {
+  color: #000;}
