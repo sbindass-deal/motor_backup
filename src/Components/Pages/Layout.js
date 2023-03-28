@@ -91,6 +91,7 @@ import Subscription from "./MyAccount/Subscription";
 import GearInventry from "./Dashboard/GearInventry.js";
 import Wins from "./MyAccount/Wins";
 import Bids from "./MyAccount/Bids";
+import Transaction from "./MyAccount/Transaction";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -113,6 +114,8 @@ const Layout = () => {
               <Route path="myshipments" element={<MyShipments />} />
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="subscription" element={<Subscription />} />
+              <Route path="transaction" element={<Transaction />} />
+
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
               <Route path="vehicle/:id" element={<VehicleRegistered />} />

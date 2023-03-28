@@ -216,7 +216,7 @@ const AddBlog = () => {
             </div>
           </div>
           <div className="form-group text-center my-4 mt-5">
-            <button type="submit" className="btn">
+          <button type="submit" className="btn mt-2">
               Submit
             </button>
           </div>
