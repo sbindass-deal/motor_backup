@@ -175,7 +175,7 @@ const AddListing = () => {
                   value={addListing.description}
                   onChange={handleChange}
                   name="description"
-                  placeholder="Description here"
+                  placeholder="Description"
                   required
                 ></textarea>
               </div>
@@ -189,7 +189,7 @@ const AddListing = () => {
                   value={addListing.annualDescription}
                   onChange={handleChange}
                   name="annualDescription"
-                  placeholder="Description here"
+                  placeholder="Description"
                   required
                 ></textarea>
               </div>
