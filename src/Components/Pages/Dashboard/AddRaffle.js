@@ -223,14 +223,9 @@ const AddRaffle = () => {
             {/* ============================== description start */}
             <div className="col-md-12">
               <label htmlFor="description">Description</label>
-              <div className="border border-2 border-dark">
+              <div className="desCrtpion">
                 <Editor
-                  editorStyle={{
-                    background: "white",
-                    padding: "15px",
-                    minHeight: "30vh",
-                    color: "black",
-                  }}
+                  
                   editorState={htmlDescription}
                   toolbarClassName="toolbarClassName"
                   wrapperClassName="wrapperClassName"
