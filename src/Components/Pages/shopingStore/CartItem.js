@@ -19,6 +19,7 @@ const CartItem = ({
   size,
   description,
   stocks,
+  size_id
 }) => {
   const dispatch = useDispatch();
   const [size2 , setSize2] = useState();
@@ -46,8 +47,7 @@ const CartItem = ({
       then((d) => {
         setColor2(d?.data?.data);
         })
-    }, [])
-    
+    }, []) 
 
   return (
     <>
@@ -55,7 +55,7 @@ const CartItem = ({
         <td className="productImg">
           <div className="cartImg">
             <img
-              src={`${process.env.REACT_APP_URL}upload/products/${image[0].image}`}
+              src={`${process.env.REACT_APP_URL}upload/products/${image[0]?.image}`}
               alt="car_01"
             />
           </div>
@@ -64,21 +64,22 @@ const CartItem = ({
           <p className="proName">{title}</p>
           <p>{description.substr(0, 80)}...</p>
           <p className="size">
-            Size: <span>{size?.map((d) => {return (
+            Size: <span>{
             size2?.map((ele) => {
-              if(ele?.id == d?.size_id)
-              return (ele?.size)
+              if(ele?.id == size_id){
+              return (ele?.size + " ")
+            }
             })
-              )})}</span>
+              }</span>
           </p>
-          <p className="color">
+          {/* <p className="color">
             Color: <span>{color?.map((d) => {return (
             color2?.map((ele) => {
               if(ele?.id == d?.color_id)
               return (ele?.color)
             })
               )})}</span>
-          </p>
+          </p> */}
           <button
             onClick={() => {
               dispatch(removeFromCart(id));
@@ -89,7 +90,10 @@ const CartItem = ({
             Remove
           </button>
         </td>
-        <td className="text-center">${price?.map((d)=>{return d?.price})}</td>
+        <td className="text-center">${price?.map((d)=>{
+          if(d?.size_id ==  size_id)
+          return d?.price
+          })}</td>
         <td className="text-center">
           <div className="count">
             <button
@@ -101,7 +105,7 @@ const CartItem = ({
             <span>{quantity}</span>
             <button
               onClick={() => {
-                if (stocks?.map((d)=>{return d?.stock}) > quantity) {
+                if (stocks?.map((d)=>{if(d?.size_id == size_id) return d?.stock})?.reverse()?.pop() > quantity) {
                   dispatch(increaseCart(id));
                 } else {
                   notify("You reached maximum limit");
@@ -113,7 +117,7 @@ const CartItem = ({
             </button>
           </div>
         </td>
-        <td className="text-center">${quantity * price?.map((d)=>{return d?.price})}</td>
+        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price})?.reverse()?.pop()}</td>
       </tr>
     </>
   );

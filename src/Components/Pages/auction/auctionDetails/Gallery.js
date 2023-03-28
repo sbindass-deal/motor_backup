@@ -12,7 +12,7 @@ const Gallery = ({ vehicle }) => {
         <h3 className="cardTitle">Gallery</h3>
         <div className="row galleryPh">
           <div className={`col-lg-5 firstImg col-sm-12`}>
-            {vehicle.image_gallery && (
+            {vehicle?.image_gallery && (
               <Image
                 loading="lazy"
                 className="card-img-top"
@@ -29,14 +29,14 @@ const Gallery = ({ vehicle }) => {
           <div className={` col-lg-7 col-sm-12 `}>
             <div className="row rightGallery">
               <Image.PreviewGroup>
-                {vehicle.image_gallery &&
-                  vehicle.image_gallery.slice(1, 7).map((curElem) => {
+                {vehicle?.image_gallery &&
+                  vehicle?.image_gallery?.slice(1, 7)?.map((curElem) => {
                     return (
                       <div>
                         <Image
                           loading="lazy"
                           className="card-img-top"
-                          src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                          src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
                             currentTarget.src =
@@ -67,7 +67,7 @@ const Gallery = ({ vehicle }) => {
                         <Image
                           loading="lazy"
                           className="card-img-top"
-                          src={`${process.env.REACT_APP_URL}/${curElem.imagePath}/${curElem.imageName}`}
+                          src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
                             currentTarget.src =

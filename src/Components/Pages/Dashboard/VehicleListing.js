@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const VehicleListing = () => {
   const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const notify = (val) =>
     toast.success(val, {
@@ -80,6 +81,20 @@ const VehicleListing = () => {
                 </div>
 
                 <hr id="hr" />
+                <ul className="postTopOption" id="widthChnge">
+                  <li className="post_search">
+                    <input
+                      type="search"
+                      name="search"
+                      placeholder="Search"
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    />
+                  </li>
+                </ul>
+                
+
                 <div
                   className="card_Gray table-responsive vehicleSub"
                   id="scrollable"
@@ -153,7 +168,16 @@ const VehicleListing = () => {
                       </thead>
                       <tbody>
                         {getData &&
-                          getData.map((curElem) => {
+                            getData.filter((curVal) => {
+                              if (searchTerm == '') {
+                                return curVal
+                              } else if (curVal.plan_name.toLowerCase().includes(searchTerm.toLowerCase())
+                                || curVal.category.toLowerCase().includes(searchTerm.toLowerCase())
+                              ) {
+                                return curVal
+                              }
+                            })
+                              ?.map((curElem) => {
                             console.log(9898, curElem);
                             // const { id, list, maxprice, name, price } = curElem;
                             const {

@@ -131,9 +131,9 @@ const EventDetailPage = () => {
                         parse(curVal?.description?.substr(0, 150), strToHtml)}
                     </p>
                     <p>
-                      <span>Start Date : {curVal.start_date}</span>
+                      <span>Start Date : {new Date(curVal.start_date).toDateString()}</span>
                       <br />
-                      <span>End Date : {curVal.end_date}</span>
+                      <span>End Date : {new Date(curVal.end_date).toDateString()}</span>
                     </p>
                   </p>
                 </p>
@@ -150,8 +150,8 @@ const EventDetailPage = () => {
                     <span>{curVal.title} </span>
 
                     <div>
-                      <span>Start Date : {curVal.start_date}</span> -{" "}
-                      <span>End Date : {curVal.end_date}</span>{" "}
+                      <span>Start Date : {new Date(curVal.start_date).toDateString()}</span> -{" "}
+                      <span>End Date : {new Date(curVal.end_date).toDateString()}</span>{" "}
                     </div>
 
                     <hr />
@@ -239,7 +239,7 @@ const EventDetailPage = () => {
           <div className="card_ ">
             <div className="row">
               <div className="col-12">
-                <h3 class="cardTitle">Comments</h3>
+                <h3 class="cardTitle">Guzzlrs Chat</h3>
                 <form action="" onSubmit={handleSubmit}>
                   <textarea onChange={(e) => { setCommentAdd(e.target.value) }}
                     name=""

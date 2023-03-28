@@ -20,7 +20,7 @@ const Cart = () => {
       progress: undefined,
       theme: "light",
     });
-console.log(product);
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -60,6 +60,7 @@ console.log(product);
                           size={curElem.product_inventry}
                           description={curElem.description}
                           stocks={curElem.product_inventry}
+                          size_id = {curElem?.size_id}
                         />
                       );
                     })}

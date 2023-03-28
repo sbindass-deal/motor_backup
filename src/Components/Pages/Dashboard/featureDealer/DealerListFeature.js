@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 const DealerListFeature = () => {
   const [dealerData, setDealerData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchDealer = async () => {
@@ -70,7 +71,7 @@ const DealerListFeature = () => {
                   id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Dealer List </h3>
+                  <h3>Dealer List</h3>
 
                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
                    + Add Dealer
@@ -78,6 +79,20 @@ const DealerListFeature = () => {
                 </div>
 
                 <hr id="hr" />
+
+                <ul className="postTopOption" id="widthChnge">
+                  <li className="post_search">
+                    <input
+                      type="search"
+                      name="search"
+                      placeholder="Search…"
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    />
+                  </li>
+                </ul>
+
                 <div
                   className="card_Gray table-responsive vehicleSub"
                   id="scrollable"
@@ -102,7 +117,15 @@ const DealerListFeature = () => {
                       </thead>
                       <tbody>
                         {dealerData &&
-                          dealerData.map((curElem, i) => {
+                            dealerData?.filter((curVal) => {
+                              if (searchTerm == '') {
+                                return curVal
+                              } else if (curVal.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                return curVal
+                              }
+                            })
+                              
+                            ?.map((curElem, i) => {
                             return (
                               <tr key={curElem.id}>
                                 <td>{i + 1}</td>

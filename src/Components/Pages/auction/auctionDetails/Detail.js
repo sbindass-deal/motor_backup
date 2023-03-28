@@ -24,7 +24,7 @@ function Detail() {
   const navigate = useNavigate();
   const commentRef = useRef();
   const loginUser = useSelector((state) => state.login);
-  const [vinDetails, setVinDetails] = useState({});
+  const [vinDetails, setVinDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [vehicle, setVehicle] = useState({});
   const [show, setShow] = useState(false);
@@ -131,24 +131,28 @@ function Detail() {
   };
 
   const addBiding = (e) => {
+    // biddings before payment bidding api end point
     e.preventDefault();
     setLoadingBiding(true);
     axios
-      .post(`${process.env.REACT_APP_URL}biddings`, {
+      .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
         vehicle_id: id,
         auctionAmmount: bidValue,
         comment: bidComment,
+        initial_amount: `${bidValue && (parseInt(bidValue, 10) * 5) / 100}`,
       })
       .then((res) => {
         setLoadingBiding(false);
-        if (res.data.status === 200) {
+        if (res.data.status === 200 && loginUser.user.cn_no) {
           handleClose();
           setBidComment("");
           setBidValue("");
           fetchApi();
-          navigate("/bidswins");
+          // navigate("/bidswins");
+          notify(res.data.message, res.data.status);
+        } else {
+          notify(res.data.message, res.data.status);
         }
-        notify(res.data.message, res.data.status);
       })
       .catch((err) => {
         setLoadingBiding(false);
@@ -186,7 +190,7 @@ function Detail() {
         const res = await axios.get(
           `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
         );
-        setVinDetails(res.data);
+        setVinDetails(res?.data);
       } catch (err) {
         console.log(err);
       }
@@ -233,25 +237,29 @@ function Detail() {
                 vehicle={vehicle}
                 handleSubscribe={handleSubscribe}
               />
-              <Interior vinDetails={vinDetails} />
-              <External vinDetails={vinDetails} />
+              {vinDetails !== null && <Interior vinDetails={vinDetails} />}
+              {vinDetails !== null && <External vinDetails={vinDetails} />}
+
               <div className="box_backgroundD mt-15 justifyCenter">
                 <button className="btn">Contact Seller</button>
               </div>
               <LatestGuzzlrsAuction />
             </div>
             <div className="col-lg-9 col-sm-12">
-            <h2 className="title_combo title_Center mobileOnlyV" id="sticky2">
-                    {vehicle.make}
-                  </h2>
+              <h2 className="title_combo title_Center mobileOnlyV" id="sticky2">
+                {vehicle?.make}
+              </h2>
               <div className=" text-center box_background p-10" id="sticky">
                 <div className="detailPostOption">
-                <h2 className="title_combo title_Center mobileOnlyD" id="sticky2">
-                    {vehicle.make}
+                  <h2
+                    className="title_combo title_Center mobileOnlyD"
+                    id="sticky2"
+                  >
+                    {vehicle?.make}
                   </h2>
                   <div className="titleRight">
                     <ul className="labelList ddertg">
-                      {vehicle.displayInAuction !== "classified" && (
+                      {vehicle?.displayInAuction !== "classified" && (
                         <>
                           {vehicle?.currentBid?.last_bid > 0 ? (
                             <li>
@@ -293,13 +301,13 @@ function Detail() {
                         </li>
                       ) : (
                         <>
-                          {vehicle.displayInAuction !== "classified" && (
+                          {vehicle?.displayInAuction !== "classified" && (
                             <li className="text-danger">BIDDING CLOSED</li>
                           )}
                         </>
                       )}
                     </ul>
-                    {vehicle.displayInAuction === "classified" ? (
+                    {vehicle?.displayInAuction === "classified" ? (
                       <button
                         type="button"
                         className="gry_btn active bg-dark"
@@ -349,7 +357,7 @@ function Detail() {
                 <div className="hScroll">
                   <div className="dropdown mr-2 tagBtns">
                     <p type="button" data-toggle="dropdown">
-                      Make: {vehicle.make}
+                      Make: {vehicle?.make}
                     </p>
                     <div className="dropdown-menu">
                       <a className="dropdown-item" href="#">
@@ -362,7 +370,7 @@ function Detail() {
                   </div>
                   <div className="dropdown mr-2 tagBtns">
                     <p type="button" data-toggle="dropdown">
-                      Model: {vehicle.model}
+                      Model: {vehicle?.model}
                     </p>
                     <div className="dropdown-menu">
                       <a className="dropdown-item" href="#">
@@ -374,7 +382,7 @@ function Detail() {
                     </div>
                   </div>
                   <div className="dropdown mr-2 tagBtns">
-                    <p type="button">Era: {vehicle.year}</p>
+                    <p type="button">Era: {vehicle?.year}</p>
                     <div className="dropdown-menu">
                       <a className="dropdown-item" href="#">
                         View all listings
@@ -395,13 +403,13 @@ function Detail() {
                     </div>
                   </div>
                 </div>
-                <AuctionHistory vId={vehicle.userId} />
+                <AuctionHistory vId={vehicle?.userId} />
               </div>
               <div className="card_ mobileOnlyV">
-              <Fundamental
-                vehicle={vehicle}
-                handleSubscribe={handleSubscribe}
-              />
+                <Fundamental
+                  vehicle={vehicle}
+                  handleSubscribe={handleSubscribe}
+                />
               </div>
               <div className="card_">
                 <h3 className="cardTitle">Description</h3>
@@ -409,9 +417,9 @@ function Detail() {
                   {vehicle?.moreDescription &&
                     parse(vehicle?.moreDescription, strToHtml)}
                 </p>
-                <p className="py-4">{vehicle.desc1}</p>
+                <p className="py-4">{vehicle?.desc1}</p>
                 <div className="" id="placeBid_col">
-                  <p>{vehicle.desc2}</p>
+                  <p>{vehicle?.desc2}</p>
                 </div>
               </div>
               <div className="card_">
@@ -472,7 +480,7 @@ function Detail() {
                       </li>
                       <li>
                         <p>Place Bid</p>
-                        {vehicle.displayInAuction === "classified" ? (
+                        {vehicle?.displayInAuction === "classified" ? (
                           <button
                             type="button"
                             className="gry_btn active bg-dark"
@@ -568,6 +576,13 @@ function Detail() {
                         style={{ height: "15vh" }}
                       />
                     </div>
+                  </div>
+                  <div className="col-12">
+                    <p>To complete a bid we will hold 5% of Auction amount.</p>
+                    <p>
+                      Payable Now : $
+                      {bidValue && (parseInt(bidValue, 10) * 5) / 100} USD
+                    </p>
                   </div>
                   <div className="col-12 d-flex justify-content-center pt-4 ">
                     {loadingBiding ? (
