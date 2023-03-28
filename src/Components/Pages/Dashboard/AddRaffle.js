@@ -346,7 +346,7 @@ const AddRaffle = () => {
             {/* ============================= upload video end */}
           </div>
           <div className="form-group text-center">
-            <button type="submit" className="btn my-5">
+            <button type="submit" className="btn mt-2">
               Submit
             </button>
           </div>

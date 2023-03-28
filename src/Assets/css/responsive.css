@@ -1449,9 +1449,7 @@
 @media (max-width: 414px) {}
 
 @media (max-width: 375px) {
-	h1 {
-		font-size: 28px;
-	}
+	h1 {font-size: 28px;}
 	.dZip {	display: block;}
 	.dZip button,.dZip input{ width: 100%;}
 	.downloadZip input {right: 0 !important;}
@@ -1461,33 +1459,25 @@
 	.pt_sm_50 {	padding-top: 20px;}
 	.galleryPh .ant-image .ant-image-img {width: 368px;height: 44px;}
 	.detailPostOption .labelList {	flex-wrap: inherit;	}
-	ul.bidOnThis li p:first-child {
-		width: 46%;
-	}
-	.card_.mobileOnlyV.p0 .box_backgroundD {
-		padding: 0;
-	}
-
+	ul.bidOnThis li p:first-child {	width: 46%;	}
+	.card_.mobileOnlyV.p0 .box_backgroundD {padding: 0;	}
+	.col-12.slider_ht {	height: 664px;	}
+	.slider_ht .nextArrow {	position: absolute;bottom: -39px;left: calc(50% - 154px);}
+	.slider_ht .nextArrow {	bottom: -15px;}
 }
 
 
 
 
 @media (min-width: 360px) {
-	h1 {
-		font-size: 28px;
-	}
+	h1 {font-size: 28px;}
 }
 
 
 @media (min-width: 1200px) {
-	.container {
-		max-width: 1170px;
-	}
+	.container {max-width: 1170px;}
 }
 
 @media (min-width: 1400px) {
-	.container {
-		max-width: 1370px;
-	}
+	.container {max-width: 1370px;}
 }
