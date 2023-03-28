@@ -95,6 +95,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
       });
   };
 
+  
   return (
     <>
       <div className="card_ " ref={commentRef}>
@@ -129,9 +130,9 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                   <div className="commentHead">
                     <div className="com_byPic">
                       {/* <img src={men_face} /> */}
-                      <AccountCircleIcon />
+                      <AccountCircleIcon/>
                     </div>
-                    <div className="com_by" style={{}}>{(curElem.name).toUpperCase().charAt(0)}</div>
+                    <div className="com_by" style={{}}>{curElem.name}</div>
                     <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
                       {curElem.created_at &&
