@@ -19,11 +19,14 @@ const CartItem = ({
   size,
   description,
   stocks,
-  size_id
+  size_id ,
+  productId
 }) => {
   const dispatch = useDispatch();
   const [size2 , setSize2] = useState();
   const [color2 , setColor2] = useState();
+  const [product, setProduct] = useState({});
+  const [color_id , setColor_id] =useState();
 
   const notify = (val) =>
     toast.warn(val, {
@@ -47,6 +50,27 @@ const CartItem = ({
       then((d) => {
         setColor2(d?.data?.data);
         })
+
+        try {
+          axios.get(
+            `${process.env.REACT_APP_URL}allproduct`
+          ).then((d) => {
+            d?.data?.data?.product.map((d, i) => {
+              if (d?.id == id){
+                setProduct(d)
+              }
+            });
+            
+          })
+        } catch (err) {
+          console.log(err);
+        }
+
+        axios.get(`${process.env.REACT_APP_URL}getAllColors`).
+        then((d) => {
+          setColor_id(d?.data?.data);
+          })
+
     }, []) 
 
   return (
@@ -72,14 +96,21 @@ const CartItem = ({
             })
               }</span>
           </p>
-          {/* <p className="color">
-            Color: <span>{color?.map((d) => {return (
-            color2?.map((ele) => {
-              if(ele?.id == d?.color_id)
-              return (ele?.color)
-            })
-              )})}</span>
-          </p> */}
+          <p className="color d-flex">
+            Color: <span>
+              {
+                product?.product_inventry?.map((d, i) => {
+                  if(d?.id == productId)
+                      return color_id?.map((data , index) => {
+                        if(d?.color_id == data.id)
+                        {
+                          return(<p className={`mx-2 `} >{data?.color}</p>)
+                        }
+                      })
+                  })
+              }
+            </span>
+          </p>
           <button
             onClick={() => {
               dispatch(removeFromCart(id));
@@ -119,6 +150,11 @@ const CartItem = ({
         </td>
         <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price})?.reverse()?.pop()}</td>
       </tr>
+      {/* <tr className="text-center">
+                      <td colSpan="3"></td>
+                      <td>Subtotal </td>
+                      <td>${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price})?.reverse()?.pop()}</td>
+      </tr> */}
     </>
   );
 };
