@@ -6727,3 +6727,6 @@ input[type=checkbox], input[type=radio] {
 .detailPostOption {
   padding: 20px;
 }
+.eventRightSide .detailPostOption {
+  padding: 0;
+}
