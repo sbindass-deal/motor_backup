@@ -99,6 +99,7 @@ const App = () => {
   const accessToken = useSelector((state) => state.login.token);
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getTotals());
   }, [logingUser.cartSlice.products]);
