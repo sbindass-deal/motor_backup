@@ -6,6 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { toCommas } from "../../../UI/globaleVar";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { Avatar, Space } from 'antd';
 
 const Comment = ({ id, getVehicleComment, commentRef }) => {
   const loginUser = useSelector((state) => state.login);
@@ -87,7 +88,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
         } else {
           notify("DisLike successfully")
           window.location.reload(false)
-          
+
         }
       })
       .catch(function (error) {
@@ -95,7 +96,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
       });
   };
 
-  
+
   return (
     <>
       <div className="card_ " ref={commentRef}>
@@ -130,7 +131,10 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                   <div className="commentHead">
                     <div className="com_byPic">
                       {/* <img src={men_face} /> */}
-                      <AccountCircleIcon/>
+                      {/* <AccountCircleIcon/> */}
+                      <Space size={16} wrap>
+                        <Avatar>{(curElem.name).toUpperCase().charAt(0)}</Avatar>
+                      </Space>
                     </div>
                     <div className="com_by" style={{}}>{curElem.name}</div>
                     <div className="com_date">
@@ -159,10 +163,9 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                         className="mr-3"
                       >
                         <i
-                          className={`fa-solid fa-thumbs-up ${
-                            curElem.user_reaction_on_commnet == 1 &&
+                          className={`fa-solid fa-thumbs-up ${curElem.user_reaction_on_commnet == 1 &&
                             "text-warning"
-                          }`}
+                            }`}
                         ></i>{" "}
                         {curElem?.Like_count}
                       </a>
@@ -171,10 +174,9 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                         className="mr-3"
                       >
                         <i
-                          className={`fa-solid fa-thumbs-down ${
-                            curElem.user_reaction_on_commnet == 2 &&
+                          className={`fa-solid fa-thumbs-down ${curElem.user_reaction_on_commnet == 2 &&
                             "text-warning"
-                          }`}
+                            }`}
                         ></i>{" "}
                         {curElem?.Dislike_count}
                       </a>

@@ -99,6 +99,16 @@ function MyAccountLeftNav() {
             Subscription
           </Link>
         </li>
+        <li>
+          <Link
+            className={`${
+              location.pathname === "/transaction" ? "active" : ""
+            }`}
+            to="/transaction"
+          >
+            Transaction
+          </Link>
+        </li>
       </ul>
     </div>
   );

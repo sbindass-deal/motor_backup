@@ -405,7 +405,7 @@ function Detail() {
                 </div>
                 <AuctionHistory vId={vehicle?.userId} />
               </div>
-              <div className="card_ mobileOnlyV p0">
+              <div className="card_ mobileOnlyV">
                 <Fundamental
                   vehicle={vehicle}
                   handleSubscribe={handleSubscribe}
