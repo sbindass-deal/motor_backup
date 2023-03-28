@@ -91,9 +91,9 @@ function AccountInfo() {
                 </li>
                 <li>
                   <div className="labelList_label">Card Number</div>
-                  {userId.login.user.cn_no !== null && (
+                  {userInfo.cn_no !== null && (
                     <div className="labelList_text">
-                      ************{userId.login.user.cn_no} <br />
+                      ************{userInfo.cn_no} <br />
                     </div>
                   )}
                 </li>

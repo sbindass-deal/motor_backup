@@ -2643,9 +2643,7 @@ const VechilesRegistraion = () => {
                                   type="checkbox"
                                 />
                                 I am going to pay{" "}
-                                {logingUser.planReducer.plan.price} for{" "}
-                                {logingUser.planReducer.plan.listingType}{" "}
-                                listing
+                                {logingUser.planReducer.plan.price}.
                               </label>
                             </div>
                           </div>

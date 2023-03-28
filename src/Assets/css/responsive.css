@@ -1456,8 +1456,16 @@
 	.titleRight {display: flex;align-items: center;overflow: auto;	white-space: nowrap;height: 55px;	}
 	.detailPostOption .gry_btn {margin-left: 0;	font-size: 10px;}
 	.pt_sm_50 {	padding-top: 20px;}
+	.galleryPh .ant-image .ant-image-img {width: 368px;height: 44px;}
+	.detailPostOption .labelList {	flex-wrap: inherit;	}
+	ul.bidOnThis li p:first-child {
+		width: 46%;
+	}
 
 }
+
+
+
 
 @media (min-width: 360px) {
 	h1 {

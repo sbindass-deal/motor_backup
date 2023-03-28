@@ -185,6 +185,24 @@ function CarRaffle() {
     fetchLotaryApiAll();
   }, [showLotary?.id, inputLotteryNumber]);
 
+  const handlePayment = () => {
+    axios
+      .post(process.env.REACT_APP_URL + "addTicket", {
+        lottery_id: showLotary?.id,
+        qty: parseInt(inputLotteryNumber, 10),
+        enc: newEncryptedvalue,
+        amount: `${
+          showLotary?.price && showLotary?.price * inputLotteryNumber
+        }`,
+      })
+      .then((res) => {
+        // handleShow();
+        navigate("/successpayment");
+      });
+    setInputLotteryNumber("");
+    fetchLotaryApiAll();
+  };
+
   const addTickets = (e) => {
     e.preventDefault();
     if (inputLotteryNumber <= 0) {
@@ -193,19 +211,22 @@ function CarRaffle() {
       handleLogin();
       return;
     }
-    handleShow();
+    handlePayment();
   };
 
   const onToken = (token, addresses) => {
     // console.log(token, addresses);
     if (token !== null) {
-      navigate("/successpayment");
+      // navigate("/successpayment");
       // addTickets();
       axios
         .post(process.env.REACT_APP_URL + "addTicket", {
           lottery_id: showLotary?.id,
           qty: parseInt(inputLotteryNumber, 10),
           enc: newEncryptedvalue,
+          amount: `${
+            showLotary?.price && showLotary?.price * inputLotteryNumber
+          }`,
         })
         .then((res) => {
           handleShow();
@@ -629,7 +650,8 @@ function CarRaffle() {
                     />
                     Your browser does not support the video tag.
                   </video>
-                  <br/><br/>
+                  <br />
+                  <br />
                   <video muted="false" id="myVideo" controls poster={carraffle}>
                     <source
                       src="https://s3.amazonaws.com/beta.Gas Guzzlrs.com/Introducing_video.mp4"
