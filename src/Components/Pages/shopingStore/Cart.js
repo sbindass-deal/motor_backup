@@ -60,7 +60,8 @@ const Cart = () => {
                           size={curElem.product_inventry}
                           description={curElem.description}
                           stocks={curElem.product_inventry}
-                          size_id = {curElem?.size_id}
+                          size_id={curElem?.size_id}
+                          productId={curElem?.productId}
                         />
                       );
                     })}
