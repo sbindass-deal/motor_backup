@@ -5084,7 +5084,7 @@ html {
 }
 
 .auctionLive .card_post {
-  box-shadow: -1px 15px 61px 11px #ffffff24;
+  /* box-shadow: -1px 15px 61px 11px #ffffff24; */
   margin-bottom: 15px;
 }
 

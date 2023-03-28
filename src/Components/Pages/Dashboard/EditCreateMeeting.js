@@ -318,9 +318,9 @@ const EditCreateMeeting = () => {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
-                    Submit
-                  </button>
+                <button type="submit" className="btn mt-2">
+                  Submit
+                </button>
                 </div>
               </form>
             </div>
