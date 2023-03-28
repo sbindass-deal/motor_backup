@@ -2763,9 +2763,9 @@ ul.bidList_.info_ li.fulwdth {
   width: 23%;
 }
 
-.auctionLive .labelList li:last-child {
+/* .auctionLive .labelList li:last-child {
   width: 43%;
-}
+} */
 
 .auctionLive li.butn-shop button.btn {
   padding: 14px 21px;
@@ -5079,7 +5079,7 @@ html {
 
 /* .light .gry_btn {  background-color: #f7931a !important;} */
 .light .auctionLive .card_post {
-  box-shadow: 1px 15px 21px 1px #00000024;
+  /* box-shadow: 1px 15px 21px 1px #00000024; */
   margin-bottom: 15px;
 }
 
@@ -6675,7 +6675,7 @@ footer { margin-top: 60px;}
 .anty-select-dropdown-placement-bottomLeft{ z-index: 99999999999oo99}
 .light .gry_btn.active { background: #000;  border: 1px solid #000;}
 .activeListView .card_postInfo {  display: flow-root;}
-.activeListView .auctionLive .card_postImg img{  height: 155px;}
+/* .activeListView .auctionLive .card_postImg img{  height: 155px;} */
 .activeListView .labelList li label {  display: block;}
 .auctionLive .card_post{  background: #f0f0f0;}
 .desCrtpion {  min-height: 30vh;  border: 1px solid #333333;  padding: 10px;  border-radius: 5px;}
@@ -6729,4 +6729,8 @@ input[type=checkbox], input[type=radio] {
 }
 .eventRightSide .detailPostOption {
   padding: 0;
+}
+ul.labelList.btnListShap li span {
+  color: #000;
+  opacity: 9;
 }
