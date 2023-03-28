@@ -131,7 +131,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                       {/* <img src={men_face} /> */}
                       <AccountCircleIcon />
                     </div>
-                    <div className="com_by">{curElem.name}</div>
+                    <div className="com_by" style={{}}>{(curElem.name).toUpperCase().charAt(0)}</div>
                     <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
                       {curElem.created_at &&

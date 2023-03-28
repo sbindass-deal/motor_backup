@@ -27,6 +27,8 @@ function AccountInfo() {
     });
   }, []);
 
+
+
   const onToken = (token, addresses) => {
     if (token !== null) {
       console.log(111, token);

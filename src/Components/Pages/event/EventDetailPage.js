@@ -279,7 +279,7 @@ const EventDetailPage = () => {
                     <div className="com_byPic">
                       <AccountCircleIcon />
                     </div>
-                    <div className="commentBody">{curVal.user?.map((curVal, i) => curVal.name)}</div>
+                    <div className="commentBody">{curVal.user?.map((curVal, i) => (curVal.name).toUpperCase().charAt(0))}</div>
                     {/* <div className="com_date">
                       <i className="fa-solid fa-clock mr-1"></i>{" "}
                       {
