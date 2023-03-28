@@ -12,10 +12,10 @@ import { useSelector } from "react-redux";
 
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
+  const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const userId = useSelector((state) => state);
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
@@ -90,13 +90,21 @@ function AccountInfo() {
                   </div>
                 </li>
                 <li>
+                  <div className="labelList_label">Card Number</div>
+                  {userId.login.user.cn_no !== null && (
+                    <div className="labelList_text">
+                      ************{userId.login.user.cn_no} <br />
+                    </div>
+                  )}
+                </li>
+                <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
                   <StripeCheckout
                     className="Btn"
                     stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
                     token={onToken}
-                    email={userId.login.user.email}
+                    email={userInfo.email}
                     name="Save Card Details For Bidding"
                     currency="USD"
                     ComponentClass="div"

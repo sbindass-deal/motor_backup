@@ -50,7 +50,7 @@ const VechilesRegistraion = () => {
   const [getVinNumber, setGetVinNumber] = useState();
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
-
+  const [aggreePayment, setAggreePayment] = useState(false);
   const [arr, setArr] = useState(inputArr);
 
   const [galleryFile, setGalleryFile] = useState([]);
@@ -163,23 +163,14 @@ const VechilesRegistraion = () => {
     setShowPayment(false);
   };
 
-  const handleShowPayment = (e) => {
-    e.preventDefault();
-    if (errorMakeAndModal || errorBasicFact || errorDetais) {
-      return setShowError(false);
-    }
-    if (logingUser.planReducer.planSubscribe === true) {
-      return informationSubmitHandler();
-    }
-    setShowPayment(true);
-  };
-  const fetchTransaction = async (token) => {
-    await axios
+  const fetchTransaction = async () => {
+    Request: await axios
       .post(`${process.env.REACT_APP_URL}paymentUpdate`, {
         planId: logingUser.planReducer.plan.planId,
         plantype: logingUser.planReducer.plan.listingType,
-        transactionId: token.card.id,
-        mode: token.type,
+        amount: logingUser.planReducer.plan.price,
+        // transactionId: token.card.id,
+        // mode: token.type,
         purchase_qty: logingUser.planReducer.plan.playQuantity,
       })
       .then(function (response) {
@@ -189,6 +180,17 @@ const VechilesRegistraion = () => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const handleShowPayment = (e) => {
+    e.preventDefault();
+    if (errorMakeAndModal || errorBasicFact || errorDetais) {
+      return setShowError(false);
+    }
+    if (logingUser.planReducer.planSubscribe === true) {
+      return informationSubmitHandler();
+    }
+    fetchTransaction();
   };
   const onToken = (token, addresses) => {
     // console.log(111, token, addresses);
@@ -1101,7 +1103,7 @@ const VechilesRegistraion = () => {
                                 name="make"
                                 placeholder="Enter make vehicle"
                                 errorMessage="This input field contain 3-16 characters and shouldn't include any special character"
-                                label="what make is your vehicle?"
+                                label="What make is your vehicle?"
                                 pattern="^[A-Za-z0-9 ]{3,16}$"
                                 required={true}
                               />
@@ -2627,6 +2629,26 @@ const VechilesRegistraion = () => {
                               </label>
                             </div>
                           </div>
+
+                          <div className="col-12 col-sm-12 col-md-12">
+                            <div className="form-group form-check">
+                              <label className="form-check-label">
+                                <input
+                                  name="checkbox"
+                                  onChange={(e) =>
+                                    setAggreePayment(e.target.checked)
+                                  }
+                                  className="form-check-input"
+                                  checked={aggreePayment}
+                                  type="checkbox"
+                                />
+                                I am going to pay{" "}
+                                {logingUser.planReducer.plan.price} for{" "}
+                                {logingUser.planReducer.plan.listingType}{" "}
+                                listing
+                              </label>
+                            </div>
+                          </div>
                           <div className="col-12 col-sm-12 col-md-12">
                             <button
                               type="button"
@@ -2640,7 +2662,12 @@ const VechilesRegistraion = () => {
                                 Loading...
                               </button>
                             ) : (
-                              <button type="submit" className="gry_btn">
+                              <button
+                                disabled={!aggreePayment}
+                                type="submit"
+                                className="gry_btn"
+                                required
+                              >
                                 Finish
                               </button>
                             )}

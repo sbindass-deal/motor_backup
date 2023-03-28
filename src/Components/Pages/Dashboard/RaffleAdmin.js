@@ -205,6 +205,7 @@ function RaffleAdmin() {
                             ?.reverse()
                             ?.map((data, index) => (
                               <tr>
+                                {console.log(6767,data)}
                                 <th scope="row">{index + 1}</th>
                                 <td> {data?.name}</td>
                                 <td>{parse(
@@ -215,8 +216,8 @@ function RaffleAdmin() {
                                 }</td>
                                 <td>{data?.price}</td>
                                 <td>20</td>
-                                <td>{data?.created_at}</td>
-                                <td>{data?.dealEndDate}</td>
+                                <td>{new Date(data?.created_at).toDateString()}</td>
+                                <td>{new Date(data?.dealEndDate).toDateString()}</td>
 
                                 <td className="actionBtn">
                                   {/* {data.active && ( */}

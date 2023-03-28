@@ -75,7 +75,7 @@ function Blog() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3
+              <div
                 className="d-flex"
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
@@ -85,11 +85,11 @@ function Blog() {
                   {/* <Link to="/admin/add-blog" className="btn">
                     <i className="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
-                  <Link to="/admin/add-blog" className="orange_btn _blog">
+                  <Link to="/admin/add-blog" className="orange_btn">
                    + Add New Blogs
                   </Link>
                 </div>
-              </h3>
+              </div>
 
               <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
@@ -168,7 +168,7 @@ function Blog() {
                                   {curElem.created_at &&
                                     new Date(
                                       curElem.created_at
-                                    ).toLocaleDateString()}
+                                    ).toDateString()}
                                 </td>
                                 <td className="actionBtn">
                                   <Dropdown className="neWm">

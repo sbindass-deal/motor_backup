@@ -243,14 +243,19 @@ function CarRaffle() {
   // console.log(9898, showLotary?.image && showLotary?.image[0].imagePath)
   return (
     <>
-      <section className=" video_section d-flex align-items-center">
-        <video muted="false" id="myVideo" controls poster={carraffle}>
-          <source
-            src="https://s3.amazonaws.com/beta.Gas Guzzlrs.com/Introducing_video.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+      <section class="heroSection rfel d-flex align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2">
+              <div class="heroText">
+                {/* <h1>Giveaways</h1>
+                <h5>
+                 
+                </h5> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="ptb_80 pt_sm_50">
@@ -401,7 +406,7 @@ function CarRaffle() {
                     </h5>
                     <p>
                       {showLotary?.dealEndDate &&
-                        new Date(showLotary?.dealEndDate).toLocaleDateString()}
+                        new Date(showLotary?.dealEndDate).toDateString()}
                     </p>
                   </div>
                   <div className="col-md-3 iconSecT">
@@ -414,7 +419,7 @@ function CarRaffle() {
                     </h5>
                     <p>
                       {showLotary?.drawdate &&
-                        new Date(showLotary?.drawdate).toLocaleDateString()}
+                        new Date(showLotary?.drawdate).toDateString()}
                     </p>
                   </div>
                 </div>
@@ -612,6 +617,26 @@ function CarRaffle() {
 
                    
                   </div> */}
+                </div>
+              </div>
+              <div className="card_Gray2 mt-2  ">
+                <div className="cardBorder">
+                  <h6>videos</h6>
+                  <video muted="false" id="myVideo" controls poster={carraffle}>
+                    <source
+                      src="https://s3.amazonaws.com/beta.Gas Guzzlrs.com/Introducing_video.mp4"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                  <br/><br/>
+                  <video muted="false" id="myVideo" controls poster={carraffle}>
+                    <source
+                      src="https://s3.amazonaws.com/beta.Gas Guzzlrs.com/Introducing_video.mp4"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
