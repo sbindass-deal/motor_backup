@@ -1214,8 +1214,13 @@
 		height: 65vh;
 	}
 	.firstImg img {
-		min-width: 348px;
+		min-width: 100%;
 		min-height: 266px;
+	}
+	.firstImg .ant-image {
+		
+		padding: 0;
+		
 	}
 	.detailPostOption {
 		justify-content: flex-start;
@@ -1276,6 +1281,9 @@
 	}
 	.p-10{
 		padding: 10px;
+	}
+	.detailPostOption {
+		padding: 0px 5px;
 	}
 }
 
@@ -1441,6 +1449,14 @@
 	h1 {
 		font-size: 28px;
 	}
+	.dZip {	display: block;}
+	.dZip button,.dZip input{ width: 100%;}
+	.downloadZip input {right: 0 !important;}
+	.auctionHistory {width: 100%;}
+	.titleRight {display: flex;align-items: center;overflow: auto;	white-space: nowrap;height: 55px;	}
+	.detailPostOption .gry_btn {margin-left: 0;	font-size: 10px;}
+	.pt_sm_50 {	padding-top: 20px;}
+
 }
 
 @media (min-width: 360px) {

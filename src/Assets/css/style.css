@@ -913,7 +913,7 @@ footer h6:before {
   min-width: 100%;
   min-height: 100%;
   object-fit: contain;
-  border: 1px solid #f7f7f7;
+  
 }
 
 .dropdownCol {
@@ -924,7 +924,9 @@ footer h6:before {
 .dropdownCol .dropdown {
   margin-bottom: 4px;
 }
-
+.dZip button.btn {
+  z-index: 1;
+}
 .dropdownCol .gry_btn {
   font-size: 12px;
   padding: 5px 8px;
@@ -6526,8 +6528,8 @@ h3.sliderTile {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s;
-  left: 5px;
-  width: 100%;
+  left: 0px;
+  width: 97%;
   height: 100%;
 }
 
@@ -6536,7 +6538,7 @@ h3.sliderTile {
 ul.bidOnThis li p{ width: 50%; float: left;}
 ul.bidOnThis li p:first-child { width: 26%;}
 .gry_btn:hover, .gry_btn.active { border-color: transparent;}
-.galleryPh .ant-image .ant-image-img { width: 188px; height: 124px; vertical-align: middle; object-fit: cover;}
+.galleryPh .ant-image .ant-image-img { width: 368px; height: 124px; vertical-align: middle; object-fit: cover;}
 .dark .rbc-off-range-bg { background: #6b6b6b45;}
 .dark .rbc-toolbar button { color: #ffffff;}
 .light .rbc-toolbar button {  color: #000;}
@@ -6720,4 +6722,7 @@ h3.cardTitle.riTArrow {
 }
 input[type=checkbox], input[type=radio] {
   cursor: pointer;
+}
+.detailPostOption {
+  padding: 20px;
 }
