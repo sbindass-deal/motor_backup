@@ -9,8 +9,9 @@ function MyAccountLeftNav() {
         <li>
           <Link
             to="/accountinfo"
-            className={` ${location.pathname === "/accountinfo" ? "active" : ""
-              } `}
+            className={` ${
+              location.pathname === "/accountinfo" ? "active" : ""
+            } `}
           >
             Account Info
           </Link>
@@ -35,16 +36,25 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/bidswins" ? "active" : ""} `}
-            to="/bidswins"
+            className={` ${location.pathname === "/bids" ? "active" : ""} `}
+            to="/bids"
           >
-            Bids & Wins
+            Bids
           </Link>
         </li>
         <li>
           <Link
-            className={`${location.pathname === "/myshipments" ? "active" : ""
-              }`}
+            className={` ${location.pathname === "/wins" ? "active" : ""} `}
+            to="/wins"
+          >
+            Wins
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={`${
+              location.pathname === "/myshipments" ? "active" : ""
+            }`}
             to="/myshipments"
           >
             Shipments
@@ -60,8 +70,9 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={`${location.pathname === "/user-meeting" ? "active" : ""
-              }`}
+            className={`${
+              location.pathname === "/user-meeting" ? "active" : ""
+            }`}
             to="/user-meeting"
           >
             Events
@@ -69,8 +80,9 @@ function MyAccountLeftNav() {
         </li>
         <li>
           <Link
-            className={` ${location.pathname === "/orders-cart" ? "active" :""
-              }`}
+            className={` ${
+              location.pathname === "/orders-cart" ? "active" : ""
+            }`}
             to="/orders-cart"
           >
             Orders
@@ -79,14 +91,14 @@ function MyAccountLeftNav() {
 
         <li>
           <Link
-            className={`${location.pathname === "/subscription" ? "active" : ""
-              }`}
+            className={`${
+              location.pathname === "/subscription" ? "active" : ""
+            }`}
             to="/subscription"
           >
             Subscription
           </Link>
         </li>
-
       </ul>
     </div>
   );

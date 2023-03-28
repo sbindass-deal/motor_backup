@@ -30,7 +30,6 @@ function UserBlog() {
     fetchBlogs();
   }, []);
 
-
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -42,7 +41,6 @@ function UserBlog() {
       progress: undefined,
       theme: "light",
     });
-
 
   const handleDelete = (id) => {
     axios
@@ -171,9 +169,7 @@ function UserBlog() {
                                 </td>
                                 <td>
                                   {curElem.created_at &&
-                                    new Date(
-                                      curElem.created_at
-                                    ).toDateString()}
+                                    new Date(curElem.created_at).toDateString()}
                                 </td>
                                 <td className="actionBtn">
                                   <Link to={`/edit-user-blog/${curElem.id}`}>

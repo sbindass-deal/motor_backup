@@ -6708,3 +6708,16 @@ h3.cardTitle.riTArrow {
   display: flex;
   justify-content: space-between;
 }
+
+.rfel {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../images/carraffle-bg.png);
+  background-position: center;
+}
+.dropdown-content.myACt {
+  right: -55px;
+}
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+}
