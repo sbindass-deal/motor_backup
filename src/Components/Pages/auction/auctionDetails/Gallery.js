@@ -91,7 +91,7 @@ const Gallery = ({ vehicle }) => {
         </div>
       </div>
       <div className="card_ ptb_40">
-        <h3 className="cardTitle">Youtube Videos</h3>
+        <h3 className="cardTitle">Videos</h3>
         <div className="card-group videoColl">
           {vehicle?.description?.map((curElem, i) => {
             return (

@@ -228,7 +228,7 @@ const DealerProfile = () => {
               <p>
                 {dealerData?.about_us && parse(dealerData?.about_us, strToHtml)}
               </p>
-              <button className="btn">View More</button>
+              {/* <button className="btn">View More</button> */}
             </div>
           </div>
         </div>
