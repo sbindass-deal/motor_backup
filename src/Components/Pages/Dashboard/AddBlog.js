@@ -101,7 +101,7 @@ const AddBlog = () => {
   return (
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
-        <form>
+        <form onSubmit={handleApi}>
           <div className="row row_gap_5">
             <div className="col-12 ">
               <label>Blog Title</label>
@@ -169,6 +169,7 @@ const AddBlog = () => {
                   onEditorStateChange={handleContent}
                   onPaste={handlePaste}
                   placeholder="Please enter description"
+                  required
                 />
               </div>
             </div>
@@ -220,7 +221,7 @@ const AddBlog = () => {
             </div>
           </div>
           <div className="form-group text-center my-4 mt-5">
-            <button onClick={handleApi} className="btn">
+            <button type="submit" className="btn">
               Submit
             </button>
           </div>
