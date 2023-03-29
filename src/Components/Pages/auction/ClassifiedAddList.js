@@ -63,7 +63,6 @@ function ClassifiedAddList() {
                   {dealer?.map((curElem, i) => {
                     return (
                       <li
-                      
                         onClick={() =>
                           handleDealerVehicle(curElem?.id, curElem?.name)
                         }
@@ -85,12 +84,15 @@ function ClassifiedAddList() {
               <div className="row pt-4 row_gridList ">
                 {classifiedAds?.length > 0 &&
                   classifiedAds?.map((curElem, i) => {
-                    return <div key={curElem.id} className="col-12 col-md-4 pb-3 charityOct">
+                    return (
+                      <div
+                        key={curElem.id}
+                        className="col-12 col-md-4 pb-3 charityOct"
+                      >
                         <div className="card_post">
                           <div className="card_postImg">
                             <Link
                               to={`/detail/${curElem.id}`}
-                              
                               className="card_postImg card_postImg_200"
                             >
                               {curElem.stepOneImage ? (
@@ -132,7 +134,8 @@ function ClassifiedAddList() {
                                 <span className="">
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 250),
+                                      curElem?.moreDescription?.substr(0, 150) +
+                                        "...",
                                       strToHtml
                                     )}
                                 </span>
@@ -140,15 +143,11 @@ function ClassifiedAddList() {
                             </ul>
                           </div>
                         </div>
-                      </div> 
-
-                   
-
-
+                      </div>
+                    );
                   })}
               </div>
             </div>
-            
           </div>
         </div>
       </section>
