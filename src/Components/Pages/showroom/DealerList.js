@@ -71,16 +71,16 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
                       <div class="card_postInfo">
                         <h4>
                           <Link to={`/dealerprofile/${curElem?.id}`}>
-                            {curElem?.title}
+                          {curElem?.name}
                           </Link>
                         </h4>
                       
-                        <ul class="labelList">
+                        {/* <ul class="labelList">
                           <li>{new Date(curElem?.created_at).toDateString()}</li>
                           <li>
-                            <i class="fa-solid fa-user mr-2"></i> {curElem?.name}
+                            <i class="fa-solid fa-user mr-2"></i> 
                           </li>
-                        </ul>
+                        </ul> */}
                         <p>
                           {curElem?.dealerDescription &&
                             parse(

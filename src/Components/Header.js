@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
 import Searchbar from "./UI/Searchbar";
-
+import g3 from "../Assets/images/G3.png" 
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -510,8 +510,9 @@ function Header() {
 
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
-                        <AccountCircleIcon />
-
+                        {/* <AccountCircleIcon /> */}
+                        <p className="userIco"><span>N</span></p>
+                        {/* <p className="userIco"><span><img src={g3}/></span></p> */}
                         <div className="dropdown-content myACt">
                           {logingUser.login.token && (
                             <Link
