@@ -3,20 +3,20 @@ import { useState } from "react";
 
 const Interior = ({ vinDetails }) => {
   const [readMoreInt, setReadMoreInt] = useState(false);
-  const [handleShow, setHandleShow] = useState(false);
+  const [handleShow, setHandleShow] = useState(true);
 
   return (
     <>
       <div className="box_backgroundD mt-15">
         <h3 className="cardTitle riTArrow">
           {vinDetails?.options && vinDetails?.options[0]?.category}
-          <span
+          <a
             onClick={() => {
               setHandleShow(!handleShow);
             }}
           >
             <i class="fa-solid fa-chevron-down"></i>
-          </span>
+          </a>
         </h3>
         <ul
           className="UlList"

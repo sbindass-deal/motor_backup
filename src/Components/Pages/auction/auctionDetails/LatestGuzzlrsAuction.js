@@ -44,7 +44,7 @@ const LatestGuzzlrsAuction = () => {
                   key={i}
                   className="sidebarPost"
                 >
-                  <a href="#">
+                 
                     <div className="overlay_post">
                       <div className="">
                         <div className="">
@@ -76,7 +76,7 @@ const LatestGuzzlrsAuction = () => {
                         />
                       )}
                     </div>
-                  </a>
+                 
                 </Link>
               );
             })}
