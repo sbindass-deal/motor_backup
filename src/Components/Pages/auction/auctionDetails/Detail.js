@@ -405,7 +405,7 @@ function Detail() {
                 </div>
                 <AuctionHistory vId={vehicle?.userId} />
               </div>
-              <div className="card_ mobileOnlyV p0">
+              <div className="card_ mobileOnlyV">
                 <Fundamental
                   vehicle={vehicle}
                   handleSubscribe={handleSubscribe}
@@ -563,7 +563,7 @@ function Detail() {
                       />
                     </div>
                   </div>
-                  <div className="col-12">
+                  {/* <div className="col-12">
                     <div className="form-group">
                       <FormInput
                         value={bidComment}
@@ -576,14 +576,14 @@ function Detail() {
                         style={{ height: "15vh" }}
                       />
                     </div>
-                  </div>
-                  <div className="col-12">
+                  </div> */}
+                  {/* <div className="col-12">
                     <p>To complete a bid we will hold 5% of Auction amount.</p>
                     <p>
                       Payable Now : $
                       {bidValue && (parseInt(bidValue, 10) * 5) / 100} USD
                     </p>
-                  </div>
+                  </div> */}
                   <div className="col-12 d-flex justify-content-center pt-4 ">
                     {loadingBiding ? (
                       <button className="btn" type="button">

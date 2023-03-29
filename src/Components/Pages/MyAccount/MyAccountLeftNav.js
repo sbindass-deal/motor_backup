@@ -47,7 +47,7 @@ function MyAccountLeftNav() {
             className={` ${location.pathname === "/wins" ? "active" : ""} `}
             to="/wins"
           >
-            Wins
+            Won
           </Link>
         </li>
         <li>
@@ -97,6 +97,16 @@ function MyAccountLeftNav() {
             to="/subscription"
           >
             Subscription
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={`${
+              location.pathname === "/transaction" ? "active" : ""
+            }`}
+            to="/transaction"
+          >
+            Transaction
           </Link>
         </li>
       </ul>

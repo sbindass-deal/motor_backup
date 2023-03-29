@@ -5,6 +5,7 @@ import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { toast } from "react-toastify";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Avatar, Space } from "antd";
 
 const EventDetailPage = () => {
   const { id } = useParams();
@@ -277,7 +278,10 @@ const EventDetailPage = () => {
                 return <div key={i} className="commentRow">
                   <div className="commentHead">
                     <div className="com_byPic">
-                      <AccountCircleIcon />
+                      {/* <AccountCircleIcon /> */}
+                      <Space size={16} wrap>
+                        <Avatar>{curVal.user?.map((curVal, i) => (curVal.name).toUpperCase().charAt(0))}</Avatar>
+                      </Space>
                     </div>
                     <div className="commentBody">{curVal.user?.map((curVal, i) => curVal.name)}</div>
                     {/* <div className="com_date">

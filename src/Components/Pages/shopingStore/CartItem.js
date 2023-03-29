@@ -29,7 +29,7 @@ const CartItem = ({
   const [color_id , setColor_id] =useState();
 
   const notify = (val) =>
-    toast.warn(val, {
+    toast.error(val, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -73,6 +73,7 @@ const CartItem = ({
 
     }, []) 
 
+
   return (
     <>
       <tr>
@@ -113,7 +114,7 @@ const CartItem = ({
           </p>
           <button
             onClick={() => {
-              dispatch(removeFromCart(id));
+              dispatch(removeFromCart(size_id));
               notify("Item Removed Successfully");
             }}
             className="removeBtn"
@@ -128,7 +129,7 @@ const CartItem = ({
         <td className="text-center">
           <div className="count">
             <button
-              onClick={() => dispatch(decreaseCart(id))}
+              onClick={() => dispatch(decreaseCart(size_id))}
               className="addCountIcon negtv"
             >
               -
@@ -136,8 +137,8 @@ const CartItem = ({
             <span>{quantity}</span>
             <button
               onClick={() => {
-                if (stocks?.map((d)=>{if(d?.size_id == size_id) return d?.stock})?.reverse()?.pop() > quantity) {
-                  dispatch(increaseCart(id));
+                if (stocks?.map((d)=>{if(d?.size_id == size_id) return d?.stock})?.filter((d) => {if(d != undefined)return d}).pop() > quantity) {
+                  dispatch(increaseCart(size_id));
                 } else {
                   notify("You reached maximum limit");
                 }
@@ -148,7 +149,10 @@ const CartItem = ({
             </button>
           </div>
         </td>
-        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price})?.reverse()?.pop()}</td>
+        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price}).filter((d) => {
+      if(d != undefined)
+          return d
+   }).pop()}</td>
       </tr>
       {/* <tr className="text-center">
                       <td colSpan="3"></td>

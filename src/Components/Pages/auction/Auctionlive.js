@@ -31,6 +31,8 @@ const Auctionlive = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}vehicles_all/auction`
       );
+
+      console.log(9898, res)
       if (res.data.status === 200) {
         setData(res.data.data);
         setAllData(res.data.data);

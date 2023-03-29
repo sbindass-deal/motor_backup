@@ -27,6 +27,8 @@ function AccountInfo() {
     });
   }, []);
 
+
+
   const onToken = (token, addresses) => {
     if (token !== null) {
       console.log(111, token);
@@ -100,7 +102,7 @@ function AccountInfo() {
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
-                  <StripeCheckout
+                  {userInfo.cn_no === null && <StripeCheckout
                     className="Btn"
                     stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
                     token={onToken}
@@ -114,7 +116,7 @@ function AccountInfo() {
                     // }
                   >
                     <button className="btn">Save Card Details</button>
-                  </StripeCheckout>
+                  </StripeCheckout>}
                 </li>
               </ul>
             </div>

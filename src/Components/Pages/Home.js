@@ -235,7 +235,7 @@ function Home() {
                                 <p>
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 300),
+                                      curElem?.moreDescription?.substr(0, 120)+"...",
                                       strToHtml
                                     )}
                                 </p>

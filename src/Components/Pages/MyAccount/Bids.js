@@ -168,7 +168,7 @@ function Bids() {
                                   ${curElem?.auctionAmmount} USD
                                 </span>
                               </p>
-                              {curElem?.payment_received == 0 ? (
+                              {/* {curElem?.payment_received == 0 ? (
                                 <>
                                   <p>
                                     To complete a bid please pay 5% of Auction
@@ -184,10 +184,10 @@ function Bids() {
                                 </>
                               ) : (
                                 <p>Paid : ${curElem?.initial_amount} USD</p>
-                              )}
+                              )} */}
                             </div>
                             <div className="pl-md-3 d-flex">
-                              <div className="mx-2">
+                              {/* <div className="mx-2">
                                 {curElem?.payment_received == 0 && (
                                   <button
                                     onClick={() =>
@@ -202,7 +202,7 @@ function Bids() {
                                     Pay now
                                   </button>
                                 )}
-                              </div>
+                              </div> */}
                               {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button
