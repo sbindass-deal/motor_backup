@@ -23,7 +23,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
         setDealerData([...res.data.featured_dealer]);
-        handleDealerCount(res.data.featured_dealer.length)
+        handleDealerCount(res.data.featured_dealer.length);
       } catch (err) {
         console.log(err);
       }
@@ -36,69 +36,74 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
       <div className="col-12 ListDealer mt-50">
         <div className="row  pt-4 row_gridList">
           {dealerData.length > 0 &&
-            dealerData?.filter((curElem) => {
-              if (searchTerm == "") {
-                return curElem
-              }
-              else if (curElem?.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return curElem
-              }
-            })
+            dealerData
+              ?.filter((curElem) => {
+                if (searchTerm == "") {
+                  return curElem;
+                } else if (
+                  curElem?.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return curElem;
+                }
+              })
               ?.map((curElem) => {
-              return (
-                <>
-                  <div class="col-12 col-md-4 pb-3">
-                    <div class="card_post">
-                      <div class="card_postImg">
-                        <Link to={`/dealerprofile/${curElem?.id}`}>
-                          {curElem?.image_logo && (
-                            <img
-                              loading="lazy"
-                              src={
-                                curElem?.image_logo[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
-                                  : noImage
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src = noImage;
-                              }}
-                              alt={curElem?.username}
-                            />
-                          )}
-                        </Link>
-                      </div>
-                      <div class="card_postInfo">
-                        <h4>
+                return (
+                  <>
+                    <div class="col-12 col-md-4 pb-3">
+                      <div class="card_post">
+                        <div class="card_postImg">
                           <Link to={`/dealerprofile/${curElem?.id}`}>
-                          {curElem?.name}
+                            {curElem?.image_logo && (
+                              <img
+                                loading="lazy"
+                                src={
+                                  curElem?.image_logo[0]
+                                    ? `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
+                                    : noImage
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt={curElem?.username}
+                              />
+                            )}
                           </Link>
-                        </h4>
-                      
-                        {/* <ul class="labelList">
+                        </div>
+                        <div class="card_postInfo">
+                          <h4>
+                            <Link to={`/dealerprofile/${curElem?.id}`}>
+                              {curElem?.name}
+                            </Link>
+                          </h4>
+
+                          {/* <ul class="labelList">
                           <li>{new Date(curElem?.created_at).toDateString()}</li>
                           <li>
                             <i class="fa-solid fa-user mr-2"></i> 
                           </li>
                         </ul> */}
-                        <p>
-                          {curElem?.dealerDescription &&
-                            parse(
-                              curElem?.dealerDescription?.substr(0, 70)+"...",
-                              strToHtml
-                            )}
-                        </p>
+                          <p>
+                            {curElem?.dealerDescription &&
+                              parse(
+                                curElem?.dealerDescription?.substr(0, 70) +
+                                  "...",
+                                strToHtml
+                              )}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </>
-              );
-            })}
+                  </>
+                );
+              })}
 
-            <Pagination totalPosts={dealerData.length}
-              postsPerPage={postsPerPage}
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage} />
+          <Pagination
+            totalPosts={dealerData.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </>
