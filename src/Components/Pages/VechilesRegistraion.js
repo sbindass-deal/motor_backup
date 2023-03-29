@@ -2226,14 +2226,9 @@ const VechilesRegistraion = () => {
                                 What do you know about the history of the
                                 vehicle from new?
                               </label>
-                              <div className="border border-2 border-dark">
+                              <div className="desCrtpion">
                                 <Editor
-                                  editorStyle={{
-                                    background: "white",
-                                    padding: "15px",
-                                    minHeight: "30vh",
-                                    color: "black",
-                                  }}
+                                 
                                   editorState={vehicleHistory}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"
@@ -2256,14 +2251,9 @@ const VechilesRegistraion = () => {
                                 to upload images of redacted service records for
                                 recent and/or notable services.
                               </p>
-                              <div className="border border-2 border-dark">
+                              <div className="desCrtpion">
                                 <Editor
-                                  editorStyle={{
-                                    background: "white",
-                                    padding: "15px",
-                                    minHeight: "30vh",
-                                    color: "black",
-                                  }}
+                                 
                                   editorState={serviceRecord}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"
@@ -2383,14 +2373,9 @@ const VechilesRegistraion = () => {
                                 (e.g. engine problems, non-functional items,
                                 dents, interior flaws, etc.)
                               </label>
-                              <div className="border border-2 border-dark">
+                              <div className="desCrtpion">
                                 <Editor
-                                  editorStyle={{
-                                    background: "white",
-                                    padding: "15px",
-                                    minHeight: "30vh",
-                                    color: "black",
-                                  }}
+                                 
                                   editorState={issuesProblems}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"

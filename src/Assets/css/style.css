@@ -1071,24 +1071,11 @@ select.field option {
 
 }
 
-.commentRow {
-  padding: 20px 0px;
-  margin-bottom: 10px;
-  border-bottom: 1px #413f3f solid;
-}
-.ant-avatar {
-  background: rgb(255 255 255);
-  border: 0px solid transparent;
-}
-.light .ant-avatar {
-  background: #000;
-  border: 0px solid transparent;
-  color: #fff;
-}
-.commentHead {
-  display: flex;
-  align-items: center;
-}
+.commentRow { padding: 10px 0px; margin-bottom: 10px; border-bottom: 1px #413f3f solid;}
+.commentRow:last-child { border-bottom: 0px #413f3f solid;}
+.ant-avatar { background: rgb(255 255 255); border: 0px solid transparent;}
+.light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
+.commentHead { display: flex; align-items: center;}
 
 .com_byPic {
   width: 40px;
@@ -2837,18 +2824,18 @@ footer a img {
 /* li.nav-item.afterLogin { text-align: center;} */
 li.nav-item.afterLogin span {
   font-size: 13px;
-  position: absolute;
-  top: -3px;
-  right: -2px;
-  width: 30px;
-  background: #000;
-  height: 30px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-  color: #fff;
+    position: absolute;
+    top: -9px;
+    right: -2px;
+    width: 30px;
+    background: #000;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #fff;
 }
 .charityOct .card_postImg {
   height: 200px;

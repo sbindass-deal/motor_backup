@@ -1461,9 +1461,11 @@
 	.detailPostOption .labelList {	flex-wrap: inherit;	}
 	ul.bidOnThis li p:first-child {	width: 46%;	}
 	.card_.mobileOnlyV.p0 .box_backgroundD {padding: 0;	}
-	.col-12.slider_ht {	height: 664px;	}
+	
 	.slider_ht .nextArrow {	position: absolute;bottom: -39px;left: calc(50% - 154px);}
 	.slider_ht .nextArrow {	bottom: -15px;}
+	button.sunMoonBtn {left: 67%;	}
+	.navbar-collapse.mobileOnly.collapse.show {padding-left: 0;	}
 }
 
 
