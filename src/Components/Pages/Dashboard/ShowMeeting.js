@@ -45,7 +45,7 @@ const ShowMeeting = () => {
             <div className="row ">
               {meetingData?.map((curVal) => {
                 return (
-                  <div className="col-4 mt-4 mb-4">
+                  <div className="col-md-4 col-sm-12 mt-4 mb-4 evT">
                     <div className="card_post">
                       <Link to={`/eventdetail/${curVal.id}`}>
                         <div className="card_postImg">
