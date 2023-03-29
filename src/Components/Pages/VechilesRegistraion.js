@@ -2630,7 +2630,7 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
 
-                          <div className="col-12 col-sm-12 col-md-12">
+                          {/* <div className="col-12 col-sm-12 col-md-12">
                             <div className="form-group form-check">
                               <label className="form-check-label">
                                 <input
@@ -2646,7 +2646,7 @@ const VechilesRegistraion = () => {
                                 {logingUser.planReducer.plan.price}.
                               </label>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="col-12 col-sm-12 col-md-12">
                             <button
                               type="button"
@@ -2661,7 +2661,7 @@ const VechilesRegistraion = () => {
                               </button>
                             ) : (
                               <button
-                                disabled={!aggreePayment}
+                                // disabled={!aggreePayment}
                                 type="submit"
                                 className="gry_btn"
                                 required

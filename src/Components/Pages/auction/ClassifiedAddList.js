@@ -60,16 +60,17 @@ function ClassifiedAddList() {
                   <li onClick={() => window.location.reload(false)}>
                     <span style={{ cursor: "pointer" }}>All</span>
                   </li>
-                  {dealer.map((curElem) => {
+                  {dealer?.map((curElem, i) => {
                     return (
                       <li
+                      
                         onClick={() =>
-                          handleDealerVehicle(curElem.id, curElem.name)
+                          handleDealerVehicle(curElem?.id, curElem?.name)
                         }
-                        key={curElem.id}
+                        key={curElem?.id}
                       >
                         <span style={{ cursor: "pointer" }}>
-                          {curElem.name}
+                          {curElem?.name}
                         </span>
                       </li>
                     );
@@ -82,8 +83,8 @@ function ClassifiedAddList() {
               <h3 className="p-15">{addName}</h3>
               <hr />
               <div className="row pt-4 row_gridList ">
-                {classifiedAds.length > 0 &&
-                  classifiedAds.map((curElem, i) => {
+                {classifiedAds?.length > 0 &&
+                  classifiedAds?.map((curElem, i) => {
                     return <Data key={i} curElem={curElem} />;
                   })}
               </div>
