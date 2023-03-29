@@ -9,22 +9,22 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import parse from "html-react-parser";
 import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { ContentState, convertFromHTML, convertToRaw, EditorState } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
-import {
-  EditorState,
-  ContentState,
-  convertFromHTML,
-  convertToRaw,
-} from "draft-js";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
-
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
+  const [blogContentdesc, setBlogContentDesc] = useState(EditorState.createEmpty());
+
 
   const [file, setFile] = useState([]);
+  const [file1, setFile1] = useState([]);
+  const [file2, setFile2] = useState([]);
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -37,9 +37,6 @@ function EditMyAccount() {
       theme: "light",
     });
 
-  const handleContent = (e) => {
-    setBlogContent(e);
-  };
 
   const [inputValue, setInputValue] = useState({
     name: "",
@@ -66,6 +63,16 @@ function EditMyAccount() {
     desc: "",
     aboutus: "",
   });
+
+  const handleContent = (e) => {
+    setBlogContent(e);
+    console.log(111, e);
+  };
+  const handleContent1 = (e) => {
+    setBlogContentDesc(e)
+    console.log(111, e);
+  };
+
   const [addUserInBid, setAddUserInBid] = useState(false);
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
@@ -76,6 +83,7 @@ function EditMyAccount() {
     const fetchUserDetails = async () => {
       try {
         const res = await axios.get(`${url}user_detail`);
+        console.log(68709, res)
         const userLoginData = res.data.data;
         setAddUserInBid(userLoginData.bid);
         setUserData(userLoginData);
@@ -89,13 +97,23 @@ function EditMyAccount() {
           aboutus: userLoginData.about_us,
         });
 
+
         setBlogContent(
           EditorState.createWithContent(
             ContentState.createFromBlockArray(
-              convertFromHTML(userLoginData.aboutus)
+              convertFromHTML(res.data.data.about_us)
             )
           )
         );
+
+        setBlogContentDesc(
+          EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+              convertFromHTML(res.data.data.dealerDescription)
+            )
+          )
+        );
+
       } catch (err) {
         console.log(err);
       }
@@ -103,30 +121,101 @@ function EditMyAccount() {
     fetchUserDetails();
   }, []);
 
-  const uploadLogo = async (uId) => {
-    const url = `${process.env.REACT_APP_URL}dealer_img`;
-    let formData = new FormData();
-    formData.append("title", editUser.title);
-    formData.append("description", editUser.desc);
-    formData.append("dealerId", uId);
-    formData.append("logo[]", file[0]);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
+  // const uploadLogo = async (uId) => {
+  //   const url = `${process.env.REACT_APP_URL}dealer_img`;
+  //   let formData = new FormData();
+  //   formData.append("title", editUser.title);
+  //   formData.append("description", editUser.desc);
+  //   formData.append("dealerId", uId);
+  //   formData.append("logo[]", file[0]);
+  //   formData.append("category", file1[0]);
+  //   formData.append("logo[]", file2[0]);
+    
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
 
-    await axios
-      .post(url, formData, config)
-      .then((response) => {
-        console.log(response);
-        notify(response.data.message);
-        window.location.reload(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  //   await axios
+  //     .post(url, formData, config)
+  //     .then((response) => {
+  //       console.log(response);
+  //       notify(response.data.message);
+  //       window.location.reload(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+// ==========================
+
+  // =========================== Gallery
+  const uploadGallery = (id) => {
+    (async () => {
+      for await (const item of file) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
+        formData.append("logo[]", item);
+        formData.append("dealerId", id);
+        formData.append("category", "gallery");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
   };
+
+
+
+  // =========================
+
+
+
+  const uploadLogeImg = (dealer_id) => {
+    (async () => {
+      for await (const item of file) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
+        formData.append("logo[]", item);
+        formData.append("dealerId", dealer_id);
+        formData.append("category", "logo");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
+
+  const uploadCoverImg = (dealer_id) => {
+    (async () => {
+      for await (const item of file1) {
+        const url = `${process.env.REACT_APP_URL}dealer_img`;
+        const formData = new FormData();
+        formData.append("logo[]", item);
+        formData.append("dealerId", dealer_id);
+        formData.append("category", "banner");
+        const newImagedata = formData;
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        await axios.post(url, newImagedata, config);
+      }
+    })();
+  };
+
 
   const handleApi = async (e) => {
     setLoading(true);
@@ -139,13 +228,16 @@ function EditMyAccount() {
         email: email,
         mobile: phone,
         username: userName,
-        about_us: aboutus,
-        dealerDescription: desc,
+        about_us: draftToHtml(convertToRaw(blogContent.getCurrentContent())),
+        dealerDescription: draftToHtml(convertToRaw(blogContentdesc.getCurrentContent())),
         dealer_title: title,
       })
       .then((result) => {
         if (result.data.status === 200 && userData.dealer === "Yes") {
-          uploadLogo(userData.id);
+          // uploadLogo(userData.id);
+          uploadLogeImg(userData.id);
+          uploadCoverImg(userData.id);
+          uploadGallery(userData.id);
           // notify(result.data.message);
           setLoading(false);
         } else if (result.data.status === 200 && userData.dealer === "No") {
@@ -162,6 +254,8 @@ function EditMyAccount() {
         notify("Edit fail somthing wrong please try again !");
       });
   };
+
+  
 
   return (
     <div>
@@ -248,7 +342,7 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>About us</label>
-                        <textarea
+                        {/* <textarea
                           value={editUser.aboutus}
                           onChange={handleEditOnChange}
                           name="aboutus"
@@ -256,30 +350,37 @@ function EditMyAccount() {
                           className="field"
                           maxLength={200}
                           required
-                        ></textarea>
+                        ></textarea> */}
+                        <div className="border border-2 border-dark">
+                          <Editor
+                            editorStyle={{
+                              background: "white",
+                              padding: "15px",
+                              minHeight: "30vh",
+                            }}
+                            editorState={blogContent}
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onEditorStateChange={handleContent}
+                            placeholder="Please enter About us"
+                          />
+                        </div>
 
-                        {/* <Editor
-                          editorStyle={{
-                            background: "white",
-                            padding: "15px",
-                            minHeight: "30vh",
-                          }}
-                          editorState={blogContent}
-                          value="dlsjfkljf"
-                          toolbarClassName="toolbarClassName"
-                          wrapperClassName="wrapperClassName"
-                          editorClassName="editorClassName"
-                          onEditorStateChange={handleEditOnChange}
-                          placeholder="Please enter description"
-                        /> */}
+
                       </div>
                     </div>
+
+
+
+
+
                   )}
                   {userData.dealer === "Yes" && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
-                        <textarea
+                        {/* <textarea
                           value={editUser.desc}
                           onChange={handleEditOnChange}
                           name="desc"
@@ -287,7 +388,23 @@ function EditMyAccount() {
                           className="field"
                           maxLength={200}
                           required
-                        ></textarea>
+                        ></textarea> */}
+
+                        <div className="border border-2 border-dark">
+                          <Editor
+                            editorStyle={{
+                              background: "white",
+                              padding: "15px",
+                              minHeight: "30vh",
+                            }}
+                            editorState={blogContentdesc}
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onEditorStateChange={handleContent1}
+                            placeholder="Please enter description"
+                          />
+                        </div>
                       </div>
                     </div>
                   )}
@@ -295,8 +412,25 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Dealer logo</label>
+                        <br />
+                        {file.length > 0 && Array.from(file).map((items, i) => {
+                          return (
+                            <span key={i} className="px-1">
+                              <img
+                                src={
+                                  items ? URL.createObjectURL(items) : null
+                                }
+                                style={{
+                                  width: "120px",
+                                  objectFit: "cover",
+                                }}
+                              />
+                            </span>
+                          );
+                        })}
                         <div className="drag-area">
                           <div className="row">
+                            
                             {userData.logo && file.length <= 0 && (
                               <img
                                 loading="lazy"
@@ -308,29 +442,9 @@ function EditMyAccount() {
                                   userData?.logo &&
                                   `${process.env.REACT_APP_URL}/${userData?.logo}`
                                 }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
                               />
                             )}
-                            {Array.from(file).map((items, i) => {
-                              return (
-                                <span key={i} className="px-1">
-                                  <img
-                                    src={
-                                      items ? URL.createObjectURL(items) : null
-                                    }
-                                    style={{
-                                      width: "120px",
-                                      objectFit: "cover",
-                                    }}
-                                  />
-                                </span>
-                              );
-                            })}
+                            
                           </div>
 
                           <input
@@ -368,15 +482,10 @@ function EditMyAccount() {
                                   userData?.logo &&
                                   `${process.env.REACT_APP_URL}/${userData?.logo}`
                                 }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
+                                
                               />
                             )}
-                            {Array.from(file).map((items, i) => {
+                            {Array.from(file1).map((items, i) => {
                               return (
                                 <span key={i} className="px-1">
                                   <img
@@ -401,10 +510,11 @@ function EditMyAccount() {
                               cursor: "pointer",
                             }}
                             onChange={(e) => {
-                              setFile(e.target.files);
+                              setFile1(e.target.files);
                             }}
                             name="files"
                             type="file"
+                            multiple
                           />
                         </div>
                       </div>
@@ -428,15 +538,10 @@ function EditMyAccount() {
                                   userData?.logo &&
                                   `${process.env.REACT_APP_URL}/${userData?.logo}`
                                 }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src =
-                                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                }}
-                                alt="Maskgroup1"
+                               
                               />
                             )}
-                            {Array.from(file).map((items, i) => {
+                            {Array.from(file2).map((items, i) => {
                               return (
                                 <span key={i} className="px-1">
                                   <img
@@ -461,10 +566,11 @@ function EditMyAccount() {
                               cursor: "pointer",
                             }}
                             onChange={(e) => {
-                              setFile(e.target.files);
+                              setFile2(e.target.files);
                             }}
                             name="files"
                             type="file"
+                            multiple
                           />
                         </div>
                       </div>

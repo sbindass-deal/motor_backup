@@ -25,6 +25,7 @@ const ShopDetails = () => {
   const [productId, setProductId] = useState();
   const [size_id, setSize_id] = useState();
   const [color_id, setColor_id] = useState();
+  const [sizeRepeater  , setSizeRepeater] = useState([])
 
   const notify = (val) =>
     toast.success(val, {
@@ -125,6 +126,8 @@ const ShopDetails = () => {
     cursor: "pointer",
   };
 
+  console.log(sizeRepeater.filter((item,
+    index) => sizeRepeater.indexOf(item) === index));
   return (
     <>
       <div className="container">
@@ -192,6 +195,7 @@ const ShopDetails = () => {
                   product?.product_inventry?.map((d, i) => {
                     return size?.map((data, index) => {
                       if (data?.id == d?.size_id) {
+                        sizeRepeater.push(d?.size_id)
                         return (<button className={`mx-2 btn btn-light px-2 py-1`} onClick={() => { setProductId(d?.id); setSize_id(d?.size_id); }}>{data?.size}</button>)
                       }
                     })

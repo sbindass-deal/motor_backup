@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 
 const TimeCalculate = ({ endTime }) => {
-    console.log(909, endTime)
     // countdown time start
     const [days, setDays] = useState();
     const [hours, setHours] = useState();
