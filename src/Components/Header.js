@@ -386,6 +386,15 @@ function Header() {
                         </Link>
                       </li>
                       <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          to="/garages"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Garages
+                        </Link>
+                      </li>
+                      <li className="nav-item">
                         {true ? (
                           <Link
                             className="nav-link"
@@ -713,6 +722,19 @@ function Header() {
                           to="/showroom"
                         >
                           Showrooms
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/garages" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/garages"
+                        >
+                          Garages
                         </Link>
                       </li>
 

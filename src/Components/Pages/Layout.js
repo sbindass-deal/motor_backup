@@ -92,6 +92,7 @@ import GearInventry from "./Dashboard/GearInventry.js";
 import Wins from "./MyAccount/Wins";
 import Bids from "./MyAccount/Bids";
 import Transaction from "./MyAccount/Transaction";
+import Garages from "./garages/Garages";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -221,9 +222,9 @@ const Layout = () => {
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
           <Route path="showroom" element={<Store />} />
+          <Route path="garages" element={<Garages />} />
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
-
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />
           <Route path="shipping" element={<Shipping />} />

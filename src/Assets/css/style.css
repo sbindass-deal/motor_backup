@@ -1073,8 +1073,7 @@ select.field option {
 
 .commentRow { padding: 10px 0px; margin-bottom: 10px; border-bottom: 1px #413f3f solid;}
 .commentRow:last-child { border-bottom: 0px #413f3f solid;}
-.ant-avatar { background: rgb(255 255 255); border: 0px solid transparent;}
-.light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
+
 .commentHead { display: flex; align-items: center;}
 
 .com_byPic {
@@ -4038,7 +4037,7 @@ h5.cardTitle {
 }
 
 .rafSect p {
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 5px;
 }
 
@@ -4066,7 +4065,7 @@ h5.cardTitle {
 .rafSect {
   background: #222;
   padding: 30px 50px;
-  height: 300px;
+  height: 350px;
 }
 
 .row.row_gap_5.ssss {
@@ -5727,11 +5726,15 @@ btn1 {
 
 span.color_orange.couNt {
   background: #000;
-  padding: 2px 9px;
-  border-radius: 100%;
-  font-size: 12px;
-  position: relative;
-  top: -14px;
+    top: -34px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 83%;
 }
 
 .detailPostOption .labelList {
@@ -5758,9 +5761,13 @@ span.color_orange.couNt {
 
 span.numBr {
   background: #000;
-  padding: 0px 8px;
   border-radius: 100%;
   margin-left: 5px;
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
 }
 
 .auctionHistory {
@@ -6613,7 +6620,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
 }
 
 .latestBlogSlide {
-  height: 255px;
+  height: 345px;
   width: 100% !important;
   display: flex !important;
   align-items: center;
@@ -6769,3 +6776,6 @@ ul.labelList.btnListShap li span { color: #fff; opacity: 9;}
     min-width: 24px;
     padding: 0;
 }
+.ant-avatar { background: #fff; border: 0px solid transparent; color: #000;}
+
+.light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
