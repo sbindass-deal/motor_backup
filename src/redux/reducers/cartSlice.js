@@ -10,8 +10,9 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
+      
       const itemIndex = state.products.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.size_id === action.payload.size_id && item.id === action.payload.id
       );
       if (itemIndex >= 0) {
         state.products[itemIndex].quantity++;
@@ -22,7 +23,7 @@ const cartSlice = createSlice({
     },
     decreaseCart(state, action) {
       const itemIndex = state.products.findIndex(
-        (cartItem) => cartItem.id === action.payload
+        (cartItem) => cartItem.size_id === action.payload
       );
       if (state.products[itemIndex].quantity > 1) {
         state.products[itemIndex].quantity -= 1;
@@ -35,7 +36,7 @@ const cartSlice = createSlice({
     },
     increaseCart(state, action) {
       const itemIndex = state.products.findIndex(
-        (cartItem) => cartItem.id === action.payload
+        (cartItem) => cartItem.size_id === action.payload
       );
       if (state.products[itemIndex].quantity >= 1) {
         state.products[itemIndex].quantity =
@@ -44,7 +45,9 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       const nextCartItems = state.products.filter(
-        (cartItem) => cartItem.id !== action.payload
+        (cartItem) => {
+          return cartItem.size_id !== action.payload
+        }
       );
       state.products = nextCartItems;
       localStorage.setItem("products", JSON.stringify(state.products));
@@ -56,13 +59,6 @@ const cartSlice = createSlice({
     getTotals(state, action) {
       let { total, quantity, payableAmount } = state.products.reduce(
         (cartTotal, products) => {
-          // console.log("rrr " , JSON.stringify(products.product_inventry.map((d) => {
-          //   if(d?.size_id == products?.size_id)
-          //        return d.price
-          // }).filter((d) => {
-          //    if(d != null)
-          //        return d
-          // }).pop()));
           const price = products.product_inventry.map((d) => {
             if(d?.size_id == products?.size_id)
                  return d.price

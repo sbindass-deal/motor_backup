@@ -10,7 +10,7 @@ const Cart = () => {
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
   const notify = (val) =>
-    toast.success(val, {
+    toast.error(val, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
