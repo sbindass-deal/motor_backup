@@ -24,7 +24,6 @@ function EditMyAccount() {
 
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
 
-
   const [file, setFile] = useState([]);
   const notify = (val) =>
     toast.success(val, {
@@ -37,7 +36,7 @@ function EditMyAccount() {
       progress: undefined,
       theme: "light",
     });
-  
+
   const handleContent = (e) => {
     setBlogContent(e);
   };
@@ -78,6 +77,8 @@ function EditMyAccount() {
       try {
         const res = await axios.get(`${url}user_detail`);
         const userLoginData = res.data.data;
+        setAddUserInBid(userLoginData.bid);
+        setUserData(userLoginData);
         setEditUser({
           name: userLoginData.name,
           userName: userLoginData.username,
@@ -85,19 +86,16 @@ function EditMyAccount() {
           phone: userLoginData.mobile,
           title: userLoginData.dealer_title,
           desc: userLoginData.dealerDescription,
-          aboutus: userLoginData.about_us
+          aboutus: userLoginData.about_us,
         });
 
         setBlogContent(
           EditorState.createWithContent(
             ContentState.createFromBlockArray(
-              convertFromHTML(res.data.data.aboutus)
+              convertFromHTML(userLoginData.aboutus)
             )
           )
         );
-
-        setAddUserInBid(userLoginData.bid);
-        setUserData(userLoginData);
       } catch (err) {
         console.log(err);
       }
@@ -144,7 +142,6 @@ function EditMyAccount() {
         about_us: aboutus,
         dealerDescription: desc,
         dealer_title: title,
-
       })
       .then((result) => {
         if (result.data.status === 200 && userData.dealer === "Yes") {
@@ -231,6 +228,8 @@ function EditMyAccount() {
                     />
                   </div>
 
+                  {console.log(111, userData)}
+
                   {userData.dealer === "Yes" && (
                     <div className="col-12">
                       <FormInput
@@ -247,18 +246,17 @@ function EditMyAccount() {
                   )}
                   {userData.dealer === "Yes" && (
                     <div className="col-12 col-sm-12 col-md-12">
-                    <div className="form-group">
-                      <label>About us</label>
-                      <textarea
-                        value={editUser.aboutus}
-                        onChange={handleEditOnChange}
-                        name="aboutus"
-                        placeholder="Enter About us"
-                        className="field"
-                        maxLength={200}
-                        required
+                      <div className="form-group">
+                        <label>About us</label>
+                        <textarea
+                          value={editUser.aboutus}
+                          onChange={handleEditOnChange}
+                          name="aboutus"
+                          placeholder="Enter About us"
+                          className="field"
+                          maxLength={200}
+                          required
                         ></textarea>
-                        
 
                         {/* <Editor
                           editorStyle={{
@@ -274,11 +272,8 @@ function EditMyAccount() {
                           onEditorStateChange={handleEditOnChange}
                           placeholder="Please enter description"
                         /> */}
-
-
-
+                      </div>
                     </div>
-                  </div>
                   )}
                   {userData.dealer === "Yes" && (
                     <div className="col-12 col-sm-12 col-md-12">
