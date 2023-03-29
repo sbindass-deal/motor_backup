@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import TimeCalculate from "./TimeCalculate";
 
 const Data = ({ curElem, addFabrity }) => {
+  console.log(787878, curElem)
   return (
     <>
       <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
@@ -78,7 +80,8 @@ const Data = ({ curElem, addFabrity }) => {
               </li>
               <li>
                 <span>
-                  Ends In: {new Date(curElem?.EndTime)?.toDateString()}
+                  <TimeCalculate endTime={new Date(curElem?.EndTime)}/>
+                  {/* Ends In: {new Date(curElem?.EndTime)?.toDateString()} */}
                 </span>
               </li>
             </ul>
