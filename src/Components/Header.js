@@ -116,6 +116,9 @@ function Header() {
     },
   }));
 
+
+  console.log(98989, logingUser.login.user.dealer)
+
   return (
     <>
       <header
@@ -383,6 +386,15 @@ function Header() {
                         </Link>
                       </li>
                       <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          to="/garages"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Garages
+                        </Link>
+                      </li>
+                      <li className="nav-item">
                         {true ? (
                           <Link
                             className="nav-link"
@@ -533,10 +545,14 @@ function Header() {
 
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
+                       
                         {/* User First Name */}
-                        <p className="userIco">
-                          <span>N</span>
-                        </p>
+                        {
+                          logingUser.login.user.dealer == "No" ?
+                            <p className="userIco"><span>{(logingUser.login.user.username).toUpperCase().charAt(0)}</span></p>
+                            : <p className="userIco"><span><img src={g3} /></span></p>
+                        }
+                       
 
                         {/* User Icon Img */}
                         {/* <p className="userIco"><span><img src={g3}/></span></p> */}
@@ -706,6 +722,19 @@ function Header() {
                           to="/showroom"
                         >
                           Showrooms
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/garages" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="/garages"
+                        >
+                          Garages
                         </Link>
                       </li>
 
