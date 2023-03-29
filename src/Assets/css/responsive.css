@@ -1262,9 +1262,7 @@
 	.col-md-3.iconSecT {
 		width: 50%;
 	}
-	.postHero.detail {
-		height: 22vh;
-	}
+	
 	.auctionLive .labelList li:last-child {
 		width: 63%;
 	}
@@ -1302,7 +1300,29 @@
 	.commentHead .com_date {
 		display: none;
 	}
-
+	.blogPost {
+		height: 208px;
+		padding-bottom: 15px;
+	}
+	.col-12.slider_ht {
+		height: 520px;
+	}
+	.detailPostOption .gry_btn {min-width: 90px;	}
+	#sticky {
+		top: 85px !important;
+	}
+	.detailPostOption .labelList li span {
+		position: relative;
+		top: 12px;
+	}
+	.detailPostOption .labelList {
+		opacity: 1;
+		align-items: center;
+	}
+	span.color_orange.couNt {top: -34px !important;}
+	.postHero.detail {
+		height: 34vh;
+	}
 }
 
 @media (max-width: 575px) {
@@ -1476,26 +1496,35 @@
 	.detailPostOption .labelList {	flex-wrap: inherit;	}
 	ul.bidOnThis li p:first-child {	width: 46%;	}
 	.card_.mobileOnlyV.p0 .box_backgroundD {padding: 0;	}
-	
 	.slider_ht .nextArrow {	position: absolute;bottom: -39px;left: calc(50% - 154px);}
 	.slider_ht .nextArrow {	bottom: -15px;}
-	button.sunMoonBtn {left: 67%;	}
+	button.sunMoonBtn {	left: 66%;top: -56px;}
 	.navbar-collapse.mobileOnly.collapse.show {padding-left: 0;	}
-	.navbar-brand img {
-		height: 30px;
-	}
-	.navbar-brand img {
-		width: 130px !important;
+	.navbar-brand img {	height: 30px;}
+	.navbar-brand img {	width: 130px !important;}
+	.searchSec .ant-select-selector {min-width: 278px;}
+	header>.bg-header-fluid {height: 84px;border: 1px solid #333;background: #000;left: 0;}
+	header {height: auto;}
+	.navbar-collapse.mobileOnly.collapse.show {	top: 80px;}
+	h1.text, .bgHolder h1.text-back {font-size: 22px;}
+	.heroText h1 {font-size: 22px;}
+	h2 {font-size: 20px;}
+	.mobileOnlyV .box_backgroundD {	padding: 0;	}
+	.postHero.detail {	height: 29vh;padding-top: 60px;}
+	.pt_sm_50 {	padding-top: 120px;}
+	.ListDealer .card_postImg {	height: 150px;}
+	.ListDealer .card_post {padding: 0;	background: #121212;}
+	.clenderStyle {top: 117px;}
+	span.rbc-btn-group {display: block;	width: 100%;display: contents;	}
+	.dark .orange_btn {	width: 100%;	}
+	.evT .card_postImg {
+		height: 150px;
 	}
 }
-
-
-
 
 @media (min-width: 360px) {
 	h1 {font-size: 28px;}
 }
-
 
 @media (min-width: 1200px) {
 	.container {max-width: 1170px;}

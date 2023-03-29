@@ -63,7 +63,7 @@ const DealerProfile = () => {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Videos</h2>
+              <h2>Gallery</h2>
             </div>
             {dealerData?.image_gallery && (
               <div className="col-lg-12">
@@ -209,7 +209,10 @@ const DealerProfile = () => {
             </div>
           </div>
         </div>
-        <div className="container">
+        
+      </section>
+      <section className="pt_80 mobileSpec" id="">
+      <div className="container">
           <div className="row">
             <Videos data={dealerData} />
           </div>
