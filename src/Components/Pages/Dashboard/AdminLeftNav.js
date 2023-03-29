@@ -85,6 +85,16 @@ function AdminLeftNav() {
             Dealer List
           </Link>
         </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-garages" ? "active" : ""
+            } `}
+            to="/admin-garages"
+          >
+            Garages List
+          </Link>
+        </li>
         {/* <li>
           <Link
             className={` ${
