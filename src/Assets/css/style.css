@@ -1074,9 +1074,17 @@ select.field option {
 .commentRow {
   padding: 20px 0px;
   margin-bottom: 10px;
-  border-bottom: 1px #222 solid;
+  border-bottom: 1px #413f3f solid;
 }
-
+.ant-avatar {
+  background: rgb(255 255 255);
+  border: 0px solid transparent;
+}
+.light .ant-avatar {
+  background: #000;
+  border: 0px solid transparent;
+  color: #fff;
+}
 .commentHead {
   display: flex;
   align-items: center;
@@ -1112,7 +1120,14 @@ select.field option {
 }
 
 .commentBody {
-  padding: 15px 0px 0px;
+  padding: 0px 0px 0px;
+}
+.commentBody p.p-2.text-danger.fw-bolder {
+  padding: 0px;
+  margin: 0;
+}
+.commentFooter {
+  padding: 0px 10px;
 }
 
 .commentBody p {}
@@ -6556,7 +6571,7 @@ h3.sliderTile {
   align-items: center;
   justify-content: center;
   color: #fff;
-  background: rgb(255 165 0 / 32%);
+  background: rgb(255 165 0 / 32%);;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s;
@@ -6564,6 +6579,7 @@ h3.sliderTile {
   width: 97%;
   height: 100%;
 }
+.galleryPh .ant-image .ant-image-img:hover{background: rgb(255 165 0 / 32%);}
 
 .modal-dialog-centered { min-height: calc(100% - -3.5rem);}
 .rbc-event, .rbc-day-slot .rbc-background-event { background-color: #f7931a !important;}

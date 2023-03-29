@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const Interior = ({ vinDetails }) => {
   const [readMoreInt, setReadMoreInt] = useState(false);
-  const [handleShow, setHandleShow] = useState(false);
+  const [handleShow, setHandleShow] = useState(true);
 
   return (
     <>
