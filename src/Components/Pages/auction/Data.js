@@ -26,7 +26,7 @@ const Data = ({ curElem, addFabrity }) => {
                         currentTarget.onError = null;
                         currentTarget.src = noImage;
                       }}
-                      alt="Maskgroup1"
+                      alt={curElem.make}
                     />
                   </>
                 ) : (

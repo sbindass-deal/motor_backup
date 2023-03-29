@@ -15,6 +15,7 @@ import { Image } from "antd";
 import Dealer from "../../../Assets/images/Dealer-1.jpg";
 import Dealer2 from "../../../Assets/images/Dealer-2.jpg";
 import Dealer3 from "../../../Assets/images/Dealer-3.jpg";
+import Videos from "./Videos";
 
 const DealerProfile = () => {
   const { id } = useParams();
@@ -62,7 +63,7 @@ const DealerProfile = () => {
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Gallery</h2>
+              <h2>Videos</h2>
             </div>
             {dealerData?.image_gallery && (
               <div className="col-lg-12">
@@ -80,7 +81,7 @@ const DealerProfile = () => {
                           currentTarget.src =
                             "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                         }}
-                        alt="gallery"
+                        alt="Videos"
                       />
                     </Image.PreviewGroup>
                   </div>
@@ -99,7 +100,7 @@ const DealerProfile = () => {
                               currentTarget.src =
                                 "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                             }}
-                            alt="gallery"
+                            alt="Videos"
                           />
                         </Image.PreviewGroup>
                       </div>
@@ -116,7 +117,7 @@ const DealerProfile = () => {
                               currentTarget.src =
                                 "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                             }}
-                            alt="gallery"
+                            alt="Videos"
                           />
                         </Image.PreviewGroup>
                       </div>
@@ -133,7 +134,7 @@ const DealerProfile = () => {
                               currentTarget.src =
                                 "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
                             }}
-                            alt="gallery"
+                            alt="Videos"
                           />
                         </Image.PreviewGroup>
                       </div>
@@ -142,7 +143,7 @@ const DealerProfile = () => {
                 </div>
               </div>
             )}
-            <div className="col-12 gallery ghhh">
+            <div className="col-12 Videos ghhh">
               <div className="row">
                 {/* <div className="col-lg-4 col-mg-6 col-sm-12 verticle">
                   <div className="galleryImgSect">
@@ -198,7 +199,6 @@ const DealerProfile = () => {
                 </div>
               </div>
             </div>
-
             <div
               className="col-12"
               style={{ textAlign: "center", margin: "20px auto" }}
@@ -207,6 +207,11 @@ const DealerProfile = () => {
                 {!showMore ? "VIEW MORE" : "VIEW LESS"}
               </button>
             </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <Videos data={dealerData} />
           </div>
         </div>
       </section>

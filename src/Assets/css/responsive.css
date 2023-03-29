@@ -187,7 +187,21 @@
 	.newDelarSlid.carousel {
 		height: 650px;
 	}
-
+	li.nav-item.afterLogin span {
+		font-size: 13px;
+		position: absolute;
+		top: 1px;
+		right: -6px;
+		width: 25px;
+		background: #000;
+		height: 25px;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 100%;
+		color: #fff;
+	}
 }
 
 
@@ -1288,6 +1302,7 @@
 	.commentHead .com_date {
 		display: none;
 	}
+
 }
 
 @media (max-width: 575px) {
@@ -1461,9 +1476,17 @@
 	.detailPostOption .labelList {	flex-wrap: inherit;	}
 	ul.bidOnThis li p:first-child {	width: 46%;	}
 	.card_.mobileOnlyV.p0 .box_backgroundD {padding: 0;	}
-	.col-12.slider_ht {	height: 664px;	}
+	
 	.slider_ht .nextArrow {	position: absolute;bottom: -39px;left: calc(50% - 154px);}
 	.slider_ht .nextArrow {	bottom: -15px;}
+	button.sunMoonBtn {left: 67%;	}
+	.navbar-collapse.mobileOnly.collapse.show {padding-left: 0;	}
+	.navbar-brand img {
+		height: 30px;
+	}
+	.navbar-brand img {
+		width: 130px !important;
+	}
 }
 
 

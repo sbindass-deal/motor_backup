@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { storeBlogData } from "../../redux/reducers/blogReducer";
 import parse from "html-react-parser";
-import { strToHtml } from "../UI/globaleVar";
+import { noImage, strToHtml } from "../UI/globaleVar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Home() {
@@ -42,13 +42,21 @@ function Home() {
     });
   }, []);
 
+  const fetchNoreserveData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
+      );
+      if (res.data.status === 200) {
+        setSliderData(res.data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const filteredAuctionVehicle = vehicleData.filter(
-      (item) =>
-        item.displayInAuction === "Yes" &&
-        item.auctionType === "Premium listing"
-    );
-    setSliderData(filteredAuctionVehicle);
+    fetchNoreserveData();
   }, []);
 
   const slide = useRef(null);
@@ -200,42 +208,43 @@ function Home() {
               <div className="featuredAuctions_Slide">
                 <Slider ref={slide} {...settings}>
                   {sliderData &&
-                    sliderData.map((curElem) => {
+                    sliderData?.map((curElem) => {
                       return (
-                        <Link to={`/detail/${curElem.id}`}>
-                          <div key={curElem.id}>
+                        <Link key={curElem?.id} to={`/detail/${curElem?.id}`}>
+                          <div>
                             <div className="card_post">
                               <div className="card_postImg">
-                                {curElem.image_banner ? (
+                                {curElem?.image_banner ? (
                                   <img
                                     loading="lazy"
                                     src={
-                                      curElem.image_banner[0] &&
-                                      `${process.env.REACT_APP_URL}/${curElem.image_banner[0].imagePath}/${curElem.image_banner[0].imageName}`
+                                      curElem?.image_banner[0] &&
+                                      `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
                                     }
                                     onError={({ currentTarget }) => {
                                       currentTarget.onError = null;
-                                      currentTarget.src =
-                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                      currentTarget.src = noImage;
                                     }}
-                                    alt="Maskgroup1"
+                                    alt={curElem.make}
                                   />
                                 ) : (
                                   <img
                                     loading="lazy"
-                                    src="http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
-                                    alt="Maskgroup1"
+                                    src={noImage}
+                                    alt={noImage}
                                   />
                                 )}
                               </div>
                               <div className="card_postInfo">
                                 <h4>
-                                  {curElem.make} {curElem.model} {curElem.year}
+                                  {curElem?.make} {curElem?.model}{" "}
+                                  {curElem?.year}
                                 </h4>
                                 <p>
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 120)+"...",
+                                      curElem?.moreDescription?.substr(0, 120) +
+                                        "...",
                                       strToHtml
                                     )}
                                 </p>
@@ -262,10 +271,10 @@ function Home() {
                                   <li>
                                     <label>Ends In:</label>{" "}
                                     <span>
-                                      {curElem.EndTime &&
+                                      {curElem?.EndTime &&
                                         new Date(
-                                          curElem.EndTime
-                                        ).toDateString()}
+                                          curElem?.EndTime
+                                        )?.toDateString()}
                                     </span>
                                   </li>
                                 </ul>

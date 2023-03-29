@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeMode } from "../redux/reducers/dayAndNightMode";
 import Searchbar from "./UI/Searchbar";
-import g3 from "../Assets/images/G3.png" 
+import g3 from "../Assets/images/G3.png";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -274,7 +274,6 @@ function Header() {
                           About
                         </Link>
                       </li>
-                      
 
                       <li className="nav-item">
                         <Link
@@ -305,7 +304,7 @@ function Header() {
                       </li>
                       {/* day and night mode end */}
                       <li className="nav-item">
-                      <div className="dropdown">
+                        <div className="dropdown">
                           <Link
                             className={`nav-link ${
                               location.pathname === "/submit" && "navActive"
@@ -315,16 +314,24 @@ function Header() {
                             List Your Vehicles
                           </Link>
                           <div className="dropdown-content">
-                            <Link className="" to="/submit">
+                            <Link
+                              className=""
+                              to="/submit"
+                              onClick={() => setShowNav(false)}
+                            >
                               Private Party
                             </Link>
-                            <Link className="" to="/dealer">
+                            <Link
+                              className=""
+                              to="/dealer"
+                              onClick={() => setShowNav(false)}
+                            >
                               Dealer
                             </Link>
                           </div>
                         </div>
                       </li>
-                      
+
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
@@ -337,17 +344,33 @@ function Header() {
                             Auctions
                           </Link>
                           <div className="dropdown-content">
-                            <Link className="" to="/auctionlive">
+                            <Link
+                              className=""
+                              to="/auctionlive"
+                              onClick={() => setShowNav(false)}
+                            >
                               Live Now
                             </Link>
-                            <Link className="" to="/auctionfeature">
+                            <Link
+                              className=""
+                              to="/auctionfeature"
+                              onClick={() => setShowNav(false)}
+                            >
                               Featured
                             </Link>
 
-                            <Link className="" to="/auctionnoreserve">
+                            <Link
+                              className=""
+                              to="/auctionnoreserve"
+                              onClick={() => setShowNav(false)}
+                            >
                               No Reserve
                             </Link>
-                            <Link className="" to="/auctionresult">
+                            <Link
+                              className=""
+                              to="/auctionresult"
+                              onClick={() => setShowNav(false)}
+                            >
                               Results
                             </Link>
                           </div>
@@ -404,7 +427,7 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <div className="dropdown">
-                        <Link
+                          <Link
                             className={`nav-link ${
                               location.pathname === "/auctionlive" &&
                               "navActive"
@@ -522,7 +545,7 @@ function Header() {
                         }
                        
 
-                         {/* User Icon Img */}
+                        {/* User Icon Img */}
                         {/* <p className="userIco"><span><img src={g3}/></span></p> */}
 
                         <div className="dropdown-content myACt">
@@ -754,38 +777,38 @@ function Header() {
                         </Link>
                       </li>
                       <li className="nav-item">
-                      <div className="dropdown">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/shipping" ||
-                              location.pathname === "/myshipments"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="#"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Shipping
-                        </Link>
-                        <div className="dropdown-content">
-                          <a
-                            href="https://www.iecstransport.com/"
-                            target="_blank"
+                        <div className="dropdown">
+                          <Link
+                            className="nav-link"
+                            style={{
+                              color: `${
+                                location.pathname === "/shipping" ||
+                                location.pathname === "/myshipments"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            to="#"
+                            onClick={() => setShowNav(false)}
                           >
-                            Get a Quote
-                          </a>
-                          <a
-                            href="https://www.iecstransport.com/"
-                            target="_blank"
-                          >
-                            My Shipment
-                          </a>
+                            Shipping
+                          </Link>
+                          <div className="dropdown-content">
+                            <a
+                              href="https://www.iecstransport.com/"
+                              target="_blank"
+                            >
+                              Get a Quote
+                            </a>
+                            <a
+                              href="https://www.iecstransport.com/"
+                              target="_blank"
+                            >
+                              My Shipment
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                          </li>
+                      </li>
                       <li className="nav-item">
                         <Link
                           className="nav-link"
