@@ -2835,7 +2835,13 @@ li.nav-item.afterLogin span {
   border-radius: 100%;
   color: #fff;
 }
+.charityOct .card_postImg {
+  height: 200px;
+}
 
+.charityOct .card_post {
+  background: #121212;
+}
 
 .secondNavbar .navbar-nav {
   justify-content: end;

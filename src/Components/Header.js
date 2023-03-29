@@ -510,9 +510,13 @@ function Header() {
 
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
-                        {/* <AccountCircleIcon /> */}
+                       
+                         {/* User First Name */}
                         <p className="userIco"><span>N</span></p>
+
+                         {/* User Icon Img */}
                         {/* <p className="userIco"><span><img src={g3}/></span></p> */}
+
                         <div className="dropdown-content myACt">
                           {logingUser.login.token && (
                             <Link

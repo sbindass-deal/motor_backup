@@ -85,12 +85,8 @@ function ClassifiedAddList() {
               <div className="row pt-4 row_gridList ">
                 {classifiedAds?.length > 0 &&
                   classifiedAds?.map((curElem, i) => {
-                    return <Data key={i} curElem={curElem} />;
-                  })}
-              </div>
-            </div>
-            {/* <div key={curElem.id} className="col-12 col-md-6 pb-3">
-                        <div className="card_post box_shadow_common">
+                    return <div key={curElem.id} className="col-12 col-md-4 pb-3 charityOct">
+                        <div className="card_post">
                           <div className="card_postImg">
                             <Link
                               to={`/detail/${curElem.id}`}
@@ -144,7 +140,15 @@ function ClassifiedAddList() {
                             </ul>
                           </div>
                         </div>
-                      </div> */}
+                      </div> 
+
+                   
+
+
+                  })}
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
