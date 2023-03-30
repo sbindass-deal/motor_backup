@@ -87,15 +87,17 @@ function EditMyAccount() {
         const userLoginData = res.data.data;
         setAddUserInBid(userLoginData.bid);
         setUserData(userLoginData);
-        setEditUser({
-          name: userLoginData.name,
-          userName: userLoginData.username,
-          email: userLoginData.email,
-          phone: userLoginData.mobile,
-          title: userLoginData.dealer_title,
-          desc: userLoginData.dealerDescription,
-          aboutus: userLoginData.about_us,
-        });
+
+
+          setEditUser({
+            name: userLoginData.name,
+            userName: userLoginData.username,
+            email: userLoginData.email,
+            phone: userLoginData.mobile,
+            title: userLoginData.dealer_title,
+            desc: userLoginData.dealerDescription,
+            aboutus: userLoginData.about_us,
+          });
 
 
         setBlogContent(
@@ -130,7 +132,7 @@ function EditMyAccount() {
   //   formData.append("logo[]", file[0]);
   //   formData.append("category", file1[0]);
   //   formData.append("logo[]", file2[0]);
-    
+
   //   const config = {
   //     headers: {
   //       "Content-Type": "multipart/form-data",
@@ -149,7 +151,7 @@ function EditMyAccount() {
   //     });
   // };
 
-// ==========================
+  // ==========================
 
   // =========================== Gallery
   const uploadGallery = (id) => {
@@ -255,7 +257,23 @@ function EditMyAccount() {
       });
   };
 
-  
+
+  const handleDeleteImage = (id) => {
+    alert(id)
+    // axios
+    //   .post(`${process.env.REACT_APP_URL}deleteImg`, {
+    //     id: id,
+    //   })
+    //   .then(function (response) {
+    //     if (response.status === 200) {
+    //       fetchVehicleData();
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+  };
+
 
   return (
     <div>
@@ -430,7 +448,7 @@ function EditMyAccount() {
                         })}
                         <div className="drag-area">
                           <div className="row">
-                            
+
                             {userData.logo && file.length <= 0 && (
                               <img
                                 loading="lazy"
@@ -444,7 +462,7 @@ function EditMyAccount() {
                                 }
                               />
                             )}
-                            
+
                           </div>
 
                           <input
@@ -464,14 +482,50 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-
+                  <div>
+                    
+                  </div>
                   {userData.dealer === "Yes" && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Dealer banner</label>
+                        <div className="imgCross">
+
+                          {Array.from(file1).map((curElem) => {
+                            return (
+                              <span>
+                                <img
+                                  style={{
+                                    maxWidth: "16%",
+                                    padding: "10px",
+                                  }}
+                                  loading="lazy"
+                                  src={
+                                    curElem ? URL.createObjectURL(curElem) : null
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                                <button
+                                  // onClick={() =>
+                                  //   handleDeleteImage(curElem.id)
+                                  // }
+                                  type="button"
+                                  className="close"
+                                >
+                                  x
+                                </button>
+                              </span>
+                            );
+                          })}
+                        </div>
                         <div className="drag-area">
                           <div className="row">
-                            {userData.logo && file.length <= 0 && (
+                            {userData.logo && file1.length <= 0 && (
                               <img
                                 loading="lazy"
                                 style={{
@@ -482,10 +536,10 @@ function EditMyAccount() {
                                   userData?.logo &&
                                   `${process.env.REACT_APP_URL}/${userData?.logo}`
                                 }
-                                
+
                               />
                             )}
-                            {Array.from(file1).map((items, i) => {
+                            {/* {Array.from(file1).map((items, i) => {
                               return (
                                 <span key={i} className="px-1">
                                   <img
@@ -499,7 +553,7 @@ function EditMyAccount() {
                                   />
                                 </span>
                               );
-                            })}
+                            })} */}
                           </div>
 
                           <input
@@ -525,9 +579,42 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Dealer gallery</label>
+                        <div className="imgCross">
+                          {Array.from(file2)?.map((curElem) => {
+                            return (
+                              <span>
+                                <img
+                                  style={{
+                                    maxWidth: "16%",
+                                    padding: "10px",
+                                  }}
+                                  loading="lazy"
+                                  src={
+                                    curElem ? URL.createObjectURL(curElem) : null
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                                <button
+                                  onClick={() =>
+                                    handleDeleteImage(curElem.id)
+                                  }
+                                  type="button"
+                                  className="close"
+                                >
+                                  x
+                                </button>
+                              </span>
+                            );
+                          })}
+                        </div>
                         <div className="drag-area">
                           <div className="row">
-                            {userData.logo && file.length <= 0 && (
+                            {userData.logo && file2.length <= 0 && (
                               <img
                                 loading="lazy"
                                 style={{
@@ -538,10 +625,10 @@ function EditMyAccount() {
                                   userData?.logo &&
                                   `${process.env.REACT_APP_URL}/${userData?.logo}`
                                 }
-                               
+
                               />
                             )}
-                            {Array.from(file2).map((items, i) => {
+                            {/* {Array.from(file2).map((items, i) => {
                               return (
                                 <span key={i} className="px-1">
                                   <img
@@ -555,7 +642,7 @@ function EditMyAccount() {
                                   />
                                 </span>
                               );
-                            })}
+                            })} */}
                           </div>
 
                           <input

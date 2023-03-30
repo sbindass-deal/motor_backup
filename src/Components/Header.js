@@ -550,7 +550,8 @@ function Header() {
                         {
                           logingUser.login.user.dealer == "No" ?
                             <p className="userIco"><span>{(logingUser.login.user.username).toUpperCase().charAt(0)}</span></p>
-                            : <p className="userIco"><span><img src={g3} /></span></p>
+                            : logingUser.login.user.dealer == "Yes" ? <p className="userIco"><span><img src={g3} /></span></p>
+                              : <p className="userIco"><span><img src={""} /></span></p>
                         }
                        
 
