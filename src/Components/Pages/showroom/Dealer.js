@@ -47,7 +47,7 @@ const Dealer = () => {
         <div className="auction_container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Featured Showroom</h2>
+              <h2>Dealer Showroom</h2>
             </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">

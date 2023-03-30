@@ -34,14 +34,13 @@ const TimeCalculate = ({ endTime }) => {
               <li>
                   <span>
                       <label>Ends In:&nbsp;</label>
-                      {days > 0 && days+""+"days"}, {hours <= 9 && "0"}
-                      {/* {days}days, {hours <= 9 && "0"} */}
+                      {days > 0 && days+""+"days"}, {hours <= 9 && "0"}                      
                       {hours > 0 && hours+""+"h"} : {minutes <= 9 && "0"}
                       {minutes > 0 && minutes+""+"m"} : {seconds <= 9 && "0"}
                       {seconds}s
                   </span>
               </li>
-          ) : (
+          ) : ( 
               <>
                       <li className="text-danger">BIDDING CLOSED</li>
               </>
