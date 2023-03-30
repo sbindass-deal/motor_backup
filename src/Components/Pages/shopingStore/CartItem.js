@@ -20,7 +20,8 @@ const CartItem = ({
   description,
   stocks,
   size_id ,
-  productId
+  productId ,
+  color_id2
 }) => {
   const dispatch = useDispatch();
   const [size2 , setSize2] = useState();
@@ -123,7 +124,7 @@ const CartItem = ({
           </button>
         </td>
         <td className="text-center">${price?.map((d)=>{
-          if(d?.size_id ==  size_id)
+          if(d?.size_id ==  size_id && d?.color_id == color_id2)
           return d?.price
           })}</td>
         <td className="text-center">
@@ -137,8 +138,8 @@ const CartItem = ({
             <span>{quantity}</span>
             <button
               onClick={() => {
-                if (stocks?.map((d)=>{if(d?.size_id == size_id) return d?.stock})?.filter((d) => {if(d != undefined)return d}).pop() > quantity) {
-                  dispatch(increaseCart(size_id));
+                if (stocks?.map((d)=>{if(d?.size_id == size_id && d?.color_id == color_id2) return d?.stock})?.filter((d) => {if(d != undefined)return d}).pop() > quantity) {
+                  dispatch(increaseCart({size_id , color_id2}));
                 } else {
                   notify("You reached maximum limit");
                 }
@@ -149,7 +150,7 @@ const CartItem = ({
             </button>
           </div>
         </td>
-        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id)return d?.price}).filter((d) => {
+        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id && d?.color_id == color_id2)return d?.price}).filter((d) => {
       if(d != undefined)
           return d
    }).pop()}</td>

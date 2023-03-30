@@ -48,6 +48,7 @@ const Cart = () => {
                       </th>
                     </tr>
                     {product.products.map((curElem) => {
+
                       return (
                         <CartItem
                           key={curElem.id}
@@ -62,6 +63,7 @@ const Cart = () => {
                           stocks={curElem.product_inventry}
                           size_id={curElem?.size_id}
                           productId={curElem?.productId}
+                          color_id2={curElem?.color_id}
                         />
                       );
                     })}

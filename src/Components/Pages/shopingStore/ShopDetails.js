@@ -25,6 +25,7 @@ const ShopDetails = () => {
   const [productId, setProductId] = useState();
   const [size_id, setSize_id] = useState();
   const [color_id, setColor_id] = useState();
+  const [color_id2, setColor_id2] = useState();
   const [sizeRepeater  , setSizeRepeater] = useState([])
 
   const notify = (val) =>
@@ -104,15 +105,9 @@ const ShopDetails = () => {
          return true
       }
     }).filter((d) => d != undefined).pop() != true){
-      dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId }));
+      dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId , color_id : color_id2 }));
       notify("Added to cart.");
     }
-// console.log(productRedux.map((d) => {
-//   if (d.size_id == size_id && d.productId == productId) {
-//      notify2("Item Already Added to cart.");
-//      return true
-//   }
-// }).filter((d) => d != undefined).pop());
 
     
   };
@@ -126,8 +121,8 @@ const ShopDetails = () => {
     cursor: "pointer",
   };
 
-  console.log(sizeRepeater.filter((item,
-    index) => sizeRepeater.indexOf(item) === index));
+  // console.log(sizeRepeater.filter((item,
+  //   index) => sizeRepeater.indexOf(item) === index));
   return (
     <>
       <div className="container">
@@ -196,7 +191,7 @@ const ShopDetails = () => {
                     return size?.map((data, index) => {
                       if (data?.id == d?.size_id) {
                         sizeRepeater.push(d?.size_id)
-                        return (<button className={`mx-2 btn btn-light px-2 py-1`} onClick={() => { setProductId(d?.id); setSize_id(d?.size_id); }}>{data?.size}</button>)
+                        return (<button className={`mx-2 btn btn-light px-2 py-1`} onClick={() => {setColor_id2(d?.color_id); setProductId(d?.id); setSize_id(d?.size_id); }}>{data?.size}</button>)
                       }
                     })
                   })
