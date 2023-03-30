@@ -45,7 +45,7 @@ const LatestGuzzlrsAuction = () => {
                   className="sidebarPost"
                 >
                  
-                    <div className="overlay_post">
+                    <div className="overlay_post8">
                       <div className="">
                         <div className="">
                           Current Bid: $

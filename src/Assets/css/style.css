@@ -1222,7 +1222,7 @@ select.field option {
 }
 
 .sidebarPost a:hover .overlay_post {
-  top: 0;
+  top: 0 !important;
 }
 
 .sidebar_Event {}
@@ -6463,9 +6463,29 @@ h3.cardTitle.riTArrow {
 .rfel {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/carraffle-bg.png);
+  background-image: url(../images/giv-away.png);
   background-position: center;
+  height: 25vh;
+
 }
+.loTryTitle h2 {
+  font-size: 66px;
+  font-weight: 400;
+}
+.rfel .row { align-items: center;}
+
+
+.loTryTitle h2 span {
+  font-size: 100px;
+  font-weight: 700;
+  display: block;
+  color: #000;
+}
+.light .loTryTitle h2 span {
+  color: #fff;
+}
+
+
 .dropdown-content.myACt {
   right: -55px;
   top: 26px;
@@ -6481,3 +6501,25 @@ li.nav-item.afterLogin span img { min-width: 24px; padding: 0;}
 .ant-avatar { background: #fff; border: 0px solid transparent; color: #000;}
 .light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
 .card_post:hover { transform: scale(1.05); transition: 0.5s;}
+
+.sidebarPost {
+
+  position: relative;
+}
+.overlay_post8 {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #8e6618d4;
+  color: #fff;
+  padding: 40px 0px;
+}
+.overlay_post8 {
+  visibility: hidden;
+}
+a.sidebarPost:hover .overlay_post8 {
+  visibility: visible;
+}
