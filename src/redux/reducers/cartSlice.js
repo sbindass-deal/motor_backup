@@ -12,7 +12,7 @@ const cartSlice = createSlice({
     addProduct: (state, action) => {
       
       const itemIndex = state.products.findIndex(
-        (item) => item.size_id === action.payload.size_id && item.id === action.payload.id
+        (item) => item.size_id === action.payload.size_id && item.id === action.payload.id && item.color_id === action.payload.color_id
       );
       if (itemIndex >= 0) {
         state.products[itemIndex].quantity++;
@@ -36,8 +36,9 @@ const cartSlice = createSlice({
     },
     increaseCart(state, action) {
       const itemIndex = state.products.findIndex(
-        (cartItem) => cartItem.size_id === action.payload
+        (cartItem) => cartItem.size_id === action.payload.size_id 
       );
+      console.log(JSON.stringify( itemIndex));
       if (state.products[itemIndex].quantity >= 1) {
         state.products[itemIndex].quantity =
           parseInt(state.products[itemIndex].quantity, 10) + 1;
