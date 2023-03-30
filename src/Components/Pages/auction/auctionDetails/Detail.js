@@ -25,6 +25,7 @@ function Detail() {
   const commentRef = useRef();
   const loginUser = useSelector((state) => state.login);
   const [vinDetails, setVinDetails] = useState(null);
+  const [vehicleVinNumber, setVehicleVinNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [vehicle, setVehicle] = useState({});
   const [show, setShow] = useState(false);
@@ -167,8 +168,8 @@ function Detail() {
       );
       if (res.data.status === 200) {
         setVehicle(res.data.data);
+        setVehicleVinNumber(res.data.data.detailvin);
         setNewTiem(parseInt(new Date(res.data.data.EndTime).getTime(), 10));
-
         // console.log("t", new Date(res.data.data[0].EndTime).getTime());
         // console.log("end", new Date(res.data.data[0].EndTime));
       }
@@ -188,15 +189,15 @@ function Detail() {
     const fetchVinDetails = async () => {
       try {
         const res = await axios.get(
-          `https://api.gasguzzlrs.com/test_vin/${"ZPBUA1ZL9KLA00848"}`
+          `https://api.gasguzzlrs.com/test_vin/${vehicleVinNumber}`
         );
-        setVinDetails(res?.data);
+        setVinDetails(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchVinDetails();
-  }, []);
+  }, [vehicleVinNumber]);
 
   // Subscribe api
   const handleSubscribe = async () => {

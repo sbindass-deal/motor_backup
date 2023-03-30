@@ -22,7 +22,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
-        setDealerData([...res.data.featured_dealer]);
+        setDealerData([...res.data.featured_dealer, ...res.data.user_dealer]);
         handleDealerCount(res.data.featured_dealer.length);
       } catch (err) {
         console.log(err);
