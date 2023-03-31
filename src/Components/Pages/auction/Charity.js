@@ -86,11 +86,11 @@ const Charity = () => {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>Charity Auctions</h1>
-                <h5>
+                {/* <h1>Charity Auctions</h1> */}
+                <h2>
                   Are you interested in benefitting a charity by offering a
                   vehicle on Gas Guzzlrs Auctions? We can do that!
-                </h5>
+                </h2>
                 {/* <a href="#" className="btn">
                   Notify me when one is listed
                 </a>
@@ -98,14 +98,28 @@ const Charity = () => {
                   Have one? Sell yours here
                 </a> */}
               </div>
+              
             </div>
           </div>
+          <a type="button" className="scrollDownIc bounce2" href="#second">
+          <span className="outer_cover">
+            <small className="upper">
+              <i class="fa fa-angle-down"></i>
+            </small>
+            <small className="lower">
+              <i class="fa fa-angle-down"></i>
+            </small>
+          </span>
+        </a>
         </div>
       </section>
+      <section className="ptb_30" id="second"></section>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
+          <div class="col-12 text-center pb_30"><h2>Charity Auctions</h2></div>
             <div className="col-12">
+            
               <ul className="postTopOption">
                 <li className="post_search">
                   <input

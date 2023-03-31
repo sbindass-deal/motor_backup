@@ -41,8 +41,21 @@ const Dealer = () => {
               </h5>
             </div>
           </div>
+          <a type="button" className="scrollDownIc bounce2" href="#second">
+          <span className="outer_cover">
+            <small className="upper">
+              <i class="fa fa-angle-down"></i>
+            </small>
+            <small className="lower">
+              <i class="fa fa-angle-down"></i>
+            </small>
+          </span>
+        </a>
+
+          
         </div>
       </section>
+      <section className="ptb_30" id="second"></section>
       <section className="ptb_80" id="">
         <div className="auction_container">
           <div className="row ">
