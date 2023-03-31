@@ -76,7 +76,6 @@ function EditMyAccount() {
 
   const handleContent = (e) => {
     setBlogContent(e);
-    console.log(111, e);
   };
   const handleContent1 = (e) => {
     setBlogContentDesc(e);
@@ -164,34 +163,6 @@ function EditMyAccount() {
     setFile1(event.dataTransfer.files);
   };
 
-  // const uploadLogo = async (uId) => {
-  //   const url = `${process.env.REACT_APP_URL}dealer_img`;
-  //   let formData = new FormData();
-  //   formData.append("title", editUser.title);
-  //   formData.append("description", editUser.desc);
-  //   formData.append("dealerId", uId);
-  //   formData.append("logo[]", file[0]);
-  //   formData.append("category", file1[0]);
-  //   formData.append("logo[]", file2[0]);
-
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-
-  //   await axios
-  //     .post(url, formData, config)
-  //     .then((response) => {
-  //       console.log(response);
-  //       notify(response.data.message);
-  //       window.location.reload(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   // =================================== Gallery image upload start
   const uploadFileGallery = async (vehicleId) => {
     (async () => {
@@ -217,7 +188,7 @@ function EditMyAccount() {
         const url = `${process.env.REACT_APP_URL}dealer_img`;
         const formData = new FormData();
         formData.append("logo[]", file1);
-        formData.append("category", "banner");
+        formData.append("category", "logo");
         formData.append("dealerId", vehicleId);
         const newImagedata = formData;
         const config = {
@@ -236,7 +207,7 @@ function EditMyAccount() {
         const url = `${process.env.REACT_APP_URL}dealer_img`;
         const formData = new FormData();
         formData.append("logo[]", file11);
-        formData.append("category", "Document");
+        formData.append("category", "banner");
         formData.append("dealerId", vehicleId);
         const config = {
           headers: {
@@ -270,7 +241,7 @@ function EditMyAccount() {
           // uploadLogo(userData.id);
           uploadFileGallery(userData.id);
           uploadFileOne(userData.id);
-          uploadFileOne(userData.id);
+          uploadFileTwo(userData.id);
           navigate("/accountinfo");
           notify(result.data.message);
           setLoading(false);
@@ -361,7 +332,6 @@ function EditMyAccount() {
                   <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.userName}
-                      // onChange={handleEditOnChange}
                       name="userName"
                       placeholder="Enter Username"
                       errorMessage="Username should be 3-20 characters and shouldn't include any special character!"
@@ -382,9 +352,6 @@ function EditMyAccount() {
                       required={true}
                     />
                   </div>
-
-                  {console.log(111, userData)}
-
                   {userData.dealer === "Yes" && (
                     <div className="col-12">
                       <FormInput
@@ -403,22 +370,8 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>About us</label>
-                        {/* <textarea
-                          value={editUser.aboutus}
-                          onChange={handleEditOnChange}
-                          name="aboutus"
-                          placeholder="Enter About us"
-                          className="field"
-                          maxLength={200}
-                          required
-                        ></textarea> */}
-                        <div className="border border-2 border-dark">
+                        <div className="border desCrtpion border-2 border-dark">
                           <Editor
-                            editorStyle={{
-                              background: "white",
-                              padding: "15px",
-                              minHeight: "30vh",
-                            }}
                             editorState={blogContent}
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
@@ -434,23 +387,8 @@ function EditMyAccount() {
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
-                        {/* <textarea
-                          value={editUser.desc}
-                          onChange={handleEditOnChange}
-                          name="desc"
-                          placeholder="Enter Description"
-                          className="field"
-                          maxLength={200}
-                          required
-                        ></textarea> */}
-
-                        <div className="border border-2 border-dark">
+                        <div className="border desCrtpion border-2 border-dark">
                           <Editor
-                            editorStyle={{
-                              background: "white",
-                              padding: "15px",
-                              minHeight: "30vh",
-                            }}
                             editorState={blogContentdesc}
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
@@ -466,7 +404,7 @@ function EditMyAccount() {
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
-                          <label htmlFor="bannerImage">Banner Image</label>
+                          <label htmlFor="bannerImage">Logo Image</label>
                           <div className="imgCross">
                             {Array.from(bannerImage).map((curElem, i) => {
                               return (
@@ -669,7 +607,7 @@ function EditMyAccount() {
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
-                          <label htmlFor="documentImae">Document Image</label>
+                          <label htmlFor="documentImae">Gallery Image</label>
                           <div className="imgCross">
                             {Array.from(documentImage).map((curElem) => {
                               return (
