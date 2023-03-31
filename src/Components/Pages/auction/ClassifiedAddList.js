@@ -134,7 +134,7 @@ function ClassifiedAddList() {
                                 <span className="">
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 40)+"...",
+                                      curElem?.moreDescription?.substr(0, 60)+"...",
                                       strToHtml
                                     )}
                                 </span>
