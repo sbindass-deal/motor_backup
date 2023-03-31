@@ -155,74 +155,97 @@ function AccountInfo() {
                     <h6>Logo</h6>
                     <hr />
                     <div className="imgCross">
-                      <div className="row">
-                        <Image.PreviewGroup>
-                          {userInfo?.logo?.map((curElem, i) => {
-                            return (
-                              <div key={i}>
-                                <Image
-                                  loading="lazy"
-                                  width={160}
-                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src = noImage;
-                                  }}
-                                  alt="Maskgroup1"
-                                />
-                              </div>
-                            );
-                          })}
-                        </Image.PreviewGroup>
-                      </div>
+                      <Image.PreviewGroup>
+                        {userInfo?.logo?.map((curElem, i) => {
+                          return (
+                            <span key={i}>
+                              <Image
+                                loading="lazy"
+                               
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                              <button
+                                      // onClick={() =>
+                                      //   handleDeleteImage(curElem.id)
+                                      // }
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button>
+                            </span>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                     <h6 className="mt-3">Banner</h6>
                     <hr />
                     <div className="imgCross">
-                      <div className="row">
-                        <Image.PreviewGroup>
-                          {userInfo?.banner?.map((curElem, i) => {
-                            return (
-                              <div key={i}>
-                                <Image
-                                  loading="lazy"
-                                  width={160}
-                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src = noImage;
-                                  }}
-                                  alt="Maskgroup1"
-                                />
-                              </div>
-                            );
-                          })}
-                        </Image.PreviewGroup>
-                      </div>
+                      <Image.PreviewGroup>
+                        {userInfo?.banner?.map((curElem, i) => {
+                          return (
+                            <span key={i}>
+                              <Image
+                                loading="lazy"
+                                
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                              <button
+                                      // onClick={() =>
+                                      //   handleDeleteImage(curElem.id)
+                                      // }
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button>
+                             
+                            </span>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                     <h6 className="mt-3">Gallery</h6>
                     <hr />
-                    <div className="row">
-                      <div className="imgCross">
-                        <Image.PreviewGroup>
-                          {userInfo?.gallery?.map((curElem, i) => {
-                            return (
-                              <div key={i}>
-                                <Image
-                                  loading="lazy"
-                                  width={160}
-                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src = noImage;
-                                  }}
-                                  alt="Maskgroup1"
-                                />
-                              </div>
-                            );
-                          })}
-                        </Image.PreviewGroup>
-                      </div>
+                    <div className="imgCross">
+                      <Image.PreviewGroup>
+                        {userInfo?.gallery?.map((curElem, i) => {
+                          return (
+                            <span key={i}>
+                              <Image
+                                loading="lazy"
+                               
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                              <button
+                                      // onClick={() =>
+                                      //   handleDeleteImage(curElem.id)
+                                      // }
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button>
+                              
+                            </span>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                   </>
                 )}
