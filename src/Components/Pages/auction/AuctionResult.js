@@ -190,7 +190,7 @@ const AuctionResult = () => {
                             parse(
                               curElem?.vehicle_data?.moreDescription?.substr(
                                 0,
-                                70
+                                90
                               )+"...",
                               strToHtml
                             )}
