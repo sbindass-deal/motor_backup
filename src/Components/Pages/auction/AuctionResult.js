@@ -135,7 +135,7 @@ const AuctionResult = () => {
               })
                 ?.map((curElem) => {
                 return (
-                  <div className="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+                  <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
                     <div className="card_post">
                       <div className="card_postImg">
                         <div className="list_wrapper">
@@ -185,7 +185,7 @@ const AuctionResult = () => {
                             ></i>
                           </button> */}
                         </h4>
-                        <p className="color_grey">
+                        {/* <p className="color_grey">
                           {curElem?.vehicle_data?.moreDescription &&
                             parse(
                               curElem?.vehicle_data?.moreDescription?.substr(
@@ -194,9 +194,9 @@ const AuctionResult = () => {
                               )+"...",
                               strToHtml
                             )}
-                        </p>
+                        </p> */}
 
-                        <ul className="labelList AucRelt">
+                        <ul className="labelList ">
                           <li className="w-auto">
                             <label>
                               Sold for $

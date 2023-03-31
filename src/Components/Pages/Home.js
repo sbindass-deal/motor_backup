@@ -163,7 +163,7 @@ function Home() {
   return (
     <div>
       <section className="heroSection d-flex align-items-center">
-        <a type="button" className="scrollDownIc" href="#second">
+        <a type="button" className="scrollDownIc bounce2" href="#second">
           <span className="outer_cover">
             <small className="upper">
               <i class="fa fa-angle-down"></i>
@@ -356,33 +356,33 @@ function Home() {
                               {/* <AccountCircleIcon /> */}
                               {
                                 data?.login.user.dealer == "No" ? 
-                                  <Space size={16} wrap>
+                                  // <Space size={16} wrap >
 
-                                    <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
-                                  </Space>
-                                  // <p className="userIco bgS">
-                                  //   <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
-                                  // </p>
+                                  //   <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
+                                  // </Space>
+                                  <p className="userIco">
+                                    <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
+                                  </p>
                                 :
                                   data?.login.user.logo?.logo && data?.login.user.dealer == "Yes" ?
-                                    <Space size={16} wrap>
+                                    // <Space size={16} wrap className="avtar">
 
-                                      <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
-                                    </Space>
-                                    // <p className="">
-                                    //   <span><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></span>
+                                    //   <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
+                                    // </Space>
+                                    <p className="userIco ">
+                                      <span><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></span>
                                       
-                                    // </p>
+                                    </p>
                                     :
-                                    <Space size={16} wrap>
+                                    // <Space size={16} wrap>
 
-                                      <Avatar><img width={50} src={g3} /></Avatar>
-                                    </Space>
-                                    // <p className="userIco bgS">
-                                    //   <span>
-                                    //     <img width={50} src={g3} />
-                                    //     </span>
-                                    // </p>
+                                    //   <Avatar><img width={50} src={g3} /></Avatar>
+                                    // </Space>
+                                    <p className="userIco ">
+                                      <span>
+                                        <img src={g3} />
+                                        </span>
+                                    </p>
                               }
                               {/* {curElem.username} */}
                             </li>

@@ -3582,7 +3582,17 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
 
 .charity {
   background-image: url('../images/charity.png');
+  height: 59vh;
+    background-position: center;
 }
+.event {
+  background-image: url('../images/reeee.jpg');
+  height: 59vh;
+ background-position: center;
+}
+
+
+
 
 .charity .heroText p {
   font-size: 22px;
@@ -6409,7 +6419,7 @@ select.dropDownList { position: relative;}
 select.dropDownList{ appearance: initial;}
 p.dicount { border: 1px solid #f7931a2b; padding: 10px; border-radius: 10px;}
 p.dicount span { color: #f7931a; font-size: 17px; padding-right: 10px;}
-.AucRelt label { font-size: 16px; color: #f7931b;}
+.AucRelt label { font-size: 16px; }
 .labelList.AucRelt li:first-child{border: none !important;}
 .labelList.AucRelt li label { display: block;}
 .dZip {	display: flex;	padding: 10px;}
@@ -6501,7 +6511,16 @@ input[type=checkbox], input[type=radio] { cursor: pointer;}
 ul.labelList.btnListShap li span { color: #fff; opacity: 9; letter-spacing: 0px; font-size: 12px;}
 .light ul.labelList.btnListShap li span { color: #000;}
 .car_title { font-size: 15px;  font-weight: 500;}
-li.nav-item.afterLogin span img { min-width: auto; padding: 0;}
+
+li.nav-item.afterLogin span img {
+  min-width: 100%;
+  padding: 0;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+}
+
 .ant-avatar { background: #fff; border: 0px solid transparent; color: #000;}
 .light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
 .card_post:hover { transform: scale(1.05); transition: 0.5s;}
@@ -6548,6 +6567,22 @@ p.userIco.bgS {
     height: 70px;
     margin: 5px;
 }
-.card_postImg.dlr .card_postInfo {
+.dlr .card_postInfo {
   background: transparent;
+}
+
+.labelList li {
+  margin-bottom: 0;
+}
+.labelList {
+  align-items: center;
+}
+.gry_btn {text-transform: capitalize;}
+.bounce2 {
+  animation: bounce2 2s ease infinite;
+}
+@keyframes bounce2 {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
 }
