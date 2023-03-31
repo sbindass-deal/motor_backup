@@ -6523,3 +6523,12 @@ li.nav-item.afterLogin span img { min-width: 24px; padding: 0;}
 a.sidebarPost:hover .overlay_post8 {
   visibility: visible;
 }
+
+p.userIco span > img {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+p.userIco {
+  margin-bottom: 0;
+}

@@ -355,12 +355,18 @@ function Home() {
                               {/* <AccountCircleIcon /> */}
                               {
                                 data?.login.user.dealer == "No" ? 
-                                  <p className="userIco"><span>{(data.login.user.username).toUpperCase().charAt(0)}</span></p>
+                                  <p className="userIco">
+                                    <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
+                                  </p>
                                 :
                                   data?.login.user.dealer == "Yes" ?
-                                    <p className="userIco"><span><img src={g3} /></span></p>
+                                    <p className="userIco">
+                                      <span><img src={g3} /></span>
+                                    </p>
                                     :
-                                    <p className="userIco"><span>G</span></p>
+                                    <p className="userIco">
+                                      <span>G</span>
+                                    </p>
                               }
                               {/* {curElem.username} */}
                             </li>
