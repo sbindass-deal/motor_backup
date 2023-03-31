@@ -184,34 +184,6 @@ function AccountInfo() {
                     <hr />
                     <div className="imgCross">
                       <Image.PreviewGroup>
-                        {userInfo?.banner?.map((curElem, i) => {
-                          return (
-                            <span key={i}>
-                              <Image
-                                loading="lazy"
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                              {/* <button
-                                      
-                                      type="button"
-                                      className="close"
-                                    >
-                                      x
-                                    </button> */}
-                            </span>
-                          );
-                        })}
-                      </Image.PreviewGroup>
-                    </div>
-                    <h6 className="mt-3">Gallery</h6>
-                    <hr />
-                    <div className="imgCross">
-                      <Image.PreviewGroup>
                         {userInfo?.gallery?.map((curElem, i) => {
                           return (
                             <span key={i}>
@@ -226,6 +198,35 @@ function AccountInfo() {
                               />
                               {/* <button
                                      
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button> */}
+                            </span>
+                          );
+                        })}
+                      </Image.PreviewGroup>
+                    </div>
+                    <h6 className="mt-3">Gallery</h6>
+                    <hr />
+
+                    <div className="imgCross">
+                      <Image.PreviewGroup>
+                        {userInfo?.banner?.map((curElem, i) => {
+                          return (
+                            <span key={i}>
+                              <Image
+                                loading="lazy"
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                              {/* <button
+                                      
                                       type="button"
                                       className="close"
                                     >
