@@ -6524,11 +6524,11 @@ a.sidebarPost:hover .overlay_post8 {
   visibility: visible;
 }
 
-p.userIco span > img {
+p.userIco.bgS span > img {
   width: 20px;
   height: 20px;
   position: relative;
 }
-p.userIco {
+p.userIco.bgS {
   margin-bottom: 0;
 }
