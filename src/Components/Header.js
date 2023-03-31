@@ -117,7 +117,7 @@ function Header() {
   }));
 
 
-  console.log(98989, logingUser.login.user.dealer)
+ 
 
   return (
     <>
@@ -550,8 +550,8 @@ function Header() {
                         {
                           logingUser.login.user.dealer == "No" ?
                             <p className="userIco"><span>{(logingUser.login.user.username).toUpperCase().charAt(0)}</span></p>
-                            : logingUser.login.user.dealer == "Yes" ? <p className="userIco"><span><img src={g3} /></span></p>
-                              : <p className="userIco"><span>G</span></p>
+                            : logingUser?.login.user.logo?.logo && logingUser.login.user.dealer == "Yes" ? <p className="userIco"><span><img src={`https://api.gasguzzlrs.com/${logingUser?.login?.user?.logo?.logo}`} /></span></p>
+                              : <p className="userIco"><span><img src={g3} /></span></p>
                         }
                        
 

@@ -11,6 +11,7 @@ import parse from "html-react-parser";
 import { noImage, strToHtml } from "../UI/globaleVar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import g3 from "../../Assets/images/G3.png";
+import { Avatar, Space } from "antd";
 
 function Home() {
   const dispatch = useDispatch();
@@ -244,7 +245,7 @@ function Home() {
                                 <p>
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 120) +
+                                      curElem?.moreDescription?.substr(0, 200) +
                                         "...",
                                       strToHtml
                                     )}
@@ -355,25 +356,40 @@ function Home() {
                               {/* <AccountCircleIcon /> */}
                               {
                                 data?.login.user.dealer == "No" ? 
-                                  <p className="userIco bgS">
-                                    <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
-                                  </p>
+                                  <Space size={16} wrap>
+
+                                    <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
+                                  </Space>
+                                  // <p className="userIco bgS">
+                                  //   <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
+                                  // </p>
                                 :
-                                  data?.login.user.dealer == "Yes" ?
-                                    <p className="userIco bgS">
-                                      <span><img src={g3} /></span>
-                                    </p>
+                                  data?.login.user.logo?.logo && data?.login.user.dealer == "Yes" ?
+                                    <Space size={16} wrap>
+
+                                      <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
+                                    </Space>
+                                    // <p className="">
+                                    //   <span><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></span>
+                                      
+                                    // </p>
                                     :
-                                    <p className="userIco bgS">
-                                      <span>G</span>
-                                    </p>
+                                    <Space size={16} wrap>
+
+                                      <Avatar><img width={50} src={g3} /></Avatar>
+                                    </Space>
+                                    // <p className="userIco bgS">
+                                    //   <span>
+                                    //     <img width={50} src={g3} />
+                                    //     </span>
+                                    // </p>
                               }
                               {/* {curElem.username} */}
                             </li>
                           </ul>
                           <p>
                             {parse(
-                              curElem?.description.substr(0, 700),
+                              curElem?.description.substr(0, 150)+"...",
                               strToHtml
                             )}
                           </p>
@@ -441,7 +457,7 @@ function Home() {
                         <a href="/carraffle" className="full">
                           <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                             <h2>{d?.name}</h2>
-                            <p>{parse(d?.description, strToHtml)}</p>
+                            <p>{parse(d?.description.substr(0, 165) + "...", strToHtml)}</p>
                             <div className="price_">
                               <p>
                                 {d?.dealEndDate &&

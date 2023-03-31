@@ -6548,3 +6548,6 @@ p.userIco.bgS {
     height: 70px;
     margin: 5px;
 }
+.card_postImg.dlr .card_postInfo {
+  background: transparent;
+}
