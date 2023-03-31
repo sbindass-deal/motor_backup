@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.81391155.css",
-    "main.js": "/static/js/main.746da39b.js",
+    "main.css": "/static/css/main.e7dd1a04.css",
+    "main.js": "/static/js/main.1945e313.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -102,6 +102,7 @@
     "static/media/raffle-5.jpg": "/static/media/raffle-5.725b85a1037fb656d29a.jpg",
     "static/media/about-1.jpg": "/static/media/about-1.b76a45bd59a0457b947a.jpg",
     "static/media/raffle-6.jpg": "/static/media/raffle-6.9b2b48d4d2f594e1b7a5.jpg",
+    "static/media/reeee.jpg": "/static/media/reeee.060b693ec8f830a8d051.jpg",
     "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
     "static/media/img-2.webp": "/static/media/img-2.b3e77c884a3847e153d0.webp",
@@ -133,8 +134,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.81391155.css.map": "/static/css/main.81391155.css.map",
-    "main.746da39b.js.map": "/static/js/main.746da39b.js.map",
+    "main.e7dd1a04.css.map": "/static/css/main.e7dd1a04.css.map",
+    "main.1945e313.js.map": "/static/js/main.1945e313.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -174,7 +175,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.81391155.css",
-    "static/js/main.746da39b.js"
+    "static/css/main.e7dd1a04.css",
+    "static/js/main.1945e313.js"
   ]
 }

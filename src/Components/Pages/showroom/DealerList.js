@@ -23,14 +23,13 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
           `${process.env.REACT_APP_URL}get_all_dealers`
         );
         setDealerData([...res.data.featured_dealer, ...res.data.user_dealer]);
-        handleDealerCount(res.data.featured_dealer.length);
+        handleDealerCount(res.data.all_dealers_count);
       } catch (err) {
         console.log(err);
       }
     };
     fetchDealer();
   }, []);
-  console.log(9090, dealerData)
   return (
     <>
       <div className="col-12 ListDealer mt-50">
@@ -87,7 +86,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
                             {curElem?.dealerDescription &&
                               parse(
                                 curElem?.dealerDescription?.substr(0, 70) +
-                                "...",
+                                  "...",
                                 strToHtml
                               )}
                           </p>
