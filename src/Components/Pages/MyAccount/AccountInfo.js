@@ -161,7 +161,6 @@ function AccountInfo() {
                             <span key={i}>
                               <Image
                                 loading="lazy"
-                               
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -169,15 +168,13 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              <button
-                                      // onClick={() =>
-                                      //   handleDeleteImage(curElem.id)
-                                      // }
+                              {/* <button
+                                      
                                       type="button"
                                       className="close"
                                     >
                                       x
-                                    </button>
+                                    </button> */}
                             </span>
                           );
                         })}
@@ -192,7 +189,6 @@ function AccountInfo() {
                             <span key={i}>
                               <Image
                                 loading="lazy"
-                                
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -200,16 +196,13 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              <button
-                                      // onClick={() =>
-                                      //   handleDeleteImage(curElem.id)
-                                      // }
+                              {/* <button
+                                      
                                       type="button"
                                       className="close"
                                     >
                                       x
-                                    </button>
-                             
+                                    </button> */}
                             </span>
                           );
                         })}
@@ -224,7 +217,6 @@ function AccountInfo() {
                             <span key={i}>
                               <Image
                                 loading="lazy"
-                               
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -232,16 +224,13 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              <button
-                                      // onClick={() =>
-                                      //   handleDeleteImage(curElem.id)
-                                      // }
+                              {/* <button
+                                     
                                       type="button"
                                       className="close"
                                     >
                                       x
-                                    </button>
-                              
+                                    </button> */}
                             </span>
                           );
                         })}
