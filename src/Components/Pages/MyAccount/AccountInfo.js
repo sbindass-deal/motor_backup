@@ -158,13 +158,10 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.logo?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                style={{
-                                  maxWidth: "16%",
-                                  padding: "10px",
-                                }}
+                               
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -181,7 +178,7 @@ function AccountInfo() {
                                     >
                                       x
                                     </button>
-                            </div>
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>
@@ -192,13 +189,10 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.banner?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                style={{
-                                  maxWidth: "16%",
-                                  padding: "10px",
-                                }}
+                                
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -216,7 +210,7 @@ function AccountInfo() {
                                       x
                                     </button>
                              
-                            </div>
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>
@@ -227,13 +221,10 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.gallery?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                style={{
-                                  maxWidth: "16%",
-                                  padding: "10px",
-                                }}
+                               
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -251,7 +242,7 @@ function AccountInfo() {
                                       x
                                     </button>
                               
-                            </div>
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>

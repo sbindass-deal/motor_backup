@@ -5895,19 +5895,19 @@ a.dfr {
 
 .imgCross span button.close {
   position: absolute;
-  right: 5px;
-  font-size: 10px;
-  top: -39px;
-  background: #f7931a;
-  color: #fff;
-  padding: 2px 6px;
-  opacity: 1;
-  border-radius: 100px;
-  font-weight: 100;
-  line-height: 13px;
-  text-align: center;
-  display: flex;
-  align-items: center;
+    right: 0px;
+    font-size: 10px;
+    top: 0;
+    background: #f7931a;
+    color: #fff;
+    opacity: 1;
+    border-radius: 100px;
+    font-weight: 100;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
 }
 
 .imgCross span {
@@ -6535,4 +6535,16 @@ p.userIco.bgS span > img {
 }
 p.userIco.bgS {
   margin-bottom: 0;
+}
+.imgCross span div img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.imgCross span div {
+  width: 169px;
+    height: 70px;
+    margin: 5px;
 }
