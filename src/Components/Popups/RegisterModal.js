@@ -14,19 +14,33 @@ import { useSelector } from "react-redux";
 
 function RegisterModal({ showReg, handleCloseReg }) {
   const logingUser = useSelector((state) => state);
-  console.log("Reduct Mode function call", logingUser.dayAndNightMode.mode);
 
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const notify = (val, type = 200) => {
+    if (type == 200) {
+      toast.success(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.warning(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   const url = process.env.REACT_APP_URL;
   const dispatch = useDispatch();
   const [file, setFile] = useState([]);
@@ -35,6 +49,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
   const [addUserInBid, setAddUserInBid] = useState(true);
   const [acceptTerms, setAcceptTerms] = useState(true);
   const [signInMe, setSignInMe] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // console.log("####", addUserInBid)
   const [inputValue, setInputValue] = useState({
@@ -83,8 +98,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
     await axios
       .post(url, formData, config)
       .then((response) => {
-        console.log(response);
-        notify(response.data.message);
+        notify(response.data.message, response.data.status);
         window.location.reload(false);
       })
       .catch((error) => {
@@ -94,7 +108,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
   const handleApi = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const {
       name,
       email,
@@ -130,11 +144,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
         // cartHearAbout: inputValue.hearAbout,
       })
       .then((result) => {
+        setLoading(false);
         if (result.data.status === 200 && result.data.access_token !== null) {
           dispatch(authToken(result.data));
           console.log("Result data", result.data);
           handleCloseReg();
-          notify(result.data.message);
+          notify(result.data.message, result.data.status);
           setInputValue({
             name: "",
             phone: "",
@@ -159,11 +174,12 @@ function RegisterModal({ showReg, handleCloseReg }) {
           });
           window.location.reload(false);
         } else {
-          notify(result.data.message);
+          notify(result.data.message, result.data.status);
         }
       })
       .catch((error) => {
-        notify(error);
+        notify(error, error.status);
+        setLoading(false);
       });
   };
   // const onToken = (address) => {
@@ -519,9 +535,15 @@ function RegisterModal({ showReg, handleCloseReg }) {
 
                 <div className="col-12 col-md-12">
                   <div className="form-group">
-                    <button type="submit" className="btn">
-                      Sign Up
-                    </button>
+                    {loading === true ? (
+                      <button type="button" className="btn">
+                        Loading...
+                      </button>
+                    ) : (
+                      <button type="submit" className="btn">
+                        Sign Up
+                      </button>
+                    )}
 
                     {/* {addUserInBid ? (
                       userInput.name != "" &&

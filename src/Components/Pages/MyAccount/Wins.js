@@ -47,19 +47,18 @@ function Wins() {
     setPaymentDetails({ data: data, amount: amount, bid_id });
   };
   const fetchBidingDetails = async () => {
-    axios
-      .get(process.env.REACT_APP_URL + `biddingDetail/basedOnUser`)
-
-      .then((response) => {
-        const d = response.data.data;
-        let uniqueObjArray = [
-          ...new Map(
-            response.data.data.map((item) => [item["id"], item])
-          ).values(),
-        ];
-
-        setData(uniqueObjArray.reverse());
-      });
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getAllWinnerByUser`
+      );
+      const d = res.data.data;
+      let uniqueObjArray = [
+        ...new Map(res.data.data.map((item) => [item["id"], item])).values(),
+      ];
+      setData(uniqueObjArray.reverse());
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     fetchBidingDetails();
