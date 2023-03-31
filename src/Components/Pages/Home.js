@@ -185,8 +185,9 @@ function Home() {
           </div>
         </div>
       </section>
+      <section className="ptb_30" id="second"></section>
 
-      <section className="ptb_80" id="second">
+      <section className="ptb_80">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
