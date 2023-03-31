@@ -23,6 +23,7 @@ const AddGearProduct = () => {
   const addInventry = (e, index) => {
     setDataInventry([...dataInventry, inventry])
   }
+console.log(dataInventry);
 
   const onchangeInventry = (e, index) => {
     const updatedInventry = dataInventry?.map((d, i) => index == i ?
@@ -32,8 +33,6 @@ const AddGearProduct = () => {
 
     setDataInventry(updatedInventry);
   }
-
-  console.log()
 
   const handleDragOver = (event) => {
     event.preventDefault();

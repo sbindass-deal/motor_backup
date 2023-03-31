@@ -10,7 +10,9 @@ const EditGearProduct = () => {
   const { id } = useParams();
   const data = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
-  const products = data.gearReducer.gearData;
+  const products = data.gearReducer.gearData.product;
+
+  console.log(products);
 
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
@@ -53,8 +55,8 @@ const EditGearProduct = () => {
     });
 
   useEffect(() => {
-    const filteredData = products.find((item) => item.id == id);
-    console.log(11111, filteredData);
+    const filteredData = products?.find((item) => item.id == id);
+    console.log("11111", filteredData);
     setGetInputData({
       name: filteredData.title,
       category: filteredData.category,
