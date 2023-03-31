@@ -144,7 +144,7 @@
 	}
 
 	div#navbarNavDropdown {
-		width: 74%;
+		width: 81%;
 	}
 
 	.toNv {
@@ -260,7 +260,7 @@
 	}
 
 	div#navbarNavDropdown {
-		width: 72%;
+		width: 81%;
 	}
 
 
@@ -363,10 +363,7 @@
 		height: 105px;
 	}
 
-	div#navbarNavDropdown {
-		width: 77%;
-	}
-
+	
 	.searchForm {
 		width: 345px;
 	}
@@ -757,6 +754,9 @@
 }
 
 @media (max-width: 767px) {
+
+	.loTryTitle h2 span {font-size: 60px;}
+	.loTryTitle h2 {font-size: 51px;	}
 	.hScroll {
 		overflow: auto;
 		white-space: nowrap;
@@ -1282,47 +1282,22 @@
 	  .detailPostOption .labelList li:nth-child(2) {
 		border-right: 0;
 	}
-	ul.labelList li:nth-child(3) {
-		display: none;
-	}
-	.mobileOnlyV {
-		display: block;
-	}
-	.mobileOnlyD{
-		display: none;
-	}
-	.p-10{
-		padding: 10px;
-	}
-	.detailPostOption {
-		padding: 0px 5px;
-	}
-	.commentHead .com_date {
-		display: none;
-	}
-	.blogPost {
-		height: 208px;
-		padding-bottom: 15px;
-	}
-	.col-12.slider_ht {
-		height: 520px;
-	}
-	.detailPostOption .gry_btn {min-width: 90px;	}
-	#sticky {
-		top: 85px !important;
-	}
-	.detailPostOption .labelList li span {
-		position: relative;
-		top: 12px;
-	}
-	.detailPostOption .labelList {
-		opacity: 1;
-		align-items: center;
-	}
+	ul.labelList li:nth-child(3) {display: none;}
+	.mobileOnlyV {	display: block;}
+	.mobileOnlyD{display: none;}
+	.p-10{padding: 10px;}
+	.detailPostOption {padding: 0px 5px;}
+	.commentHead .com_date {display: none;}
+	.blogPost {height: 208px;padding-bottom: 15px;}
+	.col-12.slider_ht {	height: 520px;}
+	.detailPostOption .gry_btn {min-width: 90px;}
+	#sticky {top: 85px !important;}
+	.detailPostOption .labelList li span {position: relative;	top: 12px;}
+	.detailPostOption .labelList {opacity: 1;	align-items: center;}
 	span.color_orange.couNt {top: -34px !important;}
-	.postHero.detail {
-		height: 34vh;
-	}
+	.postHero.detail {height: 34vh;}
+	.imgCross {	display: block;	}
+	.imgCross span button.close {top: -30px;}
 }
 
 @media (max-width: 575px) {
@@ -1484,12 +1459,16 @@
 @media (max-width: 414px) {}
 
 @media (max-width: 375px) {
+
+	.rfel {	background-position: top;}
+	.loTryTitle h2 span {font-size: 40px;}
+	.loTryTitle h2 {font-size: 41px;}
 	h1 {font-size: 28px;}
 	.dZip {	display: block;}
 	.dZip button,.dZip input{ width: 100%;}
 	.downloadZip input {right: 0 !important;}
 	.auctionHistory {width: 100%;}
-	.titleRight {display: flex;align-items: center;overflow: auto;	white-space: nowrap;height: 55px;	}
+	.titleRight {display: flex;align-items: center;overflow: auto;	white-space: nowrap;height: 55px;}
 	.detailPostOption .gry_btn {margin-left: 0;	font-size: 10px;}
 	.pt_sm_50 {	padding-top: 20px;}
 	.galleryPh .ant-image .ant-image-img {width: 368px;height: 44px;}
@@ -1515,11 +1494,11 @@
 	.ListDealer .card_postImg {	height: 150px;}
 	.ListDealer .card_post {padding: 0;	background: #121212;}
 	.clenderStyle {top: 117px;}
-	span.rbc-btn-group {display: block;	width: 100%;display: contents;	}
-	.dark .orange_btn {	width: 100%;	}
-	.evT .card_postImg {
-		height: 150px;
-	}
+	span.rbc-btn-group {display: block;	width: 100%;display: contents;}
+	.dark .orange_btn {	width: 100%; }
+	.evT .card_postImg {height: 150px;}
+	.imgCross span div {width: 115px;height: 63px; margin: 5px;}
+	.imgCross span button.close {top: -20px;}
 }
 
 @media (min-width: 360px) {

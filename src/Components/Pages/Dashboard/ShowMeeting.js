@@ -39,13 +39,14 @@ const ShowMeeting = () => {
   return (
     <>
       <div>
+        
         <section className="ptb_80 pt_sm_50">
           <div className="container">
             <h4>Event Coverage </h4>
             <div className="row ">
               {meetingData?.map((curVal) => {
                 return (
-                  <div className="col-md-4 col-sm-12 mt-4 mb-4 evT">
+                  <div className="col-md-3 col-sm-12 mt-4 mb-4 auctionLive">
                     <div className="card_post">
                       <Link to={`/eventdetail/${curVal.id}`}>
                         <div className="card_postImg">
@@ -57,10 +58,11 @@ const ShowMeeting = () => {
                         </div>
 
                         <div className="card_postInfo ">
+                          <h4 class="car_title">
+                          {curVal.title}
+                          </h4>
                           {/* <h6 className="card-text">{curVal.description.substr(0, 100)}</h6> */}
-                          <h6 className="card-text">
-                            {curVal.title}
-                          </h6>
+                          
                           <p>
                             {
                               curVal?.description && 

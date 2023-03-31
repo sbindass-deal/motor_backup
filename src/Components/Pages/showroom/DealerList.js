@@ -30,7 +30,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
     };
     fetchDealer();
   }, []);
-
+  console.log(9090, dealerData)
   return (
     <>
       <div className="col-12 ListDealer mt-50">
@@ -49,7 +49,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
               ?.map((curElem) => {
                 return (
                   <>
-                    <div class="col-12 col-md-4 pb-3">
+                    <div class="col-12 col-md-3 pb-3">
                       <div class="card_post">
                         <div class="card_postImg">
                           <Link to={`/dealerprofile/${curElem?.id}`}>
@@ -71,7 +71,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
                           </Link>
                         </div>
                         <div class="card_postInfo">
-                          <h4>
+                          <h4 class="car_title">
                             <Link to={`/dealerprofile/${curElem?.id}`}>
                               {curElem?.name}
                             </Link>
@@ -87,7 +87,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
                             {curElem?.dealerDescription &&
                               parse(
                                 curElem?.dealerDescription?.substr(0, 70) +
-                                  "...",
+                                "...",
                                 strToHtml
                               )}
                           </p>

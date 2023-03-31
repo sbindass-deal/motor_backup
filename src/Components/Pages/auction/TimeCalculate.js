@@ -34,7 +34,7 @@ const TimeCalculate = ({ endTime }) => {
               <li>
                   <span>
                       <label>Ends In:&nbsp;</label>
-                      {days > 0 && days + "" + "days"} {hours <= 9 && "0"}
+                      {days > 0 && days + " " + "Days"} {hours <= 9 && "0"}
                       {
                           days < 0 && <>
                               {hours > 0 && hours + "" + "h"} : {minutes <= 9 && "0"}

@@ -10,6 +10,7 @@ import ShowMeeting from "../Dashboard/ShowMeeting";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../../redux/reducers/login";
 
+
 const Event = () => {
   moment.locale("en-GB");
   const localizer = momentLocalizer(moment);
@@ -69,7 +70,24 @@ const Event = () => {
   };
 
   return (
-    <div className="container clenderStyle ">
+    <>
+    <section class="heroSection event d-flex align-items-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-lg-8 offset-lg-2">
+                <div class="heroText">
+                  <h1>Events for March 2023</h1>
+                  {/* <h5>
+                    Are you interested in benefitting a charity by offering a
+                    vehicle on Gas Guzzlrs Auctions? We can do that!
+                  </h5> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+        <div className="container clenderStyle ">
       <div className="text-right mb-1">
         {/* {logingUser.login.token && ( */}
         <button onClick={handleClick} className="orange_btn">
@@ -93,6 +111,9 @@ const Event = () => {
 
       <ShowMeeting />
     </div>
+    
+    </>
+   
   );
 };
 

@@ -10,6 +10,8 @@ import { storeBlogData } from "../../redux/reducers/blogReducer";
 import parse from "html-react-parser";
 import { noImage, strToHtml } from "../UI/globaleVar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import g3 from "../../Assets/images/G3.png";
+import { Avatar, Space } from "antd";
 
 function Home() {
   const dispatch = useDispatch();
@@ -72,7 +74,6 @@ function Home() {
       />
     );
   }
-
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -162,7 +163,7 @@ function Home() {
   return (
     <div>
       <section className="heroSection d-flex align-items-center">
-        <a type="button" className="scrollDownIc" href="#second">
+        <a type="button" className="scrollDownIc bounce2" href="#second">
           <span className="outer_cover">
             <small className="upper">
               <i class="fa fa-angle-down"></i>
@@ -185,8 +186,9 @@ function Home() {
           </div>
         </div>
       </section>
+      <section className="ptb_30" id="second"></section>
 
-      <section className="ptb_80" id="second">
+      <section className="ptb_80">
         <div className="container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
@@ -243,7 +245,7 @@ function Home() {
                                 <p>
                                   {curElem?.moreDescription &&
                                     parse(
-                                      curElem?.moreDescription?.substr(0, 120) +
+                                      curElem?.moreDescription?.substr(0, 200) +
                                         "...",
                                       strToHtml
                                     )}
@@ -351,13 +353,43 @@ function Home() {
                             </li>
 
                             <li>
-                              <AccountCircleIcon />
-                              {curElem.username}
+                              {/* <AccountCircleIcon /> */}
+                              {
+                                data?.login.user.dealer == "No" ? 
+                                  // <Space size={16} wrap >
+
+                                  //   <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
+                                  // </Space>
+                                  <p className="userIco">
+                                    <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
+                                  </p>
+                                :
+                                  data?.login.user.logo?.logo && data?.login.user.dealer == "Yes" ?
+                                    // <Space size={16} wrap className="avtar">
+
+                                    //   <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
+                                    // </Space>
+                                    <p className="userIco ">
+                                      <span><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></span>
+                                      
+                                    </p>
+                                    :
+                                    // <Space size={16} wrap>
+
+                                    //   <Avatar><img width={50} src={g3} /></Avatar>
+                                    // </Space>
+                                    <p className="userIco ">
+                                      <span>
+                                        <img src={g3} />
+                                        </span>
+                                    </p>
+                              }
+                              {/* {curElem.username} */}
                             </li>
                           </ul>
                           <p>
                             {parse(
-                              curElem?.description.substr(0, 700),
+                              curElem?.description.substr(0, 150)+"...",
                               strToHtml
                             )}
                           </p>
@@ -425,7 +457,7 @@ function Home() {
                         <a href="/carraffle" className="full">
                           <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                             <h2>{d?.name}</h2>
-                            <p>{parse(d?.description, strToHtml)}</p>
+                            <p>{parse(d?.description.substr(0, 165) + "...", strToHtml)}</p>
                             <div className="price_">
                               <p>
                                 {d?.dealEndDate &&

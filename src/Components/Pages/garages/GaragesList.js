@@ -86,7 +86,7 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                           <p>
                             {curElem?.dealerDescription &&
                               parse(
-                                curElem?.dealerDescription?.substr(0, 125),
+                                curElem?.dealerDescription?.substr(0, 95)+"...",
                                 strToHtml
                               )}
                           </p>
