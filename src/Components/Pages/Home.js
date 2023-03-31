@@ -10,6 +10,7 @@ import { storeBlogData } from "../../redux/reducers/blogReducer";
 import parse from "html-react-parser";
 import { noImage, strToHtml } from "../UI/globaleVar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import g3 from "../../Assets/images/G3.png";
 
 function Home() {
   const dispatch = useDispatch();
@@ -72,7 +73,6 @@ function Home() {
       />
     );
   }
-
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -351,8 +351,17 @@ function Home() {
                             </li>
 
                             <li>
-                              <AccountCircleIcon />
-                              {curElem.username}
+                              {/* <AccountCircleIcon /> */}
+                              {
+                                data?.login.user.dealer == "No" ? 
+                                  <p className="userIco"><span>{(data.login.user.username).toUpperCase().charAt(0)}</span></p>
+                                :
+                                  data?.login.user.dealer == "Yes" ?
+                                    <p className="userIco"><span><img src={g3} /></span></p>
+                                    :
+                                    <p className="userIco"><span>G</span></p>
+                              }
+                              {/* {curElem.username} */}
                             </li>
                           </ul>
                           <p>

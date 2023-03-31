@@ -174,7 +174,7 @@ const AuctionResult = () => {
                       <div className="card_postInfo">
                         <h4 className="car_title">
                           <Link to={`/detail/${curElem?.vehicle_data?.id}`}>
-                            {curElem?.vehicle_data?.make}
+                            {curElem?.vehicle_data?.make + " " + curElem?.vehicle_data?.model + " " + curElem?.vehicle_data?.year}
                           </Link>
 
                           {/* <button type="button" className="watchedIc">
@@ -190,7 +190,7 @@ const AuctionResult = () => {
                             parse(
                               curElem?.vehicle_data?.moreDescription?.substr(
                                 0,
-                                120
+                                70
                               )+"...",
                               strToHtml
                             )}

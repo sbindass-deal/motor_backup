@@ -9,9 +9,11 @@ import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
 import StripeCheckout from "react-stripe-checkout";
 import { useSelector } from "react-redux";
-
+import { strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
+  const [getImage, setGetImage] = useState([]);
   const userId = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -27,7 +29,7 @@ function AccountInfo() {
     });
   }, []);
 
-
+  console.log(9898, userInfo)
 
   const onToken = (token, addresses) => {
     if (token !== null) {
@@ -47,6 +49,10 @@ function AccountInfo() {
       // notify("Form submit successfully!");
     }
   };
+  let entriesdata = Object.entries(userInfo)
+  let data = entriesdata.map(([key, val]) => {
+    return val;
+  });
 
   return (
     <div>
@@ -92,6 +98,34 @@ function AccountInfo() {
                   </div>
                 </li>
                 <li>
+                  <div className="labelList_label">Title</div>
+                  <div className="labelList_text">
+                    {userInfo.dealer_title} <br />
+                    {/* <a href="#">Resend Verification Email</a> */}
+                  </div>
+                </li>
+                <li>
+                  <div className="labelList_label">About us</div>
+                  <div className="labelList_text">
+                    {userInfo.about_us && parse(
+                      userInfo.about_us, strToHtml)
+                      } 
+                    {/* <a href="#">Resend Verification Email</a> */}
+                  </div>
+                </li>
+                <li>
+                  <div className="labelList_label">Description</div>
+                  <div className="labelList_text">
+                    {userInfo?.dealerDescription && parse(
+                      userInfo?.dealerDescription, strToHtml
+                    )
+                    }
+                    
+                    
+                    {/* <a href="#">Resend Verification Email</a> */}
+                  </div>
+                </li>
+                <li>
                   <div className="labelList_label">Card Number</div>
                   {userInfo.cn_no !== null && (
                     <div className="labelList_text">
@@ -99,6 +133,8 @@ function AccountInfo() {
                     </div>
                   )}
                 </li>
+                {/* ==================== */}
+
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
@@ -111,13 +147,63 @@ function AccountInfo() {
                     currency="USD"
                     ComponentClass="div"
                     panelLabel="Save"
-                    // amount={
-                    //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
-                    // }
+                  // amount={
+                  //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                  // }
                   >
                     <button className="btn">Save Card Details</button>
                   </StripeCheckout>}
                 </li>
+                {/* ======================== */}
+
+                {
+                  userId.login.user.dealer == "Yes" && <>
+                    <h6>Logo</h6>
+                    <hr />
+                    <div className="imgCross">
+                      {
+                        data.map((curVal) => {
+                          console.log(77890987654, data)
+                          return data[13].map((curVal, i) => {
+                            console.log(90909, curVal.logo)
+
+                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
+                          })
+                        })
+                      }
+                    </div>
+                    <h6 className="mt-3">Banner</h6>
+                    <hr />
+                    <div className="imgCross">
+                      {
+                        data.map((curVal) => {
+                          console.log(77890987654, data)
+                          return data[14].map((curVal, i) => {
+                            console.log(90909, curVal.logo)
+
+                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
+                          })
+                        })
+                      }
+                    </div>
+                    <h6 className="mt-3">Gallery</h6>
+                    <hr />
+                    <div className="imgCross">
+                      {
+                        data.map((curVal) => {
+                          console.log(77890987654, data)
+                          return data[15].map((curVal, i) => {
+                            console.log(90909, curVal.logo)
+
+                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
+                          })
+                        })
+                      }
+                    </div>
+                  </>
+                }
+
+
               </ul>
             </div>
           </div>
