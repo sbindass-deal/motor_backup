@@ -89,9 +89,9 @@ button:focus {
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto;
 
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
@@ -446,13 +446,13 @@ img.addBanner {
 .labelList {
   display: flex;
   flex-wrap: wrap;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .labelList li {
   padding-right: 15px;
   margin: 0px 15px 5px 0px;
-  border-right: 1px rgba(255, 255, 255, 0.2) solid;
+  border-right: 1px rgb(109 104 104 / 20%) solid;
 }
 
 .labelList li:last-child {
@@ -2835,6 +2835,7 @@ li.nav-item.afterLogin span {
     align-items: center;
     border-radius: 100%;
     color: #fff;
+    overflow: hidden;
 }
 .charityOct .card_postImg {
   height: 200px;
@@ -4357,7 +4358,7 @@ ul.navbar-nav.mobileOnly form.searchForm {
 }
 
 .toNv .navbar-nav .nav-link {
-  padding: 8px 35px;
+  padding: 8px 25px;
 }
 
 .dddd {
@@ -6334,6 +6335,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
   margin: 0 0x;
   border-radius: 12.9515px;
   perspective: 100px;
+  background: #e0e0e0;
 }
 
   /* .slide {
@@ -6395,10 +6397,12 @@ ul.bidOnThis li p:first-child { width: 26%;}
 .rafel .carousel-inner { max-height: 310px; justify-content: inherit; display: flex; align-items: center;}
 .RafelLeftRight { display: flex; justify-content: space-between; position: absolute; width: 100%; left: 0px; top: 160px; z-index: 99;}
 .RafelLeftRight svg { font-size: 25px; background: #333333; padding: 10px; display: block;}
-.featuredAuctions_Slide .labelList li{ color:#f7931a ;}
+
+.featuredAuctions_Slide .labelList li{ color:#fff ;}
+.light .featuredAuctions_Slide .labelList li{ color:#000 ;}
 h3.p-15 { padding: 6px;}
 .searchResult h4.text-center { font-size: 25px; padding-bottom: 25px;}
-.searchResult .card_post.SearchResult.auction { box-shadow: 1px 15px 15px 1px #3939393b; margin-bottom: 30px;}
+.searchResult .card_post.SearchResult.auction { margin-bottom: 30px;}
 select.dropDownList { background: transparent; font-size: 18px; padding: 10px 15px;}
 select.dropDownList:before { content: ''; background-image: url(../images/chevron-down.svg); background-size: cover; left: 0; right: 0; position: absolute; width: 50px; height: 50px;}
 select.dropDownList { position: relative;}
@@ -6411,7 +6415,7 @@ p.dicount span { color: #f7931a; font-size: 17px; padding-right: 10px;}
 .dZip {	display: flex;	padding: 10px;}
 .wed .plan_card {  min-height: 90%;}
 .wed .plan_cardFooter { position: absolute; width: 84%; bottom: 30px;}
-.carBg { height: auto; width: 100%;}
+.carBg { height: auto; width: 100%; padding: 0;}
 .carBg img { max-width: 100%; padding: 0px; position: relative; max-height: 100%; object-fit: cover; background-color: #f7931a; top: 0px;}
 .rc-virtual-list .ant-select-dropdown { z-index: 9999999999;}
 .light .post-share .post-share-link svg { color: #000;}
@@ -6497,7 +6501,7 @@ input[type=checkbox], input[type=radio] { cursor: pointer;}
 ul.labelList.btnListShap li span { color: #fff; opacity: 9; letter-spacing: 0px; font-size: 12px;}
 .light ul.labelList.btnListShap li span { color: #000;}
 .car_title { font-size: 15px;  font-weight: 500;}
-li.nav-item.afterLogin span img { min-width: 24px; padding: 0;}
+li.nav-item.afterLogin span img { min-width: auto; padding: 0;}
 .ant-avatar { background: #fff; border: 0px solid transparent; color: #000;}
 .light .ant-avatar { background: #000; border: 0px solid transparent; color: #fff;}
 .card_post:hover { transform: scale(1.05); transition: 0.5s;}
