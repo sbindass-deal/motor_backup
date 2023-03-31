@@ -158,10 +158,9 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.logo?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                width={160}
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -169,7 +168,14 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                            </div>
+                              {/* <button
+                                      
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button> */}
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>
@@ -180,10 +186,9 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.banner?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                width={160}
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -191,7 +196,14 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                            </div>
+                              {/* <button
+                                      
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button> */}
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>
@@ -202,10 +214,9 @@ function AccountInfo() {
                       <Image.PreviewGroup>
                         {userInfo?.gallery?.map((curElem, i) => {
                           return (
-                            <div key={i}>
+                            <span key={i}>
                               <Image
                                 loading="lazy"
-                                width={160}
                                 src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -213,7 +224,14 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                            </div>
+                              {/* <button
+                                     
+                                      type="button"
+                                      className="close"
+                                    >
+                                      x
+                                    </button> */}
+                            </span>
                           );
                         })}
                       </Image.PreviewGroup>
