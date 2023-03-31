@@ -30,6 +30,7 @@ import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
 import { Image } from "antd";
 import parse from "html-react-parser";
 import { strToHtml } from "../UI/globaleVar";
+import lotry from '../../Assets/images/carTd.png'
 
 function CarRaffle() {
   const { id } = useParams();
@@ -267,13 +268,16 @@ function CarRaffle() {
       <section class="heroSection rfel d-flex align-items-center">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-              <div class="heroText">
-                {/* <h1>Giveaways</h1>
-                <h5>
-                 
-                </h5> */}
+            <div class="col-12 col-lg-7">
+              <div class="loTryTitle">
+                <h2>Gas Guzzlrs
+                  <span>Giveaways</span>
+                </h2>
+               
               </div>
+            </div>
+            <div class="col-12 col-lg-5">
+              <img src={lotry}/>
             </div>
           </div>
         </div>

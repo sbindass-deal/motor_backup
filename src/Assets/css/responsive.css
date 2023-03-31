@@ -144,7 +144,7 @@
 	}
 
 	div#navbarNavDropdown {
-		width: 74%;
+		width: 81%;
 	}
 
 	.toNv {
@@ -260,7 +260,7 @@
 	}
 
 	div#navbarNavDropdown {
-		width: 72%;
+		width: 81%;
 	}
 
 
@@ -363,10 +363,7 @@
 		height: 105px;
 	}
 
-	div#navbarNavDropdown {
-		width: 77%;
-	}
-
+	
 	.searchForm {
 		width: 345px;
 	}
@@ -757,6 +754,9 @@
 }
 
 @media (max-width: 767px) {
+
+	.loTryTitle h2 span {font-size: 60px;}
+	.loTryTitle h2 {font-size: 51px;	}
 	.hScroll {
 		overflow: auto;
 		white-space: nowrap;
@@ -1484,6 +1484,12 @@
 @media (max-width: 414px) {}
 
 @media (max-width: 375px) {
+	.rfel {
+		
+		background-position: top;
+	  }
+	.loTryTitle h2 span {font-size: 40px;}
+	.loTryTitle h2 {font-size: 41px;	}
 	h1 {font-size: 28px;}
 	.dZip {	display: block;}
 	.dZip button,.dZip input{ width: 100%;}
