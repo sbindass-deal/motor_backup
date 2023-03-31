@@ -9,8 +9,9 @@ import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
 import StripeCheckout from "react-stripe-checkout";
 import { useSelector } from "react-redux";
-import { strToHtml } from "../../UI/globaleVar";
+import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import { Image } from "antd";
 function AccountInfo() {
   const [userInfo, setUserinfo] = useState({});
   const [getImage, setGetImage] = useState([]);
@@ -29,7 +30,7 @@ function AccountInfo() {
     });
   }, []);
 
-  console.log(9898, userInfo)
+  console.log(9898, userInfo);
 
   const onToken = (token, addresses) => {
     if (token !== null) {
@@ -49,10 +50,6 @@ function AccountInfo() {
       // notify("Form submit successfully!");
     }
   };
-  let entriesdata = Object.entries(userInfo)
-  let data = entriesdata.map(([key, val]) => {
-    return val;
-  });
 
   return (
     <div>
@@ -107,21 +104,16 @@ function AccountInfo() {
                 <li>
                   <div className="labelList_label">About us</div>
                   <div className="labelList_text">
-                    {userInfo.about_us && parse(
-                      userInfo.about_us, strToHtml)
-                      } 
+                    {userInfo.about_us && parse(userInfo.about_us, strToHtml)}
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
                 <li>
                   <div className="labelList_label">Description</div>
                   <div className="labelList_text">
-                    {userInfo?.dealerDescription && parse(
-                      userInfo?.dealerDescription, strToHtml
-                    )
-                    }
-                    
-                    
+                    {userInfo?.dealerDescription &&
+                      parse(userInfo?.dealerDescription, strToHtml)}
+
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
@@ -138,72 +130,96 @@ function AccountInfo() {
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
-                  {userInfo.cn_no === null && <StripeCheckout
-                    className="Btn"
-                    stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
-                    token={onToken}
-                    email={userInfo.email}
-                    name="Save Card Details For Bidding"
-                    currency="USD"
-                    ComponentClass="div"
-                    panelLabel="Save"
-                  // amount={
-                  //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
-                  // }
-                  >
-                    <button className="btn">Save Card Details</button>
-                  </StripeCheckout>}
+                  {userInfo.cn_no === null && (
+                    <StripeCheckout
+                      className="Btn"
+                      stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
+                      token={onToken}
+                      email={userInfo.email}
+                      name="Save Card Details For Bidding"
+                      currency="USD"
+                      ComponentClass="div"
+                      panelLabel="Save"
+                      // amount={
+                      //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                      // }
+                    >
+                      <button className="btn">Save Card Details</button>
+                    </StripeCheckout>
+                  )}
                 </li>
                 {/* ======================== */}
 
-                {
-                  userId.login.user.dealer == "Yes" && <>
+                {userId.login.user.dealer == "Yes" && (
+                  <>
                     <h6>Logo</h6>
                     <hr />
                     <div className="imgCross">
-                      {
-                        data.map((curVal) => {
-                          console.log(77890987654, data)
-                          return data[13].map((curVal, i) => {
-                            console.log(90909, curVal.logo)
-
-                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
-                          })
-                        })
-                      }
+                      <Image.PreviewGroup>
+                        {userInfo?.logo?.map((curElem, i) => {
+                          return (
+                            <div key={i}>
+                              <Image
+                                loading="lazy"
+                                width={160}
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                     <h6 className="mt-3">Banner</h6>
                     <hr />
                     <div className="imgCross">
-                      {
-                        data.map((curVal) => {
-                          console.log(77890987654, data)
-                          return data[14].map((curVal, i) => {
-                            console.log(90909, curVal.logo)
-
-                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
-                          })
-                        })
-                      }
+                      <Image.PreviewGroup>
+                        {userInfo?.banner?.map((curElem, i) => {
+                          return (
+                            <div key={i}>
+                              <Image
+                                loading="lazy"
+                                width={160}
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                     <h6 className="mt-3">Gallery</h6>
                     <hr />
                     <div className="imgCross">
-                      {
-                        data.map((curVal) => {
-                          console.log(77890987654, data)
-                          return data[15].map((curVal, i) => {
-                            console.log(90909, curVal.logo)
-
-                            return <img width={70} src={`https://api.gasguzzlrs.com/${curVal.logo}`} alt="" />
-                          })
-                        })
-                      }
+                      <Image.PreviewGroup>
+                        {userInfo?.gallery?.map((curElem, i) => {
+                          return (
+                            <div key={i}>
+                              <Image
+                                loading="lazy"
+                                width={160}
+                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Maskgroup1"
+                              />
+                            </div>
+                          );
+                        })}
+                      </Image.PreviewGroup>
                     </div>
                   </>
-                }
-
-
+                )}
               </ul>
             </div>
           </div>
