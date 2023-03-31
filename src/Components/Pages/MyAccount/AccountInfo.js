@@ -155,68 +155,74 @@ function AccountInfo() {
                     <h6>Logo</h6>
                     <hr />
                     <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.logo?.map((curElem, i) => {
-                          return (
-                            <div key={i}>
-                              <Image
-                                loading="lazy"
-                                width={160}
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </div>
-                          );
-                        })}
-                      </Image.PreviewGroup>
+                      <div className="row">
+                        <Image.PreviewGroup>
+                          {userInfo?.logo?.map((curElem, i) => {
+                            return (
+                              <div key={i}>
+                                <Image
+                                  loading="lazy"
+                                  width={160}
+                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src = noImage;
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                        </Image.PreviewGroup>
+                      </div>
                     </div>
                     <h6 className="mt-3">Banner</h6>
                     <hr />
                     <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.banner?.map((curElem, i) => {
-                          return (
-                            <div key={i}>
-                              <Image
-                                loading="lazy"
-                                width={160}
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </div>
-                          );
-                        })}
-                      </Image.PreviewGroup>
+                      <div className="row">
+                        <Image.PreviewGroup>
+                          {userInfo?.banner?.map((curElem, i) => {
+                            return (
+                              <div key={i}>
+                                <Image
+                                  loading="lazy"
+                                  width={160}
+                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src = noImage;
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                        </Image.PreviewGroup>
+                      </div>
                     </div>
                     <h6 className="mt-3">Gallery</h6>
                     <hr />
-                    <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.gallery?.map((curElem, i) => {
-                          return (
-                            <div key={i}>
-                              <Image
-                                loading="lazy"
-                                width={160}
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </div>
-                          );
-                        })}
-                      </Image.PreviewGroup>
+                    <div className="row">
+                      <div className="imgCross">
+                        <Image.PreviewGroup>
+                          {userInfo?.gallery?.map((curElem, i) => {
+                            return (
+                              <div key={i}>
+                                <Image
+                                  loading="lazy"
+                                  width={160}
+                                  src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src = noImage;
+                                  }}
+                                  alt="Maskgroup1"
+                                />
+                              </div>
+                            );
+                          })}
+                        </Image.PreviewGroup>
+                      </div>
                     </div>
                   </>
                 )}
