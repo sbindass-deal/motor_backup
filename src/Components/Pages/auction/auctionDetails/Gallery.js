@@ -2,6 +2,7 @@ import React from "react";
 import { Image } from "antd";
 import { useState } from "react";
 import ReactPlayer from "react-player";
+import { noImage } from "../../../UI/globaleVar";
 
 const Gallery = ({ vehicle }) => {
   const [showAuctionGallery, setShowAuctionGallery] = useState(false);
@@ -19,10 +20,9 @@ const Gallery = ({ vehicle }) => {
                 src={`${process.env.REACT_APP_URL}/${vehicle?.image_gallery[0]?.imagePath}/${vehicle?.image_gallery[0]?.imageName}`}
                 onError={({ currentTarget }) => {
                   currentTarget.onError = null;
-                  currentTarget.src =
-                    "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                  currentTarget.src = noImage;
                 }}
-                alt="Maskgroup1"
+                alt="gallery"
               />
             )}
           </div>
@@ -39,10 +39,9 @@ const Gallery = ({ vehicle }) => {
                           src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            currentTarget.src = noImage;
                           }}
-                          alt="Maskgroup1"
+                          alt="gallery"
                         />
                       </div>
                     );
@@ -70,10 +69,9 @@ const Gallery = ({ vehicle }) => {
                           src={`${process.env.REACT_APP_URL}/${curElem?.imagePath}/${curElem?.imageName}`}
                           onError={({ currentTarget }) => {
                             currentTarget.onError = null;
-                            currentTarget.src =
-                              "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                            currentTarget.src = noImage;
                           }}
-                          alt="Maskgroup1"
+                          alt="gallery"
                         />
                       </div>
                     );

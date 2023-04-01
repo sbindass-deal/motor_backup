@@ -145,9 +145,8 @@ function Wins() {
                             <img
                               loading="lazy"
                               src={
-                                curElem?.image_banner &&
-                                curElem?.image_banner[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                                curElem?.img_logo && curElem?.img_logo[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem?.img_logo[0]?.imagePath}/${curElem?.img_logo[0]?.imageName}`
                                   : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                               }
                               onError={({ currentTarget }) => {
@@ -166,6 +165,10 @@ function Wins() {
                                 <span style={{ color: "#fff" }}>
                                   ${curElem?.auctionAmmount} USD
                                 </span>
+                              </p>
+                              <p>Paid : ${curElem?.initial_amount} USD </p>
+                              <p>
+                                Payable Now : ${curElem?.balance_amount} USD
                               </p>
                               {/* {curElem?.payment_received == 0 ? (
                                 <>
@@ -186,22 +189,22 @@ function Wins() {
                               )} */}
                             </div>
                             <div className="pl-md-3 d-flex">
-                              {/* <div className="mx-2">
-                                {curElem?.payment_received == 0 && (
-                                  <button
-                                    onClick={() =>
-                                      handleShowPayment(
-                                        curElem.id,
-                                        curElem.auctionAmmount,
-                                        curElem.bid_id
-                                      )
-                                    }
-                                    className="gry_btn"
-                                  >
-                                    Pay now
-                                  </button>
-                                )}
-                              </div> */}
+                              <div className="mx-2">
+                                {/* {curElem?.payment_received == 0 && ( */}
+                                <button
+                                  // onClick={() =>
+                                  //   handleShowPayment(
+                                  //     curElem.id,
+                                  //     curElem.auctionAmmount,
+                                  //     curElem.bid_id
+                                  //   )
+                                  // }
+                                  className="gry_btn"
+                                >
+                                  Pay now
+                                </button>
+                                {/* )} */}
+                              </div>
                               {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button

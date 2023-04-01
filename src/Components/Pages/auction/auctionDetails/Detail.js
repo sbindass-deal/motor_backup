@@ -348,7 +348,7 @@ function Detail() {
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
                       currentTarget.src =
-                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        noImage
                     }}
                     alt="Maskgroup1"
                   />
