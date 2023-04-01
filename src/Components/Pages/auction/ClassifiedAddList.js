@@ -119,7 +119,7 @@ function ClassifiedAddList() {
                             </Link>
                           </div>
                           <div className="card_postInfo">
-                            <h4 className="auction_heading header_size">
+                          <h4 class="car_title">
                               <a
                                 target="_blank"
                                 rel="noopener"

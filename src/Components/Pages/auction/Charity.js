@@ -87,10 +87,10 @@ const Charity = () => {
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
                 {/* <h1>Charity Auctions</h1> */}
-                <h2>
+                <h1>
                   Are you interested in benefitting a charity by offering a
                   vehicle on Gas Guzzlrs Auctions? We can do that!
-                </h2>
+                </h1>
                 {/* <a href="#" className="btn">
                   Notify me when one is listed
                 </a>

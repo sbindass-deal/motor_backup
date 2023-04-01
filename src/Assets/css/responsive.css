@@ -1291,13 +1291,14 @@
 	.blogPost {height: 208px;padding-bottom: 15px;}
 	.col-12.slider_ht {	height: 520px;}
 	.detailPostOption .gry_btn {min-width: 90px;}
-	#sticky {top: 85px !important;}
+	#sticky {top: 108px !important;}
 	.detailPostOption .labelList li span {position: relative;	top: 12px;}
 	.detailPostOption .labelList {opacity: 1;	align-items: center;}
 	span.color_orange.couNt {top: -34px !important;}
 	.postHero.detail {height: 34vh;}
 	.imgCross {	display: block;	}
 	.imgCross span button.close {top: -30px;}
+	li.cT {	height: 40px;padding-right: 40px;}
 }
 
 @media (max-width: 575px) {
@@ -1499,6 +1500,9 @@
 	.evT .card_postImg {height: 150px;}
 	.imgCross span div {width: 115px;height: 63px; margin: 5px;}
 	.imgCross span button.close {top: -20px;}
+	.rafSect p {font-size: 11px;margin-bottom: 5px;}
+	#sticky {top: 78px !important;}
+	.orange_btn {padding: 6px 10px !important;	font-size: 13px ;}
 }
 
 @media (min-width: 360px) {
