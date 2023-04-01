@@ -24,17 +24,31 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
   const show = logingUser.show;
 
   const dispatch = useDispatch();
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const notify = (val, type = 200) => {
+    if (type == 200) {
+      toast.success(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.warning(val, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   const handleClose = () => {
     dispatch(showModalClose());
@@ -75,17 +89,16 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
         password: password,
       })
       .then((result) => {
-        console.log(78798989, result)
         if (result.data.access_token && result.data.type === null) {
           dispatch(authToken(result.data));
-          // notify("Login successfully");
+          // notify("Login successfully", result.data.status);
           handleClose();
           setLoginLoading(false);
           window.location.reload(false);
           // console.log(111,"mohan", result.data)
         } else if (result.data.access_token && result.data.type === "1") {
           dispatch(authToken(result.data));
-          notify("Admin Login successfully");
+          notify("Admin Login successfully", result.data.status);
           dispatch(isAdmin(result.data));
           navigate("/admin");
           handleClose();
@@ -93,12 +106,12 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
           window.location.reload(false);
           // console.log(111,"mohan", result.data)
         } else {
-          notify(result.data.message);
+          notify(result.data.message, result.data.status);
           setLoginLoading(false);
         }
       })
       .catch((error) => {
-        notify(error.message);
+        notify(error.message, error.status);
         setLoginLoading(false);
       });
   };
