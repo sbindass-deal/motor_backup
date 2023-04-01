@@ -1499,6 +1499,7 @@
 	.evT .card_postImg {height: 150px;}
 	.imgCross span div {width: 115px;height: 63px; margin: 5px;}
 	.imgCross span button.close {top: -20px;}
+	.rafSect p {font-size: 11px;margin-bottom: 5px;}
 }
 
 @media (min-width: 360px) {
