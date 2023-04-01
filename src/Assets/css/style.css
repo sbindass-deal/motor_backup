@@ -6015,13 +6015,11 @@ a.dfr {
 .light .downloadZip input {
   height: 49px;
   background: transparent;
-  /* border: 1px solid #fff; */
+  border: 1px solid #e8e8e8;
   position: relative;
   right: -5px;
   padding: 10px;
   z-index: 0;
-
-
 }
 
 .neWm.dropdown button {
@@ -6605,3 +6603,9 @@ ul.post_labelList li p.userIco span img {
 
   border-radius: 100%;
 }
+li.cT {
+  height: 19px;
+  padding-right: 40px;
+}
+.light .charityOct .card_post{ background-color: transparent;}
+svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
