@@ -11,7 +11,6 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
   const [dealerData, setDealerData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
-
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = dealerData.slice(firstPostIndex, lastPostIndex);

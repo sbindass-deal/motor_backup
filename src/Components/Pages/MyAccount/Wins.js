@@ -42,9 +42,22 @@ function Wins() {
     setShowPayment(false);
   };
   const handleShowPayment = (data, amount, bid_id) => {
-    setShowPayment(true);
-    setVehicleId(data);
-    setPaymentDetails({ data: data, amount: amount, bid_id });
+    axios
+      .post(`${process.env.REACT_APP_URL}make_bid_payment_remaning`, {
+        bid_id: bid_id,
+        amount: amount,
+      })
+      .then(function (response) {
+        if (response.data.status === 200) {
+          fetchBidingDetails();
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // setShowPayment(true);
+    // setVehicleId(data);
+    // setPaymentDetails({ data: data, amount: amount, bid_id });
   };
   const fetchBidingDetails = async () => {
     try {
@@ -98,11 +111,10 @@ function Wins() {
   const onToken = (token, addresses) => {
     if (token !== null) {
       axios
-        .post(`${process.env.REACT_APP_URL}make_bid_payment`, {
+        .post(`${process.env.REACT_APP_URL}make_bid_payment_remaning`, {
           type: "bid",
           itemid: paymentDetails.bid_id,
-          amount: parseInt(paymentDetails.amount * 5, 10) / 100,
-          token: token.id,
+          amount: paymentDetails.amount,
         })
         .then(function (response) {
           if (response.data.status === 200) {
@@ -131,7 +143,7 @@ function Wins() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>Bids & Wins</h3>
+                <h3>Wins</h3>
               </div>
               <hr />
 
@@ -145,9 +157,8 @@ function Wins() {
                             <img
                               loading="lazy"
                               src={
-                                curElem?.image_banner &&
-                                curElem?.image_banner[0]
-                                  ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                                curElem?.img_logo && curElem?.img_logo[0]
+                                  ? `${process.env.REACT_APP_URL}/${curElem?.img_logo[0]?.imagePath}/${curElem?.img_logo[0]?.imageName}`
                                   : "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG"
                               }
                               onError={({ currentTarget }) => {
@@ -167,6 +178,19 @@ function Wins() {
                                   ${curElem?.auctionAmmount} USD
                                 </span>
                               </p>
+                              <p>
+                                Paid : $
+                                {curElem?.payment_received == 4
+                                  ? curElem?.auctionAmmount
+                                  : curElem?.initial_amount}{" "}
+                                USD{" "}
+                              </p>
+                              {curElem?.payment_received != 4 && (
+                                <p>
+                                  Payable Now : ${curElem?.balance_amount} USD
+                                </p>
+                              )}
+
                               {/* {curElem?.payment_received == 0 ? (
                                 <>
                                   <p>
@@ -186,13 +210,13 @@ function Wins() {
                               )} */}
                             </div>
                             <div className="pl-md-3 d-flex">
-                              {/* <div className="mx-2">
-                                {curElem?.payment_received == 0 && (
+                              <div className="mx-2">
+                                {curElem?.payment_received != 4 && (
                                   <button
                                     onClick={() =>
                                       handleShowPayment(
                                         curElem.id,
-                                        curElem.auctionAmmount,
+                                        curElem.balance_amount,
                                         curElem.bid_id
                                       )
                                     }
@@ -201,7 +225,7 @@ function Wins() {
                                     Pay now
                                   </button>
                                 )}
-                              </div> */}
+                              </div>
                               {/* {curElem.reserve === "Yes" && (
                               <div className="mx-2">
                                 <button

@@ -101,7 +101,7 @@ const AuctionHistory = ({ vId }) => {
                           <div className="n">
                             Sold by <b>{curElem?.seller?.name}</b> to{" "}
                             <b>ToylorCar</b> for{" "}
-                            <span>${curElem.documentFee}</span>
+                            <span>${curElem.documentFee}-</span>
                           </div>
                           {/* <div className="t">
                             <i className="fa-solid fa-clock"></i>{" "}

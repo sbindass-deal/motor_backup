@@ -52,7 +52,6 @@ function MyListings() {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}byUserVehicle?veicleStatus=${filterValue}`
       );
-      console.log(9898, res);
       if (res.data.status === 200) {
         setData(res.data.data);
       }

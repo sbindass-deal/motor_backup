@@ -1,5 +1,6 @@
 import CryptoJS from "crypto-js";
 import MicrosoftTeams from "../../../src/Assets/images/MicrosoftTeams-image.png";
+import { toast } from "react-toastify";
 
 export const noImage = MicrosoftTeams;
 
@@ -21,5 +22,31 @@ export const toCommas = (value) => {
     return value;
   } else {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+};
+
+export const notify = (val, type = 200) => {
+  if (type == 200) {
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  } else {
+    toast.warning(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 };
