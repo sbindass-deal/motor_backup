@@ -23,7 +23,7 @@ const AddGearProduct = () => {
   const addInventry = (e, index) => {
     setDataInventry([...dataInventry, inventry])
   }
-console.log(dataInventry);
+
 
   const onchangeInventry = (e, index) => {
     const updatedInventry = dataInventry?.map((d, i) => index == i ?
@@ -48,6 +48,7 @@ console.log(dataInventry);
     const NewValues = Values.charAt(0).toUpperCase() + Values.slice(1);
     setGetInputData({ ...getInputData, [e.target.name]: NewValues });
   };
+  
   const uploadFileOne = async (vehicleId) => {
     const formData = new FormData();
     const url = process.env.REACT_APP_URL + "productImage";
