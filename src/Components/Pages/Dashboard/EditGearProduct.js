@@ -22,7 +22,11 @@ const EditGearProduct = () => {
     price: [{ id: "", replace: "" }],
     sizeId: [{ id: "", replace: "" }],
     colorId: [{ id: "", replace: "" }]
-  })
+  });
+  const [stock, setStock] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [sizeId, setSizeId] = useState([]);
+  const [colorId, setColorId] = useState([])
 
 
   const addInventry = (e, index) => {
@@ -87,7 +91,13 @@ const EditGearProduct = () => {
     });
     setShowImage(filteredData.images);
 
-
+    filteredData.product_inventry?.map((d ) => {
+      // setUpdateInventry({...updatedInventry , sizeId : [{id : d.id , replace : d.size_id}] , colorId :[{id : d.id , replace : d.color_id}]});
+      setStock(value => [...value , {id : d?.id , replace : d?.stock}]);
+      setPrice(value => [...value , {id : d?.id , replace : d?.price}])
+      setSizeId(value => [...value , {id : d?.id , replace : d?.size_id}])
+      setColorId(value => [...value , {id : d?.id , replace : d?.color_id}])
+    })
   }, [id]);
   // const updateImage = async (prodId) => {
   //   const url = `${process.env.REACT_APP_URL}updateproductImage`;
@@ -225,8 +235,8 @@ const EditGearProduct = () => {
 
   }, [])
 
-  // console.log(getInputData);
-  console.log(updatedInventry);
+  console.log(sizeId);
+  // console.log(stock , price , sizeId , colorId);
   return (
     <>
       <div className="container">
@@ -410,9 +420,8 @@ const EditGearProduct = () => {
                           <label htmlFor="">Size</label>
                           <select
                             name="sizeId"
-                            onChange={(e) => { setUpdateInventry({ ...updatedInventry, sizeId: [{ id: d?.id, replace: e.target.value }] }) }}
-                            value={d?.size_id}
-                            placeholder={d?.size_id}
+                            onChange={(e) => { setSizeId({ ...sizeId ,  id: d?.id, replace: e.target.value  }) }}
+                            value={updatedInventry.sizeId[0].replace}
                             className="field"
                             required
                           >
@@ -422,7 +431,7 @@ const EditGearProduct = () => {
                             {
                               size?.map((d, i) => {
                                 return (
-                                  <option key={i} value={`${d?.id}`}>{d?.size}</option>
+                                  <option key={i}  value={`${d?.id}`}>{d?.size}</option>
                                 )
                               })
                             }
