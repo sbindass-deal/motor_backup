@@ -10,7 +10,38 @@ const EditGearProduct = () => {
   const { id } = useParams();
   const data = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
-  const products = data.gearReducer.gearData;
+  const products = data.gearReducer.gearData.product;
+  const inventry = { price: [], stock: [], sizeId: [], colorId: [] };
+  const [dataInventry, setDataInventry] = useState([inventry]);
+  const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
+  const [category, setCategory] = useState();
+  const [size, setSize] = useState();
+  const [color, setColor] = useState();
+  const [updatedInventry, setUpdateInventry] = useState({
+    stock: [{ id: "", replace: "" }],
+    price: [{ id: "", replace: "" }],
+    sizeId: [{ id: "", replace: "" }],
+    colorId: [{ id: "", replace: "" }]
+  });
+  const [stock, setStock] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [sizeId, setSizeId] = useState([]);
+  const [colorId, setColorId] = useState([])
+
+
+  const addInventry = (e, index) => {
+    setDataInventry([...dataInventry, inventry])
+  }
+
+
+  // const onchangeInventry = (e, index) => {
+  //   const updatedInventry = dataInventry?.map((d, i) => index == i ?
+  //     Object.assign(d, { [e.target.name]: e.target.value })
+  //     : d
+  //   )
+
+  //   setDataInventry(updatedInventry);
+  // }
 
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
@@ -18,10 +49,6 @@ const EditGearProduct = () => {
   const [getInputData, setGetInputData] = useState({
     tittle: "",
     category: "",
-    price: "",
-    stocks: "",
-    size: [],
-    color: [],
     desc: "",
     youtube_link: "",
   });
@@ -53,18 +80,24 @@ const EditGearProduct = () => {
     });
 
   useEffect(() => {
-    const filteredData = products.find((item) => item.id == id);
-    console.log(11111, filteredData);
+    const filteredData = products?.find((item) => item.id == id);
+    // console.log("11111", filteredData);
     setGetInputData({
-      name: filteredData.title,
+      title: filteredData.title,
       category: filteredData.category,
-      price: filteredData.price,
-      stock: filteredData.stocks,
-      size: filteredData.size,
-      color: filteredData.color,
+      product_inventry: filteredData.product_inventry,
       desc: filteredData.description,
+      youtube_link: filteredData.youtube_link
     });
-    setShowImage(filteredData.image);
+    setShowImage(filteredData.images);
+
+    filteredData.product_inventry?.map((d ) => {
+      // setUpdateInventry({...updatedInventry , sizeId : [{id : d.id , replace : d.size_id}] , colorId :[{id : d.id , replace : d.color_id}]});
+      setStock(value => [...value , {id : d?.id , replace : d?.stock}]);
+      setPrice(value => [...value , {id : d?.id , replace : d?.price}])
+      setSizeId(value => [...value , {id : d?.id , replace : d?.size_id}])
+      setColorId(value => [...value , {id : d?.id , replace : d?.color_id}])
+    })
   }, [id]);
   // const updateImage = async (prodId) => {
   //   const url = `${process.env.REACT_APP_URL}updateproductImage`;
@@ -93,41 +126,36 @@ const EditGearProduct = () => {
   //     });
   // };
 
-  const uploadFileOne = (vehicleId) => {
-    return (async () => {
-      for await (const file1 of file) {
-        const url = process.env.REACT_APP_URL + "productImage";
-        const formData = new FormData();
-        formData.append("image[]", file1);
-        formData.append("product_id", vehicleId);
-        const newImagedata = formData;
-        const config = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        let a = await axios.post(url, newImagedata, config);
-        if (a.status == 200) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    })();
+  const uploadFileOne = async (vehicleId) => {
+    const formData = new FormData();
+    const url = process.env.REACT_APP_URL + "productImage";
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    for (const file1 of file) {
+      formData.append("image[]", file1);
+      formData.append("product_id", vehicleId);
+      const newImagedata = formData;
+    }
+    let a = await axios.post(url, formData, config);
+    if (a.status == 200) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const handleApi = async (e) => {
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_URL}updateproduct/${id}`, {
-        stocks: getInputData.stocks,
-        color: getInputData.color,
-        size: getInputData.size,
-        price: getInputData.price,
-        title: getInputData.tittle,
-        description: getInputData.desc,
+        title: getInputData.title,
         category: getInputData.category,
+        description: getInputData.desc,
         youtube_link: getInputData.youtube_link,
+        inventry : JSON.stringify(updatedInventry)
       })
       .then(async function (response) {
         if (response.status == 200) {
@@ -184,6 +212,31 @@ const EditGearProduct = () => {
   //       }
   //     });
   // };
+
+  useEffect(() => {
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllColors`,
+      "Authorization": TOKEN
+    }).then((d) => { setColor(d.data.data); });
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllSize`,
+      "Authorization": TOKEN
+    }).then((d) => { setSize(d.data.data); });
+
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}getAllCategory`,
+      "Authorization": TOKEN
+    }).then((d) => { setCategory(d.data.data); });
+
+  }, [])
+
+  console.log(sizeId);
+  // console.log(stock , price , sizeId , colorId);
   return (
     <>
       <div className="container">
@@ -192,14 +245,14 @@ const EditGearProduct = () => {
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
-                  name="tittle"
+                  name="title"
                   onChange={(e) => {
                     setGetInputData({
                       ...getInputData,
-                      tittle: e.target.value,
+                      title: e.target.value,
                     });
                   }}
-                  value={getInputData.tittle}
+                  value={getInputData?.title}
                   placeholder="Enter Name"
                   errorMessage="Name should be 2-80 characters and shouldn't include any number!"
                   label="Name"
@@ -208,6 +261,29 @@ const EditGearProduct = () => {
                 />
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
+                <div className="form-group">
+                  <label htmlFor="">Category</label>
+                  <select
+                    name="category"
+                    onChange={(e) => { setGetInputData({ ...getInputData, category: e.target.value }) }}
+                    value={getInputData.category}
+                    className="field"
+                    required
+                  >
+                    <option selected disabled value="">
+                      Select
+                    </option>
+                    {
+                      category?.map((d, i) => {
+                        return (
+                          <option key={i} value={`${d?.category}`} >{d?.category}</option>
+                        )
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
+              {/* <div className="col-md-12 col-lg-6 col-sm-12">
                 <div className="form-group">
                   <label htmlFor="">Category</label>
                   <select
@@ -224,8 +300,8 @@ const EditGearProduct = () => {
                     <option value="Home and Living">Home and Living</option>
                   </select>
                 </div>
-              </div>
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              </div> */}
+              {/* <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   label="Price"
                   className="field"
@@ -297,7 +373,98 @@ const EditGearProduct = () => {
                   pattern="^[A-Za-z ]{1,80}$"
                   required={true}
                 />
-              </div>
+              </div> */}
+
+              {
+                getInputData?.product_inventry?.map((d, i) => {
+                  // console.log(d);
+
+                  return (
+                    <>
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <div>
+                            <label>Price</label>
+                            <input
+                              className="field"
+                              autoComplete="off"
+                              name="price"
+                              value={updatedInventry[i]?.price?.replace}
+                              placeholder={d?.price}
+                              onChange={(e) => { setUpdateInventry({ ...updatedInventry, price: [{ id: d?.id, replace: e.target.value }] }) }}
+                              type="number"
+                            // required={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <div>
+                            <label>Stock</label>
+                            <input
+                              name="stock"
+                              className="field"
+                              value={updatedInventry[i]?.stock?.replace}
+                              placeholder={d?.stock}
+                              onChange={(e) => { setUpdateInventry({ ...updatedInventry, stock: [{ id: d?.id, replace: e.target.value }] }) }}
+                              type="number"
+                              required={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-3 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="">Size</label>
+                          <select
+                            name="sizeId"
+                            onChange={(e) => { setSizeId({ ...sizeId ,  id: d?.id, replace: e.target.value  }) }}
+                            value={updatedInventry.sizeId[0].replace}
+                            className="field"
+                            required
+                          >
+                            <option selected disabled value="">
+                              Select
+                            </option>
+                            {
+                              size?.map((d, i) => {
+                                return (
+                                  <option key={i}  value={`${d?.id}`}>{d?.size}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-2 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="">Color</label>
+                          <select
+                            name="colorId"
+                            // onChange={(e) => { onchangeInventry(e, index) }}
+                            onChange={(e) => { setUpdateInventry({ ...updatedInventry, colorId: [{ id: d?.id, replace: e.target.value }] }) }}
+                            value={d?.color_id}
+                            className="field"
+                            required
+                          >
+                            <option selected disabled value="">
+                              Select
+                            </option>
+                            {
+                              color?.map((d, i) => {
+                                return (
+                                  <option key={i} value={`${d?.id}`} >{d?.color}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
+                      </div></>
+                  )
+                })
+              }
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
                   name="youtube_link"
@@ -332,7 +499,7 @@ const EditGearProduct = () => {
                   maxLength={2000}
                   rows="4"
                 ></textarea>
-                {getInputData.desc.trim().length > 500 && (
+                {getInputData?.desc?.trim()?.length > 500 && (
                   <span className="text-danger">
                     You Can entered maximum 500 characters!
                   </span>
@@ -368,16 +535,22 @@ const EditGearProduct = () => {
                 <div className="row">
                   {file.length === 0 && (
                     <div className="position-relative py-4 py-md-1">
-                      <img
-                        src={`${process.env.REACT_APP_URL}upload/products/${showImage}`}
-                        alt="Product image"
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                          padding: "15px",
-                        }}
-                      />
+                      {
+                        showImage?.map((d, i) => {
+                          return (
+                            <img
+                              src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                              alt="Product image"
+                              style={{
+                                width: "100px",
+                                height: "100px",
+                                objectFit: "cover",
+                                padding: "15px",
+                              }}
+                            />
+                          )
+                        })
+                      }
                     </div>
                   )}
                   {Array.from(file).map((items) => {

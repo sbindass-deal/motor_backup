@@ -165,9 +165,7 @@ const Layout = () => {
                   />
                   <Route path="gear-product" element={<GearProduct />} />
                   <Route path="gear-inventry" element={<GearInventry />} />
-                  <Route
-                    path="gear-product/:id"
-                    element={<EditGearProduct />}
+                  <Route path="gear-product/:id" element={<EditGearProduct />}
                   />
                   <Route path="editBlog/:id" element={<EditBlog />} />
 
