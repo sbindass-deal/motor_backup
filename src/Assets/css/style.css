@@ -6609,3 +6609,10 @@ li.cT {
 }
 .light .charityOct .card_post{ background-color: transparent;}
 svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
+
+
+
+.gap-item{
+    display: flex;
+    justify-content: space-evenly;
+}
