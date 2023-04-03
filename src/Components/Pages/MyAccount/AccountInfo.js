@@ -140,9 +140,9 @@ function AccountInfo() {
                       currency="USD"
                       ComponentClass="div"
                       panelLabel="Save"
-                      // amount={
-                      //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
-                      // }
+                    // amount={
+                    //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                    // }
                     >
                       <button className="btn">Save Card Details</button>
                     </StripeCheckout>
