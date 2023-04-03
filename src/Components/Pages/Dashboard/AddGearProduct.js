@@ -158,8 +158,6 @@ const AddGearProduct = () => {
   }
 
 
-  console.log(98989, getInputData)
-
   return (
     <>
       <div className="container">
