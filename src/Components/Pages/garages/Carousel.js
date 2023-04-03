@@ -12,8 +12,8 @@ const CarousalGarages = ({ dealerData }) => {
                   className="slidImg"
                   loading="lazy"
                   src={
-                    curElem.logo &&
-                    `${process.env.REACT_APP_URL}/${curElem.logo}`
+                    curElem?.logo &&
+                    `${process.env.REACT_APP_URL}/${curElem?.logo}`
                   }
                   alt="First slide"
                 />

@@ -165,7 +165,7 @@ const GaragesUserDetails = () => {
                         loading="lazy"
                         src={
                           garagesData?.image_logo &&
-                          `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0].logo}`
+                          `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
                         }
                         alt="Logo"
                       />

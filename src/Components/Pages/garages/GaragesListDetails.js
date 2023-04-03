@@ -91,7 +91,7 @@ const GaragesListDetails = () => {
                           loading="lazy"
                           src={
                             dealerData?.image_logo &&
-                            `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0].logo}`
+                            `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
                           }
                           alt="Logo"
                         />

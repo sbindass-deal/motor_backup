@@ -13,7 +13,7 @@ const Data = ({ curElem }) => {
                   <img
                     src={
                       curElem?.image_banner[0] &&
-                      `${process.env.REACT_APP_URL}/${curElem?.image_banner[0].imagePath}/${curElem?.image_banner[0].imageName}`
+                      `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
@@ -42,7 +42,7 @@ const Data = ({ curElem }) => {
                     <span>
                       $
                       {curElem?.currentAmount
-                        ? curElem?.currentAmount.auctionAmmount
+                        ? curElem?.currentAmount?.auctionAmmount
                         : 0}
                     </span>
                   </li>
@@ -50,7 +50,7 @@ const Data = ({ curElem }) => {
                     <label>Ends In:</label>{" "}
                     <span>
                       {curElem?.EndTime &&
-                        new Date(curElem.EndTime).toDateString()}
+                        new Date(curElem?.EndTime)?.toDateString()}
                     </span>
                   </li>
                 </ul>
