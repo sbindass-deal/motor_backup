@@ -79,10 +79,8 @@ const GaragesUserDetails = () => {
                               className="slidImg"
                               loading="lazy"
                               src={
-                                curElem?.image_logo == 0
-                                  ? noImage
-                                  : curElem?.image_logo[0] &&
-                                    `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
+                                curElem?.image_logo &&
+                                `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onError = null;
@@ -170,10 +168,8 @@ const GaragesUserDetails = () => {
                         className="slidImg"
                         loading="lazy"
                         src={
-                          garagesData?.image_logo == 0
-                            ? noImage
-                            : garagesData?.image_logo[0] &&
-                              `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
+                          garagesData?.image_logo &&
+                          `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
                         }
                         onError={({ currentTarget }) => {
                           currentTarget.onError = null;

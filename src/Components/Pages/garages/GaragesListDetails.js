@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import caer from "../../../Assets/images/caer.gif";
-import { strToHtml } from "../../UI/globaleVar";
+import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
 import CarousalGarages from "./Carousel";
@@ -93,6 +93,10 @@ const GaragesListDetails = () => {
                             dealerData?.image_logo &&
                             `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
                           }
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src = noImage;
+                          }}
                           alt="Logo"
                         />
                       }
