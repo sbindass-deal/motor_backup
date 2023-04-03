@@ -4579,7 +4579,7 @@ input.ant-select-selection-search-input {
 }
 
 .col-12.slider_ht {
-  height: 550px;
+  /* height: 550px; */
 }
 
 .card_postImg.dlr img {}
@@ -6609,3 +6609,10 @@ li.cT {
 }
 .light .charityOct .card_post{ background-color: transparent;}
 svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
+
+
+
+.gap-item{
+    display: flex;
+    justify-content: space-evenly;
+}
