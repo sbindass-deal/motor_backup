@@ -11,7 +11,7 @@ import Carousel from "./Carousel";
 import CarousalGarages from "./Carousel";
 import { Image } from "antd";
 import Videos from "./Videos";
-import { strToHtml } from "../../UI/globaleVar";
+import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction";
 
@@ -79,9 +79,15 @@ const GaragesUserDetails = () => {
                               className="slidImg"
                               loading="lazy"
                               src={
-                                garagesData?.image_logo &&
-                                `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
+                                curElem?.image_logo == 0
+                                  ? noImage
+                                  : curElem?.image_logo[0] &&
+                                    `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
                               }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src = noImage;
+                              }}
                               alt="Logo"
                             />
                           }
@@ -164,9 +170,15 @@ const GaragesUserDetails = () => {
                         className="slidImg"
                         loading="lazy"
                         src={
-                          garagesData?.image_logo &&
-                          `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
+                          garagesData?.image_logo == 0
+                            ? noImage
+                            : garagesData?.image_logo[0] &&
+                              `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
                         }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src = noImage;
+                        }}
                         alt="Logo"
                       />
                     }
