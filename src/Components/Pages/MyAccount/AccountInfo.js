@@ -158,7 +158,7 @@ function AccountInfo() {
                 </li>
                 {/* ======================== */}
 
-                {userId.login.user.dealer == "Yes" && (
+                {true && (
                   <>
                     <h6>Logo</h6>
                     <hr />

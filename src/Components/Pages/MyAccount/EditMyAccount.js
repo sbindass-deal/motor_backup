@@ -237,7 +237,7 @@ function EditMyAccount() {
         dealer_title: title,
       })
       .then((result) => {
-        if (result.data.status === 200 && userData.dealer === "Yes") {
+        if (result.data.status === 200 && true) {
           // uploadLogo(userData.id);
           uploadFileGallery(userData.id);
           uploadFileOne(userData.id);
@@ -352,7 +352,7 @@ function EditMyAccount() {
                       required={true}
                     />
                   </div>
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <div className="col-12">
                       <FormInput
                         value={editUser.title}
@@ -366,7 +366,7 @@ function EditMyAccount() {
                       />
                     </div>
                   )}
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>About us</label>
@@ -383,7 +383,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
@@ -400,7 +400,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -498,7 +498,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -603,7 +603,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {userData.dealer === "Yes" && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">

@@ -87,3 +87,13 @@ text-transform: capitalize;
   cursor: pointer;
   transition: 0.1s ease -in;
 }
+
+.garages-profile-img{
+  max-height: 80vh;
+  width:100%;
+  object-fit:cover;
+}
+.follow{
+  background-color: #FFA500 !important;
+  color: white;
+}
