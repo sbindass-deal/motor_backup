@@ -234,7 +234,7 @@ function Detail() {
           <div className="row reverseCol">
             <div className="col-lg-3 col-sm-12">
               <Fundamental
-                className="mobileOnlySd"
+                
                 vehicle={vehicle}
                 handleSubscribe={handleSubscribe}
               />
@@ -279,6 +279,7 @@ function Detail() {
                       <li
                         onClick={handleCommentRef}
                         style={{ cursor: "pointer" }}
+                        className="cT"
                       >
                         <span>
                           <img src={Msg} alt="msg" />
@@ -348,7 +349,7 @@ function Detail() {
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
                       currentTarget.src =
-                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                        noImage
                     }}
                     alt="Maskgroup1"
                   />

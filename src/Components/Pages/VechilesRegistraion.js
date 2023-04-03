@@ -71,6 +71,7 @@ const VechilesRegistraion = () => {
   const [mappedInputData, setMappedInputData] = useState([]);
   const [counryData, setCounryData] = useState([]);
   const [stateData, setStateData] = useState([]);
+  const [endDateAndTime, setEndDateAndTime] = useState(null);
   const [countryCode, setCountryCode] = useState(231);
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
@@ -163,8 +164,9 @@ const VechilesRegistraion = () => {
     setShowPayment(false);
   };
 
-  const fetchTransaction = async () => {
-    Request: await axios
+  const fetchTransaction = () => {
+    setSubmitLoading(true);
+    axios
       .post(`${process.env.REACT_APP_URL}paymentUpdate`, {
         planId: logingUser.planReducer.plan.planId,
         plantype: logingUser.planReducer.plan.listingType,
@@ -655,7 +657,7 @@ const VechilesRegistraion = () => {
         rustDetails,
         modificationOnTruck: modificationOnTrck,
         fuel,
-        // EndTime: EndDateTime.toString(),
+        EndTime: endDateAndTime,
         phone,
         sold: 1,
       })
@@ -1696,7 +1698,19 @@ const VechilesRegistraion = () => {
                               </div>
                             </div>
                           )}
-
+                          <div className="col-12 col-sm-12 col-md-6">
+                            <div className="form-group">
+                              <FormInput
+                                value={endDateAndTime}
+                                type="datetime-local"
+                                onChange={(e) => {
+                                  setEndDateAndTime(e.target.value);
+                                }}
+                                placeholder="Enter link"
+                                label="Please Enter Auction End Date"
+                              />
+                            </div>
+                          </div>
                           {basicfact.auctionType === "charity" && (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -2170,9 +2184,9 @@ const VechilesRegistraion = () => {
                               value={detailstab.fuel}
                               onChange={detailsOnChange}
                               placeholder="Enter fuel type"
-                              errorMessage="Fuel type should be 3 to 15 character!"
+                              errorMessage="Fuel type should be 2 to 60 character!"
                               label="Fuel Type"
-                              pattern="^[A-Za-z(),.;@! ]{3,15}$"
+                              pattern="^[A-Za-z(),.-;@! ]{2,60}$"
                               required={true}
                             />
                           </div>
@@ -2228,7 +2242,6 @@ const VechilesRegistraion = () => {
                               </label>
                               <div className="desCrtpion">
                                 <Editor
-                                 
                                   editorState={vehicleHistory}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"
@@ -2253,7 +2266,6 @@ const VechilesRegistraion = () => {
                               </p>
                               <div className="desCrtpion">
                                 <Editor
-                                 
                                   editorState={serviceRecord}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"
@@ -2375,7 +2387,6 @@ const VechilesRegistraion = () => {
                               </label>
                               <div className="desCrtpion">
                                 <Editor
-                                 
                                   editorState={issuesProblems}
                                   toolbarClassName="toolbarClassName"
                                   wrapperClassName="wrapperClassName"

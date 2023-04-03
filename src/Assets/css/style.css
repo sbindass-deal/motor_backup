@@ -1595,7 +1595,7 @@ select.field option {
 }
 
 .plan_card.plan_Plus:hover:before {
-  background-color: #f7931a;
+  background-color: #03A9F4;
 }
 
 .plan_WhiteGlove .plan_cardHead h4 {
@@ -6015,13 +6015,11 @@ a.dfr {
 .light .downloadZip input {
   height: 49px;
   background: transparent;
-  /* border: 1px solid #fff; */
+  border: 1px solid #e8e8e8;
   position: relative;
   right: -5px;
   padding: 10px;
   z-index: 0;
-
-
 }
 
 .neWm.dropdown button {
@@ -6586,3 +6584,28 @@ p.userIco.bgS {
 	40% {transform: translateY(-30px);}
 	60% {transform: translateY(-15px);}
 }
+
+
+ul.post_labelList li p.userIco {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+ul.post_labelList li p.userIco span img {
+  width: 30px;
+  height: 28px;
+  object-fit: cover;
+
+  border-radius: 100%;
+}
+li.cT {
+  height: 19px;
+  padding-right: 40px;
+}
+.light .charityOct .card_post{ background-color: transparent;}
+svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}

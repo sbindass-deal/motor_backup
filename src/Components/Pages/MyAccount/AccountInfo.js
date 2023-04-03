@@ -9,7 +9,7 @@ import FormInput from "../../UI/FormInput";
 import CreditCard from "../CreditCard";
 import StripeCheckout from "react-stripe-checkout";
 import { useSelector } from "react-redux";
-import { noImage, strToHtml } from "../../UI/globaleVar";
+import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
 function AccountInfo() {
@@ -20,34 +20,40 @@ function AccountInfo() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_URL + `user`).then((res) => {
+  const fetchUsrApi = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}user`);
       if (res.data.data) {
         setUserinfo(res.data.data);
       } else {
         setUserinfo(userInfo);
       }
-    });
-  }, []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  console.log(9898, userInfo);
+  useEffect(() => {
+    fetchUsrApi();
+  }, []);
 
   const onToken = (token, addresses) => {
     if (token !== null) {
-      console.log(111, token);
       axios
         .post(`${process.env.REACT_APP_URL}savecard`, {
           token: token.id,
           last4: token.card.last4,
+          replace: `${userInfo.cn_no ? 1 : 0}`,
         })
         .then(function (response) {
           if (response.data.status === 200) {
+            fetchUsrApi();
+            notify(response.data.message, response.data.status);
           }
         })
         .catch(function (error) {
-          console.log(error);
+          notify(error.message, error.status);
         });
-      // notify("Form submit successfully!");
     }
   };
 
@@ -130,23 +136,25 @@ function AccountInfo() {
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
-                  {userInfo.cn_no === null && (
-                    <StripeCheckout
-                      className="Btn"
-                      stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
-                      token={onToken}
-                      email={userInfo.email}
-                      name="Save Card Details For Bidding"
-                      currency="USD"
-                      ComponentClass="div"
-                      panelLabel="Save"
+                  <StripeCheckout
+                    className="Btn"
+                    stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
+                    token={onToken}
+                    email={userInfo.email}
+                    name="Save Card Details For Payment"
+                    currency="USD"
+                    ComponentClass="div"
+                    panelLabel="Save"
                     // amount={
                     //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
                     // }
-                    >
-                      <button className="btn">Save Card Details</button>
-                    </StripeCheckout>
-                  )}
+                  >
+                    <button className="btn">
+                      {userInfo.cn_no
+                        ? "Update Card Details"
+                        : "Save Card Details"}
+                    </button>
+                  </StripeCheckout>
                 </li>
                 {/* ======================== */}
 

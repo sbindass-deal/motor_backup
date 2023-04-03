@@ -24,6 +24,7 @@ const AddGearProduct = () => {
     setDataInventry([...dataInventry, inventry])
   }
 
+
   const onchangeInventry = (e, index) => {
     const updatedInventry = dataInventry?.map((d, i) => index == i ?
       Object.assign(d, { [e.target.name]: e.target.value })
@@ -32,8 +33,6 @@ const AddGearProduct = () => {
 
     setDataInventry(updatedInventry);
   }
-
-  console.log()
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -49,6 +48,7 @@ const AddGearProduct = () => {
     const NewValues = Values.charAt(0).toUpperCase() + Values.slice(1);
     setGetInputData({ ...getInputData, [e.target.name]: NewValues });
   };
+  
   const uploadFileOne = async (vehicleId) => {
     const formData = new FormData();
     const url = process.env.REACT_APP_URL + "productImage";
