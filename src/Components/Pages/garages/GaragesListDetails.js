@@ -1,23 +1,28 @@
-import React from "react";
-import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Space } from "antd";
-import men_face from "../../../Assets/images/men-face.jpg";
-import ads_car from "../../../Assets/images/ads_car.png";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import Carousel from "./Carousel";
-import CarousalGarages from "./Carousel";
-import { Image } from "antd";
-import Videos from "./Videos";
+import { useSelector } from "react-redux";
+import caer from "../../../Assets/images/caer.gif";
 import { strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import { Image } from "antd";
+import CarousalGarages from "./Carousel";
+import Videos from "./Videos";
+import GaragesAuction from "./GaragesAuction";
+import DealerVehicleList from "./GaragesVehicleList";
+import { Avatar, Space } from "antd";
 
 const GaragesListDetails = () => {
-  const [garagesData, setGaragesData] = useState({});
-  const [showMore, setShowMore] = useState(false);
   const { id } = useParams();
+  const logingUser = useSelector((state) => state);
+  const vehicleData = logingUser.vehicleReducer.vehicleData;
+
+  const [dealerData, setDealerData] = useState({});
+  const [userVehicleImage, setUserVehicleImage] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+
   useEffect(() => {
     const fetchDealer = async () => {
       axios
@@ -26,9 +31,9 @@ const GaragesListDetails = () => {
         })
         .then(function (response) {
           if (response.data.data) {
-            setGaragesData({ ...response.data.data[0] });
+            setDealerData({ ...response.data.data[0] });
           } else {
-            setGaragesData({});
+            setDealerData({});
           }
         })
         .catch(function (error) {
@@ -36,567 +41,166 @@ const GaragesListDetails = () => {
         });
     };
     fetchDealer();
+
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
+
+    // setUserVehicleImage(initialState);
   }, [id]);
 
   return (
     <>
-      <div className="row">
-        <CarousalGarages garagesData={garagesData} />
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 my-4">
-            <h5>User to follow</h5>
-            <hr />
+      <CarousalGarages dealerData={dealerData} />
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div
+            className="row "
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            {/* <div className="col-lg-6 col-md-12 col-sm-12 logoImg">
+              <img
+                className="slidImg"
+                src={
+                  dealerData.image_logo &&
+                  `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
+                }
+                alt="aboutImg"
+              />
+            </div> */}
             <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
+              className="col-lg-10 col-md-12 col-sm-12 bgOrange"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              <div className="col-md-3">
+              <Link to={`/garages-user-details/${dealerData.id}`}>
                 <Space direction="vertical" size={16}>
                   <Space wrap size={16}>
                     <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <h5>Team to join</h5>
-            <hr />
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-            <div
-              className="row py-2"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="col-md-3">
-                <Space direction="vertical" size={16}>
-                  <Space wrap size={16}>
-                    <Avatar
-                      size={64}
-                      icon={<img src={men_face} alt="logo" />}
-                    />
-                  </Space>
-                </Space>
-              </div>
-              <div className="col-md-6">
-                AWS Mag <br />
-                <span className="text-muted">User123</span>
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn-sm follow">
-                  Follow
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-8">
-            <div className="mt-4">
-              <Space direction="vertical" size={16}>
-                <Space wrap size={16}>
-                  <Avatar
-                    size={200}
-                    icon={
-                      <img
-                        className="slidImg"
-                        loading="lazy"
-                        src={
-                          garagesData?.image_logo &&
-                          `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0].logo}`
-                        }
-                        alt="Logo"
-                      />
-                    }
-                  />
-                </Space>
-              </Space>
-            </div>
-            <h2 className="mt-4">{garagesData.name}</h2>
-            <span className="text-muted">{garagesData?.username}</span>
-            <p>
-              {garagesData?.dealerDescription &&
-                parse(garagesData?.dealerDescription, strToHtml)}
-            </p>
-            <ul
-              style={{ display: "flex", justifyContent: "space-around" }}
-              class="nav nav-tabs my-4"
-              id="myTab"
-              role="tablist"
-            >
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link active"
-                  id="home-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#home-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="home-tab-pane"
-                  aria-selected="true"
-                >
-                  Posts
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="profile-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#profile-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="profile-tab-pane"
-                  aria-selected="false"
-                >
-                  Replies
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="contact-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="contact-tab-pane"
-                  aria-selected="false"
-                >
-                  Gallery
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="video-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#video-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="video-tab-pane"
-                  aria-selected="false"
-                >
-                  Videos
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home-tab-pane"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-                tabindex="0"
-              >
-                <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
+                      size={200}
+                      icon={
+                        <img
+                          className="slidImg"
+                          loading="lazy"
+                          src={
+                            dealerData?.image_logo &&
+                            `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
+                          }
+                          alt="Logo"
                         />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="profile-tab-pane"
-                role="tabpanel"
-                aria-labelledby="profile-tab"
-                tabindex="0"
-              >
-                <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="contact-tab-pane"
-                role="tabpanel"
-                aria-labelledby="contact-tab"
-                tabindex="0"
-              >
-                <section className="py-4 mobileSpec" id="">
-                  <div className="container">
-                    <div className="row ">
-                      <div className="col-12 text-center pb_30"></div>
-
-                      <div className="col-12 Videos ghhh">
-                        <div className="row">
-                          <div className="col-lg-12 col-md-12 col-sm-12">
-                            <div className="row">
-                              <Image.PreviewGroup>
-                                {garagesData?.image_gallery &&
-                                  [...garagesData?.image_gallery].map(
-                                    (curElem, i) => {
-                                      return (
-                                        <div key={i} className="col-md-6">
-                                          <div className="galleryImgSect gg">
-                                            <Image
-                                              loading="lazy"
-                                              src={
-                                                curElem?.logo &&
-                                                `${process.env.REACT_APP_URL}/${curElem?.logo}`
-                                              }
-                                              onError={({ currentTarget }) => {
-                                                currentTarget.onError = null;
-                                                currentTarget.src =
-                                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                              }}
-                                              alt="Gallery"
-                                            />
-                                          </div>
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                              </Image.PreviewGroup>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="video-tab-pane"
-                role="tabpanel"
-                aria-labelledby="video-tab"
-                tabindex="0"
-              >
-                <Videos data={garagesData} />
+                      }
+                    />
+                  </Space>
+                </Space>
+              </Link>
+              <div className="pl-4">
+                <h3>{dealerData.name}</h3>
+                <p>
+                  {dealerData?.about_us &&
+                    parse(dealerData?.about_us, strToHtml)}
+                </p>
+                <Link
+                  to={`/garages-user-details/${dealerData.id}`}
+                  className="btn"
+                >
+                  View Profile
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="row ">
+            <div className="col-12 text-center pb_30">
+              {/* <h2>Gallery</h2> */}
+            </div>
+
+            <div className="col-12 Videos ghhh">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  <div className="row">
+                    <Image.PreviewGroup>
+                      {dealerData?.image_gallery &&
+                        [...dealerData?.image_gallery].map((curElem, i) => {
+                          return (
+                            <div key={i} className="col-md-6">
+                              <div className="galleryImgSect gg">
+                                <Image
+                                  loading="lazy"
+                                  src={
+                                    curElem?.logo &&
+                                    `${process.env.REACT_APP_URL}/${curElem?.logo}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src =
+                                      "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                  }}
+                                  alt="Garages"
+                                />
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </Image.PreviewGroup>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-12"
+              style={{ textAlign: "center", margin: "20px auto" }}
+            >
+              <button class="btn mt-2">VIEW MORE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="row">
+            <Videos data={dealerData} />
+          </div>
+        </div>
+      </section>
+      <GaragesAuction dealerName={dealerData.name} userId={id} />
+      <DealerVehicleList dealerName={dealerData.name} userId={id} />
+      <section className="pt_80 mobileSpec contactD" id="">
+        <div className="container">
+          <div className="row ">
+            <div className="col-lg-6 col-md-6 col-sm-12">
+              <img src={caer} />
+            </div>
+            <div className="col-lg-6 col-md-6 col-sm-12">
+              <div className="contactInfo">
+                <h2>Contact Us</h2>
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-location-dot"></i> ADDRESS:
+                  </li>
+                  <li>4578 MARMORA ROAD, GLASGOW D04 89GR</li>
+                </ul>
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-phone"></i> NUMBER:
+                  </li>
+                  <li>800-2345-6789</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
