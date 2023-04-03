@@ -160,8 +160,7 @@ function Home() {
     ],
   };
 
-
-  console.log(89890, sliderData)
+  console.log(89890, sliderData);
 
   return (
     <div>
@@ -220,7 +219,7 @@ function Home() {
                             <div className="card_post">
                               <div className="card_postImg">
                                 {curElem?.image_banner ? (
-                                  <img 
+                                  <img
                                     width={400}
                                     loading="lazy"
                                     src={
@@ -339,9 +338,6 @@ function Home() {
                           i % 2 === 0 ? 0 : 1
                         } col-12 col-md-6 col-lg-7`}
                       >
-
-                        
-
                         <div className="blogPost">
                           <img
                             src={`${process.env.REACT_APP_URL}upload/blogs/${curElem.image}`}
@@ -351,46 +347,52 @@ function Home() {
                       </div>
                       <div className="col-12 col-md-6 col-lg-5 blogs_content">
                         <div className="blogPostText">
-                          
-                          <div style={{display:"flex"}}>
+                          <div style={{ display: "flex" }}>
                             <ul className="post_labelList">
                               <li>
                                 {/* <AccountCircleIcon /> */}
-                                {
-                                  data?.login.user.dealer == "No" ?
-                                    // <Space size={16} wrap >
+                                {data?.login.user.dealer == "No" ? (
+                                  // <Space size={16} wrap >
 
-                                    //   <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
-                                    // </Space>
-                                    <p className="userIco">
-                                      <span>{(data.login.user.username).toUpperCase().charAt(0)}</span>
-                                    </p>
-                                    :
-                                    data?.login.user.logo?.logo && data?.login.user.dealer == "Yes" ?
-                                      // <Space size={16} wrap className="avtar">
+                                  //   <Avatar>{(data.login.user.username).toUpperCase().charAt(0)}</Avatar>
+                                  // </Space>
+                                  <p className="userIco">
+                                    <span>
+                                      {data.login.user.username
+                                        .toUpperCase()
+                                        .charAt(0)}
+                                    </span>
+                                  </p>
+                                ) : data?.login.user.logo?.logo &&
+                                  data?.login.user.dealer == "Yes" ? (
+                                  // <Space size={16} wrap className="avtar">
 
-                                      //   <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
-                                      // </Space>
-                                      <p className="userIco ">
-                                        <span><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></span>
+                                  //   <Avatar><img src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`} /></Avatar>
+                                  // </Space>
+                                  <p className="userIco ">
+                                    <span>
+                                      <img
+                                        src={`https://api.gasguzzlrs.com/${data?.login?.user?.logo?.logo}`}
+                                      />
+                                    </span>
+                                  </p>
+                                ) : (
+                                  // <Space size={16} wrap>
 
-                                      </p>
-                                      :
-                                      // <Space size={16} wrap>
-
-                                      //   <Avatar><img width={50} src={g3} /></Avatar>
-                                      // </Space>
-                                      <p className="userIco ">
-                                        <span>
-                                          <img src={g3} />
-                                        </span>
-                                      </p>
-                                }
+                                  //   <Avatar><img width={50} src={g3} /></Avatar>
+                                  // </Space>
+                                  <p className="userIco ">
+                                    <span>
+                                      <img src={g3} />
+                                    </span>
+                                  </p>
+                                )}
                                 {/* {curElem.username} */}
                               </li>
                             </ul>
-                         <h4 style={{marginLeft:"-23px"}}>{curElem.title}</h4>
-
+                            <h4 style={{ marginLeft: "-23px" }}>
+                              {curElem.title}
+                            </h4>
                           </div>
                           <ul className="post_labelList">
                             <li>
@@ -427,7 +429,7 @@ function Home() {
                           </ul>
                           <p>
                             {parse(
-                              curElem?.description.substr(0, 150)+"...",
+                              curElem?.description.substr(0, 150) + "...",
                               strToHtml
                             )}
                           </p>
@@ -495,7 +497,12 @@ function Home() {
                         <a href="/carraffle" className="full">
                           <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                             <h2>{d?.name}</h2>
-                            <p>{parse(d?.description.substr(0, 165) + "...", strToHtml)}</p>
+                            <p>
+                              {parse(
+                                d?.description.substr(0, 165) + "...",
+                                strToHtml
+                              )}
+                            </p>
                             <div className="price_">
                               <p>
                                 {d?.dealEndDate &&
@@ -506,7 +513,7 @@ function Home() {
                           </div>
                           <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
                             <img
-                              src={`${process.env.REACT_APP_URL}${d?.image[0].imagePath}`}
+                              src={`${process.env.REACT_APP_URL}${d?.image[0]?.imagePath}`}
                               alt={d?.name}
                               className="addBanner"
                             />

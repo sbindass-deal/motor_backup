@@ -94,6 +94,7 @@ import Bids from "./MyAccount/Bids";
 import Transaction from "./MyAccount/Transaction";
 import Garages from "./garages/Garages";
 import GaragesListDetails from "./garages/GaragesListDetails";
+import GaragesUserDetails from "./garages/GaragesUserDetails";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -117,7 +118,6 @@ const Layout = () => {
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="subscription" element={<Subscription />} />
               <Route path="transaction" element={<Transaction />} />
-
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
               <Route path="vehicle/:id" element={<VehicleRegistered />} />
@@ -154,7 +154,6 @@ const Layout = () => {
                     path="admin/addVehicle-listing"
                     element={<AddListing />}
                   />
-
                   <Route path="raffleadmin" element={<RaffleAdmin />} />
                   <Route
                     path="raffleadmin/add-raffel"
@@ -171,7 +170,6 @@ const Layout = () => {
                     element={<EditGearProduct />}
                   />
                   <Route path="editBlog/:id" element={<EditBlog />} />
-
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
@@ -225,6 +223,10 @@ const Layout = () => {
           <Route path="showroom" element={<Store />} />
           <Route path="garages" element={<Garages />} />
           <Route path="garages/:id" element={<GaragesListDetails />} />
+          <Route
+            path="garages-user-details/:id"
+            element={<GaragesUserDetails />}
+          />
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
           <Route path="showroom/:id" element={<StoreDetails />} />
@@ -232,7 +234,6 @@ const Layout = () => {
           <Route path="shipping" element={<Shipping />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="listings" element={<MyListings />} />
-
           <Route path="carraffle" element={<CarRaffle />} />
           <Route path="carraffle/:coupon" element={<CarRaffle />} />
           <Route path="detail/:id" element={<Detail />} />
@@ -243,9 +244,7 @@ const Layout = () => {
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
-
           <Route path="edit-user-meeting/:id" element={<EditUserMeeting />} />
-
           <Route path="vechiles" element={<VechilesRegistraion />} />
           <Route path="getalerts" element={<GetAlerts />} />
           <Route path="faq" element={<Faq />} />
