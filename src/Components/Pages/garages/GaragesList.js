@@ -19,11 +19,9 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
   useEffect(() => {
     const fetchDealer = async () => {
       try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}get_all_dealers`
-        );
-        setDealerData([...res.data.featured_dealer]);
-        handleDealerCount(res.data.featured_dealer.length);
+        const res = await axios.get(`${process.env.REACT_APP_URL}garages`);
+        setDealerData([...res.data.data]);
+        handleDealerCount(res.data.data.length);
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +50,7 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                     <div class="col-12 col-md-4 pb-3">
                       <div class="card_post">
                         <div class="card_postImg">
-                          <Link to={`/dealerprofil/${curElem?.id}`}>
+                          <Link to={`/garages/${curElem.id}`}>
                             {curElem?.image_logo && (
                               <img
                                 loading="lazy"
@@ -72,7 +70,7 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                         </div>
                         <div class="card_postInfo">
                           <h4>
-                            <Link to={`/dealerprofile/${curElem?.id}`}>
+                            <Link to={`/garages/${curElem.id}`}>
                               {curElem?.name}
                             </Link>
                           </h4>
@@ -86,7 +84,8 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                           <p>
                             {curElem?.dealerDescription &&
                               parse(
-                                curElem?.dealerDescription?.substr(0, 95)+"...",
+                                curElem?.dealerDescription?.substr(0, 95) +
+                                  "...",
                                 strToHtml
                               )}
                           </p>

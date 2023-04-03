@@ -4,9 +4,7 @@ import ReactPlayer from "react-player";
 const Videos = ({ data }) => {
   return (
     <>
-      <div className="col-12 text-center pb_30">
-        <h2>Videos</h2>
-      </div>
+      <div className="col-12 text-center pb_30"></div>
       <div className="col-12">
         <div className="card-group videoColl">
           {data?.video_link?.map((curElem, i) => {

@@ -209,10 +209,9 @@ const DealerProfile = () => {
             </div>
           </div>
         </div>
-        
       </section>
       <section className="pt_80 mobileSpec" id="">
-      <div className="container">
+        <div className="container">
           <div className="row">
             <Videos data={dealerData} />
           </div>

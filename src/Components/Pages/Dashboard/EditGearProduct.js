@@ -17,46 +17,20 @@ const EditGearProduct = () => {
   const [category, setCategory] = useState();
   const [size, setSize] = useState();
   const [color, setColor] = useState();
-  const [updatedInventry, setUpdateInventry] = useState([]);
+  const [updatedInventry, setUpdateInventry] = useState([{
+    stock: [{ id: "NA", replace: "" }],
+    price: [{ id: "NA", replace: "" }],
+    sizeId: [{ id: "NA", replace: "" }],
+    colorId: [{ id: "NA", replace: ""}]
+  }]);
   const [stock, setStock] = useState([]);
   const [price, setPrice] = useState([]);
   const [sizeId, setSizeId] = useState([]);
-  const [colorId, setColorId] = useState([])
-
-
-  // {
-  //   stock: [{ id: "", replace: "" }],
-  //   price: [{ id: "", replace: "" }],
-  //   sizeId: [{ id: "", replace: "" }],
-  //   colorId: [{ id: "", replace: "" }]
-  // }
-
-  const addInventry = (e, index) => {
-    setDataInventry([...dataInventry, inventry]);
-    dataInventry?.map((d , i) => {
-      setUpdateInventry(
-        [...updatedInventry , {
-          stock: [{ id: "NA", replace: dataInventry[i]?.stock }],
-          price: [{ id: "NA", replace: dataInventry[i]?.price }],
-          sizeId: [{ id: "NA", replace: dataInventry[i]?.sizeId }],
-          colorId: [{ id: "NA", replace: dataInventry[i]?.colorId }]
-        }]
-      )
-    })
-  }
-
-
-  const onchangeInventry = (e, index) => {
-    const updatedInventry = dataInventry?.map((d, i) => index == i ?
-      Object.assign(d, { [e.target.name]: e.target.value })
-      : d
-    )
-
-    setDataInventry(updatedInventry);
-
-
-  }
-
+  const [colorId, setColorId] = useState([]);
+  const [stock2, setStock2] = useState([]);
+  const [price2, setPrice2] = useState([]);
+  const [sizeId2, setSizeId2] = useState([]);
+  const [colorId2, setColorId2] = useState([]);
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [showImage, setShowImage] = useState(null);
@@ -68,6 +42,45 @@ const EditGearProduct = () => {
   });
   const [refresh, setRefresh] = useState(false);
   const inputRef = useRef();
+
+
+  // {
+  //   stock: [{ id: "", replace: "" }],
+  //   price: [{ id: "", replace: "" }],
+  //   sizeId: [{ id: "", replace: "" }],
+  //   colorId: [{ id: "", replace: "" }]
+  // }
+
+  const addInventry = (e, index) => {
+    setDataInventry([...dataInventry, inventry]);
+    // dataInventry?.map((d , i) => {
+      // setUpdateInventry(
+      //   [ {
+      //     stock: [...updatedInventry?.stock , { id: "NA", replace: d?.stock }],
+      //     price: [...updatedInventry?.price ,{ id: "NA", replace: d?.price }],
+      //     sizeId: [...updatedInventry?.sizeId ,{ id: "NA", replace: d?.sizeId }],
+      //     colorId: [...updatedInventry?.colorId ,{ id: "NA", replace: d?.colorId }]
+      //   }]
+      // )
+      // setStock([...stock , { id: "NA", replace: d?.stock }]);
+      // setPrice([...price , { id: "NA", replace: d?.stock }]);
+      // setSizeId([...sizeId , { id: "NA", replace: d?.stock }]);
+      // setColorId([...colorId , { id: "NA", replace: d?.stock }]);
+    // })
+  }
+
+
+  const onchangeInventry = (e, index) => {
+    const updatedInventry = dataInventry?.map((d, i) => index == i ?
+      Object.assign(d, { [e.target.name]: e.target.value })
+      : d
+    )
+
+    setDataInventry(updatedInventry);
+
+  }
+
+ 
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -162,6 +175,11 @@ const EditGearProduct = () => {
       });
   };
 
+  const updateInventry = (e) => {
+    setPrice2([...price2 , {id : price[0] , replace : price[1]}]);
+    
+  }
+
 
   useEffect(() => {
 
@@ -193,7 +211,7 @@ const EditGearProduct = () => {
     }).then((d) => { setRefresh(!refresh); });
   }
 
-  console.log(updatedInventry.map);
+  console.log(price2);
   // console.log(stock , price , sizeId , colorId);
   return (
     <>
@@ -243,8 +261,6 @@ const EditGearProduct = () => {
               </div>
               {
                 getInputData?.product_inventry?.map((d, i) => {
-                  // console.log(d);
-
                   return (
                     <>
                       <div className="col-md-12 col-lg-3 col-sm-12">
@@ -255,9 +271,9 @@ const EditGearProduct = () => {
                               className="field"
                               autoComplete="off"
                               name="price"
-                              value={updatedInventry[i]?.price?.replace}
+                              value={price?.replace}
                               placeholder={d?.price}
-                              onChange={(e) => { setUpdateInventry({ ...updatedInventry, price: [{ id: d?.id, replace: e.target.value }] }) }}
+                              onChange={(e) => { setPrice([ d?.id ,  e.target.value ]); }}
                               type="number"
                             // required={true}
                             />
@@ -286,7 +302,7 @@ const EditGearProduct = () => {
                           <label htmlFor="">Size</label>
                           <select
                             name="sizeId"
-                            onChange={(e) => { setSizeId(e.target.value) }}
+                            onChange={(e) => { setUpdateInventry({ ...updatedInventry, sizeId: [{ id: d?.id, replace: e.target.value }] }) }}
                             value={d?.size_id}
                             className="field"
                             required
@@ -309,7 +325,6 @@ const EditGearProduct = () => {
                           <label htmlFor="">Color</label>
                           <select
                             name="colorId"
-                            // onChange={(e) => { onchangeInventry(e, index) }}
                             onChange={(e) => { setUpdateInventry({ ...updatedInventry, colorId: [{ id: d?.id, replace: e.target.value }] }) }}
                             value={d?.color_id}
                             className="field"
@@ -329,9 +344,9 @@ const EditGearProduct = () => {
                         </div>
                       </div>
                       <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
-                        <div className="form-group">
-                          {/* <p className="border w-25 pl-1">+</p> */}
+                        <div className="form-group d-flex">
                           <button onClick={() => { deleteInventry(d?.id) }} className="mt-4 border-0 p-1 bg-danger text-light">delete</button>
+                          <button onClick={(e) => { updateInventry(e) }} className="mt-4 border-0 p-1 bg-success text-light">update</button>
                         </div>
                       </div>
                     </>
