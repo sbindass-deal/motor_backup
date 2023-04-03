@@ -169,8 +169,26 @@ const ShopDetails = () => {
             </div>
 
             <div className="col-md-6 rightSec">
-              <h5 className="catagories">{product?.category}</h5>
+                  <h5 className="catagories">{product?.category}</h5>
+                  <div className="">
               <h2>{product.title}</h2>
+                    <div className="" id="main_width">
+                      {/* <i class="fa-solid fa-ticket"></i>
+                      <p class="grid_entries_count">525</p>
+                      <p class="grid_label">Entries</p>
+                      <p class="multiplier-value blink-soft">15X</p> */}
+                      <div class="vs_grid_entries entries-default mb-3">
+                        <div class="entries-count">
+                          <i class="fa-solid fa-ticket" ></i>
+                          <span class="grid_entries_count">525</span>
+                          <span class="grid_label">Entries</span>
+                        </div>
+                        <div class="multiplier-value blink-soft ml-3">
+                          15X
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               {
                 product?.product_inventry?.map((d, i) => {
                   if (productId == d?.id)

@@ -64,9 +64,42 @@ useEffect(() => {
             </div>
           </div>
           <div class="card_postInfo pt-3">
-            <h6>
-              <Link to={`/shop/${id}`}>{title}</Link>
-            </h6>
+            <div className="entries_count">
+              <h6>
+                <Link to={`/shop/${id}`}>{title}</Link>
+              </h6>
+
+              <div className="entries_count2 " >
+                {/* <i class="fa-solid fa-ticket"></i>
+                <p class="grid_entries_count">525</p>
+                <p class="grid_label">Entries</p>
+                <p class="multiplier-value blink-soft">15X</p> */}
+                <div class="vs_grid_entries entries-default mb-3" >
+                  <div class="entries-count">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span class="grid_entries_count">525</span>
+                    <span class="grid_label">Entries</span>
+                  </div>
+                  <div class="multiplier-value blink-soft ml-3">
+                    15X
+                  </div>
+                </div>
+             
+              </div>
+             
+            </div>
+
+            {/* <div class="vs_grid_entries entries-default mb-3">
+              <div class="entries-count">
+                <i class="fa-solid fa-ticket"></i>
+                <span class="grid_entries_count">525</span>
+                <span class="grid_label">Entries</span>
+              </div>
+              <div class="multiplier-value blink-soft">
+                15X
+              </div>
+            </div> */}
+           
             <p>{curElem.description.substr(0, 80)}...</p>
             <div className="sizeColor">
               <div className="sizeColor">Category : {curElem.category}</div>

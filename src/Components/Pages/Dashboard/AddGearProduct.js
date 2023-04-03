@@ -14,7 +14,19 @@ const AddGearProduct = () => {
   const [category, setCategory] = useState();
   const [size, setSize] = useState();
   const [color, setColor] = useState();
-  const [getInputData, setGetInputData] = useState({ title: "", category: "", price: [], stock: [], sizeId: [], colorId: [], description: "", youtube_link: "", });
+  const [getInputData, setGetInputData] =
+    useState({
+      title: "",
+      category: "",
+      price: [],
+      stock: [],
+      sizeId: [],
+      colorId: [],
+      description: "",
+      youtube_link: "",
+      coupon_code: "",
+      multiplier:""
+    });
   const inputRef = useRef();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
   const inventry = { price: [], stock: [], sizeId: [], colorId: [] };
@@ -85,7 +97,7 @@ const AddGearProduct = () => {
   const handleApi = async (e) => {
     
     e.preventDefault();
-    
+  
     axios
       .post(`${process.env.REACT_APP_URL}addproduct`, {
         stock: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.stock),
@@ -96,6 +108,8 @@ const AddGearProduct = () => {
         description: getInputData.description,
         category: getInputData.category,
         youtube_link: getInputData.youtube_link,
+        coupon_code: getInputData.coupon_code,
+        multiplier: getInputData.multiplier,
       })
       .then(async function (response) {
         if (response.status === 200) {
@@ -142,6 +156,10 @@ const AddGearProduct = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
+
+
+  console.log(98989, getInputData)
+
   return (
     <>
       <div className="container">
@@ -306,6 +324,51 @@ const AddGearProduct = () => {
                   // pattern="^[A-Za-z ]{1,80}$"
                   required={true}
                 />
+              </div>
+
+
+              <div className="col-md-12 col-lg-3 col-sm-12">
+                <div className="form-group">
+                  <div>
+                    <label>Coupon Code</label>
+                    <input
+                      name="coupon_code"
+                      className="field"
+                      placeholder="Enter coupon Code"
+                      onChange={(e) => {
+                        setGetInputData({
+                          ...getInputData,
+                          coupon_code: e.target.value,
+                        });
+                      }}
+                      value={getInputData.coupon_code}
+                      type="text"
+                      required={true}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-12 col-lg-3 col-sm-12">
+                <div className="form-group">
+                  <div>
+                    <label>Multiplier</label>
+                    <input
+                      name="multiplier"
+                      className="field"
+                      placeholder="Enter multiplier"
+                      onChange={(e) => {
+                        setGetInputData({
+                          ...getInputData,
+                          multiplier: e.target.value,
+                        });
+                      }}
+                      value={getInputData.multiplier}
+                      type="text"
+                      required={true}
+                    />
+                  </div>
+                </div>
               </div>
               {/* <div>
                 <div><h6>Add New Color</h6></div>
