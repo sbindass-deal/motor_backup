@@ -93,6 +93,7 @@ import Wins from "./MyAccount/Wins";
 import Bids from "./MyAccount/Bids";
 import Transaction from "./MyAccount/Transaction";
 import Garages from "./garages/Garages";
+import GaragesListDetails from "./garages/GaragesListDetails";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -165,7 +166,9 @@ const Layout = () => {
                   />
                   <Route path="gear-product" element={<GearProduct />} />
                   <Route path="gear-inventry" element={<GearInventry />} />
-                  <Route path="gear-product/:id" element={<EditGearProduct />}
+                  <Route
+                    path="gear-product/:id"
+                    element={<EditGearProduct />}
                   />
                   <Route path="editBlog/:id" element={<EditBlog />} />
 
@@ -221,6 +224,7 @@ const Layout = () => {
           <Route path="feautres" element={<Features />} />
           <Route path="showroom" element={<Store />} />
           <Route path="garages" element={<Garages />} />
+          <Route path="garages/:id" element={<GaragesListDetails />} />
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
           <Route path="showroom/:id" element={<StoreDetails />} />

@@ -400,8 +400,8 @@ function CarRaffle() {
                 </div>
               </div>
               <div className="card_Gray2 mb-4">
-                <div className="row row_gap_5 ">
-                  <div className="col-md-3 iconSecT">
+                <div className="row row_gap_5 gap-item">
+                  {/* <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img loading="lazy" src={ticket} />
                     </div>
@@ -410,7 +410,7 @@ function CarRaffle() {
                       <br /> just
                     </h5>
                     <p>${showLotary?.price}</p>
-                  </div>
+                  </div> */}
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
                       <img loading="lazy" src={ticketSocket} />
@@ -451,7 +451,7 @@ function CarRaffle() {
               </div>
 
               {validUser !== "Same user cannot use refer link!" && (
-                <div className="card_Gray2">
+                <div className="">
                   <div className="">
                     {/* <div className="col-12 mb-3">
                     <h5>
@@ -461,7 +461,7 @@ function CarRaffle() {
                     </h5>
                   </div> */}
 
-                    <div class="col-12 col-md-12">
+                    {/* <div class="col-12 col-md-12">
                       <div class="form-group">
                         <label>Enter amount</label>
                         <form onSubmit={addTickets} className="">
@@ -493,7 +493,7 @@ function CarRaffle() {
                           </div>
                         </form>
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* <div class="col-12 col-md-12">
                       <div class="form-group">

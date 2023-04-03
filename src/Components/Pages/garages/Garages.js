@@ -35,10 +35,10 @@ const Garages = () => {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h1>We have over {dealerCount} dealers around the world</h1>
+              <h1>We have over {dealerCount} garages around the world</h1>
               <h5>
                 We help you find your dream car. Select from our exclusive
-                <br /> list of showrooms.
+                <br /> list of garages.
               </h5>
             </div>
           </div>
@@ -48,7 +48,7 @@ const Garages = () => {
         <div className="auction_container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Featured Showroom</h2>
+              <h2>Featured Garages</h2>
             </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">
@@ -58,7 +58,7 @@ const Garages = () => {
                     autoComplete="off"
                     name="search"
                     placeholder="Search for a Garages"
-                    onChange={(e)=>setSearchTerm(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </li>
                 <li className="">
@@ -75,7 +75,10 @@ const Garages = () => {
                 </li>
               </ul>
             </div>
-            <GaragesList searchTerm={searchTerm} handleDealerCount={handleDealerCount} />
+            <GaragesList
+              searchTerm={searchTerm}
+              handleDealerCount={handleDealerCount}
+            />
           </div>
         </div>
       </section>
