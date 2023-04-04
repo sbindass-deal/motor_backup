@@ -7,28 +7,30 @@ import img_01 from "../../../Assets/images/img-1.webp";
 import NotAvailable from "../../UI/NotAvailable";
 import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "../MyAccount/MyAccountLeftNav";
+import { noImage } from "../../UI/globaleVar";
 
 const OrderCart = () => {
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  useEffect(() => {
-    const fetchOrders = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
-        if (res.data.status === 200 && res.data.data) {
-          const activeOrder = res.data.data.filter(
-            (item) => item.order_status === "New"
-          );
-          setOrder(activeOrder);
-        }
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-        setLoading(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fetchOrders = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
+      if (res.data.status === 200 && res.data.data) {
+        const activeOrder = res.data.data.filter(
+          (item) => item.order_status === "New"
+        );
+        setOrder(activeOrder);
       }
-    };
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchOrders();
   }, []);
   if (loading) {
@@ -40,7 +42,7 @@ const OrderCart = () => {
         `${process.env.REACT_APP_URL}orderReject/${id}`
       );
       if (res.status === 200) {
-        window.location.reload(false);
+        fetchOrders();
       }
     } catch (err) {
       console.log(err);
@@ -90,49 +92,66 @@ const OrderCart = () => {
                           <th>Action</th>
                           <th>View</th>
                         </tr>
-                        {order?.filter((curVal) => {
-                          if (searchTerm == '') {
-                            return curVal
-                          } else if (curVal.order_id.toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return curVal
-                          }
-                        })?.map((curElem) => {
-                          return (
-                            <tr>
-                              <td className="productImg">
-                                <img src={img_01} />
-                              </td>
-                              <td>{curElem.order_id}</td>
-                              <td>
-                                {new Date(
-                                  curElem.created_at
-                                ).toDateString()}
-                              </td>
-                              {/* <td>2</td> */}
-                              <td>Shipped</td>
-                              <td>${curElem.amount}</td>
-                              <td>
-                                <button
-                                  onClick={() =>
-                                    handleCancleOrder(curElem.order_id)
-                                  }
-                                  className="removeBtn"
-                                  href=""
-                                >
-                                  Cancel
-                                </button>
-                              </td>
-                              <td>
-                                <Link
-                                  to={`/orders-cart/${curElem.order_id}`}
-                                  className="btn"
-                                >
-                                  View
-                                </Link>
-                              </td>
-                            </tr>
-                          );
-                        })}
+                        {order
+                          ?.filter((curVal) => {
+                            if (searchTerm == "") {
+                              return curVal;
+                            } else if (
+                              curVal.order_id
+                                .toLowerCase()
+                                .includes(searchTerm.toLowerCase())
+                            ) {
+                              return curVal;
+                            }
+                          })
+                          ?.map((curElem) => {
+                            return (
+                              <tr>
+                                <td className="productImg">
+                                  <img
+                                    loading="lazy"
+                                    src={
+                                      curElem?.image &&
+                                      `${process.env.REACT_APP_URL}upload/products/${curElem?.image[0].image}`
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src = noImage;
+                                    }}
+                                    alt="product"
+                                  />
+                                </td>
+                                <td>{curElem?.order_id}</td>
+                                <td>
+                                  {new Date(
+                                    curElem?.created_at
+                                  )?.toDateString()}
+                                </td>
+                                {/* <td>2</td> */}
+                                <td>{curElem?.order_status}</td>
+                                <td>${curElem?.amount}</td>
+                                <td>
+                                  <button
+                                    onClick={() =>
+                                      handleCancleOrder(curElem?.order_id)
+                                    }
+                                    className="removeBtn"
+                                    href=""
+                                  >
+                                    Cancel
+                                  </button>
+                                </td>
+                                <td>
+                                  <Link
+                                    to={`/orders-cart/${curElem?.order_id}`}
+                                    className="btn"
+                                  >
+                                    View
+                                  </Link>
+                                </td>
+                              </tr>
+                            );
+                          })}
                       </table>
                     </div>
                   </div>
