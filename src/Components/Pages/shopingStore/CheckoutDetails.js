@@ -43,7 +43,7 @@ export default function CheckoutDetails() {
       .post(`${process.env.REACT_APP_URL}addorder`, {
         order_status: "New",
         items,
-        payment_mode: `${getInputData.deliveryType}`,
+        // payment_mode: `${getInputData.deliveryType}`,
       })
       .then((result) => {
         if (result.data.status === 200) {
@@ -65,7 +65,7 @@ export default function CheckoutDetails() {
         email: getInputData.email,
         phone: getInputData.phone,
         address: getInputData.address,
-        deliverytype: getInputData.deliveryType,
+        // deliverytype: getInputData.deliveryType,
         pincode: getInputData.pinCode,
       })
       .then((result) => {})
@@ -143,8 +143,20 @@ export default function CheckoutDetails() {
               required={true}
             />
           </div>
-
           <div class="col-md-6">
+            <FormInput
+              value={getInputData.pinCode}
+              onChange={handleOnChange}
+              name="pinCode"
+              placeholder="Enter pin code"
+              errorMessage="Pin number should be 4-8 characters and shouldn't include any special character and alphabet!"
+              label="Pin code"
+              pattern="^[0-9]{4,8}$"
+              class="form-control"
+              required={true}
+            />
+          </div>
+          <div class="col-md-12">
             <label for="validationDefaultUsername" class="form-label">
               Address
             </label>
@@ -161,7 +173,7 @@ export default function CheckoutDetails() {
             </div>
           </div>
 
-          <div class="col-md-6 ">
+          {/* <div class="col-md-6 ">
             <label for="validationDefault04" class="form-label">
               Delivery type
             </label>
@@ -179,22 +191,10 @@ export default function CheckoutDetails() {
               <option value="cod">cash on delivery</option>
               <option value="online">online pay</option>
             </select>
-          </div>
-          <div class="col-md-6">
-            <FormInput
-              value={getInputData.pinCode}
-              onChange={handleOnChange}
-              name="pinCode"
-              placeholder="Enter pin code"
-              errorMessage="Pin number should be 4-8 characters and shouldn't include any special character and alphabet!"
-              label="Pin code"
-              pattern="^[0-9]{4,8}$"
-              class="form-control"
-              required={true}
-            />
-          </div>
-          <div class="col-6">
-            <button class="btn btn-primary mt-3" type="submit">
+          </div> */}
+
+          <div class="col-md-12">
+            <button class="btn mt-5" type="submit">
               Place Order
             </button>
           </div>
