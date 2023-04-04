@@ -35,8 +35,6 @@ export default function CheckoutDetails() {
         quantity: curElem.quantity,
         color_id: curElem.color_id,
         size_id: curElem.size_id,
-        coupon_code: parseInt(curElem.coupon_code, 10),
-        multiplier: curElem.multiplier,
       };
     });
     await axios
