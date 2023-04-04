@@ -316,6 +316,9 @@
 	.plan_cardBody {
 		min-height: 214px;
 	}
+	.auctionLive .card_postImg img {
+		height: 180px;
+	}
 }
 
 @media (max-width: 1199px) {
@@ -743,6 +746,11 @@
 	ul.bidList_.info_ li {
 		width: 50%;
 	}
+	
+
+}
+
+@media (max-width: 767px) {
 	.videoColl .col-lg-6 {
 		height: 216px;
 		margin: 0px;
@@ -750,10 +758,6 @@
 		width: 100%;
 		border: 3px solid transparent;
 	}
-
-}
-
-@media (max-width: 767px) {
 
 	.loTryTitle h2 span {font-size: 60px;}
 	.loTryTitle h2 {font-size: 51px;	}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 
-const Products = ({ id, price, images, title, curElem }) => {
+const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }) => {
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -17,7 +17,7 @@ const Products = ({ id, price, images, title, curElem }) => {
       progress: undefined,
       theme: "light",
     });
-
+  
   const dispatch = useDispatch();
   const [imageValue, setImageValsue] = useState(0);
   const [size , setSize] = useState();
@@ -35,7 +35,7 @@ useEffect(() => {
 
 }, [])
 
-
+  
   return (
     <>
       <div class="col-12 col-md-6 col-lg-4">
@@ -68,7 +68,7 @@ useEffect(() => {
               <h6>
                 <Link to={`/shop/${id}`}>{title}</Link>
               </h6>
-
+              
               <div className="entries_count2 " >
                 {/* <i class="fa-solid fa-ticket"></i>
                 <p class="grid_entries_count">525</p>
@@ -77,11 +77,11 @@ useEffect(() => {
                 <div class="vs_grid_entries entries-default mb-3" >
                   <div class="entries-count">
                     <i class="fa-solid fa-ticket"></i>
-                    <span class="grid_entries_count">525</span>
+                    <span class="grid_entries_count">{coupon_code}</span>
                     <span class="grid_label">Entries</span>
                   </div>
                   <div class="multiplier-value blink-soft ml-3">
-                    15X
+                    {multiplier+"X"}
                   </div>
                 </div>
              

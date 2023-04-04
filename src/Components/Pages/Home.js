@@ -245,14 +245,14 @@ function Home() {
                                   {curElem?.make} {curElem?.model}{" "}
                                   {curElem?.year}
                                 </h4>
-                                {/* <p>
+                                <p>
                                   {curElem?.moreDescription &&
                                     parse(
                                       curElem?.moreDescription?.substr(0, 200) +
                                         "...",
                                       strToHtml
                                     )}
-                                </p> */}
+                                </p>
                                 {/* <ul className="labelList">
                                   <li>
                                     <label>Current Bid:</label>{" "}
