@@ -76,6 +76,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </span>
                   </div>
                 </div>
+
                 {/* <p className="dicount">
                   <span>
                     <i class="fa-solid fa-circle-check"></i>

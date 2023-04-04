@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
 import ms from "ms";
@@ -9,9 +9,11 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
+  const[isLoading, setLoading]=useState(false)
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -112,6 +114,8 @@ const AddRaffle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setLoading(true)
     const formData = new FormData();
     formData.append("name", raffle.name);
     formData.append("dealEndDate", raffle.dedline);
@@ -128,11 +132,13 @@ const AddRaffle = () => {
         if (response.status === 200) {
           uploadImg(response.data.data.id);
           uploadVideo(response.data.data.id);
+          setLoading(false)
           notify("Added successfully !");
           navigate("/raffleadmin");
         }
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error);
       });
   };
@@ -141,8 +147,11 @@ const AddRaffle = () => {
     <div className="container">
       <div className="row">
         <form onSubmit={handleSubmit} className="p-md-5">
+          <Link to={"/raffleadmin"}>
+            <button>Back To List</button>
+          </Link>
+    
           <h3 className="p-4 text-center">Giveaways Details</h3>
-
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
               <div className="form-group">
@@ -233,6 +242,7 @@ const AddRaffle = () => {
                   onEditorStateChange={(e) => setHtmlDescription(e)}
                   onPaste={handlePaste}
                   placeholder="Please enter description"
+                  required={true}
                 />
               </div>
             </div>
@@ -346,9 +356,14 @@ const AddRaffle = () => {
             {/* ============================= upload video end */}
           </div>
           <div className="form-group text-center">
-            <button type="submit" className="btn mt-2">
-              Submit
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button type="submit" className="btn mt-2">
+                Submit
+              </button>
+            }
+            
           </div>
         </form>
       </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
@@ -61,7 +61,11 @@ const AddListing = () => {
   return (
     <div className="container mt-3 d-flex justify-content-center">
       <div className="">
+           
         <form onSubmit={handleSubmit} className="p-md-5">
+          <Link to={'/admin/vehicle-listing'}>
+            <button className="">Back To List</button>
+          </Link>
           <h3 className="pb-4 text-center">
             <span>Add Listing Details</span>
           </h3>
@@ -76,9 +80,12 @@ const AddListing = () => {
                   className="field"
                   placeholder="Name"
                   //   pattern="^[a-z A-Z]$"
+                  pattern="/^\S*$/"
                   label="Name"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
+                  required
+                  errorMessage="Name is required"
                 />
               </div>
             </div>
@@ -95,6 +102,9 @@ const AddListing = () => {
 
                   //   errorMessage="use only alphabet no special character"
                   //   required={true}
+                  
+                  errorMessage="Category is required"
+                  required
                 />
               </div>
             </div>
@@ -112,6 +122,8 @@ const AddListing = () => {
                   label="Monthly Listing"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
+                  required
+                  errorMessage="Monthly Listing is required"
                 />
               </div>
             </div>
@@ -129,6 +141,8 @@ const AddListing = () => {
 
                   //   errorMessage="use only alphabet no special character"
                   //   required={true}
+                  required
+                  errorMessage="Monthly Price is required"
                 />
               </div>
             </div>
@@ -146,6 +160,8 @@ const AddListing = () => {
                   label="Annual Price"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
+                  required
+                  errorMessage="Annual Price is required"
                 />
               </div>
             </div>
@@ -163,6 +179,9 @@ const AddListing = () => {
                   label="Annual Listing"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
+
+                  required
+                  errorMessage="Annual Listing is required"
                 />
               </div>
             </div>
@@ -170,28 +189,30 @@ const AddListing = () => {
             <div className="col-12 col-md-12">
               <label>Monthly Description</label>
               <div className="form-group">
-                <textarea
+                <FormInput
                   className="field"
                   value={addListing.description}
                   onChange={handleChange}
                   name="description"
-                  placeholder="Description"
+                  placeholder="Monthly Description"
                   required
-                ></textarea>
+                  errorMessage="Monthly Description is required"
+                />
               </div>
             </div>
 
             <div className="col-12 col-md-12">
               <label>Annual Description</label>
               <div className="form-group">
-                <textarea
+                <FormInput
                   className="field"
                   value={addListing.annualDescription}
                   onChange={handleChange}
                   name="annualDescription"
-                  placeholder="Description"
+                  placeholder="Annual Description"
                   required
-                ></textarea>
+                  errorMessage="Annual Description is required"
+                />
               </div>
             </div>
           </div>

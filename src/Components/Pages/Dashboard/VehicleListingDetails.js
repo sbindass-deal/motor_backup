@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
-
+import { Link } from "react-router-dom";
+import SmallSpinner from "../../UI/SmallSpinner";
 function VehicleListingDetails() {
 
  const navigate= useNavigate()
@@ -24,6 +25,7 @@ function VehicleListingDetails() {
     setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
+  const[isLoading, setIsLoading]=useState(false)
 
   const notify = (val) =>
     toast.success(val, {
@@ -66,6 +68,7 @@ function VehicleListingDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}updateplans`, {
         id:id,
@@ -84,12 +87,14 @@ function VehicleListingDetails() {
       .then((response) => {
         console.log(8989,response)
         if (response.status === 200) {
-          notify("Save successfully !");
+          setIsLoading(false)
           navigate('/admin/vehicle-listing')
+          notify("Save successfully !");
         }
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
       });
   };
 
@@ -99,7 +104,10 @@ function VehicleListingDetails() {
         <div className="col-md-6">
           <form onSubmit={handleSubmit} className="p-md-5">
             <div className="row row_gap_5">
-
+              <Link  to={'/admin/vehicle-listing'}>
+                <button className="">Back To List</button>
+              </Link>
+              <h3 className="pb-4 text-center ml-4"> <span>Edit Listing Details</span> </h3>
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -108,11 +116,11 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     name="name"
                     className="field"
-                    placeholder="name"
+                    placeholder="Name"
                     //   pattern="^[a-z A-Z]$"
-                    label="name"
-                    //   errorMessage="use only numbers($)"
-                    //   required={true}
+                    label="Name"
+                      errorMessage="Name is Required"
+                    required={true}
                   />
                 </div>
               </div>
@@ -125,12 +133,13 @@ function VehicleListingDetails() {
                     onChange={handleChange}
                     name="category"
                     className="field"
-                    label="category"
+                    label="Category"
                     placeholder="Category"
                     //   pattern="^[0-9]$"
 
-                    //   errorMessage="use only alphabet no special character"
+                    errorMessage="Category is Required"
                     //   required={true}
+                    required
                   />
                 </div>
               </div>
@@ -147,8 +156,9 @@ function VehicleListingDetails() {
                     placeholder="Monthly Listing"
                     //   pattern="^[0-9]$"
                     label="Monthly Listing"
-                  //   errorMessage="use only numbers($)"
+                    errorMessage="Monthly Listing is Required"
                   //   required={true}
+                    required
                   />
                 </div>
               </div>
@@ -165,8 +175,9 @@ function VehicleListingDetails() {
                     placeholder="Monthly Price"
                   //   pattern="^[0-9]$"
 
-                  //   errorMessage="use only alphabet no special character"
+                    errorMessage="Monthly Price is Required"
                   //   required={true}
+                    required
                   />
                 </div>
               </div>
@@ -188,8 +199,8 @@ function VehicleListingDetails() {
                     placeholder="Annual Price"
                     //   pattern="^[0-9]$"
                     label="Annual Price"
-                    //   errorMessage="use only numbers($)"
-                    //   required={true}
+                    errorMessage="Annual Price is Required"
+                      required={true}
                   />
                 </div>
               </div>
@@ -221,7 +232,7 @@ function VehicleListingDetails() {
                     //   pattern="^[0-9]$"
                     label="Annual Listing"
                   //   errorMessage="use only numbers($)"
-                  //   required={true}
+                    required={true}
                   />
                 </div>
               </div>
@@ -243,9 +254,15 @@ function VehicleListingDetails() {
 
             </div>
             <div className="form-group">
-              <button type="submit" className="btn w-100">
-                Submit
-              </button>
+              {
+                isLoading ? (
+                   <SmallSpinner/> 
+                ) :
+                  <button type="submit" className="btn w-100">
+                  Submit
+                </button> 
+              }
+             
             </div>
           </form>
         </div>

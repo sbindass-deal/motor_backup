@@ -2,15 +2,18 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import FormInput from "../../UI/FormInput";
 import moment from "moment/moment";
 import ms from "ms";
 import { toast } from "react-toastify";
-
+import { strToHtml } from "../../UI/globaleVar";
+import parse from 'html-react-parser'
+import SmallSpinner from "../../UI/SmallSpinner";
 const EditRaffle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const[isLoading, setLoading]=useState(false)
   const minDate = moment(new Date(new Date() - ms("0d"))).format("YYYY-MM-DD");
   const [file, setFile] = useState([]);
   const [videoFile, setVideoFile] = useState([]);
@@ -102,7 +105,7 @@ const EditRaffle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}updatelotyeryvehicle/${id}`, {
         name: raffle.name,
@@ -117,12 +120,14 @@ const EditRaffle = () => {
           console.log("DATA", response.data)
           uploadEditImage(response.data.id);
           await videoUpload(response.data.id);
+          setLoading(false)
           notify("Save successfully !");
           navigate("/raffleadmin");
         }
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false)
       });
   };
   const [editRaffleImage, setEditRaffleImage] = useState([])
@@ -164,6 +169,12 @@ const EditRaffle = () => {
     <div className="container">
       <div className="row">
         <form onSubmit={handleSubmit} className="p-md-5">
+          <div>
+            <Link to={"/raffleadmin"}>
+              <button>Back To List</button>
+            </Link>
+            <h3 className="ml-5 mt-4">Edit Giveways</h3>
+          </div>
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
               <div className="form-group">
@@ -172,7 +183,7 @@ const EditRaffle = () => {
                   onChange={handleChange}
                   name="name"
                   className="field"
-                  label="Raffle Name"
+                  label="Name of the Lottery"
                   placeholder="Name of the Lottery"
                   errorMessage="use only alphabet no special character"
                   required={true}
@@ -210,7 +221,7 @@ const EditRaffle = () => {
             <div className="col-12 col-md-6">
               <div className="form-group">
                 <FormInput
-                  type="date"
+                  type="datetime-local"
                   min={minDate}
                   value={raffle.dedline}
                   onChange={handleChange}
@@ -218,7 +229,7 @@ const EditRaffle = () => {
                   className="field"
                   label="Deadline to purchase date"
                   placeholder="Enter dedline"
-                  errorMessage="successor date of current date"
+                  errorMessage="Successor date of current date"
                   required={true}
                 />
               </div>
@@ -226,7 +237,7 @@ const EditRaffle = () => {
             <div className="col-12 col-md-12">
               <div className="form-group">
                 <FormInput
-                  type="date"
+                  type="datetime-local"
                   min={minDate}
                   value={raffle.luckyDrawDate}
                   onChange={handleChange}
@@ -287,7 +298,11 @@ const EditRaffle = () => {
               <div className="form-group">
                 <textarea
                   className="field"
-                  value={raffle.desc}
+                  value={
+                    
+                    raffle?.desc && parse(raffle?.desc, strToHtml)
+                    
+                  }
                   onChange={handleChange}
                   name="desc"
                   placeholder="Description here"
@@ -297,9 +312,14 @@ const EditRaffle = () => {
             </div>
           </div>
           <div className="form-group">
-            <button type="submit" className="btn">
-              Submit
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button type="submit" className="btn">
+                Submit
+              </button>
+            }
+            
           </div>
         </form>
       </div>
