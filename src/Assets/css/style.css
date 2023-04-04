@@ -564,14 +564,23 @@ img.addBanner {
 }
 
 .priceDateList li {
-  margin-right: 15px;
+  
   margin-bottom: 5px;
 }
-
+li.add {
+  background: #292929;
+  color: #fff;
+  min-width: 36px;
+  text-align: center;
+  padding: 10px;
+}
 .price__ {
   font-size: 24px;
   color: #f7931a;
   font-weight: 600;
+}
+h5.edrfff {
+  padding-top: 15px;
 }
 
 .Date__ {
@@ -6660,7 +6669,7 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
 }
-.vs_grid_entries .fa-ticket { color: #FFA500; font-size: 20px;}
+.vs_grid_entries .fa-ticket { color: #fff; font-size: 20px;}
 .grid_entries_count {  margin: 0 5px 0 10px;}
 .vs_grid_entries .entries-count { width: 75%; text-align: center; display: flex;flex-direction: row; justify-content: center;align-content: center;align-items: center; font-family: "Oswald", sans-serif; text-transform: uppercase;}
 .vs_grid_entries .multiplier-value {  font-weight: bold;  font-family: "Montserrat", sans-serif;  text-transform: uppercase;   padding: 5px;   text-align: center;   background: #FFA500;}
@@ -6756,3 +6765,30 @@ span.socialCount svg {
 }
 
 .light h2.verticalTitle:before { color: #66666617;}
+.dewew {
+  background: #f8a504;
+}
+
+.priceDateList {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.card_postInfo p.price__{ color:#f78f13 ;}
+
+.priceDateList .orange_btn {
+  border: 1px #000000 solid;
+  background-color: #000000;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 9px 30px;
+}
+.light .priceDateList .orange_btn {
+  border: 1px #f8a504 solid;
+  background-color: #ffffff;
+  color: #f8a504;
+  text-transform: capitalize;
+  padding: 9px 30px;
+}

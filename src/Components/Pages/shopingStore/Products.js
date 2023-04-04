@@ -64,7 +64,7 @@ useEffect(() => {
             </div>
           </div>
           <div class="card_postInfo pt-3">
-            <div className="entries_count">
+            <div className="entries_count dewew">
              
               
               <div className="entries_count2 " >
@@ -86,10 +86,18 @@ useEffect(() => {
               </div>
              
             </div>
-            <div class="vs_grid_entries entries-default mb-3">
-            <h5><Link to={`/shop/${id}`}>{title}</Link></h5>
+            <div class="vs_grid_entries entries-default">
+              <h5 className="edrfff"><Link to={`/shop/${id}`}>{title}</Link></h5>
+             
+              
             </div>
-
+            <div class="vs_grid_entries entries-default">
+              <p class="price__">${curElem?.product_inventry[0]?.price}</p>
+              
+            </div>
+            <div class="vs_grid_entries entries-default">
+           
+                </div>
             {/* <div class="vs_grid_entries entries-default mb-3">
               <div class="entries-count">
                 <i class="fa-solid fa-ticket"></i>
@@ -116,7 +124,7 @@ useEffect(() => {
               class="priceDateList"
               style={{ justifyContent: "space-between" }}
             >
-              <li class="price__">${curElem?.product_inventry[0]?.price}</li>
+              <li class="add">+</li>
               <li class="">
               <Link to={`/shop/${id}`}><button
                   // onClick={() => {
@@ -127,9 +135,10 @@ useEffect(() => {
                   className="orange_btn"
                   // disabled ={addButton}
                 >
-                  View
+                  Add To Cart
                 </button></Link>
               </li>
+              <li class="add">-</li>
             </ul>
           </div>
         </div>
