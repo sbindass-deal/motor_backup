@@ -59,45 +59,45 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-md-4 my-4">
-            <h5>User to follow</h5>
-            <hr />
+          <div className="col-md-3 my-4">
+           
             {garagesDataList?.map((curElem, i) => {
               return (
                 <div
-                  className="row py-2"
+                  className="box_backgroundD mt-15 "
                   key={i}
-                  style={{ display: "flex", alignItems: "center" }}
                 >
-                  <div className="col-md-3">
+                  <h3 className="cardTitle">User to follow</h3>
+                  <div className="followSection">
+                    <div className="userImg">
                     <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={
-                            <img
-                              className="slidImg"
-                              loading="lazy"
-                              src={
-                                curElem?.image_logo &&
-                                `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
-                              }
-                              onError={({ currentTarget }) => {
-                                currentTarget.onError = null;
-                                currentTarget.src = noImage;
-                              }}
-                              alt="Logo"
-                            />
-                          }
-                        />
+                        <Space wrap size={16}>
+                          <Avatar
+                            size={64}
+                            icon={
+                              <img
+                                className="slidImg"
+                                loading="lazy"
+                                src={
+                                  curElem?.image_logo &&
+                                  `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="Logo"
+                              />
+                            }
+                          />
+                        </Space>
                       </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-6">
-                    {curElem.name} <br />
-                    <span className="text-muted">{curElem.username}</span>
-                  </div>
-                  <div className="col-md-3">
+                    </div>
+                    <div className="userInfo">
+                      {curElem.name} 
+                      <span className="text-muted">{curElem.username}</span>
+                    </div>
+                    <div className="vBtn">
                     <Link
                       to={`/garages/${curElem.id}`}
                       type="button"
@@ -105,6 +105,7 @@ const GaragesUserDetails = () => {
                     >
                       View
                     </Link>
+                    </div>
                   </div>
                 </div>
               );
@@ -189,8 +190,8 @@ const GaragesUserDetails = () => {
                 parse(garagesData?.dealerDescription, strToHtml)}
             </p>
             <ul
-              style={{ display: "flex", justifyContent: "space-around" }}
-              class="nav nav-tabs my-4"
+             
+              class="nav nav-tabs my-4 tBB"
               id="myTab"
               role="tablist"
             >
@@ -260,72 +261,106 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
+                  
+                  <div className="col-md-12 ">
+                    <div className="PostInfo">
+                   
+                      <div className="userImG">
+                        <Space direction="vertical" size={16}>
+                          <Space wrap size={16}>
+                            <Avatar
+                              size={64}
+                              icon={<img src={men_face} alt="logo" />}
+                            />
+                          </Space>
+                        </Space>
+                      </div>
+                      <div className="DecIbp">
+                        <h5>User</h5>
+                        <p>
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is a
+                          little bit longer.
+                        </p>
+                        <div class="card">
+                          <img
+                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                            class="card-img-bottom"
+                            alt="..."
+                          />
+                        </div>
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i className={`fa-solid fa-thumbs-up `}></i> 22
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-comments"></i> 2
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-share-from-square"></i> 12
+                          </span>
+                          <span className="socialCount">
+                          <i class="fa-solid fa-heart"></i> 8,427
+                          </span>
+
+                          <span className="socialCount">
+                          <i class="fa-solid fa-eye"></i> 99k
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
+                <div className="col-md-12 ">
+                    <div className="PostInfo">
+                   
+                      <div className="userImG">
+                        <Space direction="vertical" size={16}>
+                          <Space wrap size={16}>
+                            <Avatar
+                              size={64}
+                              icon={<img src={men_face} alt="logo" />}
+                            />
+                          </Space>
+                        </Space>
+                      </div>
+                      <div className="DecIbp">
+                        <h5>User</h5>
+                        <p>
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is a
+                          little bit longer.
+                        </p>
+                        <div class="card">
+                          <img
+                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                            class="card-img-bottom"
+                            alt="..."
+                          />
+                        </div>
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i className={`fa-solid fa-thumbs-up `}></i> 22
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-comments"></i> 2
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-share-from-square"></i> 12
+                          </span>
+                          <span className="socialCount">
+                          <i class="fa-solid fa-heart"></i> 8,427
+                          </span>
+
+                          <span className="socialCount">
+                          <i class="fa-solid fa-eye"></i> 99k
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
-                    </div>
                   </div>
+                 
                 </div>
               </div>
               <div
@@ -336,70 +371,102 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
+                <div className="col-md-12 ">
+                    <div className="PostInfo">
+                   
+                      <div className="userImG">
+                        <Space direction="vertical" size={16}>
+                          <Space wrap size={16}>
+                            <Avatar
+                              size={64}
+                              icon={<img src={men_face} alt="logo" />}
+                            />
+                          </Space>
+                        </Space>
+                      </div>
+                      <div className="DecIbp">
+                        <h5>User</h5>
+                        <p>
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is a
+                          little bit longer.
+                        </p>
+                        <div class="card">
+                          <img
+                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                            class="card-img-bottom"
+                            alt="..."
+                          />
+                        </div>
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i className={`fa-solid fa-thumbs-up `}></i> 22
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-comments"></i> 2
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-share-from-square"></i> 12
+                          </span>
+                          <span className="socialCount">
+                          <i class="fa-solid fa-heart"></i> 8,427
+                          </span>
+
+                          <span className="socialCount">
+                          <i class="fa-solid fa-eye"></i> 99k
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-2">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-10">
-                    <h5>User</h5>
-                    <p>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div class="card">
-                      <img
-                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                        class="card-img-bottom"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="py-3">
-                      <span className="">
-                        <i className={`fa-solid fa-thumbs-up text-warning`}></i>
-                      </span>
-                      &nbsp; &nbsp;
-                      <i className={`fa-solid fa-thumbs-down text-warning`}></i>
+                <div className="col-md-12 ">
+                    <div className="PostInfo">
+                   
+                      <div className="userImG">
+                        <Space direction="vertical" size={16}>
+                          <Space wrap size={16}>
+                            <Avatar
+                              size={64}
+                              icon={<img src={men_face} alt="logo" />}
+                            />
+                          </Space>
+                        </Space>
+                      </div>
+                      <div className="DecIbp">
+                        <h5>User</h5>
+                        <p>
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is a
+                          little bit longer.
+                        </p>
+                        <div class="card">
+                          <img
+                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                            class="card-img-bottom"
+                            alt="..."
+                          />
+                        </div>
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i className={`fa-solid fa-thumbs-up `}></i> 22
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-comments"></i> 2
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-share-from-square"></i> 12
+                          </span>
+                          <span className="socialCount">
+                          <i class="fa-solid fa-heart"></i> 8,427
+                          </span>
+
+                          <span className="socialCount">
+                          <i class="fa-solid fa-eye"></i> 99k
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -425,7 +492,7 @@ const GaragesUserDetails = () => {
                                   [...garagesData?.image_gallery].map(
                                     (curElem, i) => {
                                       return (
-                                        <div key={i} className="col-md-6">
+                                        <div key={i} className="col-md-4 Gld">
                                           <div className="galleryImgSect gg">
                                             <Image
                                               loading="lazy"

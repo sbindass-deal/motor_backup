@@ -64,17 +64,15 @@ useEffect(() => {
             </div>
           </div>
           <div class="card_postInfo pt-3">
-            <div className="entries_count">
-              <h6>
-                <Link to={`/shop/${id}`}>{title}</Link>
-              </h6>
+            <div className="entries_count dewew">
+             
               
               <div className="entries_count2 " >
                 {/* <i class="fa-solid fa-ticket"></i>
                 <p class="grid_entries_count">525</p>
                 <p class="grid_label">Entries</p>
                 <p class="multiplier-value blink-soft">15X</p> */}
-                <div class="vs_grid_entries entries-default mb-3" >
+                <div class="vs_grid_entries entries-default " >
                   <div class="entries-count">
                     <i class="fa-solid fa-ticket"></i>
                     <span class="grid_entries_count">{coupon_code}</span>
@@ -88,7 +86,18 @@ useEffect(() => {
               </div>
              
             </div>
-
+            <div class="vs_grid_entries entries-default">
+              <h5 className="edrfff"><Link to={`/shop/${id}`}>{title}</Link></h5>
+             
+              
+            </div>
+            <div class="vs_grid_entries entries-default">
+              <p class="price__">${curElem?.product_inventry[0]?.price}</p>
+              
+            </div>
+            <div class="vs_grid_entries entries-default">
+           
+                </div>
             {/* <div class="vs_grid_entries entries-default mb-3">
               <div class="entries-count">
                 <i class="fa-solid fa-ticket"></i>
@@ -100,8 +109,8 @@ useEffect(() => {
               </div>
             </div> */}
            
-            <p>{curElem.description.substr(0, 80)}...</p>
-            <div className="sizeColor">
+            {/* <p>{curElem.description.substr(0, 80)}...</p> */}
+            {/* <div className="sizeColor">
               <div className="sizeColor">Category : {curElem.category}</div>
               <div className="size">Size : {
                 size?.map((d , i) => {
@@ -110,12 +119,12 @@ useEffect(() => {
                   }
                 })
               }</div>
-            </div>
+            </div> */}
             <ul
               class="priceDateList"
               style={{ justifyContent: "space-between" }}
             >
-              <li class="price__">${curElem?.product_inventry[0]?.price}</li>
+              <li class="add">+</li>
               <li class="">
               <Link to={`/shop/${id}`}><button
                   // onClick={() => {
@@ -126,9 +135,10 @@ useEffect(() => {
                   className="orange_btn"
                   // disabled ={addButton}
                 >
-                  View
+                  Add To Cart <span>2</span>
                 </button></Link>
               </li>
+              <li class="add">-</li>
             </ul>
           </div>
         </div>

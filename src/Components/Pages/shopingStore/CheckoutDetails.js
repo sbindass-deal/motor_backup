@@ -8,23 +8,13 @@ import StripeCheckout from "react-stripe-checkout";
 import { toast } from "react-toastify";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import FormInput from "../../UI/FormInput";
+import { notify } from "../../UI/globaleVar";
 
 export default function CheckoutDetails() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const [getInputData, setGetInputData] = useState({
     name: "",
@@ -51,11 +41,15 @@ export default function CheckoutDetails() {
       .post(`${process.env.REACT_APP_URL}addorder`, {
         order_status: "New",
         items,
+        // payment_mode: `${getInputData.deliveryType}`,
       })
       .then((result) => {
-        // if (result.status === 200) {
-        //   handleShow();
-        // }
+        if (result.data.status === 200) {
+          getDeliveryAddress();
+          navigate("/orders-cart");
+          dispatch(clearCart());
+          notify(result.data.message, result.data.status);
+        }
       })
       .catch((error) => {
         // notify(error.message);
@@ -69,7 +63,7 @@ export default function CheckoutDetails() {
         email: getInputData.email,
         phone: getInputData.phone,
         address: getInputData.address,
-        deliverytype: getInputData.deliveryType,
+        // deliverytype: getInputData.deliveryType,
         pincode: getInputData.pinCode,
       })
       .then((result) => {})
@@ -94,15 +88,15 @@ export default function CheckoutDetails() {
 
   const handleOrder = (e) => {
     e.preventDefault();
-    if (getInputData.deliveryType === "cash on delivery") {
-      orderPlace();
-      getDeliveryAddress();
-      navigate("/orders-cart");
-      dispatch(clearCart());
-      notify("Order place successfully");
-    } else {
-      handleShow();
-    }
+    // if (getInputData.deliveryType === "cash on delivery") {
+    orderPlace();
+    // getDeliveryAddress();
+    // navigate("/orders-cart");
+    // dispatch(clearCart());
+    // notify("Order place successfully");
+    // } else {
+    //   handleShow();
+    // }
   };
 
   return (
@@ -147,8 +141,20 @@ export default function CheckoutDetails() {
               required={true}
             />
           </div>
-
           <div class="col-md-6">
+            <FormInput
+              value={getInputData.pinCode}
+              onChange={handleOnChange}
+              name="pinCode"
+              placeholder="Enter pin code"
+              errorMessage="Pin number should be 4-8 characters and shouldn't include any special character and alphabet!"
+              label="Pin code"
+              pattern="^[0-9]{4,8}$"
+              class="form-control"
+              required={true}
+            />
+          </div>
+          <div class="col-md-12">
             <label for="validationDefaultUsername" class="form-label">
               Address
             </label>
@@ -165,7 +171,7 @@ export default function CheckoutDetails() {
             </div>
           </div>
 
-          <div class="col-md-6 ">
+          {/* <div class="col-md-6 ">
             <label for="validationDefault04" class="form-label">
               Delivery type
             </label>
@@ -180,25 +186,13 @@ export default function CheckoutDetails() {
               <option selected disabled value="">
                 Select
               </option>
-              <option value="cash on delivery">cash on delivery</option>
-              <option value="online pay">online pay</option>
+              <option value="cod">cash on delivery</option>
+              <option value="online">online pay</option>
             </select>
-          </div>
-          <div class="col-md-6">
-            <FormInput
-              value={getInputData.pinCode}
-              onChange={handleOnChange}
-              name="pinCode"
-              placeholder="Enter pin code"
-              errorMessage="Pin number should be 4-8 characters and shouldn't include any special character and alphabet!"
-              label="Pin code"
-              pattern="^[0-9]{4,8}$"
-              class="form-control"
-              required={true}
-            />
-          </div>
-          <div class="col-6">
-            <button class="btn btn-primary mt-3" type="submit">
+          </div> */}
+
+          <div class="col-md-12">
+            <button class="btn mt-5" type="submit">
               Place Order
             </button>
           </div>
