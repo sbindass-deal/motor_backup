@@ -6707,7 +6707,51 @@ h2.verticalTitle:before {
   z-index: -1;
   letter-spacing: 13px;
 }
-.videoColl .col-lg-6 {
-  height: auto;
- 
+.videoColl .col-lg-6 { height: auto;}
+.followSection {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.userImg {
+  padding-right: 10px;
+}
+.userInfo span.text-muted {
+  display: block;
+}
+.vBtn {
+  margin-left: auto;
+}
+.tBB li.nav-item button {
+  background: transparent;
+  color: #fff;
+  min-width: 220px;
+}
+.nav-tabs.tBB .nav-link.active {
+  color: #f8a504;
+  background-color: #000;
+  border-color: #dee2e600 #dee2e600 #f8a504;
+}
+.nav-tabs.tBB .nav-link:focus, .nav-tabs .nav-link:hover {
+  border-color: #e9ecef00 #e9ecef00 #f8a504;
+  color: #f8a504;
+}
+.PostInfo {
+  display: flex;
+}
+.PostInfo .userImG {
+  padding-right: 3%;
+}
+.PostInfo {
+  display: flex;
+  background: #232323;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+span.socialCount {
+  padding: 10px;
+}
+span.socialCount svg {
+  color: #f8a504;
+  font-size: 25px;
 }
