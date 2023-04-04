@@ -13,9 +13,10 @@ import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
 function AccountInfo() {
+  const userId = useSelector((state) => state);
   const [userInfo, setUserinfo] = useState({});
   const [getImage, setGetImage] = useState([]);
-  const userId = useSelector((state) => state);
+  const [isPrivateOrPublic, setIsPrivateOrPublic] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -25,6 +26,7 @@ function AccountInfo() {
       const res = await axios.get(`${process.env.REACT_APP_URL}user`);
       if (res.data.data) {
         setUserinfo(res.data.data);
+        setIsPrivateOrPublic(res.data.data.published == 0 ? false : true);
       } else {
         setUserinfo(userInfo);
       }
@@ -57,6 +59,25 @@ function AccountInfo() {
     }
   };
 
+  const handlePrivateOrPublic = (e) => {
+    setIsPrivateOrPublic(e.target.checked);
+    axios
+      .post(`${process.env.REACT_APP_URL}profile_public`, {
+        publish: `${isPrivateOrPublic == true ? 0 : 1}`,
+      })
+      .then(function (response) {
+        if (response.data.status === 200) {
+          fetchUsrApi();
+          notify(response.data.message, response.data.status);
+        } else {
+          notify(response.data.message, response.data.status);
+        }
+      })
+      .catch(function (error) {
+        notify(error.message, error.status);
+      });
+  };
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -79,9 +100,29 @@ function AccountInfo() {
                 }}
               >
                 <h3>Account Info</h3>
-                <Link to="/editmyaccount" className="gry_btn px-3">
-                  Edit
-                </Link>
+                <div className="d-flex align-items-center">
+                  {userInfo.dealer == "No" && (
+                    <div className="tg-item mx-4">
+                      <input
+                        className="tgl tgl-skewed"
+                        name="news"
+                        onChange={(e) => handlePrivateOrPublic(e)}
+                        id="cb1"
+                        type="checkbox"
+                        checked={isPrivateOrPublic}
+                      />
+                      <label
+                        className="tgl-btn"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
+                        for="cb1"
+                      ></label>
+                    </div>
+                  )}
+                  <Link to="/editmyaccount" className="gry_btn px-3">
+                    Edit
+                  </Link>
+                </div>
               </div>
               <hr />
               <ul className="labelList_">

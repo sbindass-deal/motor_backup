@@ -40,7 +40,12 @@ export default function CheckoutDetails() {
 
   const orderPlace = async () => {
     const items = product.products.map((curElem) => {
-      return { id: curElem.id, quantity: curElem.quantity };
+      return {
+        id: curElem.id,
+        quantity: curElem.quantity,
+        color_id: curElem.color_id,
+        size_id: curElem.size_id,
+      };
     });
     await axios
       .post(`${process.env.REACT_APP_URL}addorder`, {
