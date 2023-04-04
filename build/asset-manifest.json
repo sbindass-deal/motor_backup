@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c078537d.css",
-    "main.js": "/static/js/main.ee0823c9.js",
+    "main.css": "/static/css/main.809dcb4c.css",
+    "main.js": "/static/js/main.deb25ac9.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -53,6 +53,7 @@
     "static/media/not_found.gif": "/static/media/not_found.466d8f83dce7f7502cac.gif",
     "static/media/dealer-d.png": "/static/media/dealer-d.24d29a52b2587fbf0f49.png",
     "static/media/VehicleDetail.png": "/static/media/VehicleDetail.007f953da91e8c9ea5c1.png",
+    "static/media/coTImg.png": "/static/media/coTImg.126d6bfff200a4093df4.png",
     "static/media/img-7.jpeg": "/static/media/img-7.7d375c9ee8e65a6cf687.jpeg",
     "static/media/bgImg_02.jpg": "/static/media/bgImg_02.228531a01e0bfabd1cd1.jpg",
     "static/media/HIW2.jpg": "/static/media/HIW2.35354230cb5e47ee678e.jpg",
@@ -135,8 +136,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.c078537d.css.map": "/static/css/main.c078537d.css.map",
-    "main.ee0823c9.js.map": "/static/js/main.ee0823c9.js.map",
+    "main.809dcb4c.css.map": "/static/css/main.809dcb4c.css.map",
+    "main.deb25ac9.js.map": "/static/js/main.deb25ac9.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -176,7 +177,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c078537d.css",
-    "static/js/main.ee0823c9.js"
+    "static/css/main.809dcb4c.css",
+    "static/js/main.deb25ac9.js"
   ]
 }

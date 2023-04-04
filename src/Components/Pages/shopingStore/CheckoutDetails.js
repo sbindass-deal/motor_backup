@@ -8,23 +8,13 @@ import StripeCheckout from "react-stripe-checkout";
 import { toast } from "react-toastify";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import FormInput from "../../UI/FormInput";
+import { notify } from "../../UI/globaleVar";
 
 export default function CheckoutDetails() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const product = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const [getInputData, setGetInputData] = useState({
     name: "",
@@ -45,17 +35,23 @@ export default function CheckoutDetails() {
         quantity: curElem.quantity,
         color_id: curElem.color_id,
         size_id: curElem.size_id,
+        coupon_code: parseInt(curElem.coupon_code, 10),
+        multiplier: curElem.multiplier,
       };
     });
     await axios
       .post(`${process.env.REACT_APP_URL}addorder`, {
         order_status: "New",
         items,
+        payment_mode: `${getInputData.deliveryType}`,
       })
       .then((result) => {
-        // if (result.status === 200) {
-        //   handleShow();
-        // }
+        if (result.data.status === 200) {
+          getDeliveryAddress();
+          navigate("/orders-cart");
+          dispatch(clearCart());
+          notify(result.data.message, result.data.status);
+        }
       })
       .catch((error) => {
         // notify(error.message);
@@ -94,15 +90,15 @@ export default function CheckoutDetails() {
 
   const handleOrder = (e) => {
     e.preventDefault();
-    if (getInputData.deliveryType === "cash on delivery") {
-      orderPlace();
-      getDeliveryAddress();
-      navigate("/orders-cart");
-      dispatch(clearCart());
-      notify("Order place successfully");
-    } else {
-      handleShow();
-    }
+    // if (getInputData.deliveryType === "cash on delivery") {
+    orderPlace();
+    // getDeliveryAddress();
+    // navigate("/orders-cart");
+    // dispatch(clearCart());
+    // notify("Order place successfully");
+    // } else {
+    //   handleShow();
+    // }
   };
 
   return (
@@ -180,8 +176,8 @@ export default function CheckoutDetails() {
               <option selected disabled value="">
                 Select
               </option>
-              <option value="cash on delivery">cash on delivery</option>
-              <option value="online pay">online pay</option>
+              <option value="cod">cash on delivery</option>
+              <option value="online">online pay</option>
             </select>
           </div>
           <div class="col-md-6">
