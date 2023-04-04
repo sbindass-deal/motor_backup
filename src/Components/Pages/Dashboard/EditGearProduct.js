@@ -21,7 +21,7 @@ const EditGearProduct = () => {
     stock: [{ id: "NA", replace: "" }],
     price: [{ id: "NA", replace: "" }],
     sizeId: [{ id: "NA", replace: "" }],
-    colorId: [{ id: "NA", replace: ""}]
+    colorId: [{ id: "NA", replace: "" }]
   }]);
   const [stock, setStock] = useState([]);
   const [price, setPrice] = useState([]);
@@ -39,6 +39,8 @@ const EditGearProduct = () => {
     category: "",
     desc: "",
     youtube_link: "",
+    coupon_code: "",
+    multiplier: ""
   });
   const [refresh, setRefresh] = useState(false);
   const inputRef = useRef();
@@ -54,18 +56,18 @@ const EditGearProduct = () => {
   const addInventry = (e, index) => {
     setDataInventry([...dataInventry, inventry]);
     // dataInventry?.map((d , i) => {
-      // setUpdateInventry(
-      //   [ {
-      //     stock: [...updatedInventry?.stock , { id: "NA", replace: d?.stock }],
-      //     price: [...updatedInventry?.price ,{ id: "NA", replace: d?.price }],
-      //     sizeId: [...updatedInventry?.sizeId ,{ id: "NA", replace: d?.sizeId }],
-      //     colorId: [...updatedInventry?.colorId ,{ id: "NA", replace: d?.colorId }]
-      //   }]
-      // )
-      // setStock([...stock , { id: "NA", replace: d?.stock }]);
-      // setPrice([...price , { id: "NA", replace: d?.stock }]);
-      // setSizeId([...sizeId , { id: "NA", replace: d?.stock }]);
-      // setColorId([...colorId , { id: "NA", replace: d?.stock }]);
+    // setUpdateInventry(
+    //   [ {
+    //     stock: [...updatedInventry?.stock , { id: "NA", replace: d?.stock }],
+    //     price: [...updatedInventry?.price ,{ id: "NA", replace: d?.price }],
+    //     sizeId: [...updatedInventry?.sizeId ,{ id: "NA", replace: d?.sizeId }],
+    //     colorId: [...updatedInventry?.colorId ,{ id: "NA", replace: d?.colorId }]
+    //   }]
+    // )
+    // setStock([...stock , { id: "NA", replace: d?.stock }]);
+    // setPrice([...price , { id: "NA", replace: d?.stock }]);
+    // setSizeId([...sizeId , { id: "NA", replace: d?.stock }]);
+    // setColorId([...colorId , { id: "NA", replace: d?.stock }]);
     // })
   }
 
@@ -80,7 +82,7 @@ const EditGearProduct = () => {
 
   }
 
- 
+
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -109,18 +111,20 @@ const EditGearProduct = () => {
 
   useEffect(() => {
     const filteredData = products?.find((item) => item.id == id);
-    // console.log("11111", filteredData);
+    console.log("11111", filteredData);
     setGetInputData({
       title: filteredData.title,
       category: filteredData.category,
       product_inventry: filteredData.product_inventry,
       desc: filteredData.description,
-      youtube_link: filteredData.youtube_link
+      youtube_link: filteredData.youtube_link,
+      coupon_code: filteredData.coupon_code,
+      multiplier: filteredData.multiplier
     });
     setShowImage(filteredData.images);
 
     // filteredData.product_inventry?.map((d) => {
-      // setUpdateInventry({...updatedInventry , sizeId : [{id : d.id , replace : d.size_id}] , colorId :[{id : d.id , replace : d.color_id}]});
+    // setUpdateInventry({...updatedInventry , sizeId : [{id : d.id , replace : d.size_id}] , colorId :[{id : d.id , replace : d.color_id}]});
     //   setStock(value => [...value, { id: d?.id, replace: d?.stock }]);
     //   setPrice(value => [...value, { id: d?.id, replace: d?.price }])
     //   setSizeId(value => [...value, { id: d?.id, replace: d?.size_id }])
@@ -158,6 +162,8 @@ const EditGearProduct = () => {
         category: getInputData.category,
         description: getInputData.desc,
         youtube_link: getInputData.youtube_link,
+        coupon_code: getInputData.coupon_code,
+        multiplier: getInputData.coupon_code,
         inventry: JSON.stringify(updatedInventry)
       })
       .then(async function (response) {
@@ -176,8 +182,8 @@ const EditGearProduct = () => {
   };
 
   const updateInventry = (e) => {
-    setPrice2([...price2 , {id : price[0] , replace : price[1]}]);
-    
+    setPrice2([...price2, { id: price[0], replace: price[1] }]);
+
   }
 
 
@@ -273,7 +279,7 @@ const EditGearProduct = () => {
                               name="price"
                               value={price?.replace}
                               placeholder={d?.price}
-                              onChange={(e) => { setPrice([ d?.id ,  e.target.value ]); }}
+                              onChange={(e) => { setPrice([d?.id, e.target.value]); }}
                               type="number"
                             // required={true}
                             />
@@ -470,6 +476,54 @@ const EditGearProduct = () => {
                   required={true}
                 />
               </div>
+
+              <div className="col-md-12 col-lg-3 col-sm-12">
+                <div className="form-group">
+                  <div>
+                    <label>Coupon Code</label>
+                    <input
+                      name="coupon_code"
+                      className="field"
+                      placeholder="Enter coupon Code"
+                      onChange={(e) => {
+                        setGetInputData({
+                          ...getInputData,
+                          coupon_code: e.target.value,
+                        });
+                      }}
+                      
+
+                      value={getInputData.coupon_code}
+                      type="number"
+                      required={true}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-12 col-lg-3 col-sm-12">
+                <div className="form-group">
+                  <div>
+                    <label>Multiplier</label>
+                    <input
+                      name="multiplier"
+                      className="field"
+                      placeholder="Enter multiplier"
+                      onChange={(e) => {
+                        setGetInputData({
+                          ...getInputData,
+                          multiplier: e.target.value,
+                        });
+                      }}
+                      value={getInputData.multiplier}
+                      type="number"
+                      required={true}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ====== */}
               <div className="col-md-12 col-sm-12 mb-3">
                 <label
                   htmlFor="exampleFormControlTextarea1"
