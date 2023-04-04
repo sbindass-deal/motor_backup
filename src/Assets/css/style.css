@@ -4711,7 +4711,7 @@ img.g3Logo.W {
 .bidnW:hover { background-color: transparent; color: #f78c12;}
 .ListDealer .card_postInfo h5 { color: #f78c12;}
 nav.pgNtion { margin: 0 auto;}
-.addSection .inner-slider .card_post { display: flex; align-items: center; background: #090808; padding: 10px;}
+.addSection .inner-slider .card_post { display: flex; align-items: center; background: #1f1d1d; padding: 10px;}
 .addSection .inner-slider .card_postImg.dlr { padding-right: 20px; height: 232px;}
 .addSection .card_postInfo h5 { color: #f58b12;}
 .addSection .labelList li { border: none;}
@@ -6396,7 +6396,7 @@ ul.bidOnThis li p:first-child { width: 26%;}
 .showGallery .col-lg-5 .ant-image { height: 814px; width: 100%;}
 .col-12 .galleryImgSect.gg{ width: 100%; height: 120px; overflow: hidden; display: flex; align-items: center;}
 .logoImg img.slidImg { width: 100%; height: 100%; object-fit: cover;}
-.logoImg { padding: 0; height: 290px}
+.logoImg { padding: 0; height: 310px}
 .light .inner-slider.drl .card_post{ background: #f7f7f7;}
 .ant-image-preview-operations {  top: 14%;}
 #sticky { top: 105px !important;}
@@ -6661,40 +6661,53 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
 }
-
-
-.vs_grid_entries .fa-ticket {
-    color: #FFA500;
-    font-size: 20px;
+.vs_grid_entries .fa-ticket { color: #FFA500; font-size: 20px;}
+.grid_entries_count {  margin: 0 5px 0 10px;}
+.vs_grid_entries .entries-count { width: 75%; text-align: center; display: flex;flex-direction: row; justify-content: center;align-content: center;align-items: center; font-family: "Oswald", sans-serif; text-transform: uppercase;}
+.vs_grid_entries .multiplier-value {  font-weight: bold;  font-family: "Montserrat", sans-serif;  text-transform: uppercase;   width: 25%;   text-align: center;   background: #FFA500;}
+#main_width{ width: 40%;}
+.btn_ { background: #fff; color: #f7931b; font-weight: 500;}
+.gadGetInfo {padding: 25px;}
+.orBg {
+  background: #F6811C;
+  padding: 25px 25px 25px 110px;
 }
-
-.grid_entries_count {
-    margin: 0 5px 0 10px;
-    /* animation: accent 3s linear infinite; */
+a.imgLog {
+  position: absolute;
+  right: -82px;
+  top: 28px;
+  z-index: 1;
 }
+.col-md-4.Gld{ padding: 2px;}
 
-.vs_grid_entries .entries-count {
-    width: 75%;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
+.galleryImgSect.gg .ant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: initial;
+  display: flex;
+  align-items: center;
 }
-
-
-.vs_grid_entries .multiplier-value {
-    font-weight: bold;
-    font-family: "Montserrat", sans-serif;
-    text-transform: uppercase;
-    width: 25%;
-    text-align: center;
-    background: #FFA500;
+.Gld .galleryImgSect.gg { height: 200px;}
+h2.verticalTitle {
+  transform: rotate(-90deg);
+  font-size: 45px;
+  position: relative;
+  top: 40%;
+  letter-spacing: 9px;
 }
-
-#main_width{
-  width: 40%;
+h2.verticalTitle:before {
+  content: "Gallery";
+  position: absolute;
+  top: -40px;
+  width: 100%;
+  height: 100%;
+  font-size: 100px;
+  left: -67%;
+  color: #141414;
+  z-index: -1;
+  letter-spacing: 13px;
+}
+.videoColl .col-lg-6 {
+  height: auto;
+ 
 }
