@@ -13,6 +13,8 @@ import Videos from "./Videos";
 import GaragesAuction from "./GaragesAuction";
 import DealerVehicleList from "./GaragesVehicleList";
 import { Avatar, Space } from "antd";
+import coTImg from "../../../Assets/images/coTImg.png"
+
 
 const GaragesListDetails = () => {
   const { id } = useParams();
@@ -58,29 +60,12 @@ const GaragesListDetails = () => {
       <CarousalGarages dealerData={dealerData} />
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
-          <div
-            className="row "
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            {/* <div className="col-lg-6 col-md-12 col-sm-12 logoImg">
-              <img
-                className="slidImg"
-                src={
-                  dealerData.image_logo &&
-                  `${process.env.REACT_APP_URL}/${dealerData?.image_logo[0]?.logo}`
-                }
-                alt="aboutImg"
-              />
-            </div> */}
-            <div
-              className="col-lg-10 col-md-12 col-sm-12 bgOrange"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Link to={`/garages-user-details/${dealerData.id}`}>
+          <div className="row gadGetInfo">
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <Link
+                to={`/garages-user-details/${dealerData.id}`}
+                className="imgLog"
+              >
                 <Space direction="vertical" size={16}>
                   <Space wrap size={16}>
                     <Avatar
@@ -104,19 +89,18 @@ const GaragesListDetails = () => {
                   </Space>
                 </Space>
               </Link>
-              <div className="pl-4">
-                <h3>{dealerData.name}</h3>
-                <p>
-                  {dealerData?.about_us &&
-                    parse(dealerData?.about_us, strToHtml)}
-                </p>
-                <Link
-                  to={`/garages-user-details/${dealerData.id}`}
-                  className="btn"
-                >
-                  View Profile
-                </Link>
-              </div>
+            </div>
+            <div className="col-lg-7 col-md-6 col-sm-12 orBg">
+              <h3>{dealerData.name}</h3>
+              <p>
+                {dealerData?.about_us && parse(dealerData?.about_us, strToHtml)}
+              </p>
+              <Link
+                to={`/garages-user-details/${dealerData.id}`}
+                className="btn btn_"
+              >
+                View Profile
+              </Link>
             </div>
           </div>
         </div>
@@ -125,19 +109,20 @@ const GaragesListDetails = () => {
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
           <div className="row ">
-            <div className="col-12 text-center pb_30">
-              {/* <h2>Gallery</h2> */}
-            </div>
+            <div className="col-12 text-center pb_30"></div>
 
             <div className="col-12 Videos ghhh">
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12">
+                <div className="col-lg-2">
+                  <h2 className="verticalTitle">Gallery</h2>
+                </div>
+                <div className="col-lg-10 col-md-10 col-sm-12">
                   <div className="row">
                     <Image.PreviewGroup>
                       {dealerData?.image_gallery &&
                         [...dealerData?.image_gallery].map((curElem, i) => {
                           return (
-                            <div key={i} className="col-md-6">
+                            <div key={i} className="col-md-4 Gld">
                               <div className="galleryImgSect gg">
                                 <Image
                                   loading="lazy"
@@ -179,14 +164,18 @@ const GaragesListDetails = () => {
       </section>
       <GaragesAuction dealerName={dealerData.name} userId={id} />
       <DealerVehicleList dealerName={dealerData.name} userId={id} />
-      <section className="pt_80 mobileSpec contactD" id="">
-        <div className="container">
-          <div className="row ">
-            <div className="col-lg-6 col-md-6 col-sm-12">
-              <img src={caer} />
+      <section class="pt_80 mobileSpec" id="">
+        <div class="container">
+          <div class="row ">
+            <div class="col-lg-6 col-md-12 col-sm-12 logoImg">
+              <img
+                class="slidImg"
+                alt="aboutImg"
+                src={coTImg}
+              />
             </div>
-            <div className="col-lg-6 col-md-6 col-sm-12">
-              <div className="contactInfo">
+            <div class="col-lg-6 col-md-12 col-sm-12 bgOrange">
+            <div className="contactInfo">
                 <h2>Contact Us</h2>
                 <ul>
                   <li>
@@ -205,6 +194,7 @@ const GaragesListDetails = () => {
           </div>
         </div>
       </section>
+      
     </>
   );
 };
