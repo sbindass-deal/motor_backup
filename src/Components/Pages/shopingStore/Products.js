@@ -135,7 +135,7 @@ useEffect(() => {
                   className="orange_btn"
                   // disabled ={addButton}
                 >
-                  Add To Cart
+                  Add To Cart <span>2</span>
                 </button></Link>
               </li>
               <li class="add">-</li>

@@ -6792,3 +6792,12 @@ span.socialCount svg {
   text-transform: capitalize;
   padding: 9px 30px;
 }
+.priceDateList .orange_btn span {
+  background: #f8a504;
+  padding: 1px 6px;
+  border-radius: 100%;
+  margin-left: 10px;
+}
+.light .priceDateList .orange_btn span {
+  background: #000;
+}
