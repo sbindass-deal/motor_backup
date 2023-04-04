@@ -6619,7 +6619,7 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
 
 .entries_count{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .entries_count2{
@@ -6646,8 +6646,7 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
     margin-top: 0px;
     z-index: 1;
     position: relative;
-    background: rgb(238 238 238 / 80%);
-    width: 80%;
+    width: 100%;
 }
 
 .vs_grid_entries .entries-count {
@@ -6664,7 +6663,7 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
 .vs_grid_entries .fa-ticket { color: #FFA500; font-size: 20px;}
 .grid_entries_count {  margin: 0 5px 0 10px;}
 .vs_grid_entries .entries-count { width: 75%; text-align: center; display: flex;flex-direction: row; justify-content: center;align-content: center;align-items: center; font-family: "Oswald", sans-serif; text-transform: uppercase;}
-.vs_grid_entries .multiplier-value {  font-weight: bold;  font-family: "Montserrat", sans-serif;  text-transform: uppercase;   width: 25%;   text-align: center;   background: #FFA500;}
+.vs_grid_entries .multiplier-value {  font-weight: bold;  font-family: "Montserrat", sans-serif;  text-transform: uppercase;   padding: 5px;   text-align: center;   background: #FFA500;}
 #main_width{ width: 40%;}
 .btn_ { background: #fff; color: #f7931b; font-weight: 500;}
 .gadGetInfo {padding: 25px;}
@@ -6707,7 +6706,53 @@ h2.verticalTitle:before {
   z-index: -1;
   letter-spacing: 13px;
 }
-.videoColl .col-lg-6 {
-  height: auto;
- 
+.videoColl .col-lg-6 { height: auto;}
+.followSection {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
+.userImg {
+  padding-right: 10px;
+}
+.userInfo span.text-muted {
+  display: block;
+}
+.vBtn {
+  margin-left: auto;
+}
+.tBB li.nav-item button {
+  background: transparent;
+  color: #fff;
+  min-width: 220px;
+}
+.nav-tabs.tBB .nav-link.active {
+  color: #f8a504;
+  background-color: #000;
+  border-color: #dee2e600 #dee2e600 #f8a504;
+}
+.nav-tabs.tBB .nav-link:focus, .nav-tabs .nav-link:hover {
+  border-color: #e9ecef00 #e9ecef00 #f8a504;
+  color: #f8a504;
+}
+.PostInfo {
+  display: flex;
+}
+.PostInfo .userImG {
+  padding-right: 3%;
+}
+.PostInfo {
+  display: flex;
+  background: #232323;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+span.socialCount {
+  padding: 10px;
+}
+span.socialCount svg {
+  color: #f8a504;
+  font-size: 25px;
+}
+
+.light h2.verticalTitle:before { color: #66666617;}
