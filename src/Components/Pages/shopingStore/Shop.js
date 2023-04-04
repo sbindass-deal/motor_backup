@@ -17,6 +17,7 @@ const Shop = () => {
       setLoading(true);
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}allproduct`);
+        console.log(889, res)
         if (res.status === 200) {
           setProducts(res.data.data.product);
         }
@@ -75,6 +76,9 @@ const Shop = () => {
                       images={curElem.images}
                       title={curElem.title}
                       curElem={curElem}
+                      coupon_code={curElem.coupon_code}
+                      multiplier={curElem.multiplier}
+                      
                     />
                   );
                 })

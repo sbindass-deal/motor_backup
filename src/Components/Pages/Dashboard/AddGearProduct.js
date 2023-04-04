@@ -340,7 +340,7 @@ const AddGearProduct = () => {
                         });
                       }}
                       value={getInputData.coupon_code}
-                      type="text"
+                      type="number"
                       required={true}
                     />
                   </div>
@@ -362,7 +362,7 @@ const AddGearProduct = () => {
                         });
                       }}
                       value={getInputData.multiplier}
-                      type="text"
+                      type="number"
                       required={true}
                     />
                   </div>
