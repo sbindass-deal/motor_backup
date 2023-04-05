@@ -6801,3 +6801,17 @@ span.socialCount svg {
 .light .priceDateList .orange_btn span {
   background: #000;
 }
+.UserImZ {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.fwrList li {
+  padding: 5px;
+}
+
+ul.fwrList {
+  display: flex;
+  align-items: center;
+}

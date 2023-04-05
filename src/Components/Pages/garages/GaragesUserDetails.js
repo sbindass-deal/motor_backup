@@ -60,103 +60,9 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-md-3 my-4">
-            {garagesDataList?.map((curElem, i) => {
-              return (
-                <div className="box_backgroundD mt-15 " key={i}>
-                  <h3 className="cardTitle">User to follow</h3>
-                  <div className="followSection">
-                    <div className="userImg">
-                      <Space direction="vertical" size={16}>
-                        <Space wrap size={16}>
-                          <Avatar
-                            size={64}
-                            icon={
-                              <img
-                                className="slidImg"
-                                loading="lazy"
-                                src={
-                                  curElem?.image_logo &&
-                                  `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Logo"
-                              />
-                            }
-                          />
-                        </Space>
-                      </Space>
-                    </div>
-                    <div className="userInfo">
-                      {curElem.name}
-                      <span className="text-muted">{curElem.username}</span>
-                    </div>
-                    <div className="vBtn">
-                      <Link
-                        to={`/garages/${curElem.id}`}
-                        type="button"
-                        className="btn-sm follow"
-                      >
-                        View
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-            {/* <h5>Team to join</h5>
-            <hr />
-            {garagesDataList?.map((curElem, i) => {
-              return (
-                <div
-                  className="row py-2"
-                  key={i}
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <div className="col-md-3">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={
-                            <img
-                              className="slidImg"
-                              loading="lazy"
-                              src={
-                                garagesData?.image_logo &&
-                                `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
-                              }
-                              alt="Logo"
-                            />
-                          }
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-6">
-                    {curElem.name} <br />
-                    <span className="text-muted">{curElem.username}</span>
-                  </div>
-                  <div className="col-md-3">
-                    <Link
-                      to={`/garages/${curElem.id}`}
-                      type="button"
-                      className="btn-sm follow"
-                    >
-                      View
-                    </Link>
-                  </div>
-                </div>
-              );
-            })} */}
-
-            <LatestGuzzlrsAuction />
-          </div>
-          <div className="col-md-8">
-            <div className="mt-4">
+        
+          <div className="col-md-8 offset-md-2">
+            <div className="UserImZ mt-4">
               <Space direction="vertical" size={16}>
                 <Space wrap size={16}>
                   <Avatar
@@ -179,6 +85,13 @@ const GaragesUserDetails = () => {
                   />
                 </Space>
               </Space>
+              <div className="followers">
+                    <ul className="fwrList">
+                      <li><span>22</span> Followers</li>
+                      <li><span>2</span>Following</li>
+                      <li><span>12</span>Post</li>
+                    </ul>
+              </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
             <span className="text-muted">{garagesData?.username}</span>
