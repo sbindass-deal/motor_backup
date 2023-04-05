@@ -91,6 +91,7 @@ const GaragesUserDetails = () => {
                       <li><span>2</span>Following</li>
                       <li><span>12</span>Post</li>
                     </ul>
+                    <button className="btn">Follow</button>
               </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
