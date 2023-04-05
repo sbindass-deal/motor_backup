@@ -6733,7 +6733,7 @@ h2.verticalTitle:before {
 .tBB li.nav-item button {
   background: transparent;
   color: #fff;
-  min-width: 220px;
+  min-width: 170px;
 }
 .nav-tabs.tBB .nav-link.active {
   color: #f8a504;
@@ -6800,4 +6800,37 @@ span.socialCount svg {
 }
 .light .priceDateList .orange_btn span {
   background: #000;
+}
+.UserImZ {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.fwrList li {
+  padding: 5px;
+}
+
+ul.fwrList {
+  display: flex;
+  align-items: center;
+}
+ul.fwrList li span {
+  padding: 7px;
+}
+ul.fwrList li {
+  padding: 5px 10px 5px 5px;
+  border-right: 1px solid #3c3535;
+}
+ul.fwrList li:last-child {
+  border-right: 0;
+}
+.followers {
+  display: flex;
+}
+
+.followers button.btn {
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 12px;
 }

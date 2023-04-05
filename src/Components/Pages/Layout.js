@@ -95,10 +95,11 @@ import Transaction from "./MyAccount/Transaction";
 import Garages from "./garages/Garages";
 import GaragesListDetails from "./garages/GaragesListDetails";
 import GaragesUserDetails from "./garages/GaragesUserDetails";
+import UserGarage from "./MyAccount/UserGarage";
+import AddGarage from "./MyAccount/AddGarage";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
-
   return (
     <>
       <BrowserRouter>
@@ -110,6 +111,8 @@ const Layout = () => {
           {logingUser.login.token && (
             <>
               <Route path="accountinfo" element={<AccountInfo />} />
+              <Route path="user-garage" element={<UserGarage />} />
+              <Route path="add-garage" element={<AddGarage />} />
               <Route path="detailNew" element={<DetailNew />} />
               <Route path="listing" element={<MyListings />} />
               <Route path="bids" element={<Bids />} />

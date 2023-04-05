@@ -14,10 +14,13 @@ import Videos from "./Videos";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction";
+import GaragesAuction from "./GaragesAuction";
+import GaragesBlog from "./GaragesBlog";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
   const [showMore, setShowMore] = useState(false);
+  const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
   const { id } = useParams();
   useEffect(() => {
@@ -52,6 +55,36 @@ const GaragesUserDetails = () => {
     fetchGarages();
   }, []);
 
+  useEffect(() => {
+    const fetchDealer = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}getuserDetailById`, {
+          id,
+        })
+        .then(function (response) {
+          if (response.data.data) {
+            setDealerData({ ...response.data.data[0] });
+          } else {
+            setDealerData({});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchDealer();
+
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
+
+    // setUserVehicleImage(initialState);
+  }, [id]);
+
   return (
     <>
       <div className="row">
@@ -59,107 +92,9 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-md-3 my-4">
-           
-            {garagesDataList?.map((curElem, i) => {
-              return (
-                <div
-                  className="box_backgroundD mt-15 "
-                  key={i}
-                >
-                  <h3 className="cardTitle">User to follow</h3>
-                  <div className="followSection">
-                    <div className="userImg">
-                    <Space direction="vertical" size={16}>
-                        <Space wrap size={16}>
-                          <Avatar
-                            size={64}
-                            icon={
-                              <img
-                                className="slidImg"
-                                loading="lazy"
-                                src={
-                                  curElem?.image_logo &&
-                                  `${process.env.REACT_APP_URL}/${curElem?.image_logo[0]?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Logo"
-                              />
-                            }
-                          />
-                        </Space>
-                      </Space>
-                    </div>
-                    <div className="userInfo">
-                      {curElem.name} 
-                      <span className="text-muted">{curElem.username}</span>
-                    </div>
-                    <div className="vBtn">
-                    <Link
-                      to={`/garages/${curElem.id}`}
-                      type="button"
-                      className="btn-sm follow"
-                    >
-                      View
-                    </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-            {/* <h5>Team to join</h5>
-            <hr />
-            {garagesDataList?.map((curElem, i) => {
-              return (
-                <div
-                  className="row py-2"
-                  key={i}
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <div className="col-md-3">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={
-                            <img
-                              className="slidImg"
-                              loading="lazy"
-                              src={
-                                garagesData?.image_logo &&
-                                `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
-                              }
-                              alt="Logo"
-                            />
-                          }
-                        />
-                      </Space>
-                    </Space>
-                  </div>
-                  <div className="col-md-6">
-                    {curElem.name} <br />
-                    <span className="text-muted">{curElem.username}</span>
-                  </div>
-                  <div className="col-md-3">
-                    <Link
-                      to={`/garages/${curElem.id}`}
-                      type="button"
-                      className="btn-sm follow"
-                    >
-                      View
-                    </Link>
-                  </div>
-                </div>
-              );
-            })} */}
-
-            <LatestGuzzlrsAuction />
-          </div>
-          <div className="col-md-8">
-            <div className="mt-4">
+        
+          <div className="col-md-8 offset-md-2">
+            <div className="UserImZ mt-4">
               <Space direction="vertical" size={16}>
                 <Space wrap size={16}>
                   <Avatar
@@ -182,6 +117,14 @@ const GaragesUserDetails = () => {
                   />
                 </Space>
               </Space>
+              <div className="followers">
+                    <ul className="fwrList">
+                      <li><span>22</span> Followers</li>
+                      <li><span>2</span>Following</li>
+                      <li><span>12</span>Post</li>
+                    </ul>
+                    <button className="btn">Follow</button>
+              </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
             <span className="text-muted">{garagesData?.username}</span>
@@ -189,12 +132,7 @@ const GaragesUserDetails = () => {
               {garagesData?.dealerDescription &&
                 parse(garagesData?.dealerDescription, strToHtml)}
             </p>
-            <ul
-             
-              class="nav nav-tabs my-4 tBB"
-              id="myTab"
-              role="tablist"
-            >
+            <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link active"
@@ -206,7 +144,7 @@ const GaragesUserDetails = () => {
                   aria-controls="home-tab-pane"
                   aria-selected="true"
                 >
-                  Posts
+                  Garages
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -220,7 +158,7 @@ const GaragesUserDetails = () => {
                   aria-controls="profile-tab-pane"
                   aria-selected="false"
                 >
-                  Replies
+                  Auctions
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -234,7 +172,7 @@ const GaragesUserDetails = () => {
                   aria-controls="contact-tab-pane"
                   aria-selected="false"
                 >
-                  Gallery
+                  Post
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -248,7 +186,21 @@ const GaragesUserDetails = () => {
                   aria-controls="video-tab-pane"
                   aria-selected="false"
                 >
-                  Videos
+                  Reply
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="video-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#blog-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="blog-tab-pane"
+                  aria-selected="false"
+                >
+                  Blog
                 </button>
               </li>
             </ul>
@@ -261,10 +213,8 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <div className="row">
-                  
                   <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -279,8 +229,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -300,11 +250,11 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
@@ -312,9 +262,8 @@ const GaragesUserDetails = () => {
                   </div>
                 </div>
                 <div className="row">
-                <div className="col-md-12 ">
+                  <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -329,8 +278,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -350,17 +299,16 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
               <div
@@ -370,106 +318,7 @@ const GaragesUserDetails = () => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div className="row">
-                <div className="col-md-12 ">
-                    <div className="PostInfo">
-                   
-                      <div className="userImG">
-                        <Space direction="vertical" size={16}>
-                          <Space wrap size={16}>
-                            <Avatar
-                              size={64}
-                              icon={<img src={men_face} alt="logo" />}
-                            />
-                          </Space>
-                        </Space>
-                      </div>
-                      <div className="DecIbp">
-                        <h5>User</h5>
-                        <p>
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
-                        </p>
-                        <div class="card">
-                          <img
-                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                            class="card-img-bottom"
-                            alt="..."
-                          />
-                        </div>
-                        <div className="py-3">
-                          <span className="socialCount">
-                            <i className={`fa-solid fa-thumbs-up `}></i> 22
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-comments"></i> 2
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-share-from-square"></i> 12
-                          </span>
-                          <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
-                          </span>
-
-                          <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                <div className="col-md-12 ">
-                    <div className="PostInfo">
-                   
-                      <div className="userImG">
-                        <Space direction="vertical" size={16}>
-                          <Space wrap size={16}>
-                            <Avatar
-                              size={64}
-                              icon={<img src={men_face} alt="logo" />}
-                            />
-                          </Space>
-                        </Space>
-                      </div>
-                      <div className="DecIbp">
-                        <h5>User</h5>
-                        <p>
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
-                        </p>
-                        <div class="card">
-                          <img
-                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                            class="card-img-bottom"
-                            alt="..."
-                          />
-                        </div>
-                        <div className="py-3">
-                          <span className="socialCount">
-                            <i className={`fa-solid fa-thumbs-up `}></i> 22
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-comments"></i> 2
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-share-from-square"></i> 12
-                          </span>
-                          <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
-                          </span>
-
-                          <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <GaragesAuction dealerName={dealerData.name} userId={id} showUserName={false} />
               </div>
               <div
                 class="tab-pane fade"
@@ -517,6 +366,21 @@ const GaragesUserDetails = () => {
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="blog-tab-pane"
+                role="tabpanel"
+                aria-labelledby="blog-tab"
+                tabindex="0"
+              >
+                <section className="py-4 mobileSpec" id="">
+                  <div className="container">
+                    <div className="row ">
+                      <GaragesBlog id={id} />
                     </div>
                   </div>
                 </section>

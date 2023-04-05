@@ -30,7 +30,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
           }`}
         >
           <div className="plan_cardHead">
-            <h4>{curElem.plan_name} </h4>
+            <h4 style={{ overflow: "hidden" }}>{curElem.plan_name} </h4>
             {curElem.monthly_price !== 0 ? (
               <div className="plan_Price">
                 <div className="dfk ">
@@ -76,6 +76,7 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                     </span>
                   </div>
                 </div>
+
                 {/* <p className="dicount">
                   <span>
                     <i class="fa-solid fa-circle-check"></i>

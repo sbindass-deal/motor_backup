@@ -1,17 +1,19 @@
 import axios from "axios";
 import React from "react";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 
 const AddBlog = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
+  const [isLoading, setIsLoading]=useState(false)
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [blogData, setBlogData] = useState({
     title: "",
@@ -68,6 +70,7 @@ const AddBlog = () => {
 
   const handleApi = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const url = `${process.env.REACT_APP_URL}addblogs`;
     let formdata = new FormData();
     formdata.append("image", file[0]);
@@ -87,11 +90,13 @@ const AddBlog = () => {
       .post(url, formdata, config)
       .then((response) => {
         if (response.status === 200) {
+          setIsLoading(false)
           notify("Added Blog successfully !");
           navigate("/blog");
         }
       })
       .catch((error) => {
+        setIsLoading(false)
         console.log(error);
       });
     setBlogData({ title: "", desc: "", img: "" });
@@ -102,6 +107,10 @@ const AddBlog = () => {
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
         <form onSubmit={handleApi}>
+          <Link to={'/blog'}>
+            <button>Back To List</button>
+          </Link>
+          <h3 className="text-center">Add New Blog</h3>
           <div className="row row_gap_5">
             <div className="col-12 ">
               <label>Blog Title</label>
@@ -216,9 +225,14 @@ const AddBlog = () => {
             </div>
           </div>
           <div className="form-group text-center my-4 mt-5">
-          <button type="submit" className="btn mt-2">
-              Submit
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button type="submit" className="btn mt-2">
+                Submit
+              </button>
+            }
+          
           </div>
         </form>
       </div>

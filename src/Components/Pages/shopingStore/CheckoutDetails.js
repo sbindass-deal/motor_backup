@@ -39,7 +39,7 @@ export default function CheckoutDetails() {
     });
     await axios
       .post(`${process.env.REACT_APP_URL}addorder`, {
-        order_status: "New",
+        // order_status: "New",
         items,
         // payment_mode: `${getInputData.deliveryType}`,
       })
