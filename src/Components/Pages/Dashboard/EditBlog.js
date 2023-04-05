@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 // import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -13,6 +13,8 @@ import {
   convertToRaw,
 } from "draft-js";
 import { toast } from "react-toastify";
+import SmallSpinner from "../../UI/SmallSpinner";
+import FormInput from "../../UI/FormInput";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -20,6 +22,7 @@ const EditBlog = () => {
   const [blogDataById, setBlogDataById] = useState([]);
   const [file, setFile] = useState([]);
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
+  const [isLoading, setLoading]=useState(false)
   const [blogData, setBlogData] = useState({
     title: "",
     desc: "",
@@ -84,6 +87,7 @@ const EditBlog = () => {
   }, []);
   const handleApi = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const url = `${process.env.REACT_APP_URL}updateblogs/${id}`;
     let formData = new FormData();
     formData.append("image", file[0]);
@@ -101,12 +105,14 @@ const EditBlog = () => {
       .post(url, formData, config)
       .then((response) => {
         if (response.status === 200) {
+          setLoading(false)
           notify("Save successfully !");
           navigate("/blog");
         }
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false)
       });
     setBlogData({ title: "", desc: "", img: "" });
   };
@@ -116,11 +122,15 @@ const EditBlog = () => {
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
         <form>
+          <Link to={'/blog'}>
+            <button>Back To List</button>
+          </Link>
+          <h3 className="text-center">Edit Blog</h3>
           <div className="row row_gap_5">
             <div className="col-12 ">
               <label>Blog Title</label>
               <div className="form-group">
-                <input
+                <FormInput
                   type="text"
                   value={blogData.title}
                   name="title"
@@ -128,6 +138,8 @@ const EditBlog = () => {
                   className="field"
                   placeholder="Product Name"
                   required
+                  errorMessage="Blog Title is Required"
+
                 />
               </div>
             </div>
@@ -249,9 +261,14 @@ const EditBlog = () => {
             </div>
           </div>
           <div className="form-group text-center my-4 mt-5">
-            <button onClick={handleApi} className="btn">
-              Submit
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button onClick={handleApi} className="btn">
+                Submit
+              </button>
+            }
+            
           </div>
         </form>
       </div>
