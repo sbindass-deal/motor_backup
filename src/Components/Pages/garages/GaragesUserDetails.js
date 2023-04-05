@@ -60,17 +60,13 @@ const GaragesUserDetails = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-3 my-4">
-           
             {garagesDataList?.map((curElem, i) => {
               return (
-                <div
-                  className="box_backgroundD mt-15 "
-                  key={i}
-                >
+                <div className="box_backgroundD mt-15 " key={i}>
                   <h3 className="cardTitle">User to follow</h3>
                   <div className="followSection">
                     <div className="userImg">
-                    <Space direction="vertical" size={16}>
+                      <Space direction="vertical" size={16}>
                         <Space wrap size={16}>
                           <Avatar
                             size={64}
@@ -94,17 +90,17 @@ const GaragesUserDetails = () => {
                       </Space>
                     </div>
                     <div className="userInfo">
-                      {curElem.name} 
+                      {curElem.name}
                       <span className="text-muted">{curElem.username}</span>
                     </div>
                     <div className="vBtn">
-                    <Link
-                      to={`/garages/${curElem.id}`}
-                      type="button"
-                      className="btn-sm follow"
-                    >
-                      View
-                    </Link>
+                      <Link
+                        to={`/garages/${curElem.id}`}
+                        type="button"
+                        className="btn-sm follow"
+                      >
+                        View
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -189,12 +185,7 @@ const GaragesUserDetails = () => {
               {garagesData?.dealerDescription &&
                 parse(garagesData?.dealerDescription, strToHtml)}
             </p>
-            <ul
-             
-              class="nav nav-tabs my-4 tBB"
-              id="myTab"
-              role="tablist"
-            >
+            <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link active"
@@ -206,7 +197,7 @@ const GaragesUserDetails = () => {
                   aria-controls="home-tab-pane"
                   aria-selected="true"
                 >
-                  Posts
+                  Garages
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -220,7 +211,7 @@ const GaragesUserDetails = () => {
                   aria-controls="profile-tab-pane"
                   aria-selected="false"
                 >
-                  Replies
+                  Auctions
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -234,7 +225,7 @@ const GaragesUserDetails = () => {
                   aria-controls="contact-tab-pane"
                   aria-selected="false"
                 >
-                  Gallery
+                  Post
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -248,7 +239,21 @@ const GaragesUserDetails = () => {
                   aria-controls="video-tab-pane"
                   aria-selected="false"
                 >
-                  Videos
+                  Reply
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="video-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#blog-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="blog-tab-pane"
+                  aria-selected="false"
+                >
+                  Blog
                 </button>
               </li>
             </ul>
@@ -261,10 +266,8 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <div className="row">
-                  
                   <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -279,8 +282,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -300,11 +303,11 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
@@ -312,9 +315,8 @@ const GaragesUserDetails = () => {
                   </div>
                 </div>
                 <div className="row">
-                <div className="col-md-12 ">
+                  <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -329,8 +331,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -350,17 +352,16 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
               <div
@@ -371,9 +372,8 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <div className="row">
-                <div className="col-md-12 ">
+                  <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -388,8 +388,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -409,11 +409,11 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
@@ -421,9 +421,8 @@ const GaragesUserDetails = () => {
                   </div>
                 </div>
                 <div className="row">
-                <div className="col-md-12 ">
+                  <div className="col-md-12 ">
                     <div className="PostInfo">
-                   
                       <div className="userImG">
                         <Space direction="vertical" size={16}>
                           <Space wrap size={16}>
@@ -438,8 +437,8 @@ const GaragesUserDetails = () => {
                         <h5>User</h5>
                         <p>
                           This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a
-                          little bit longer.
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </p>
                         <div class="card">
                           <img
@@ -459,11 +458,11 @@ const GaragesUserDetails = () => {
                             <i class="fa-solid fa-share-from-square"></i> 12
                           </span>
                           <span className="socialCount">
-                          <i class="fa-solid fa-heart"></i> 8,427
+                            <i class="fa-solid fa-heart"></i> 8,427
                           </span>
 
                           <span className="socialCount">
-                          <i class="fa-solid fa-eye"></i> 99k
+                            <i class="fa-solid fa-eye"></i> 99k
                           </span>
                         </div>
                       </div>
@@ -514,6 +513,29 @@ const GaragesUserDetails = () => {
                                   )}
                               </Image.PreviewGroup>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="blog-tab-pane"
+                role="tabpanel"
+                aria-labelledby="blog-tab"
+                tabindex="0"
+              >
+                <section className="py-4 mobileSpec" id="">
+                  <div className="container">
+                    <div className="row ">
+                      <div className="col-12 text-center pb_30"></div>
+
+                      <div className="col-12 Videos ghhh">
+                        <div className="row">
+                          <div className="col-lg-12 col-md-12 col-sm-12">
+                            Blog pages
                           </div>
                         </div>
                       </div>
