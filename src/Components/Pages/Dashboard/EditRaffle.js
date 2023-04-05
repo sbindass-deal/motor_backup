@@ -300,7 +300,7 @@ const EditRaffle = () => {
                   className="field"
                   value={
                     
-                    raffle?.desc && parse(raffle?.desc, strToHtml)
+                    raffle?.desc
                     
                   }
                   onChange={handleChange}

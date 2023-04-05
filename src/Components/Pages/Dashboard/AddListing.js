@@ -99,6 +99,7 @@ const AddListing = () => {
                   label="Category"
                   placeholder="Category"
                   //   pattern="^[0-9]$"
+                  
 
                   //   errorMessage="use only alphabet no special character"
                   //   required={true}

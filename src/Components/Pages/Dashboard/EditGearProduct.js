@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 
@@ -173,6 +173,7 @@ const EditGearProduct = () => {
           if (a) {
             navigate("/gear-product");
             window.location.reload(false);
+            notify("Successfully Saved!")
           }
         }
       })
@@ -224,6 +225,10 @@ const EditGearProduct = () => {
       <div className="container">
         <div className="row m-md-5 my-4">
           <form>
+            <Link to={'/gear-product'}>
+              <button>Back To List</button>
+            </Link>
+            <h3 className="text-center">Edit Gear Products</h3>
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput

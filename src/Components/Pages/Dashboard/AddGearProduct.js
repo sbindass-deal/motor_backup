@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
 import SmallSpinner from "../../UI/SmallSpinner";
@@ -14,6 +14,9 @@ const AddGearProduct = () => {
   const [category, setCategory] = useState();
   const [size, setSize] = useState();
   const [color, setColor] = useState();
+
+ 
+
   const [getInputData, setGetInputData] =
     useState({
       title: "",
@@ -97,7 +100,7 @@ const AddGearProduct = () => {
   const handleApi = async (e) => {
     
     e.preventDefault();
-  
+    setLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}addproduct`, {
         stock: dataInventry?.filter((d , i) => dataInventry.length-1 != i )?.map(d  => d.stock),
@@ -113,7 +116,7 @@ const AddGearProduct = () => {
       })
       .then(async function (response) {
         if (response.status === 200) {
-          setLoading(true)
+         
           let a = await uploadFileOne(response.data.data.id);
           if (a) {
             notify("Added successfully !");
@@ -125,6 +128,7 @@ const AddGearProduct = () => {
         }
       })
       .catch(function (error) {
+        setLoading(false)
         console.log(error);
       });
      
@@ -165,6 +169,10 @@ const AddGearProduct = () => {
           <div>
           </div>
           <form>
+            <Link to={'/gear-product'}>
+              <button>Back To List</button>
+            </Link>
+              <h3 className="text-center">Add Gear Products</h3>
             <div className="row">
               <div className="col-md-12 col-lg-6 col-sm-12">
                 <FormInput
@@ -444,6 +452,7 @@ const AddGearProduct = () => {
                   minLength={1}
                   maxLength={2000}
                   rows="4"
+                  required
                 ></textarea>
                 {getInputData?.desc?.trim().length > 500 && (
                   <span className="text-danger">
@@ -520,10 +529,14 @@ const AddGearProduct = () => {
             </div>
             <div className="text-center my-5">
               {
-                <button onClick={handleApi} type="button" className="btn">
+                loading ? (
+                  <SmallSpinner/>
+                ) : <button onClick={handleApi} type="submit" className="btn">
                   Submit
                 </button>
-              }
+            }
+               
+            
             </div>
           </form>
         </div>
