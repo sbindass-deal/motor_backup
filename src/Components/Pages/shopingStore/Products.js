@@ -44,6 +44,8 @@ useEffect(() => {
 
 }, [])
 
+console.log(curElem);
+
   
   return (
     <>
@@ -153,21 +155,23 @@ useEffect(() => {
               class="priceDateList"
               style={{ justifyContent: "space-between" }}
             >
-              <li class="add">+</li>
+              {/* <li class="add">+</li> */}
               <li class="">
-              <Link to={`/shop/${id}`}><button
-                  // onClick={() => {
-                  //   dispatch(addProduct({ ...curElem, quantity: 1 }));
-                  //   notify("Added to cart.");
-                  //   setAddButton(true)
-                  // }}
+              {/* <Link to={`/shop/${id}`}> */}
+                <button
+                  onClick={() => {
+                    dispatch(addProduct({ ...curElem, quantity: 1 , size_id: curElem.product_inventry[0]?.size_id , productId: curElem.product_inventry[0]?.product_id , color_id : curElem.product_inventry[0]?.color_id}));
+                    notify("Added to cart.");
+                    // setAddButton(true)
+                  }}
                   className="orange_btn"
                   // disabled ={addButton}
                 >
-                  Add To Cart <span>2</span>
-                </button></Link>
+                  Add To Cart 
+                </button>
+                {/* </Link> */}
               </li>
-              <li class="add">-</li>
+              {/* <li class="add">-</li> */}
             </ul>
           </div>
         </div>
