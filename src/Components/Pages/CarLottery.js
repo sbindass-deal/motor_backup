@@ -30,12 +30,12 @@ import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
 import { Image } from "antd";
 import parse from "html-react-parser";
 import { strToHtml } from "../UI/globaleVar";
-import lotry from '../../Assets/images/carTd.png'
+import lotry from "../../Assets/images/carTd.png";
 
 function CarRaffle() {
   const { id } = useParams();
   const logingUser = useSelector((state) => state);
-
+  const [giveAwayData, setGiveAwayData] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [encryptedvalue, setEncryptedValue] = useState(null);
@@ -262,6 +262,18 @@ function CarRaffle() {
     }
   };
 
+  const fetchGiveAwayApi = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}giveAwayByUser`);
+      setGiveAwayData(res.data.tickets_total);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchGiveAwayApi();
+  }, []);
+
   // console.log(9898, showLotary?.image && showLotary?.image[0].imagePath)
   return (
     <>
@@ -270,14 +282,14 @@ function CarRaffle() {
           <div class="row">
             <div class="col-12 col-lg-7">
               <div class="loTryTitle">
-                <h2>Gas Guzzlrs
+                <h2>
+                  Gas Guzzlrs
                   <span>Giveaways</span>
                 </h2>
-               
               </div>
             </div>
             <div class="col-12 col-lg-5">
-              <img src={lotry}/>
+              <img src={lotry} />
             </div>
           </div>
         </div>
@@ -419,7 +431,8 @@ function CarRaffle() {
                       Total
                       <br /> available
                     </h5>
-                    <p>{showLotary?.stock}</p>
+                    {/* <p>{showLotary?.stock}</p> */}
+                    <p>{giveAwayData}</p>
                   </div>
                   <div className="col-md-3 iconSecT">
                     <div className="imgIco">
@@ -572,12 +585,13 @@ function CarRaffle() {
                           <img src={bi_ticket} />
                         </div>
                         <div class="MT_Count">
-                          {logingUser.login.token == null
+                          {giveAwayData}
+                          {/* {logingUser.login.token == null
                             ? 0
-                            : setUserLotteryDetails.data}
+                            : setUserLotteryDetails.data} */}
                         </div>
                         <div class="MT_Price">
-                          <>
+                          {/* <>
                             <span>
                               $
                               {logingUser.login.token == null
@@ -588,10 +602,10 @@ function CarRaffle() {
                                   showLotary?.price *
                                     setUserLotteryDetails.data}
                             </span>
-                          </>
+                          </> */}
                         </div>
                       </div>
-                      <div class="">1 Ticket = $0.01 </div>
+                      {/* <div class="">1 Ticket = $0.01 </div> */}
                     </div>
                   </div>
 

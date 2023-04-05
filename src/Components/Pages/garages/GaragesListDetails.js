@@ -13,8 +13,7 @@ import Videos from "./Videos";
 import GaragesAuction from "./GaragesAuction";
 import DealerVehicleList from "./GaragesVehicleList";
 import { Avatar, Space } from "antd";
-import coTImg from "../../../Assets/images/coTImg.png"
-
+import coTImg from "../../../Assets/images/coTImg.png";
 
 const GaragesListDetails = () => {
   const { id } = useParams();
@@ -168,14 +167,10 @@ const GaragesListDetails = () => {
         <div class="container">
           <div class="row ">
             <div class="col-lg-6 col-md-12 col-sm-12 logoImg">
-              <img
-                class="slidImg"
-                alt="aboutImg"
-                src={coTImg}
-              />
+              <img class="slidImg" alt="aboutImg" src={coTImg} />
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 bgOrange">
-            <div className="contactInfo">
+              <div className="contactInfo">
                 <h2>Contact Us</h2>
                 <ul>
                   <li>
@@ -194,7 +189,6 @@ const GaragesListDetails = () => {
           </div>
         </div>
       </section>
-      
     </>
   );
 };
