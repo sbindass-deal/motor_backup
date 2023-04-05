@@ -1,5 +1,6 @@
 import React from "react";
 import bellIcon from "../../../../Assets/images/bellIcon.svg";
+import { Link } from "react-router-dom";
 
 const Fundamental = ({ vehicle, handleSubscribe }) => {
   return (
@@ -8,7 +9,14 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
         <h3 className="cardTitle">Fundamental</h3>
         <div className="sellerBox">
           <div>
-            Seller: <a href="#">{vehicle.name}</a>
+            Seller:{" "}
+            {vehicle.dealerId == "" ? (
+              <Link to="">{vehicle.name}</Link>
+            ) : (
+              <Link to={`/garages-user-details/${vehicle.userId}`}>
+                {vehicle.name}
+              </Link>
+            )}
             {/* <small>{vehicle.dealerId ? "Dealer" : "Private"}</small> */}
           </div>
           {/* subscribed_to_seller */}
@@ -28,7 +36,7 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
         <ul className="listFund">
           <li>
             Private Party or Dealer:{" "}
-            <span>{vehicle.dealerId ? "Dealer " : "Private Party"}</span>
+            <span>{vehicle.dealerId == "" ? "Dealer " : "Private Party"}</span>
           </li>
           <li>
             Location:{" "}
