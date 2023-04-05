@@ -6822,9 +6822,11 @@ ul.fwrList li {
   padding: 5px 10px 5px 5px;
   border-right: 1px solid #3c3535;
 }
+
 ul.fwrList li:last-child {
   border-right: 0;
 }
+
 .followers {
   display: flex;
 }
@@ -6834,3 +6836,4 @@ ul.fwrList li:last-child {
   padding: 10px 15px;
   font-size: 12px;
 }
+
