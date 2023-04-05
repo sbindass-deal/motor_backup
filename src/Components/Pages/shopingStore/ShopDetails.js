@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "antd";
 import { Image } from "antd";
+import { Link } from "react-router-dom";
 const ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ const ShopDetails = () => {
   const [size_id, setSize_id] = useState();
   const [color_id, setColor_id] = useState();
   const [color_id2, setColor_id2] = useState();
-  const [sizeRepeater  , setSizeRepeater] = useState([])
+  const [sizeRepeater  , setSizeRepeater] = useState([]);
+  const [imageValue, setImageValsue] = useState(0);
 
   const notify = (val) =>
     toast.success(val, {
@@ -133,7 +135,7 @@ const ShopDetails = () => {
         ) : (
           <div className="row">
             <div className="col-md-6 sliderSec ">
-              <Carousel autoplay>
+              {/* <Carousel autoplay>
                 {
                   product?.images?.map((d, i) => {
                     return (
@@ -149,7 +151,28 @@ const ShopDetails = () => {
                     )
                   })
                 }
-              </Carousel>
+              </Carousel> */}
+               <div className="d-flex border">
+            <div className="w-25">
+              {
+                product?.images?.map((d, i) => {
+                  return (
+                    <img
+                      onClick={() => setImageValsue(i)}
+                      src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                      alt={"title"}
+                    />
+                  )
+                })
+              }
+            </div>
+            <div className="w-100 h-100">
+                {product?.images?.length > 0 && <img
+                  src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
+                  alt={"title"} 
+                />}
+            </div>
+          </div>
               <div
                 style={{
                   display: "none",
