@@ -71,9 +71,6 @@ function UserGarage() {
               >
                 <h3>Garage</h3>
                 <div className="d-flex align-items-center">
-                  <Link to="/add-garage" className="gry_btn px-3">
-                    + Add Garage
-                  </Link>
                   {userInfo.dealer == "No" && (
                     <div className="tg-item mx-4">
                       <input
@@ -92,8 +89,12 @@ function UserGarage() {
                       ></label>
                     </div>
                   )}
-                  <Link to="/editmyaccount" className="gry_btn px-3">
-                    Edit
+                  {/* to="/add-garage" */}
+                  <Link to="" className="gry_btn px-3 mx-2">
+                    + Add Garage
+                  </Link>
+                  <Link to="/editmyaccount-garages" className="gry_btn px-3">
+                    Edit Garage
                   </Link>
                 </div>
               </div>

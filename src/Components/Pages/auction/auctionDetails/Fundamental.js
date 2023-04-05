@@ -10,12 +10,12 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
         <div className="sellerBox">
           <div>
             Seller:{" "}
-            {vehicle.dealerId == "" ? (
-              <Link to="">{vehicle.name}</Link>
-            ) : (
+            {vehicle.dealer == "No" ? (
               <Link to={`/garages-user-details/${vehicle.userId}`}>
                 {vehicle.name}
               </Link>
+            ) : (
+              <Link to="">{vehicle.name}</Link>
             )}
             {/* <small>{vehicle.dealerId ? "Dealer" : "Private"}</small> */}
           </div>
@@ -36,7 +36,7 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
         <ul className="listFund">
           <li>
             Private Party or Dealer:{" "}
-            <span>{vehicle.dealerId == "" ? "Dealer " : "Private Party"}</span>
+            <span>{vehicle.dealer == "No" ? "Private Party" : "Dealer "}</span>
           </li>
           <li>
             Location:{" "}

@@ -20,7 +20,7 @@ import draftToHtml from "draftjs-to-html";
 import { noImage } from "../../UI/globaleVar";
 import { useNavigate } from "react-router-dom";
 
-function EditMyAccount() {
+function EditGarage() {
   const url = process.env.REACT_APP_URL;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -91,11 +91,9 @@ function EditMyAccount() {
   const fetchUserDetails = async () => {
     try {
       const res = await axios.get(`${url}user_detail`);
-      console.log(68709, res);
       const userLoginData = res.data.data;
       setAddUserInBid(userLoginData.bid);
       setUserData(userLoginData);
-      console.log(111, userLoginData);
       setLogo(userLoginData.logo);
       setGallery(userLoginData.gallery);
       setBanner(userLoginData.banner);
@@ -107,6 +105,7 @@ function EditMyAccount() {
         title: userLoginData.dealer_title,
         desc: userLoginData.dealerDescription,
         aboutus: userLoginData.about_us,
+        video_link: userLoginData.video_link,
       });
 
       setBlogContent(
@@ -222,26 +221,28 @@ function EditMyAccount() {
   const handleApi = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const { name, userName, phone, email, aboutus, desc, title } = editUser;
+    const { name, userName, phone, email, aboutus, desc, title, video_link } =
+      editUser;
 
     await axios
-      .post(`${url}userUpdate`, {
-        name: name,
-        email: email,
-        mobile: phone,
-        username: userName,
-        // about_us: draftToHtml(convertToRaw(blogContent.getCurrentContent())),
-        // dealerDescription: draftToHtml(
-        //   convertToRaw(blogContentdesc.getCurrentContent())
-        // ),
-        // dealer_title: title,
+      .post(`${url}addgarage`, {
+        // name: name,
+        // email: email,
+        // mobile: phone,
+        // username: userName,
+        about_us: draftToHtml(convertToRaw(blogContent.getCurrentContent())),
+        description: draftToHtml(
+          convertToRaw(blogContentdesc.getCurrentContent())
+        ),
+        title: title,
+        video_link,
       })
       .then((result) => {
         if (result.data.status === 200 && true) {
           // uploadLogo(userData.id);
-          // uploadFileGallery(userData.id);
-          // uploadFileOne(userData.id);
-          // uploadFileTwo(userData.id);
+          uploadFileGallery(userData.id);
+          uploadFileOne(userData.id);
+          uploadFileTwo(userData.id);
           navigate("/accountinfo");
           notify(result.data.message);
           setLoading(false);
@@ -296,17 +297,17 @@ function EditMyAccount() {
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0">
-                <h5>My Account</h5>
+                <h5>Garage</h5>
                 <hr />
                 <MyAccountLeftNav />
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Account Info</h3>
+              <h3>Garage</h3>
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">
-                  <div className="col-lg-6 col-sm-12">
+                  {/* <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.name}
                       onChange={handleEditOnChange}
@@ -317,8 +318,8 @@ function EditMyAccount() {
                       pattern="^[A-Za-z ]{3,31}$"
                       required={true}
                     />
-                  </div>
-                  <div className="col-lg-6 col-sm-12">
+                  </div> */}
+                  {/* <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.email}
                       onChange={handleEditOnChange}
@@ -328,8 +329,8 @@ function EditMyAccount() {
                       label="Email"
                       disabled={true}
                     />
-                  </div>
-                  <div className="col-lg-6 col-sm-12">
+                  </div> */}
+                  {/* <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.userName}
                       name="userName"
@@ -339,8 +340,8 @@ function EditMyAccount() {
                       pattern="^[A-Za-z0-9@! ]{3,20}$"
                       required={true}
                     />
-                  </div>
-                  <div className="col-lg-6 col-sm-12">
+                  </div> */}
+                  {/* <div className="col-lg-6 col-sm-12">
                     <FormInput
                       value={editUser.phone}
                       onChange={handleEditOnChange}
@@ -351,8 +352,8 @@ function EditMyAccount() {
                       pattern="^[0-9]{10,12}$"
                       required={true}
                     />
-                  </div>
-                  {false && (
+                  </div> */}
+                  {true && (
                     <div className="col-12">
                       <FormInput
                         value={editUser.title}
@@ -366,7 +367,7 @@ function EditMyAccount() {
                       />
                     </div>
                   )}
-                  {false && (
+                  {true && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>About us</label>
@@ -383,7 +384,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {false && (
+                  {true && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
@@ -400,7 +401,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {false && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -498,7 +499,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {false && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -603,7 +604,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {false && (
+                  {true && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -745,4 +746,4 @@ function EditMyAccount() {
   );
 }
 
-export default EditMyAccount;
+export default EditGarage;

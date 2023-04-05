@@ -101,7 +101,7 @@ function AccountInfo() {
               >
                 <h3>Account Info</h3>
                 <div className="d-flex align-items-center">
-                  {userInfo.dealer == "No" && (
+                  {/* {userInfo.dealer == "No" && (
                     <div className="tg-item mx-4">
                       <input
                         className="tgl tgl-skewed"
@@ -118,7 +118,7 @@ function AccountInfo() {
                         for="cb1"
                       ></label>
                     </div>
-                  )}
+                  )} */}
                   <Link to="/editmyaccount" className="gry_btn px-3">
                     Edit
                   </Link>
@@ -141,29 +141,25 @@ function AccountInfo() {
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
-                <li>
+                {/* <li>
                   <div className="labelList_label">Title</div>
                   <div className="labelList_text">
                     {userInfo.dealer_title} <br />
-                    {/* <a href="#">Resend Verification Email</a> */}
                   </div>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <div className="labelList_label">About us</div>
                   <div className="labelList_text">
                     {userInfo.about_us && parse(userInfo.about_us, strToHtml)}
-                    {/* <a href="#">Resend Verification Email</a> */}
                   </div>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <div className="labelList_label">Description</div>
                   <div className="labelList_text">
                     {userInfo?.dealerDescription &&
                       parse(userInfo?.dealerDescription, strToHtml)}
-
-                    {/* <a href="#">Resend Verification Email</a> */}
                   </div>
-                </li>
+                </li> */}
                 <li>
                   <div className="labelList_label">Card Number</div>
                   {userInfo.cn_no !== null && (
@@ -199,7 +195,7 @@ function AccountInfo() {
                 </li>
                 {/* ======================== */}
 
-                {true && (
+                {false && (
                   <>
                     <h6>Logo</h6>
                     <hr />
@@ -217,13 +213,6 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              {/* <button
-                                      
-                                      type="button"
-                                      className="close"
-                                    >
-                                      x
-                                    </button> */}
                             </span>
                           );
                         })}
@@ -245,13 +234,6 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              {/* <button
-                                     
-                                      type="button"
-                                      className="close"
-                                    >
-                                      x
-                                    </button> */}
                             </span>
                           );
                         })}
@@ -274,13 +256,6 @@ function AccountInfo() {
                                 }}
                                 alt="Maskgroup1"
                               />
-                              {/* <button
-                                      
-                                      type="button"
-                                      className="close"
-                                    >
-                                      x
-                                    </button> */}
                             </span>
                           );
                         })}

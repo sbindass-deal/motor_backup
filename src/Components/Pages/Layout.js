@@ -97,6 +97,7 @@ import GaragesListDetails from "./garages/GaragesListDetails";
 import GaragesUserDetails from "./garages/GaragesUserDetails";
 import UserGarage from "./MyAccount/UserGarage";
 import AddGarage from "./MyAccount/AddGarage";
+import EditGarage from "./MyAccount/EditGarage";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -247,6 +248,7 @@ const Layout = () => {
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
           <Route path="editmyaccount" element={<EditMyAccount />} />
+          <Route path="editmyaccount-garages" element={<EditGarage />} />
           <Route path="edit-user-meeting/:id" element={<EditUserMeeting />} />
           <Route path="vechiles" element={<VechilesRegistraion />} />
           <Route path="getalerts" element={<GetAlerts />} />

@@ -9,7 +9,7 @@ const GaragesBlog = ({ id }) => {
   const fetchBlogApi = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}dealer_profile/blogs/234`
+        `${process.env.REACT_APP_URL}dealer_profile/blogs/${id}`
       );
       setBlogData(res.data.list);
     } catch (err) {
