@@ -6733,7 +6733,7 @@ h2.verticalTitle:before {
 .tBB li.nav-item button {
   background: transparent;
   color: #fff;
-  min-width: 220px;
+  min-width: 170px;
 }
 .nav-tabs.tBB .nav-link.active {
   color: #f8a504;
