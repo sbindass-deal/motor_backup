@@ -333,6 +333,7 @@ const AddDealer = () => {
                 name="email"
                 type="email"
                 placeholder="Enter Email address"
+                pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$"
                 errorMessage="It should be a valid email address!"
                 label="Email address"
                 required={true}

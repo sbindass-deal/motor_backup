@@ -71,7 +71,7 @@ const DealerListFeature = () => {
                   id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Dealer List</h3>
+                  <h3>Dealer List Management</h3>
 
                   <Link to="/admin-dealer/add-dealer" className="orange_btn">
                    + Add Dealer
@@ -104,7 +104,9 @@ const DealerListFeature = () => {
                       </div>
                     </div>
                   ) : (
-                    <table className="table table-striped">
+                      <table className="table 
+                    //table-striped
+                    ">
                       <thead>
                         <tr>
                           <th scope="col">Sr.No</th>

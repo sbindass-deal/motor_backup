@@ -80,13 +80,13 @@ function Blog() {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                Blogs
+                <h3>Blogs Management</h3>
                 <div>
                   {/* <Link to="/admin/add-blog" className="btn">
                     <i className="fa-sharp fa-solid fa-plus"></i>
                   </Link> */}
                   <Link to="/admin/add-blog" className="orange_btn">
-                   + Add New Blogs
+                    + Add New Blogs
                   </Link>
                 </div>
               </div>
@@ -115,7 +115,9 @@ function Blog() {
                     </div>
                   </div>
                 ) : (
-                  <table className="table table-striped">
+                  <table className="table 
+                  //table-striped
+                  ">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
