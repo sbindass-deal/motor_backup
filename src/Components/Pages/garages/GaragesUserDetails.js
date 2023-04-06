@@ -178,7 +178,7 @@ const GaragesUserDetails = () => {
                   aria-controls="contact-tab-pane"
                   aria-selected="false"
                 >
-                  Post
+                  Posts
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -192,7 +192,7 @@ const GaragesUserDetails = () => {
                   aria-controls="video-tab-pane"
                   aria-selected="false"
                 >
-                  Reply
+                  Replies
                 </button>
               </li>
               <li class="nav-item" role="presentation">
