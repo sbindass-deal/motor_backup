@@ -26,57 +26,89 @@ const GaragesVehicle = ({ id }) => {
 
   return (
     <>
-      <section className="mobileSpec dlr">
-        <div className="container">
-          <div className="row ">
-            <div className="col-12 col-md-8 col-lg-9">
-              <div className="row pt-4 row_gridList ">
-                {garagesVehicle.length > 0 ? (
-                  garagesVehicle.map((curElem) => {
-                    return (
-                      <div
-                        key={curElem.id}
-                        className="col-12 col-md-4 pb-3 charityOct"
-                      >
-                        <div className="card_post">
-                          <div className="card_postImg">
-                            <Link
-                              to={`/detail/${curElem.id}`}
-                              className="card_postImg card_postImg_200"
-                            >
-                              <img
-                                loading="lazy"
-                                src={
-                                  curElem?.image_banner &&
-                                  `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="garages-image"
-                              />
-                            </Link>
-                          </div>
-                          <div className="card_postInfo">
-                            <h4 class="car_title">
-                              <Link to={`/detail/${curElem.id}`}>
-                                {curElem?.make} {curElem?.model} {curElem?.year}
-                              </Link>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div>Add vehicle to your garage</div>
-                )}
+      <div className="row pt-4 row_gridList false">
+        {garagesVehicle.length > 0 ? (
+          garagesVehicle.map((curElem) => {
+            return (
+              <div
+                key={curElem.id}
+                class="col-12 col-lg-4 col-md-4 pb-3 auctionLive"
+              >
+                <div class="card_post">
+                  <div class="card_postImg">
+                    <div class="list_wrapper">
+                      <Link to={`/detail/${curElem.id}`} class="auction_image">
+                        <img
+                          loading="lazy"
+                          src={
+                            curElem?.image_banner &&
+                            `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                          }
+                          onError={({ currentTarget }) => {
+                            currentTarget.onError = null;
+                            currentTarget.src = noImage;
+                          }}
+                          alt="garages-image"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                  <div class="card_postInfo">
+                    <h4 class="car_title">
+                      <Link to={`/detail/${curElem.id}`}>
+                        {curElem?.make} {curElem?.model} {curElem?.year}
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
               </div>
+            );
+          })
+        ) : (
+          <div>Add vehicle to your garage</div>
+        )}
+
+        {/* <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+          <div class="card_post">
+            <div class="card_postImg">
+              <div class="list_wrapper">
+                <a class="auction_image" href="/detail/125">
+                  <img
+                    loading="lazy"
+                    src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
+                    alt="Ferrari"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="card_postInfo">
+              <h4 class="car_title">
+                <a href="/detail/125"> Ferrari Spyder 2020</a>
+              </h4>
             </div>
           </div>
         </div>
-      </section>
+        <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+          <div class="card_post">
+            <div class="card_postImg">
+              <div class="list_wrapper">
+                <a class="auction_image" href="/detail/125">
+                  <img
+                    loading="lazy"
+                    src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
+                    alt="Ferrari"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="card_postInfo">
+              <h4 class="car_title">
+                <a href="/detail/125"> Ferrari Spyder 2020</a>
+              </h4>
+            </div>
+          </div>
+        </div> */}
+      </div>
     </>
   );
 };

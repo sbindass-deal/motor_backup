@@ -246,7 +246,7 @@ function EditGarage() {
           uploadFileGallery(userData.id);
           uploadFileOne(userData.id);
           uploadFileTwo(userData.id);
-          navigate("/accountinfo");
+          navigate("/user-garage");
           notify(result.data.message);
           setLoading(false);
         } else if (result.data.status === 200 && userData.dealer === "No") {

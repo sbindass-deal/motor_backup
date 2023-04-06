@@ -219,7 +219,7 @@ const GaragesUserDetails = () => {
                 tabindex="0"
               >
                 <GaragesVehicle id={id} />
-                <div className="row pt-4 row_gridList false">
+                {/* <div className="row pt-4 row_gridList false">
                   <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
                     <div class="card_post">
                       <div class="card_postImg">
@@ -280,7 +280,7 @@ const GaragesUserDetails = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 class="tab-pane fade"
