@@ -6842,3 +6842,10 @@ ul.fwrList li:last-child {
 
 }
 
+.addSection.Graj .card_postImg.dlr {
+  padding-right: 0px;
+  height: 152px;
+}
+.addSection.Graj a .card_postInfo {
+  width: 100%;
+}
