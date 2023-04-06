@@ -10,10 +10,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { notification } from "antd";
 import { ContentState, convertFromHTML } from "draft-js";
 import { toast } from "react-toastify";
+import FormInput from "../../UI/FormInput";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const EditCreateMeeting = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isLoading,setIsLoading]=useState(false)
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
@@ -101,6 +104,7 @@ const EditCreateMeeting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const url = `${process.env.REACT_APP_URL}UpdateEvent`;
 
     const formData = new FormData();
@@ -122,11 +126,13 @@ const EditCreateMeeting = () => {
     await axios
       .post(url, formData)
       .then(function (response) {
+        setIsLoading(false)
         notify("Save successfully !");
         navigate("/admin-meeting");
         console.log(109, response);
       })
       .catch(function (error) {
+        setIsLoading(false)
         console.log(error);
       });
 
@@ -162,81 +168,97 @@ const EditCreateMeeting = () => {
                 <div className="row">
                   <div className="col-md-6">
                     <label htmlFor="">Title</label>
-                    <input
+                    <FormInput
                       type="text"
                       className="form-control"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
+                      required
+                      errorMessage="Title is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">Start Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       className="form-control"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
+                      required
+                      errorMessage="Start Date is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">End Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       className="form-control"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
+                      required
+                      errorMessage="End Date is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">Website Link</label>
-                    <input
+                    <FormInput
                       type="text"
                       className="form-control"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
+                      required
+                      errorMessage="Website Link is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">Facebook Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       className="form-control"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
+                      required
+                      errorMessage="Facebook is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">Twitter Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       className="form-control"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
                       value={meetingDetail.twitterlink}
+                      required
+                      errorMessage="Twitter is Required"
                     />
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="">Email Id</label>
-                    <input
+                    <FormInput
                       type="text"
                       className="form-control"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
                       value={meetingDetail.emailid}
+                      pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$"
+
+                      errorMessage="It should be a valid email address!"
+                      
                     />
                   </div>
 
@@ -252,6 +274,7 @@ const EditCreateMeeting = () => {
                         onEditorStateChange={handleContent}
                         placeholder="Please enter description"
                         name="description"
+                        required
                       />
                     </div>
                   </div>
@@ -295,7 +318,7 @@ const EditCreateMeeting = () => {
                     >
                       <h3>Drag and Drop Files to Upload</h3>
                       <h3>Or</h3>
-                      <input
+                      <FormInput
                         onChange={(e) => {
                           return setFile((prevState) => [...e.target.files]);
                         }}
@@ -305,6 +328,8 @@ const EditCreateMeeting = () => {
                         ref={inputRef}
                         multiple
                         hidden
+                        // required
+                        errorMessage="Image is Required"
                       />
                       <button
                         className="orange_btn"
@@ -318,9 +343,14 @@ const EditCreateMeeting = () => {
                 </div>
 
                 <div className="text-center my-4">
-                <button type="submit" className="btn mt-2">
-                  Submit
-                </button>
+                  {
+                    isLoading ? (
+                      <SmallSpinner/>
+                    ) : <button type="submit" className="btn mt-2">
+                      Submit
+                    </button>
+                  }
+                
                 </div>
               </form>
             </div>

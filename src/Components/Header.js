@@ -116,9 +116,6 @@ function Header() {
     },
   }));
 
-
- 
-
   return (
     <>
       <header
@@ -385,7 +382,7 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           to="/garages"
@@ -393,7 +390,7 @@ function Header() {
                         >
                           Garages
                         </Link>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         {true ? (
                           <Link
@@ -545,15 +542,31 @@ function Header() {
 
                     <li className="nav-item afterLogin">
                       <div className="dropdown">
-                       
                         {/* User First Name */}
-                        {
-                          logingUser.login.user.dealer == "No" ?
-                            <p className="userIco"><span>{(logingUser.login.user.username).toUpperCase().charAt(0)}</span></p>
-                            : logingUser?.login.user.logo?.logo && logingUser.login.user.dealer == "Yes" ? <p className="userIco"><span><img src={`https://api.gasguzzlrs.com/${logingUser?.login?.user?.logo?.logo}`} /></span></p>
-                              : <p className="userIco"><span><img src={g3} /></span></p>
-                        }
-                       
+                        {logingUser.login.user.dealer == "No" ? (
+                          <p className="userIco">
+                            <span>
+                              {logingUser.login.user.username
+                                .toUpperCase()
+                                .charAt(0)}
+                            </span>
+                          </p>
+                        ) : logingUser?.login.user.logo?.logo &&
+                          logingUser.login.user.dealer == "Yes" ? (
+                          <p className="userIco">
+                            <span>
+                              <img
+                                src={`https://api.gasguzzlrs.com/${logingUser?.login?.user?.logo?.logo}`}
+                              />
+                            </span>
+                          </p>
+                        ) : (
+                          <p className="userIco">
+                            <span>
+                              <img src={g3} />
+                            </span>
+                          </p>
+                        )}
 
                         {/* User Icon Img */}
                         {/* <p className="userIco"><span><img src={g3}/></span></p> */}
@@ -725,7 +738,7 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -737,7 +750,7 @@ function Header() {
                         >
                           Garages
                         </Link>
-                      </li>
+                      </li> */}
 
                       <li className="nav-item">
                         {true ? (

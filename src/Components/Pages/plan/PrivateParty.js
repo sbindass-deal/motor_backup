@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getPlanByDealerSelect } from "../../../redux/reducers/planReducer";
+import {
+  getPlanByDealerSelect,
+  handleGarage,
+} from "../../../redux/reducers/planReducer";
 import NotAvailable from "../../UI/NotAvailable";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Data from "./Data";
@@ -39,6 +42,7 @@ const PrivateParty = () => {
 
   useEffect(() => {
     dispatch(getPlanByDealerSelect("auction"));
+    dispatch(handleGarage(true));
   }, []);
 
   if (loading) {

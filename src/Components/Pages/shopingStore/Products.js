@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addProduct } from "../../../redux/reducers/cartSlice";
+import { Carousel } from "antd";
 
 const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }) => {
   const notify = (val) =>
@@ -22,6 +23,14 @@ const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }
   const [imageValue, setImageValsue] = useState(0);
   const [size , setSize] = useState();
   const TOKEN = "eyJpdiI6InhnclZZSm5mZ2FubzRFSEFyNk43M1E9PSIsInZhbHVlIjoiQW9tbDlXTkprYXBCWmFKWW5pMXlNd09jM3RPelduMnFqU1pXdHo4QzVMMD0iLCJtYWMiOiJkYWVlNjE3ZTI4OWFjZDE3ZGU4Yzg2ZWI5ZGM3NmZlZmZjYWZlYmU3ZGQ2NGE0MWY2MDk2ZmMwNzFhMDI2OTYxIiwidGFnIjoiIn0="
+  const contentStyle = {
+    maxHeight: "60vh",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
+    background: "#364d79",
+    cursor: "pointer",
+  };
 
   // const [addButton , setAddButton] = useState(false)
 
@@ -35,12 +44,14 @@ useEffect(() => {
 
 }, [])
 
+console.log(curElem);
+
   
   return (
     <>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card_post box_shadow_common">
-          <div className="d-flex border">
+          {/* <div className="d-flex border">
             <div className="w-25">
               {
                 images?.map((d, i) => {
@@ -62,7 +73,27 @@ useEffect(() => {
                 />
               </Link>
             </div>
-          </div>
+          </div> */}
+          <Carousel autoplay>
+                {
+                   
+                  images?.map((d, i) => {
+                    return (
+                      <div>
+                        <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
+                        <img
+                          src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                          // alt={product.title}
+                          style={contentStyle}
+                          className="img-fluid"
+                          // onClick={() => { setVisible(true); setIndex(`${process.env.REACT_APP_URL}upload/products/${d?.image}`) }}
+                        />
+                        </Link>
+                      </div>
+                    )
+                  })
+                }
+              </Carousel>
           <div class="card_postInfo pt-3">
             <div className="entries_count dewew">
              
@@ -124,21 +155,23 @@ useEffect(() => {
               class="priceDateList"
               style={{ justifyContent: "space-between" }}
             >
-              <li class="add">+</li>
+              {/* <li class="add">+</li> */}
               <li class="">
-              <Link to={`/shop/${id}`}><button
-                  // onClick={() => {
-                  //   dispatch(addProduct({ ...curElem, quantity: 1 }));
-                  //   notify("Added to cart.");
-                  //   setAddButton(true)
-                  // }}
+              {/* <Link to={`/shop/${id}`}> */}
+                <button
+                  onClick={() => {
+                    dispatch(addProduct({ ...curElem, quantity: 1 , size_id: curElem.product_inventry[0]?.size_id , productId: curElem.product_inventry[0]?.product_id , color_id : curElem.product_inventry[0]?.color_id}));
+                    notify("Added to cart.");
+                    // setAddButton(true)
+                  }}
                   className="orange_btn"
                   // disabled ={addButton}
                 >
-                  Add To Cart <span>2</span>
-                </button></Link>
+                  Add To Cart 
+                </button>
+                {/* </Link> */}
               </li>
-              <li class="add">-</li>
+              {/* <li class="add">-</li> */}
             </ul>
           </div>
         </div>

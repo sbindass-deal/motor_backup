@@ -230,18 +230,18 @@ function EditMyAccount() {
         email: email,
         mobile: phone,
         username: userName,
-        about_us: draftToHtml(convertToRaw(blogContent.getCurrentContent())),
-        dealerDescription: draftToHtml(
-          convertToRaw(blogContentdesc.getCurrentContent())
-        ),
-        dealer_title: title,
+        // about_us: draftToHtml(convertToRaw(blogContent.getCurrentContent())),
+        // dealerDescription: draftToHtml(
+        //   convertToRaw(blogContentdesc.getCurrentContent())
+        // ),
+        // dealer_title: title,
       })
       .then((result) => {
         if (result.data.status === 200 && true) {
           // uploadLogo(userData.id);
-          uploadFileGallery(userData.id);
-          uploadFileOne(userData.id);
-          uploadFileTwo(userData.id);
+          // uploadFileGallery(userData.id);
+          // uploadFileOne(userData.id);
+          // uploadFileTwo(userData.id);
           navigate("/accountinfo");
           notify(result.data.message);
           setLoading(false);
@@ -352,7 +352,7 @@ function EditMyAccount() {
                       required={true}
                     />
                   </div>
-                  {true && (
+                  {false && (
                     <div className="col-12">
                       <FormInput
                         value={editUser.title}
@@ -366,7 +366,7 @@ function EditMyAccount() {
                       />
                     </div>
                   )}
-                  {true && (
+                  {false && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>About us</label>
@@ -383,7 +383,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {true && (
+                  {false && (
                     <div className="col-12 col-sm-12 col-md-12">
                       <div className="form-group">
                         <label>Description</label>
@@ -400,7 +400,7 @@ function EditMyAccount() {
                       </div>
                     </div>
                   )}
-                  {true && (
+                  {false && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -498,7 +498,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {true && (
+                  {false && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">
@@ -603,7 +603,7 @@ function EditMyAccount() {
                     </>
                   )}
 
-                  {true && (
+                  {false && (
                     <>
                       <div className="col-12 col-sm-12 col-md-12">
                         <div className="form-group">

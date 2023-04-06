@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Data from "./Data";
 import { useDispatch } from "react-redux";
-import { getPlanByDealerSelect } from "../../../redux/reducers/planReducer";
+import {
+  getPlanByDealerSelect,
+  handleGarage,
+} from "../../../redux/reducers/planReducer";
 
 const DealerPlan = () => {
   const dispatch = useDispatch();
@@ -40,6 +43,7 @@ const DealerPlan = () => {
 
   useEffect(() => {
     dispatch(getPlanByDealerSelect("auction"));
+    dispatch(handleGarage(true));
   }, []);
 
   return (

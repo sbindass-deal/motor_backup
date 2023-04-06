@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const AddListing = () => {
+  const [isLoading,setIsLoading]=useState(false)
   const [addListing, setAddListing] = useState({
     name: "",
     singleprice: "",
@@ -34,6 +36,7 @@ const AddListing = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}addplans`, {
         plan_name: addListing.name,
@@ -47,12 +50,14 @@ const AddListing = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          setIsLoading(false)
           notify("Added Listing successfully !");
           navigate("/admin/vehicle-listing");
         }
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
       });
 
     console.log("####", addListing);
@@ -80,7 +85,7 @@ const AddListing = () => {
                   className="field"
                   placeholder="Name"
                   //   pattern="^[a-z A-Z]$"
-                  pattern="/^\S*$/"
+                  // pattern="/^\S*$/"
                   label="Name"
                   //   errorMessage="use only numbers($)"
                   //   required={true}
@@ -218,9 +223,14 @@ const AddListing = () => {
             </div>
           </div>
           <div className="form-group">
-            <button type="submit" className="btn w-100">
-              SUBMIT
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button type="submit" className="btn w-100">
+                SUBMIT
+              </button>
+            }
+           
           </div>
         </form>
       </div>

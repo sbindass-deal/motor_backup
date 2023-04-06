@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormInput from "../../UI/FormInput";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const EditGearProduct = () => {
   const { id } = useParams();
@@ -156,6 +157,7 @@ const EditGearProduct = () => {
 
   const handleApi = async (e) => {
     e.preventDefault();
+    setLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}updateproduct/${id}`, {
         title: getInputData.title,
@@ -171,6 +173,7 @@ const EditGearProduct = () => {
           let a = await uploadFileOne(response.data.data.id);
 
           if (a) {
+            setLoading(false)
             navigate("/gear-product");
             window.location.reload(false);
             notify("Successfully Saved!")
@@ -178,6 +181,7 @@ const EditGearProduct = () => {
         }
       })
       .catch(function (error) {
+        setLoading(false)
         console.log(error);
       });
   };
@@ -624,15 +628,16 @@ const EditGearProduct = () => {
                 </div>
               </div>
             </div>
-            {loading ? (
-              <button type="button" className="btn btn-secondary " disabled>
-                Loading...
-              </button>
-            ) : (
-              <button type="button" onClick={handleApi} className="btn">
-                Submit
-              </button>
-            )}
+            <div className="text-center my-5">
+              {loading ? (
+                <SmallSpinner/>
+              ) : 
+                <button type="button" onClick={handleApi} className="btn">
+                  Submit
+                </button>
+              }
+            </div>
+            
           </form>
         </div>
       </div>

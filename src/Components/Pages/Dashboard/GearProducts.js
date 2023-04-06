@@ -80,9 +80,9 @@ function GearProducts() {
                 style={{ justifyContent: "space-between" }}
                 id="widthChnge"
               >
-                <h3>Gear Products</h3>
+                <h3>Gear Products Management</h3>
                 <Link to="/add/gear-product" className="orange_btn">
-                  + Add Products
+                  + Add Gear Products
                 </Link>
               </div>
 
@@ -103,7 +103,9 @@ function GearProducts() {
                 className="card_Gray table-responsive merchant vehicleSub"
                 id="scrollable"
               >
-                <table className="table table-striped">
+                <table className="table 
+                //table-striped
+                ">
                   <thead>
                     <tr>
                       <th scope="col">Sr.No</th>

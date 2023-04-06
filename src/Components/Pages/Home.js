@@ -179,9 +179,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>WE ARE DEDICATED TO PARKING YOUR DREAM IN YOUR DRIVEWAY</h1>
+                <h1>We are dedicated to parking your Dream Vehicle in your Garage</h1>
                 <Link to="/showroom" className="orange_btn">
-                  VIEW INVENTORY
+                  View Auctions
                 </Link>
               </div>
             </div>
@@ -300,9 +300,9 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
-              <h1 className="text-back">Find Your Dream Car</h1>
+              <h1 className="text-back">Change to Find your Special Vehicle</h1>
               <Link to="/showroom" className="orange_btn mt-2">
-                VIEW INVENTORY
+                View Featured
               </Link>
             </div>
           </div>
@@ -313,9 +313,9 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-6 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
-              <h1 className="text">Sell Your High Quality classic Car</h1>
+              <h1 className="text">Sell What's in your Garage</h1>
               <Link to="/showroom" className="orange_btn mt-2">
-                VIEW INVENTORY
+                List your Vehicle
               </Link>
             </div>
           </div>
@@ -490,7 +490,50 @@ function Home() {
               </div> */}
             <div className="col-12">
               <div className="latestBlogCard">
-                <Slider {...latestBlogSetting}>
+                {console.log(90909, lottery)}
+                <div  className={`latestBlogSlide`}>
+                  <a href="/carraffle" className="full">
+                    <div className="col-lg-6 col-sm-12 pb_30 rafSect">
+                      {/* <h2>{d?.name}</h2> */}
+                      <h2>{lottery[0]?.name}</h2>
+                      <p>
+                        {/* {parse(
+                          d?.description.substr(0, 165) + "...",
+                          strToHtml
+                        )} */}
+                        {parse(
+                          lottery[0]?.description.substr(0, 165) + "...",
+                          strToHtml
+                        )}
+                      </p>
+                      <div className="price_">
+                        {/* <p>
+                          {d?.dealEndDate &&
+                            new Date(d?.dealEndDate).toDateString()}
+                        </p> */}
+                        <p>
+                          {lottery[0]?.dealEndDate &&
+                            new Date(lottery[0]?.dealEndDate).toDateString()}
+                        </p>
+                      </div>
+                      <button className="orange_btn">Giveaways</button>
+                    </div>
+                    <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
+                      {/* <img
+                        src={`${process.env.REACT_APP_URL}${d?.image[0]?.imagePath}`}
+                        alt={d?.name}
+                        className="addBanner"
+                      /> */}
+                      <img height={350}
+                        src={`${process.env.REACT_APP_URL}${lottery[0]?.image[0]?.imagePath}`}
+                        alt={lottery[0]?.name}
+                        className="addBanner"
+                      />
+                    </div>
+                  </a>
+                </div>
+
+                {/* <Slider {...latestBlogSetting}>
                   {lottery?.map((d, i) => {
                     return (
                       <div key={i} className={`latestBlogSlide`}>
@@ -509,7 +552,7 @@ function Home() {
                                   new Date(d?.dealEndDate).toDateString()}
                               </p>
                             </div>
-                            <button className="orange_btn">Buy Tickets</button>
+                            <button className="orange_btn">Giveaways</button>
                           </div>
                           <div className="col-lg-6 col-sm-12 text-center pb_30 carBg">
                             <img
@@ -522,7 +565,7 @@ function Home() {
                       </div>
                     );
                   })}
-                </Slider>
+                </Slider> */}
               </div>
               {/* <div className="d-flex justify-content-center mt-1">
                   <button onClick={() => blogSlide.current.slickPrev()} className="orange_btn">Prev</button>

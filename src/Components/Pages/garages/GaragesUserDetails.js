@@ -14,11 +14,14 @@ import Videos from "./Videos";
 import { noImage, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction";
-import Auction from "./Auction";
+import GaragesAuction from "./GaragesAuction";
+import GaragesBlog from "./GaragesBlog";
+import GaragesVehicle from "./GaragesVehicle";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
   const [showMore, setShowMore] = useState(false);
+  const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
   const { id } = useParams();
   useEffect(() => {
@@ -53,6 +56,36 @@ const GaragesUserDetails = () => {
     fetchGarages();
   }, []);
 
+  useEffect(() => {
+    const fetchDealer = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}getuserDetailById`, {
+          id,
+        })
+        .then(function (response) {
+          if (response.data.data) {
+            setDealerData({ ...response.data.data[0] });
+          } else {
+            setDealerData({});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchDealer();
+
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
+
+    // setUserVehicleImage(initialState);
+  }, [id]);
+
   return (
     <>
       <div className="row">
@@ -60,7 +93,6 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-        
           <div className="col-md-8 offset-md-2">
             <div className="UserImZ mt-4">
               <Space direction="vertical" size={16}>
@@ -86,12 +118,18 @@ const GaragesUserDetails = () => {
                 </Space>
               </Space>
               <div className="followers">
-                    <ul className="fwrList">
-                      <li><span>22</span> Followers</li>
-                      <li><span>2</span>Following</li>
-                      <li><span>12</span>Post</li>
-                    </ul>
-                    <button className="btn">Follow</button>
+                <ul className="fwrList">
+                  <li>
+                    <span>22</span> Followers
+                  </li>
+                  <li>
+                    <span>2</span>Following
+                  </li>
+                  <li>
+                    <span>12</span>Post
+                  </li>
+                </ul>
+                <button className="btn">Follow</button>
               </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
@@ -180,7 +218,8 @@ const GaragesUserDetails = () => {
                 aria-labelledby="home-tab"
                 tabindex="0"
               >
-                <div className="row">
+                <GaragesVehicle id={id} />
+                {/* <div className="row">
                   <div className="col-md-12 ">
                     <div className="PostInfo">
                       <div className="userImG">
@@ -277,7 +316,7 @@ const GaragesUserDetails = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 class="tab-pane fade"
@@ -286,7 +325,11 @@ const GaragesUserDetails = () => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <Auction />
+                <GaragesAuction
+                  dealerName={dealerData.name}
+                  userId={id}
+                  showUserName={false}
+                />
               </div>
               <div
                 class="tab-pane fade"
@@ -348,15 +391,7 @@ const GaragesUserDetails = () => {
                 <section className="py-4 mobileSpec" id="">
                   <div className="container">
                     <div className="row ">
-                      <div className="col-12 text-center pb_30"></div>
-
-                      <div className="col-12 Videos ghhh">
-                        <div className="row">
-                          <div className="col-lg-12 col-md-12 col-sm-12">
-                            Blog pages
-                          </div>
-                        </div>
-                      </div>
+                      <GaragesBlog id={id} />
                     </div>
                   </div>
                 </section>

@@ -16,6 +16,16 @@ function MyAccountLeftNav() {
             Account Info
           </Link>
         </li>
+        <li>
+          <Link
+            to="/user-garage"
+            className={` ${
+              location.pathname === "/user-garage" ? "active" : ""
+            } `}
+          >
+            Garage
+          </Link>
+        </li>
         {/* <li>
           <Link
             className={` ${
