@@ -16,6 +16,7 @@ import parse from "html-react-parser";
 import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction";
 import GaragesAuction from "./GaragesAuction";
 import GaragesBlog from "./GaragesBlog";
+import GaragesVehicle from "./GaragesVehicle";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -92,7 +93,6 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-        
           <div className="col-md-8 offset-md-2">
             <div className="UserImZ mt-4">
               <Space direction="vertical" size={16}>
@@ -118,12 +118,18 @@ const GaragesUserDetails = () => {
                 </Space>
               </Space>
               <div className="followers">
-                    <ul className="fwrList">
-                      <li><span>22</span> Followers</li>
-                      <li><span>2</span>Following</li>
-                      <li><span>12</span>Post</li>
-                    </ul>
-                    <button className="btn">Follow</button>
+                <ul className="fwrList">
+                  <li>
+                    <span>22</span> Followers
+                  </li>
+                  <li>
+                    <span>2</span>Following
+                  </li>
+                  <li>
+                    <span>12</span>Post
+                  </li>
+                </ul>
+                <button className="btn">Follow</button>
               </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
@@ -212,100 +218,65 @@ const GaragesUserDetails = () => {
                 aria-labelledby="home-tab"
                 tabindex="0"
               >
-                <div className="row">
-                  <div className="col-md-12 ">
-                    <div className="PostInfo">
-                      <div className="userImG">
-                        <Space direction="vertical" size={16}>
-                          <Space wrap size={16}>
-                            <Avatar
-                              size={64}
-                              icon={<img src={men_face} alt="logo" />}
+                <GaragesVehicle id={id} />
+                <div className="row pt-4 row_gridList false">
+                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+                    <div class="card_post">
+                      <div class="card_postImg">
+                        <div class="list_wrapper">
+                          <a class="auction_image" href="/detail/125">
+                            <img
+                              loading="lazy"
+                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
+                              alt="Ferrari"
                             />
-                          </Space>
-                        </Space>
+                          </a>
+                        </div>
                       </div>
-                      <div className="DecIbp">
-                        <h5>User</h5>
-                        <p>
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
-                        </p>
-                        <div class="card">
-                          <img
-                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                            class="card-img-bottom"
-                            alt="..."
-                          />
-                        </div>
-                        <div className="py-3">
-                          <span className="socialCount">
-                            <i className={`fa-solid fa-thumbs-up `}></i> 22
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-comments"></i> 2
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-share-from-square"></i> 12
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-heart"></i> 8,427
-                          </span>
-
-                          <span className="socialCount">
-                            <i class="fa-solid fa-eye"></i> 99k
-                          </span>
-                        </div>
+                      <div class="card_postInfo">
+                        <h4 class="car_title">
+                          <a href="/detail/125"> Ferrari Spyder 2020</a>
+                        </h4>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12 ">
-                    <div className="PostInfo">
-                      <div className="userImG">
-                        <Space direction="vertical" size={16}>
-                          <Space wrap size={16}>
-                            <Avatar
-                              size={64}
-                              icon={<img src={men_face} alt="logo" />}
+                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+                    <div class="card_post">
+                      <div class="card_postImg">
+                        <div class="list_wrapper">
+                          <a class="auction_image" href="/detail/125">
+                            <img
+                              loading="lazy"
+                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
+                              alt="Ferrari"
                             />
-                          </Space>
-                        </Space>
+                          </a>
+                        </div>
                       </div>
-                      <div className="DecIbp">
-                        <h5>User</h5>
-                        <p>
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
-                        </p>
-                        <div class="card">
-                          <img
-                            src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                            class="card-img-bottom"
-                            alt="..."
-                          />
+                      <div class="card_postInfo">
+                        <h4 class="car_title">
+                          <a href="/detail/125"> Ferrari Spyder 2020</a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
+                    <div class="card_post">
+                      <div class="card_postImg">
+                        <div class="list_wrapper">
+                          <a class="auction_image" href="/detail/125">
+                            <img
+                              loading="lazy"
+                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
+                              alt="Ferrari"
+                            />
+                          </a>
                         </div>
-                        <div className="py-3">
-                          <span className="socialCount">
-                            <i className={`fa-solid fa-thumbs-up `}></i> 22
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-comments"></i> 2
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-share-from-square"></i> 12
-                          </span>
-                          <span className="socialCount">
-                            <i class="fa-solid fa-heart"></i> 8,427
-                          </span>
-
-                          <span className="socialCount">
-                            <i class="fa-solid fa-eye"></i> 99k
-                          </span>
-                        </div>
+                      </div>
+                      <div class="card_postInfo">
+                        <h4 class="car_title">
+                          <a href="/detail/125"> Ferrari Spyder 2020</a>
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -318,7 +289,11 @@ const GaragesUserDetails = () => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <GaragesAuction dealerName={dealerData.name} userId={id} showUserName={false} />
+                <GaragesAuction
+                  dealerName={dealerData.name}
+                  userId={id}
+                  showUserName={false}
+                />
               </div>
               <div
                 class="tab-pane fade"
@@ -336,7 +311,122 @@ const GaragesUserDetails = () => {
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
                             <div className="row">
-                              <Image.PreviewGroup>
+                              <div className="row">
+                                <div className="col-md-12 ">
+                                  <div className="PostInfo">
+                                    <div className="userImG">
+                                      <Space direction="vertical" size={16}>
+                                        <Space wrap size={16}>
+                                          <Avatar
+                                            size={64}
+                                            icon={
+                                              <img src={men_face} alt="logo" />
+                                            }
+                                          />
+                                        </Space>
+                                      </Space>
+                                    </div>
+                                    <div className="DecIbp">
+                                      <h5>User</h5>
+                                      <p>
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                      </p>
+                                      <div class="card">
+                                        <img
+                                          src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                                          class="card-img-bottom"
+                                          alt="..."
+                                        />
+                                      </div>
+                                      <div className="py-3">
+                                        <span className="socialCount">
+                                          <i
+                                            className={`fa-solid fa-thumbs-up `}
+                                          ></i>{" "}
+                                          22
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-comments"></i> 2
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-share-from-square"></i>{" "}
+                                          12
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-heart"></i>{" "}
+                                          8,427
+                                        </span>
+
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-eye"></i> 99k
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-md-12 ">
+                                  <div className="PostInfo">
+                                    <div className="userImG">
+                                      <Space direction="vertical" size={16}>
+                                        <Space wrap size={16}>
+                                          <Avatar
+                                            size={64}
+                                            icon={
+                                              <img src={men_face} alt="logo" />
+                                            }
+                                          />
+                                        </Space>
+                                      </Space>
+                                    </div>
+                                    <div className="DecIbp">
+                                      <h5>User</h5>
+                                      <p>
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                      </p>
+                                      <div class="card">
+                                        <img
+                                          src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                                          class="card-img-bottom"
+                                          alt="..."
+                                        />
+                                      </div>
+                                      <div className="py-3">
+                                        <span className="socialCount">
+                                          <i
+                                            className={`fa-solid fa-thumbs-up `}
+                                          ></i>{" "}
+                                          22
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-comments"></i> 2
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-share-from-square"></i>{" "}
+                                          12
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-heart"></i>{" "}
+                                          8,427
+                                        </span>
+
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-eye"></i> 99k
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* <Image.PreviewGroup>
                                 {garagesData?.image_gallery &&
                                   [...garagesData?.image_gallery].map(
                                     (curElem, i) => {
@@ -361,7 +451,7 @@ const GaragesUserDetails = () => {
                                       );
                                     }
                                   )}
-                              </Image.PreviewGroup>
+                              </Image.PreviewGroup> */}
                             </div>
                           </div>
                         </div>

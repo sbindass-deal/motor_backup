@@ -33,7 +33,7 @@ const GaragesAuction = ({ userId: id, dealerName, showUserName = true }) => {
               </div>
             )}
             <div className="col-12">
-              <div className="row addSection">
+              <div className="row addSection Graj">
                 {userVehicle &&
                   userVehicle.map((curElem) => {
                     return <Data key={curElem.id} curElem={curElem} />;

@@ -4,6 +4,7 @@ const initialState = {
   plan: {},
   planSelectByDealer: "",
   planSubscribe: false,
+  garage: true,
 };
 
 const planReducer = createSlice({
@@ -19,10 +20,13 @@ const planReducer = createSlice({
     purchagedPlan: (state, action) => {
       state.planSubscribe = action.payload;
     },
+    handleGarage: (state, action) => {
+      state.garage = action.payload;
+    },
   },
 });
 
-export const { getPlan, getPlanByDealerSelect, purchagedPlan } =
+export const { getPlan, getPlanByDealerSelect, purchagedPlan, handleGarage } =
   planReducer.actions;
 
 export default planReducer.reducer;

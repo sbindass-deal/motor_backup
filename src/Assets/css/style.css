@@ -6465,6 +6465,10 @@ footer { margin-top: 60px;}
 .light .eye_child.eye_login {
   filter: initial;
 }
+
+
+
+
 .modal { top: 70px;}
 
 .auctionLive .card_postImg img{height: 195px;}
@@ -6822,9 +6826,11 @@ ul.fwrList li {
   padding: 5px 10px 5px 5px;
   border-right: 1px solid #3c3535;
 }
+
 ul.fwrList li:last-child {
   border-right: 0;
 }
+
 .followers {
   display: flex;
 }
@@ -6833,4 +6839,13 @@ ul.fwrList li:last-child {
   text-align: center;
   padding: 10px 15px;
   font-size: 12px;
+
+}
+
+.addSection.Graj .card_postImg.dlr {
+  padding-right: 0px;
+  height: 152px;
+}
+.addSection.Graj a .card_postInfo {
+  width: 100%;
 }
