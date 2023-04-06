@@ -55,7 +55,7 @@ function AdminLeftNav() {
             } `}
             to="/gear-inventry"
           >
-            Gear Inventry
+            Gear Inventory
           </Link>
         </li>
         <li>

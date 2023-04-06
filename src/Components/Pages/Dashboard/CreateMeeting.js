@@ -90,7 +90,7 @@ const CreateMeeting = () => {
                   id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Events</h3>
+                  <h3>Event Management</h3>
 
                   <Link
                     to="/admin-add-meeting/add-meeting"

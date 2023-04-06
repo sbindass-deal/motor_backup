@@ -56,7 +56,7 @@ function RaffleAdmin() {
 
             <div className="col-12 col-md-8 col-lg-9">
               <div className="reffAdmn">
-                <h3>Giveaways</h3>
+                <h3>Giveaways Management</h3>
                 <div style={{ marginLeft: "auto" }}></div>
                 <Link
                   to="/raffleadmin/add-raffel"
@@ -148,7 +148,9 @@ function RaffleAdmin() {
                         </div>
                       </div>
                     ) : (
-                      <table className="table table-striped">
+                        <table className="table 
+                      //table-striped
+                      ">
                         <thead>
                           <tr>
                             <th scope="col">Sr.No</th>

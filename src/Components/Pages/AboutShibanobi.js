@@ -17,10 +17,11 @@ function AboutShibanobi() {
               <div>
               <h3 className="orangeTextDark">Our vision</h3>
                 <p>
-                Auctions are designed to provide the best experience for buyers and sellers alike.
+                  An auction experience the serves and protects buyers and sellers alike.
+
                 </p>
                 <p>
-                The auction process starts with sellers submitting their cars through the website. We select the most interesting and work with the seller to compile a thorough listing for the vehicle. Auctions typically run for 7 days.
+                The auction process starts with sellers submitting their cars through the website. We select the most interesting and work with the seller to compile a thorough listing for the vehicle. Auctions typically run for 7 days and 14 days.
                 </p>
               </div>
             </div>
@@ -33,7 +34,7 @@ function AboutShibanobi() {
               <div>
               <h3 className="orangeTextDark">Our mission</h3>
                 <p>
-                “To Provide a Fair, Respectful, and Efficient Service to all Customers, Everytime, All the Time.”
+                  “To provide a mutually fair, respectful, and efficient automotive experience to all customers, everytime, all the time.”
                 </p>
                 <p>
                 With years of experience serving the area, our dealership is dedicated to offering high-quality, pre-owned vehicles to our customers.

@@ -74,7 +74,7 @@ const VehicleListing = () => {
                   id="widthChnge"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <h3>Listing Plan </h3>
+                  <h3>Listing Plan Management</h3>
                   <Link to="/admin/addVehicle-listing" className="orange_btn">
                     + Add Listing Plan
                   </Link>

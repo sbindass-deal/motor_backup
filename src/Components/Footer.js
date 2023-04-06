@@ -37,7 +37,7 @@ const Footer = () => {
                   <Link to="/shipping">Shipping</Link>
                 </li>
                 <li>
-                  <Link to="/feautres">Gas Guzzlrs Features</Link>
+                  <Link to="/feautres">Featured</Link>
                 </li>
                 <li>
                   <Link to="/submit">List Your Vehicle</Link>
@@ -47,7 +47,7 @@ const Footer = () => {
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
                 {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <Link to="/carraffle">Car Raffle</Link>
+                  <Link to="/carraffle">Giveaways</Link>
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>

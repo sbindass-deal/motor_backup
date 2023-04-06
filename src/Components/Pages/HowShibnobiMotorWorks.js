@@ -38,10 +38,10 @@ function HowShibnobiMotorWorks() {
                   <img src={ic_01} alt="ic_01" />
                 </div>
                 <div className="card_icBody">
-                  <h5>We represent each car honestly</h5>
+                  <h5>
+                    We represent each car honestly</h5>
                   <p>
-                    with objectively-written listings and comprehensive photo
-                    galleries.
+                    with objectively-written listings and comprehensive photo and video galleries.
                   </p>
                 </div>
               </div>
@@ -54,7 +54,9 @@ function HowShibnobiMotorWorks() {
                 <div className="card_icBody">
                   <h5>Each seller is provided</h5>
                   <p>
+
                     a dedicated point of contact throughout the auction process.
+
                   </p>
                 </div>
               </div>
@@ -67,8 +69,8 @@ function HowShibnobiMotorWorks() {
                 <div className="card_icBody">
                   <h5>Comment threads on each listing</h5>
                   <p>
-                    with objectively-written listings and comprehensive photo
-                    galleries.
+                    A medium for buyers and sellers to ask and answer questions
+
                   </p>
                 </div>
               </div>
@@ -79,10 +81,9 @@ function HowShibnobiMotorWorks() {
                   <img src={ic_04} alt="ic_04" />
                 </div>
                 <div className="card_icBody">
-                  <h5>Sniping protection extends</h5>
+                  <h5>Sniping protection</h5>
                   <p>
-                    with objectively-written listings and comprehensive photo
-                    galleries.
+                    extends the time of the auction when a bid is placed within the last 2 minutes
                   </p>
                 </div>
               </div>

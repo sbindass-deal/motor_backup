@@ -52,7 +52,7 @@ function VehicleSubmission() {
             </div>
 
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Vehicle Submission</h3>
+              <h3>Vehicle Submission Management</h3>
               <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
                 <li className="post_search">
