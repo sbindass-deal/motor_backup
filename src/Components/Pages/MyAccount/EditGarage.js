@@ -90,28 +90,28 @@ function EditGarage() {
   };
   const fetchUserDetails = async () => {
     try {
-      const res = await axios.get(`${url}user_detail`);
+      const res = await axios.get(`${url}getGarageReturn`);
       const userLoginData = res.data.data;
-      setAddUserInBid(userLoginData.bid);
+      // setAddUserInBid(userLoginData.bid);
       setUserData(userLoginData);
-      setLogo(userLoginData.logo);
-      setGallery(userLoginData.gallery);
-      setBanner(userLoginData.banner);
+      setLogo(userLoginData?.logo);
+      setGallery(userLoginData?.image_Banner);
+      setBanner(userLoginData?.image_Gallery);
       setEditUser({
-        name: userLoginData.name,
-        userName: userLoginData.username,
-        email: userLoginData.email,
-        phone: userLoginData.mobile,
-        title: userLoginData.dealer_title,
-        desc: userLoginData.dealerDescription,
-        aboutus: userLoginData.about_us,
-        video_link: userLoginData.video_link,
+        name: userLoginData?.name,
+        userName: userLoginData?.username,
+        email: userLoginData?.email,
+        phone: userLoginData?.mobile,
+        title: userLoginData?.title,
+        desc: userLoginData?.dealerDescription,
+        aboutus: userLoginData?.about_us,
+        video_link: userLoginData?.video_link,
       });
 
       setBlogContent(
         EditorState.createWithContent(
           ContentState.createFromBlockArray(
-            convertFromHTML(res.data.data.about_us)
+            convertFromHTML(res.data.data?.about_us)
           )
         )
       );
@@ -119,7 +119,7 @@ function EditGarage() {
       setBlogContentDesc(
         EditorState.createWithContent(
           ContentState.createFromBlockArray(
-            convertFromHTML(res.data.data.dealerDescription)
+            convertFromHTML(res.data.data?.description)
           )
         )
       );
@@ -170,7 +170,8 @@ function EditGarage() {
         const formData = new FormData();
         formData.append("logo[]", item);
         formData.append("category", "gallery");
-        formData.append("dealerId", vehicleId);
+        formData.append("type", "garage");
+        // formData.append("dealerId", vehicleId);
         const config = {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -188,7 +189,8 @@ function EditGarage() {
         const formData = new FormData();
         formData.append("logo[]", file1);
         formData.append("category", "logo");
-        formData.append("dealerId", vehicleId);
+        formData.append("type", "garage");
+        // formData.append("dealerId", vehicleId);
         const newImagedata = formData;
         const config = {
           headers: {
@@ -207,7 +209,8 @@ function EditGarage() {
         const formData = new FormData();
         formData.append("logo[]", file11);
         formData.append("category", "banner");
-        formData.append("dealerId", vehicleId);
+        formData.append("type", "garage");
+        // formData.append("dealerId", vehicleId);
         const config = {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -265,6 +268,7 @@ function EditGarage() {
     axios
       .post(`${process.env.REACT_APP_URL}deleteImgDealer`, {
         id: id,
+        type: "garage",
       })
       .then(function (response) {
         if (response.status === 200) {

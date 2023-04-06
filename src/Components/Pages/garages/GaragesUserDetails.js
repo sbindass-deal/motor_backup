@@ -16,6 +16,7 @@ import parse from "html-react-parser";
 import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction";
 import GaragesAuction from "./GaragesAuction";
 import GaragesBlog from "./GaragesBlog";
+import GaragesVehicle from "./GaragesVehicle";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -92,7 +93,6 @@ const GaragesUserDetails = () => {
       </div>
       <div className="container">
         <div className="row">
-        
           <div className="col-md-8 offset-md-2">
             <div className="UserImZ mt-4">
               <Space direction="vertical" size={16}>
@@ -118,12 +118,18 @@ const GaragesUserDetails = () => {
                 </Space>
               </Space>
               <div className="followers">
-                    <ul className="fwrList">
-                      <li><span>22</span> Followers</li>
-                      <li><span>2</span>Following</li>
-                      <li><span>12</span>Post</li>
-                    </ul>
-                    <button className="btn">Follow</button>
+                <ul className="fwrList">
+                  <li>
+                    <span>22</span> Followers
+                  </li>
+                  <li>
+                    <span>2</span>Following
+                  </li>
+                  <li>
+                    <span>12</span>Post
+                  </li>
+                </ul>
+                <button className="btn">Follow</button>
               </div>
             </div>
             <h2 className="mt-4">{garagesData.name}</h2>
@@ -212,7 +218,8 @@ const GaragesUserDetails = () => {
                 aria-labelledby="home-tab"
                 tabindex="0"
               >
-                <div className="row">
+                <GaragesVehicle id={id} />
+                {/* <div className="row">
                   <div className="col-md-12 ">
                     <div className="PostInfo">
                       <div className="userImG">
@@ -309,7 +316,7 @@ const GaragesUserDetails = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 class="tab-pane fade"
@@ -318,7 +325,11 @@ const GaragesUserDetails = () => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <GaragesAuction dealerName={dealerData.name} userId={id} showUserName={false} />
+                <GaragesAuction
+                  dealerName={dealerData.name}
+                  userId={id}
+                  showUserName={false}
+                />
               </div>
               <div
                 class="tab-pane fade"

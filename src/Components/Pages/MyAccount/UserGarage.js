@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
+import { handleGarage } from "../../../redux/reducers/planReducer";
 function UserGarage() {
   const userId = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userInfo, setUserinfo] = useState({});
   const [isPrivateOrPublic, setIsPrivateOrPublic] = useState(false);
 
   const fetchUsrApi = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}user`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getGarageReturn`
+      );
       if (res.data.data) {
         setUserinfo(res.data.data);
         setIsPrivateOrPublic(res.data.data.published == 0 ? false : true);
@@ -90,9 +95,15 @@ function UserGarage() {
                     </div>
                   )}
                   {/* to="/add-garage" */}
-                  <Link to="" className="gry_btn px-3 mx-2">
+                  <button
+                    onClick={() => {
+                      navigate("/vechiles");
+                      dispatch(handleGarage(false));
+                    }}
+                    className="gry_btn px-3 mx-2"
+                  >
                     + Add Garage
-                  </Link>
+                  </button>
                   <Link to="/editmyaccount-garages" className="gry_btn px-3">
                     Edit Garage
                   </Link>
@@ -103,7 +114,7 @@ function UserGarage() {
                 <li>
                   <div className="labelList_label">Title</div>
                   <div className="labelList_text">
-                    {userInfo.dealer_title} <br />
+                    {userInfo.title} <br />
                   </div>
                 </li>
                 <li>
@@ -115,8 +126,8 @@ function UserGarage() {
                 <li>
                   <div className="labelList_label">Description</div>
                   <div className="labelList_text">
-                    {userInfo?.dealerDescription &&
-                      parse(userInfo?.dealerDescription, strToHtml)}
+                    {userInfo?.description &&
+                      parse(userInfo?.description, strToHtml)}
                   </div>
                 </li>
 
@@ -147,7 +158,7 @@ function UserGarage() {
                     <hr />
                     <div className="imgCross">
                       <Image.PreviewGroup>
-                        {userInfo?.gallery?.map((curElem, i) => {
+                        {userInfo?.image_Banner?.map((curElem, i) => {
                           return (
                             <span key={i}>
                               <Image
@@ -168,7 +179,7 @@ function UserGarage() {
                     <hr />
                     <div className="imgCross">
                       <Image.PreviewGroup>
-                        {userInfo?.banner?.map((curElem, i) => {
+                        {userInfo?.image_Gallery?.map((curElem, i) => {
                           return (
                             <span key={i}>
                               <Image

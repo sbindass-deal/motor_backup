@@ -34,6 +34,7 @@ import { useEffect } from "react";
 import { getTotals } from "./redux/reducers/cartSlice";
 import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
 import { storeGearData } from "./redux/reducers/gearReducer";
+import { handleGarage } from "./redux/reducers/planReducer";
 
 const bsc = {
   id: 56,
@@ -99,7 +100,7 @@ const App = () => {
   const accessToken = useSelector((state) => state.login.token);
 
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getTotals());
   }, [logingUser.cartSlice.products]);
@@ -182,6 +183,7 @@ const App = () => {
   };
   useEffect(() => {
     fetchData();
+    dispatch(handleGarage(true));
   }, []);
 
   return (
@@ -190,7 +192,7 @@ const App = () => {
         <RainbowKitProvider theme={darkTheme()} chains={chains}>
           <Layout />
         </RainbowKitProvider>
-      </WagmiConfig>       
+      </WagmiConfig>
     </>
   );
 };

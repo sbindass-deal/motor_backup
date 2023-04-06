@@ -608,8 +608,12 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         detailvin: vin,
-        displayInAuction: displayInAuction,
-        auctionType,
+        displayInAuction: `${
+          logingUser.planReducer.garage ? displayInAuction : "Garage"
+        }`,
+        auctionType: `${
+          logingUser.planReducer.garage ? auctionType : "Garage"
+        }`,
         externalLink: adWebsiteLink,
         km: odometer,
         kmacc: accurateField,
@@ -943,9 +947,11 @@ const VechilesRegistraion = () => {
           <div className="row"></div>
           {
             <div className="row">
-              <div className="col-12 text-center pb-4">
-                <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
-              </div>
+              {logingUser.planReducer.garage && (
+                <div className="col-12 text-center pb-4">
+                  <h2>Sell your vehicle with Gas Guzzlrs Auctions!</h2>
+                </div>
+              )}
               <div className="col-12 col-md-4 col-lg-3">
                 <div className="card_Gray mb-5 mb-md-0 divSticky">
                   {/* <!-- Nav pills --> */}
@@ -1019,7 +1025,7 @@ const VechilesRegistraion = () => {
                         onClick={handleContactTab}
                         style={{ cursor: "pointer" }}
                       >
-                        Contact Info
+                        Submit
                       </a>
                     </li>
                   </ul>
@@ -1628,89 +1634,97 @@ const VechilesRegistraion = () => {
                             /> */}
                             </div>
                           )}
-                          <div className="col-12 col-sm-12 col-md-6">
-                            <div className="form-group">
-                              <label>
-                                How would you want to list your vehicle?
-                              </label>
-                              <select
-                                value={basicfact.displayInAuction}
-                                onChange={basicFactOnChange}
-                                name="displayInAuction"
-                                className="field bgChangeDark"
-                                required
-                              >
-                                <option selected disabled value="">
-                                  Select
-                                </option>
-                                {logingUser.planReducer.planSelectByDealer ===
-                                "classified" ? (
-                                  <option value="classified">
-                                    Classified Ads
-                                  </option>
-                                ) : (
-                                  <option value="Yes">Auction</option>
-                                )}
-                              </select>
-                            </div>
-                          </div>
-
-                          {logingUser.planReducer.planSelectByDealer ===
-                          "classified" ? (
+                          {logingUser.planReducer.garage && (
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
-                                <FormInput
-                                  value={basicfact.adWebsiteLink}
-                                  onChange={basicFactOnChange}
-                                  name="adWebsiteLink"
-                                  type="url"
-                                  placeholder="Enter link"
-                                  errorMessage="Please provide valid link"
-                                  label="Please provide your website link here"
-                                  required={true}
-                                />
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="col-12 col-sm-12 col-md-6">
-                              <div className="form-group">
-                                <label>Auction type</label>
+                                <label>
+                                  How would you want to list your vehicle?
+                                </label>
                                 <select
-                                  value={basicfact.auctionType}
+                                  value={basicfact.displayInAuction}
                                   onChange={basicFactOnChange}
-                                  name="auctionType"
+                                  name="displayInAuction"
                                   className="field bgChangeDark"
                                   required
                                 >
                                   <option selected disabled value="">
                                     Select
                                   </option>
-                                  <option value="General listing">
-                                    General listing
-                                  </option>
-                                  <option value="charity">
-                                    Charity listing
-                                  </option>
-                                  <option value="Premium listing">
-                                    Featured listing
-                                  </option>
+                                  {logingUser.planReducer.planSelectByDealer ===
+                                  "classified" ? (
+                                    <option value="classified">
+                                      Classified Ads
+                                    </option>
+                                  ) : (
+                                    <option value="Yes">Auction</option>
+                                  )}
                                 </select>
                               </div>
                             </div>
                           )}
-                          <div className="col-12 col-sm-12 col-md-6">
-                            <div className="form-group">
-                              <FormInput
-                                value={endDateAndTime}
-                                type="datetime-local"
-                                onChange={(e) => {
-                                  setEndDateAndTime(e.target.value);
-                                }}
-                                placeholder="Enter link"
-                                label="Please Enter Auction End Date"
-                              />
+                          {logingUser.planReducer.garage && (
+                            <>
+                              {logingUser.planReducer.planSelectByDealer ===
+                              "classified" ? (
+                                <div className="col-12 col-sm-12 col-md-6">
+                                  <div className="form-group">
+                                    <FormInput
+                                      value={basicfact.adWebsiteLink}
+                                      onChange={basicFactOnChange}
+                                      name="adWebsiteLink"
+                                      type="url"
+                                      placeholder="Enter link"
+                                      errorMessage="Please provide valid link"
+                                      label="Please provide your website link here"
+                                      required={true}
+                                    />
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="col-12 col-sm-12 col-md-6">
+                                  <div className="form-group">
+                                    <label>Auction type</label>
+                                    <select
+                                      value={basicfact.auctionType}
+                                      onChange={basicFactOnChange}
+                                      name="auctionType"
+                                      className="field bgChangeDark"
+                                      required
+                                    >
+                                      <option selected disabled value="">
+                                        Select
+                                      </option>
+                                      <option value="General listing">
+                                        General listing
+                                      </option>
+                                      <option value="charity">
+                                        Charity listing
+                                      </option>
+                                      <option value="Premium listing">
+                                        Featured listing
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
+
+                          {logingUser.planReducer.garage && (
+                            <div className="col-12 col-sm-12 col-md-6">
+                              <div className="form-group">
+                                <FormInput
+                                  value={endDateAndTime}
+                                  type="datetime-local"
+                                  onChange={(e) => {
+                                    setEndDateAndTime(e.target.value);
+                                  }}
+                                  placeholder="Enter link"
+                                  label="Please Enter Auction End Date"
+                                />
+                              </div>
                             </div>
-                          </div>
+                          )}
                           {basicfact.auctionType === "charity" && (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">
@@ -2400,25 +2414,27 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
 
-                          <div className="col-12 col-sm-12 col-md-6">
-                            <div className="form-group">
-                              <label>Do you want a reserve?</label>
-                              <select
-                                value={detailstab.reserve}
-                                onChange={detailsOnChange}
-                                name="reserve"
-                                className="field bgChangeDark"
-                                required
-                              >
-                                <option selected disabled value="">
-                                  Select
-                                </option>
+                          {logingUser.planReducer.garage && (
+                            <div className="col-12 col-sm-12 col-md-6">
+                              <div className="form-group">
+                                <label>Do you want a reserve?</label>
+                                <select
+                                  value={detailstab.reserve}
+                                  onChange={detailsOnChange}
+                                  name="reserve"
+                                  className="field bgChangeDark"
+                                  required
+                                >
+                                  <option selected disabled value="">
+                                    Select
+                                  </option>
 
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                              </select>
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                                </select>
+                              </div>
                             </div>
-                          </div>
+                          )}
                           {detailstab.reserve === "Yes" && (
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
@@ -2481,68 +2497,70 @@ const VechilesRegistraion = () => {
                               />
                             </div>
                           </div>
-                          <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group form-check">
-                              <label className="form-check-label">
-                                <input
-                                  onChange={(e) =>
-                                    setAcceptTerms(e.target.checked)
-                                  }
-                                  name="accept"
-                                  value={acceptTerms}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  checked={acceptTerms}
-                                  required
-                                />{" "}
-                                I accept the{" "}
-                                <a
-                                  onClick={() => {
-                                    setAmlPolicy(false);
-                                    setModalShow(true);
-                                  }}
-                                  className="link"
-                                  style={{ cursor: "pointer" }}
-                                >
-                                  Terms of Service
-                                </a>{" "}
-                                and{" "}
-                                <a
-                                  onClick={() => {
-                                    setAmlPolicy(true);
-                                    setModalShow(true);
-                                  }}
-                                  style={{ cursor: "pointer" }}
-                                  className="link"
-                                >
-                                  AML Policy
-                                </a>
-                              </label>
+                          {logingUser.planReducer.garage && (
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="form-group form-check">
+                                <label className="form-check-label">
+                                  <input
+                                    onChange={(e) =>
+                                      setAcceptTerms(e.target.checked)
+                                    }
+                                    name="accept"
+                                    value={acceptTerms}
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={acceptTerms}
+                                    required
+                                  />{" "}
+                                  I accept the{" "}
+                                  <a
+                                    onClick={() => {
+                                      setAmlPolicy(false);
+                                      setModalShow(true);
+                                    }}
+                                    className="link"
+                                    style={{ cursor: "pointer" }}
+                                  >
+                                    Terms of Service
+                                  </a>{" "}
+                                  and{" "}
+                                  <a
+                                    onClick={() => {
+                                      setAmlPolicy(true);
+                                      setModalShow(true);
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                    className="link"
+                                  >
+                                    AML Policy
+                                  </a>
+                                </label>
+                              </div>
+                              <div className="form-group form-check">
+                                <label className="form-check-label">
+                                  <input
+                                    onChange={(e) =>
+                                      setUnderstandCondition(e.target.checked)
+                                    }
+                                    name="understand"
+                                    value={understandCondition}
+                                    className="form-check-input"
+                                    checked={understandCondition}
+                                    type="checkbox"
+                                    required
+                                  />{" "}
+                                  I understand that if the final bid for my
+                                  vehicle is below the reserve, GasGuzzlrs may
+                                  choose (at its sole discretion) to make up the
+                                  difference. In this case the vehicle will
+                                  appear as sold at the below-reserve price and
+                                  GasGuzzlrs will pay me the difference between
+                                  the high bid and the reserve once the
+                                  transaction is complete.
+                                </label>
+                              </div>
                             </div>
-                            <div className="form-group form-check">
-                              <label className="form-check-label">
-                                <input
-                                  onChange={(e) =>
-                                    setUnderstandCondition(e.target.checked)
-                                  }
-                                  name="understand"
-                                  value={understandCondition}
-                                  className="form-check-input"
-                                  checked={understandCondition}
-                                  type="checkbox"
-                                  required
-                                />{" "}
-                                I understand that if the final bid for my
-                                vehicle is below the reserve, GasGuzzlrs may
-                                choose (at its sole discretion) to make up the
-                                difference. In this case the vehicle will appear
-                                as sold at the below-reserve price and
-                                GasGuzzlrs will pay me the difference between
-                                the high bid and the reserve once the
-                                transaction is complete.
-                              </label>
-                            </div>
-                          </div>
+                          )}
                           <div className="col-12 col-sm-12 col-md-12">
                             <button
                               onClick={handleBackBasicFact}
@@ -2563,18 +2581,19 @@ const VechilesRegistraion = () => {
                   reduxValue.submitvechilesReducer.step_two === true &&
                   reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
-                      <h3>Contact Info</h3>
+                      {/* <h3>Contact Info</h3> */}
+                      <h3>Submit Details</h3>
                       <hr />
 
                       <form className="pt-3" onSubmit={handleShowPayment}>
-                        <div className="row">
+                        {/* <div className="row">
                           <div className="col-12">
                             <h5>Complete Your Contact Info</h5>
                             <h6>Subscribe to our newsletter:</h6>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="row row_gap_5">
-                          <div className="col-12 col-sm-12 col-md-6">
+                          {/* <div className="col-12 col-sm-12 col-md-6">
                             <FormInput
                               value={information.uemail}
                               onChange={informationOnChange}
@@ -2624,25 +2643,8 @@ const VechilesRegistraion = () => {
                                 Sign me up for the GasGuzzlrs Daily Mail
                               </label>
                             </div>
-                          </div>
-
-                          {/* <div className="col-12 col-sm-12 col-md-12">
-                            <div className="form-group form-check">
-                              <label className="form-check-label">
-                                <input
-                                  name="checkbox"
-                                  onChange={(e) =>
-                                    setAggreePayment(e.target.checked)
-                                  }
-                                  className="form-check-input"
-                                  checked={aggreePayment}
-                                  type="checkbox"
-                                />
-                                I am going to pay{" "}
-                                {logingUser.planReducer.plan.price}.
-                              </label>
-                            </div>
                           </div> */}
+
                           <div className="col-12 col-sm-12 col-md-12">
                             <button
                               type="button"
@@ -2657,7 +2659,6 @@ const VechilesRegistraion = () => {
                               </button>
                             ) : (
                               <button
-                                // disabled={!aggreePayment}
                                 type="submit"
                                 className="gry_btn"
                                 required
