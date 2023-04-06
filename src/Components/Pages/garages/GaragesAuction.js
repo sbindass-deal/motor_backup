@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Data from "./Data";
 
-const GaragesAuction = ({ userId: id, dealerName }) => {
+const GaragesAuction = ({ userId: id, dealerName, showUserName = true }) => {
   const [userVehicle, setUserVehicle] = useState([]);
   useEffect(() => {
     const fetchDealerInventoryApi = async () => {
@@ -27,9 +27,11 @@ const GaragesAuction = ({ userId: id, dealerName }) => {
       <section className="pt_80 mobileSpec dlr" id="">
         <div className="container">
           <div className="row ">
-            <div className="col-12 text-center pb_30">
-              <h2>{dealerName} Auctions</h2>
-            </div>
+            {showUserName == true && (
+              <div className="col-12 text-center pb_30">
+                <h2>{dealerName} Auctions</h2>
+              </div>
+            )}
             <div className="col-12">
               <div className="row addSection">
                 {userVehicle &&
