@@ -12,7 +12,7 @@ const GaragesAuction = ({ userId: id, dealerName, showUserName = true }) => {
     const fetchDealerInventoryApi = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_URL}/vehicles/${id}`
+          `${process.env.REACT_APP_URL}dealer_profile/auctions/${id}`
         );
         setUserVehicle(res.data.inventory_vehicle);
       } catch (err) {

@@ -8,6 +8,7 @@ import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
 import { handleGarage } from "../../../redux/reducers/planReducer";
+import MyGaragesList from "./MyGaragesList";
 function UserGarage() {
   const userId = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -199,6 +200,7 @@ function UserGarage() {
                   </>
                 )}
               </ul>
+              <MyGaragesList />
             </div>
           </div>
         </div>
