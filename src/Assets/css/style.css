@@ -6885,7 +6885,7 @@ h2 svg.svg-inline--fa.fa-pen-to-square {
   letter-spacing: 1px;
 }
 h5.catagories {
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   font-weight: 200;
   color: #9a9999;
@@ -6965,6 +6965,9 @@ h5.catagories {
   margin: 25px auto;
   width: fit-content;
 
+}
+select.size {
+  width: 20%;
 }
 #cpnCode{
   border: 1px dashed #fff;

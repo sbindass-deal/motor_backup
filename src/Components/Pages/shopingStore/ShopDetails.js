@@ -245,7 +245,24 @@ const ShopDetails = () => {
               </p>
               <div className="sizeColor">
                 {/* <div className="sizeColor">Category : {product.category}</div> */}
-                <div className="size d-flex"><p className="my-auto">Size :</p>  {
+                <div className="size">
+                 
+                  <select className="size">
+                    <option >SIZE</option>
+                    <option>XL</option>
+                    <option>L</option>
+                    <option>M</option>
+                    <option>SM</option>
+                  </select>
+                  <select className="size">
+                    <option >COLOR</option>
+                    <option>Red</option>
+                    <option>Blue</option>
+                    <option>Green</option>
+                    <option>Black</option>
+                  </select>
+                  </div>
+                {/* <div className="size d-flex"><p className="my-auto">Size :</p>  {
                   product?.product_inventry?.map((d, i) => {
                     return size?.map((data, index) => {
                       if (data?.id == d?.size_id) {
@@ -255,9 +272,9 @@ const ShopDetails = () => {
                     })
                   })
                 }
-                </div>
+                </div> */}
 
-                <div className="size d-flex">Color : {
+                {/* <div className="size d-flex">Color : {
                   product?.product_inventry?.map((d, i) => {
                     if (d?.id == productId)
                       return color_id?.map((data, index) => {
@@ -267,12 +284,15 @@ const ShopDetails = () => {
                       })
                   })
                 }
-                </div>
+                </div> */}
               </div>
-              <p className="product_dec">Stock : {product?.product_inventry?.map((d, i) => {
+              {/* <h5 className="catagories"><small>Stock: </small>{product?.product_inventry?.map((d, i) => {
                 if (productId == d?.id)
                   return d?.stock + " "
-              })}</p>
+              })}</h5> */}
+
+                   
+            
               <button onClick={handleProduct} type="button" className="btn" >
                 Add to Cart
               </button>
