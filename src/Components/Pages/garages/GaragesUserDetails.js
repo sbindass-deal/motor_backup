@@ -305,8 +305,7 @@ const GaragesUserDetails = () => {
                 <section className="py-4 mobileSpec" id="">
                   <div className="container">
                     <div className="row ">
-                      <div className="col-12 text-center pb_30"></div>
-
+                     
                       <div className="col-12 Videos ghhh">
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
@@ -357,7 +356,6 @@ const GaragesUserDetails = () => {
                                   </div>
                                 </div>
                               </div>
-                           
                               <div className="row">
                                 <div className="col-md-12 ">
                                   <div className="PostInfo">
@@ -499,7 +497,6 @@ const GaragesUserDetails = () => {
                                     }
                                   )}
                               </Image.PreviewGroup> */}
-                           
                           </div>
                         </div>
                       </div>
