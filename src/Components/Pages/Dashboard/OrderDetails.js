@@ -48,11 +48,11 @@ const OrderDetail = () => {
     return <SmallSpinner spin={true} />;
   }
 
-  const orderShipmentApi = (data) => {
+  const orderShipmentApi = (data, productId) => {
     
     axios.post(`${process.env.REACT_APP_URL }updateOrderShipmentStatus`, {
       order_status: data,
-      order_id: id
+      id: productId.id
       
     })
       .then(function (response) {
@@ -68,8 +68,8 @@ const OrderDetail = () => {
       });
 }
 
-  const handleOrder = (data) => {
-    orderShipmentApi(data)
+  const handleOrder = (data,productId) => {
+    orderShipmentApi(data, productId)
     // setResultsPerPage(data)
   }
   
@@ -84,7 +84,7 @@ const OrderDetail = () => {
               <div className="table-responsive">
                 <table width={"100%"} className="cartSection">
                   <tr>
-                    <th></th>
+                    <th>Image</th>
                     <th>name</th>
                     <th>Size</th>
                     <th>No. of Items</th>
@@ -102,14 +102,14 @@ const OrderDetail = () => {
                           />
                         </td>
                         <td>{curElem.title}</td>
-                        <td>xl</td>
+                        <td>{curElem?.size_title}</td>
                         {console.log(8798, curElem)}
                         <td>{curElem.item_quantity}</td>
                         <td>{curElem.item_price}</td>
-                        <td>{curElem.status}</td>
+                        <td>{curElem.order_status}</td>
                         <td>${curElem.item_quantity * curElem.item_price}</td>
                         <td className="mt-3 text-center">
-                          <select value={resultsPerPage} onChange={(event) => handleOrder(event.target.value)}>
+                          <select value={resultsPerPage} onChange={(event) => handleOrder(event.target.value, curElem)}>
                             <option value={""}>Order Status</option>
                             <option value={"Order Placed"}>Order Placed</option>
                             <option value={"Cancelled"}>Cancelled</option>

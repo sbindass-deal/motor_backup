@@ -15,6 +15,7 @@ const OrderCartDetails = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}GetallorderItem/${id}`
         );
+        console.log(80989, res)
         if (res.data.status === 200 && res.data.data) {
           setOrder(res.data.data);
         }
@@ -40,7 +41,7 @@ const OrderCartDetails = () => {
               <div class="table-responsive">
                 <table width={"100%"} className="cartSection">
                   <tr>
-                    <th></th>
+                    <th>Image</th>
                     <th>name</th>
                     <th>Size</th>
                     <th>No. of Items</th>
@@ -58,13 +59,12 @@ const OrderCartDetails = () => {
                             />
                           </Link>
                         </td>
-                        <td>{curElem.title}</td>
-                        <td>xl</td>
-                        {console.log(89889,curElem)}
-                        <td>{curElem.item_quantity}</td>
-                        <td>{curElem.item_price}</td>
-                        <td>{curElem.status}</td>
-                        <td>${curElem.item_quantity * curElem.item_price}</td>
+                        <td>{curElem?.title}</td>
+                        <td>{curElem?.size_title}</td>
+                        <td>{curElem?.item_quantity}</td>
+                        <td>{curElem?.item_price}</td>
+                        <td>{curElem?.order_status}</td>
+                        <td>${curElem?.item_quantity * curElem.item_price}</td>
                       </tr>
                     );
                   })}
