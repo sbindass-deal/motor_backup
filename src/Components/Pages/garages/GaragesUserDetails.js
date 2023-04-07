@@ -310,7 +310,7 @@ const GaragesUserDetails = () => {
                       <div className="col-12 Videos ghhh">
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
-                            <div className="row">
+                           
                               <div className="row">
                                 <div className="col-md-12 ">
                                   <div className="PostInfo">
@@ -452,7 +452,7 @@ const GaragesUserDetails = () => {
                                     }
                                   )}
                               </Image.PreviewGroup> */}
-                            </div>
+                           
                           </div>
                         </div>
                       </div>
