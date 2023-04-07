@@ -6,8 +6,9 @@ import { Modal, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { noImage } from "../../UI/globaleVar";
 import { getPlan, purchagedPlan } from "../../../redux/reducers/planReducer";
+import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 
-function MyGaragesList() {
+function MyGaragesList({ id }) {
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -49,7 +50,7 @@ function MyGaragesList() {
     setVehicleLoding(true);
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}byUserVehicle?veicleStatus=${filterValue}`
+        `${process.env.REACT_APP_URL}garagesVehiclesByUser/${id}`
       );
       if (res.data.status === 200) {
         setData(res.data.data);
@@ -189,7 +190,7 @@ function MyGaragesList() {
                                 to={`/garages-user-details/${curElem.userId}`}
                                 className="gry_btn ml-2"
                               >
-                                Preview
+                                <ReportGmailerrorredIcon />
                               </Link>
                             </div>
                           </div>
