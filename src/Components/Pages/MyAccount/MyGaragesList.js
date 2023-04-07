@@ -184,8 +184,9 @@ function MyGaragesList() {
                               >
                                 <i class="fa-solid fa-trash-can"></i>
                               </button>
+
                               <Link
-                                to={`/detail/${curElem.id}`}
+                                to={`/garages-user-details/${curElem.userId}`}
                                 className="gry_btn ml-2"
                               >
                                 Preview
