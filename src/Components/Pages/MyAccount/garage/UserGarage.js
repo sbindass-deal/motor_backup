@@ -198,9 +198,9 @@ function UserGarage() {
                   >
                     + Add Garage
                   </button>
-                  <Link to="/editmyaccount-garages" className="gry_btn px-3">
+                  {/* <Link to="/editmyaccount-garages" className="gry_btn px-3">
                     Edit Garage
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
               <hr />
@@ -310,8 +310,8 @@ function UserGarage() {
                                 className="slidImg"
                                 loading="lazy"
                                 src={
-                                  garagesData?.image_logo &&
-                                  `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
+                                  userInfo?.logo &&
+                                  `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
                                 }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
@@ -339,7 +339,10 @@ function UserGarage() {
                       </div>
                     </div>
                     <h2 className="mt-4">
-                      name <i class="fa-solid fa-pen-to-square"></i>
+                      name{" "}
+                      <Link to="/editmyaccount-garages">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </Link>
                     </h2>
                     <ul className="labelList_">
                       <li>
@@ -726,7 +729,7 @@ function UserGarage() {
                       >
                         <section className="py-4 mobileSpec" id="">
                           <div className="container">
-                            <div className="row ">
+                            <div className="row">
                               <GaragesBlog id={id} />
                             </div>
                           </div>
@@ -741,7 +744,7 @@ function UserGarage() {
                       >
                         {true && (
                           <>
-                            <h6>Logo</h6>
+                            {/* <h6>Logo</h6>
                             <hr />
                             <div className="imgCross">
                               <Image.PreviewGroup>
@@ -761,7 +764,7 @@ function UserGarage() {
                                   );
                                 })}
                               </Image.PreviewGroup>
-                            </div>
+                            </div> */}
                             <h6 className="mt-3">Banner</h6>
                             <hr />
                             <div className="imgCross">
