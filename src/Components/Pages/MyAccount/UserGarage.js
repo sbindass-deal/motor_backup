@@ -261,7 +261,7 @@ function UserGarage() {
                         <button className="btn">Follow</button>
                       </div>
                     </div>
-                    <h2 className="mt-4">name</h2>
+                    <h2 className="mt-4">name <i class="fa-solid fa-pen-to-square"></i></h2>
                     <span className="text-muted">user name</span>
                     <p>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
