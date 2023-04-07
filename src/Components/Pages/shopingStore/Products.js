@@ -79,7 +79,7 @@ console.log(curElem);
                    
                   images?.map((d, i) => {
                     return (
-                      <div>
+                      <div className="carDesk">
                         <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
                         <img
                           src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
