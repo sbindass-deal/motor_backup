@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { noImage } from "../../UI/globaleVar";
-import { getPlan, purchagedPlan } from "../../../redux/reducers/planReducer";
+import { noImage } from "../../../UI/globaleVar";
+import { getPlan, purchagedPlan } from "../../../../redux/reducers/planReducer";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 
 function MyGaragesList({ id }) {

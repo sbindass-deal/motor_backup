@@ -18,11 +18,12 @@ const OrderCart = () => {
     setLoading(true);
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
+      console.log(87980, res)
       if (res.data.status === 200 && res.data.data) {
-        const activeOrder = res.data.data.filter(
-          (item) => item.order_status === "New"
-        );
-        setOrder(activeOrder);
+        // const activeOrder = res.data.data.filter(
+        //   (item) => item.order_status === "New"
+        // );
+        setOrder(res.data.data);
       }
       setLoading(false);
     } catch (err) {

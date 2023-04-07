@@ -70,6 +70,7 @@ function Orders() {
                         <th scope="col">Name</th>
                         <th scope="col">Order Id</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
                         <th scope="col" style={{ textAlign: "center" }}>
                           Action
                         </th>
@@ -111,6 +112,8 @@ function Orders() {
                         </button> */}
                                   ${curElem.amount}
                                 </td>
+                                {console.log(7980, curElem)}
+                                <td>{curElem.order_status}</td>
                                 <td>
                                   <Link
                                     to={`/orders-details/${curElem.order_id}`}

@@ -45,18 +45,25 @@ const OrderCartDetails = () => {
                     <th>Size</th>
                     <th>No. of Items</th>
                     <th>Item Price</th>
+                    <th>Status</th>
                     <th>Total Value</th>
                   </tr>
                   {order.map((curElem) => {
                     return (
                       <tr key={curElem.id}>
                         <td className="productImg">
-                         <Link to={`/shop/${curElem.id}`}> <img src={img_01} /></Link>
+                          <Link to={`/shop/${curElem.id}`}>
+                            <img
+                              src={`${process.env.REACT_APP_URL}upload/products/${curElem?.image}`}
+                            />
+                          </Link>
                         </td>
-                        <td>{2002342517}</td>
+                        <td>{curElem.title}</td>
                         <td>xl</td>
+                        {console.log(89889,curElem)}
                         <td>{curElem.item_quantity}</td>
                         <td>{curElem.item_price}</td>
+                        <td>{curElem.status}</td>
                         <td>${curElem.item_quantity * curElem.item_price}</td>
                       </tr>
                     );

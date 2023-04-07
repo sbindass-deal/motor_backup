@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
-import MyAccountLeftNav from "./MyAccountLeftNav";
+import MyAccountLeftNav from "../MyAccountLeftNav";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { noImage, notify, strToHtml } from "../../UI/globaleVar";
+import { noImage, notify, strToHtml } from "../../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Avatar, Image, Space } from "antd";
-import { handleGarage } from "../../../redux/reducers/planReducer";
-import MyGaragesList from "./MyGaragesList";
+// import { handleGarage } from "../../../../redux/reducers/planReducer";
+// import MyGaragesList from "./MyGaragesList";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
-import men_face from "../../../Assets/images/men-face.jpg";
+import men_face from "../../../../Assets/images/men-face.jpg";
 
 import { Modal } from "react-bootstrap";
+import GaragesVehicle from "../../garages/GaragesVehicle";
+import GaragesAuction from "../../garages/GaragesAuction";
+import GaragesBlog from "../../garages/GaragesBlog";
 
 function UserGarage() {
   const [show, setShow] = useState(false);
@@ -21,7 +24,13 @@ function UserGarage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [garagesData, setGaragesData] = useState({});
+  const [showMore, setShowMore] = useState(false);
+  const [dealerData, setDealerData] = useState({});
+  const [garagesDataList, setGaragesDataList] = useState([]);
+
   const userId = useSelector((state) => state);
+  const id = userId.login.user.user_id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userInfo, setUserinfo] = useState({});
@@ -65,6 +74,71 @@ function UserGarage() {
       });
   };
 
+  // =======================
+  useEffect(() => {
+    const fetchDealer = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}getuserDetailById`, {
+          id,
+        })
+        .then(function (response) {
+          if (response.data.data) {
+            setGaragesData({ ...response.data.data[0] });
+          } else {
+            setGaragesData({});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchDealer();
+  }, [id]);
+
+  const fetchGarages = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}garages`);
+      setGaragesDataList([...res.data.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchGarages();
+  }, []);
+
+  useEffect(() => {
+    const fetchDealer = async () => {
+      axios
+        .post(`${process.env.REACT_APP_URL}getuserDetailById`, {
+          id,
+        })
+        .then(function (response) {
+          if (response.data.data) {
+            setDealerData({ ...response.data.data[0] });
+          } else {
+            setDealerData({});
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchDealer();
+
+    // const vehicleDataAfterFilter = vehicleData
+    //   .filter((item) => item.userId === parseInt(id, 10))
+    //   .map((data) => data);
+    // let initialState = [];
+    // vehicleDataAfterFilter.map((data) => {
+    //   initialState = [...data.images, ...initialState];
+    // });
+
+    // setUserVehicleImage(initialState);
+  }, [id]);
+
+  // =======================
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -88,8 +162,11 @@ function UserGarage() {
               >
                 <div className="d-flex ">
                   <h3>Garage</h3>
-                  <Link to={`/garages-user-details/291`} className="px-3 VIEWEY">
-                  <i class="fa-solid fa-eye"></i>
+                  <Link
+                    to={`/garages-user-details/${id}`}
+                    className="px-3 VIEWEY"
+                  >
+                    <i class="fa-solid fa-eye"></i>
                   </Link>
                 </div>
                 <div className="d-flex align-items-center">
@@ -261,7 +338,9 @@ function UserGarage() {
                         <button className="btn">Follow</button>
                       </div>
                     </div>
-                    <h2 className="mt-4">name <i class="fa-solid fa-pen-to-square"></i></h2>
+                    <h2 className="mt-4">
+                      name <i class="fa-solid fa-pen-to-square"></i>
+                    </h2>
                     <span className="text-muted">user name</span>
                     <p>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -281,7 +360,7 @@ function UserGarage() {
                           aria-controls="home-tab-pane"
                           aria-selected="true"
                         >
-                          Garages
+                          Garage
                         </button>
                       </li>
                       <li class="nav-item" role="presentation">
@@ -349,7 +428,7 @@ function UserGarage() {
                         aria-labelledby="home-tab"
                         tabindex="0"
                       >
-                        {/* <GaragesVehicle id={id} /> */}
+                        <GaragesVehicle id={id} />
                         {/* <div className="row pt-4 row_gridList false">
                   <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
                     <div class="card_post">
@@ -420,11 +499,11 @@ function UserGarage() {
                         aria-labelledby="profile-tab"
                         tabindex="0"
                       >
-                        {/* <GaragesAuction
-                  dealerName={dealerData.name}
-                  userId={id}
-                  showUserName={false}
-                /> */}
+                        <GaragesAuction
+                          dealerName={dealerData.name}
+                          userId={id}
+                          showUserName={false}
+                        />
                       </div>
                       <div
                         class="tab-pane fade"
@@ -619,7 +698,7 @@ function UserGarage() {
                         <section className="py-4 mobileSpec" id="">
                           <div className="container">
                             <div className="row ">
-                              {/* <GaragesBlog id={id} /> */}
+                              <GaragesBlog id={id} />
                             </div>
                           </div>
                         </section>
@@ -648,7 +727,6 @@ function UserGarage() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-0">
-             
               <button
                 onClick={handleClose}
                 type="button"
@@ -660,55 +738,54 @@ function UserGarage() {
             </div>
 
             <div className="modal-body">
-            <div className="row youPage frrt">
-              <div className="col-md-12 ">
-                <div className="PostInfo">
-                  <div className="userImG">
-                    <Space direction="vertical" size={16}>
-                      <Space wrap size={16}>
-                        <Avatar
-                          size={64}
-                          icon={<img src={men_face} alt="logo" />}
-                        />
+              <div className="row youPage frrt">
+                <div className="col-md-12 ">
+                  <div className="PostInfo">
+                    <div className="userImG">
+                      <Space direction="vertical" size={16}>
+                        <Space wrap size={16}>
+                          <Avatar
+                            size={64}
+                            icon={<img src={men_face} alt="logo" />}
+                          />
+                        </Space>
                       </Space>
-                    </Space>
-                  </div>
-                  <div className="DecIbp ">
-                    <textarea
-                      className="field"
-                      rows="8"
-                      cols="100"
-                      placeholder="What’s happening?"
-                    ></textarea>
-                    <div className="youD">
-                      <div className="py-3">
-                        <span className="socialCount">
-                          <i class="fa-solid fa-image"></i>
-                        </span>
-                        <span className="socialCount">
-                          <i class="fa-solid fa-bars-progress"></i>
-                        </span>
-                        <span className="socialCount">
-                          <i class="fa-solid fa-face-smile"></i>
-                        </span>
-                        <span className="socialCount">
-                          <i class="fa-solid fa-business-time"></i>
-                        </span>
+                    </div>
+                    <div className="DecIbp ">
+                      <textarea
+                        className="field"
+                        rows="8"
+                        cols="100"
+                        placeholder="What’s happening?"
+                      ></textarea>
+                      <div className="youD">
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i class="fa-solid fa-image"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-bars-progress"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-face-smile"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-business-time"></i>
+                          </span>
 
-                        <span className="socialCount">
-                          <i class="fa-solid fa-location-dot"></i>
-                        </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-location-dot"></i>
+                          </span>
+                        </div>
+                        <button class="btn">Post</button>
                       </div>
-                      <button class="btn">Post</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
           </div>
-      </div>
-
+        </div>
       </Modal>
     </div>
   );
