@@ -339,27 +339,22 @@ function UserGarage() {
                       </div>
                     </div>
                     <h2 className="mt-4">
-                      name{" "}
+                    {userInfo.title}
                       <Link to="/editmyaccount-garages">
                         <i class="fa-solid fa-pen-to-square"></i>
                       </Link>
                     </h2>
                     <ul className="labelList_">
-                      <li>
-                        <div className="labelList_label">Title</div>
-                        <div className="labelList_text">
-                          {userInfo.title} <br />
-                        </div>
-                      </li>
-                      <li>
-                        <div className="labelList_label">About us</div>
+                     
+                      {/* <li>
+                       
                         <div className="labelList_text">
                           {userInfo.about_us &&
                             parse(userInfo.about_us, strToHtml)}
                         </div>
-                      </li>
+                      </li> */}
                       <li>
-                        <div className="labelList_label">Description</div>
+                        
                         <div className="labelList_text">
                           {userInfo?.description &&
                             parse(userInfo?.description, strToHtml)}

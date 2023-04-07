@@ -6858,11 +6858,12 @@ ul.fwrList li:last-child {
   padding: 5px 25px;
   font-size: 12px;
 }
+.tBB li.nav-item button{min-width: 160px;}
 .light .PostInfo { background: #f7f7f7;}
 .light .tBB li.nav-item button {
   background: transparent;
   color: #000;
-  min-width: 170px;
+  
 }
 .light .nav-tabs.tBB .nav-link.active {
   color: #ffffff;
@@ -6877,9 +6878,13 @@ a.px-3.VIEWEY {
 }
 
 h2 svg.svg-inline--fa.fa-pen-to-square {
-  font-size: 17px;
   position: relative;
-  top: -18px
+  top: -18px;
+  width: 13px;
+  padding: 9px;
+  height: 13px;
+  background: #f7931b;
+  border-radius: 50%;
 }
 .productDTl h2 {
   font-size: 34px;
