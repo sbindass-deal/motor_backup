@@ -17,6 +17,7 @@ import { Modal } from "react-bootstrap";
 import GaragesVehicle from "../../garages/GaragesVehicle";
 import GaragesAuction from "../../garages/GaragesAuction";
 import GaragesBlog from "../../garages/GaragesBlog";
+import { handleGarage } from "../../../../redux/reducers/planReducer";
 
 function UserGarage() {
   const [show, setShow] = useState(false);
@@ -190,17 +191,24 @@ function UserGarage() {
                   )}
                   <button
                     onClick={() => {
-                      // navigate("/vechiles");
-                      // dispatch(handleGarage(false));
                       handleShow();
+                    }}
+                    className="gry_btn px-3 mx-2"
+                  >
+                    + Add Post
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/vechiles");
+                      dispatch(handleGarage(false));
                     }}
                     className="gry_btn px-3 mx-2"
                   >
                     + Add Garage
                   </button>
-                  <Link to="/editmyaccount-garages" className="gry_btn px-3">
+                  {/* <Link to="/editmyaccount-garages" className="gry_btn px-3">
                     Edit Garage
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
               <hr />
@@ -292,8 +300,8 @@ function UserGarage() {
                     </div>
                   </>
                 )}
-              </ul>
-              <MyGaragesList id={userId.login.user.user_id} /> */}
+              </ul> */}
+              {/* <MyGaragesList id={userId.login.user.user_id} /> */}
 
               {/* ============================ added new user garages start */}
 
@@ -304,15 +312,15 @@ function UserGarage() {
                       <Space direction="vertical" size={16}>
                         <Space wrap size={16}>
                           <Avatar
-                            size={200}
+                            size={100}
                             icon={
                               <img
                                 className="slidImg"
                                 loading="lazy"
-                                // src={
-                                //   garagesData?.image_logo &&
-                                //   `${process.env.REACT_APP_URL}/${garagesData?.image_logo[0]?.logo}`
-                                // }
+                                src={
+                                  userInfo?.logo &&
+                                  `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
+                                }
                                 onError={({ currentTarget }) => {
                                   currentTarget.onError = null;
                                   currentTarget.src = noImage;
@@ -339,15 +347,26 @@ function UserGarage() {
                       </div>
                     </div>
                     <h2 className="mt-4">
-                      name <i class="fa-solid fa-pen-to-square"></i>
+                      {userInfo.title}
+                      <Link to="/editmyaccount-garages">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </Link>
                     </h2>
-                    <span className="text-muted">user name</span>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quos tempore cum incidunt fugit ipsum nemo non laboriosam
-                      aperiam vero molestias, praesentium quibusdam, nulla rerum
-                      labore deserunt recusandae! Error, optio aut.
-                    </p>
+                    <ul className="labelList_">
+                      {/* <li>
+                       
+                        <div className="labelList_text">
+                          {userInfo.about_us &&
+                            parse(userInfo.about_us, strToHtml)}
+                        </div>
+                      </li> */}
+                      <li>
+                        <div className="labelList_text">
+                          {userInfo?.description &&
+                            parse(userInfo?.description, strToHtml)}
+                        </div>
+                      </li>
+                    </ul>
                     <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
                         <button
@@ -417,6 +436,20 @@ function UserGarage() {
                           aria-selected="false"
                         >
                           Blog
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="gallery-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#gallery-tab-pane"
+                          type="button"
+                          role="tab"
+                          aria-controls="gallery-tab-pane"
+                          aria-selected="false"
+                        >
+                          Gallery
                         </button>
                       </li>
                     </ul>
@@ -697,7 +730,7 @@ function UserGarage() {
                       >
                         <section className="py-4 mobileSpec" id="">
                           <div className="container">
-                            <div className="row ">
+                            <div className="row">
                               <GaragesBlog id={id} />
                             </div>
                           </div>
@@ -705,12 +738,83 @@ function UserGarage() {
                       </div>
                       <div
                         class="tab-pane fade"
-                        id="video-tab-pane"
+                        id="gallery-tab-pane"
                         role="tabpanel"
-                        aria-labelledby="video-tab"
+                        aria-labelledby="gallery-tab"
                         tabindex="0"
                       >
-                        {/* <Videos data={garagesData} /> */}
+                        {true && (
+                          <>
+                            {/* <h6>Logo</h6>
+                            <hr />
+                            <div className="imgCross">
+                              <Image.PreviewGroup>
+                                {userInfo?.logo?.map((curElem, i) => {
+                                  return (
+                                    <span key={i}>
+                                      <Image
+                                        loading="lazy"
+                                        src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onError = null;
+                                          currentTarget.src = noImage;
+                                        }}
+                                        alt="logo"
+                                      />
+                                    </span>
+                                  );
+                                })}
+                              </Image.PreviewGroup>
+                            </div> */}
+                            {/* <h6 className="mt-3">Banner</h6>
+                            <hr /> */}
+                            <div className="imgCross">
+                              <Image.PreviewGroup>
+                                {(userInfo?.image_Banner ||
+                                  userInfo?.image_Gallery) &&
+                                  [
+                                    ...userInfo.image_Banner,
+                                    ...userInfo.image_Gallery,
+                                  ].map((curElem, i) => {
+                                    return (
+                                      <span key={i}>
+                                        <Image
+                                          loading="lazy"
+                                          src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                          onError={({ currentTarget }) => {
+                                            currentTarget.onError = null;
+                                            currentTarget.src = noImage;
+                                          }}
+                                          alt="banner"
+                                        />
+                                      </span>
+                                    );
+                                  })}
+                              </Image.PreviewGroup>
+                            </div>
+                            {/* <h6 className="mt-3">Gallery</h6>
+                            <hr /> */}
+                            {/* <div className="imgCross">
+                              <Image.PreviewGroup>
+                                {userInfo?.image_Gallery?.map((curElem, i) => {
+                                  return (
+                                    <span key={i}>
+                                      <Image
+                                        loading="lazy"
+                                        src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onError = null;
+                                          currentTarget.src = noImage;
+                                        }}
+                                        alt="gallery"
+                                      />
+                                    </span>
+                                  );
+                                })}
+                              </Image.PreviewGroup>
+                            </div> */}
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

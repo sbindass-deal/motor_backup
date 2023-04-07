@@ -152,8 +152,8 @@ const ShopDetails = () => {
                   })
                 }
               </Carousel> */}
-               <div className="d-flex border">
-            <div className="w-25">
+               <div className="dTLPr">
+            <div className="productBigImgLeft">
               {
                 product?.images?.map((d, i) => {
                   return (
@@ -166,7 +166,7 @@ const ShopDetails = () => {
                 })
               }
             </div>
-            <div className="w-100 h-100">
+            <div className="productBigImg">
                 {product?.images?.length > 0 && <img
                   src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
                   alt={"title"} 
@@ -191,29 +191,13 @@ const ShopDetails = () => {
               </div>
             </div>
 
-            <div className="col-md-6 rightSec">
-                  <h5 className="catagories">{product?.category}</h5>
+            <div className="col-md-6 rightSec productDTl">
+                  
                   <div className="">
                     <h2>{product.title}</h2>
+                    <h5 className="catagories"><small>Category: </small>{product?.category}</h5>
 
-                    {
-                      product?.multiplier && product?.coupon_code && <div className="" id="main_width">
-                        {/* <i class="fa-solid fa-ticket"></i>
-                      <p class="grid_entries_count">525</p>
-                      <p class="grid_label">Entries</p>
-                      <p class="multiplier-value blink-soft">15X</p> */}
-                        <div class="vs_grid_entries entries-default mb-3">
-                          <div class="entries-count">
-                            <i class="fa-solid fa-ticket" ></i>
-                            <span class="grid_entries_count">{product?.coupon_code}</span>
-                            <span class="grid_label">Entries</span>
-                          </div>
-                          <div class="multiplier-value blink-soft ml-3">
-                            {product?.multiplier + "X"}
-                          </div>
-                        </div>
-                      </div>
-                   } 
+                   
                     
                   </div>
               {
@@ -224,14 +208,61 @@ const ShopDetails = () => {
                     )
                 })
               }
+
+
+
+{
+                      product?.multiplier && product?.coupon_code && <div className="" id="main_width">
+
+<div class="w">
+            <div class="coupon-card">
+                <h3>{product?.coupon_code}</h3>
+                {/* <span>0X</span> */}
+                <p>{product?.multiplier + "X"}</p>
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div>
+            <span class="grid_label">Entries</span>
+        </div>
+                     
+                        {/* <div class="vs_grid_entries entries-default mb-3">
+                          <div class="entries-count">
+                            <i class="fa-solid fa-ticket" ></i>
+                            <span class="grid_entries_count">{product?.coupon_code}</span>
+                            <span class="grid_label">Entries</span>
+                          </div>
+                          <div class="multiplier-value blink-soft ml-3">
+                            {product?.multiplier + "X"}
+                          </div>
+                        </div> */}
+                      </div>
+                   } 
+
               <p className="product_dec">
                 {/* <b>Product ID: {product.id}</b> */}
                 <br />
                 {product.description}
               </p>
               <div className="sizeColor">
-                <div className="sizeColor">Category : {product.category}</div>
-                <div className="size d-flex"><p className="my-auto">Size :</p>  {
+                {/* <div className="sizeColor">Category : {product.category}</div> */}
+                <div className="size">
+                 
+                  <select className="size">
+                    <option >SIZE</option>
+                    <option>XL</option>
+                    <option>L</option>
+                    <option>M</option>
+                    <option>SM</option>
+                  </select>
+                  <select className="size">
+                    <option >COLOR</option>
+                    <option>Red</option>
+                    <option>Blue</option>
+                    <option>Green</option>
+                    <option>Black</option>
+                  </select>
+                  </div>
+                {/* <div className="size d-flex"><p className="my-auto">Size :</p>  {
                   product?.product_inventry?.map((d, i) => {
                     return size?.map((data, index) => {
                       if (data?.id == d?.size_id) {
@@ -241,9 +272,9 @@ const ShopDetails = () => {
                     })
                   })
                 }
-                </div>
+                </div> */}
 
-                <div className="size d-flex">Color : {
+                {/* <div className="size d-flex">Color : {
                   product?.product_inventry?.map((d, i) => {
                     if (d?.id == productId)
                       return color_id?.map((data, index) => {
@@ -253,12 +284,15 @@ const ShopDetails = () => {
                       })
                   })
                 }
-                </div>
+                </div> */}
               </div>
-              <p className="product_dec">Stock : {product?.product_inventry?.map((d, i) => {
+              {/* <h5 className="catagories"><small>Stock: </small>{product?.product_inventry?.map((d, i) => {
                 if (productId == d?.id)
                   return d?.stock + " "
-              })}</p>
+              })}</h5> */}
+
+                   
+            
               <button onClick={handleProduct} type="button" className="btn" >
                 Add to Cart
               </button>
