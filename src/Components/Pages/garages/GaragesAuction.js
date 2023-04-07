@@ -24,7 +24,7 @@ const GaragesAuction = ({ userId: id, dealerName, showUserName = true }) => {
 
   return (
     <>
-      <section className="pt_80 mobileSpec dlr" id="">
+      <section className="pt-3 mobileSpec dlr" id="">
         <div className="container">
           <div className="row ">
             {showUserName == true && (

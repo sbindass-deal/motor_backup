@@ -95,9 +95,9 @@ import Transaction from "./MyAccount/Transaction";
 import Garages from "./garages/Garages";
 import GaragesListDetails from "./garages/GaragesListDetails";
 import GaragesUserDetails from "./garages/GaragesUserDetails";
-import UserGarage from "./MyAccount/UserGarage";
-import AddGarage from "./MyAccount/AddGarage";
-import EditGarage from "./MyAccount/EditGarage";
+import UserGarage from "./MyAccount/garage/UserGarage";
+import EditGarage from "./MyAccount/garage/EditGarage";
+import AddGarage from "./MyAccount/garage/AddGarage";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);

@@ -6849,3 +6849,33 @@ ul.fwrList li:last-child {
 .addSection.Graj a .card_postInfo {
   width: 100%;
 }
+.youD {
+  display: flex;
+  justify-content: space-between;
+}
+.youD button.btn {
+  text-align: center;
+  padding: 5px 25px;
+  font-size: 12px;
+}
+.light .PostInfo { background: #f7f7f7;}
+.light .tBB li.nav-item button {
+  background: transparent;
+  color: #000;
+  min-width: 170px;
+}
+.light .nav-tabs.tBB .nav-link.active {
+  color: #ffffff;
+  background-color: #f7a405;
+  border-color: #dee2e600 #dee2e600 #f8a504;
+}
+a.px-3.VIEWEY {
+  font-size: 19px;
+}
+.youPage.frrt .PostInfo {
+  padding: 0;
+}
+
+h2 svg.svg-inline--fa.fa-pen-to-square {
+  font-size: 17px;
+}
