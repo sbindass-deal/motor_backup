@@ -80,7 +80,7 @@ const OrderCart = () => {
               </ul>
               <div className="row">
                 <div className="col-12">
-                  <div className="col-12 col-md-12 col-lg-12">
+                  <div className="card_Gray table-responsive merchant vehicleSub ttt col-12 col-md-12 col-lg-12">
                     <div className="table-responsive">
                       <table width={"100%"} className="cartSection">
                         <tr>
@@ -145,7 +145,7 @@ const OrderCart = () => {
                                 <td>
                                   <Link
                                     to={`/orders-cart/${curElem?.order_id}`}
-                                    className="btn"
+                                    className="btn small_btn"
                                   >
                                     View
                                   </Link>

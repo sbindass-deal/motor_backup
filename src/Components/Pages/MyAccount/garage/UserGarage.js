@@ -304,7 +304,7 @@ function UserGarage() {
                       <Space direction="vertical" size={16}>
                         <Space wrap size={16}>
                           <Avatar
-                            size={200}
+                            size={100}
                             icon={
                               <img
                                 className="slidImg"
