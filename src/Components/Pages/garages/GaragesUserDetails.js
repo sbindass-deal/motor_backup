@@ -310,6 +310,53 @@ const GaragesUserDetails = () => {
                       <div className="col-12 Videos ghhh">
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
+                              <div className="row youPage">
+                                <div className="col-md-12 ">
+                                  <div className="PostInfo">
+                                    <div className="userImG">
+                                      <Space direction="vertical" size={16}>
+                                        <Space wrap size={16}>
+                                          <Avatar
+                                            size={64}
+                                            icon={
+                                              <img src={men_face} alt="logo" />
+                                            }
+                                          />
+                                        </Space>
+                                      </Space>
+                                    </div>
+                                    <div className="DecIbp ">
+                                    <textarea className="field"  rows="8" cols="100" placeholder="What’s happening?">
+                                      
+                                    </textarea>
+                                     <div className="youD">
+                                     <div className="py-3">
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-image"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-bars-progress"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-face-smile"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-business-time"></i>
+                                        </span>
+
+                                        <span className="socialCount">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        </span>
+
+                                      
+                                      </div>
+                                      <button class="btn">Post</button>
+                                     </div>
+                                     
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                            
                               <div className="row">
                                 <div className="col-md-12 ">
