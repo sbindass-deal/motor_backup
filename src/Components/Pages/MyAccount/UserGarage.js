@@ -3,6 +3,7 @@ import MyAccountLeftNav from "./MyAccountLeftNav";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
@@ -12,7 +13,14 @@ import MyGaragesList from "./MyGaragesList";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import men_face from "../../../Assets/images/men-face.jpg";
 
+import { Modal } from "react-bootstrap";
+
 function UserGarage() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const userId = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -78,10 +86,10 @@ function UserGarage() {
                   alignItems: "center",
                 }}
               >
-                <div className="d-flex">
+                <div className="d-flex ">
                   <h3>Garage</h3>
-                  <Link to={`/garages-user-details/291`} className="px-3">
-                    <ReportGmailerrorredIcon />
+                  <Link to={`/garages-user-details/291`} className="px-3 VIEWEY">
+                  <i class="fa-solid fa-eye"></i>
                   </Link>
                 </div>
                 <div className="d-flex align-items-center">
@@ -105,8 +113,9 @@ function UserGarage() {
                   )}
                   <button
                     onClick={() => {
-                      navigate("/vechiles");
-                      dispatch(handleGarage(false));
+                      // navigate("/vechiles");
+                      // dispatch(handleGarage(false));
+                      handleShow();
                     }}
                     className="gry_btn px-3 mx-2"
                   >
@@ -213,7 +222,7 @@ function UserGarage() {
 
               <div className="container">
                 <div className="row">
-                  <div className="col-md-8 offset-md-2">
+                  <div className="col-md-12 ">
                     <div className="UserImZ mt-4">
                       <Space direction="vertical" size={16}>
                         <Space wrap size={16}>
@@ -634,6 +643,73 @@ function UserGarage() {
           </div>
         </div>
       </section>
+
+      <Modal show={show} onHide={handleClose} className="modal fade" centered>
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+             
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div className="modal-body">
+            <div className="row youPage frrt">
+              <div className="col-md-12 ">
+                <div className="PostInfo">
+                  <div className="userImG">
+                    <Space direction="vertical" size={16}>
+                      <Space wrap size={16}>
+                        <Avatar
+                          size={64}
+                          icon={<img src={men_face} alt="logo" />}
+                        />
+                      </Space>
+                    </Space>
+                  </div>
+                  <div className="DecIbp ">
+                    <textarea
+                      className="field"
+                      rows="8"
+                      cols="100"
+                      placeholder="What’s happening?"
+                    ></textarea>
+                    <div className="youD">
+                      <div className="py-3">
+                        <span className="socialCount">
+                          <i class="fa-solid fa-image"></i>
+                        </span>
+                        <span className="socialCount">
+                          <i class="fa-solid fa-bars-progress"></i>
+                        </span>
+                        <span className="socialCount">
+                          <i class="fa-solid fa-face-smile"></i>
+                        </span>
+                        <span className="socialCount">
+                          <i class="fa-solid fa-business-time"></i>
+                        </span>
+
+                        <span className="socialCount">
+                          <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                      </div>
+                      <button class="btn">Post</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+      </div>
+
+      </Modal>
     </div>
   );
 }
