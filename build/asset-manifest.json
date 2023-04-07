@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c9878eed.css",
-    "main.js": "/static/js/main.22c00dee.js",
+    "main.js": "/static/js/main.0e7f67fa.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -59,7 +59,6 @@
     "static/media/HIW2.jpg": "/static/media/HIW2.35354230cb5e47ee678e.jpg",
     "static/media/store-hero.png": "/static/media/store-hero.d8575397672b39dc2b05.png",
     "static/media/img-8.webp": "/static/media/img-8.29adea5d0e9e7a7221f7.webp",
-    "static/media/about-3.jpg": "/static/media/about-3.07577c52c7976dfbea20.jpg",
     "static/media/shop-banner.png": "/static/media/shop-banner.5302ec4954ade319b648.png",
     "static/media/giv-away.png": "/static/media/giv-away.84a5cbde58a0a278345b.png",
     "static/media/howItWork.jpg": "/static/media/howItWork.5ca8eae483a1f31ab7f2.jpg",
@@ -107,6 +106,7 @@
     "static/media/reeee.jpg": "/static/media/reeee.060b693ec8f830a8d051.jpg",
     "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
+    "static/media/sssddeee.avif": "/static/media/sssddeee.6d8c2e190bfc97c248d4.avif",
     "static/media/img-2.webp": "/static/media/img-2.b3e77c884a3847e153d0.webp",
     "static/media/2019-lamborghini-urus.png": "/static/media/2019-lamborghini-urus.4d2c611bfc8598f6f9b1.png",
     "static/media/MicrosoftTeams-image.png": "/static/media/MicrosoftTeams-image.71d4758bfb7dc2fbec29.png",
@@ -137,7 +137,7 @@
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
     "main.c9878eed.css.map": "/static/css/main.c9878eed.css.map",
-    "main.22c00dee.js.map": "/static/js/main.22c00dee.js.map",
+    "main.0e7f67fa.js.map": "/static/js/main.0e7f67fa.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -178,6 +178,6 @@
   },
   "entrypoints": [
     "static/css/main.c9878eed.css",
-    "static/js/main.22c00dee.js"
+    "static/js/main.0e7f67fa.js"
   ]
 }
