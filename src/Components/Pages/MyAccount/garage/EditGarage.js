@@ -3,10 +3,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
-import CardDetails from "../../Popups/CardDetails";
-import FormInput from "../../UI/FormInput";
-import SmallSpinner from "../../UI/SmallSpinner";
-import MyAccountLeftNav from "./MyAccountLeftNav";
+import CardDetails from "../../../Popups/CardDetails";
+import FormInput from "../../../UI/FormInput";
+import SmallSpinner from "../../../UI/SmallSpinner";
+import MyAccountLeftNav from "../MyAccountLeftNav";
 import parse from "html-react-parser";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -17,7 +17,7 @@ import {
   EditorState,
 } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import { noImage } from "../../UI/globaleVar";
+import { noImage } from "../../../UI/globaleVar";
 import { useNavigate } from "react-router-dom";
 
 function EditGarage() {
