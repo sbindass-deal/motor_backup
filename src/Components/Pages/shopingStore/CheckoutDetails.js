@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,14 @@ import { toast } from "react-toastify";
 import { clearCart } from "../../../redux/reducers/cartSlice";
 import FormInput from "../../UI/FormInput";
 import { notify } from "../../UI/globaleVar";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 export default function CheckoutDetails() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading]=useState(false)
   const product = useSelector((state) => state.cartSlice);
+  const logingUser = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [getInputData, setGetInputData] = useState({
@@ -29,6 +32,7 @@ export default function CheckoutDetails() {
   };
 
   const orderPlace = async () => {
+   
     const items = product.products.map((curElem) => {
       return {
         id: curElem.id,
@@ -46,6 +50,7 @@ export default function CheckoutDetails() {
       .then((result) => {
         if (result.data.status === 200) {
           getDeliveryAddress();
+          setIsLoading(false)
           navigate("/orders-cart");
           dispatch(clearCart());
           notify(result.data.message, result.data.status);
@@ -55,6 +60,29 @@ export default function CheckoutDetails() {
         // notify(error.message);
       });
   };
+  
+  const fetchUsrApi = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}user`);
+      if (res.data.data) {
+        console.log(89898, res.data.data)
+        setGetInputData({
+          name: res.data.data.name,
+          email: res.data.data.email,
+          phone: res.data.data.mobile,
+          // address: res.data.data.email,
+        });
+      } else {
+        console.log("first");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsrApi();
+  }, []);
 
   const getDeliveryAddress = async () => {
     await axios
@@ -66,8 +94,8 @@ export default function CheckoutDetails() {
         // deliverytype: getInputData.deliveryType,
         pincode: getInputData.pinCode,
       })
-      .then((result) => {})
-      .catch((error) => {});
+      .then((result) => { })
+      .catch((error) => { });
   };
 
   const onToken = (token, addresses) => {
@@ -89,6 +117,7 @@ export default function CheckoutDetails() {
   const handleOrder = (e) => {
     e.preventDefault();
     // if (getInputData.deliveryType === "cash on delivery") {
+    setIsLoading(true)
     orderPlace();
     // getDeliveryAddress();
     // navigate("/orders-cart");
@@ -192,9 +221,14 @@ export default function CheckoutDetails() {
           </div> */}
 
           <div class="col-md-12">
-            <button class="btn mt-5" type="submit">
-              Place Order
-            </button>
+            {
+              isLoading ? (
+                <SmallSpinner/>
+              ) : <button class="btn mt-5" type="submit">
+                Place Order
+              </button>
+            }
+            
           </div>
         </form>
       </div>

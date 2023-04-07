@@ -191,17 +191,27 @@ const ShopDetails = () => {
               </div>
             </div>
 
-            <div className="col-md-6 rightSec">
-                  <h5 className="catagories">{product?.category}</h5>
+            <div className="col-md-6 rightSec productDTl">
+                  
                   <div className="">
                     <h2>{product.title}</h2>
+                    <h5 className="catagories"><small>Category: </small>{product?.category}</h5>
 
-                    {
+                   
+                    
+                  </div>
+              {
+                product?.product_inventry?.map((d, i) => {
+                  if (productId == d?.id)
+                    return (
+                      <p className="price__">$ {d?.price}</p>
+                    )
+                })
+              }
+
+{
                       product?.multiplier && product?.coupon_code && <div className="" id="main_width">
-                        {/* <i class="fa-solid fa-ticket"></i>
-                      <p class="grid_entries_count">525</p>
-                      <p class="grid_label">Entries</p>
-                      <p class="multiplier-value blink-soft">15X</p> */}
+                     
                         <div class="vs_grid_entries entries-default mb-3">
                           <div class="entries-count">
                             <i class="fa-solid fa-ticket" ></i>
@@ -214,16 +224,7 @@ const ShopDetails = () => {
                         </div>
                       </div>
                    } 
-                    
-                  </div>
-              {
-                product?.product_inventry?.map((d, i) => {
-                  if (productId == d?.id)
-                    return (
-                      <p className="price__">$ {d?.price}</p>
-                    )
-                })
-              }
+
               <p className="product_dec">
                 {/* <b>Product ID: {product.id}</b> */}
                 <br />

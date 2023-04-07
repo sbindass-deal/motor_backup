@@ -3,32 +3,76 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import img_01 from "../../../Assets/images/img-1.webp";
 import SmallSpinner from "../../UI/SmallSpinner";
+import { toast } from "react-toastify";
 
 const OrderDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState([]);
-  useEffect(() => {
-    const fetchOrders = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}GetallorderItem/${id}`
-        );
-        if (res.data.status === 200 && res.data.data) {
-          setOrder(res.data.data);
-        }
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-        setLoading(false);
+  const [resultsPerPage, setResultsPerPage] = useState("");
+ 
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+ 
+  const fetchOrders = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}GetallorderItem/${id}`
+      );
+      if (res.data.status === 200 && res.data.data) {
+        setOrder(res.data.data);
       }
-    };
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+   
     fetchOrders();
   }, []);
+
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
+
+  const orderShipmentApi = (data) => {
+    
+    axios.post(`${process.env.REACT_APP_URL }updateOrderShipmentStatus`, {
+      order_status: data,
+      order_id: id
+      
+    })
+      .then(function (response) {
+       
+        fetchOrders();
+        notify("Order updated successfully!");
+
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+        
+      });
+}
+
+  const handleOrder = (data) => {
+    orderShipmentApi(data)
+    // setResultsPerPage(data)
+  }
+  
 
   return (
     <>
@@ -45,23 +89,41 @@ const OrderDetail = () => {
                     <th>Size</th>
                     <th>No. of Items</th>
                     <th>Item Price</th>
+                    <th>Status</th>
                     <th>Total Value</th>
+                    <th>Action</th>
                   </tr>
                   {order.map((curElem) => {
                     return (
                       <tr key={curElem.id}>
                         <td className="productImg">
-                          <img src={img_01} />
+                          <img
+                            src={`${process.env.REACT_APP_URL}upload/products/${curElem?.image}`}
+                          />
                         </td>
-                        <td>{2002342517}</td>
+                        <td>{curElem.title}</td>
                         <td>xl</td>
+                        {console.log(8798, curElem)}
                         <td>{curElem.item_quantity}</td>
                         <td>{curElem.item_price}</td>
+                        <td>{curElem.status}</td>
                         <td>${curElem.item_quantity * curElem.item_price}</td>
+                        <td className="mt-3 text-center">
+                          <select value={resultsPerPage} onChange={(event) => handleOrder(event.target.value)}>
+                            <option value={""}>Order Status</option>
+                            <option value={"Order Placed"}>Order Placed</option>
+                            <option value={"Cancelled"}>Cancelled</option>
+                            <option value={"Confirmed"}>Confirmed</option>
+                            <option value={"Shipped"}>Shipped</option>
+                            <option value={"Delivered"}>Delivered</option>
+                          </select>
+                          {/* <p>Results per page: {resultsPerPage}</p> */}
+                        </td>
                       </tr>
                     );
                   })}
                 </table>
+                
               </div>
             </div>
           </div>
