@@ -152,8 +152,8 @@ const ShopDetails = () => {
                   })
                 }
               </Carousel> */}
-               <div className="d-flex border">
-            <div className="w-25">
+               <div className="dTLPr">
+            <div className="productBigImgLeft">
               {
                 product?.images?.map((d, i) => {
                   return (
@@ -166,7 +166,7 @@ const ShopDetails = () => {
                 })
               }
             </div>
-            <div className="w-100 h-100">
+            <div className="productBigImg">
                 {product?.images?.length > 0 && <img
                   src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
                   alt={"title"} 
@@ -209,10 +209,23 @@ const ShopDetails = () => {
                 })
               }
 
+
+
 {
                       product?.multiplier && product?.coupon_code && <div className="" id="main_width">
+
+<div class="w">
+            <div class="coupon-card">
+                <h3>{product?.coupon_code}</h3>
+                {/* <span>0X</span> */}
+                <p>{product?.multiplier + "X"}</p>
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div>
+            <span class="grid_label">Entries</span>
+        </div>
                      
-                        <div class="vs_grid_entries entries-default mb-3">
+                        {/* <div class="vs_grid_entries entries-default mb-3">
                           <div class="entries-count">
                             <i class="fa-solid fa-ticket" ></i>
                             <span class="grid_entries_count">{product?.coupon_code}</span>
@@ -221,7 +234,7 @@ const ShopDetails = () => {
                           <div class="multiplier-value blink-soft ml-3">
                             {product?.multiplier + "X"}
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                    } 
 
@@ -231,7 +244,7 @@ const ShopDetails = () => {
                 {product.description}
               </p>
               <div className="sizeColor">
-                <div className="sizeColor">Category : {product.category}</div>
+                {/* <div className="sizeColor">Category : {product.category}</div> */}
                 <div className="size d-flex"><p className="my-auto">Size :</p>  {
                   product?.product_inventry?.map((d, i) => {
                     return size?.map((data, index) => {

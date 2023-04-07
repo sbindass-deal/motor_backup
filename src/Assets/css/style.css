@@ -6896,3 +6896,107 @@ h5.catagories {
   padding-top: 13px;
   padding-bottom: 15px;
 }
+.dTLPr {
+  display: flex;
+}
+.productBigImgLeft img {
+  margin-bottom: 2px;
+}
+.productBigImgLeft {
+  width: 20%;
+  margin: 2px;
+}
+.sliderSec .dTLPr img {
+  width: 532px;
+  overflow: hidden;
+}
+.productBigImg {
+  height: 539px;
+  width: 533px;
+}
+.productBigImg img {
+  width: 590px;
+  height: 536px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*-----------------------*/
+
+.coupon-card {
+  background: linear-gradient(135deg, #f78f13, #f4d061);
+  color: #fff;
+  text-align: center;
+  padding: 1px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.15);
+  position: relative;
+}
+.logo{
+  width: 80px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+}
+.coupon-card h3{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 0;
+
+}
+.coupon-card p{
+  font-size: 15px;
+    margin: 0;
+    line-height: 34px;
+    letter-spacing: 2px;
+    color: #000;
+    padding-left: 10px;
+}
+
+.w {
+  width: 64%;text-align: center;
+}
+.coupon-row{
+  display: flex;
+  align-items: center;
+  margin: 25px auto;
+  width: fit-content;
+
+}
+#cpnCode{
+  border: 1px dashed #fff;
+  padding: 10px 20px;
+  border-right: 0;
+
+}
+#cpnBtn{
+  border: 1px solid #fff;
+  background: #fff;
+  padding: 10px 20px;
+  color: #7158fe;
+  cursor: pointer;
+}
+.circle1, .circle2{
+  background: #000;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+.circle1{
+  left: -17px;
+}
+.circle2{
+  right: -16px;
+}
+.coupon-card {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
