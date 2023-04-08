@@ -2655,7 +2655,7 @@ const VechilesRegistraion = () => {
                             </button>
                             {submitLoading ? (
                               <button type="button" className="gry_btn">
-                                Loading...
+                                Submitting...
                               </button>
                             ) : (
                               <button

@@ -11,6 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../../redux/reducers/login";
 
 const Event = () => {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   moment.locale("en-GB");
   const localizer = momentLocalizer(moment);
   const dispatch = useDispatch();
@@ -75,7 +89,10 @@ const Event = () => {
           <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2">
               <div class="heroText">
-                <h1>Events for April 2023</h1>
+                <h1>
+                  Events for {monthNames[new Date().getMonth()]}{" "}
+                  {new Date().getFullYear()}
+                </h1>
                 {/* <h5>
                     Are you interested in benefitting a charity by offering a
                     vehicle on Gas Guzzlrs Auctions? We can do that!

@@ -183,21 +183,22 @@ function Header() {
                           <AccountCircleIcon />
 
                           <div className="dropdown-content  myACt">
-                            {logingUser.login.token && (
-                              <Link
-                                className={`nav-link ${
-                                  location.pathname === "/accountinfo" &&
-                                  "navActive"
-                                    ? "active"
-                                    : ""
-                                }`}
-                                to="/accountinfo"
-                                onClick={() => setShowNav(false)}
-                              >
-                                My Account
-                                <br />
-                              </Link>
-                            )}
+                            {logingUser.login.token &&
+                              logingUser.login.admin === null && (
+                                <Link
+                                  className={`nav-link ${
+                                    location.pathname === "/accountinfo" &&
+                                    "navActive"
+                                      ? "active"
+                                      : ""
+                                  }`}
+                                  to="/accountinfo"
+                                  onClick={() => setShowNav(false)}
+                                >
+                                  My Account
+                                  <br />
+                                </Link>
+                              )}
                             {!logingUser.login.token ? (
                               <li
                                 onClick={() => {
@@ -580,18 +581,19 @@ function Header() {
                         {/* <p className="userIco"><span><img src={g3}/></span></p> */}
 
                         <div className="dropdown-content myACt">
-                          {logingUser.login.token && (
-                            <Link
-                              className={`nav-link ${
-                                location.pathname === "/accountinfo" &&
-                                "navActive"
-                              }`}
-                              to="/accountinfo"
-                            >
-                              My Account
-                              <br />
-                            </Link>
-                          )}
+                          {logingUser.login.token &&
+                            logingUser.login.admin === null && (
+                              <Link
+                                className={`nav-link ${
+                                  location.pathname === "/accountinfo" &&
+                                  "navActive"
+                                }`}
+                                to="/accountinfo"
+                              >
+                                My Account
+                                <br />
+                              </Link>
+                            )}
                           {!logingUser.login.token ? (
                             <li onClick={handleShow} className="nav-item">
                               <Link className="nav-link">Login</Link>
