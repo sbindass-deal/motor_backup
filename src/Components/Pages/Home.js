@@ -197,7 +197,7 @@ function Home() {
               <h2>Featured Auctions</h2>
             </div>
 
-            <div className="col-12 slider_ht">
+            <div className="col-lg-12 slider_ht">
               <div className="nextArrow">
                 <span onClick={() => slide.current.slickPrev()}>
                   <span className="prev">Prev</span>
@@ -220,7 +220,7 @@ function Home() {
                               <div className="card_postImg">
                                 {curElem?.image_banner ? (
                                   <img
-                                    width={400}
+                                    // width={400}
                                     loading="lazy"
                                     src={
                                       curElem?.image_banner[0] &&

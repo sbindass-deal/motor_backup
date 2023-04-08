@@ -7080,3 +7080,6 @@ table.table.table-striped img {
 .right .dropdown {
     margin-right: 10px;
 }
+.featuredAuctions_Slide .slick-track {
+  width: 950px !important;
+}
