@@ -3600,6 +3600,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
  background-position: center;
 }
 
+.mission_section p 
 
 
 
@@ -4843,7 +4844,7 @@ html { scroll-behavior: smooth;}
 }
 
 .mission_section p {
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .storeHeroSection h5 {
@@ -7046,4 +7047,36 @@ a.btn.small_btn {
 }
 .productBigImgLeft img {
   height: 131px;
+}
+svg.svg-inline--fa.fa-circle-check {
+  font-size: 24px;
+  color: green;
+  padding-right: 5px;
+}
+
+svg.svg-inline--fa.fa-circle-xmark {
+  font-size: 25px;
+  color: red;
+}
+table.table.table-striped img {
+  width: 40%;
+}
+
+.right {
+  margin-left: auto;
+  display: flex;
+}
+.right button#dropdown-basic {
+  padding: 8px;
+  min-width: 10%;
+}
+.right .btn-success.focus, .btn-success:focus, .show>.btn-success.dropdown-toggle  {
+  color: #f8a504;
+  background-color: #f8a504;
+  border-color: #f8a504;
+  box-shadow: 0;
+}
+
+.right .dropdown {
+    margin-right: 10px;
 }

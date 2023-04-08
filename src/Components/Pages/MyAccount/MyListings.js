@@ -7,6 +7,8 @@ import { Modal, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { noImage } from "../../UI/globaleVar";
 import { getPlan, purchagedPlan } from "../../../redux/reducers/planReducer";
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 function MyListings() {
   const dispatch = useDispatch();
@@ -141,16 +143,27 @@ function MyListings() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               {/* <div class="FlexCol"> */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
+              <div className="d-flex">
                 <h3>Listings</h3>
+                <div className="right">
                 <ul>
-                  <li className="">
+                  <li>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <i class="fa-solid fa-filter"></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">All</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Published</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Approved</Dropdown.Item>
+                      <Dropdown.Item href="#/action-4">Pending</Dropdown.Item>
+                      <Dropdown.Item href="#/action-5">Rejected</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  </li>
+                  {/* <li className="filtter">
+                
                     <select
                       value={filterValue}
                       onChange={(e) => {
@@ -158,13 +171,14 @@ function MyListings() {
                       }}
                       className=" field"
                     >
+                     
                       <option value="All">All</option>
                       <option value="PUBLISHED">Published</option>
                       <option value="REVIEWD_BY_ADMIN">Approved</option>
                       <option value="PENDING_ADMIN_APPROVAL">Pending</option>
                       <option value="PENDING_ADMIN_APPROVAL">Rejected</option>
                     </select>
-                  </li>
+                  </li> */}
                 </ul>
 
                 <button
@@ -184,6 +198,8 @@ function MyListings() {
                 >
                   + Add new listing
                 </button>
+                </div>
+               
               </div>
               <hr />
               <div className="row">
@@ -242,7 +258,7 @@ function MyListings() {
                                 to={`/detail/${curElem.id}`}
                                 className="gry_btn ml-2"
                               >
-                                Preview
+                                <i class="fa-solid fa-eye"></i>
                               </Link>
                             </div>
                           </div>
