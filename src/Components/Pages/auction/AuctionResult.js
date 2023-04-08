@@ -126,66 +126,75 @@ const AuctionResult = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts?.filter((curElem) => {
-                if (searchValue == "") {
-                  return curElem
-                } else if (curElem?.vehicle_data?.make.toLowerCase().includes(searchValue.toLowerCase())) {
-                  return curElem
-                }
-              })
+              currentPosts
+                ?.filter((curElem) => {
+                  if (searchValue == "") {
+                    return curElem;
+                  } else if (
+                    curElem?.vehicle_data?.make
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  ) {
+                    return curElem;
+                  }
+                })
                 ?.map((curElem) => {
-                return (
-                  <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
-                    <div className="card_post">
-                      <div className="card_postImg">
-                        <div className="list_wrapper">
-                          <Link
-                            className="auction_image"
-                            to={`/detail/${curElem?.vehicle_data?.id}`}
-                          >
-                            {curElem?.img_logo?.length > 0 ? (
-                              <>
-                                <img
-                                  loading="lazy"
-                                  src={
-                                    curElem?.img_logo[0]
-                                      ? `${process.env.REACT_APP_URL}/${curElem?.img_logo[0]?.imagePath}/${curElem?.img_logo[0]?.imageName}`
-                                      : noImage
-                                  }
-                                  onError={({ currentTarget }) => {
-                                    currentTarget.onError = null;
-                                    currentTarget.src = noImage;
-                                  }}
-                                  alt="Maskgroup1"
-                                />
-                              </>
-                            ) : (
-                              <>
-                                <img
-                                  loading="lazy"
-                                  src={noImage}
-                                  alt="Maskgroup1"
-                                />
-                              </>
-                            )}
-                          </Link>
+                  return (
+                    <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
+                      <div className="card_post">
+                        <div className="card_postImg">
+                          <div className="list_wrapper">
+                            <Link
+                              className="auction_image"
+                              to={`/detail/${curElem?.vehicle_data?.id}`}
+                            >
+                              {curElem?.img_logo?.length > 0 ? (
+                                <>
+                                  <img
+                                    loading="lazy"
+                                    src={
+                                      curElem?.img_logo[0]
+                                        ? `${process.env.REACT_APP_URL}/${curElem?.img_logo[0]?.imagePath}/${curElem?.img_logo[0]?.imageName}`
+                                        : noImage
+                                    }
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src = noImage;
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                </>
+                              ) : (
+                                <>
+                                  <img
+                                    loading="lazy"
+                                    src={noImage}
+                                    alt="Maskgroup1"
+                                  />
+                                </>
+                              )}
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                      <div className="card_postInfo">
-                        <h4 className="car_title">
-                          <Link to={`/detail/${curElem?.vehicle_data?.id}`}>
-                            {curElem?.vehicle_data?.make + " " + curElem?.vehicle_data?.model + " " + curElem?.vehicle_data?.year}
-                          </Link>
+                        <div className="card_postInfo">
+                          <h4 className="car_title">
+                            <Link to={`/detail/${curElem?.vehicle_data?.id}`}>
+                              {curElem?.vehicle_data?.make +
+                                " " +
+                                curElem?.vehicle_data?.model +
+                                " " +
+                                curElem?.vehicle_data?.year}
+                            </Link>
 
-                          {/* <button type="button" className="watchedIc">
+                            {/* <button type="button" className="watchedIc">
                             <i
                               className={`fa-solid fa-star ${
                                 curElem.like >= 1 ? "faList" : ""
                               }`}
                             ></i>
                           </button> */}
-                        </h4>
-                        {/* <p className="color_grey">
+                          </h4>
+                          {/* <p className="color_grey">
                           {curElem?.vehicle_data?.moreDescription &&
                             parse(
                               curElem?.vehicle_data?.moreDescription?.substr(
@@ -195,21 +204,20 @@ const AuctionResult = () => {
                               strToHtml
                             )}
                         </p> */}
-
-                        <ul className="labelList ">
-                          <li className="w-auto">
-                            <label>
-                              Sold for $
-                              {curElem?.auctionAmmount &&
-                                toCommas(curElem?.auctionAmmount)}{" "}
-                              on{" "}
-                              {curElem?.vehicle_data?.EndTime &&
-                                new Date(
-                                  curElem?.vehicle_data?.EndTime
-                                ).toDateString()}
-                            </label>
-                          </li>
-                          {/* <li>
+                          <ul className="labelList ">
+                            <li className="w-auto">
+                              <label>
+                                Sold For : $
+                                {curElem?.auctionAmmount &&
+                                  toCommas(curElem?.auctionAmmount)}{" "}
+                                on{" "}
+                                {curElem?.vehicle_data?.EndTime &&
+                                  new Date(
+                                    curElem?.vehicle_data?.EndTime
+                                  ).toLocaleDateString()}
+                              </label>
+                            </li>
+                            {/* <li>
                             <label>
                               Ends In:{" "}
                               {curElem?.vehicle_data?.EndTime &&
@@ -220,12 +228,12 @@ const AuctionResult = () => {
                             <span>
                             </span>
                           </li> */}
-                        </ul>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
 
             <Pagination
               totalPosts={data.length}

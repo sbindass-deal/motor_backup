@@ -18,8 +18,8 @@ const OrderCart = () => {
     setLoading(true);
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
-      
-      console.log(87980, res)
+
+      console.log(87980, res);
       if (res.data.status === 200 && res.data.data) {
         // const activeOrder = res.data.data.filter(
         //   (item) => item.order_status === "New"
@@ -51,7 +51,7 @@ const OrderCart = () => {
     }
   };
 
-  console.log(78989,order)
+  console.log(78989, order);
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -108,8 +108,7 @@ const OrderCart = () => {
                               return curVal;
                             }
                           })
-                          ?.map((curElem,i) => {
-                            console.log(99809, curElem)
+                          ?.map((curElem, i) => {
                             return (
                               <tr>
                                 {/* <td className="productImg">
@@ -127,7 +126,7 @@ const OrderCart = () => {
                                     alt="product"
                                   />
                                 </td> */}
-                                <td>{1+i}</td>
+                                <td>{1 + i}</td>
                                 <td>{curElem?.order_id}</td>
                                 <td>
                                   {new Date(
