@@ -42,6 +42,7 @@ const Fundamental = ({ vehicle, handleSubscribe }) => {
             Location:{" "}
             <span>
               <a
+                target="_blank"
                 href={`https://www.google.com/maps/place/${vehicle.country_name},${vehicle.city}`}
               >
                 {vehicle.country_name} , {vehicle.city}
