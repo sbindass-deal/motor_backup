@@ -17,6 +17,7 @@ import { Modal } from "react-bootstrap";
 import GaragesVehicle from "../../garages/GaragesVehicle";
 import GaragesAuction from "../../garages/GaragesAuction";
 import GaragesBlog from "../../garages/GaragesBlog";
+import { handleGarage } from "../../../../redux/reducers/planReducer";
 
 function UserGarage() {
   const [show, setShow] = useState(false);
@@ -190,9 +191,16 @@ function UserGarage() {
                   )}
                   <button
                     onClick={() => {
-                      // navigate("/vechiles");
-                      // dispatch(handleGarage(false));
                       handleShow();
+                    }}
+                    className="gry_btn px-3 mx-2"
+                  >
+                    + Add Post
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/vechiles");
+                      dispatch(handleGarage(false));
                     }}
                     className="gry_btn px-3 mx-2"
                   >
@@ -339,13 +347,12 @@ function UserGarage() {
                       </div>
                     </div>
                     <h2 className="mt-4">
-                    {userInfo.title}
+                      {userInfo.title}
                       <Link to="/editmyaccount-garages">
                         <i class="fa-solid fa-pen-to-square"></i>
                       </Link>
                     </h2>
                     <ul className="labelList_">
-                     
                       {/* <li>
                        
                         <div className="labelList_text">
@@ -354,7 +361,6 @@ function UserGarage() {
                         </div>
                       </li> */}
                       <li>
-                        
                         <div className="labelList_text">
                           {userInfo?.description &&
                             parse(userInfo?.description, strToHtml)}
@@ -760,30 +766,35 @@ function UserGarage() {
                                 })}
                               </Image.PreviewGroup>
                             </div> */}
-                            <h6 className="mt-3">Banner</h6>
-                            <hr />
+                            {/* <h6 className="mt-3">Banner</h6>
+                            <hr /> */}
                             <div className="imgCross">
                               <Image.PreviewGroup>
-                                {userInfo?.image_Banner?.map((curElem, i) => {
-                                  return (
-                                    <span key={i}>
-                                      <Image
-                                        loading="lazy"
-                                        src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src = noImage;
-                                        }}
-                                        alt="banner"
-                                      />
-                                    </span>
-                                  );
-                                })}
+                                {(userInfo?.image_Banner ||
+                                  userInfo?.image_Gallery) &&
+                                  [
+                                    ...userInfo.image_Banner,
+                                    ...userInfo.image_Gallery,
+                                  ].map((curElem, i) => {
+                                    return (
+                                      <span key={i}>
+                                        <Image
+                                          loading="lazy"
+                                          src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                          onError={({ currentTarget }) => {
+                                            currentTarget.onError = null;
+                                            currentTarget.src = noImage;
+                                          }}
+                                          alt="banner"
+                                        />
+                                      </span>
+                                    );
+                                  })}
                               </Image.PreviewGroup>
                             </div>
-                            <h6 className="mt-3">Gallery</h6>
-                            <hr />
-                            <div className="imgCross">
+                            {/* <h6 className="mt-3">Gallery</h6>
+                            <hr /> */}
+                            {/* <div className="imgCross">
                               <Image.PreviewGroup>
                                 {userInfo?.image_Gallery?.map((curElem, i) => {
                                   return (
@@ -801,7 +812,7 @@ function UserGarage() {
                                   );
                                 })}
                               </Image.PreviewGroup>
-                            </div>
+                            </div> */}
                           </>
                         )}
                       </div>

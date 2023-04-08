@@ -18,6 +18,7 @@ const OrderCart = () => {
     setLoading(true);
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getUserOrder`);
+      
       console.log(87980, res)
       if (res.data.status === 200 && res.data.data) {
         // const activeOrder = res.data.data.filter(
@@ -49,6 +50,8 @@ const OrderCart = () => {
       console.log(err);
     }
   };
+
+  console.log(78989,order)
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -85,7 +88,7 @@ const OrderCart = () => {
                       <table width={"100%"} className="cartSection">
                         <tr>
                           <th>Sno.</th>
-                          <th>Ourder Number</th>
+                          <th>Order Number</th>
                           <th>Order Date</th>
                           {/* <th>No. of Items</th> */}
                           <th>Order Status</th>
@@ -105,23 +108,26 @@ const OrderCart = () => {
                               return curVal;
                             }
                           })
-                          ?.map((curElem) => {
+                          ?.map((curElem,i) => {
+                            console.log(99809, curElem)
                             return (
                               <tr>
-                                <td className="productImg">
+                                {/* <td className="productImg">
                                   <img
                                     loading="lazy"
                                     src={
                                       curElem?.image &&
-                                      `${process.env.REACT_APP_URL}upload/products/${curElem?.image[0].image}`
+                                      `${process.env.REACT_APP_URL}upload/products/${curElem?.image[0]?.image}`
                                     }
+                                    
                                     onError={({ currentTarget }) => {
                                       currentTarget.onError = null;
                                       currentTarget.src = noImage;
                                     }}
                                     alt="product"
                                   />
-                                </td>
+                                </td> */}
+                                <td>{1+i}</td>
                                 <td>{curElem?.order_id}</td>
                                 <td>
                                   {new Date(
