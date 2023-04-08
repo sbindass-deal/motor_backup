@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { toCommas } from "../../UI/globaleVar";
 
 const Data = ({ curElem }) => {
   return (
@@ -40,9 +41,13 @@ const Data = ({ curElem }) => {
                   <li>
                     <label>Current Bid:</label>{" "}
                     <span>
-                      $
+                      {/* $
                       {curElem?.currentAmount
                         ? curElem?.currentAmount.auctionAmmount
+                        : 0} */}
+                      $
+                      {curElem?.currentAmount
+                        ? toCommas(curElem?.currentAmount.auctionAmmount)
                         : 0}
                     </span>
                   </li>
@@ -108,9 +113,13 @@ const Data = ({ curElem }) => {
                   <li>
                     <label>Current Bid:</label>{" "}
                     <span>
-                      $
+                      {/* $
                       {curElem?.currentAmount
                         ? curElem?.currentAmount.auctionAmmount
+                        : 0} */}
+                      $
+                      {curElem?.currentAmount
+                        ? toCommas(curElem?.currentAmount.auctionAmmount)
                         : 0}
                     </span>
                   </li>

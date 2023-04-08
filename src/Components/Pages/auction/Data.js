@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import TimeCalculate from "./TimeCalculate";
 
 const Data = ({ curElem, addFabrity }) => {
-  console.log(787878, curElem)
+  console.log(787878, curElem);
   return (
     <>
       <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
@@ -41,7 +41,7 @@ const Data = ({ curElem, addFabrity }) => {
             <h4 className="car_title">
               <Link to={`/detail/${curElem?.id}`}>
                 {curElem?.reserve === "No" ? "No Reserve :" : null}{" "}
-                {curElem?.make+" "+curElem?.model+" "+curElem?.year}
+                {curElem?.make + " " + curElem?.model + " " + curElem?.year}
               </Link>
 
               <button
@@ -80,7 +80,7 @@ const Data = ({ curElem, addFabrity }) => {
               </li>
               <li>
                 <span>
-                  <TimeCalculate endTime={new Date(curElem?.EndTime)}/>
+                  <TimeCalculate endTime={new Date(curElem?.EndTime)} />
                   {/* Ends In: {new Date(curElem?.EndTime)?.toDateString()} */}
                   {/* Ends In: {curElem?.EndTime} */}
                 </span>

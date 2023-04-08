@@ -363,6 +363,14 @@ function Header() {
                             >
                               No Reserve
                             </Link>
+
+                            <Link
+                              className=""
+                              to="/charity"
+                              onClick={() => setShowNav(false)}
+                            >
+                              Charity
+                            </Link>
                             <Link
                               className=""
                               to="/auctionresult"
@@ -413,7 +421,7 @@ function Header() {
                           Featured
                         </Link>
                       </li> */}
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link "
                           to="/charity"
@@ -421,7 +429,7 @@ function Header() {
                         >
                           Charity Auctions
                         </Link>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -714,9 +722,11 @@ function Header() {
                             <Link className="" to="/auctionfeature">
                               Featured
                             </Link>
-
                             <Link className="" to="/auctionnoreserve">
                               No Reserve
+                            </Link>
+                            <Link className="" to="/charity">
+                              Charity
                             </Link>
                             <Link className="" to="/auctionresult">
                               Results
@@ -724,7 +734,6 @@ function Header() {
                           </div>
                         </div>
                       </li>
-
                       <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -786,7 +795,7 @@ function Header() {
                         </Link>
                       </li> */}
 
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -798,7 +807,7 @@ function Header() {
                         >
                           Charity Auctions
                         </Link>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         <Link
                           className="nav-link"
