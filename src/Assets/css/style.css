@@ -7083,3 +7083,45 @@ table.table.table-striped img {
 .featuredAuctions_Slide .slick-track {
   width: 950px !important;
 }
+
+tr.right-align .btn {
+  margin: 0px 5px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+table.cartSection tr td, table.cartSection tr th {
+  padding: 10px;
+  border-bottom: 1px solid #75717100;
+  border-right: 1px solid #75717100;
+  background: #333333;
+}
+tr.right-align td {
+  background-color: #1c1919 !important;
+}
+table.cartSection.cartth tr th {
+  background: #1c1919;
+}
+table.cartSection {
+  border: 0px solid #757171;
+}
+
+.light tr.right-align td {
+  background-color: #fefefe !important;
+}
+.light table.cartSection.cartth tr th, .light tr.right-align td {
+  background: #f7f7f7;
+}
+.light table.cartSection tr td {
+  padding: 10px;
+  border-bottom: 1px solid #75717100;
+  border-right: 1px solid #75717100;
+  background: #ffffff;
+}
+.light tr.right-align td {
+  background-color: #f7f7f7 !important;
+}
+button.btn.bg-danger {
+  background-color: #f7931b !important;
+}
