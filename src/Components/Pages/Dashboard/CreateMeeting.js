@@ -225,22 +225,13 @@ const CreateMeeting = () => {
 
                                 {curVal?.status == "0" && (
                                   <>
-                                    <button
-                                      onClick={() =>
+                                  <i class="fa-solid fa-circle-check green"  onClick={() =>
                                         VechilesApprove(curVal.id, 1)
-                                      }
-                                      className="gry_btn mr-2"
-                                    >
-                                      Approve
-                                    </button>
-                                    <button
-                                      onClick={() =>
+                                      }></i>
+                                   <i class="fa-solid fa-circle-xmark red" onClick={() =>
                                         VechilesApprove(curVal.id, 3)
-                                      }
-                                      className="gry_btn mr-2"
-                                    >
-                                      Reject
-                                    </button>
+                                      }></i>
+                                   
                                   </>
                                 )}
 
