@@ -100,7 +100,7 @@ const Footer = () => {
                 <Link to="/amlpolicy">AML Policy</Link>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
-                <p>©2022 Gas Guzzlrs | All Rights Reserved.</p>
+                <p>©2023 Gas Guzzlrs | All Rights Reserved.</p>
               </div>
             </div>
           </div>
