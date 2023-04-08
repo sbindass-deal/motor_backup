@@ -9,6 +9,7 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
+import winner from "../../../Assets/images/winnerTitle.png";
 
 function Wins() {
   const [data, setData] = useState([]);
@@ -275,9 +276,29 @@ function Wins() {
                         justifyContent: "center",
                       }}
                     >
-                      <div className="row">
-                        <h3>You did not win any vehicle</h3>
+                      {/* <h3>You did not win any vehicle</h3> */}
+                      {/* Win Page Section */}
+                      <div class="col-md-6 ">
+                        <div class="card_Gray2 winnerCard">
+                          <div class="winnerTitle_img zoom-in-zoom-out">
+                            <img src={winner} />
+                          </div>
+                          <div class="winnerCol">
+                            <div class="winnerTitle">
+                              <h3>Congratulations!</h3>
+                              <p>
+                                Leverage agile frameworks to provide a robust
+                                synopsis for high level overviews.
+                              </p>
+                            </div>
+                            <div class="winnerInfo_ pb-3">
+                              <div class="winnerImg_"></div>
+                              <h6>Nikhil Patil</h6>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                       {/* Win Page Section End*/}
                     </div>
                   )}
                 </div>
