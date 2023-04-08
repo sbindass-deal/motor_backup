@@ -234,7 +234,6 @@ function Detail() {
           <div className="row reverseCol">
             <div className="col-lg-3 col-sm-12">
               <Fundamental
-                
                 vehicle={vehicle}
                 handleSubscribe={handleSubscribe}
               />
@@ -304,7 +303,10 @@ function Detail() {
                       ) : (
                         <>
                           {vehicle?.displayInAuction !== "classified" && (
-                            <li className="text-danger">BIDDING CLOSED</li>
+                            <span className="d-flex">
+                              <label>Ends In :&nbsp;</label>
+                              <li className="text-danger">Ended</li>
+                            </span>
                           )}
                         </>
                       )}
@@ -348,8 +350,7 @@ function Detail() {
                     }
                     onError={({ currentTarget }) => {
                       currentTarget.onError = null;
-                      currentTarget.src =
-                        noImage
+                      currentTarget.src = noImage;
                     }}
                     alt="Maskgroup1"
                   />
@@ -472,7 +473,10 @@ function Detail() {
                               {seconds}s
                             </span>
                           ) : (
-                            <span>Bidding closed</span>
+                            <span className="d-flex">
+                              <label>Ends In :&nbsp;</label>
+                              <li className="text-danger">Ended</li>
+                            </span>
                           )}
                         </p>
                       </li>

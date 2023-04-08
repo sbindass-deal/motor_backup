@@ -17,9 +17,14 @@ import LatestGuzzlrsAuction from "../auction/auctionDetails/LatestGuzzlrsAuction
 import GaragesAuction from "./GaragesAuction";
 import GaragesBlog from "./GaragesBlog";
 import GaragesVehicle from "./GaragesVehicle";
+import { Modal } from "react-bootstrap";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
@@ -305,11 +310,10 @@ const GaragesUserDetails = () => {
                 <section className="py-4 mobileSpec" id="">
                   <div className="container">
                     <div className="row ">
-                     
                       <div className="col-12 Videos ghhh">
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
-                              <div className="row youPage">
+                            {/* <div className="row youPage">
                                 <div className="col-md-12 ">
                                   <div className="PostInfo">
                                     <div className="userImG">
@@ -355,123 +359,129 @@ const GaragesUserDetails = () => {
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div className="row">
-                                <div className="col-md-12 ">
-                                  <div className="PostInfo">
-                                    <div className="userImG">
-                                      <Space direction="vertical" size={16}>
-                                        <Space wrap size={16}>
-                                          <Avatar
-                                            size={64}
-                                            icon={
-                                              <img src={men_face} alt="logo" />
-                                            }
-                                          />
-                                        </Space>
-                                      </Space>
-                                    </div>
-                                    <div className="DecIbp">
-                                      <h5>User</h5>
-                                      <p>
-                                        This is a wider card with supporting
-                                        text below as a natural lead-in to
-                                        additional content. This content is a
-                                        little bit longer.
-                                      </p>
-                                      <div class="card">
-                                        <img
-                                          src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                                          class="card-img-bottom"
-                                          alt="..."
+                              </div> */}
+                            <div className="row">
+                              <div className="col-md-12 ">
+                                <div className="PostInfo">
+                                  <div className="userImG">
+                                    <Space direction="vertical" size={16}>
+                                      <Space wrap size={16}>
+                                        <Avatar
+                                          size={64}
+                                          icon={
+                                            <img src={men_face} alt="logo" />
+                                          }
                                         />
-                                      </div>
-                                      <div className="py-3">
-                                        <span className="socialCount">
-                                          <i
-                                            className={`fa-solid fa-thumbs-up `}
-                                          ></i>{" "}
-                                          22
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-comments"></i> 2
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-share-from-square"></i>{" "}
-                                          12
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-heart"></i>{" "}
-                                          8,427
-                                        </span>
+                                      </Space>
+                                    </Space>
+                                  </div>
+                                  <div className="DecIbp">
+                                    <h5>User</h5>
+                                    <p>
+                                      This is a wider card with supporting text
+                                      below as a natural lead-in to additional
+                                      content. This content is a little bit
+                                      longer.
+                                    </p>
+                                    <div class="card">
+                                      <img
+                                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                                        class="card-img-bottom"
+                                        alt="..."
+                                      />
+                                    </div>
+                                    <div className="py-3">
+                                      <span className="socialCount">
+                                        <i
+                                          className={`fa-solid fa-thumbs-up `}
+                                        ></i>{" "}
+                                        22
+                                      </span>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-comments"></i> 2
+                                      </span>
+                                      <span
+                                        onClick={handleShow}
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <i class="fa-solid fa-share-from-square"></i>{" "}
+                                        12
+                                      </span>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-heart"></i> 8,427
+                                      </span>
 
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-eye"></i> 99k
-                                        </span>
-                                      </div>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-eye"></i> 99k
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div className="row">
-                                <div className="col-md-12 ">
-                                  <div className="PostInfo">
-                                    <div className="userImG">
-                                      <Space direction="vertical" size={16}>
-                                        <Space wrap size={16}>
-                                          <Avatar
-                                            size={64}
-                                            icon={
-                                              <img src={men_face} alt="logo" />
-                                            }
-                                          />
-                                        </Space>
-                                      </Space>
-                                    </div>
-                                    <div className="DecIbp">
-                                      <h5>User</h5>
-                                      <p>
-                                        This is a wider card with supporting
-                                        text below as a natural lead-in to
-                                        additional content. This content is a
-                                        little bit longer.
-                                      </p>
-                                      <div class="card">
-                                        <img
-                                          src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                                          class="card-img-bottom"
-                                          alt="..."
+                            </div>
+                            <div className="row">
+                              <div className="col-md-12 ">
+                                <div className="PostInfo">
+                                  <div className="userImG">
+                                    <Space direction="vertical" size={16}>
+                                      <Space wrap size={16}>
+                                        <Avatar
+                                          size={64}
+                                          icon={
+                                            <img src={men_face} alt="logo" />
+                                          }
                                         />
-                                      </div>
-                                      <div className="py-3">
-                                        <span className="socialCount">
-                                          <i
-                                            className={`fa-solid fa-thumbs-up `}
-                                          ></i>{" "}
-                                          22
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-comments"></i> 2
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-share-from-square"></i>{" "}
-                                          12
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-heart"></i>{" "}
-                                          8,427
-                                        </span>
+                                      </Space>
+                                    </Space>
+                                  </div>
+                                  <div className="DecIbp">
+                                    <h5>User</h5>
+                                    <p>
+                                      This is a wider card with supporting text
+                                      below as a natural lead-in to additional
+                                      content. This content is a little bit
+                                      longer.
+                                    </p>
+                                    <div class="card">
+                                      <img
+                                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
+                                        class="card-img-bottom"
+                                        alt="..."
+                                      />
+                                    </div>
+                                    <div className="py-3">
+                                      <span className="socialCount">
+                                        <i
+                                          className={`fa-solid fa-thumbs-up `}
+                                        ></i>{" "}
+                                        22
+                                      </span>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-comments"></i> 2
+                                      </span>
+                                      <span
+                                        onClick={handleShow}
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <i class="fa-solid fa-share-from-square"></i>{" "}
+                                        12
+                                      </span>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-heart"></i> 8,427
+                                      </span>
 
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-eye"></i> 99k
-                                        </span>
-                                      </div>
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-eye"></i> 99k
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
+                            </div>
 
-                              {/* <Image.PreviewGroup>
+                            {/* <Image.PreviewGroup>
                                 {garagesData?.image_gallery &&
                                   [...garagesData?.image_gallery].map(
                                     (curElem, i) => {
@@ -532,6 +542,70 @@ const GaragesUserDetails = () => {
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose} className="modal fade" centered>
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <button
+                onClick={handleClose}
+                type="button"
+                className="close"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="row youPage frrt">
+                <div className="col-md-12 ">
+                  <div className="PostInfo">
+                    <div className="userImG">
+                      <Space direction="vertical" size={16}>
+                        <Space wrap size={16}>
+                          <Avatar
+                            size={64}
+                            icon={<img src={men_face} alt="logo" />}
+                          />
+                        </Space>
+                      </Space>
+                    </div>
+                    <div className="DecIbp ">
+                      <textarea
+                        className="field"
+                        rows="8"
+                        cols="100"
+                        placeholder="What’s happening?"
+                      ></textarea>
+                      <div className="youD">
+                        <div className="py-3">
+                          <span className="socialCount">
+                            <i class="fa-solid fa-image"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-bars-progress"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-face-smile"></i>
+                          </span>
+                          <span className="socialCount">
+                            <i class="fa-solid fa-business-time"></i>
+                          </span>
+
+                          <span className="socialCount">
+                            <i class="fa-solid fa-location-dot"></i>
+                          </span>
+                        </div>
+                        <button class="btn">Post</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

@@ -10,7 +10,6 @@ import ShowMeeting from "../Dashboard/ShowMeeting";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../../redux/reducers/login";
 
-
 const Event = () => {
   moment.locale("en-GB");
   const localizer = momentLocalizer(moment);
@@ -71,49 +70,47 @@ const Event = () => {
 
   return (
     <>
-    <section class="heroSection event d-flex align-items-center">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-8 offset-lg-2">
-                <div class="heroText">
-                  <h1>Events for March 2023</h1>
-                  {/* <h5>
+      <section class="heroSection event d-flex align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2">
+              <div class="heroText">
+                <h1>Events for April 2023</h1>
+                {/* <h5>
                     Are you interested in benefitting a charity by offering a
                     vehicle on Gas Guzzlrs Auctions? We can do that!
                   </h5> */}
-                </div>
               </div>
             </div>
           </div>
-        </section>
-    
-        <div className="container clenderStyle ">
-      <div className="text-right mb-1">
-        {/* {logingUser.login.token && ( */}
-        <button onClick={handleClick} className="orange_btn">
-          Add Create Event
-        </button>
-        {/* )} */}
+        </div>
+      </section>
+
+      <div className="container clenderStyle ">
+        <div className="text-right mb-1">
+          {/* {logingUser.login.token && ( */}
+          <button onClick={handleClick} className="orange_btn">
+            Add Create Event
+          </button>
+          {/* )} */}
+        </div>
+
+        <Calendar
+          // onSelectSlot={handleSelect}
+          views={["day", "agenda", "work_week", "month"]}
+          selectable
+          localizer={localizer}
+          defaultDate={new Date()}
+          defaultView="month"
+          events={eventsData}
+          style={{ height: "100vh" }}
+          onSelectEvent={(event) => navigate("/eventdetail/" + event.resource)}
+          // onSelectEvent={(event) => alert(event.id)}
+        />
+
+        <ShowMeeting />
       </div>
-
-      <Calendar
-        // onSelectSlot={handleSelect}
-        views={["day", "agenda", "work_week", "month"]}
-        selectable
-        localizer={localizer}
-        defaultDate={new Date()}
-        defaultView="month"
-        events={eventsData}
-        style={{ height: "100vh" }}
-        onSelectEvent={(event) => navigate("/eventdetail/" + event.resource)}
-        // onSelectEvent={(event) => alert(event.id)}
-      />
-
-      <ShowMeeting />
-    </div>
-    
     </>
-   
   );
 };
 
