@@ -189,14 +189,14 @@ function UserGarage() {
                       ></label>
                     </div>
                   )}
-                  <button
+                  {/* <button
                     onClick={() => {
                       handleShow();
                     }}
                     className="gry_btn px-3 mx-2"
                   >
                     + Add Post
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => {
                       navigate("/vechiles");
@@ -547,6 +547,53 @@ function UserGarage() {
                       >
                         <section className="py-4 mobileSpec" id="">
                           <div className="container">
+                            <div className="row youPage">
+                              <div className="col-md-12 ">
+                                <div className="PostInfo">
+                                  <div className="userImG">
+                                    <Space direction="vertical" size={16}>
+                                      <Space wrap size={16}>
+                                        <Avatar
+                                          size={64}
+                                          icon={
+                                            <img src={men_face} alt="logo" />
+                                          }
+                                        />
+                                      </Space>
+                                    </Space>
+                                  </div>
+                                  <div className="DecIbp ">
+                                    <textarea
+                                      className="field"
+                                      rows="8"
+                                      cols="100"
+                                      placeholder="What’s happening?"
+                                    ></textarea>
+                                    <div className="youD">
+                                      <div className="py-3">
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-image"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-bars-progress"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-face-smile"></i>
+                                        </span>
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-business-time"></i>
+                                        </span>
+
+                                        <span className="socialCount">
+                                          <i class="fa-solid fa-location-dot"></i>
+                                        </span>
+                                      </div>
+                                      <button class="btn">Post</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <div className="row ">
                               <div className="col-12 text-center pb_30"></div>
 
@@ -602,7 +649,13 @@ function UserGarage() {
                                                   <i class="fa-solid fa-comments"></i>{" "}
                                                   2
                                                 </span>
-                                                <span className="socialCount">
+                                                <span
+                                                  onClick={() => {
+                                                    handleShow();
+                                                  }}
+                                                  style={{ cursor: "pointer" }}
+                                                  className="socialCount"
+                                                >
                                                   <i class="fa-solid fa-share-from-square"></i>{" "}
                                                   12
                                                 </span>
@@ -672,7 +725,13 @@ function UserGarage() {
                                                   <i class="fa-solid fa-share-from-square"></i>{" "}
                                                   12
                                                 </span>
-                                                <span className="socialCount">
+                                                <span
+                                                  onClick={() => {
+                                                    handleShow();
+                                                  }}
+                                                  style={{ cursor: "pointer" }}
+                                                  className="socialCount"
+                                                >
                                                   <i class="fa-solid fa-heart"></i>{" "}
                                                   8,427
                                                 </span>
