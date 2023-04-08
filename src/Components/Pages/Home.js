@@ -179,7 +179,9 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                <h1>We are dedicated to parking your Dream Vehicle in your Garage</h1>
+                <h1>
+                  We are dedicated to parking your Dream Vehicle in your Garage
+                </h1>
                 <Link to="/showroom" className="orange_btn">
                   View Auctions
                 </Link>
@@ -491,7 +493,7 @@ function Home() {
             <div className="col-12">
               <div className="latestBlogCard">
                 {console.log(90909, lottery)}
-                <div  className={`latestBlogSlide`}>
+                <div className={`latestBlogSlide`}>
                   <a href="/carraffle" className="full">
                     <div className="col-lg-6 col-sm-12 pb_30 rafSect">
                       {/* <h2>{d?.name}</h2> */}
@@ -501,10 +503,11 @@ function Home() {
                           d?.description.substr(0, 165) + "...",
                           strToHtml
                         )} */}
-                        {parse(
-                          lottery[0]?.description.substr(0, 165) + "...",
-                          strToHtml
-                        )}
+                        {lottery[0]?.description != undefined &&
+                          parse(
+                            lottery[0]?.description.substr(0, 165) + "...",
+                            strToHtml
+                          )}
                       </p>
                       <div className="price_">
                         {/* <p>
@@ -524,7 +527,8 @@ function Home() {
                         alt={d?.name}
                         className="addBanner"
                       /> */}
-                      <img height={350}
+                      <img
+                        height={350}
                         src={`${process.env.REACT_APP_URL}${lottery[0]?.image[0]?.imagePath}`}
                         alt={lottery[0]?.name}
                         className="addBanner"

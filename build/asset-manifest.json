@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9f07c16e.css",
-    "main.js": "/static/js/main.1b2f0eb8.js",
+    "main.css": "/static/css/main.5ee54f1a.css",
+    "main.js": "/static/js/main.a47da8d1.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -71,9 +71,11 @@
     "static/media/HIW3.jpg": "/static/media/HIW3.f466fc823fe0550fbf6a.jpg",
     "static/media/img_01.jpg": "/static/media/img_01.1245cea9788ab8e4a4b8.jpg",
     "static/media/img_05.jpg": "/static/media/img_05.07a31a3a1349a482ea94.jpg",
+    "static/media/events-2019.jpg": "/static/media/events-2019.516b54ea461bfd487bcf.jpg",
     "static/media/hero.png": "/static/media/hero.ca9b9fbcc96577ae8f96.png",
     "static/media/G3.png": "/static/media/G3.126296453e5acb1de5c7.png",
     "static/media/ads_car.png": "/static/media/ads_car.2091c33acdfd0c982994.png",
+    "static/media/winnerTitle.png": "/static/media/winnerTitle.5b0dea7c53328b23b0b4.png",
     "static/media/G3Logo-white.png": "/static/media/G3Logo-white.48b800c3f832f353258d.png",
     "static/media/auction_list.jpg": "/static/media/auction_list.5e8a4b5f5897fd4b5b95.jpg",
     "static/media/car_01.jpg": "/static/media/car_01.f6ce6900b4162f1d52ef.jpg",
@@ -103,7 +105,6 @@
     "static/media/raffle-5.jpg": "/static/media/raffle-5.725b85a1037fb656d29a.jpg",
     "static/media/about-1.jpg": "/static/media/about-1.b76a45bd59a0457b947a.jpg",
     "static/media/raffle-6.jpg": "/static/media/raffle-6.9b2b48d4d2f594e1b7a5.jpg",
-    "static/media/reeee.jpg": "/static/media/reeee.060b693ec8f830a8d051.jpg",
     "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
     "static/media/sssddeee.avif": "/static/media/sssddeee.6d8c2e190bfc97c248d4.avif",
@@ -136,8 +137,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.9f07c16e.css.map": "/static/css/main.9f07c16e.css.map",
-    "main.1b2f0eb8.js.map": "/static/js/main.1b2f0eb8.js.map",
+    "main.5ee54f1a.css.map": "/static/css/main.5ee54f1a.css.map",
+    "main.a47da8d1.js.map": "/static/js/main.a47da8d1.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -177,7 +178,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f07c16e.css",
-    "static/js/main.1b2f0eb8.js"
+    "static/css/main.5ee54f1a.css",
+    "static/js/main.a47da8d1.js"
   ]
 }

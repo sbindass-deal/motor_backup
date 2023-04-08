@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../../redux/reducers/planReducer";
+import { strToHtml } from "../../UI/globaleVar";
+import parse from "html-react-parser";
 
 const Data = ({ curElem, purchagedPlan }) => {
   const navigate = useNavigate();
@@ -90,8 +92,8 @@ const Data = ({ curElem, purchagedPlan }) => {
           <div className="plan_cardBody">
             <p>
               {planType && planName === curElem.plan_name
-                ? curElem.annual_description
-                : curElem.monthly_description}
+                ? parse(curElem?.annual_description, strToHtml)
+                : parse(curElem?.monthly_description, strToHtml)}
             </p>
           </div>
           {purchagedPlan?.active_plan == curElem.id ? (
