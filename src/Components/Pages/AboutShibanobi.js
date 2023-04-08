@@ -43,8 +43,7 @@ function AboutShibanobi() {
               <div>
                 <h3 className="orangeTextDark">Vision</h3>
                 <p>
-                  "An auction experience the serves and protects buyers and
-                  sellers alike."
+                  "An auction experience the serves and protects buyers and sellers alike."
                 </p>
                 {/* <p>
                 The auction process starts with sellers submitting their cars through the website. We select the most interesting and work with the seller to compile a thorough listing for the vehicle. Auctions typically run for 7 days and 14 days.
