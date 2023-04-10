@@ -7120,8 +7120,8 @@ table.cartSection {
 }
 .light table.cartSection tr td {
   padding: 10px;
-  border-bottom: 1px solid #75717100;
-  border-right: 1px solid #75717100;
+  border-bottom: 1px solid #757171;
+  border-right: 1px solid #757171;
   background: #ffffff;
 }
 .light tr.right-align td { background-color: #f7f7f7 !important;}
@@ -7133,4 +7133,6 @@ tr.text-center.subTotal  { border-top: 1px solid #757171 !important;}
 table.cartSection.cartth tr th { border-bottom: 1px solid #757171; border-right: 1px solid #757171;}
 table.cartSection.cartth tr th:last-child { border-bottom: 1px solid #757171; border-right: 0px solid ;}
 tr.right-align .btn {   padding: 10px 15px;}
-.count {  background: black;  width: 39%;  margin: 0 auto;}
+.count {  background: black;  width: 46%;  margin: 0 auto;}
+.light table.cartSection tr td:last-child{border-right: none;}
+.light .count { background: #f7f7f7;}

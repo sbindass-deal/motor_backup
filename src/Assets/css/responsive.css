@@ -1303,6 +1303,11 @@
 	.imgCross {	display: block;	}
 	.imgCross span button.close {top: -30px;}
 	li.cT {	height: 40px;padding-right: 40px;}
+	.count {background: black;width: 81%;margin: 0 auto;	}
+	tr.right-align .btn {
+		padding: 10px 10px;
+		font-size: 10px;
+	}
 }
 
 @media (max-width: 575px) {
