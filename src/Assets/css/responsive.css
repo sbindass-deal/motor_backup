@@ -1308,6 +1308,30 @@
 		padding: 10px 10px;
 		font-size: 10px;
 	}
+	span.ant-avatar.ant-avatar-circle.ant-avatar-icon.avtr {
+		max-width: 80px;
+		max-height: 80px;
+	}
+	.PostInfo {
+		display: block;
+		background: #232323;
+		padding: 14px;
+		margin-bottom: 25px;
+	}
+	span.socialCount {
+		padding: 9px;
+		font-size: 12px;
+	}
+	.DecIbp h5 {
+		padding-top: 10px;
+	}
+	.UserImZ{
+		display: block;
+	}
+	ul.fwrList li {
+		padding: 6px 5px 5px 5px;
+		border-right: 1px solid #3c3535;
+	}
 }
 
 @media (max-width: 575px) {

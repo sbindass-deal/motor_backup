@@ -3797,7 +3797,7 @@ table.cartSection.cartth tr th:first-child {
 }
 
 .count span {
-  padding: 10px;
+  padding: 3px;
 }
 
 button.addCountIcon {
@@ -3807,7 +3807,7 @@ button.addCountIcon {
   border: none;
   text-align: right;
   position: relative;
-  right: -11px;
+
 }
 
 button.addCountIcon.negtv {
@@ -7136,3 +7136,16 @@ tr.right-align .btn {   padding: 10px 15px;}
 .count {  background: black;  width: 46%;  margin: 0 auto;}
 .light table.cartSection tr td:last-child{border-right: none;}
 .light .count { background: #f7f7f7;}
+button.btn.bg-danger:hover{    background-color: #fff !important;
+  color: #f7931a;
+  border: 1px solid #f7931a;}
+  .cartth .count {
+    background: black;
+    width: 46%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+tr.right-align td {
+  border-bottom: 0px !important;
+}
