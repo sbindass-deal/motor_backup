@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
@@ -308,7 +308,11 @@ const AddDealer = () => {
       style={{ minHeight: "100vh", display: "flex", justifyContent: "center" }}
     >
       <div className="row">
+        <Link to={'/admin-dealer'}>
+          <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+        </Link>
         <div className="col-12 text-center pb-5">
+          
           <h2>Add Dealer</h2>
         </div>
         <form onSubmit={handleSubmit} className="container px-5">
