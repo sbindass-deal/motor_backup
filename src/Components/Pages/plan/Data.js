@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../../redux/reducers/planReducer";
-import { strToHtml } from "../../UI/globaleVar";
+import { notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
+import axios from "axios";
 
 const Data = ({ curElem, purchagedPlan }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [userinfo, setUserinfo] = useState({});
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(false);
   const handleSubmit = (data) => {
     dispatch(getPlan(data));
     navigate("/vechiles");
   };
+
+  const fetchUsrApi = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}user`);
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userinfo);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsrApi();
+  }, []);
 
   return (
     <>
@@ -138,30 +157,37 @@ const Data = ({ curElem, purchagedPlan }) => {
             <div className="plan_cardFooter">
               <button
                 onClick={() => {
-                  handleSubmit({
-                    planId: curElem.id,
-                    listingType: `${
-                      planType && planName === curElem.plan_name
-                        ? "annual"
-                        : "monthly"
-                    }`,
-                    name: curElem.plan_name,
-                    price: `${
-                      planType && planName === curElem.plan_name
-                        ? curElem.annual_price
-                        : curElem.monthly_price
-                    }`,
-                    desc: `${
-                      planType && planName === curElem.plan_name
-                        ? curElem.annual_description
-                        : curElem.monthly_description
-                    }`,
-                    playQuantity: `${
-                      planType && planName === curElem.plan_name
-                        ? curElem.annual_listing
-                        : curElem.monthly_listing
-                    }`,
-                  });
+                  if (userinfo.cn_no !== null) {
+                    handleSubmit({
+                      planId: curElem.id,
+                      listingType: `${
+                        planType && planName === curElem.plan_name
+                          ? "annual"
+                          : "monthly"
+                      }`,
+                      name: curElem.plan_name,
+                      price: `${
+                        planType && planName === curElem.plan_name
+                          ? curElem.annual_price
+                          : curElem.monthly_price
+                      }`,
+                      desc: `${
+                        planType && planName === curElem.plan_name
+                          ? curElem.annual_description
+                          : curElem.monthly_description
+                      }`,
+                      playQuantity: `${
+                        planType && planName === curElem.plan_name
+                          ? curElem.annual_listing
+                          : curElem.monthly_listing
+                      }`,
+                    });
+                  } else {
+                    notify(
+                      "Please submit credit card details in to you account",
+                      400
+                    );
+                  }
                 }}
                 className="gry_btn"
               >
