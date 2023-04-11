@@ -7178,3 +7178,6 @@ display: none;
 .efrtd .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle{
 box-shadow: 0px 0px 0px 0px;
 }
+.light .cartth .count{
+  color: #fff;
+}

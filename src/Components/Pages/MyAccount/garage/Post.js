@@ -250,7 +250,7 @@ const Post = () => {
                                     onClick={() => handleLike(curElem.id)}
                                     className="socialCount"
                                   >
-                                    <i className={`fa-solid fa-thumbs-up `}></i>{" "}
+                                    <i class="fa-solid fa-heart"></i>{" "}
                                     12
                                   </span>
                                   {/* <span
@@ -271,13 +271,35 @@ const Post = () => {
                                     <i class="fa-solid fa-share-from-square"></i>{" "}
                                     0
                                   </span>
-                                  {/* <span className="socialCount">
-                                      <i class="fa-solid fa-heart"></i> 8,427
-                                    </span> */}
+                                  
+                                     
+                                      
+                                      <span
+                                        onClick={handleShow}
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <i class="fa-solid fa-share-nodes"></i>{" "}
+                                        12
+                                      </span>
+                                    
 
-                                  {/* <span className="socialCount">
-                                      <i class="fa-solid fa-eye"></i> 99k
-                                    </span> */}
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-eye"></i> 99k
+                                      </span>
+                                      <span className="socialCount">
+                                      <i class="fa-regular fa-bookmark"></i>
+                                      </span>
+
+                                      <span className="socialCount">
+                                          <i class="fa-solid fa-bookmark"></i>
+                                      </span>
+                                      <span className="socialCount">
+                                      <i class="fa-solid fa-paper-plane"></i>
+                                      </span>
+
+                                      
+                                   
                                 </div>
                               </div>
                             </div>
