@@ -396,9 +396,9 @@ const GaragesUserDetails = () => {
                                       </Dropdown.Toggle>
 
                                       <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-1">Report Ads</Dropdown.Item>
+                                        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
                                       </Dropdown.Menu>
                                     </Dropdown>
                                     </div>
@@ -437,7 +437,9 @@ const GaragesUserDetails = () => {
                                       <span className="socialCount">
                                           <i class="fa-solid fa-bookmark"></i>
                                       </span>
-                                      
+                                      <span className="socialCount">
+                                      <i class="fa-solid fa-paper-plane"></i>
+                                      </span>
 
                                       
                                     </div>
