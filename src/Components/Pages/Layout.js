@@ -98,6 +98,8 @@ import GaragesUserDetails from "./garages/GaragesUserDetails";
 import UserGarage from "./MyAccount/garage/UserGarage";
 import EditGarage from "./MyAccount/garage/EditGarage";
 import AddGarage from "./MyAccount/garage/AddGarage";
+import AddFaq from "./Dashboard/AddFaq";
+import FaqAdmin from "./Dashboard/FaqAdmin";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -199,6 +201,9 @@ const Layout = () => {
                   />
 
                   <Route path="admin-enquiry" element={<Enquiry />} />
+                  <Route path="admin-faq" element={<FaqAdmin />} />
+                  <Route path="admin-faq/add" element={<AddFaq />} />
+                  <Route path="admin-faq/add/:id" element={<AddFaq />} />
                   <Route path="admin-meeting" element={<CreateMeeting />} />
                 </>
               )}

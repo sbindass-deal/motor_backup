@@ -119,6 +119,16 @@ function AdminLeftNav() {
         <li>
           <Link
             className={` ${
+              location.pathname === "/admin-faq" ? "active" : ""
+            } `}
+            to="/admin-faq"
+          >
+            Faq
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` ${
               location.pathname === "/admin-enquiry" ? "active" : ""
             } `}
             to="/admin-enquiry"

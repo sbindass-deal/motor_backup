@@ -27,6 +27,7 @@ import {
   getPlanByDealerSelect,
   purchagedPlan,
 } from "../../redux/reducers/planReducer";
+import { notify } from "../UI/globaleVar";
 
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
@@ -177,10 +178,14 @@ const VechilesRegistraion = () => {
       })
       .then(function (response) {
         // console.log(response);
+        // notify(response.data.message, response.data.status);
         informationSubmitHandler();
+        setSubmitLoading(false);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(111,error.response.data.message, error.response.data.status);
+        setSubmitLoading(false);
+        notify(error.response.data.message, error.response.data.status);
       });
   };
 
@@ -203,17 +208,6 @@ const VechilesRegistraion = () => {
     }
   };
 
-  const notify = (val) =>
-    toast.success(val, {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   const closeMoal = () => {
     setModalShow(false);
   };
@@ -670,7 +664,7 @@ const VechilesRegistraion = () => {
         uploadFileOne(result.data.id);
         uploadFileTwo(result.data.id);
         uploadFileGallery(result.data.id);
-        notify(result.data.message);
+        notify(result.data.message, result.status);
         // handleShowPayment();
         if (result.data.status === 200) {
           navigate("/");
@@ -745,6 +739,7 @@ const VechilesRegistraion = () => {
       })
       .catch((error) => {
         console.log(error);
+        notify(error.message, error.status);
         setSubmitLoading(false);
       });
   };
@@ -830,7 +825,7 @@ const VechilesRegistraion = () => {
       );
 
       if (req.data.status) {
-        notify(req.data.message);
+        notify(req.data.message, req.data.status);
       } else {
         setVinDetails(req.data);
         handleVinClose();

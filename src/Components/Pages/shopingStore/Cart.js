@@ -67,7 +67,7 @@ const Cart = () => {
                         />
                       );
                     })}
-                    <tr className="text-center">
+                    <tr className="text-center subTotal">
                       <td colSpan="3"></td>
                       <td>Subtotal </td>
                       <td>${product?.total}</td>
