@@ -73,7 +73,7 @@ const Post = () => {
         like_or_dislike: 2,
       })
       .then(function (response) {
-        console.log(response);
+        getPostData();
       })
       .catch(function (error) {
         console.log(error);
