@@ -3797,7 +3797,7 @@ table.cartSection.cartth tr th:first-child {
 }
 
 .count span {
-  padding: 10px;
+  padding: 3px;
 }
 
 button.addCountIcon {
@@ -3807,7 +3807,7 @@ button.addCountIcon {
   border: none;
   text-align: right;
   position: relative;
-  right: -11px;
+
 }
 
 button.addCountIcon.negtv {
@@ -7093,35 +7093,59 @@ tr.right-align .btn {
 }
 table.cartSection tr td, table.cartSection tr th {
   padding: 10px;
-  border-bottom: 1px solid #75717100;
-  border-right: 1px solid #75717100;
+ 
+  border-right: 1px solid #757171;
   background: #333333;
+}
+table.cartSection tr td:last-child {
+ 
+  border-right: 0px solid #757171;
+ 
 }
 tr.right-align td {
   background-color: #1c1919 !important;
 }
-table.cartSection.cartth tr th {
+/* table.cartSection.cartth tr th {
   background: #1c1919;
-}
+} */
 table.cartSection {
   border: 0px solid #757171;
 }
 
-.light tr.right-align td {
+/* .light tr.right-align td {
   background-color: #fefefe !important;
-}
+} */
 .light table.cartSection.cartth tr th, .light tr.right-align td {
   background: #f7f7f7;
 }
 .light table.cartSection tr td {
   padding: 10px;
-  border-bottom: 1px solid #75717100;
-  border-right: 1px solid #75717100;
+  border-bottom: 1px solid #757171;
+  border-right: 1px solid #757171;
   background: #ffffff;
 }
-.light tr.right-align td {
-  background-color: #f7f7f7 !important;
+.light tr.right-align td { background-color: #f7f7f7 !important;}
+button.btn.bg-danger { background-color: #f7931b !important;}
+
+td.productImg { border-right: 1px solid #c8c8c8 !important;}
+table.cartSection.cartth tr th { border-bottom: 1px solid #757171;}
+tr.text-center.subTotal  { border-top: 1px solid #757171 !important;}
+table.cartSection.cartth tr th { border-bottom: 1px solid #757171; border-right: 1px solid #757171;}
+table.cartSection.cartth tr th:last-child { border-bottom: 1px solid #757171; border-right: 0px solid ;}
+tr.right-align .btn {   padding: 10px 15px;}
+.count {  background: black;  width: 46%;  margin: 0 auto;}
+.light table.cartSection tr td:last-child{border-right: none;}
+.light .count { background: #f7f7f7;}
+button.btn.bg-danger:hover{    background-color: #fff !important;
+  color: #f7931a;
+  border: 1px solid #f7931a;}
+  .cartth .count {
+    background: black;
+    width: 46%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
-button.btn.bg-danger {
-  background-color: #f7931b !important;
+tr.right-align td {
+  border-bottom: 0px !important;
 }
