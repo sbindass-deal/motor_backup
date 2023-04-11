@@ -8,7 +8,6 @@ import EmojiPicker from "emoji-picker-react";
 
 const Post = () => {
   const [file, setFile] = useState([]);
-  const [count, setCountLike] = useState(1);
   const [content, setContent] = useState("");
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState({});
@@ -28,7 +27,7 @@ const Post = () => {
       const res = await axios.get(`${process.env.REACT_APP_URL}getPost`);
       if (res.status === 200) {
         setPostData(res.data.data);
-        setUserData(res.data.userProfile);
+        // setUserData(res.data.userProfile);
       }
       console.log(111, res.data.data);
     } catch (err) {
@@ -64,6 +63,20 @@ const Post = () => {
         console.log(error);
         setLoading(false);
         notify(error.message, error.status);
+      });
+  };
+
+  const handleLike = async (id) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}like_dislike_post`, {
+        postId: id,
+        like_or_dislike: 2,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
@@ -234,14 +247,13 @@ const Post = () => {
                                 </div>
                                 <div className="py-3">
                                   <span
-                                    onClick={() => setCountLike(count + 1)}
+                                    onClick={() => handleLike(curElem.id)}
                                     className="socialCount"
                                   >
                                     <i className={`fa-solid fa-thumbs-up `}></i>{" "}
-                                    {count}
+                                    12
                                   </span>
                                   {/* <span
-                                    onClick={() => setCountLike(count - 1)}
                                     className="socialCount"
                                   >
                                     <i class="fa-sharp fa-solid fa-thumbs-down"></i>
