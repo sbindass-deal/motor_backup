@@ -18,6 +18,8 @@ import GaragesAuction from "./GaragesAuction";
 import GaragesBlog from "./GaragesBlog";
 import GaragesVehicle from "./GaragesVehicle";
 import { Modal } from "react-bootstrap";
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -377,13 +379,30 @@ const GaragesUserDetails = () => {
                                     </Space>
                                   </div>
                                   <div className="DecIbp">
-                                    <h5>User</h5>
-                                    <p>
-                                      This is a wider card with supporting text
-                                      below as a natural lead-in to additional
-                                      content. This content is a little bit
-                                      longer.
-                                    </p>
+                                    <div className="efrtd">
+                                    <div className="uRButton">
+                                      <h5>User</h5>
+                                      <p>
+                                        This is a wider card with supporting text
+                                        below as a natural lead-in to additional
+                                        content. This content is a little bit
+                                        longer.
+                                      </p>
+                                    </div>
+
+                                      <Dropdown>
+                                      <Dropdown.Toggle variant="success" id="dropdown-basic" className="postDrop">
+                                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                                      </Dropdown.Toggle>
+
+                                      <Dropdown.Menu>
+                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                    </div>
+                                    
                                     <div class="card">
                                       <img
                                         src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
@@ -392,12 +411,7 @@ const GaragesUserDetails = () => {
                                       />
                                     </div>
                                     <div className="py-3">
-                                      <span className="socialCount">
-                                        <i
-                                          className={`fa-solid fa-thumbs-up `}
-                                        ></i>{" "}
-                                        22
-                                      </span>
+                                     
                                       <span className="socialCount">
                                         <i class="fa-solid fa-comments"></i> 2
                                       </span>
@@ -406,7 +420,7 @@ const GaragesUserDetails = () => {
                                         className="socialCount"
                                         style={{ cursor: "pointer" }}
                                       >
-                                        <i class="fa-solid fa-share-from-square"></i>{" "}
+                                        <i class="fa-solid fa-share-nodes"></i>{" "}
                                         12
                                       </span>
                                       <span className="socialCount">
@@ -416,71 +430,22 @@ const GaragesUserDetails = () => {
                                       <span className="socialCount">
                                         <i class="fa-solid fa-eye"></i> 99k
                                       </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="row">
-                              <div className="col-md-12 ">
-                                <div className="PostInfo">
-                                  <div className="userImG">
-                                    <Space direction="vertical" size={16}>
-                                      <Space wrap size={16}>
-                                        <Avatar
-                                          size={64}
-                                          icon={
-                                            <img src={men_face} alt="logo" />
-                                          }
-                                        />
-                                      </Space>
-                                    </Space>
-                                  </div>
-                                  <div className="DecIbp">
-                                    <h5>User</h5>
-                                    <p>
-                                      This is a wider card with supporting text
-                                      below as a natural lead-in to additional
-                                      content. This content is a little bit
-                                      longer.
-                                    </p>
-                                    <div class="card">
-                                      <img
-                                        src="https://tse1.mm.bing.net/th?id=OIP.cedHozvsh9JzkHQgRVg8XQHaE8&pid=Api&P=0"
-                                        class="card-img-bottom"
-                                        alt="..."
-                                      />
-                                    </div>
-                                    <div className="py-3">
                                       <span className="socialCount">
-                                        <i
-                                          className={`fa-solid fa-thumbs-up `}
-                                        ></i>{" "}
-                                        22
-                                      </span>
-                                      <span className="socialCount">
-                                        <i class="fa-solid fa-comments"></i> 2
-                                      </span>
-                                      <span
-                                        onClick={handleShow}
-                                        className="socialCount"
-                                        style={{ cursor: "pointer" }}
-                                      >
-                                        <i class="fa-solid fa-share-from-square"></i>{" "}
-                                        12
-                                      </span>
-                                      <span className="socialCount">
-                                        <i class="fa-solid fa-heart"></i> 8,427
+                                      <i class="fa-regular fa-bookmark"></i>
                                       </span>
 
                                       <span className="socialCount">
-                                        <i class="fa-solid fa-eye"></i> 99k
+                                          <i class="fa-solid fa-bookmark"></i>
                                       </span>
+                                      
+
+                                      
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                        
 
                             {/* <Image.PreviewGroup>
                                 {garagesData?.image_gallery &&
