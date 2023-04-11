@@ -64,11 +64,13 @@ const AddFaq = () => {
   };
   return (
     <>
-      <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
+    <section>
+      <div className="container ptb_50" >
         <h3 className="text-center">Add New Faq</h3>
-        <div className="row">
+        
           <form onSubmit={handleSubmit}>
-            <div className="col-12">
+          <div className="row asadw ">
+            <div className="col-lg-7 col-md-7 col-sm-12">
               <div className="form-group">
                 <label>Question</label>
                 <textarea
@@ -81,7 +83,7 @@ const AddFaq = () => {
                 ></textarea>
               </div>
             </div>
-            <div className="col-12 ">
+            <div className="col-lg-7 col-md-7 col-sm-12">
               <div className="form-group">
                 <label>Answer</label>
                 <textarea
@@ -94,12 +96,19 @@ const AddFaq = () => {
                 ></textarea>
               </div>
             </div>
-            <button className="btn" type="submit">
-              Submit
-            </button>
+            <div className="col-lg-7 col-md-7 col-sm-12">
+              <button className="btn center" type="submit" >
+                Submit
+              </button>
+            </div>
+            
+            </div>
+           
+            
           </form>
-        </div>
+        
       </div>
+      </section>
     </>
   );
 };

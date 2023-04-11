@@ -245,12 +245,12 @@ const Post = () => {
                                     alt="post"
                                   />
                                 </div>
-                                <div className="py-3">
+                                
                                   <span
                                     onClick={() => handleLike(curElem.id)}
                                     className="socialCount"
                                   >
-                                    <i class="fa-solid fa-heart"></i>{" "}
+                                    <i className={`fa-solid fa-thumbs-up `}></i>{" "}
                                     12
                                   </span>
                                   {/* <span
@@ -271,9 +271,11 @@ const Post = () => {
                                     <i class="fa-solid fa-share-from-square"></i>{" "}
                                     0
                                   </span>
-                                  
+                                  <div className="py-3">
                                      
-                                      
+                                      <span className="socialCount">
+                                        <i class="fa-solid fa-comments"></i> 2
+                                      </span>
                                       <span
                                         onClick={handleShow}
                                         className="socialCount"
@@ -282,7 +284,9 @@ const Post = () => {
                                         <i class="fa-solid fa-share-nodes"></i>{" "}
                                         12
                                       </span>
-                                    
+                                      <span className="socialCount">
+                                         8,427
+                                      </span>
 
                                       <span className="socialCount">
                                         <i class="fa-solid fa-eye"></i> 99k
@@ -299,8 +303,8 @@ const Post = () => {
                                       </span>
 
                                       
-                                   
-                                </div>
+                                    </div>
+                              
                               </div>
                             </div>
                           </div>
