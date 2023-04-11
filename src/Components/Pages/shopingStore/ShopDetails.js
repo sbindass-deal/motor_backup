@@ -27,8 +27,10 @@ const ShopDetails = () => {
   const [size_id, setSize_id] = useState();
   const [color_id, setColor_id] = useState();
   const [color_id2, setColor_id2] = useState();
-  const [sizeRepeater  , setSizeRepeater] = useState([]);
+  const [sizeRepeater, setSizeRepeater] = useState([]);
   const [imageValue, setImageValsue] = useState(0);
+
+  const [getSizeCategories, setGetSizeCategories]=useState([])
 
   const notify = (val) =>
     toast.success(val, {
@@ -87,7 +89,10 @@ const ShopDetails = () => {
 
   }, [id]);
 
+  console.log(7878, product)
+
   const handleProduct = () => {
+    
     if (size_id == undefined) {
       return toast.warn("Please Choose Size", {
         position: "bottom-center",
@@ -101,17 +106,17 @@ const ShopDetails = () => {
       });
     }
 
-     if(productRedux.map((d) => {
+    if (productRedux.map((d) => {
       if (d.size_id == size_id && d.productId == productId) {
-         notify2("Item Already Added to cart.");
-         return true
+        notify2("Item Already Added to cart.");
+        return true
       }
-    }).filter((d) => d != undefined).pop() != true){
-      dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId , color_id : color_id2 }));
+    }).filter((d) => d != undefined).pop() != true) {
+      dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
       notify("Added to cart.");
     }
 
-    
+
   };
 
   const contentStyle = {
@@ -125,6 +130,30 @@ const ShopDetails = () => {
 
   // console.log(sizeRepeater.filter((item,
   //   index) => sizeRepeater.indexOf(item) === index));
+
+
+  const getProductDetail = () => {
+    // Make a request for a user with a given ID
+    axios.get(`${process.env.REACT_APP_URL}getProductDetail/${id}`)
+      .then(function (response) {
+        // handle success
+        console.log(100, response.data.data);
+        setGetSizeCategories(response.data.data)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }
+ 
+
+  useEffect(() => {
+    getProductDetail()
+  },[])
+
   return (
     <>
       <div className="container">
@@ -152,27 +181,27 @@ const ShopDetails = () => {
                   })
                 }
               </Carousel> */}
-               <div className="dTLPr">
-            <div className="productBigImgLeft">
-              {
-                product?.images?.map((d, i) => {
-                  return (
-                    <img
-                      onClick={() => setImageValsue(i)}
-                      src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
-                      alt={"title"}
-                    />
-                  )
-                })
-              }
-            </div>
-            <div className="productBigImg">
-                {product?.images?.length > 0 && <img
-                  src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
-                  alt={"title"} 
-                />}
-            </div>
-          </div>
+              <div className="dTLPr">
+                <div className="productBigImgLeft">
+                  {
+                    product?.images?.map((d, i) => {
+                      return (
+                        <img
+                          onClick={() => setImageValsue(i)}
+                          src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                          alt={"title"}
+                        />
+                      )
+                    })
+                  }
+                </div>
+                <div className="productBigImg">
+                  {product?.images?.length > 0 && <img
+                    src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
+                    alt={"title"}
+                  />}
+                </div>
+              </div>
               <div
                 style={{
                   display: "none",
@@ -192,14 +221,14 @@ const ShopDetails = () => {
             </div>
 
             <div className="col-md-6 rightSec productDTl">
-                  
-                  <div className="">
-                    <h2>{product.title}</h2>
-                    <h5 className="catagories"><small>Category: </small>{product?.category}</h5>
 
-                   
-                    
-                  </div>
+              <div className="">
+                <h2>{product.title}</h2>
+                <h5 className="catagories"><small>Category: </small>{product?.category}</h5>
+
+
+
+              </div>
               {
                 product?.product_inventry?.map((d, i) => {
                   if (productId == d?.id)
@@ -211,21 +240,21 @@ const ShopDetails = () => {
 
 
 
-{
-                      product?.multiplier && product?.coupon_code && <div className="" id="main_width">
+              {
+                product?.multiplier && product?.coupon_code && <div className="" id="main_width">
 
-<div class="w">
-            <div class="coupon-card">
-                <h3>{product?.coupon_code}</h3>
-                {/* <span>0X</span> */}
-                <p>{product?.multiplier + "X"}</p>
-                <div class="circle1"></div>
-                <div class="circle2"></div>
-            </div>
-            <span class="grid_label">Entries</span>
-        </div>
-                     
-                        {/* <div class="vs_grid_entries entries-default mb-3">
+                  <div class="w">
+                    <div class="coupon-card">
+                      <h3>{product?.coupon_code}</h3>
+                      {/* <span>0X</span> */}
+                      <p>{product?.multiplier + "X"}</p>
+                      <div class="circle1"></div>
+                      <div class="circle2"></div>
+                    </div>
+                    <span class="grid_label">Entries</span>
+                  </div>
+
+                  {/* <div class="vs_grid_entries entries-default mb-3">
                           <div class="entries-count">
                             <i class="fa-solid fa-ticket" ></i>
                             <span class="grid_entries_count">{product?.coupon_code}</span>
@@ -235,8 +264,8 @@ const ShopDetails = () => {
                             {product?.multiplier + "X"}
                           </div>
                         </div> */}
-                      </div>
-                   } 
+                </div>
+              }
 
               <p className="product_dec">
                 {/* <b>Product ID: {product.id}</b> */}
@@ -246,22 +275,23 @@ const ShopDetails = () => {
               <div className="sizeColor">
                 {/* <div className="sizeColor">Category : {product.category}</div> */}
                 <div className="size">
-                 
-                  <select className="size">
-                    <option >SIZE</option>
-                    <option>XL</option>
-                    <option>L</option>
-                    <option>M</option>
-                    <option>SM</option>
+
+                      <select className="size">
+                    <option value={""}>SIZE</option>
+                    <option value={"XL"}>XL</option>
+                    <option value={"L"}>L</option>
+                    <option value={"M"}>M</option>
+                    <option value={"SM"}>SM</option>
                   </select>
+                      
                   <select className="size">
-                    <option >COLOR</option>
-                    <option>Red</option>
-                    <option>Blue</option>
-                    <option>Green</option>
-                    <option>Black</option>
+                    <option value={""}>COLOR</option>
+                    <option value={"Red"}>Red</option>
+                    <option value={"Blue"}>Blue</option>
+                    <option value={"Green"}>Green</option>
+                    <option value={"Black"}>Black</option>
                   </select>
-                  </div>
+                </div>
                 {/* <div className="size d-flex"><p className="my-auto">Size :</p>  {
                   product?.product_inventry?.map((d, i) => {
                     return size?.map((data, index) => {
@@ -291,8 +321,8 @@ const ShopDetails = () => {
                   return d?.stock + " "
               })}</h5> */}
 
-                   
-            
+
+
               <button onClick={handleProduct} type="button" className="btn" >
                 Add to Cart
               </button>
