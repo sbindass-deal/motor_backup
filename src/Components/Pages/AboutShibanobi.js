@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import about_1 from "../../Assets/images/about-1.jpg";
-import about_2 from "../../Assets/images/about-2.jpeg";
+import about_2 from "../../Assets/images/about_2.jpg";
 import about_3 from "../../Assets/images/sssddeee.avif";
 
 function AboutShibanobi() {
