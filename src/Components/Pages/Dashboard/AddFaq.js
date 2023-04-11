@@ -15,17 +15,18 @@ const AddFaq = () => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_URL}getFaqs`);
-        setInputData({
-          que: res.data.data.question,
-          ans: res.data.data.ans,
-        });
+        const filteredData = res.data.data.filter((item) => item.id == id);
+        if (filteredData.length > 0) {
+          setInputData({
+            que: filteredData[0].question,
+            ans: filteredData[0].ans,
+          });
+        }
       } catch (err) {
         console.log(err);
       }
     };
-    if (id !== undefined || id !== null) {
-      fetchBlogs();
-    }
+    fetchBlogs();
   }, [id]);
   const onChangeHandler = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
