@@ -19,15 +19,15 @@ const CartItem = ({
   size,
   description,
   stocks,
-  size_id ,
-  productId ,
+  size_id,
+  productId,
   color_id2
 }) => {
   const dispatch = useDispatch();
-  const [size2 , setSize2] = useState();
-  const [color2 , setColor2] = useState();
+  const [size2, setSize2] = useState();
+  const [color2, setColor2] = useState();
   const [product, setProduct] = useState({});
-  const [color_id , setColor_id] =useState();
+  const [color_id, setColor_id] = useState();
 
   const notify = (val) =>
     toast.error(val, {
@@ -41,40 +41,40 @@ const CartItem = ({
       theme: "light",
     });
 
-    useEffect(() => {
-      axios.get(`${process.env.REACT_APP_URL}getAllSize`).
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}getAllSize`).
       then((d) => {
         setSize2(d?.data?.data);
-        })
+      })
 
-        axios.get(`${process.env.REACT_APP_URL}getAllColors`).
+    axios.get(`${process.env.REACT_APP_URL}getAllColors`).
       then((d) => {
         setColor2(d?.data?.data);
-        })
+      })
 
-        try {
-          axios.get(
-            `${process.env.REACT_APP_URL}allproduct`
-          ).then((d) => {
-            d?.data?.data?.product.map((d, i) => {
-              if (d?.id == id){
-                setProduct(d)
-              }
-            });
-            
-          })
-        } catch (err) {
-          console.log(err);
-        }
+    try {
+      axios.get(
+        `${process.env.REACT_APP_URL}allproduct`
+      ).then((d) => {
+        d?.data?.data?.product.map((d, i) => {
+          if (d?.id == id) {
+            setProduct(d)
+          }
+        });
 
-        axios.get(`${process.env.REACT_APP_URL}getAllColors`).
-        then((d) => {
-          setColor_id(d?.data?.data);
-          })
+      })
+    } catch (err) {
+      console.log(err);
+    }
 
-    }, []) 
+    axios.get(`${process.env.REACT_APP_URL}getAllColors`).
+      then((d) => {
+        setColor_id(d?.data?.data);
+      })
 
+  }, [])
 
+  
   return (
     <>
       <tr>
@@ -91,17 +91,28 @@ const CartItem = ({
           <p>{description.substr(0, 80)}...</p>
           <p className="size">
             Size: <span>{
-            size2?.map((ele) => {
-              if(ele?.id == size_id){
-              return (ele?.size + " ")
-            }
-            })
-              }</span>
+              size2?.map((ele) => {
+                if (ele?.id == size_id) {
+                  return (ele?.size + " ")
+                }
+              })
+            }</span>
           </p>
           <p className="color d-flex">
             Color: <span>
-              {
+                {
+                  color_id?.map((data, index) => {
+                  
+                    console.log(98989, data,)
+                    
+                    if (color_id2 == data.id) {
+                      return (<p className={`mx-2 `} >{data?.color}</p>)
+                    }
+                  })
+                }
+              {/* {
                 product?.product_inventry?.map((d, i) => {
+                 
                   if(d?.id == productId)
                       return color_id?.map((data , index) => {
                         if(d?.color_id == data.id)
@@ -110,7 +121,7 @@ const CartItem = ({
                         }
                       })
                   })
-              }
+              } */}
             </span>
           </p>
           <button
@@ -123,10 +134,10 @@ const CartItem = ({
             Remove
           </button>
         </td>
-        <td className="text-center">${price?.map((d)=>{
-          if(d?.size_id ==  size_id && d?.color_id == color_id2)
-          return d?.price
-          })}</td>
+        <td className="text-center">${price?.map((d) => {
+          if (d?.size_id == size_id && d?.color_id == color_id2)
+            return d?.price
+        })}</td>
         <td className="text-center">
           <div className="count">
             <button
@@ -138,8 +149,8 @@ const CartItem = ({
             <span>{quantity}</span>
             <button
               onClick={() => {
-                if (stocks?.map((d)=>{if(d?.size_id == size_id && d?.color_id == color_id2) return d?.stock})?.filter((d) => {if(d != undefined)return d}).pop() > quantity) {
-                  dispatch(increaseCart({size_id , color_id2}));
+                if (stocks?.map((d) => { if (d?.size_id == size_id && d?.color_id == color_id2) return d?.stock })?.filter((d) => { if (d != undefined) return d }).pop() > quantity) {
+                  dispatch(increaseCart({ size_id, color_id2 }));
                 } else {
                   notify("You reached maximum limit");
                 }
@@ -150,10 +161,10 @@ const CartItem = ({
             </button>
           </div>
         </td>
-        <td className="text-center">${quantity * price?.map((d)=>{if(d?.size_id ==  size_id && d?.color_id == color_id2)return d?.price}).filter((d) => {
-      if(d != undefined)
-          return d
-   }).pop()}</td>
+        <td className="text-center">${quantity * price?.map((d) => { if (d?.size_id == size_id && d?.color_id == color_id2) return d?.price }).filter((d) => {
+          if (d != undefined)
+            return d
+        }).pop()}</td>
       </tr>
       {/* <tr className="text-center">
                       <td colSpan="3"></td>

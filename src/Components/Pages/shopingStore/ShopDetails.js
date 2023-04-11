@@ -30,7 +30,15 @@ const ShopDetails = () => {
   const [sizeRepeater, setSizeRepeater] = useState([]);
   const [imageValue, setImageValsue] = useState(0);
 
-  const [getSizeCategories, setGetSizeCategories]=useState([])
+  const [getSizeCategories, setGetSizeCategories] = useState([])
+  const [sizeSelect, setSizeSelect] = useState("")
+  const [colorSelect, setColorSelect] = useState("")
+  const [getPrice, setGetPrice] = useState("")
+ 
+  // console.log(111100, getPrice)
+
+
+  
 
   const notify = (val) =>
     toast.success(val, {
@@ -89,32 +97,96 @@ const ShopDetails = () => {
 
   }, [id]);
 
-  console.log(7878, product)
+  // useEffect(() => {
+  //   getSizeCategories?.product_inventory
+  //     ?.map((curVal,i=0) => {
+       
+  //         setGetPrice(curVal?.price)
+        
+  //       // return curVal?.size_id == e.target.value
+  //     })
+  // }, [getSizeCategories])
+
+  
+  
+  const handleChange = (e) => {
+   
+    setSizeSelect(e.target.value);
+   
+     getSizeCategories?.product_inventory
+      ?.filter((curVal) => {
+        if (curVal?.size_id == e.target.value) {
+          setGetPrice(curVal?.price)
+        }
+      
+    })
+
+
+    
+  };
+
+  const handleChangeColor = (e) => {
+    setColorSelect(e.target.value)
+  }
+
+  console.log(8000, colorSelect)
+ 
+
+  const getProductDetail = () => {
+    // Make a request for a user with a given ID
+    axios.get(`${process.env.REACT_APP_URL}getProductDetail/${id}`)
+      .then(function (response) {
+        // handle success
+        console.log(100, response);
+        setGetSizeCategories(response.data.data)
+        setSizeSelect(response.data.data.sizes[0].size_id)
+        setGetPrice(response.data.data.product_inventory[0].price)
+        setColorSelect(response.data.data.colors[0].color_id)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }
+
+  console.log(979890, sizeSelect)
+  useEffect(() => {
+    getProductDetail()
+  }, [])
+
+
+  console.log(787800009, getSizeCategories)
 
   const handleProduct = () => {
-    
-    if (size_id == undefined) {
-      return toast.warn("Please Choose Size", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
 
-    if (productRedux.map((d) => {
-      if (d.size_id == size_id && d.productId == productId) {
-        notify2("Item Already Added to cart.");
-        return true
-      }
-    }).filter((d) => d != undefined).pop() != true) {
-      dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
-      notify("Added to cart.");
-    }
+    // if (size_id == undefined) {
+    //   return toast.warn("Please Choose Size", {
+    //     position: "bottom-center",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    // }
+
+    dispatch(addProduct({ ...product, quantity: 1, size_id: sizeSelect, productId: id, color_id: colorSelect }));
+
+
+    // if (productRedux.map((d) => {
+    //   if (d.size_id == size_id && d.productId == productId) {
+    //     notify2("Item Already Added to cart.");
+    //     return true
+    //   }
+    // }).filter((d) => d != undefined).pop() != true) {
+    //   dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
+    //   notify("Added to cart.");
+    // }
 
 
   };
@@ -131,28 +203,9 @@ const ShopDetails = () => {
   // console.log(sizeRepeater.filter((item,
   //   index) => sizeRepeater.indexOf(item) === index));
 
+  
 
-  const getProductDetail = () => {
-    // Make a request for a user with a given ID
-    axios.get(`${process.env.REACT_APP_URL}getProductDetail/${id}`)
-      .then(function (response) {
-        // handle success
-        console.log(100, response.data.data);
-        setGetSizeCategories(response.data.data)
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-  }
- 
-
-  useEffect(() => {
-    getProductDetail()
-  },[])
+  console.log(678908, sizeSelect)
 
   return (
     <>
@@ -184,7 +237,7 @@ const ShopDetails = () => {
               <div className="dTLPr">
                 <div className="productBigImgLeft">
                   {
-                    product?.images?.map((d, i) => {
+                    getSizeCategories?.image?.map((d, i) => {
                       return (
                         <img
                           onClick={() => setImageValsue(i)}
@@ -196,8 +249,8 @@ const ShopDetails = () => {
                   }
                 </div>
                 <div className="productBigImg">
-                  {product?.images?.length > 0 && <img
-                    src={`${process.env.REACT_APP_URL}upload/products/${product?.images[imageValue]?.image}`}
+                  {getSizeCategories?.image?.length > 0 && <img
+                    src={`${process.env.REACT_APP_URL}upload/products/${getSizeCategories?.image[imageValue]?.image}`}
                     alt={"title"}
                   />}
                 </div>
@@ -223,31 +276,32 @@ const ShopDetails = () => {
             <div className="col-md-6 rightSec productDTl">
 
               <div className="">
-                <h2>{product.title}</h2>
-                <h5 className="catagories"><small>Category: </small>{product?.category}</h5>
+                <h2>{getSizeCategories?.title}</h2>
+                <h5 className="catagories"><small>Category: </small>{getSizeCategories?.category}</h5>
 
 
 
               </div>
               {
-                product?.product_inventry?.map((d, i) => {
+                getSizeCategories?.product_inventory?.map((d, i) => {
+
                   if (productId == d?.id)
                     return (
-                      <p className="price__">$ {d?.price}</p>
+                      <p className="price__">$ {getPrice && getPrice}</p>
                     )
                 })
               }
 
-
+              {/* <p className="price__">${getSizeCategories?.product_inventory[0]?.price}</p> */}
 
               {
-                product?.multiplier && product?.coupon_code && <div className="" id="main_width">
+                getSizeCategories?.multiplier && getSizeCategories?.coupon_code && <div className="" id="main_width">
 
                   <div class="w">
                     <div class="coupon-card">
                       <h3>{product?.coupon_code}</h3>
                       {/* <span>0X</span> */}
-                      <p>{product?.multiplier + "X"}</p>
+                      <p>{getSizeCategories?.multiplier + "X"}</p>
                       <div class="circle1"></div>
                       <div class="circle2"></div>
                     </div>
@@ -270,26 +324,39 @@ const ShopDetails = () => {
               <p className="product_dec">
                 {/* <b>Product ID: {product.id}</b> */}
                 <br />
-                {product.description}
+                {getSizeCategories?.description}
               </p>
               <div className="sizeColor">
                 {/* <div className="sizeColor">Category : {product.category}</div> */}
                 <div className="size">
 
-                      <select className="size">
-                    <option value={""}>SIZE</option>
+                  <select className="size" value={sizeSelect} onChange={(e) => handleChange(e)}>
+                    
+                        {
+                      getSizeCategories?.sizes?.map((curVal, i) => {
+
+                        return <option value={curVal?.size_id}>{curVal?.size_name}</option>
+                      })
+                    }
+                    {/* <option value={""}>SIZE</option>
                     <option value={"XL"}>XL</option>
                     <option value={"L"}>L</option>
                     <option value={"M"}>M</option>
-                    <option value={"SM"}>SM</option>
+                    <option value={"SM"}>SM</option> */}
                   </select>
+
+                      <select className="size" value={colorSelect} onChange={(e) => handleChangeColor(e)}>
+                    {
+                      getSizeCategories?.colors?.map((curVal, i) => {
                       
-                  <select className="size">
-                    <option value={""}>COLOR</option>
+                        return <option value={curVal?.color_id}>{curVal?.color_name}</option>
+                      })
+                    }
+                    {/* <option value={""}>COLOR</option>
                     <option value={"Red"}>Red</option>
                     <option value={"Blue"}>Blue</option>
                     <option value={"Green"}>Green</option>
-                    <option value={"Black"}>Black</option>
+                    <option value={"Black"}>Black</option> */}
                   </select>
                 </div>
                 {/* <div className="size d-flex"><p className="my-auto">Size :</p>  {

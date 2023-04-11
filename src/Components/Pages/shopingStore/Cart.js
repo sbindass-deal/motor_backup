@@ -47,7 +47,9 @@ const Cart = () => {
                         Total
                       </th>
                     </tr>
-                    {product.products.map((curElem) => {
+                      {product.products.map((curElem) => {
+                      
+                        console.log(7879000, curElem)
 
                       return (
                         <CartItem
