@@ -6,7 +6,7 @@ import ic_04 from "../../Assets/images/ic_04.svg";
 import HIW from "../../Assets/images/HIW.jpg";
 import HIW3 from "../../Assets/images/HIW3.jpg";
 import HIW2 from "../../Assets/images/HIW2.jpg";
-import HIW4 from "../../Assets/images/HIW4.jpeg";
+import HIW4 from "../../Assets/images/HIW4.jpg";
 
 function HowShibnobiMotorWorks() {
   return (

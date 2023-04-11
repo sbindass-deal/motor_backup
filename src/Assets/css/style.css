@@ -7149,3 +7149,42 @@ button.btn.bg-danger:hover{    background-color: #fff !important;
 tr.right-align td {
   border-bottom: 0px !important;
 }
+.efrtd {
+  display: flex;
+  justify-content: center;
+}
+.efrtd .dropdown button {
+  width: 10px;
+  color: #f7931b;
+  padding: 3px;
+  background: transparent;
+  font-size: 20px;
+}
+.efrtd .dropdown-toggle::after{
+display: none;
+}
+
+.show>.btn-success.dropdown-toggle,.btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+  color: #f8a504;
+  background-color: #ffffff00;
+  border-color: #f8a50400;
+  box-shadow: 0;
+}
+.efrtd .btn:hover {
+  background-color: transparent;
+  color: #f7931a;
+  border: 0px solid #f7931a;
+}
+.efrtd .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle{
+box-shadow: 0px 0px 0px 0px;
+}
+.light .cartth .count{
+  color: #fff;
+}
+.row.asadw {
+  margin: 0 auto;
+  font-family: math;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
