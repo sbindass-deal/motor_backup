@@ -183,9 +183,10 @@ const EditRaffle = () => {
                   onChange={handleChange}
                   name="name"
                   className="field"
+                  pattern="^[A-Za-z ]{3,30}$"
                   label="Name of the Lottery"
                   placeholder="Name of the Lottery"
-                  errorMessage="use only alphabet no special character"
+                  errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
                   required={true}
                 />
               </div>

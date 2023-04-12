@@ -391,6 +391,21 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
+
+                      <li className="nav-item">
+                        <Link
+                          className={`nav-link ${location.pathname === "/classifiedaddList" &&
+                              "navActive"
+                              ? "active"
+                              : ""
+                            }`}
+                          to="/classifiedaddList"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Classifieds
+                        </Link>
+                      </li>
+
                       {/* <li className="nav-item">
                         <Link
                           className="nav-link"
@@ -412,6 +427,21 @@ function Header() {
                         ) : (
                           <Link className="nav-link">Giveaways</Link>
                         )}
+                      </li>
+
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          // style={{
+                          //   color: `${
+                          //     location.pathname === "/shop" ? "#EF6031" : ""
+                          //   }`,
+                          // }}
+                          to="/shop"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Gear
+                        </Link>
                       </li>
                       {/* <li className="nav-item">
                         <Link
@@ -483,34 +513,8 @@ function Header() {
                           FAQ
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
-                            "navActive"
-                              ? "active"
-                              : ""
-                          }`}
-                          to="/classifiedaddList"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Classifieds
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          // style={{
-                          //   color: `${
-                          //     location.pathname === "/shop" ? "#EF6031" : ""
-                          //   }`,
-                          // }}
-                          to="/shop"
-                          onClick={() => setShowNav(false)}
-                        >
-                          Gear
-                        </Link>
-                      </li>
+                     
+                      
                     </ul>
                   </div>
                 </div>
@@ -764,6 +768,21 @@ function Header() {
                       </li> */}
 
                       <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${location.pathname === "/classifiedaddList"
+                                ? "#EF6031"
+                                : ""
+                              }`,
+                          }}
+                          to="/classifiedaddList"
+                        >
+                          Classifieds
+                        </Link>
+                      </li>
+
+                      <li className="nav-item">
                         {true ? (
                           <Link
                             style={{
@@ -781,6 +800,19 @@ function Header() {
                         ) : (
                           <Link className="nav-link">Giveaways</Link>
                         )}
+                      </li>
+
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${location.pathname === "/shop" ? "#EF6031" : ""
+                              }`,
+                          }}
+                          to="/shop"
+                        >
+                          Gear
+                        </Link>
                       </li>
 
                       {/* <li className="nav-item">
@@ -869,34 +901,8 @@ function Header() {
                           FAQ
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/classifiedaddList"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/classifiedaddList"
-                        >
-                          Classifieds
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/shop" ? "#EF6031" : ""
-                            }`,
-                          }}
-                          to="/shop"
-                        >
-                          Gear
-                        </Link>
-                      </li>
+                      
+                      
                       <li className="nav-item AddtCrt">
                         {logingUser.cartSlice.quantity !== 0 ? (
                           <Link to="/cart">

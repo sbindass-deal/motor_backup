@@ -119,8 +119,9 @@ function VehicleListingDetails() {
                     placeholder="Name"
                     //   pattern="^[a-z A-Z]$"
                     // pattern="^[a-zA-Z]*$"
+                    pattern="^[A-Za-z ]{3,20}$"
                     label="Name"
-                      errorMessage="Name is Required"
+                    errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
                     required={true}
                   />
                 </div>

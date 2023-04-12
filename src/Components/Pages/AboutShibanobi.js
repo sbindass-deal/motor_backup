@@ -70,12 +70,12 @@ function AboutShibanobi() {
             <div className="col-12 col-md-12">
               <img src={about_3} loading="lazy" />
             </div>
-            <div className="col-12 col-md-10 offset-md-1 pt_80 text-center ">
+            {/* <div className="col-12 col-md-10 offset-md-1 pt_80 text-center ">
               <h2>
                 Our mission is to act as personal advisors to empower in your
                 car buying, selling and servicing needs.
               </h2>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -85,9 +85,10 @@ function AboutShibanobi() {
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
               <h1 className="text-back">Find Your Dream Car</h1>
-              <Link to="/showroom" className="btn mt-2">
+              {/* <Link to="/showroom" className="btn mt-2">
                 VIEW AUCTIONS
-              </Link>
+              </Link> */}
+              <Link to="/auctionlive" className="orange_btn"> View Auctions </Link>
             </div>
           </div>
         </div>

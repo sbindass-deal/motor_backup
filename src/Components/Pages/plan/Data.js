@@ -190,8 +190,9 @@ const Data = ({ curElem, purchagedPlan }) => {
                   }
                 }}
                 className="gry_btn"
-              >
-                SUBMIT VEHICLE
+                  >
+                    Purchase Subscription
+                {/* SUBMIT VEHICLE */}
               </button>
             </div>
           ) : (
