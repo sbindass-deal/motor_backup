@@ -7242,3 +7242,17 @@ box-shadow: 0px 0px 0px 0px;
 svg.svg-inline--fa.fa-trash-can {
   font-size: 22px;
 }
+td.actionBtn svg.svg-inline--fa.fa-trash-can {
+  font-size: 13px;
+}
+p.btn.add_input {
+  padding: 11px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 34px;
+  position: relative;
+  top: 14px;
+}
+.mb-10{ padding-bottom: 45px;}
