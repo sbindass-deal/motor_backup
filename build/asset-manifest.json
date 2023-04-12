@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.2e3f9967.css",
-    "main.js": "/static/js/main.1d36b463.js",
+    "main.css": "/static/css/main.01884c92.css",
+    "main.js": "/static/js/main.1614d8a2.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -41,7 +41,6 @@
     "static/js/850.8f4c01f8.chunk.js": "/static/js/850.8f4c01f8.chunk.js",
     "static/js/419.67b5e61d.chunk.js": "/static/js/419.67b5e61d.chunk.js",
     "static/js/48.3ac00179.chunk.js": "/static/js/48.3ac00179.chunk.js",
-    "static/media/about-2.jpeg": "/static/media/about-2.22ccb1cfa96bceb1548e.jpeg",
     "static/media/Dealer-1.jpg": "/static/media/Dealer-1.19b859fc889797370089.jpg",
     "static/media/Dealer-2.jpg": "/static/media/Dealer-2.833e0082195be2cb2490.jpg",
     "static/media/Dealer-3.jpg": "/static/media/Dealer-3.b2d48fd81c7a6ffc2060.jpg",
@@ -66,9 +65,7 @@
     "static/media/carTd.png": "/static/media/carTd.f5f5ac1fc8a5f278a48d.png",
     "static/media/about.jpg": "/static/media/about.908b8d15299591dbd1dc.jpg",
     "static/media/Dabout.jpg": "/static/media/Dabout.8e200aeeca7cf2560366.jpg",
-    "static/media/HIW.jpg": "/static/media/HIW.db93126a48e52b0b2bc9.jpg",
     "static/media/bgImg_04.jpg": "/static/media/bgImg_04.25898655cc132bd703ad.jpg",
-    "static/media/HIW3.jpg": "/static/media/HIW3.f466fc823fe0550fbf6a.jpg",
     "static/media/img_01.jpg": "/static/media/img_01.1245cea9788ab8e4a4b8.jpg",
     "static/media/img_05.jpg": "/static/media/img_05.07a31a3a1349a482ea94.jpg",
     "static/media/events-2019.jpg": "/static/media/events-2019.516b54ea461bfd487bcf.jpg",
@@ -77,17 +74,19 @@
     "static/media/ads_car.png": "/static/media/ads_car.2091c33acdfd0c982994.png",
     "static/media/winnerTitle.png": "/static/media/winnerTitle.5b0dea7c53328b23b0b4.png",
     "static/media/G3Logo-white.png": "/static/media/G3Logo-white.48b800c3f832f353258d.png",
+    "static/media/HIW3.jpg": "/static/media/HIW3.20e8f01c7c3813e2090c.jpg",
     "static/media/auction_list.jpg": "/static/media/auction_list.5e8a4b5f5897fd4b5b95.jpg",
     "static/media/car_01.jpg": "/static/media/car_01.f6ce6900b4162f1d52ef.jpg",
     "static/media/img_001.webp": "/static/media/img_001.c4de3e07ae68362a6a58.webp",
+    "static/media/HIW.jpg": "/static/media/HIW.2599b09d9f745c1042ac.jpg",
     "static/media/car_03.jpg": "/static/media/car_03.9ca0ced3d54d5d90d8c6.jpg",
     "static/media/emailSection.jpg": "/static/media/emailSection.006e5dd2a5e6b48820c0.jpg",
     "static/media/screenShort.png": "/static/media/screenShort.5c4247eae1ea33a61c19.png",
     "static/media/raffle-1.jpg": "/static/media/raffle-1.cb3f29ca1467856ef003.jpg",
+    "static/media/about_2.jpg": "/static/media/about_2.9902371b4ffb4c8edc99.jpg",
     "static/media/img-4.png": "/static/media/img-4.b16c9f2f56c4ae92d99e.png",
     "static/media/home-raffel.png": "/static/media/home-raffel.e7d110526029321b27a4.png",
     "static/media/lightmode-logo.png": "/static/media/lightmode-logo.e4a24ca447d3c92953ca.png",
-    "static/media/HIW4.jpeg": "/static/media/HIW4.d0df402fcacf1b67fbf1.jpeg",
     "static/media/car_02.jpg": "/static/media/car_02.2817b553872266eacaac.jpg",
     "static/media/raffle-4.jpg": "/static/media/raffle-4.5dfad7e7e873f861a496.jpg",
     "static/media/daily_mail.jpg": "/static/media/daily_mail.a32cfd5c1ddf8864e31d.jpg",
@@ -107,6 +106,7 @@
     "static/media/raffle-6.jpg": "/static/media/raffle-6.9b2b48d4d2f594e1b7a5.jpg",
     "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
+    "static/media/HIW4.jpg": "/static/media/HIW4.22c589cddf196adcf4d1.jpg",
     "static/media/sssddeee.avif": "/static/media/sssddeee.6d8c2e190bfc97c248d4.avif",
     "static/media/img-2.webp": "/static/media/img-2.b3e77c884a3847e153d0.webp",
     "static/media/2019-lamborghini-urus.png": "/static/media/2019-lamborghini-urus.4d2c611bfc8598f6f9b1.png",
@@ -137,8 +137,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.2e3f9967.css.map": "/static/css/main.2e3f9967.css.map",
-    "main.1d36b463.js.map": "/static/js/main.1d36b463.js.map",
+    "main.01884c92.css.map": "/static/css/main.01884c92.css.map",
+    "main.1614d8a2.js.map": "/static/js/main.1614d8a2.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -178,7 +178,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e3f9967.css",
-    "static/js/main.1d36b463.js"
+    "static/css/main.01884c92.css",
+    "static/js/main.1614d8a2.js"
   ]
 }
