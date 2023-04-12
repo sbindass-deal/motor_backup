@@ -1703,7 +1703,8 @@ const VechilesRegistraion = () => {
                                 </div>
                               )}
                             </>
-                          )}
+                            )}
+                            
 
                           {logingUser.planReducer.garage && (
                             <div className="col-12 col-sm-12 col-md-6">
@@ -1715,11 +1716,36 @@ const VechilesRegistraion = () => {
                                     setEndDateAndTime(e.target.value);
                                   }}
                                   placeholder="Enter link"
-                                  label="Please Enter Auction End Date"
+                                  label="Please Enter Start Date"
                                 />
                               </div>
                             </div>
-                          )}
+                            )}
+                            
+                            <div className="col-12 col-sm-12 col-md-6">
+                              <div className="form-group">
+                                <label>Auction Live</label>
+                                <select
+                                  // value={basicfact.auctionType}
+                                  // onChange={basicFactOnChange}
+                                  // name="auctionType"
+                                  className="field bgChangeDark"
+                                  // required
+                                >
+                                  <option selected disabled value="">
+                                    Select
+                                  </option>
+                                  <option value="General listing">
+                                    7 days
+                                  </option>
+                                  <option value="charity">
+                                    14 days
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+
+
                           {basicfact.auctionType === "charity" && (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="form-group">

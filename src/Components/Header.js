@@ -391,7 +391,15 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
-
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          to="/garages"
+                          onClick={() => setShowNav(false)}
+                        >
+                          Garages
+                        </Link>
+                      </li>
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${location.pathname === "/classifiedaddList" &&
@@ -766,6 +774,34 @@ function Header() {
                           Garages
                         </Link>
                       </li> */}
+
+
+                      <li className="nav-item">
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${location.pathname === "/garages" &&
+                              "navActive"
+                              }`}
+                            to="#"
+                          >
+                            Garages
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link className="" to="/garagessocialmedia">
+                              Social media
+                            </Link>
+                            <Link className="" to="/garagespost">
+                              Posts
+                            </Link>
+                            <Link className="" to="/garagesreplies">
+                              Replies 
+                            </Link>
+                            <Link className="" to="/garagesblognew">
+                              Blog
+                            </Link>
+                          </div>
+                        </div>
+                      </li>
 
                       <li className="nav-item">
                         <Link

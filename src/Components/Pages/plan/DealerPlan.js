@@ -7,6 +7,7 @@ import {
   getPlanByDealerSelect,
   handleGarage,
 } from "../../../redux/reducers/planReducer";
+import { Link } from "react-router-dom";
 
 const DealerPlan = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,9 @@ const DealerPlan = () => {
                 <br /> Select one of our many Auction Services to showcase your
                 vehicle the way you want.
               </p>
+              <div>
+                <Link to={"/submit"} className="text_color">Are you a Private Party ? Click here to check the Subscriptions</Link>
+              </div>
             </div>
           </div>
           <nav>
