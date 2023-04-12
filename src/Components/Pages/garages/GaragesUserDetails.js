@@ -19,6 +19,10 @@ import GaragesBlog from "./GaragesBlog";
 import GaragesVehicle from "./GaragesVehicle";
 import { Modal } from "react-bootstrap";
 import Dropdown from 'react-bootstrap/Dropdown';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { RWebShare } from "react-web-share";
+
 
 
 const GaragesUserDetails = () => {
@@ -365,7 +369,7 @@ const GaragesUserDetails = () => {
                               </div> */}
                             <div className="row">
                               <div className="col-md-12 ">
-                                <div className="PostInfo">
+                                <div className="PostInfo mb-0">
                                   <div className="userImG">
                                     <Space direction="vertical" size={16}>
                                       <Space wrap size={16}>
@@ -445,6 +449,109 @@ const GaragesUserDetails = () => {
                                     </div>
                                   </div>
                                 </div>
+
+
+                                <div className="PostInfo cm">
+                                  <div className="userImG">
+                                    <Space direction="vertical" size={16}>
+                                      <Space wrap size={16}>
+                                        <Avatar
+                                          size={64}
+                                          icon={
+                                            <img src={men_face} alt="logo" />
+                                          }
+                                        />
+                                      </Space>
+                                    </Space>
+                                </div>
+                                <div className="DecIbp">
+                                    <div className="naTf">
+                                      <h5>MAG MOTORS</h5>
+                                      <p>Glad you liked it!</p>
+                                    </div>
+                                    <div className="py-3">
+                                    <span
+                                     
+                                     className="socialCount"
+                                   >
+                                    
+                                       <FavoriteBorderIcon />
+                                    
+                                   
+                                   </span>
+                                    {/* <span
+                                     
+                                      className="socialCount"
+                                    >
+                                      {curElem?.liked == 0 ? (
+                                        <FavoriteBorderIcon />
+                                      ) : (
+                                        <FavoriteIcon className="fa-heart" />
+                                      )}
+                                      &nbsp;{curElem.likes}
+                                    </span> */}
+                                    {/* <span
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-sharp fa-solid fa-thumbs-down"></i>
+                                    </span> */}
+                                    <span
+                                     
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-solid fa-comments"></i>{" "}
+                                     
+                                    </span>
+                                    {/* <span
+                                      onClick={() => {
+                                        handleShow();
+                                      }}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-solid fa-share-from-square"></i>{" "}
+                                      0
+                                    </span> */}
+
+                                    <span>
+                                      <RWebShare
+                                        data={{
+                                          text: "Gas guzzlrs",
+                                          url: "https://beta.gasguzzlrs.com/",
+                                          title: "Gas guzzlrs",
+                                        }}
+                                        onClick={() =>
+                                          console.log("shared successfully!")
+                                        }
+                                      >
+                                        <span
+                                          onClick={handleShow}
+                                          className="socialCount"
+                                          style={{ cursor: "pointer" }}
+                                        >
+                                          <i class="fa-solid fa-share-nodes"></i>{" "}
+                                          0
+                                        </span>
+                                      </RWebShare>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-eye"></i> 99k
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-regular fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-paper-plane"></i>
+                                    </span>
+                                  </div>
+                                    
+                                  </div>
+
+                                    </div>
                               </div>
                             </div>
                         
