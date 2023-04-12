@@ -185,10 +185,11 @@ const AddGearProduct = () => {
                   }}
                   value={getInputData.name}
                   placeholder="Enter Name"
-                  errorMessage="Name should be 2-80 characters and shouldn't include any number!"
+                  errorMessage="Name should be 2-30 characters and shouldn't include any number!"
                   label="Name"
-                  pattern="^[A-Za-z-.,: ]{2,80}$"
+                  pattern="^[A-Za-z-.,: ]{2,30}$"
                   required={true}
+                  
                 />
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
@@ -222,7 +223,7 @@ const AddGearProduct = () => {
                         <div className="form-group">
                           <div>
                             <label>Price</label>
-                            <input
+                            <FormInput
                               className="field"
                               autoComplete="off"
                               name="price"
@@ -234,6 +235,8 @@ const AddGearProduct = () => {
                               placeholder="$ Enter price"
                               type="number"
                               required={true}
+                              errorMessage="Price is Required"
+
                             />
                           </div>
                         </div>
@@ -243,7 +246,7 @@ const AddGearProduct = () => {
                         <div className="form-group">
                           <div>
                             <label>Stock</label>
-                            <input
+                            <FormInput
                               name="stock"
                               className="field"
                               placeholder="Enter stock"
@@ -254,6 +257,8 @@ const AddGearProduct = () => {
                               }}
                               type="number"
                               required={true}
+                              errorMessage="Stock is Required"
+
                             />
                           </div>
                         </div>
@@ -325,9 +330,9 @@ const AddGearProduct = () => {
                   }}
                   value={getInputData.youtube_link}
                   placeholder="Enter Link"
-                  // errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
+                  errorMessage="Must be begin with http:// or https://"
                   label="Video Link"
-                  // pattern="^[A-Za-z ]{1,80}$"
+                  pattern="https?://.+"
                   required={true}
                 />
               </div>

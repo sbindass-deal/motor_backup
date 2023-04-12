@@ -182,7 +182,7 @@ function Home() {
                 <h1>
                   We are dedicated to parking your Dream Vehicle in your Garage
                 </h1>
-                <Link to="/showroom" className="orange_btn">
+                <Link to="/auctionlive" className="orange_btn">
                   View Auctions
                 </Link>
               </div>
@@ -303,7 +303,7 @@ function Home() {
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
               <h1 className="text-back">Find your Special Vehicle</h1>
-              <Link to="/showroom" className="orange_btn mt-2">
+              <Link to="/auctionfeature" className="orange_btn mt-2">
                 View Featured
               </Link>
             </div>
@@ -316,7 +316,7 @@ function Home() {
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-6 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
               <h1 className="text">Sell What's in your Garage</h1>
-              <Link to="/showroom" className="orange_btn mt-2">
+              <Link to="/submit" className="orange_btn mt-2">
                 List your Vehicle
               </Link>
             </div>

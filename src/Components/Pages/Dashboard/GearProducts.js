@@ -144,7 +144,7 @@ function GearProducts() {
                         }
                       }
                       )
-                      ?.map((curElem, i) => {
+                      ?.reverse().map((curElem, i) => {
                         
                         return (
                           <tr key={curElem?.id}>

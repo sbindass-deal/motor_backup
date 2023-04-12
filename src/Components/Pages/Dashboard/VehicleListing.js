@@ -177,7 +177,7 @@ const VehicleListing = () => {
                                 return curVal
                               }
                             })
-                              ?.map((curElem) => {
+                              ?.map((curElem,i) => {
                             console.log(9898, curElem);
                             // const { id, list, maxprice, name, price } = curElem;
                             const {
@@ -193,7 +193,7 @@ const VehicleListing = () => {
                             } = curElem;
                             return (
                               <tr>
-                                <td>{id}</td>
+                                <td>{1+i}</td>
                                 <td>{plan_name}</td>
                                 <td>{annual_listing}</td>
                                 <td>{category}</td>

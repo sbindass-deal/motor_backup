@@ -13,7 +13,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 
 const AddRaffle = () => {
   const navigate = useNavigate();
-  const[isLoading, setLoading]=useState(false)
+  const [isLoading, setLoading] = useState(false)
   const [raffle, setRaffle] = useState({
     name: "",
     price: "",
@@ -150,7 +150,7 @@ const AddRaffle = () => {
           <Link to={"/raffleadmin"}>
             <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
           </Link>
-    
+
           <h3 className="p-4 text-center">Giveaways Details</h3>
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
@@ -163,7 +163,8 @@ const AddRaffle = () => {
                   className="field"
                   placeholder="Name of the Lottery"
                   label="Name"
-                  errorMessage="no special character only use alphabet"
+                  pattern="^[A-Za-z ]{3,30}$"
+                  errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
                   required={true}
                 />
               </div>
@@ -208,7 +209,7 @@ const AddRaffle = () => {
                   className="field"
                   label="Deadline to purchase date"
                   placeholder="Enter dedline"
-                  required
+                  required={true}
                 />
               </div>
             </div>
@@ -234,7 +235,7 @@ const AddRaffle = () => {
               <label htmlFor="description">Description</label>
               <div className="desCrtpion">
                 <Editor
-                  
+
                   editorState={htmlDescription}
                   toolbarClassName="toolbarClassName"
                   wrapperClassName="wrapperClassName"
@@ -358,12 +359,12 @@ const AddRaffle = () => {
           <div className="form-group text-center">
             {
               isLoading ? (
-                <SmallSpinner/>
+                <SmallSpinner />
               ) : <button type="submit" className="btn mt-2">
                 Submit
               </button>
             }
-            
+
           </div>
         </form>
       </div>

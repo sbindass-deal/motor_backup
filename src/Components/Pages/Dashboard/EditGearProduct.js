@@ -482,6 +482,10 @@ const EditGearProduct = () => {
                   // errorMessage="Color should be 1-80 characters and shouldn't include any special character and numbers!"
                   label="Video Link"
                   // pattern="^[A-Za-z ]{1,80}$"
+                  errorMessage="Must be begin with http:// or https://"
+
+                  pattern="https?://.+"
+
                   required={true}
                 />
               </div>
