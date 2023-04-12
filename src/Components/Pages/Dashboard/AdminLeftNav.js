@@ -123,7 +123,7 @@ function AdminLeftNav() {
             } `}
             to="/admin-faq"
           >
-            Faq
+            FAQ
           </Link>
         </li>
         <li>

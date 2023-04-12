@@ -195,9 +195,9 @@ const SearchResult = () => {
                           >
                             {curElem.make} {curElem.model} {curElem.year}
                           </Link>
-                          <p className="price__">${curElem.documentFee}</p>
+                          {/* <p className="price__">${curElem.documentFee}</p> */}
                         </h6>
-                        <table className="showroomCol">
+                        {/* <table className="showroomCol">
                           <tbody>
                             <tr>
                               <td>Odometer Reading </td>
@@ -212,7 +212,7 @@ const SearchResult = () => {
                               <td>{curElem.name}</td>
                             </tr>
                           </tbody>
-                        </table>
+                        </table> */}
                       </div>
                     </div>
                   </div>

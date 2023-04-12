@@ -91,7 +91,7 @@ const OrderDetail = () => {
                     <th>Item Price</th>
                     <th>Status</th>
                     <th>Total Value</th>
-                    <th>Action</th>
+                    <th className="text-center">Action</th>
                   </tr>
                   {order.map((curElem) => {
                     return (
@@ -109,7 +109,7 @@ const OrderDetail = () => {
                         <td>{curElem.order_status}</td>
                         <td>${curElem.item_quantity * curElem.item_price}</td>
                         <td className="mt-3 text-center">
-                          <select value={resultsPerPage} onChange={(event) => handleOrder(event.target.value, curElem)}>
+                          <select className="dds" value={resultsPerPage} onChange={(event) => handleOrder(event.target.value, curElem)}>
                             <option value={""}>Order Status</option>
                             <option value={"Order Placed"}>Order Placed</option>
                             <option value={"Cancelled"}>Cancelled</option>

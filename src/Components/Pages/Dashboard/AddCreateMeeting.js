@@ -173,7 +173,7 @@ const AddCreateMeeting = () => {
                     <label htmlFor="">End Date</label>
                     <FormInput
                       min={minDate}
-                      type="date"
+                      type="datetime-local"
                       className="field"
                       placeholder="First name"
                       name="enddate"

@@ -454,11 +454,11 @@ function Detail() {
                       <li>
                         <p>Current Bid</p>
                         <p>
-                          $
+                          {/* $ */}
                           {vehicle?.currentBid &&
                           vehicle?.currentBid?.last_bid > 0
-                            ? toCommas(vehicle?.currentBid?.last_bid)
-                            : 0}
+                            ? toCommas(`$ ${vehicle?.currentBid?.last_bid}`)
+                            : "Biding Open"}
                         </p>
                       </li>
                       <li>

@@ -61,10 +61,10 @@ function FaqAdmin() {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Faq Management</h3>
+                <h3>FAQ Management</h3>
                 <div>
                   <Link to="/admin-faq/add" className="orange_btn">
-                    + Add New Faq
+                    + Add New FAQ
                   </Link>
                 </div>
               </div>
@@ -113,12 +113,11 @@ function FaqAdmin() {
                       {faqData &&
                         faqData
                           .filter((curElem) => {
+                            console.log(989898, curElem)
                             if (searchTerm == "") {
                               return curElem;
-                            } else if (
-                              curElem.title
-                                .toLowerCase()
-                                .includes(searchTerm.toLowerCase())
+                            } else if (curElem.question.toLowerCase().includes(searchTerm.toLowerCase())
+                              || curElem.ans.toLowerCase().includes(searchTerm.toLowerCase())
                             ) {
                               return curElem;
                             }

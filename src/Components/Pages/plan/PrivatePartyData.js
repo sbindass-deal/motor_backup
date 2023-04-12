@@ -209,7 +209,8 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 }}
                 className="gry_btn"
                   >
-                   Purchase Subscription 
+                   
+                   PURCHASE SUBSCRIPTION 
                 {/* SUBMIT VEHICLE */}
               </button>
             </div>

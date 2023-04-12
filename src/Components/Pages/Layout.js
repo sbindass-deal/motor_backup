@@ -100,6 +100,10 @@ import EditGarage from "./MyAccount/garage/EditGarage";
 import AddGarage from "./MyAccount/garage/AddGarage";
 import AddFaq from "./Dashboard/AddFaq";
 import FaqAdmin from "./Dashboard/FaqAdmin";
+import GaragesPost from "./garages/GaragesPost";
+import GaragesBlogNew from "./garages/GaragesBlogNew";
+import GaragesReplies from "./garages/GaragesReplies";
+import GaragesSocialMedia from "./garages/GaragesSocialMedia";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -252,6 +256,13 @@ const Layout = () => {
           <Route path="auctionfeature" element={<Auctionfeature />} />
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
+
+
+          <Route path="garagespost" element={<GaragesPost/> } />
+          <Route path="garagesblognew" element={<GaragesBlogNew/> } />
+          <Route path="garagesreplies" element={<GaragesReplies/> } />
+          <Route path="garagessocialmedia" element={<GaragesSocialMedia/> } />
+
           <Route path="editmyaccount" element={<EditMyAccount />} />
           <Route path="editmyaccount-garages" element={<EditGarage />} />
           <Route path="edit-user-meeting/:id" element={<EditUserMeeting />} />
