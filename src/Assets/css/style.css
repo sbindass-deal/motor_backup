@@ -7188,3 +7188,26 @@ box-shadow: 0px 0px 0px 0px;
   align-items: center;
   justify-content: center;
 }
+.commentsSection .userImG {
+  display: flex;
+  align-items: center;
+}
+.naTf {
+  padding-left: 10px;
+}
+.naTf h5 {
+  margin: 0;
+  font-size: 12px;
+}
+.naTf p {
+  color: #8b8b8b; margin: 0;
+}
+.commentsSection {
+  background: black;
+  padding: 15px 10px;
+  border-radius: 5px;
+}
+.light .commentsSection {  background: #e4e4e4;}
+.DecIbp {
+  width: 100%;
+}

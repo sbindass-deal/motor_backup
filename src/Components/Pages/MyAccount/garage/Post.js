@@ -207,7 +207,9 @@ const Post = ({ id }) => {
                       </button>
                     )}
                   </div>
+
                 </form>
+               
               </div>
             </div>
           </div>
@@ -336,6 +338,110 @@ const Post = ({ id }) => {
                                   <span className="socialCount">
                                     <i class="fa-solid fa-paper-plane"></i>
                                   </span>
+                                </div>
+                                <div className="commentsSection">
+                                <div className="userImG">
+                                  <Space direction="vertical" size={16}>
+                                    <Space wrap size={16}>
+                                      <Avatar
+                                        size={64}
+                                        icon={
+                                          <img
+                                            className="slidImg"
+                                            loading="lazy"
+                                            src={
+                                              curElem?.profileImage &&
+                                              `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
+                                            }
+                                            onError={({ currentTarget }) => {
+                                              currentTarget.onError = null;
+                                              currentTarget.src = noImage;
+                                            }}
+                                            alt="post"
+                                          />
+                                        }
+                                      />
+                                    </Space>
+                                  </Space>
+                                  <div className="naTf">
+                                    <h5>MAG MOTORS</h5>
+                                    <p>Glad you liked it!</p>
+                                  </div>
+                                  
+                                </div>
+                                <div className="py-3">
+                                  <span
+                                    onClick={() => handleLike(curElem.id)}
+                                    style={{ cursor: "pointer" }}
+                                    className="socialCount"
+                                  >
+                                    {curElem?.liked == 0 ? (
+                                      <FavoriteBorderIcon />
+                                    ) : (
+                                      <FavoriteIcon className="fa-heart" />
+                                    )}
+                                    &nbsp;{curElem.likes}
+                                  </span>
+                                  {/* <span
+                                    className="socialCount"
+                                  >
+                                    <i class="fa-sharp fa-solid fa-thumbs-down"></i>
+                                  </span> */}
+                                  <span
+                                    onClick={() => {
+                                      handleShow(curElem.id);
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                    className="socialCount"
+                                  >
+                                    <i class="fa-solid fa-comments"></i>{" "}
+                                    {curElem?.comment?.length}
+                                  </span>
+                                  {/* <span
+                                    onClick={() => {
+                                      handleShow();
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                    className="socialCount"
+                                  >
+                                    <i class="fa-solid fa-share-from-square"></i>{" "}
+                                    0
+                                  </span> */}
+
+                                  <span>
+                                    <RWebShare
+                                      data={{
+                                        text: "Gas guzzlrs",
+                                        url: "https://beta.gasguzzlrs.com/",
+                                        title: "Gas guzzlrs",
+                                      }}
+                                      onClick={() =>
+                                        console.log("shared successfully!")
+                                      }
+                                    >
+                                      <span
+                                        onClick={handleShow}
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <i class="fa-solid fa-share-nodes"></i>{" "}
+                                        0
+                                      </span>
+                                    </RWebShare>
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-eye"></i> 99k
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                  </span>
+                                </div>
                                 </div>
                               </div>
                             </div>
