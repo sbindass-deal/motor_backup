@@ -81,26 +81,22 @@ const Charity = () => {
 
   return (
     <div>
-      <section className="heroSection charity d-flex align-items-center">
+      {/* className="heroSection charity d-flex align-items-center" */}
+      <section className="d-flex align-items-center">
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
               <div className="heroText">
-                {/* <h1>Charity Auctions</h1> */}
+               
                 <h1>
                   Are you interested in benefitting a charity by offering a
                   vehicle on Gas Guzzlrs Auctions? We can do that!
                 </h1>
-                {/* <a href="#" className="btn">
-                  Notify me when one is listed
-                </a>
-                <a href="#" className="btn bg-dark">
-                  Have one? Sell yours here
-                </a> */}
+                
               </div>
               
             </div>
-          </div>
+          </div> */}
           <a type="button" className="scrollDownIc bounce2" href="#second">
           <span className="outer_cover">
             <small className="upper">

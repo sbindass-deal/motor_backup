@@ -65,8 +65,13 @@ const PrivateParty = () => {
                   Gas Guzzlrs is the best place to auction your vehicle.
                   <br /> Select one of our many Auction Services to showcase
                   your vehicle the way you want.
-                </p>
-              </div>
+                  </p>
+                  <div>
+                    <Link to={"/dealer"} className="text_color"> Are you a Dealer ? Click here to check the Subscriptions</Link>
+                  </div>
+                </div>
+                
+              
               {planData.map((curElem, i) => {
                 console.log(8787, curElem);
                 return (
