@@ -10,12 +10,14 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const Post = ({ id }) => {
   const [file, setFile] = useState([]);
+  const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState({});
   const [commentId, setCommentId] = useState(null);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingr, setLoadingr] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -82,22 +84,52 @@ const Post = ({ id }) => {
         console.log(error);
       });
   };
-
+  // =================== post again
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.REACT_APP_URL}addCommentByPost`, {
-        postId: commentId,
-        comment: comment,
-      })
-      .then(function (response) {
+    setLoadingr(true);
+    const url = `${process.env.REACT_APP_URL}AddRePost`;
+    let formdata = new FormData();
+    formdata.append("image", filer[0]);
+    formdata.append("content", comment);
+    formdata.append("rePostId", commentId);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    await axios
+      .post(url, formdata, config)
+      .then((response) => {
+        notify(response.data.message, response.status);
         getPostData();
+        setComment("");
+        setFiler([]);
+        setLoadingr(false);
         handleClose();
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
+        setLoadingr(false);
+        notify(error.message, error.status);
       });
   };
+
+  // const handleCommentSubmit = async (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(`${process.env.REACT_APP_URL}addCommentByPost`, {
+  //       postId: commentId,
+  //       comment: comment,
+  //     })
+  //     .then(function (response) {
+  //       getPostData();
+  //       handleClose();
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <>
@@ -233,8 +265,8 @@ const Post = ({ id }) => {
                                             className="slidImg"
                                             loading="lazy"
                                             src={
-                                              curElem?.profileImage &&
-                                              `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
+                                              curElem?.profileImg &&
+                                              `${process.env.REACT_APP_URL}${curElem?.profileImg}`
                                             }
                                             onError={({ currentTarget }) => {
                                               currentTarget.onError = null;
@@ -248,8 +280,8 @@ const Post = ({ id }) => {
                                   </Space>
                                 </div>
                                 <div className="DecIbp">
-                                  <h5>{curElem?.postedBy?.name}</h5>
-                                  <p>{curElem.content}</p>
+                                  <h5>{curElem?.username}</h5>
+                                  <p>{curElem?.content}</p>
                                   <div class="card">
                                     <img
                                       className="slidImg"
@@ -283,15 +315,23 @@ const Post = ({ id }) => {
                                   >
                                     <i class="fa-sharp fa-solid fa-thumbs-down"></i>
                                   </span> */}
-                                    <span
-                                      onClick={() => {
-                                        handleShow(curElem.id);
-                                      }}
+                                    {/* <span
+                                      
                                       style={{ cursor: "pointer" }}
                                       className="socialCount"
                                     >
                                       <i class="fa-solid fa-comments"></i>{" "}
                                       {curElem?.comment?.length}
+                                    </span> */}
+                                    <span
+                                      onClick={() => {
+                                        handleShow(curElem.id);
+                                      }}
+                                      className="socialCount"
+                                      style={{ cursor: "pointer" }}
+                                    >
+                                      <i class="fa-solid fa-paper-plane"></i>{" "}
+                                      {curElem?.repost?.length}
                                     </span>
                                     {/* <span
                                     onClick={() => {
@@ -316,7 +356,6 @@ const Post = ({ id }) => {
                                         }
                                       >
                                         <span
-                                          onClick={handleShow}
                                           className="socialCount"
                                           style={{ cursor: "pointer" }}
                                         >
@@ -334,26 +373,51 @@ const Post = ({ id }) => {
                                     <span className="socialCount">
                                       <i class="fa-solid fa-bookmark"></i>
                                     </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-paper-plane"></i>
-                                    </span>
                                   </div>
                                 </div>
                               </div>
+                              {curElem?.repost?.length > 0 ? (
+                                curElem?.repost?.map((com, i) => {
+                                  return (
+                                    <div key={i} className="PostInfo cm">
+                                      <div className="userImG">
+                                        <Space direction="vertical" size={16}>
+                                          <Space wrap size={16}>
+                                            <Avatar
+                                              size={64}
+                                              icon={
+                                                <img
+                                                  className="slidImg"
+                                                  loading="lazy"
+                                                  src={
+                                                    com?.profileImg &&
+                                                    `${process.env.REACT_APP_URL}${com?.profileImg?.logo}`
+                                                  }
+                                                  onError={({
+                                                    currentTarget,
+                                                  }) => {
+                                                    currentTarget.onError =
+                                                      null;
+                                                    currentTarget.src = noImage;
+                                                  }}
+                                                  alt="comment-user"
+                                                />
+                                              }
+                                            />
+                                          </Space>
+                                        </Space>
+                                      </div>
 
-                              <div className="PostInfo cm">
-                                <div className="userImG">
-                                  <Space direction="vertical" size={16}>
-                                    <Space wrap size={16}>
-                                      <Avatar
-                                        size={64}
-                                        icon={
+                                      <div className="DecIbp py-3">
+                                        <h5>{com.username}</h5>
+                                        <p>{com.content}</p>
+                                        <div class="card">
                                           <img
                                             className="slidImg"
                                             loading="lazy"
                                             src={
-                                              curElem?.profileImage &&
-                                              `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
+                                              com?.image_path &&
+                                              `${process.env.REACT_APP_URL}/${com?.image_path}`
                                             }
                                             onError={({ currentTarget }) => {
                                               currentTarget.onError = null;
@@ -361,91 +425,93 @@ const Post = ({ id }) => {
                                             }}
                                             alt="post"
                                           />
-                                        }
-                                      />
-                                    </Space>
-                                  </Space>
-                                </div>
-                                <div className="DecIbp">
-                                  <div className="naTf">
-                                    <h5>MAG MOTORS</h5>
-                                    <p>Glad you liked it!</p>
-                                  </div>
-                                  <div className="py-3">
-                                    <span
-                                      onClick={() => handleLike(curElem.id)}
-                                      style={{ cursor: "pointer" }}
-                                      className="socialCount"
-                                    >
-                                      {curElem?.liked == 0 ? (
-                                        <FavoriteBorderIcon />
-                                      ) : (
-                                        <FavoriteIcon className="fa-heart" />
-                                      )}
-                                      &nbsp;{curElem.likes}
-                                    </span>
-                                    {/* <span
-                                      className="socialCount"
-                                    >
-                                      <i class="fa-sharp fa-solid fa-thumbs-down"></i>
-                                    </span> */}
-                                    <span
-                                      onClick={() => {
-                                        handleShow(curElem.id);
-                                      }}
+                                        </div>
+                                        <div className="py-3">
+                                          <span
+                                            onClick={() => handleLike(com.id)}
+                                            style={{ cursor: "pointer" }}
+                                            className="socialCount"
+                                          >
+                                            {com?.liked == 0 ? (
+                                              <FavoriteBorderIcon />
+                                            ) : (
+                                              <FavoriteIcon className="fa-heart" />
+                                            )}
+                                            &nbsp;{com.likes}
+                                          </span>
+                                          {/* <span
+                                    className="socialCount"
+                                  >
+                                    <i class="fa-sharp fa-solid fa-thumbs-down"></i>
+                                  </span> */}
+                                          {/* <span
+                                      
                                       style={{ cursor: "pointer" }}
                                       className="socialCount"
                                     >
                                       <i class="fa-solid fa-comments"></i>{" "}
                                       {curElem?.comment?.length}
-                                    </span>
-                                    {/* <span
-                                      onClick={() => {
-                                        handleShow();
-                                      }}
-                                      style={{ cursor: "pointer" }}
-                                      className="socialCount"
-                                    >
-                                      <i class="fa-solid fa-share-from-square"></i>{" "}
-                                      0
                                     </span> */}
+                                          <span
+                                            onClick={() => {
+                                              handleShow(com.id);
+                                            }}
+                                            className="socialCount"
+                                            style={{ cursor: "pointer" }}
+                                          >
+                                            <i class="fa-solid fa-paper-plane"></i>{" "}
+                                            0
+                                          </span>
+                                          {/* <span
+                                    onClick={() => {
+                                      handleShow();
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                    className="socialCount"
+                                  >
+                                    <i class="fa-solid fa-share-from-square"></i>{" "}
+                                    0
+                                  </span> */}
 
-                                    <span>
-                                      <RWebShare
-                                        data={{
-                                          text: "Gas guzzlrs",
-                                          url: "https://beta.gasguzzlrs.com/",
-                                          title: "Gas guzzlrs",
-                                        }}
-                                        onClick={() =>
-                                          console.log("shared successfully!")
-                                        }
-                                      >
-                                        <span
-                                          onClick={handleShow}
-                                          className="socialCount"
-                                          style={{ cursor: "pointer" }}
-                                        >
-                                          <i class="fa-solid fa-share-nodes"></i>{" "}
-                                          0
-                                        </span>
-                                      </RWebShare>
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-eye"></i> 99k
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-regular fa-bookmark"></i>
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-bookmark"></i>
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-paper-plane"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
+                                          <span>
+                                            <RWebShare
+                                              data={{
+                                                text: "Gas guzzlrs",
+                                                url: "https://beta.gasguzzlrs.com/",
+                                                title: "Gas guzzlrs",
+                                              }}
+                                              onClick={() =>
+                                                console.log(
+                                                  "shared successfully!"
+                                                )
+                                              }
+                                            >
+                                              <span
+                                                className="socialCount"
+                                                style={{ cursor: "pointer" }}
+                                              >
+                                                <i class="fa-solid fa-share-nodes"></i>{" "}
+                                                0
+                                              </span>
+                                            </RWebShare>
+                                          </span>
+                                          <span className="socialCount">
+                                            <i class="fa-solid fa-eye"></i> 99k
+                                          </span>
+                                          <span className="socialCount">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                          </span>
+                                          <span className="socialCount">
+                                            <i class="fa-solid fa-bookmark"></i>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  );
+                                })
+                              ) : (
+                                <br />
+                              )}
                             </div>
                           </>
                         );
@@ -541,7 +607,7 @@ const Post = ({ id }) => {
                         </Space>
                       </Space>
                     </div>
-                    <form onSubmit={handleCommentSubmit}>
+                    {/* <form onSubmit={handleCommentSubmit}>
                       <div className="DecIbp ">
                         <textarea
                           value={comment}
@@ -554,27 +620,94 @@ const Post = ({ id }) => {
                         ></textarea>
                         <div className="youD">
                           <div className="py-3">
-                            {/* <span className="socialCount">
-                              <i class="fa-solid fa-image"></i>
-                            </span> */}
-                            {/* <span className="socialCount">
-                            <i class="fa-solid fa-bars-progress"></i>
-                          </span> */}
-                            {/* <span className="socialCount">
-                            <i class="fa-solid fa-face-smile"></i>
-                          </span> */}
-                            {/* <span className="socialCount">
-                            <i class="fa-solid fa-business-time"></i>
-                          </span> */}
-
-                            {/* <span className="socialCount">
-                            <i class="fa-solid fa-location-dot"></i>
-                          </span> */}
+                           
                           </div>
                           <button type="submit" class="btn">
                             Post
                           </button>
                         </div>
+                      </div>
+                    </form> */}
+                    <form onSubmit={handleCommentSubmit} className="DecIbp ">
+                      <div className="field">
+                        <textarea
+                          className="field border-0"
+                          rows="4"
+                          cols="100"
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          placeholder="What’s happening?"
+                          required
+                        ></textarea>
+                        <div className="field border-0">
+                          {Array.from(filer).map((items) => {
+                            return (
+                              <span>
+                                <img
+                                  src={
+                                    items ? URL.createObjectURL(items) : null
+                                  }
+                                  style={{
+                                    width: "200px",
+                                    height: "200px",
+                                    objectFit: "cover",
+                                    padding: "15px",
+                                  }}
+                                />
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="youD">
+                        <div className="py-3">
+                          <span>
+                            <input
+                              onChange={(e) => {
+                                return setFiler((prevState) => [
+                                  ...e.target.files,
+                                ]);
+                              }}
+                              name="file"
+                              type="file"
+                              accept="image/gif, image/jpeg, image/png, image/jpg"
+                              ref={inputRef}
+                              hidden
+                            />
+                            <span
+                              onClick={() => inputRef.current.click()}
+                              style={{ cursor: "pointer" }}
+                              className="socialCount"
+                            >
+                              <i class="fa-solid fa-image"></i>
+                            </span>
+                          </span>
+                          {/* <span className="socialCount">
+                        <i class="fa-solid fa-bars-progress"></i>
+                      </span> */}
+                          {/* <span
+                        style={{ cursor: "pointer" }}
+                        className="socialCount"
+                      >
+                        <i class="fa-solid fa-face-smile"></i>
+                      </span> */}
+                          {/* <span className="socialCount">
+                        <i class="fa-solid fa-business-time"></i>
+                      </span> */}
+
+                          {/* <span className="socialCount">
+                        <i class="fa-solid fa-location-dot"></i>
+                      </span> */}
+                        </div>
+                        {loadingr ? (
+                          <button type="button" className="btn">
+                            Posting...
+                          </button>
+                        ) : (
+                          <button type="submit" class="btn">
+                            Post
+                          </button>
+                        )}
                       </div>
                     </form>
                   </div>
