@@ -21,7 +21,6 @@ import { handleGarage } from "../../../../redux/reducers/planReducer";
 import Post from "./Post";
 
 function UserGarage() {
-
   const [garagesData, setGaragesData] = useState({});
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
@@ -542,7 +541,7 @@ function UserGarage() {
                         aria-labelledby="contact-tab"
                         tabindex="0"
                       >
-                        <Post />
+                        <Post id={id} />
                       </div>
                       <div
                         class="tab-pane fade"
@@ -649,8 +648,6 @@ function UserGarage() {
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 }

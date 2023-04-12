@@ -4,9 +4,11 @@ import men_face from "../../../../Assets/images/men-face.jpg";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { noImage, notify } from "../../../UI/globaleVar";
-import EmojiPicker from "emoji-picker-react";
+import { RWebShare } from "react-web-share";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const Post = () => {
+const Post = ({ id }) => {
   const [file, setFile] = useState([]);
   const [content, setContent] = useState("");
   const [postData, setPostData] = useState([]);
@@ -21,15 +23,11 @@ const Post = () => {
     setCommentId(id);
   };
 
-  const [showEmoji, setShowEmoji] = useState();
-  const handleCloseEmoji = () => setShowEmoji(false);
-  const handleShowEmoji = () => setShowEmoji(true);
-
   const inputRef = useRef();
 
   const getPostData = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}getPost`);
+      const res = await axios.get(`${process.env.REACT_APP_URL}getPost/${id}`);
       if (res.status === 200) {
         setPostData(res.data.data);
         // setUserData(res.data.userProfile);
@@ -41,7 +39,7 @@ const Post = () => {
   };
   useEffect(() => {
     getPostData();
-  }, []);
+  }, [id]);
 
   const handlePost = async (e) => {
     e.preventDefault();
@@ -94,6 +92,7 @@ const Post = () => {
       })
       .then(function (response) {
         getPostData();
+        handleClose();
       })
       .catch(function (error) {
         console.log(error);
@@ -268,9 +267,15 @@ const Post = () => {
                                 <div className="py-3">
                                   <span
                                     onClick={() => handleLike(curElem.id)}
+                                    style={{ cursor: "pointer" }}
                                     className="socialCount"
                                   >
-                                    <i class="fa-solid fa-heart"></i> 12
+                                    {curElem?.liked == 0 ? (
+                                      <FavoriteBorderIcon />
+                                    ) : (
+                                      <FavoriteIcon className="fa-heart" />
+                                    )}
+                                    &nbsp;{curElem.likes}
                                   </span>
                                   {/* <span
                                     className="socialCount"
@@ -297,21 +302,33 @@ const Post = () => {
                                     0
                                   </span> */}
 
-                                  <span
-                                    onClick={handleShow}
-                                    className="socialCount"
-                                    style={{ cursor: "pointer" }}
-                                  >
-                                    <i class="fa-solid fa-share-nodes"></i> 12
+                                  <span>
+                                    <RWebShare
+                                      data={{
+                                        text: "Gas guzzlrs",
+                                        url: "https://beta.gasguzzlrs.com/",
+                                        title: "Gas guzzlrs",
+                                      }}
+                                      onClick={() =>
+                                        console.log("shared successfully!")
+                                      }
+                                    >
+                                      <span
+                                        onClick={handleShow}
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <i class="fa-solid fa-share-nodes"></i>{" "}
+                                        0
+                                      </span>
+                                    </RWebShare>
                                   </span>
-
                                   <span className="socialCount">
                                     <i class="fa-solid fa-eye"></i> 99k
                                   </span>
                                   <span className="socialCount">
                                     <i class="fa-regular fa-bookmark"></i>
                                   </span>
-
                                   <span className="socialCount">
                                     <i class="fa-solid fa-bookmark"></i>
                                   </span>
@@ -455,30 +472,6 @@ const Post = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
-      <Modal
-        show={showEmoji}
-        onHide={handleCloseEmoji}
-        className="modal fade"
-        centered
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header border-0">
-              <button
-                onClick={handleCloseEmoji}
-                type="button"
-                className="close"
-                data-dismiss="modal"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-            <div className="modal-body">
-              <EmojiPicker />
             </div>
           </div>
         </div>
