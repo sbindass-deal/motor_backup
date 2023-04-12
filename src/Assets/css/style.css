@@ -7206,8 +7206,26 @@ box-shadow: 0px 0px 0px 0px;
   background: black;
   padding: 15px 10px;
   border-radius: 5px;
+  width: 100%;
 }
 .light .commentsSection {  background: #e4e4e4;}
 .DecIbp {
   width: 100%;
+}
+.PostInfo.cm {
+  background: #171717;
+}
+.light .PostInfo.cm {
+  background: #f0f0f0;
+}
+.PostInfo.mb-0:before {
+  content: '';
+  background: #ff980021;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: 57px;
+}
+.PostInfo.mb-0 {
+  position: relative;
 }
