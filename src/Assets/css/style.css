@@ -6929,7 +6929,7 @@ h5.catagories {
   justify-content: center;
 }
 
-.ttt table.cartSection tr td, table.cartSection tr th
+.ttt table.cartSection tr td,.ttt table.cartSection tr th
 {border: none;}
 .ttt table.cartSection{border: none;}
 
@@ -7193,3 +7193,77 @@ box-shadow: 0px 0px 0px 0px;
 .text_color{
   color: #FFA500;
 }
+.commentsSection .userImG {
+  display: flex;
+  align-items: center;
+}
+.naTf {
+  padding-left: 10px;
+}
+.naTf h5 {
+  margin: 0;
+  font-size: 12px;
+}
+.naTf p {
+  color: #8b8b8b; margin: 0;
+}
+.commentsSection {
+  background: black;
+  padding: 15px 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+.light .commentsSection {  background: #e4e4e4;}
+.DecIbp {
+  width: 100%;
+}
+.PostInfo.cm {
+  background: #171717;
+}
+.light .PostInfo.cm {
+  background: #f0f0f0;
+}
+.PostInfo.mb-0:before {
+  content: '';
+  background: #ff980021;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: 57px;
+}
+.PostInfo.mb-0 {
+  position: relative;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: transparent;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  font-size: 29px;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  padding: 0px 15px;
+}
+svg.svg-inline--fa.fa-trash-can {
+  font-size: 22px;
+}
+td.actionBtn svg.svg-inline--fa.fa-trash-can {
+  font-size: 13px;
+}
+p.btn.add_input {
+  padding: 11px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 34px;
+  position: relative;
+  top: 14px;
+}
+.mb-10{ padding-bottom: 45px;}
+.light table.cartSection th {
+  padding: 10px;
+  border-right: 1px solid #757171;
+  background: #f7f7f7;
+}
+table.cartSection th:last-child{ border-right: none;}

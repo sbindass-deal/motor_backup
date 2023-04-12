@@ -91,7 +91,7 @@ const OrderDetail = () => {
                     <th>Item Price</th>
                     <th>Status</th>
                     <th>Total Value</th>
-                    <th>Action</th>
+                    <th className="text-center">Action</th>
                   </tr>
                   {order.map((curElem) => {
                     return (

@@ -220,79 +220,80 @@ const Post = ({ id }) => {
                     {postData.length > 0 &&
                       postData.map((curElem) => {
                         return (
-                          <div key={curElem.id} className="col-md-12 ">
-                            <div className="PostInfo">
-                              <div className="userImG">
-                                <Space direction="vertical" size={16}>
-                                  <Space wrap size={16}>
-                                    <Avatar
-                                      size={64}
-                                      icon={
-                                        <img
-                                          className="slidImg"
-                                          loading="lazy"
-                                          src={
-                                            curElem?.profileImage &&
-                                            `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
-                                          }
-                                          onError={({ currentTarget }) => {
-                                            currentTarget.onError = null;
-                                            currentTarget.src = noImage;
-                                          }}
-                                          alt="post"
-                                        />
-                                      }
-                                    />
+                          <>
+                            <div key={curElem.id} className="col-md-12 ">
+                              <div className="PostInfo  mb-0">
+                                <div className="userImG">
+                                  <Space direction="vertical" size={16}>
+                                    <Space wrap size={16}>
+                                      <Avatar
+                                        size={64}
+                                        icon={
+                                          <img
+                                            className="slidImg"
+                                            loading="lazy"
+                                            src={
+                                              curElem?.profileImage &&
+                                              `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
+                                            }
+                                            onError={({ currentTarget }) => {
+                                              currentTarget.onError = null;
+                                              currentTarget.src = noImage;
+                                            }}
+                                            alt="post"
+                                          />
+                                        }
+                                      />
+                                    </Space>
                                   </Space>
-                                </Space>
-                              </div>
-                              <div className="DecIbp">
-                                <h5>{curElem?.postedBy?.name}</h5>
-                                <p>{curElem.content}</p>
-                                <div class="card">
-                                  <img
-                                    className="slidImg"
-                                    loading="lazy"
-                                    src={
-                                      curElem?.image_path &&
-                                      `${process.env.REACT_APP_URL}/${curElem?.image_path}`
-                                    }
-                                    onError={({ currentTarget }) => {
-                                      currentTarget.onError = null;
-                                      currentTarget.src = noImage;
-                                    }}
-                                    alt="post"
-                                  />
                                 </div>
-                                <div className="py-3">
-                                  <span
-                                    onClick={() => handleLike(curElem.id)}
-                                    style={{ cursor: "pointer" }}
-                                    className="socialCount"
-                                  >
-                                    {curElem?.liked == 0 ? (
-                                      <FavoriteBorderIcon />
-                                    ) : (
-                                      <FavoriteIcon className="fa-heart" />
-                                    )}
-                                    &nbsp;{curElem.likes}
-                                  </span>
-                                  {/* <span
+                                <div className="DecIbp">
+                                  <h5>{curElem?.postedBy?.name}</h5>
+                                  <p>{curElem.content}</p>
+                                  <div class="card">
+                                    <img
+                                      className="slidImg"
+                                      loading="lazy"
+                                      src={
+                                        curElem?.image_path &&
+                                        `${process.env.REACT_APP_URL}/${curElem?.image_path}`
+                                      }
+                                      onError={({ currentTarget }) => {
+                                        currentTarget.onError = null;
+                                        currentTarget.src = noImage;
+                                      }}
+                                      alt="post"
+                                    />
+                                  </div>
+                                  <div className="py-3">
+                                    <span
+                                      onClick={() => handleLike(curElem.id)}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      {curElem?.liked == 0 ? (
+                                        <FavoriteBorderIcon />
+                                      ) : (
+                                        <FavoriteIcon className="fa-heart" />
+                                      )}
+                                      &nbsp;{curElem.likes}
+                                    </span>
+                                    {/* <span
                                     className="socialCount"
                                   >
                                     <i class="fa-sharp fa-solid fa-thumbs-down"></i>
                                   </span> */}
-                                  <span
-                                    onClick={() => {
-                                      handleShow(curElem.id);
-                                    }}
-                                    style={{ cursor: "pointer" }}
-                                    className="socialCount"
-                                  >
-                                    <i class="fa-solid fa-comments"></i>{" "}
-                                    {curElem?.comment?.length}
-                                  </span>
-                                  {/* <span
+                                    <span
+                                      onClick={() => {
+                                        handleShow(curElem.id);
+                                      }}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-solid fa-comments"></i>{" "}
+                                      {curElem?.comment?.length}
+                                    </span>
+                                    {/* <span
                                     onClick={() => {
                                       handleShow();
                                     }}
@@ -303,43 +304,150 @@ const Post = ({ id }) => {
                                     0
                                   </span> */}
 
-                                  <span>
-                                    <RWebShare
-                                      data={{
-                                        text: "Gas guzzlrs",
-                                        url: "https://beta.gasguzzlrs.com/",
-                                        title: "Gas guzzlrs",
-                                      }}
-                                      onClick={() =>
-                                        console.log("shared successfully!")
-                                      }
-                                    >
-                                      <span
-                                        onClick={handleShow}
-                                        className="socialCount"
-                                        style={{ cursor: "pointer" }}
+                                    <span>
+                                      <RWebShare
+                                        data={{
+                                          text: "Gas guzzlrs",
+                                          url: "https://beta.gasguzzlrs.com/",
+                                          title: "Gas guzzlrs",
+                                        }}
+                                        onClick={() =>
+                                          console.log("shared successfully!")
+                                        }
                                       >
-                                        <i class="fa-solid fa-share-nodes"></i>{" "}
-                                        0
-                                      </span>
-                                    </RWebShare>
-                                  </span>
-                                  <span className="socialCount">
-                                    <i class="fa-solid fa-eye"></i> 99k
-                                  </span>
-                                  <span className="socialCount">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                  </span>
-                                  <span className="socialCount">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                  </span>
-                                  <span className="socialCount">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                  </span>
+                                        <span
+                                          onClick={handleShow}
+                                          className="socialCount"
+                                          style={{ cursor: "pointer" }}
+                                        >
+                                          <i class="fa-solid fa-share-nodes"></i>{" "}
+                                          0
+                                        </span>
+                                      </RWebShare>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-eye"></i> 99k
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-regular fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-paper-plane"></i>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="PostInfo cm">
+                                <div className="userImG">
+                                  <Space direction="vertical" size={16}>
+                                    <Space wrap size={16}>
+                                      <Avatar
+                                        size={64}
+                                        icon={
+                                          <img
+                                            className="slidImg"
+                                            loading="lazy"
+                                            src={
+                                              curElem?.profileImage &&
+                                              `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
+                                            }
+                                            onError={({ currentTarget }) => {
+                                              currentTarget.onError = null;
+                                              currentTarget.src = noImage;
+                                            }}
+                                            alt="post"
+                                          />
+                                        }
+                                      />
+                                    </Space>
+                                  </Space>
+                                </div>
+                                <div className="DecIbp">
+                                  <div className="naTf">
+                                    <h5>MAG MOTORS</h5>
+                                    <p>Glad you liked it!</p>
+                                  </div>
+                                  <div className="py-3">
+                                    <span
+                                      onClick={() => handleLike(curElem.id)}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      {curElem?.liked == 0 ? (
+                                        <FavoriteBorderIcon />
+                                      ) : (
+                                        <FavoriteIcon className="fa-heart" />
+                                      )}
+                                      &nbsp;{curElem.likes}
+                                    </span>
+                                    {/* <span
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-sharp fa-solid fa-thumbs-down"></i>
+                                    </span> */}
+                                    <span
+                                      onClick={() => {
+                                        handleShow(curElem.id);
+                                      }}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-solid fa-comments"></i>{" "}
+                                      {curElem?.comment?.length}
+                                    </span>
+                                    {/* <span
+                                      onClick={() => {
+                                        handleShow();
+                                      }}
+                                      style={{ cursor: "pointer" }}
+                                      className="socialCount"
+                                    >
+                                      <i class="fa-solid fa-share-from-square"></i>{" "}
+                                      0
+                                    </span> */}
+
+                                    <span>
+                                      <RWebShare
+                                        data={{
+                                          text: "Gas guzzlrs",
+                                          url: "https://beta.gasguzzlrs.com/",
+                                          title: "Gas guzzlrs",
+                                        }}
+                                        onClick={() =>
+                                          console.log("shared successfully!")
+                                        }
+                                      >
+                                        <span
+                                          onClick={handleShow}
+                                          className="socialCount"
+                                          style={{ cursor: "pointer" }}
+                                        >
+                                          <i class="fa-solid fa-share-nodes"></i>{" "}
+                                          0
+                                        </span>
+                                      </RWebShare>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-eye"></i> 99k
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-regular fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-bookmark"></i>
+                                    </span>
+                                    <span className="socialCount">
+                                      <i class="fa-solid fa-paper-plane"></i>
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </>
                         );
                       })}
 
@@ -419,7 +527,6 @@ const Post = ({ id }) => {
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </div>
-
             <div className="modal-body">
               <div className="row youPage frrt">
                 <div className="col-md-12 ">

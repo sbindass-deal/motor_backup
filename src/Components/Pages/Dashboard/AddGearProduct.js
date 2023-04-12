@@ -170,11 +170,11 @@ const AddGearProduct = () => {
           </div>
           <form>
             <Link to={'/gear-product'}>
-              <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+              <button className="btn"><i class="bi bi-arrow-left"></i> Back To List</button>
             </Link>
               <h3 className="text-center">Add Gear Products</h3>
             <div className="row">
-              <div className="col-md-12 col-lg-6 col-sm-12">
+              <div className="col-md-12 col-lg-6 col-sm-12 mt-45">
                 <FormInput
                   name="title"
                   onChange={(e) => {
@@ -315,8 +315,8 @@ const AddGearProduct = () => {
               }
               <div className="col-md-12 col-lg-1 col-sm-12 m-auto">
                 <div className="form-group">
-                  {/* <p className="border w-25 pl-1">+</p> */}
-                  <button onClick={addInventry} className="mt-4 border-0 p-1 bg-success text-light">Add input</button>
+                 <p  onClick={addInventry} className="btn add_input" title="Add Input">+</p> 
+                  {/* <button className="mt-4 btn p-1">Add input</button> */}
                 </div>
               </div>
               <div className="col-md-12 col-lg-6 col-sm-12">
