@@ -6929,7 +6929,7 @@ h5.catagories {
   justify-content: center;
 }
 
-.ttt table.cartSection tr td, table.cartSection tr th
+.ttt table.cartSection tr td,.ttt table.cartSection tr th
 {border: none;}
 .ttt table.cartSection{border: none;}
 
@@ -7256,3 +7256,9 @@ p.btn.add_input {
   top: 14px;
 }
 .mb-10{ padding-bottom: 45px;}
+.light table.cartSection th {
+  padding: 10px;
+  border-right: 1px solid #757171;
+  background: #f7f7f7;
+}
+table.cartSection th:last-child{ border-right: none;}

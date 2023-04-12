@@ -142,7 +142,7 @@ export default function CheckoutDetails() {
               errorMessage="Name should be 3-16 characters and shouldn't include any special character or number!"
               pattern="^[A-Za-z ]{3,16}$"
               required={true}
-              class="form-control"
+              class="field"
             />
           </div>
           <div class="col-md-6">
@@ -153,7 +153,7 @@ export default function CheckoutDetails() {
               placeholder="Enter Email"
               errorMessage="It should be a valid email address!"
               label="Email"
-              class="form-control"
+              class="field"
               required={true}
             />
           </div>
@@ -166,7 +166,7 @@ export default function CheckoutDetails() {
               errorMessage="Phone number should be 10-12 characters and shouldn't include any special character and alphabet!"
               label="Phone"
               pattern="^[0-9]{10,12}$"
-              class="form-control"
+              class="field"
               required={true}
             />
           </div>
@@ -179,7 +179,7 @@ export default function CheckoutDetails() {
               errorMessage="Pin number should be 4-8 characters and shouldn't include any special character and alphabet!"
               label="Pin code"
               pattern="^[0-9]{4,8}$"
-              class="form-control"
+              class="field"
               required={true}
             />
           </div>
@@ -192,7 +192,7 @@ export default function CheckoutDetails() {
                 name="address"
                 value={getInputData.address}
                 onChange={handleOnChange}
-                class="form-control"
+                class="field"
                 placeholder="Enter address"
                 aria-describedby="inputGroupPrepend2"
                 required
