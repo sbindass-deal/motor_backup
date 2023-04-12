@@ -289,7 +289,8 @@ const Post = ({ id }) => {
                                     style={{ cursor: "pointer" }}
                                     className="socialCount"
                                   >
-                                    <i class="fa-solid fa-comments"></i> 0
+                                    <i class="fa-solid fa-comments"></i>{" "}
+                                    {curElem?.comment?.length}
                                   </span>
                                   {/* <span
                                     onClick={() => {
