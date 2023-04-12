@@ -7229,3 +7229,16 @@ box-shadow: 0px 0px 0px 0px;
 .PostInfo.mb-0 {
   position: relative;
 }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: transparent;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  font-size: 29px;
+}
+.neWm button.dropdown-toggle.btn.btn-success {
+  padding: 0px 15px;
+}
+svg.svg-inline--fa.fa-trash-can {
+  font-size: 22px;
+}
