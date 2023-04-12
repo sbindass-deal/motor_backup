@@ -11,10 +11,15 @@ const Post = () => {
   const [content, setContent] = useState("");
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState({});
+  const [commentId, setCommentId] = useState(null);
+  const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setShow(true);
+    setCommentId(id);
+  };
 
   const [showEmoji, setShowEmoji] = useState();
   const handleCloseEmoji = () => setShowEmoji(false);
@@ -70,7 +75,22 @@ const Post = () => {
     axios
       .post(`${process.env.REACT_APP_URL}like_dislike_post`, {
         postId: id,
-        like_or_dislike: 2,
+        like_or_dislike: 1,
+      })
+      .then(function (response) {
+        getPostData();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    axios
+      .post(`${process.env.REACT_APP_URL}addCommentByPost`, {
+        postId: commentId,
+        comment: comment,
       })
       .then(function (response) {
         getPostData();
@@ -213,8 +233,8 @@ const Post = () => {
                                           className="slidImg"
                                           loading="lazy"
                                           src={
-                                            userData?.logo &&
-                                            `${process.env.REACT_APP_URL}${userData?.logo}`
+                                            curElem?.profileImage &&
+                                            `${process.env.REACT_APP_URL}${curElem?.profileImage?.logo}`
                                           }
                                           onError={({ currentTarget }) => {
                                             currentTarget.onError = null;
@@ -228,7 +248,7 @@ const Post = () => {
                                 </Space>
                               </div>
                               <div className="DecIbp">
-                                <h5>{userData.title}</h5>
+                                <h5>{curElem?.postedBy?.name}</h5>
                                 <p>{curElem.content}</p>
                                 <div class="card">
                                   <img
@@ -245,23 +265,28 @@ const Post = () => {
                                     alt="post"
                                   />
                                 </div>
-                                
+                                <div className="py-3">
                                   <span
                                     onClick={() => handleLike(curElem.id)}
                                     className="socialCount"
                                   >
-                                    <i className={`fa-solid fa-thumbs-up `}></i>{" "}
-                                    12
+                                    <i class="fa-solid fa-heart"></i> 12
                                   </span>
                                   {/* <span
                                     className="socialCount"
                                   >
                                     <i class="fa-sharp fa-solid fa-thumbs-down"></i>
                                   </span> */}
-                                  <span className="socialCount">
+                                  <span
+                                    onClick={() => {
+                                      handleShow(curElem.id);
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                    className="socialCount"
+                                  >
                                     <i class="fa-solid fa-comments"></i> 0
                                   </span>
-                                  <span
+                                  {/* <span
                                     onClick={() => {
                                       handleShow();
                                     }}
@@ -270,41 +295,30 @@ const Post = () => {
                                   >
                                     <i class="fa-solid fa-share-from-square"></i>{" "}
                                     0
+                                  </span> */}
+
+                                  <span
+                                    onClick={handleShow}
+                                    className="socialCount"
+                                    style={{ cursor: "pointer" }}
+                                  >
+                                    <i class="fa-solid fa-share-nodes"></i> 12
                                   </span>
-                                  <div className="py-3">
-                                     
-                                      <span className="socialCount">
-                                        <i class="fa-solid fa-comments"></i> 2
-                                      </span>
-                                      <span
-                                        onClick={handleShow}
-                                        className="socialCount"
-                                        style={{ cursor: "pointer" }}
-                                      >
-                                        <i class="fa-solid fa-share-nodes"></i>{" "}
-                                        12
-                                      </span>
-                                      <span className="socialCount">
-                                         8,427
-                                      </span>
 
-                                      <span className="socialCount">
-                                        <i class="fa-solid fa-eye"></i> 99k
-                                      </span>
-                                      <span className="socialCount">
-                                      <i class="fa-regular fa-bookmark"></i>
-                                      </span>
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-eye"></i> 99k
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                  </span>
 
-                                      <span className="socialCount">
-                                          <i class="fa-solid fa-bookmark"></i>
-                                      </span>
-                                      <span className="socialCount">
-                                      <i class="fa-solid fa-paper-plane"></i>
-                                      </span>
-
-                                      
-                                    </div>
-                              
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                  </span>
+                                  <span className="socialCount">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -402,35 +416,42 @@ const Post = () => {
                         </Space>
                       </Space>
                     </div>
-                    <div className="DecIbp ">
-                      <textarea
-                        className="field"
-                        rows="8"
-                        cols="100"
-                        placeholder="What’s happening?"
-                      ></textarea>
-                      <div className="youD">
-                        <div className="py-3">
-                          <span className="socialCount">
-                            <i class="fa-solid fa-image"></i>
-                          </span>
-                          {/* <span className="socialCount">
+                    <form onSubmit={handleCommentSubmit}>
+                      <div className="DecIbp ">
+                        <textarea
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          className="field"
+                          rows="8"
+                          cols="100"
+                          placeholder="What’s happening?"
+                          required
+                        ></textarea>
+                        <div className="youD">
+                          <div className="py-3">
+                            {/* <span className="socialCount">
+                              <i class="fa-solid fa-image"></i>
+                            </span> */}
+                            {/* <span className="socialCount">
                             <i class="fa-solid fa-bars-progress"></i>
                           </span> */}
-                          {/* <span className="socialCount">
+                            {/* <span className="socialCount">
                             <i class="fa-solid fa-face-smile"></i>
                           </span> */}
-                          {/* <span className="socialCount">
+                            {/* <span className="socialCount">
                             <i class="fa-solid fa-business-time"></i>
                           </span> */}
 
-                          {/* <span className="socialCount">
+                            {/* <span className="socialCount">
                             <i class="fa-solid fa-location-dot"></i>
                           </span> */}
+                          </div>
+                          <button type="submit" class="btn">
+                            Post
+                          </button>
                         </div>
-                        <button class="btn">Post</button>
                       </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
