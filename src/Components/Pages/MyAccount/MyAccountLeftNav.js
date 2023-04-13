@@ -56,8 +56,8 @@ function MyAccountLeftNav() {
                 </MenuItem>
               <MenuItem>
                 <Link
-                  to="/user-garage"
-                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                  to="/user-blog"
+                  className={` ${location.pathname === "/user-blog" ? "active" : ""
                     } `}
                 >
                   Blog
