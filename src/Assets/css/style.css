@@ -7267,3 +7267,31 @@ p.btn.add_input {
   background: #f7f7f7;
 }
 table.cartSection th:last-child{ border-right: none;}
+
+
+.header_style{
+display: flex;
+justify-content: space-between;
+}
+
+
+.pro-sidebar {
+    color: #adadad;
+    height: 100%;
+    /* width: 270px; */
+    /* min-width: 270px; */
+    text-align: left;
+    transition: width, left, right, 0.3s;
+    position: relative;
+    z-index: 1009;
+}
+
+.pro-sidebar  .pro-sidebar-inner {
+    background: #e5e4e4 !important;
+    height: 100%;
+    position: relative;
+    z-index: 101;
+}
+
+
+

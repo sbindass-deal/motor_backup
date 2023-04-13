@@ -19,7 +19,8 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import 'react-pro-sidebar/dist/css/styles.css';
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ function Header() {
   };
   const logout = () => {
     dispatch(reset());
-    // notify("Logout successfully ! 😎🤐");
+    notify("Logout successfully ! 😎🤐");
     navigate("/");
     window.location.reload(false);
   };
@@ -118,6 +119,7 @@ function Header() {
 
   return (
     <>
+    
       <header
         className="bg-header-rendam"
         style={{ zIndex: 99999999, position: "relative" }}
@@ -748,6 +750,22 @@ function Header() {
                           </div>
                         </div>
                       </li>
+
+                      {/* <li>
+                        <ProSidebar>
+                          <Menu iconShape="square">
+                        
+                            <SubMenu title="Auctions  ">
+                              <MenuItem>Live Now</MenuItem>
+                              <MenuItem>Featured</MenuItem>
+                              <MenuItem>No Reserve</MenuItem>
+                              <MenuItem>Charity</MenuItem>
+                              <MenuItem>Results</MenuItem>
+                            </SubMenu>
+                          </Menu>
+                        </ProSidebar>
+                      </li> */}
+
                       <li className="nav-item">
                         <Link
                           className="nav-link"
