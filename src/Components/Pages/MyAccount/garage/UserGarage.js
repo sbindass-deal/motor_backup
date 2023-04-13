@@ -201,7 +201,7 @@ function UserGarage() {
                     }}
                     className="gry_btn px-3 mx-2"
                   >
-                    + Add Garage
+                    + Add Vehicle
                   </button>
                   {/* <Link to="/editmyaccount-garages" className="gry_btn px-3">
                     Edit Garage
@@ -379,7 +379,7 @@ function UserGarage() {
                           Garage
                         </button>
                       </li>
-                      <li class="nav-item" role="presentation">
+                      {/* <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
                           id="profile-tab"
@@ -392,7 +392,7 @@ function UserGarage() {
                         >
                           Auctions
                         </button>
-                      </li>
+                      </li> */}
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
@@ -424,6 +424,34 @@ function UserGarage() {
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
+                          id="book-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#book-tab-pane"
+                          type="button"
+                          role="tab"
+                          aria-controls="book-tab-pane"
+                          aria-selected="false"
+                        >
+                          Bookmark
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="fav-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#fav-tab-pane"
+                          type="button"
+                          role="tab"
+                          aria-controls="fav-tab-pane"
+                          aria-selected="false"
+                        >
+                          Favourite
+                        </button>
+                      </li>
+                      {/* <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
                           id="blog-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#blog-tab-pane"
@@ -434,8 +462,8 @@ function UserGarage() {
                         >
                           Blog
                         </button>
-                      </li>
-                      <li class="nav-item" role="presentation">
+                      </li> */}
+                      {/* <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
                           id="gallery-tab"
@@ -448,7 +476,7 @@ function UserGarage() {
                         >
                           Gallery
                         </button>
-                      </li>
+                      </li> */}
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div
