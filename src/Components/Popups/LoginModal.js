@@ -171,6 +171,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
                   type={showPassWord ? "text" : "password"}
                   // pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                   required={true}
+                  autocomplete="off"
                 />
 
                 <div
