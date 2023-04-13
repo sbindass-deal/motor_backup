@@ -24,6 +24,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { RWebShare } from "react-web-share";
 import Post from "./Post";
 import Replies from "./Replies";
+import Bookmark from "./Bookmark";
+import Favorite from "./Favorite";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -166,7 +168,7 @@ const GaragesUserDetails = () => {
                   Garages
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              {/* <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="profile-tab"
@@ -179,7 +181,7 @@ const GaragesUserDetails = () => {
                 >
                   Auctions
                 </button>
-              </li>
+              </li> */}
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
@@ -206,6 +208,34 @@ const GaragesUserDetails = () => {
                   aria-selected="false"
                 >
                   Replies
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="book-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#book-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="book-tab-pane"
+                  aria-selected="false"
+                >
+                  Bookmark
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="fav-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#fav-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="fav-tab-pane"
+                  aria-selected="false"
+                >
+                  Favorite
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -516,6 +546,24 @@ const GaragesUserDetails = () => {
                     </div>
                   </div>
                 </section>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="book-tab-pane"
+                role="tabpanel"
+                aria-labelledby="book-tab"
+                tabindex="0"
+              >
+                <Bookmark logo={garagesData} id={id} />
+              </div>
+              <div
+                class="tab-pane fade"
+                id="fav-tab-pane"
+                role="tabpanel"
+                aria-labelledby="fav-tab"
+                tabindex="0"
+              >
+                <Favorite logo={garagesData} id={id} />
               </div>
               <div
                 class="tab-pane fade"

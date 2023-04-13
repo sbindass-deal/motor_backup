@@ -20,6 +20,8 @@ import GaragesBlog from "../../garages/GaragesBlog";
 import { handleGarage } from "../../../../redux/reducers/planReducer";
 import Post from "./Post";
 import Replies from "./Replies";
+import Bookmark from "./Bookmark";
+import Favorite from "./Favorite";
 
 function UserGarage() {
   const [garagesData, setGaragesData] = useState({});
@@ -600,6 +602,24 @@ function UserGarage() {
                             </div>
                           </div>
                         </section>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="book-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="book-tab"
+                        tabindex="0"
+                      >
+                        <Bookmark id={id} logo={userInfo} />
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="fav-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="fav-tab"
+                        tabindex="0"
+                      >
+                        <Favorite id={id} logo={userInfo} />
                       </div>
                       <div
                         class="tab-pane fade"
