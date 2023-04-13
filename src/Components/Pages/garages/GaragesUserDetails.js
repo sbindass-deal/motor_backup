@@ -18,23 +18,26 @@ import GaragesAuction from "./GaragesAuction";
 import GaragesBlog from "./GaragesBlog";
 import GaragesVehicle from "./GaragesVehicle";
 import { Modal } from "react-bootstrap";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { RWebShare } from "react-web-share";
-
-
+import Post from "./Post";
+import Replies from "./Replies";
+import Bookmark from "./Bookmark";
+import Favorite from "./Favorite";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [postCount, setPostCount] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
   const { id } = useParams();
+
   useEffect(() => {
     const fetchDealer = async () => {
       axios
@@ -109,7 +112,7 @@ const GaragesUserDetails = () => {
               <Space direction="vertical" size={16}>
                 <Space wrap size={16}>
                   <Avatar
-                  className="avtr"
+                    className="avtr"
                     size={200}
                     icon={
                       <img
@@ -138,7 +141,7 @@ const GaragesUserDetails = () => {
                     <span>2</span>Following
                   </li>
                   <li>
-                    <span>12</span>Post
+                    <span>{postCount?.length}</span>Post
                   </li>
                 </ul>
                 <button className="btn">Follow</button>
@@ -165,7 +168,7 @@ const GaragesUserDetails = () => {
                   Garages
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              {/* <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="profile-tab"
@@ -178,7 +181,7 @@ const GaragesUserDetails = () => {
                 >
                   Auctions
                 </button>
-              </li>
+              </li> */}
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
@@ -196,12 +199,12 @@ const GaragesUserDetails = () => {
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="video-tab"
+                  id="replies-tab"
                   data-bs-toggle="tab"
-                  data-bs-target="#video-tab-pane"
+                  data-bs-target="#replies-tab-pane"
                   type="button"
                   role="tab"
-                  aria-controls="video-tab-pane"
+                  aria-controls="replies-tab-pane"
                   aria-selected="false"
                 >
                   Replies
@@ -210,7 +213,35 @@ const GaragesUserDetails = () => {
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="video-tab"
+                  id="book-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#book-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="book-tab-pane"
+                  aria-selected="false"
+                >
+                  Bookmark
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="fav-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#fav-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="fav-tab-pane"
+                  aria-selected="false"
+                >
+                  Favorite
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="blog-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#blog-tab-pane"
                   type="button"
@@ -314,60 +345,13 @@ const GaragesUserDetails = () => {
                 aria-labelledby="contact-tab"
                 tabindex="0"
               >
-                <section className="py-4 mobileSpec" id="">
+                {/* <section className="py-4 mobileSpec" id="">
                   <div className="container">
                     <div className="row ">
                       <div className="col-12 Videos ghhh">
                         <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12">
-                            {/* <div className="row youPage">
-                                <div className="col-md-12 ">
-                                  <div className="PostInfo">
-                                    <div className="userImG">
-                                      <Space direction="vertical" size={16}>
-                                        <Space wrap size={16}>
-                                          <Avatar
-                                            size={64}
-                                            icon={
-                                              <img src={men_face} alt="logo" />
-                                            }
-                                          />
-                                        </Space>
-                                      </Space>
-                                    </div>
-                                    <div className="DecIbp ">
-                                    <textarea className="field"  rows="8" cols="100" placeholder="What’s happening?">
-                                      
-                                    </textarea>
-                                     <div className="youD">
-                                     <div className="py-3">
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-image"></i>
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-bars-progress"></i>
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-face-smile"></i>
-                                        </span>
-                                        <span className="socialCount">
-                                          <i class="fa-solid fa-business-time"></i>
-                                        </span>
-
-                                        <span className="socialCount">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        </span>
-
-                                      
-                                      </div>
-                                      <button class="btn">Post</button>
-                                     </div>
-                                     
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> */}
-                            <div className="row">
+                                                        <div className="row">
                               <div className="col-md-12 ">
                                 <div className="PostInfo mb-0">
                                   <div className="userImG">
@@ -401,8 +385,6 @@ const GaragesUserDetails = () => {
 
                                       <Dropdown.Menu>
                                         <Dropdown.Item href="#/action-1">Report Ads</Dropdown.Item>
-                                        {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
                                       </Dropdown.Menu>
                                     </Dropdown>
                                     </div>
@@ -479,22 +461,7 @@ const GaragesUserDetails = () => {
                                     
                                    
                                    </span>
-                                    {/* <span
-                                     
-                                      className="socialCount"
-                                    >
-                                      {curElem?.liked == 0 ? (
-                                        <FavoriteBorderIcon />
-                                      ) : (
-                                        <FavoriteIcon className="fa-heart" />
-                                      )}
-                                      &nbsp;{curElem.likes}
-                                    </span> */}
-                                    {/* <span
-                                      className="socialCount"
-                                    >
-                                      <i class="fa-sharp fa-solid fa-thumbs-down"></i>
-                                    </span> */}
+                                   
                                     <span
                                      
                                       style={{ cursor: "pointer" }}
@@ -503,16 +470,7 @@ const GaragesUserDetails = () => {
                                       <i class="fa-solid fa-comments"></i>{" "}
                                      
                                     </span>
-                                    {/* <span
-                                      onClick={() => {
-                                        handleShow();
-                                      }}
-                                      style={{ cursor: "pointer" }}
-                                      className="socialCount"
-                                    >
-                                      <i class="fa-solid fa-share-from-square"></i>{" "}
-                                      0
-                                    </span> */}
+                                    
 
                                     <span>
                                       <RWebShare
@@ -556,38 +514,23 @@ const GaragesUserDetails = () => {
                             </div>
                         
 
-                            {/* <Image.PreviewGroup>
-                                {garagesData?.image_gallery &&
-                                  [...garagesData?.image_gallery].map(
-                                    (curElem, i) => {
-                                      return (
-                                        <div key={i} className="col-md-4 Gld">
-                                          <div className="galleryImgSect gg">
-                                            <Image
-                                              loading="lazy"
-                                              src={
-                                                curElem?.logo &&
-                                                `${process.env.REACT_APP_URL}/${curElem?.logo}`
-                                              }
-                                              onError={({ currentTarget }) => {
-                                                currentTarget.onError = null;
-                                                currentTarget.src =
-                                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                                              }}
-                                              alt="Gallery"
-                                            />
-                                          </div>
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                              </Image.PreviewGroup> */}
+                            
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </section>
+                </section> */}
+                <Post id={id} setPostCount={setPostCount} logo={garagesData} />
+              </div>
+              <div
+                class="tab-pane fade"
+                id="replies-tab-pane"
+                role="tabpanel"
+                aria-labelledby="replies-tab"
+                tabindex="0"
+              >
+                <Replies logo={garagesData} id={id} />
               </div>
               <div
                 class="tab-pane fade"
@@ -603,6 +546,24 @@ const GaragesUserDetails = () => {
                     </div>
                   </div>
                 </section>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="book-tab-pane"
+                role="tabpanel"
+                aria-labelledby="book-tab"
+                tabindex="0"
+              >
+                <Bookmark logo={garagesData} id={id} />
+              </div>
+              <div
+                class="tab-pane fade"
+                id="fav-tab-pane"
+                role="tabpanel"
+                aria-labelledby="fav-tab"
+                tabindex="0"
+              >
+                <Favorite logo={garagesData} id={id} />
               </div>
               <div
                 class="tab-pane fade"

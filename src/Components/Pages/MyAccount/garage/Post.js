@@ -7,8 +7,10 @@ import { noImage, notify } from "../../../UI/globaleVar";
 import { RWebShare } from "react-web-share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const Post = ({ id }) => {
+const Post = ({ id, setPostCount, logo }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -28,16 +30,16 @@ const Post = ({ id }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}getPost/${id}`);
-      if (res.status === 200) {
+    axios
+      .post(`${process.env.REACT_APP_URL}getPost/${id}`, {})
+      .then(function (res) {
         setPostData(res.data.data);
         // setUserData(res.data.userProfile);
-      }
-      console.log(111, res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
+        setPostCount(res?.data?.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   useEffect(() => {
     getPostData();
@@ -84,6 +86,21 @@ const Post = ({ id }) => {
         console.log(error);
       });
   };
+
+  const handleSavePost = async (id, saved) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}addSavePost`, {
+        postId: id,
+        saved: saved,
+      })
+      .then(function (response) {
+        getPostData();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // =================== post again
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -148,8 +165,8 @@ const Post = ({ id }) => {
                             className="slidImg"
                             loading="lazy"
                             src={
-                              userData?.logo &&
-                              `${process.env.REACT_APP_URL}${userData?.logo}`
+                              logo?.logo &&
+                              `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onError = null;
@@ -367,12 +384,27 @@ const Post = ({ id }) => {
                                     <span className="socialCount">
                                       <i class="fa-solid fa-eye"></i> 99k
                                     </span>
-                                    <span className="socialCount">
-                                      <i class="fa-regular fa-bookmark"></i>
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-bookmark"></i>
-                                    </span>
+                                    {curElem?.saved == 1 ? (
+                                      <span
+                                        onClick={() =>
+                                          handleSavePost(curElem.id, 0)
+                                        }
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <BookmarkIcon />
+                                      </span>
+                                    ) : (
+                                      <span
+                                        onClick={() =>
+                                          handleSavePost(curElem.id, 1)
+                                        }
+                                        style={{ cursor: "pointer" }}
+                                        className="socialCount"
+                                      >
+                                        <BookmarkBorderIcon />
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -498,12 +530,27 @@ const Post = ({ id }) => {
                                           <span className="socialCount">
                                             <i class="fa-solid fa-eye"></i> 99k
                                           </span>
-                                          <span className="socialCount">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                          </span>
-                                          <span className="socialCount">
-                                            <i class="fa-solid fa-bookmark"></i>
-                                          </span>
+                                          {com?.saved == 1 ? (
+                                            <span
+                                              onClick={() =>
+                                                handleSavePost(com.id, 0)
+                                              }
+                                              className="socialCount"
+                                              style={{ cursor: "pointer" }}
+                                            >
+                                              <BookmarkIcon />
+                                            </span>
+                                          ) : (
+                                            <span
+                                              onClick={() =>
+                                                handleSavePost(com.id, 1)
+                                              }
+                                              style={{ cursor: "pointer" }}
+                                              className="socialCount"
+                                            >
+                                              <BookmarkBorderIcon />
+                                            </span>
+                                          )}
                                         </div>
                                       </div>
                                     </div>
@@ -602,7 +649,19 @@ const Post = ({ id }) => {
                         <Space wrap size={16}>
                           <Avatar
                             size={64}
-                            icon={<img src={men_face} alt="logo" />}
+                            icon={
+                              <img
+                                src={
+                                  logo?.logo &&
+                                  `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="logo"
+                              />
+                            }
                           />
                         </Space>
                       </Space>
