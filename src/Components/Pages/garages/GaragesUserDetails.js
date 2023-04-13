@@ -29,7 +29,7 @@ const GaragesUserDetails = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [postCount, setPostCount] = useState(0);
+  const [postCount, setPostCount] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
@@ -138,7 +138,7 @@ const GaragesUserDetails = () => {
                     <span>2</span>Following
                   </li>
                   <li>
-                    <span>{postCount}</span>Post
+                    <span>{postCount?.length}</span>Post
                   </li>
                 </ul>
                 <button className="btn">Follow</button>

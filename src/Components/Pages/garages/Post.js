@@ -34,7 +34,7 @@ const Post = ({ id, setPostCount }) => {
       const res = await axios.get(`${process.env.REACT_APP_URL}getPost/${id}`);
       if (res.status === 200) {
         setPostData(res.data.data);
-        setPostCount(res.data.data.length);
+        setPostCount(res?.data?.data);
         // setUserData(res.data.userProfile);
       }
     } catch (err) {

@@ -10,7 +10,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const Post = ({ id, setPostCount }) => {
+const Post = ({ id, setPostCount, logo }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -35,7 +35,7 @@ const Post = ({ id, setPostCount }) => {
       if (res.status === 200) {
         setPostData(res.data.data);
         // setUserData(res.data.userProfile);
-        setPostCount(res.data.data.length);
+        setPostCount(res?.data?.data);
       }
     } catch (err) {
       console.log(err);
@@ -165,8 +165,8 @@ const Post = ({ id, setPostCount }) => {
                             className="slidImg"
                             loading="lazy"
                             src={
-                              userData?.logo &&
-                              `${process.env.REACT_APP_URL}${userData?.logo}`
+                              logo?.logo &&
+                              `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onError = null;

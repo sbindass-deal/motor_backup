@@ -25,7 +25,7 @@ function UserGarage() {
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
-  const [postCount, setPostCount] = useState(0);
+  const [postCount, setPostCount] = useState([]);
   const userId = useSelector((state) => state);
   const id = userId.login.user.user_id;
   const dispatch = useDispatch();
@@ -336,7 +336,7 @@ function UserGarage() {
                             <span>2</span>Following
                           </li>
                           <li>
-                            <span>{postCount}</span>Post
+                            <span>{postCount?.length}</span>Post
                           </li>
                         </ul>
                         <button className="btn">Follow</button>
@@ -541,7 +541,11 @@ function UserGarage() {
                         aria-labelledby="contact-tab"
                         tabindex="0"
                       >
-                        <Post id={id} setPostCount={setPostCount} />
+                        <Post
+                          id={id}
+                          setPostCount={setPostCount}
+                          logo={userInfo}
+                        />
                       </div>
                       <div
                         class="tab-pane fade"
