@@ -30,16 +30,16 @@ const Post = ({ id, setPostCount, logo }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}getPost/${id}`);
-      if (res.status === 200) {
+    axios
+      .post(`${process.env.REACT_APP_URL}getPost/${id}`, {})
+      .then(function (res) {
         setPostData(res.data.data);
-        setPostCount(res?.data?.data);
         // setUserData(res.data.userProfile);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+        setPostCount(res?.data?.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   useEffect(() => {
     getPostData();

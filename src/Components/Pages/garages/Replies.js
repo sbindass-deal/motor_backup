@@ -30,15 +30,17 @@ const Replies = ({ id, logo }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}getPost/${id}`);
-      if (res.status === 200) {
+    axios
+      .post(`${process.env.REACT_APP_URL}getPost/${id}`, {
+        page: "replies",
+      })
+      .then(function (res) {
         setPostData(res.data.data);
         // setUserData(res.data.userProfile);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   useEffect(() => {
     getPostData();
