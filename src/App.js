@@ -9,6 +9,7 @@ import Layout from "./Components/Pages/Layout";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import DetailNew from "./Components/Pages/DetailNew";
+
 import {
   connectorsForWallets,
   darkTheme,

@@ -18,7 +18,7 @@ import {
 } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { noImage } from "../../UI/globaleVar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function EditMyAccount() {
   const url = process.env.REACT_APP_URL;
@@ -86,7 +86,7 @@ function EditMyAccount() {
   const handleEditOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
-    setEditUser({ ...editUser, [Name]: Value });
+    setEditUser({ ...editUser, [Name]: Value.trimStart() });
   };
   const fetchUserDetails = async () => {
     try {
@@ -302,7 +302,13 @@ function EditMyAccount() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Account Info</h3>
+              <div className="header_style">
+               
+                <h3>Edit Account Info</h3>
+                <Link to={'/accountinfo'}>
+                  <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+                </Link>
+             </div>
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">

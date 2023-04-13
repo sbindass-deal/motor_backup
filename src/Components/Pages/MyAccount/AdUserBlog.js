@@ -7,10 +7,14 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
+import SmallSpinner from "../../UI/SmallSpinner";
+import FormInput from "../../UI/FormInput";
+import MyAccountLeftNav from "./MyAccountLeftNav";
 
 
 const AdUserBlog = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading]=useState(false)
   const [file, setFile] = useState([]);
   const [blogContent, setBlogContent] = useState(EditorState.createEmpty());
   const [blogData, setBlogData] = useState({
@@ -33,7 +37,7 @@ const AdUserBlog = () => {
   };
 
   const handleChange = (e) => {
-    setBlogData({ ...blogData, [e.target.name]: e.target.value });
+    setBlogData({ ...blogData, [e.target.name]: e.target.value.trimStart() });
   };
   const handleContent = (e) => {
     setBlogContent(e);
@@ -55,6 +59,7 @@ const AdUserBlog = () => {
 
   const handleApi = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const url = `${process.env.REACT_APP_URL}addblogs`;
 
     // if (!blogData.title) {
@@ -89,6 +94,7 @@ const AdUserBlog = () => {
       .post(url, formdata, config)
       .then((response) => {
         if (response.status === 200) {
+          setIsLoading(false)
           notify("Added Blog successfully!");
 
           navigate("/user-blog");
@@ -104,23 +110,34 @@ const AdUserBlog = () => {
   return (
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
-        <form>
-          <div className="row row_gap_5">
-            <div className="col-12 ">
-              <label>Blog Title</label>
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={blogData.title}
-                  name="title"
-                  onChange={handleChange}
-                  className="field"
-                  placeholder="Enter Blog"
-                  required
-                />
+        <div className="col-12 col-md-4 col-lg-3">
+          <div className="card_Gray mb-5 mb-md-0">
+            <h5>My Account</h5>
+            <hr />
+            <MyAccountLeftNav />
+          </div>
+        </div>
+        <div className="col-12 col-md-8 col-lg-9">
+          <h3>Edit Blogs</h3>
+          <hr />
+          <form onSubmit={handleApi}>
+            <div className="row row_gap_5">
+              <div className="col-12 ">
+                <label>Blog Title</label>
+                <div className="form-group">
+                  <FormInput
+                    type="text"
+                    value={blogData.title}
+                    name="title"
+                    onChange={handleChange}
+                    className="field"
+                    placeholder="Enter Blog"
+                    errorMessage="Title is Required"
+                    required={true}
+                  />
+                </div>
               </div>
-            </div>
-            {/* <div className="col-12 ">
+              {/* <div className="col-12 ">
               <label>Image</label>
               <div className="form-group">
                 <input
@@ -135,9 +152,9 @@ const AdUserBlog = () => {
               </div>
             </div> */}
 
-            <div className="col-12 mb-3">
-              <label>Blog Description</label>
-              {/* <div className="form-group">
+              <div className="col-12 mb-3">
+                <label>Blog Description</label>
+                {/* <div className="form-group">
                 <textarea
                   className="field"
                   value={blogData.desc}
@@ -148,75 +165,83 @@ const AdUserBlog = () => {
                   rows={11}
                 ></textarea>
               </div> */}
-              <div className="border border-2 border-dark">
-                <Editor
-                  editorStyle={{
-                    background: "white",
-                    padding: "15px",
-                    minHeight: "30vh",
-                  }}
-                  editorState={blogContent}
-                  toolbarClassName="toolbarClassName"
-                  wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
-                  onEditorStateChange={handleContent}
-                  placeholder="Please enter description"
-                />
+                <div className="border border-2 border-dark">
+                  <Editor
+                    editorStyle={{
+                      background: "white",
+                      padding: "15px",
+                      minHeight: "30vh",
+                    }}
+                    editorState={blogContent}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={handleContent}
+                    placeholder="Please enter description"
+                    required={true}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="col-12 col-md-12">
-              <label>Upload Photos</label>
-              <div className="row">
-                {Array.from(file).map((items) => {
-                  return (
-                    <span>
-                      <img
-                        src={items ? URL.createObjectURL(items) : null}
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                          padding: "15px",
-                        }}
-                      />
-                    </span>
-                  );
-                })}
-              </div>
-              <div
-                className="dropzone"
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-              >
-                <h3>Drag and Drop Files to Upload</h3>
-                <h3>Or</h3>
-                <input
-                  onChange={(e) => {
-                    return setFile((prevState) => [...e.target.files]);
-                  }}
-                  name="file"
-                  type="file"
-                  accept="image/gif, image/jpeg, image/png, image/jpg"
-                  ref={inputRef}
-                  required
-                  hidden
-                />
-                <button
-                  className="orange_btn"
-                  type="button"
-                  onClick={() => inputRef.current.click()}
+              <div className="col-12 col-md-12">
+                <label>Upload Photos</label>
+                <div className="row">
+                  {Array.from(file).map((items) => {
+                    return (
+                      <span>
+                        <img
+                          src={items ? URL.createObjectURL(items) : null}
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            objectFit: "cover",
+                            padding: "15px",
+                          }}
+                        />
+                      </span>
+                    );
+                  })}
+                </div>
+                <div
+                  className="dropzone"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
                 >
-                  Select Files
-                </button>
+                  <h3>Drag and Drop Files to Upload</h3>
+                  <h3>Or</h3>
+                  <FormInput
+                    onChange={(e) => {
+                      return setFile((prevState) => [...e.target.files]);
+                    }}
+                    name="file"
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png, image/jpg"
+                    ref={inputRef}
+                    required
+                    hidden
+                  />
+                  <button
+                    className="orange_btn"
+                    type="button"
+                    onClick={() => inputRef.current.click()}
+                  >
+                    Select Files
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="form-group text-center my-4 mt-5">
-            <button onClick={handleApi} className="btn">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="form-group text-center my-4 mt-5">
+              {
+                isLoading ? (
+                  <SmallSpinner />
+                ) : <button type="submit" className="btn">
+                  Submit
+                </button>
+              }
+
+            </div>
+          </form>
+        </div>
+       
       </div>
     </div>
   );
