@@ -25,11 +25,44 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu title="Garage">
-              <MenuItem > Social media</MenuItem>
-              <MenuItem> Posts</MenuItem>
-              <MenuItem> Replies</MenuItem>
-              <MenuItem> Blog</MenuItem>
+            <SubMenu title="Garage" >
+              <MenuItem >
+                <Link
+                  to="/user-garage"
+                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                    } `}
+                >
+                  Social media
+                </Link>
+               
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                    } `}
+                >
+                  Posts
+                </Link>
+                </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                    } `}
+                >
+                  Replies
+                </Link>
+                </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                    } `}
+                >
+                  Blog
+                </Link>
+                </MenuItem>
             </SubMenu>
 
             <MenuItem>
