@@ -10,7 +10,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const Post = ({ id, setPostCount }) => {
+const Post = ({ id, setPostCount, logo }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -634,7 +634,19 @@ const Post = ({ id, setPostCount }) => {
                         <Space wrap size={16}>
                           <Avatar
                             size={64}
-                            icon={<img src={men_face} alt="logo" />}
+                            icon={
+                              <img
+                                src={
+                                  logo?.image_logo &&
+                                  `${process.env.REACT_APP_URL}/${logo?.image_logo[0]?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="logo"
+                              />
+                            }
                           />
                         </Space>
                       </Space>

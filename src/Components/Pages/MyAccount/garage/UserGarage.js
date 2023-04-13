@@ -19,6 +19,7 @@ import GaragesAuction from "../../garages/GaragesAuction";
 import GaragesBlog from "../../garages/GaragesBlog";
 import { handleGarage } from "../../../../redux/reducers/planReducer";
 import Post from "./Post";
+import Replies from "./Replies";
 
 function UserGarage() {
   const [garagesData, setGaragesData] = useState({});
@@ -409,12 +410,12 @@ function UserGarage() {
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
-                          id="video-tab"
+                          id="replies-tab"
                           data-bs-toggle="tab"
-                          data-bs-target="#video-tab-pane"
+                          data-bs-target="#replies-tab-pane"
                           type="button"
                           role="tab"
-                          aria-controls="video-tab-pane"
+                          aria-controls="replies-tab-pane"
                           aria-selected="false"
                         >
                           Replies
@@ -423,7 +424,7 @@ function UserGarage() {
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
-                          id="video-tab"
+                          id="blog-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#blog-tab-pane"
                           type="button"
@@ -546,6 +547,16 @@ function UserGarage() {
                           setPostCount={setPostCount}
                           logo={userInfo}
                         />
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="replies-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="replies-tab"
+                        tabindex="0"
+                      >
+                        <Replies id={id} logo={userInfo} />
                       </div>
                       <div
                         class="tab-pane fade"

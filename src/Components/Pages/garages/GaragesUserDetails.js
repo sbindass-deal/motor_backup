@@ -23,6 +23,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { RWebShare } from "react-web-share";
 import Post from "./Post";
+import Replies from "./Replies";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -196,12 +197,12 @@ const GaragesUserDetails = () => {
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="video-tab"
+                  id="replies-tab"
                   data-bs-toggle="tab"
-                  data-bs-target="#video-tab-pane"
+                  data-bs-target="#replies-tab-pane"
                   type="button"
                   role="tab"
-                  aria-controls="video-tab-pane"
+                  aria-controls="replies-tab-pane"
                   aria-selected="false"
                 >
                   Replies
@@ -210,7 +211,7 @@ const GaragesUserDetails = () => {
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="video-tab"
+                  id="blog-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#blog-tab-pane"
                   type="button"
@@ -490,7 +491,16 @@ const GaragesUserDetails = () => {
                     </div>
                   </div>
                 </section> */}
-                <Post id={id} setPostCount={setPostCount} />
+                <Post id={id} setPostCount={setPostCount} logo={garagesData} />
+              </div>
+              <div
+                class="tab-pane fade"
+                id="replies-tab-pane"
+                role="tabpanel"
+                aria-labelledby="replies-tab"
+                tabindex="0"
+              >
+                <Replies logo={garagesData} id={id} />
               </div>
               <div
                 class="tab-pane fade"

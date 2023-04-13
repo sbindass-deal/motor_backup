@@ -649,7 +649,19 @@ const Post = ({ id, setPostCount, logo }) => {
                         <Space wrap size={16}>
                           <Avatar
                             size={64}
-                            icon={<img src={men_face} alt="logo" />}
+                            icon={
+                              <img
+                                src={
+                                  logo?.logo &&
+                                  `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
+                                }
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onError = null;
+                                  currentTarget.src = noImage;
+                                }}
+                                alt="logo"
+                              />
+                            }
                           />
                         </Space>
                       </Space>
