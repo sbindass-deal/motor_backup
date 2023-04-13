@@ -7,8 +7,10 @@ import { noImage, notify } from "../../../UI/globaleVar";
 import { RWebShare } from "react-web-share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const Post = ({ id }) => {
+const Post = ({ id, setPostCount }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -33,8 +35,8 @@ const Post = ({ id }) => {
       if (res.status === 200) {
         setPostData(res.data.data);
         // setUserData(res.data.userProfile);
+        setPostCount(res.data.data.length);
       }
-      console.log(111, res.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -84,6 +86,21 @@ const Post = ({ id }) => {
         console.log(error);
       });
   };
+
+  const handleSavePost = async (id, saved) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}addSavePost`, {
+        postId: id,
+        saved: saved,
+      })
+      .then(function (response) {
+        getPostData();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // =================== post again
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -367,12 +384,27 @@ const Post = ({ id }) => {
                                     <span className="socialCount">
                                       <i class="fa-solid fa-eye"></i> 99k
                                     </span>
-                                    <span className="socialCount">
-                                      <i class="fa-regular fa-bookmark"></i>
-                                    </span>
-                                    <span className="socialCount">
-                                      <i class="fa-solid fa-bookmark"></i>
-                                    </span>
+                                    {curElem?.saved == 1 ? (
+                                      <span
+                                        onClick={() =>
+                                          handleSavePost(curElem.id, 0)
+                                        }
+                                        className="socialCount"
+                                        style={{ cursor: "pointer" }}
+                                      >
+                                        <BookmarkIcon />
+                                      </span>
+                                    ) : (
+                                      <span
+                                        onClick={() =>
+                                          handleSavePost(curElem.id, 1)
+                                        }
+                                        style={{ cursor: "pointer" }}
+                                        className="socialCount"
+                                      >
+                                        <BookmarkBorderIcon />
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -498,12 +530,27 @@ const Post = ({ id }) => {
                                           <span className="socialCount">
                                             <i class="fa-solid fa-eye"></i> 99k
                                           </span>
-                                          <span className="socialCount">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                          </span>
-                                          <span className="socialCount">
-                                            <i class="fa-solid fa-bookmark"></i>
-                                          </span>
+                                          {com?.saved == 1 ? (
+                                            <span
+                                              onClick={() =>
+                                                handleSavePost(com.id, 0)
+                                              }
+                                              className="socialCount"
+                                              style={{ cursor: "pointer" }}
+                                            >
+                                              <BookmarkIcon />
+                                            </span>
+                                          ) : (
+                                            <span
+                                              onClick={() =>
+                                                handleSavePost(com.id, 1)
+                                              }
+                                              style={{ cursor: "pointer" }}
+                                              className="socialCount"
+                                            >
+                                              <BookmarkBorderIcon />
+                                            </span>
+                                          )}
                                         </div>
                                       </div>
                                     </div>
