@@ -71,7 +71,7 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                         <div class="card_postInfo">
                           <h4>
                             <Link to={`/garages/${curElem.id}`}>
-                              {curElem?.name}
+                              {curElem?.garageTitle}
                             </Link>
                           </h4>
 
@@ -81,14 +81,14 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                             <i class="fa-solid fa-user mr-2"></i> 
                           </li>
                         </ul> */}
-                          <p>
+                          {/* <p>
                             {curElem?.dealerDescription &&
                               parse(
                                 curElem?.dealerDescription?.substr(0, 95) +
                                   "...",
                                 strToHtml
                               )}
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     </div>
