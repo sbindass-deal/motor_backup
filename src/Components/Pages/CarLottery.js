@@ -30,7 +30,7 @@ import { lotteryExpDate } from "../../redux/reducers/lotteryReducer";
 import { Image } from "antd";
 import parse from "html-react-parser";
 import { strToHtml } from "../UI/globaleVar";
-import lotry from "../../Assets/images/carTd.png";
+import lotry from "../../Assets/images/1968-mustang-banner.png";
 
 function CarRaffle() {
   const { id } = useParams();
@@ -289,7 +289,7 @@ function CarRaffle() {
               </div>
             </div>
             <div class="col-12 col-lg-5">
-              <img src={lotry} />
+              {/* <img src={lotry} /> */}
             </div>
           </div>
         </div>

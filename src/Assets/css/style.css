@@ -6489,7 +6489,7 @@ h3.cardTitle.riTArrow {
 .rfel {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/giv-away.png);
+  background-image: url(../images/1968-mustang-banner.png);
   background-position: center;
   height: 25vh;
 
@@ -6510,7 +6510,15 @@ h3.cardTitle.riTArrow {
 .light .loTryTitle h2 span {
   color: #fff;
 }
-
+.loTryTitle h2 span {
+  font-size: 100px;
+  font-weight: 700;
+  display: block;
+  color: #ffa500;
+}
+.light .loTryTitle h2 {
+  color: orange;
+}
 
 .dropdown-content.myACt {
   right: -55px;
