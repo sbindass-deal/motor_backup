@@ -75,6 +75,7 @@ const VechilesRegistraion = () => {
   const [endDateAndTime, setEndDateAndTime] = useState(null);
   const [countryCode, setCountryCode] = useState(231);
   const [optionsData, setOptionsData] = useState([]);
+  const [optionsCharity, setOptionsCharity] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
@@ -103,7 +104,13 @@ const VechilesRegistraion = () => {
       .catch(error => console.error(error));
   }, []);
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}getCharity`)
+      .then(response => setOptionsCharity(response.data.data))
+      .catch(error => console.error(error));
+  }, []);
 
+  console.log(898900, optionsCharity)
 
 
   const handleSelectChange = (event) => {
@@ -1781,9 +1788,60 @@ const VechilesRegistraion = () => {
 
 
                           {basicfact.auctionType === "charity" && (
-                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="col-12 col-sm-12 col-md-12">
+                                <div className="">
+                                  <div className="form-group">
+                                    <label>
+                                      Charity Name
+                                    </label>
+                                    <select
+                                      // value={selectedValue}
+                                      className="field bgChangeDark"
+                                    // onChange={handleSelectChange}
+                                    >
+                                      <option value="">Select an option</option>
+                                      {optionsCharity?.charity?.map(option => (
+                                        <option key={option.id} value={option.charityName}>
+                                          {`${option.charityName}`}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  </div>
+                                  <div className="  ">
+                                    <div className="form-group">
+                                      <label>
+                                        Charity Percentage
+                                      </label>
+                                      <select
+                                        // value={selectedValue}
+                                        className="field bgChangeDark"
+                                      // onChange={handleSelectChange}
+                                      >
+                                        <option value="">Select an option</option>
+                                        {optionsCharity?.chairtyPercentage?.map(option => (
+                                          <option key={option.id} value={option.percentage}>
+                                            {`${option.percentage} %`}
+                                          </option>
+                                        ))}
+                                      </select>
+                                    </div>
+
+                                    {/* ====== */}
+                                    <div className="form-group">
+                                      <FormInput
+                                        value={""}
+                                        onChange={""}
+                                        name=""
+                                        label="Charity Other"
+                                        pattern="^[A-Za-z0-9 ]{3,16}$"
+                                        required={true}
+                                        placeholder="Charity Other"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
                               <div className="form-group">
-                                <p>Please add name of charity.</p>
+                                <p>Charity Description</p>
                                 <div className="desCrtpion">
                                   <Editor
                                     editorState={charityEditor}
@@ -1796,9 +1854,15 @@ const VechilesRegistraion = () => {
                                     placeholder="Please enter here"
                                   />
                                 </div>
-                              </div>
+                                </div>
+                                {/* ============= */}
+                                
+                                
+
+                                {/* ========= */}
                             </div>
-                          )}
+                            )}
+                            
 
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
