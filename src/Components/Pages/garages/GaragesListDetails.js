@@ -14,6 +14,7 @@ import GaragesAuction from "./GaragesAuction";
 import DealerVehicleList from "./GaragesVehicleList";
 import { Avatar, Space } from "antd";
 import coTImg from "../../../Assets/images/coTImg.png";
+import GaragesVehicle from "./GaragesVehicle";
 
 const GaragesListDetails = () => {
   const { id } = useParams();
@@ -156,13 +157,24 @@ const GaragesListDetails = () => {
       </section>
       <section className="pt_80 mobileSpec" id="">
         <div className="container">
+          <div className="row">{/* <Videos data={dealerData} /> */}</div>
+        </div>
+      </section>
+      <section className="pt_80 mobileSpec" id="">
+        <div className="container">
+          <div className="text-center">
+            <h3>Garage vehicles</h3>
+          </div>
           <div className="row">
-            <Videos data={dealerData} />
+            <div className="col-md-12">
+              <GaragesVehicle id={id} />
+            </div>
           </div>
         </div>
       </section>
-      <GaragesAuction dealerName={dealerData.name} userId={id} />
-      <DealerVehicleList dealerName={dealerData.name} userId={id} />
+
+      {/* <GaragesAuction dealerName={dealerData.name} userId={id} />
+      <DealerVehicleList dealerName={dealerData.name} userId={id} /> */}
       <section class="pt_80 mobileSpec" id="">
         <div class="container">
           <div class="row ">

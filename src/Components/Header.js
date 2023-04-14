@@ -19,8 +19,8 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -119,7 +119,6 @@ function Header() {
 
   return (
     <>
-    
       <header
         className="bg-header-rendam"
         style={{ zIndex: 99999999, position: "relative" }}
@@ -393,7 +392,7 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           to="/garages"
@@ -401,7 +400,7 @@ function Header() {
                         >
                           Garages
                         </Link>
-                      </li> */}
+                      </li>
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${
@@ -778,7 +777,7 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
-                      {/* <li className="nav-item">
+                      <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -790,7 +789,7 @@ function Header() {
                         >
                           Garages
                         </Link>
-                      </li> */}
+                      </li>
 
                       {/* <li className="nav-item">
                         <div className="dropdown">

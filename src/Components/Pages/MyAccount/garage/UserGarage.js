@@ -333,10 +333,10 @@ function UserGarage() {
                       <div className="followers">
                         <ul className="fwrList">
                           <li>
-                            <span>22</span> Followers
+                            <span>{userInfo.followers}</span> Followers
                           </li>
                           <li>
-                            <span>2</span>Following
+                            <span>{userInfo.followings}</span>Following
                           </li>
                           <li>
                             <span>{postCount?.length}</span>Post
@@ -448,7 +448,7 @@ function UserGarage() {
                           aria-controls="fav-tab-pane"
                           aria-selected="false"
                         >
-                          Favourite
+                          Favourites
                         </button>
                       </li>
                       {/* <li class="nav-item" role="presentation">
