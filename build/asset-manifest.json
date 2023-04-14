@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b4417fb8.css",
-    "main.js": "/static/js/main.33de4434.js",
+    "main.css": "/static/css/main.06c2028f.css",
+    "main.js": "/static/js/main.e8c1483b.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -41,6 +41,7 @@
     "static/js/850.8f4c01f8.chunk.js": "/static/js/850.8f4c01f8.chunk.js",
     "static/js/419.67b5e61d.chunk.js": "/static/js/419.67b5e61d.chunk.js",
     "static/js/48.3ac00179.chunk.js": "/static/js/48.3ac00179.chunk.js",
+    "static/media/1968-mustang-banner.png": "/static/media/1968-mustang-banner.77d9d042691eeddab234.png",
     "static/media/Dealer-1.jpg": "/static/media/Dealer-1.19b859fc889797370089.jpg",
     "static/media/Dealer-2.jpg": "/static/media/Dealer-2.833e0082195be2cb2490.jpg",
     "static/media/Dealer-3.jpg": "/static/media/Dealer-3.b2d48fd81c7a6ffc2060.jpg",
@@ -59,10 +60,8 @@
     "static/media/store-hero.png": "/static/media/store-hero.d8575397672b39dc2b05.png",
     "static/media/img-8.webp": "/static/media/img-8.29adea5d0e9e7a7221f7.webp",
     "static/media/shop-banner.png": "/static/media/shop-banner.5302ec4954ade319b648.png",
-    "static/media/giv-away.png": "/static/media/giv-away.84a5cbde58a0a278345b.png",
     "static/media/howItWork.jpg": "/static/media/howItWork.5ca8eae483a1f31ab7f2.jpg",
     "static/media/contactBg.png": "/static/media/contactBg.287636b3b7fa2a48cbe6.png",
-    "static/media/carTd.png": "/static/media/carTd.f5f5ac1fc8a5f278a48d.png",
     "static/media/about.jpg": "/static/media/about.908b8d15299591dbd1dc.jpg",
     "static/media/Dabout.jpg": "/static/media/Dabout.8e200aeeca7cf2560366.jpg",
     "static/media/bgImg_04.jpg": "/static/media/bgImg_04.25898655cc132bd703ad.jpg",
@@ -137,8 +136,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.b4417fb8.css.map": "/static/css/main.b4417fb8.css.map",
-    "main.33de4434.js.map": "/static/js/main.33de4434.js.map",
+    "main.06c2028f.css.map": "/static/css/main.06c2028f.css.map",
+    "main.e8c1483b.js.map": "/static/js/main.e8c1483b.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -178,7 +177,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4417fb8.css",
-    "static/js/main.33de4434.js"
+    "static/css/main.06c2028f.css",
+    "static/js/main.e8c1483b.js"
   ]
 }
