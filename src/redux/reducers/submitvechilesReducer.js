@@ -8,6 +8,8 @@ const initialState = {
   step_four: false,
   contactinfo: [],
   submitPlan: "",
+  postTab: false,
+  repliesTab: false
 };
 
 export const submitdetails = createSlice({
@@ -23,6 +25,7 @@ export const submitdetails = createSlice({
     step_three: (state, action) => {
       state.step_three = action.payload;
     },
+
     contactinfosave: (state, action) => {
       state.contactinfo.push(action.payload);
     },
@@ -31,6 +34,12 @@ export const submitdetails = createSlice({
     },
     storeVehicleData: (state, action) => {
       state.vehicleData = action.payload;
+    },
+    postTab: (state, action) => {
+      state.postTab = action.payload;
+    },
+    repliesTab: (state, action) => {
+      state.repliesTab = action.payload;
     },
   },
 });
@@ -42,6 +51,8 @@ export const {
   contactinfosave,
   selectPlan,
   storeVehicleData,
+  postTab,
+  repliesTab
 } = submitdetails.actions;
 
 export default submitdetails.reducer;

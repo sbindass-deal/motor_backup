@@ -8,6 +8,7 @@ import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router-dom";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { toast } from "react-toastify";
+import FormInput from "../../UI/FormInput";
 
 function AdUserMeeting() {
   const navigate = useNavigate()
@@ -129,64 +130,75 @@ function AdUserMeeting() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Events</h3>
+              <h3>Add Event</h3>
               <hr />
               <form onSubmit={handleSubmit}>
                 <div class="row">
                   <div class="col-md-6">
                     <label htmlFor="">Title</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="field"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
+                      pattern="^[A-Za-z ]{3,30}$"
+                      errorMessage="Title should be 3-30 characters and shouldn't include any special character or number!"
+                      required
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       class="field"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
+                      errorMessage="Required"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       class="field"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
+                      errorMessage="Required"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Website Link</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="field"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
+                      errorMessage="Required"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Facebook Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       class="field"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
+                      errorMessage="Required"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">

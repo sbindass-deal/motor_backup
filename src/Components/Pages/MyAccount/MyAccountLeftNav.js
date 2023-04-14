@@ -12,7 +12,7 @@ function MyAccountLeftNav() {
      
 
 
-      <ul class="sideBar__">
+      <ul class="sideBar__  ">
 
         <ProSidebar className="sideBar__">
           
@@ -37,7 +37,7 @@ function MyAccountLeftNav() {
                
               </MenuItem>
               <MenuItem>
-                <Link
+                <Link 
                   to="/user-garage"
                   className={` ${location.pathname === "/user-garage" ? "active" : ""
                     } `}
@@ -65,16 +65,41 @@ function MyAccountLeftNav() {
                 </MenuItem>
             </SubMenu>
 
-            <MenuItem>
+            <SubMenu title="Auction" >
+             
+              <MenuItem >
+                <Link
+                  to="/bids"
+                  className={` ${location.pathname === "/user-garage" ? "active" : ""
+                    } `}
+                >
+                  Bids
+                </Link>
+
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/wins"
+                  className={` ${location.pathname === "/wins" ? "active" : ""
+                    } `}
+                >
+                  Won
+                </Link>
+              </MenuItem>
+             
+             
+            </SubMenu>
+
+            {/* <MenuItem>
               <Link
                 className={` ${location.pathname === "/listing" ? "active" : ""} `}
                 to="/listing"
               >
                 Listings
               </Link>
-            </MenuItem>
+            </MenuItem> */}
 
-            <MenuItem>
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/bids" ? "active" : ""} `}
@@ -83,9 +108,9 @@ function MyAccountLeftNav() {
                   Bids
                 </Link>
               </li>
-            </MenuItem>
+            </MenuItem> */}
 
-            <MenuItem>
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/wins" ? "active" : ""} `}
@@ -94,6 +119,14 @@ function MyAccountLeftNav() {
                   Won
                 </Link>
               </li>
+            </MenuItem> */}
+            <MenuItem>
+              <Link
+                className={` ${location.pathname === "/listing" ? "active" : ""} `}
+                to="/listing"
+              >
+                Listings
+              </Link>
             </MenuItem>
 
             <MenuItem>
@@ -108,7 +141,7 @@ function MyAccountLeftNav() {
               </li>
             </MenuItem>
 
-            <MenuItem>
+            {/* <MenuItem>
               <li>
                 <Link
                   className={`${location.pathname === "/user-blog" ? "active" : ""}`}
@@ -117,7 +150,7 @@ function MyAccountLeftNav() {
                   Blogs
                 </Link>
               </li>
-            </MenuItem>
+            </MenuItem> */}
 
             <MenuItem>
               <li>

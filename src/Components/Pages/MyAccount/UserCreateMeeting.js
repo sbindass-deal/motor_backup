@@ -94,7 +94,7 @@ function UserCreateMeeting() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>Events</h3>
+                <h3>Events Management</h3>
 
                 {/* <ul>
                   <li className="">

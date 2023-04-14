@@ -15,6 +15,7 @@ import {
 
 import { toast } from "react-toastify";
 import MyAccountLeftNav from "./MyAccountLeftNav";
+import FormInput from "../../UI/FormInput";
 
 
 const EditUserBlog = () => {
@@ -52,7 +53,7 @@ const EditUserBlog = () => {
 
 
   const handleChange = (e) => {
-    setBlogData({ ...blogData, [e.target.name]: e.target.value });
+    setBlogData({ ...blogData, [e.target.name]: e.target.value.trimStart() });
   };
   const handleContent = (e) => {
     setBlogContent(e);
@@ -116,7 +117,7 @@ const EditUserBlog = () => {
   // console.log(draftToHtml(convertToRaw(blogContent.getCurrentContent())));
 
 
- 
+
 
 
   return (
@@ -137,14 +138,17 @@ const EditUserBlog = () => {
               <div className="col-12 ">
                 <label>Blog Title</label>
                 <div className="form-group">
-                  <input
+                  <FormInput
                     type="text"
                     value={blogData.title}
                     name="title"
                     onChange={handleChange}
                     className="field"
                     placeholder="Enter Blog"
-                    required
+                    required={true}
+                    errorMessage="Title should be 3-30 characters and shouldn't include any special character or number!"
+                    pattern="^[A-Za-z ]{3,30}$"
+
                   />
                 </div>
               </div>
@@ -190,6 +194,7 @@ const EditUserBlog = () => {
                     editorClassName="editorClassName"
                     onEditorStateChange={handleContent}
                     placeholder="Please enter description"
+                    required={true}
                   />
                   {/* <textarea
           disabled
@@ -245,7 +250,7 @@ const EditUserBlog = () => {
                 >
                   <h3>Drag and Drop Files to Upload</h3>
                   <h3>Or</h3>
-                  <input
+                  <FormInput
                     onChange={(e) => {
                       return setFile((prevState) => [...e.target.files]);
                     }}
@@ -267,13 +272,13 @@ const EditUserBlog = () => {
               </div>
             </div>
             <div className="form-group text-center my-4 mt-5">
-              <button onClick={handleApi} className="btn">
+              <button onClick={handleApi} type="submit" className="btn">
                 Submit
               </button>
             </div>
           </form>
         </div>
-       
+
       </div>
     </div>
   );

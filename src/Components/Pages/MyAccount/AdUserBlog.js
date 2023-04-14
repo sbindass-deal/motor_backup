@@ -132,8 +132,10 @@ const AdUserBlog = () => {
                     onChange={handleChange}
                     className="field"
                     placeholder="Enter Blog"
-                    errorMessage="Title is Required"
+                    errorMessage="Title should be 3-30 characters and shouldn't include any special character or number!"
                     required={true}
+                    pattern="^[A-Za-z ]{3,30}$"
+
                   />
                 </div>
               </div>

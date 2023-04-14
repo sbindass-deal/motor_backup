@@ -7291,7 +7291,25 @@ justify-content: space-between;
     height: 100%;
     position: relative;
     z-index: 101;
+    width: 90%;
 }
 
 
+.dark .pro-sidebar  .pro-sidebar-inner {
+    background: #1111 !important;
+    height: 100%;
+    position: relative;
+    z-index: 101;
+    width: 90%;
+}
 
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+    position: relative;
+    background-color: #e5e4e4 !important;
+}
+
+
+.dark .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+    position: relative;
+    background-color: #111111 !important;
+}
