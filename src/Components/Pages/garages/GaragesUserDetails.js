@@ -37,6 +37,25 @@ const GaragesUserDetails = () => {
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
   const { id } = useParams();
+  const [userInfo, setUserinfo] = useState({});
+
+  const fetchUsrApi = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getGarageReturn`
+      );
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchUsrApi();
+  }, []);
 
   useEffect(() => {
     const fetchDealer = async () => {
@@ -135,10 +154,10 @@ const GaragesUserDetails = () => {
               <div className="followers">
                 <ul className="fwrList">
                   <li>
-                    <span>22</span> Followers
+                    <span>{userInfo.followers}</span> Followers
                   </li>
                   <li>
-                    <span>2</span>Following
+                    <span>{userInfo.followings}</span>Following
                   </li>
                   <li>
                     <span>{postCount?.length}</span>Post
