@@ -238,7 +238,7 @@ const GaragesUserDetails = () => {
                   Favorite
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              {/* <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="blog-tab"
@@ -251,7 +251,7 @@ const GaragesUserDetails = () => {
                 >
                   Blog
                 </button>
-              </li>
+              </li> */}
             </ul>
             <div class="tab-content" id="myTabContent">
               <div
