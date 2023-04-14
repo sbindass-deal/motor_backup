@@ -74,6 +74,8 @@ const VechilesRegistraion = () => {
   const [stateData, setStateData] = useState([]);
   const [endDateAndTime, setEndDateAndTime] = useState(null);
   const [countryCode, setCountryCode] = useState(231);
+  const [optionsData, setOptionsData] = useState([]);
+  const [selectedValue, setSelectedValue] = useState('');
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
   );
@@ -94,6 +96,26 @@ const VechilesRegistraion = () => {
     };
     fetchCountryApi();
   }, []);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}getAuctionDays`)
+      .then(response => setOptionsData(response.data.data))
+      .catch(error => console.error(error));
+  }, []);
+
+
+
+
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+  }
+
+
+ 
+
+
+
+  console.log(9898, selectedValue)
 
   useEffect(() => {
     const fetchPurchagePlan = async () => {
@@ -602,12 +624,10 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         detailvin: vin,
-        displayInAuction: `${
-          logingUser.planReducer.garage ? displayInAuction : "Garage"
-        }`,
-        auctionType: `${
-          logingUser.planReducer.garage ? auctionType : "Garage"
-        }`,
+        displayInAuction: `${logingUser.planReducer.garage ? displayInAuction : "Garage"
+          }`,
+        auctionType: `${logingUser.planReducer.garage ? auctionType : "Garage"
+          }`,
         externalLink: adWebsiteLink,
         km: odometer,
         kmacc: accurateField,
@@ -655,9 +675,11 @@ const VechilesRegistraion = () => {
         rustDetails,
         modificationOnTruck: modificationOnTrck,
         fuel,
-        EndTime: endDateAndTime,
+        startDate: endDateAndTime,
         phone,
         sold: 1,
+        days:optionsData
+
       })
       .then((result) => {
         setSubmitLoading(false);
@@ -937,6 +959,7 @@ const VechilesRegistraion = () => {
 
   return (
     <>
+
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row"></div>
@@ -973,7 +996,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                            reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -992,8 +1015,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1012,8 +1035,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1183,7 +1206,7 @@ const VechilesRegistraion = () => {
                                 name="city"
                                 placeholder="Enter city"
                                 className="field"
-                                // required
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1278,7 +1301,7 @@ const VechilesRegistraion = () => {
                               </div> */}
                             </>
                           ) : // )
-                          null}
+                            null}
 
                           {namefield.vehiclepast === "Yes" ? (
                             <>
@@ -1576,7 +1599,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                    reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1646,7 +1669,7 @@ const VechilesRegistraion = () => {
                                     Select
                                   </option>
                                   {logingUser.planReducer.planSelectByDealer ===
-                                  "classified" ? (
+                                    "classified" ? (
                                     <option value="classified">
                                       Classified Ads
                                     </option>
@@ -1660,7 +1683,7 @@ const VechilesRegistraion = () => {
                           {logingUser.planReducer.garage && (
                             <>
                               {logingUser.planReducer.planSelectByDealer ===
-                              "classified" ? (
+                                "classified" ? (
                                 <div className="col-12 col-sm-12 col-md-6">
                                   <div className="form-group">
                                     <FormInput
@@ -1703,8 +1726,8 @@ const VechilesRegistraion = () => {
                                 </div>
                               )}
                             </>
-                            )}
-                            
+                          )}
+
 
                           {logingUser.planReducer.garage && (
                             <div className="col-12 col-sm-12 col-md-6">
@@ -1716,16 +1739,27 @@ const VechilesRegistraion = () => {
                                     setEndDateAndTime(e.target.value);
                                   }}
                                   placeholder="Enter link"
-                                  label="Please Enter Start Date"
+                                  label="Please Enter Auction Start Date"
                                 />
                               </div>
                             </div>
-                            )}
-                            
-                            <div className="col-12 col-sm-12 col-md-6">
-                              <div className="form-group">
-                                <label>Auction Live</label>
-                                <select
+                          )}
+
+                          <div className="col-12 col-sm-12 col-md-6">
+                          
+                            <div className="form-group">
+                              <label>Auction Live</label>
+                                <select value={selectedValue}
+                                  className="field bgChangeDark"
+                                  onChange={handleSelectChange}>
+                                <option value="">Select an option</option>
+                                {optionsData?.map(option => (
+                                  <option key={option.id} value={option.days}>
+                                    {`${option.days} days`}
+                                  </option>
+                                ))}
+                              </select>
+                              {/* <select
                                   // value={basicfact.auctionType}
                                   // onChange={basicFactOnChange}
                                   // name="auctionType"
@@ -1741,9 +1775,9 @@ const VechilesRegistraion = () => {
                                   <option value="charity">
                                     14 days
                                   </option>
-                                </select>
-                              </div>
+                                </select> */}
                             </div>
+                          </div>
 
 
                           {basicfact.auctionType === "charity" && (
@@ -2126,8 +2160,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -2262,10 +2296,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                                    <span className="text-danger">
+                                      You Can entered maximum 1500 characters!
+                                    </span>
+                                  )}
                               </div>
                             )}
                           </div>
@@ -2599,8 +2633,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       {/* <h3>Contact Info</h3> */}
                       <h3>Submit Details</h3>
