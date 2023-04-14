@@ -14,6 +14,7 @@ import {
 } from "draft-js";
 
 import { toast } from "react-toastify";
+import MyAccountLeftNav from "./MyAccountLeftNav";
 
 
 const EditUserBlog = () => {
@@ -121,23 +122,33 @@ const EditUserBlog = () => {
   return (
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
-        <form>
-          <div className="row row_gap_5">
-            <div className="col-12 ">
-              <label>Blog Title</label>
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={blogData.title}
-                  name="title"
-                  onChange={handleChange}
-                  className="field"
-                  placeholder="Enter Blog"
-                  required
-                />
+        <div className="col-12 col-md-4 col-lg-3">
+          <div className="card_Gray mb-5 mb-md-0">
+            <h5>My Account</h5>
+            <hr />
+            <MyAccountLeftNav />
+          </div>
+        </div>
+        <div className="col-12 col-md-8 col-lg-9">
+          <h3>Edit Blogs</h3>
+          <hr />
+          <form>
+            <div className="row row_gap_5">
+              <div className="col-12 ">
+                <label>Blog Title</label>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    value={blogData.title}
+                    name="title"
+                    onChange={handleChange}
+                    className="field"
+                    placeholder="Enter Blog"
+                    required
+                  />
+                </div>
               </div>
-            </div>
-            {/* <div className="col-12 ">
+              {/* <div className="col-12 ">
               <label>Image</label>
               <div className="form-group">
                 <input
@@ -152,9 +163,9 @@ const EditUserBlog = () => {
               </div>
             </div> */}
 
-            <div className="col-12 mb-3">
-              <label>Blog Description</label>
-              {/* <div className="form-group">
+              <div className="col-12 mb-3">
+                <label>Blog Description</label>
+                {/* <div className="form-group">
                 <textarea
                   className="field"
                   value={blogData.desc}
@@ -165,102 +176,104 @@ const EditUserBlog = () => {
                   rows={11}
                 ></textarea>
               </div> */}
-              <div className="border border-2 border-dark">
-                <Editor
-                  editorStyle={{
-                    background: "white",
-                    padding: "15px",
-                    minHeight: "30vh",
-                  }}
-                  editorState={blogContent}
-                  value="dlsjfkljf"
-                  toolbarClassName="toolbarClassName"
-                  wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
-                  onEditorStateChange={handleContent}
-                  placeholder="Please enter description"
-                />
-                {/* <textarea
+                <div className="border border-2 border-dark">
+                  <Editor
+                    editorStyle={{
+                      background: "white",
+                      padding: "15px",
+                      minHeight: "30vh",
+                    }}
+                    editorState={blogContent}
+                    value="dlsjfkljf"
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={handleContent}
+                    placeholder="Please enter description"
+                  />
+                  {/* <textarea
           disabled
           value={draftToHtml(convertToRaw(blogContent.getCurrentContent()))}
         ></textarea> */}
+                </div>
               </div>
-            </div>
-            <div className="col-12 col-md-12">
-              <label>Upload Photos</label>
-              <div className="row">
-                {blogDataById.image && file.length <= 0 && (
-                  <img
-                    loading="lazy"
-                    width="200px"
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      objectFit: "cover",
-                      padding: "15px",
-                    }}
-                    src={
-                      blogDataById?.image &&
-                      `${process.env.REACT_APP_URL}upload/blogs/${blogDataById?.image}`
-                    }
-                    onError={({ currentTarget }) => {
-                      currentTarget.onError = null;
-                      currentTarget.src =
-                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                    }}
-                    alt="Maskgroup1"
-                  />
-                )}
-                {Array.from(file).map((items) => {
-                  return (
-                    <span>
-                      <img
-                        src={items ? URL.createObjectURL(items) : null}
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "cover",
-                          padding: "15px",
-                        }}
-                      />
-                    </span>
-                  );
-                })}
-              </div>
-              <div
-                className="dropzone"
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-              >
-                <h3>Drag and Drop Files to Upload</h3>
-                <h3>Or</h3>
-                <input
-                  onChange={(e) => {
-                    return setFile((prevState) => [...e.target.files]);
-                  }}
-                  name="file"
-                  type="file"
-                  accept="image/gif, image/jpeg, image/png, image/jpg"
-                  ref={inputRef}
-                  required
-                  hidden
-                />
-                <button
-                  className="orange_btn"
-                  type="button"
-                  onClick={() => inputRef.current.click()}
+              <div className="col-12 col-md-12">
+                <label>Upload Photos</label>
+                <div className="row">
+                  {blogDataById.image && file.length <= 0 && (
+                    <img
+                      loading="lazy"
+                      width="200px"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "cover",
+                        padding: "15px",
+                      }}
+                      src={
+                        blogDataById?.image &&
+                        `${process.env.REACT_APP_URL}upload/blogs/${blogDataById?.image}`
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onError = null;
+                        currentTarget.src =
+                          "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                      }}
+                      alt="Maskgroup1"
+                    />
+                  )}
+                  {Array.from(file).map((items) => {
+                    return (
+                      <span>
+                        <img
+                          src={items ? URL.createObjectURL(items) : null}
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            objectFit: "cover",
+                            padding: "15px",
+                          }}
+                        />
+                      </span>
+                    );
+                  })}
+                </div>
+                <div
+                  className="dropzone"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
                 >
-                  Select Files
-                </button>
+                  <h3>Drag and Drop Files to Upload</h3>
+                  <h3>Or</h3>
+                  <input
+                    onChange={(e) => {
+                      return setFile((prevState) => [...e.target.files]);
+                    }}
+                    name="file"
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png, image/jpg"
+                    ref={inputRef}
+                    required
+                    hidden
+                  />
+                  <button
+                    className="orange_btn"
+                    type="button"
+                    onClick={() => inputRef.current.click()}
+                  >
+                    Select Files
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="form-group text-center my-4 mt-5">
-            <button onClick={handleApi} className="btn">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="form-group text-center my-4 mt-5">
+              <button onClick={handleApi} className="btn">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+       
       </div>
     </div>
   );

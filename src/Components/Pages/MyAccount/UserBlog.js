@@ -75,7 +75,7 @@ function UserBlog() {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                Blogs
+                <h3>Blogs Management</h3>
                 <div>
                   {/* <Link to="/admin/add-UserBlog" className="btn">
                     <i class="fa-sharp fa-solid fa-plus"></i>

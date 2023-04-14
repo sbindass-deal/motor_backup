@@ -76,11 +76,11 @@ function RegisterModal({ showReg, handleCloseReg }) {
     dealer: "",
     dealerDescription: "",
     password: "",
-    cPassword: "",
+    cPassword: ""
   });
 
   const handleUserInput = (e) => {
-    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+    setUserInput({ ...userInput, [e.target.name]: e.target.value.trimStart() });
   };
 
   const uploadLogo = async (uId) => {
@@ -247,6 +247,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                     label="Username"
                     pattern="^[A-Za-z0-9]{3,30}$"
                     required={true}
+                    autocomplete="off"
                   />
                 </div>
                 <div className="col-md-12 col-lg-6 col-sm-12">
@@ -274,6 +275,7 @@ function RegisterModal({ showReg, handleCloseReg }) {
                       type={showPassWord ? "text" : "password"}
                       pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`}
                       required={true}
+                      autocomplete="off"
                     />
                     <div
                       className="eye_child eye_login"

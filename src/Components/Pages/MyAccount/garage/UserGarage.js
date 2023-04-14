@@ -19,13 +19,16 @@ import GaragesAuction from "../../garages/GaragesAuction";
 import GaragesBlog from "../../garages/GaragesBlog";
 import { handleGarage } from "../../../../redux/reducers/planReducer";
 import Post from "./Post";
+import Replies from "./Replies";
+import Bookmark from "./Bookmark";
+import Favorite from "./Favorite";
 
 function UserGarage() {
   const [garagesData, setGaragesData] = useState({});
   const [showMore, setShowMore] = useState(false);
   const [dealerData, setDealerData] = useState({});
   const [garagesDataList, setGaragesDataList] = useState([]);
-
+  const [postCount, setPostCount] = useState([]);
   const userId = useSelector((state) => state);
   const id = userId.login.user.user_id;
   const dispatch = useDispatch();
@@ -200,7 +203,7 @@ function UserGarage() {
                     }}
                     className="gry_btn px-3 mx-2"
                   >
-                    + Add Garage
+                    + Add Vehicle
                   </button>
                   {/* <Link to="/editmyaccount-garages" className="gry_btn px-3">
                     Edit Garage
@@ -336,7 +339,7 @@ function UserGarage() {
                             <span>2</span>Following
                           </li>
                           <li>
-                            <span>12</span>Post
+                            <span>{postCount?.length}</span>Post
                           </li>
                         </ul>
                         <button className="btn">Follow</button>
@@ -378,7 +381,7 @@ function UserGarage() {
                           Garage
                         </button>
                       </li>
-                      <li class="nav-item" role="presentation">
+                      {/* <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
                           id="profile-tab"
@@ -391,7 +394,7 @@ function UserGarage() {
                         >
                           Auctions
                         </button>
-                      </li>
+                      </li> */}
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
@@ -409,12 +412,12 @@ function UserGarage() {
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
-                          id="video-tab"
+                          id="replies-tab"
                           data-bs-toggle="tab"
-                          data-bs-target="#video-tab-pane"
+                          data-bs-target="#replies-tab-pane"
                           type="button"
                           role="tab"
-                          aria-controls="video-tab-pane"
+                          aria-controls="replies-tab-pane"
                           aria-selected="false"
                         >
                           Replies
@@ -423,7 +426,35 @@ function UserGarage() {
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
-                          id="video-tab"
+                          id="book-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#book-tab-pane"
+                          type="button"
+                          role="tab"
+                          aria-controls="book-tab-pane"
+                          aria-selected="false"
+                        >
+                          Bookmark
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="fav-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#fav-tab-pane"
+                          type="button"
+                          role="tab"
+                          aria-controls="fav-tab-pane"
+                          aria-selected="false"
+                        >
+                          Favourite
+                        </button>
+                      </li>
+                      {/* <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="blog-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#blog-tab-pane"
                           type="button"
@@ -433,8 +464,8 @@ function UserGarage() {
                         >
                           Blog
                         </button>
-                      </li>
-                      <li class="nav-item" role="presentation">
+                      </li> */}
+                      {/* <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
                           id="gallery-tab"
@@ -447,7 +478,7 @@ function UserGarage() {
                         >
                           Gallery
                         </button>
-                      </li>
+                      </li> */}
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div
@@ -541,7 +572,21 @@ function UserGarage() {
                         aria-labelledby="contact-tab"
                         tabindex="0"
                       >
-                        <Post id={id} />
+                        <Post
+                          id={id}
+                          setPostCount={setPostCount}
+                          logo={userInfo}
+                        />
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="replies-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="replies-tab"
+                        tabindex="0"
+                      >
+                        <Replies id={id} logo={userInfo} />
                       </div>
                       <div
                         class="tab-pane fade"
@@ -557,6 +602,24 @@ function UserGarage() {
                             </div>
                           </div>
                         </section>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="book-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="book-tab"
+                        tabindex="0"
+                      >
+                        <Bookmark id={id} logo={userInfo} />
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="fav-tab-pane"
+                        role="tabpanel"
+                        aria-labelledby="fav-tab"
+                        tabindex="0"
+                      >
+                        <Favorite id={id} logo={userInfo} />
                       </div>
                       <div
                         class="tab-pane fade"
