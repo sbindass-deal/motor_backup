@@ -90,29 +90,26 @@ function AdUserMeeting() {
     formData.append("image", file[0]);
 
 
-    
+      await axios.post(url, formData)
+        .then(function (response) {
+          notify("Added Event successfully !");
+          navigate('/user-meeting')
+          console.log(109, response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      setMeetingDetail({
+        title: "",
+        startdate: "",
+        enddate: "",
+        websitelink: "",
+        facebooklink: "",
+        twitterlink: "",
+        emailid: "",
+        status: 0
 
-    await axios.post(url, formData)
-      .then(function (response) {
-        notify("Added Event successfully !");
-        navigate('/user-meeting')
-        console.log(109, response);
-      })
-      .catch(function (error) {
-        console.log(error);
       });
-
-    setMeetingDetail({
-      title: "",
-      startdate: "",
-      enddate: "",
-      websitelink: "",
-      facebooklink: "",
-      twitterlink: "",
-      emailid: "",
-      status:0
-
-    });
 
 
   }
@@ -143,9 +140,8 @@ function AdUserMeeting() {
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
-                      pattern="^[A-Za-z ]{3,30}$"
-                      errorMessage="Title should be 3-30 characters and shouldn't include any special character or number!"
-                      required
+                      errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
+                      error
                     />
                   </div>
                   <div class="col-md-6">
@@ -204,7 +200,7 @@ function AdUserMeeting() {
                   <div class="col-md-6">
                     <label htmlFor="">Twitter Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       class="field"
                       placeholder="Twitter link"
@@ -215,7 +211,7 @@ function AdUserMeeting() {
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Email Id</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="field"
                       placeholder="Support email id"
@@ -271,7 +267,7 @@ function AdUserMeeting() {
                     >
                       <h3>Drag and Drop Files to Upload</h3>
                       <h3>Or</h3>
-                      <input
+                      <FormInput
                         onChange={(e) => {
                           return setFile((prevState) => [...e.target.files]);
                         }}
@@ -295,7 +291,7 @@ function AdUserMeeting() {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
+                  <button className="btn" type="submit">
                     Submit
                   </button>
                 </div>

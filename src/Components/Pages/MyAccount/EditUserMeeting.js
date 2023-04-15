@@ -85,7 +85,7 @@ function EditUserMeeting() {
   }, []);
 
 
-  console.log(12,meetingDetail.enddate)
+  console.log(12, meetingDetail.enddate)
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -134,7 +134,7 @@ function EditUserMeeting() {
     formData.append("image", file[0]);
 
 
-    
+
 
     await axios.post(url, formData)
       .then(function (response) {
@@ -338,7 +338,10 @@ function EditUserMeeting() {
                 </div>
 
                 <div className="text-center my-4">
-                  <button className="buttonStyleMeeting" type="submit">
+                  <button
+                    // className="buttonStyleMeeting"
+                    className="btn"
+                    type="submit">
                     Submit
                   </button>
                 </div>
