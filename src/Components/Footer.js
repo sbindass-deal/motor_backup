@@ -29,7 +29,7 @@ const Footer = () => {
                 industry.{" "}
               </p> */}
             </div>
-            <div className="col-12 col-md-6 col-lg-7 pb-4">
+            <div className="col-12 col-md-3 col-lg-3 pb-4">
               <h6>Useful links</h6>
               <ul className="fLinks fLinks_row">
                 {/* <li><Link to="#">Auctions</Link></li> */}
@@ -58,7 +58,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-12 col-md-3 col-lg-2 pb-3">
+            <div className="col-12 col-md-2 col-lg-2 pb-3">
               <h6>Social Links</h6>
               <ul className="fLinks">
                 <li>
@@ -88,6 +88,21 @@ const Footer = () => {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="col-12 col-md-4 col-lg-4 pb-3">
+              <h6>Gass Guzzlrs Giveaway #5</h6>
+              <p>
+                No purchase necessary to enter or win. A purchase or payment of
+                any kind will not increase your chances of winning. Open to
+                legal residents of the 48 continental United States, the
+                District of Columbia and Canada. Void in Puerto Rico, Quebec and
+                US territories and where prohibited by law. Promotion ends 11:59
+                PM (MST) on 04/20/2023. Odds of winning depend upon the number
+                of eligible entries received. See the <a href="#" style={{color
+                :"orange"}}>Official Rules</a> for
+                details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
+                TX 75229.
+              </p>
             </div>
           </div>
         </div>
