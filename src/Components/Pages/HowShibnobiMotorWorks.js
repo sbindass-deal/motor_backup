@@ -102,31 +102,27 @@ function HowShibnobiMotorWorks() {
               <div>
                 <h3 className="orangeTextDark">Submitting a Vehicle for Auction</h3>
                 <p>
-                  If you're looking to sell your car, get it ready for auction
-                  and see what you can get, you can sell your car for the
-                  highest price possible. Its fast, it's easy.
+                  Submitting your vehicle is easy - just visit our vehicle submissions page. We offer three service levels tailored to meet your specific needs, whether you're a private seller or a dealers. We gasguzzlrs provide a dedicated for both private and dealer seller.
                 </p>
-                <h6 className="orangeTextDark">1. Classic</h6>
+                <h6 className="orangeTextDark">1. Standard</h6>
                 <p>
-                  Make the introduction for you and write a compelling
-                  description of your item. Our car experts will help you sell
-                  faster and for a higher price.
+                  Experience our reliable and proven service with a personalized listing and a 7-day auction on gasguzzlrs for only $99. You just have to fill out our questionnaire, provide us with your pictures and video, and we create a professional auction listing.
                 </p>
                 <hr />
-                <h6 className="orangeTextDark">2. Plus Photography</h6>
+                <h6 className="orangeTextDark">2. Pro</h6>
                 <p>
-                  Bringing your car to life and unleashing its full potential is
-                  our passion. Enjoy the true value of your car by choosing to
-                  add ultra-sharp high resolution panoramic photographs as part
-                  of the listing process.
+                  We'll provide you with stunning and high-quality listing photos taken by a professional photographer that will showcase your vehicle in the best possible light.
                 </p>
                 <hr />
-                <h6 className="orangeTextDark">3. White Glove Service</h6>
+                <h6 className="orangeTextDark">3. Premium</h6>
                 <p>
-                  We aim to deliver premium-quality customer service and
-                  workmanship, setting new customer experience standards for
-                  automotive industry.
+                  In addition to providing stunning and high-quality listing photos taken by a professional photographer that showcase your vehicle in the best possible light, we'll also create a professional video of your ride. This will give potential buyers a detailed and immersive look at your vehicle, helping to generate more interest and potentially a higher selling price.
                 </p>
+                  <hr />
+                <h6 className="orangeTextDark">4. Exclusive</h6>
+                  <p>
+                  For sellers with valuable cars and collections, we offer a comprehensive concierge service to meet your unique needs. Our team will provide a personalized approach to ensure that your valuable assets receive the care and attention they deserve throughout the selling process.
+                  </p>
               </div>
             </div>
           </div>
@@ -184,14 +180,9 @@ function HowShibnobiMotorWorks() {
             <div className="col-12 col-md-8 offset-md-2 text-center">
               <h2 className="orangeTextDark">The Submission Process</h2>
               <p >
-                The car auction submission process is designed to ensure that
-                every submitted vehicle is properly cataloged and documented
-                with photographs, video documentation and any other information
-                necessary to accurately represent the vehicle description. The
-                eAuction system will review your listing before it goes live on
-                the auction site. After you submit it we will send you an email
-                confirming that it has been received and may be ready for
-                auction 24/7.
+                Once you've selected a service from our Vehicle Submissions Page, you'll be prompted to complete a submission form with details about your vehicle and upload photos. Our auctions team will review the information provided to determine if your vehicle is a good fit for our audience if some editing is required we will do if we have details else our team will inform.
+                Team will sent the listing to the seller to review the details of the listing once the seller has review the listing and approved from there end. Then the auction is live 
+
               </p>
             </div>
             <div className="col-12 col-md-12 mt-4">
