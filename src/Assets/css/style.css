@@ -7321,3 +7321,22 @@ justify-content: space-between;
     position: relative;
     background-color: #111111 !important;
 }
+.Htext .loTryTitle h2 {
+  font-size: 40px;
+  text-align: center;
+}
+.Htext .loTryTitle h2 span {
+  font-size: 50px;
+  font-weight: 700;
+  display: block;
+  color: #ffa500;
+}
+.rte.rte--nomargin li {
+  list-style: auto;
+  padding-bottom: 20px;
+  line-height: 25px;
+}
+.rte.rte--nomargin li strong {
+  color: orange;
+}
+

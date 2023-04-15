@@ -104,6 +104,7 @@ import GaragesPost from "./garages/GaragesPost";
 import GaragesBlogNew from "./garages/GaragesBlogNew";
 import GaragesReplies from "./garages/GaragesReplies";
 import GaragesSocialMedia from "./garages/GaragesSocialMedia";
+import GiveawayOfficialRules from "./GiveawayOfficialRules"
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -257,7 +258,7 @@ const Layout = () => {
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
 
-
+          <Route path="giveaway-official-rules" element={<GiveawayOfficialRules/> } />
           <Route path="garagespost" element={<GaragesPost/> } />
           <Route path="garagesblognew" element={<GaragesBlogNew/> } />
           <Route path="garagesreplies" element={<GaragesReplies/> } />
