@@ -451,7 +451,7 @@ function UserGarage() {
                           Favourites
                         </button>
                       </li>
-                      {/* <li class="nav-item" role="presentation">
+                      <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
                           id="blog-tab"
@@ -464,7 +464,7 @@ function UserGarage() {
                         >
                           Blog
                         </button>
-                      </li> */}
+                      </li>
                       {/* <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"

@@ -7340,3 +7340,103 @@ justify-content: space-between;
   color: orange;
 }
 
+.soldLable {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid;
+  padding: 10px 15px;
+  padding-bottom: 0;
+  color: #f8a504;
+}
+.soldLable p {
+  color: #f8a404;
+}
+
+.soldLable p {
+  color: #f8a404;
+  margin-bottom: 0;
+  margin-top:0x;
+}
+
+.soldLable {
+  transform: rotate(313deg);
+  position: absolute;
+  letter-spacing: 1px;
+  z-index: 1;
+  left: 40px;
+  top: 120px;
+  border: 1px solid;
+  padding: 6px 17px;
+  border-radius: 5px;
+  color: #f8a504;
+  background: #000;
+}
+.product {
+  border: 2px solid black;
+  /* width: 500px;
+  height: 300px; */
+  position: relative;
+}
+
+
+
+.electric {
+  background: orange;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  position: absolute;
+  top: 27px;
+  width: 40%;
+  text-align: center;
+  left: -15px;
+  z-index: 2;
+  transform: rotate(-45deg);
+}
+.electric:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: rotate(45deg);
+  border-width: 20px 20px 0 20px;
+  border-color: orange transparent transparent transparent;
+  position: absolute;
+  right: -27px;
+  bottom: -3px;
+}
+.electric:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: rotate(-45deg);
+  border-width: 20px 20px 0 20px;
+  border-color: orange transparent transparent transparent;
+  position: absolute;
+  left: -27px;
+  bottom: -3px;
+}
+.light .pro-inner-item {
+  color: #000 !important;
+}
+.light .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover{
+  color: #000;
+}
+.light .pro-sidebar .pro-menu a:hover{
+  color: orange;
+}
+.bkBtn {
+  background-color: #333;
+  border: navajowhite;
+  width: 140px;
+  height: 38px;
+  color: #fff;
+}
+.light .bkBtn {
+  background-color: #f7931b;
+  border: navajowhite;
+  width: 140px;
+  height: 38px;
+  color: #fff;
+}

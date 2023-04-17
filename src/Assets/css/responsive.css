@@ -1332,6 +1332,11 @@
 		padding: 6px 5px 5px 5px;
 		border-right: 1px solid #3c3535;
 	}
+	.soldLable {top: 140px;}
+	.soldLable {
+		top: 161px;
+		left: 20px;
+	}
 }
 
 @media (max-width: 575px) {

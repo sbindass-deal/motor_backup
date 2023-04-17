@@ -15,6 +15,14 @@ const Data = ({ curElem, addFabrity }) => {
               <Link className="auction_image" to={`/detail/${curElem.id}`}>
                 {curElem.image_banner.length > 0 ? (
                   <>
+                    {curElem.is_close == 1 ? (
+                      <div class="product">
+                        <span class="electric">Sold</span>
+                      </div>
+                    ) : null}
+                    <div class="product">
+                      <span class="electric">Sold</span>
+                    </div>
                     <img
                       loading="lazy"
                       src={
