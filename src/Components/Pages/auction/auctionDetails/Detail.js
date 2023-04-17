@@ -339,7 +339,11 @@ function Detail() {
                 </div>
               </div>
               <div className="postHero pb_30 detail">
+              <div className="soldLable">
+                   <p>Sold</p>       
+              </div>
                 {vehicle?.image_banner && (
+                  
                   <img
                     loading="lazy"
                     src={

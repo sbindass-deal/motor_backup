@@ -7340,3 +7340,34 @@ justify-content: space-between;
   color: orange;
 }
 
+.soldLable {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid;
+  padding: 10px 15px;
+  padding-bottom: 0;
+  color: #f8a504;
+}
+.soldLable p {
+  color: #f8a404;
+}
+
+.soldLable p {
+  color: #f8a404;
+  margin-bottom: 0;
+  margin-top:0x;
+}
+
+.soldLable {
+  transform: rotate(313deg);
+  position: absolute;
+  letter-spacing: 1px;
+  z-index: 1;
+  left: 40px;
+  top: 120px;
+  border: 1px solid;
+  padding: 6px 17px;
+  border-radius: 5px;
+  color: #f8a504;
+  background: #000;
+}
