@@ -171,7 +171,7 @@ const EditRaffle = () => {
         <form onSubmit={handleSubmit} className="p-md-5">
           <div>
             <Link to={"/raffleadmin"}>
-              <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+              <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
             </Link>
             <h3 className="ml-5 mt-4">Edit Giveways</h3>
           </div>

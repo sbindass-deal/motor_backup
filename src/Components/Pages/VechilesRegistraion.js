@@ -79,6 +79,8 @@ const VechilesRegistraion = () => {
   const [optionsCharity, setOptionsCharity] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedValueData, setSelectedValueData] = useState('');
+  const [numberPer, setNumberPer] = useState(null);
+  const [charityState, setCharityState] = useState('');
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
   );
@@ -114,6 +116,17 @@ const VechilesRegistraion = () => {
 
   console.log(898900, optionsCharity)
 
+  const handleInputChange = (event) => {
+    let inputValue = Number(event.target.value);
+    if (inputValue < 1) {
+      inputValue = 0;
+    } else if (inputValue > 100) {
+      inputValue = 100;
+    }
+    setNumberPer(inputValue);
+  };
+
+  console.log(8099100, selectedValueData)
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -123,6 +136,9 @@ const VechilesRegistraion = () => {
     setSelectedValueData(event.target.value);
   }
 
+  const handleCharityState = (event) => {
+    setCharityState(event.target.value);
+  }
 
 
 
@@ -691,7 +707,10 @@ const VechilesRegistraion = () => {
         startDate: endDateAndTime,
         phone,
         sold: 1,
-        days: optionsData
+        days: optionsData,
+        charity_id: selectedValueData,
+        charity_percentage: numberPer,
+        charity_other: charityState,
 
       })
       .then((result) => {
@@ -778,6 +797,9 @@ const VechilesRegistraion = () => {
         setSubmitLoading(false);
       });
   };
+
+  console.log(98980011, charityState, numberPer, optionsData)
+
 
   const handleMakeAndModalTab = () => {
     dispatch(step_one(false));
@@ -969,6 +991,8 @@ const VechilesRegistraion = () => {
     // set the state with the new array
     setArr(newItems);
   }
+
+
 
 
   return (
@@ -1808,15 +1832,15 @@ const VechilesRegistraion = () => {
                                   >
                                     <option value="">Select an option</option>
                                     {optionsCharity?.charity?.map(option => (
-                                      <option key={option.id} value={option.charityName}>
+                                      <option key={option.id} value={option.id}>
                                         {`${option.charityName}`}
                                       </option>
                                     ))}
-                                    <option value="other">Other</option>
+                                    <option value="0">Other</option>
                                   </select>
                                 </div>
                                 <div className="  ">
-                                  <div className="form-group">
+                                  {/* <div className="form-group">
                                     <label>
                                       Charity Percentage
                                     </label>
@@ -1832,10 +1856,20 @@ const VechilesRegistraion = () => {
                                         </option>
                                       ))}
                                     </select>
-                                  </div>
+                                    </div> */}
+                                  <FormInput
+                                    type="number"
+                                    min="1"
+                                    max="100"
+                                    value={numberPer}
+                                    onChange={handleInputChange}
+                                    placeholder="Eg. 10%"
+                                    label="Charity Percentage %"
+
+                                  />
 
                                   {/* ====== */}
-                                  
+
                                   {/* <div className="form-group">
                                     <FormInput
                                       value={""}
@@ -1848,19 +1882,19 @@ const VechilesRegistraion = () => {
                                     />
                                   </div> */}
                                 </div>
-                                </div>
-                                {
-                                  selectedValueData == "other" ? <div className="form-group">
-                                    <FormInput
-                                      value={""}
-                                      onChange={""}
-                                      name=""
-                                      label="Charity Other"
-                                      pattern="^[A-Za-z0-9 ]{3,16}$"
-                                      required={true}
-                                      placeholder="Charity Other"
-                                    />
-                                  </div> : null
+                              </div>
+                              {
+                                selectedValueData == "0" ? <div className="form-group">
+                                  <FormInput
+                                    value={charityState}
+                                    onChange={handleCharityState}
+                                    name=""
+                                    label="Charity Other"
+                                    pattern="^[A-Za-z0-9 ]{3,16}$"
+                                    required={true}
+                                    placeholder="Charity Other"
+                                  />
+                                </div> : null
                                 }
                               <div className="form-group">
                                 <p>Charity Description</p>

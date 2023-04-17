@@ -105,7 +105,7 @@ function VehicleListingDetails() {
           <form onSubmit={handleSubmit} className="p-md-5">
             <div className="row row_gap_5">
               <Link  to={'/admin/vehicle-listing'}>
-                <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+                <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
               </Link>
               <h3 className="pb-4 text-center ml-4"> <span>Edit Listing Details</span> </h3>
               <div className="col-12 col-md-12">

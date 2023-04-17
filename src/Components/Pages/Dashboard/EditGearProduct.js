@@ -230,7 +230,7 @@ const EditGearProduct = () => {
         <div className="row m-md-5 my-4">
           <form>
             <Link to={'/gear-product'}>
-              <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+              <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
             </Link>
             <h3 className="text-center">Edit Gear Products</h3>
             <div className="row">

@@ -15,6 +15,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = dealerData.slice(firstPostIndex, lastPostIndex);
 
+  
   useEffect(() => {
     const fetchDealer = async () => {
       try {
@@ -29,6 +30,7 @@ const DealerList = ({ handleDealerCount, searchTerm }) => {
     };
     fetchDealer();
   }, []);
+
   return (
     <>
       <div className="col-12 ListDealer mt-50">

@@ -306,7 +306,7 @@ function EditMyAccount() {
                
                 <h3>Edit Account Info</h3>
                 <Link to={'/accountinfo'}>
-                  <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+                  <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
                 </Link>
              </div>
               <hr />

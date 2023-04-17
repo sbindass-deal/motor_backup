@@ -309,7 +309,7 @@ const AddDealer = () => {
     >
       <div className="row">
         <Link to={'/admin-dealer'}>
-          <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
+          <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
         </Link>
         <div className="col-12 text-center pb-5">
           

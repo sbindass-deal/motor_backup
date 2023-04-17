@@ -170,7 +170,7 @@ const AddGearProduct = () => {
           </div>
           <form>
             <Link to={'/gear-product'}>
-              <button className="btn"><i class="bi bi-arrow-left"></i> Back To List</button>
+              <button className="btn bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
             </Link>
               <h3 className="text-center">Add Gear Products</h3>
             <div className="row">
