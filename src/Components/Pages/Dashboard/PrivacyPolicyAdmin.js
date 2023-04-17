@@ -41,7 +41,7 @@ const PrivacyPolicyAdmin = () => {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Privacy Policy Management</h3>
+                <h3>Giveaways Content</h3>
                 {
                   data?.length < 0 ? <div>
                     <Link to="/admin/addprivacy" className="orange_btn">
@@ -62,7 +62,7 @@ const PrivacyPolicyAdmin = () => {
               >
                 
                   <table className="table text-center ">
-                    <thead>
+                    {/* <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
                         <th scope="col">Description </th>
@@ -71,13 +71,13 @@ const PrivacyPolicyAdmin = () => {
                           Action
                         </th>
                       </tr>
-                    </thead>
+                    </thead> */}
                   <tbody>
                     {
                       data?.map((curVal, i) => {
                         console.log(798989, curVal,i)
                         return <tr>
-                          <th >{1 + i}</th>
+                          {/* <th >{1 + i}</th> */}
                           
                           <td>{ parse(
                             curVal?.description,

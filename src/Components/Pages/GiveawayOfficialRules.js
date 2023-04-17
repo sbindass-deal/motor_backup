@@ -25,7 +25,7 @@ function GiveawayOfficialRules() {
           console.log(197989,curVal)
           return <>
             <p>{
-              
+              parse(curVal?.description, strToHtml)
             }</p>
           </>
         })
