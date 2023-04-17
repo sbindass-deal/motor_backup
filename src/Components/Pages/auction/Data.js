@@ -15,14 +15,21 @@ const Data = ({ curElem, addFabrity }) => {
               <Link className="auction_image" to={`/detail/${curElem.id}`}>
                 {curElem.image_banner.length > 0 ? (
                   <>
-                    {curElem.is_close == 1 ? (
-                      <div class="product">
-                        <span class="electric">Sold</span>
-                      </div>
-                    ) : null}
-                    <div class="product">
-                      <span class="electric">Sold</span>
-                    </div>
+                    {curElem.category === "auction_live" && (
+                      <>
+                        {curElem.auctionType === "charity" && (
+                          <div class="product">
+                            <span class="electric">Charity</span>
+                          </div>
+                        )}
+                        {curElem.auctionType === "Premium listing" && (
+                          <div class="product">
+                            <span class="electric">Featured</span>
+                          </div>
+                        )}
+                      </>
+                    )}
+
                     <img
                       loading="lazy"
                       src={
