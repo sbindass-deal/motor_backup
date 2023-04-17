@@ -7417,3 +7417,12 @@ justify-content: space-between;
   left: -27px;
   bottom: -3px;
 }
+.light .pro-inner-item {
+  color: #000 !important;
+}
+.light .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover{
+  color: #000;
+}
+.light .pro-sidebar .pro-menu a:hover{
+  color: orange;
+}
