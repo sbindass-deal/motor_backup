@@ -105,6 +105,9 @@ import GaragesBlogNew from "./garages/GaragesBlogNew";
 import GaragesReplies from "./garages/GaragesReplies";
 import GaragesSocialMedia from "./garages/GaragesSocialMedia";
 import GiveawayOfficialRules from "./GiveawayOfficialRules"
+import PrivacyPolicyAdmin from "./Dashboard/PrivacyPolicyAdmin";
+import AddPrivacy from "./Dashboard/AddPrivacy";
+import Editprivacy from "./Dashboard/Editprivacy";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -153,6 +156,8 @@ const Layout = () => {
                     element={<VehicleSubmission />}
                   />
                   <Route path="admin" element={<VehicleSubmission />} />
+                  <Route path="admin-privacy-policy" element={<PrivacyPolicyAdmin />} />
+
                   <Route
                     path="admin/vehicle-listing"
                     element={<VehicleListing />}
@@ -181,10 +186,12 @@ const Layout = () => {
                     element={<EditGearProduct />}
                   />
                   <Route path="editBlog/:id" element={<EditBlog />} />
+                  <Route path="admin/editBlog/:id" element={<Editprivacy/>} />
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
                   <Route path="admin/add-blog" element={<AddBlog />} />
+                  <Route path="admin/addprivacy" element={<AddPrivacy/>} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
                   <Route path="admin-dealer" element={<DealerListFeature />} />
                   <Route path="admin-vehicle-ad" element={<VehicleAdsList />} />

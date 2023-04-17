@@ -136,6 +136,17 @@ function AdminLeftNav() {
             Customer Enquiry
           </Link>
         </li>
+
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-privacy-policy" ? "active" : ""
+            } `}
+            to="/admin-privacy-policy"
+          >
+            Privacy policy
+          </Link>
+        </li>
       </ul>
     </div>
   );
