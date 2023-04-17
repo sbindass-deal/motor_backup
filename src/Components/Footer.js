@@ -98,9 +98,9 @@ const Footer = () => {
                 District of Columbia and Canada. Void in Puerto Rico, Quebec and
                 US territories and where prohibited by law. Promotion ends 11:59
                 PM (MST) on 04/20/2023. Odds of winning depend upon the number
-                of eligible entries received. See the <a href="#" style={{color
-                :"orange"}}>Official Rules</a> for
-                details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
+                of eligible entries received. See the
+                <Link to="/giveaway-official-rules"  style={{color
+                :"orange"}}>Official Rules</Link> for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
                 TX 75229.
               </p>
             </div>

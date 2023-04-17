@@ -28,6 +28,7 @@ import {
   purchagedPlan,
 } from "../../redux/reducers/planReducer";
 import { notify } from "../UI/globaleVar";
+import { NaturePeopleOutlined } from "@mui/icons-material";
 
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
@@ -77,6 +78,7 @@ const VechilesRegistraion = () => {
   const [optionsData, setOptionsData] = useState([]);
   const [optionsCharity, setOptionsCharity] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValueData, setSelectedValueData] = useState('');
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
   );
@@ -117,12 +119,16 @@ const VechilesRegistraion = () => {
     setSelectedValue(event.target.value);
   }
 
+  const handleSelectChangeData = (event) => {
+    setSelectedValueData(event.target.value);
+  }
 
- 
 
 
 
-  console.log(9898, selectedValue)
+
+
+  console.log(9898001, selectedValueData)
 
   useEffect(() => {
     const fetchPurchagePlan = async () => {
@@ -685,7 +691,7 @@ const VechilesRegistraion = () => {
         startDate: endDateAndTime,
         phone,
         sold: 1,
-        days:optionsData
+        days: optionsData
 
       })
       .then((result) => {
@@ -963,6 +969,7 @@ const VechilesRegistraion = () => {
     // set the state with the new array
     setArr(newItems);
   }
+
 
   return (
     <>
@@ -1753,12 +1760,12 @@ const VechilesRegistraion = () => {
                           )}
 
                           <div className="col-12 col-sm-12 col-md-6">
-                          
+
                             <div className="form-group">
                               <label>Auction Live</label>
-                                <select value={selectedValue}
-                                  className="field bgChangeDark"
-                                  onChange={handleSelectChange}>
+                              <select value={selectedValue}
+                                className="field bgChangeDark"
+                                onChange={handleSelectChange}>
                                 <option value="">Select an option</option>
                                 {optionsData?.map(option => (
                                   <option key={option.id} value={option.days}>
@@ -1788,11 +1795,30 @@ const VechilesRegistraion = () => {
 
 
                           {basicfact.auctionType === "charity" && (
-                              <div className="col-12 col-sm-12 col-md-12">
-                                <div className="">
+                            <div className="col-12 col-sm-12 col-md-12">
+                              <div className="">
+                                <div className="form-group">
+                                  <label>
+                                    Charity Name
+                                  </label>
+                                  <select
+                                    value={selectedValueData}
+                                    className="field bgChangeDark"
+                                    onChange={handleSelectChangeData}
+                                  >
+                                    <option value="">Select an option</option>
+                                    {optionsCharity?.charity?.map(option => (
+                                      <option key={option.id} value={option.charityName}>
+                                        {`${option.charityName}`}
+                                      </option>
+                                    ))}
+                                    <option value="other">Other</option>
+                                  </select>
+                                </div>
+                                <div className="  ">
                                   <div className="form-group">
                                     <label>
-                                      Charity Name
+                                      Charity Percentage
                                     </label>
                                     <select
                                       // value={selectedValue}
@@ -1800,46 +1826,42 @@ const VechilesRegistraion = () => {
                                     // onChange={handleSelectChange}
                                     >
                                       <option value="">Select an option</option>
-                                      {optionsCharity?.charity?.map(option => (
-                                        <option key={option.id} value={option.charityName}>
-                                          {`${option.charityName}`}
+                                      {optionsCharity?.chairtyPercentage?.map(option => (
+                                        <option key={option.id} value={option.percentage}>
+                                          {`${option.percentage} %`}
                                         </option>
                                       ))}
                                     </select>
                                   </div>
-                                  <div className="  ">
-                                    <div className="form-group">
-                                      <label>
-                                        Charity Percentage
-                                      </label>
-                                      <select
-                                        // value={selectedValue}
-                                        className="field bgChangeDark"
-                                      // onChange={handleSelectChange}
-                                      >
-                                        <option value="">Select an option</option>
-                                        {optionsCharity?.chairtyPercentage?.map(option => (
-                                          <option key={option.id} value={option.percentage}>
-                                            {`${option.percentage} %`}
-                                          </option>
-                                        ))}
-                                      </select>
-                                    </div>
 
-                                    {/* ====== */}
-                                    <div className="form-group">
-                                      <FormInput
-                                        value={""}
-                                        onChange={""}
-                                        name=""
-                                        label="Charity Other"
-                                        pattern="^[A-Za-z0-9 ]{3,16}$"
-                                        required={true}
-                                        placeholder="Charity Other"
-                                      />
-                                    </div>
-                                  </div>
+                                  {/* ====== */}
+                                  
+                                  {/* <div className="form-group">
+                                    <FormInput
+                                      value={""}
+                                      onChange={""}
+                                      name=""
+                                      label="Charity Other"
+                                      pattern="^[A-Za-z0-9 ]{3,16}$"
+                                      required={true}
+                                      placeholder="Charity Other"
+                                    />
+                                  </div> */}
                                 </div>
+                                </div>
+                                {
+                                  selectedValueData == "other" ? <div className="form-group">
+                                    <FormInput
+                                      value={""}
+                                      onChange={""}
+                                      name=""
+                                      label="Charity Other"
+                                      pattern="^[A-Za-z0-9 ]{3,16}$"
+                                      required={true}
+                                      placeholder="Charity Other"
+                                    />
+                                  </div> : null
+                                }
                               <div className="form-group">
                                 <p>Charity Description</p>
                                 <div className="desCrtpion">
@@ -1854,15 +1876,15 @@ const VechilesRegistraion = () => {
                                     placeholder="Please enter here"
                                   />
                                 </div>
-                                </div>
-                                {/* ============= */}
-                                
-                                
+                              </div>
+                              {/* ============= */}
 
-                                {/* ========= */}
+
+
+                              {/* ========= */}
                             </div>
-                            )}
-                            
+                          )}
+
 
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
