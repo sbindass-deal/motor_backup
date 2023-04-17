@@ -10,7 +10,7 @@ import {
   step_three,
   step_two,
 } from "../../redux/reducers/submitvechilesReducer";
-import { Modal } from "react-bootstrap";
+import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import TermsOfUse from "./TermsOfUse";
 import CookiesSetting from "./CookiesSetting";
 
@@ -29,6 +29,7 @@ import {
 } from "../../redux/reducers/planReducer";
 import { notify } from "../UI/globaleVar";
 import { NaturePeopleOutlined } from "@mui/icons-material";
+import InfoIcon from "@mui/icons-material/Info";
 
 // import UploadMImages from "./UploadMImages";
 const inputArr = [
@@ -77,10 +78,10 @@ const VechilesRegistraion = () => {
   const [countryCode, setCountryCode] = useState(231);
   const [optionsData, setOptionsData] = useState([]);
   const [optionsCharity, setOptionsCharity] = useState([]);
-  const [selectedValue, setSelectedValue] = useState('');
-  const [selectedValueData, setSelectedValueData] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValueData, setSelectedValueData] = useState("");
   const [numberPer, setNumberPer] = useState(null);
-  const [charityState, setCharityState] = useState('');
+  const [charityState, setCharityState] = useState("");
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
   );
@@ -103,18 +104,20 @@ const VechilesRegistraion = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_URL}getAuctionDays`)
-      .then(response => setOptionsData(response.data.data))
-      .catch(error => console.error(error));
+    axios
+      .get(`${process.env.REACT_APP_URL}getAuctionDays`)
+      .then((response) => setOptionsData(response.data.data))
+      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_URL}getCharity`)
-      .then(response => setOptionsCharity(response.data.data))
-      .catch(error => console.error(error));
+    axios
+      .get(`${process.env.REACT_APP_URL}getCharity`)
+      .then((response) => setOptionsCharity(response.data.data))
+      .catch((error) => console.error(error));
   }, []);
 
-  console.log(898900, optionsCharity)
+  console.log(898900, optionsCharity);
 
   const handleInputChange = (event) => {
     let inputValue = Number(event.target.value);
@@ -126,25 +129,21 @@ const VechilesRegistraion = () => {
     setNumberPer(inputValue);
   };
 
-  console.log(8099100, selectedValueData)
+  console.log(8099100, selectedValueData);
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
-  }
+  };
 
   const handleSelectChangeData = (event) => {
     setSelectedValueData(event.target.value);
-  }
+  };
 
   const handleCharityState = (event) => {
     setCharityState(event.target.value);
-  }
+  };
 
-
-
-
-
-  console.log(9898001, selectedValueData)
+  console.log(9898001, selectedValueData);
 
   useEffect(() => {
     const fetchPurchagePlan = async () => {
@@ -653,10 +652,12 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         detailvin: vin,
-        displayInAuction: `${logingUser.planReducer.garage ? displayInAuction : "Garage"
-          }`,
-        auctionType: `${logingUser.planReducer.garage ? auctionType : "Garage"
-          }`,
+        displayInAuction: `${
+          logingUser.planReducer.garage ? displayInAuction : "Garage"
+        }`,
+        auctionType: `${
+          logingUser.planReducer.garage ? auctionType : "Garage"
+        }`,
         externalLink: adWebsiteLink,
         km: odometer,
         kmacc: accurateField,
@@ -711,7 +712,6 @@ const VechilesRegistraion = () => {
         charity_id: selectedValueData,
         charity_percentage: numberPer,
         charity_other: charityState,
-
       })
       .then((result) => {
         setSubmitLoading(false);
@@ -798,8 +798,7 @@ const VechilesRegistraion = () => {
       });
   };
 
-  console.log(98980011, charityState, numberPer, optionsData)
-
+  console.log(98980011, charityState, numberPer, optionsData);
 
   const handleMakeAndModalTab = () => {
     dispatch(step_one(false));
@@ -992,12 +991,8 @@ const VechilesRegistraion = () => {
     setArr(newItems);
   }
 
-
-
-
   return (
     <>
-
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row"></div>
@@ -1034,7 +1029,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === false
+                          reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1053,8 +1048,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === true &&
-                            reduxValue.submitvechilesReducer.step_three === false
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1073,8 +1068,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                            reduxValue.submitvechilesReducer.step_two === true &&
-                            reduxValue.submitvechilesReducer.step_three === true
+                          reduxValue.submitvechilesReducer.step_two === true &&
+                          reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1244,7 +1239,7 @@ const VechilesRegistraion = () => {
                                 name="city"
                                 placeholder="Enter city"
                                 className="field"
-                              // required
+                                // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1339,7 +1334,7 @@ const VechilesRegistraion = () => {
                               </div> */}
                             </>
                           ) : // )
-                            null}
+                          null}
 
                           {namefield.vehiclepast === "Yes" ? (
                             <>
@@ -1637,7 +1632,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === false ? (
+                  reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1707,7 +1702,7 @@ const VechilesRegistraion = () => {
                                     Select
                                   </option>
                                   {logingUser.planReducer.planSelectByDealer ===
-                                    "classified" ? (
+                                  "classified" ? (
                                     <option value="classified">
                                       Classified Ads
                                     </option>
@@ -1721,7 +1716,7 @@ const VechilesRegistraion = () => {
                           {logingUser.planReducer.garage && (
                             <>
                               {logingUser.planReducer.planSelectByDealer ===
-                                "classified" ? (
+                              "classified" ? (
                                 <div className="col-12 col-sm-12 col-md-6">
                                   <div className="form-group">
                                     <FormInput
@@ -1739,7 +1734,19 @@ const VechilesRegistraion = () => {
                               ) : (
                                 <div className="col-12 col-sm-12 col-md-6">
                                   <div className="form-group">
-                                    <label>Auction type</label>
+                                    <label>
+                                      Auction type{" "}
+                                      <OverlayTrigger
+                                        placement="top"
+                                        overlay={
+                                          <Tooltip>
+                                            This is <strong>Hello</strong>.
+                                          </Tooltip>
+                                        }
+                                      >
+                                        <InfoIcon />
+                                      </OverlayTrigger>
+                                    </label>
                                     <select
                                       value={basicfact.auctionType}
                                       onChange={basicFactOnChange}
@@ -1766,7 +1773,6 @@ const VechilesRegistraion = () => {
                             </>
                           )}
 
-
                           {logingUser.planReducer.garage && (
                             <div className="col-12 col-sm-12 col-md-6">
                               <div className="form-group">
@@ -1784,14 +1790,15 @@ const VechilesRegistraion = () => {
                           )}
 
                           <div className="col-12 col-sm-12 col-md-6">
-
                             <div className="form-group">
                               <label>Auction Live</label>
-                              <select value={selectedValue}
+                              <select
+                                value={selectedValue}
                                 className="field bgChangeDark"
-                                onChange={handleSelectChange}>
+                                onChange={handleSelectChange}
+                              >
                                 <option value="">Select an option</option>
-                                {optionsData?.map(option => (
+                                {optionsData?.map((option) => (
                                   <option key={option.id} value={option.days}>
                                     {`${option.days} days`}
                                   </option>
@@ -1817,13 +1824,22 @@ const VechilesRegistraion = () => {
                             </div>
                           </div>
 
-
                           {basicfact.auctionType === "charity" && (
                             <div className="col-12 col-sm-12 col-md-12">
                               <div className="">
                                 <div className="form-group">
                                   <label>
-                                    Charity Name
+                                    Charity Name{" "}
+                                    <OverlayTrigger
+                                      placement="top"
+                                      overlay={
+                                        <Tooltip>
+                                          This is <strong>Hello</strong>.
+                                        </Tooltip>
+                                      }
+                                    >
+                                      <InfoIcon />
+                                    </OverlayTrigger>
                                   </label>
                                   <select
                                     value={selectedValueData}
@@ -1831,7 +1847,7 @@ const VechilesRegistraion = () => {
                                     onChange={handleSelectChangeData}
                                   >
                                     <option value="">Select an option</option>
-                                    {optionsCharity?.charity?.map(option => (
+                                    {optionsCharity?.charity?.map((option) => (
                                       <option key={option.id} value={option.id}>
                                         {`${option.charityName}`}
                                       </option>
@@ -1857,16 +1873,31 @@ const VechilesRegistraion = () => {
                                       ))}
                                     </select>
                                     </div> */}
-                                  <FormInput
-                                    type="number"
-                                    min="1"
-                                    max="100"
-                                    value={numberPer}
-                                    onChange={handleInputChange}
-                                    placeholder="Eg. 10%"
-                                    label="Charity Percentage %"
 
-                                  />
+                                  <div className="form-group">
+                                    <label>
+                                      Charity Percentage %{" "}
+                                      <OverlayTrigger
+                                        placement="top"
+                                        overlay={
+                                          <Tooltip>
+                                            This is <strong>Hello</strong>.
+                                          </Tooltip>
+                                        }
+                                      >
+                                        <InfoIcon />
+                                      </OverlayTrigger>
+                                    </label>
+                                    <input
+                                      type="number"
+                                      min="1"
+                                      max="100"
+                                      value={numberPer}
+                                      onChange={handleInputChange}
+                                      placeholder="Eg. 10%"
+                                      className="field"
+                                    />
+                                  </div>
 
                                   {/* ====== */}
 
@@ -1883,8 +1914,8 @@ const VechilesRegistraion = () => {
                                   </div> */}
                                 </div>
                               </div>
-                              {
-                                selectedValueData == "0" ? <div className="form-group">
+                              {selectedValueData == "0" ? (
+                                <div className="form-group">
                                   <FormInput
                                     value={charityState}
                                     onChange={handleCharityState}
@@ -1894,8 +1925,8 @@ const VechilesRegistraion = () => {
                                     required={true}
                                     placeholder="Charity Other"
                                   />
-                                </div> : null
-                                }
+                                </div>
+                              ) : null}
                               <div className="form-group">
                                 <p>Charity Description</p>
                                 <div className="desCrtpion">
@@ -1913,12 +1944,9 @@ const VechilesRegistraion = () => {
                               </div>
                               {/* ============= */}
 
-
-
                               {/* ========= */}
                             </div>
                           )}
-
 
                           <div className="col-12 col-sm-12 col-md-6">
                             <div className="form-group">
@@ -2280,8 +2308,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === true &&
-                    reduxValue.submitvechilesReducer.step_three === false ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -2416,10 +2444,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                    <span className="text-danger">
-                                      You Can entered maximum 1500 characters!
-                                    </span>
-                                  )}
+                                  <span className="text-danger">
+                                    You Can entered maximum 1500 characters!
+                                  </span>
+                                )}
                               </div>
                             )}
                           </div>
@@ -2753,8 +2781,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                    reduxValue.submitvechilesReducer.step_two === true &&
-                    reduxValue.submitvechilesReducer.step_three === true ? (
+                  reduxValue.submitvechilesReducer.step_two === true &&
+                  reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       {/* <h3>Contact Info</h3> */}
                       <h3>Submit Details</h3>

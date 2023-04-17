@@ -1,93 +1,132 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
 
 function MyAccountLeftNav() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <div className="mr-5">
-
-     
-
-
       <ul class="sideBar__  ">
-
         <ProSidebar className="sideBar__">
-          
-          <Menu iconShape="square" >
-            <MenuItem >
-              <Link to="/accountinfo"
-                className={` ${location.pathname === "/accountinfo" ? "active" : ""
-                  } `}
+          <Menu iconShape="square">
+            <MenuItem>
+              <Link
+                to="/accountinfo"
+                className={` ${
+                  location.pathname === "/accountinfo" ? "active" : ""
+                } `}
               >
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu title="Garage" >
-              <MenuItem >
+            <SubMenu title="Garage">
+              <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${location.pathname === "/user-garage" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
+                >
+                  Vehicle
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
                 >
                   Social media
                 </Link>
-               
               </MenuItem>
               <MenuItem>
-                <Link 
+                <Link
                   to="/user-garage"
-                  className={` ${location.pathname === "/user-garage" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
                 >
                   Posts
                 </Link>
-                </MenuItem>
+              </MenuItem>
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${location.pathname === "/user-garage" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
                 >
                   Replies
                 </Link>
-                </MenuItem>
+              </MenuItem>
+
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
+                >
+                  Bookmark
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/user-garage"
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
+                >
+                  Favorites
+                </Link>
+              </MenuItem>
+
               <MenuItem>
                 <Link
                   to="/user-blog"
-                  className={` ${location.pathname === "/user-blog" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/user-blog" ? "active" : ""
+                  } `}
                 >
                   Blog
                 </Link>
-                </MenuItem>
+              </MenuItem>
             </SubMenu>
 
-            <SubMenu title="Auction" >
-             
-              <MenuItem >
+            <SubMenu title="Auction">
+              <MenuItem>
+                <Link
+                  className={` ${
+                    location.pathname === "/listing" ? "active" : ""
+                  } `}
+                  to="/listing"
+                >
+                  Listings
+                </Link>
+              </MenuItem>
+              <MenuItem>
                 <Link
                   to="/bids"
-                  className={` ${location.pathname === "/user-garage" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/user-garage" ? "active" : ""
+                  } `}
                 >
                   Bids
                 </Link>
-
               </MenuItem>
               <MenuItem>
                 <Link
                   to="/wins"
-                  className={` ${location.pathname === "/wins" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/wins" ? "active" : ""
+                  } `}
                 >
                   Won
                 </Link>
               </MenuItem>
-             
-             
             </SubMenu>
 
             {/* <MenuItem>
@@ -120,20 +159,13 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem> */}
-            <MenuItem>
-              <Link
-                className={` ${location.pathname === "/listing" ? "active" : ""} `}
-                to="/listing"
-              >
-                Listings
-              </Link>
-            </MenuItem>
 
             <MenuItem>
               <li>
                 <Link
-                  className={`${location.pathname === "/myshipments" ? "active" : ""
-                    }`}
+                  className={`${
+                    location.pathname === "/myshipments" ? "active" : ""
+                  }`}
                   to="/myshipments"
                 >
                   Shipments
@@ -155,8 +187,9 @@ function MyAccountLeftNav() {
             <MenuItem>
               <li>
                 <Link
-                  className={`${location.pathname === "/user-meeting" ? "active" : ""
-                    }`}
+                  className={`${
+                    location.pathname === "/user-meeting" ? "active" : ""
+                  }`}
                   to="/user-meeting"
                 >
                   Events
@@ -167,8 +200,9 @@ function MyAccountLeftNav() {
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/orders-cart" ? "active" : ""
-                    }`}
+                  className={` ${
+                    location.pathname === "/orders-cart" ? "active" : ""
+                  }`}
                   to="/orders-cart"
                 >
                   Orders
@@ -179,8 +213,9 @@ function MyAccountLeftNav() {
             <MenuItem>
               <li>
                 <Link
-                  className={`${location.pathname === "/subscription" ? "active" : ""
-                    }`}
+                  className={`${
+                    location.pathname === "/subscription" ? "active" : ""
+                  }`}
                   to="/subscription"
                 >
                   Subscription
@@ -191,20 +226,15 @@ function MyAccountLeftNav() {
             <MenuItem>
               <li>
                 <Link
-                  className={`${location.pathname === "/transaction" ? "active" : ""
-                    }`}
+                  className={`${
+                    location.pathname === "/transaction" ? "active" : ""
+                  }`}
                   to="/transaction"
                 >
                   Transaction
                 </Link>
               </li>
             </MenuItem>
-
-
-
-
-
-
           </Menu>
         </ProSidebar>
 
@@ -227,7 +257,6 @@ function MyAccountLeftNav() {
             Garage
           </Link>
         </li> */}
-
 
         {/* <li className="nav-item" >
           <div className="dropdown">
@@ -276,7 +305,7 @@ function MyAccountLeftNav() {
             </Menu>
           </ProSidebar>
        </li> */}
-       
+
         {/* <li>
           <Link
             className={` ${
