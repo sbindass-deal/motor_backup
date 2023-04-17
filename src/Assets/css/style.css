@@ -7426,3 +7426,17 @@ justify-content: space-between;
 .light .pro-sidebar .pro-menu a:hover{
   color: orange;
 }
+.bkBtn {
+  background-color: #333;
+  border: navajowhite;
+  width: 140px;
+  height: 38px;
+  color: #fff;
+}
+.light .bkBtn {
+  background-color: #f7931b;
+  border: navajowhite;
+  width: 140px;
+  height: 38px;
+  color: #fff;
+}
