@@ -7371,3 +7371,49 @@ justify-content: space-between;
   color: #f8a504;
   background: #000;
 }
+.product {
+  border: 2px solid black;
+  /* width: 500px;
+  height: 300px; */
+  position: relative;
+}
+
+
+
+.electric {
+  background: orange;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  position: absolute;
+  top: 27px;
+  width: 40%;
+  text-align: center;
+  left: -15px;
+  z-index: 2;
+  transform: rotate(-45deg);
+}
+.electric:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: rotate(45deg);
+  border-width: 20px 20px 0 20px;
+  border-color: orange transparent transparent transparent;
+  position: absolute;
+  right: -27px;
+  bottom: -3px;
+}
+.electric:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: rotate(-45deg);
+  border-width: 20px 20px 0 20px;
+  border-color: orange transparent transparent transparent;
+  position: absolute;
+  left: -27px;
+  bottom: -3px;
+}
