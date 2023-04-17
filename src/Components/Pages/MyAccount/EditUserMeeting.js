@@ -14,6 +14,7 @@ import {
 } from "draft-js";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { toast } from "react-toastify";
+import FormInput from "../../UI/FormInput";
 
 function EditUserMeeting() {
   const { id } = useParams()
@@ -179,81 +180,96 @@ function EditUserMeeting() {
                 <div class="row">
                   <div class="col-md-6">
                     <label htmlFor="">Title</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="form-control"
                       placeholder="Title"
                       name="title"
                       onChange={handleChange}
                       value={meetingDetail.title}
+                      errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Start Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
+                      errorMessage="Please enter start date"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">End Date</label>
-                    <input
+                    <FormInput
                       type="datetime-local"
                       class="form-control"
                       placeholder="First name"
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
+                      errorMessage="Please enter end date"
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Website Link</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="form-control"
                       placeholder="Website Link"
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Website link"
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Facebook Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       class="form-control"
                       placeholder="Facebook link"
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Facebook link"
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Twitter Link</label>
 
-                    <input
+                    <FormInput
                       type="text"
                       class="form-control"
                       placeholder="Twitter link"
                       name="twitterlink"
                       onChange={handleChange}
                       value={meetingDetail.twitterlink}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Twitter link"
                     />
                   </div>
                   <div class="col-md-6">
                     <label htmlFor="">Email Id</label>
-                    <input
+                    <FormInput
                       type="text"
                       class="form-control"
                       placeholder="Support email id"
                       name="emailid"
                       onChange={handleChange}
                       value={meetingDetail.emailid}
+                      errorMessage="Please enter valid email address"
+                      required={true}
+                      pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$"
                     />
                   </div>
 
