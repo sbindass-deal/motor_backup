@@ -257,93 +257,106 @@ function Detail() {
                   >
                     {vehicle?.make}
                   </h2>
-                  <div className="titleRight">
-                    <ul className="labelList ddertg">
-                      {vehicle?.displayInAuction !== "classified" && (
-                        <>
-                          {vehicle?.currentBid?.last_bid > 0 ? (
-                            <li>
-                              <label>Bid:</label>{" "}
+                  {vehicle?.is_close == 0 && (
+                    <>
+                      {vehicle?.displayInAuction != "Garage" && (
+                        <div className="titleRight">
+                          <ul className="labelList ddertg">
+                            {vehicle?.displayInAuction !== "classified" && (
+                              <>
+                                {vehicle?.currentBid?.last_bid > 0 ? (
+                                  <li>
+                                    <label>Bid:</label>{" "}
+                                    <span>
+                                      ${toCommas(vehicle?.currentBid?.last_bid)}
+                                    </span>
+                                  </li>
+                                ) : (
+                                  <li>
+                                    <label>Bidding Open</label>
+                                  </li>
+                                )}
+                              </>
+                            )}
+                            <li
+                              onClick={handleCommentRef}
+                              style={{ cursor: "pointer" }}
+                              className="cT"
+                            >
                               <span>
-                                ${toCommas(vehicle?.currentBid?.last_bid)}
+                                <img src={Msg} alt="msg" />
+                                <span
+                                  className="color_orange couNt"
+                                  style={{ marginLeft: "8px" }}
+                                >
+                                  {commentCount}
+                                </span>
                               </span>
                             </li>
+                            {t > 0 ? (
+                              <li>
+                                <span>
+                                  <label>Ends In:&nbsp;</label>
+                                  {days}days, {hours <= 9 && "0"}
+                                  {hours}h : {minutes <= 9 && "0"}
+                                  {minutes}m : {seconds <= 9 && "0"}
+                                  {seconds}s
+                                </span>
+                              </li>
+                            ) : (
+                              <>
+                                {vehicle?.displayInAuction !== "classified" && (
+                                  <span className="d-flex">
+                                    <label>Ends In :&nbsp;</label>
+                                    <li className="text-danger">Ended</li>
+                                  </span>
+                                )}
+                              </>
+                            )}
+                          </ul>
+                          {vehicle?.displayInAuction === "classified" ? (
+                            <button
+                              type="button"
+                              className="ml-5 gry_btn active bg-dark"
+                              style={{ border: "none" }}
+                            >
+                              Buy now
+                            </button>
                           ) : (
-                            <li>
-                              <label>No Bidding</label>
-                            </li>
+                            <>
+                              {t > 0 ? (
+                                <button
+                                  type="button"
+                                  className="gry_btn active bg-dark"
+                                  style={{ border: "none" }}
+                                  onClick={handleShow}
+                                >
+                                  Place a Bid
+                                </button>
+                              ) : (
+                                <ViewResult vehicle={vehicle} />
+                              )}
+                            </>
                           )}
-                        </>
+                        </div>
                       )}
-                      <li
-                        onClick={handleCommentRef}
-                        style={{ cursor: "pointer" }}
-                        className="cT"
-                      >
-                        <span>
-                          <img src={Msg} alt="msg" />
-                          <span
-                            className="color_orange couNt"
-                            style={{ marginLeft: "8px" }}
-                          >
-                            {commentCount}
-                          </span>
-                        </span>
-                      </li>
-                      {t > 0 ? (
-                        <li>
-                          <span>
-                            <label>Ends In:&nbsp;</label>
-                            {days}days, {hours <= 9 && "0"}
-                            {hours}h : {minutes <= 9 && "0"}
-                            {minutes}m : {seconds <= 9 && "0"}
-                            {seconds}s
-                          </span>
-                        </li>
-                      ) : (
-                        <>
-                          {vehicle?.displayInAuction !== "classified" && (
-                            <span className="d-flex">
-                              <label>Ends In :&nbsp;</label>
-                              <li className="text-danger">Ended</li>
-                            </span>
-                          )}
-                        </>
-                      )}
-                    </ul>
-                    {vehicle?.displayInAuction === "classified" ? (
-                      <button
-                        type="button"
-                        className="gry_btn active bg-dark"
-                        style={{ border: "none" }}
-                      >
-                        Buy now
-                      </button>
-                    ) : (
-                      <>
-                        {t > 0 ? (
-                          <button
-                            type="button"
-                            className="gry_btn active bg-dark"
-                            style={{ border: "none" }}
-                            onClick={handleShow}
-                          >
-                            Place a Bid
-                          </button>
-                        ) : (
-                          <ViewResult vehicle={vehicle} />
-                        )}
-                      </>
-                    )}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="postHero pb_30 detail">
-              <div className="soldLable">
-                   <p>Sold</p>       
-              </div>
+                <div className="soldLable">
+                  {vehicle?.is_close == 1 ? (
+                    <p>Sold</p>
+                  ) : vehicle?.displayInAuction === "classified" ? (
+                    <p>Classified</p>
+                  ) : vehicle?.displayInAuction == "Garage" ? (
+                    <p>Garage</p>
+                  ) : (
+                    <p>Auction</p>
+                  )}
+                </div>
                 {vehicle?.image_banner && (
-                  
                   <img
                     loading="lazy"
                     src={
@@ -453,71 +466,78 @@ function Detail() {
                 <div className="row">
                   <div className="col-md-12 ">
                     <h3 class="cardTitle">Bid On This Listing</h3>
-
-                    <ul className="bidOnThis">
-                      <li>
-                        <p>Current Bid</p>
-                        <p>
-                          {/* $ */}
-                          {vehicle?.currentBid &&
-                          vehicle?.currentBid?.last_bid > 0
-                            ? toCommas(`$ ${vehicle?.currentBid?.last_bid}`)
-                            : "Biding Open"}
-                        </p>
-                      </li>
-                      <li>
-                        <p>Time Left</p>
-                        <p>
-                          {t > 0 ? (
-                            <span>
-                              <label>Ends In:&nbsp;</label>
-                              {days}days, {hours <= 9 && "0"}
-                              {hours}h : {minutes <= 9 && "0"}
-                              {minutes}m : {seconds <= 9 && "0"}
-                              {seconds}s
-                            </span>
-                          ) : (
-                            <span className="d-flex">
-                              <label>Ends In :&nbsp;</label>
-                              <li className="text-danger">Ended</li>
-                            </span>
-                          )}
-                        </p>
-                      </li>
-                      <li>
-                        <p>Bids</p>
-                        <p>{vehicle?.currentBid?.total_bid}</p>
-                      </li>
-                      <li>
-                        <p>Place Bid</p>
-                        {vehicle?.displayInAuction === "classified" ? (
-                          <button
-                            type="button"
-                            className="gry_btn active bg-dark"
-                            style={{ border: "none" }}
-                          >
-                            Buy now
-                          </button>
-                        ) : (
-                          <>
-                            <p>
-                              {t > 0 ? (
+                    {vehicle?.is_close == 0 && (
+                      <>
+                        {vehicle?.displayInAuction != "Garage" && (
+                          <ul className="bidOnThis">
+                            <li>
+                              <p>Current Bid</p>
+                              <p>
+                                {/* $ */}
+                                {vehicle?.currentBid &&
+                                vehicle?.currentBid?.last_bid > 0
+                                  ? toCommas(
+                                      `$ ${vehicle?.currentBid?.last_bid}`
+                                    )
+                                  : "Biding Open"}
+                              </p>
+                            </li>
+                            <li>
+                              <p>Time Left</p>
+                              <p>
+                                {t > 0 ? (
+                                  <span>
+                                    <label>Ends In:&nbsp;</label>
+                                    {days}days, {hours <= 9 && "0"}
+                                    {hours}h : {minutes <= 9 && "0"}
+                                    {minutes}m : {seconds <= 9 && "0"}
+                                    {seconds}s
+                                  </span>
+                                ) : (
+                                  <span className="d-flex">
+                                    <label>Ends In :&nbsp;</label>
+                                    <li className="text-danger">Ended</li>
+                                  </span>
+                                )}
+                              </p>
+                            </li>
+                            <li>
+                              <p>Bids</p>
+                              <p>{vehicle?.currentBid?.total_bid}</p>
+                            </li>
+                            <li>
+                              <p>Place Bid</p>
+                              {vehicle?.displayInAuction === "classified" ? (
                                 <button
                                   type="button"
-                                  className="gry_btn active bg-dark"
+                                  className="ml-5 gry_btn active bg-dark"
                                   style={{ border: "none" }}
-                                  onClick={handleShow}
                                 >
-                                  Place a Bid
+                                  Buy now
                                 </button>
                               ) : (
-                                <ViewResult vehicle={vehicle} />
+                                <>
+                                  <p>
+                                    {t > 0 ? (
+                                      <button
+                                        type="button"
+                                        className="gry_btn active bg-dark"
+                                        style={{ border: "none" }}
+                                        onClick={handleShow}
+                                      >
+                                        Place a Bid
+                                      </button>
+                                    ) : (
+                                      <ViewResult vehicle={vehicle} />
+                                    )}
+                                  </p>
+                                </>
                               )}
-                            </p>
-                          </>
+                            </li>
+                          </ul>
                         )}
-                      </li>
-                    </ul>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
