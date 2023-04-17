@@ -15,7 +15,7 @@ function UserCreateMeeting() {
 
 
 
-  
+
 
   useEffect(() => {
     const fetchMeetingDetail = async () => {
@@ -112,7 +112,7 @@ function UserCreateMeeting() {
                 </ul> */}
 
                 <Link to="/add-user-meeting" className="orange_btn">
-                 + Add Create Event
+                  + Add Create Event
                 </Link>
               </div>
               <hr />
@@ -144,13 +144,14 @@ function UserCreateMeeting() {
                         <th scope="col">image</th>
                         {/* <th scope="col">Image</th> */}
                         <th scope="col">Title</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date </th>
-                        <th scope="col">Website Link</th>
+                        {/* <th scope="col">Start Date</th>
+                        <th scope="col">End Date </th> */}
+                        {/* <th scope="col">Website Link</th>
                         <th scope="col">Facebook Link</th>
-                        <th scope="col">Twitter Link</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Twitter Link</th> */}
+                        {/* <th scope="col">Email</th> */}
                         <th scope="col">Description</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -159,98 +160,111 @@ function UserCreateMeeting() {
 
                     <tbody>
                       {
-                          meetingData?.filter((curVal) => {
-                            if (searchTerm == '') {
-                              return curVal
-                            } else if (curVal.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                             return curVal
-                            }
-                          })
-                        ?.map((curVal, index) => {
-                          console.log(989, curVal, index)
-                          return <tr>
-                            <td>{index + 1}</td>
-                            <td>
-                              <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" />
-                            </td>
-                            <td>{curVal.title}</td>
-                            <td>{new Date(curVal.start_date).toDateString()}</td>
-                            <td>{new Date(curVal.end_date).toDateString()}</td>
-                           <td>{curVal.url}</td>
-                            <td>{curVal.facebook}</td>
-                            <td>{curVal.twitter}</td>
-                            <td>{curVal.email}</td>
-                            {/* <td>{curVal.description.substr(0,100)}</td> */}
-                            <td>{parse(
-                              curVal?.description.substr(0, 300),
-                              strToHtml
-                            )}</td>
-                            <td>
-
-                              <Link to={`/edit-user-meeting/${curVal.id}`}>
-                                <button>
-                                  <i class="fa-solid fa-pencil"></i>{" "}
-                                  Edit
-                                </button>
-                              </Link>
-                              <button
-                              onClick={() => handleDelete(curVal.id)}
-                              >Delete</button>
-                            </td>
-
-                            <div className="pl-md-3 d-flex">
-                              {curVal?.status == "0" && (
-                                <p
-                                  // onClick={() => VechilesApprove(curVal.id,0)}
-                                  className=""
-                                >
-                                  Pending for Admin Review
-                                </p>
-                              ) 
-                            
-                              }
-                              
-                              {curVal?.status == "1" && (
-                                <button
-                                  onClick={() => VechilesApprove(curVal.id, 2)}
-                                  className="gry_btn mr-2"
-                                >
-                                  Publish
-                                </button>
-                              )
-
-                              }
-                              {curVal?.status == "2" && (
-                                <p
-                                  // onClick={() => VechilesApprove(curVal.id, 2)}
-                                  className=""
-                                >
-                                  Published
-                                </p>
-                              )
-
-                              }
-                              {curVal?.status == "3" && (
-                                <p
-                                  // onClick={() => VechilesApprove(curVal.id, 2)}
-                                  className=""
-                                >
-                                  Rejected by Admin
-                                </p>
-                              )
-
-                              }
-
-
-
-                            </div>
-                          </tr>
-
-
-
-
-
+                        meetingData?.filter((curVal) => {
+                          if (searchTerm == '') {
+                            return curVal
+                          } else if (curVal.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return curVal
+                          }
                         })
+                          ?.map((curVal, index) => {
+                            console.log(989, curVal, index)
+                            return <tr>
+                              <td>{index + 1}</td>
+                              <td>
+                                <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" style={{width:"5rem"}}/>
+                              </td>
+                              <td>{curVal.title}</td>
+                              {/* <td>{new Date(curVal.start_date).toDateString()}</td>
+                              <td>{new Date(curVal.end_date).toDateString()}</td> */}
+                              {/* <td>{curVal.url}</td>
+                            <td>{curVal.facebook}</td>
+                            <td>{curVal.twitter}</td> */}
+                              {/* <td>{curVal.email}</td> */}
+                              {/* <td>{curVal.description.substr(0,100)}</td> */}
+                              <td>{parse(
+                                curVal?.description.substr(0, 300),
+                                strToHtml
+                              )}</td>
+
+                              <div className="pl-md-3 d-flex">
+                                {curVal?.status == "0" && (
+                                  <p
+                                    // onClick={() => VechilesApprove(curVal.id,0)}
+                                    className=""
+                                  >
+                                    Pending for Admin Review
+                                  </p>
+                                )
+
+                                }
+
+
+                                {curVal?.status === null && (
+                                  <p
+                                    // onClick={() => VechilesApprove(curVal.id,0)}
+                                    className=""
+                                  >
+                                    Pending for Admin Review
+                                  </p>
+                                )
+
+                                }
+
+
+                                {curVal?.status == "1" && (
+                                  <button
+                                    onClick={() => VechilesApprove(curVal.id, 2)}
+                                    className="gry_btn mr-2"
+                                  >
+                                    Publish
+                                  </button>
+                                )
+
+                                }
+                                {curVal?.status == "2" && (
+                                  <p
+                                    // onClick={() => VechilesApprove(curVal.id, 2)}
+                                    className=""
+                                  >
+                                    Published
+                                  </p>
+                                )
+
+                                }
+                                {curVal?.status == "3" && (
+                                  <p
+                                    // onClick={() => VechilesApprove(curVal.id, 2)}
+                                    className=""
+                                  >
+                                    Rejected by Admin
+                                  </p>
+                                )
+
+                                }
+
+
+
+                              </div>
+                              <td>
+
+                                <Link to={`/edit-user-meeting/${curVal.id}`}>
+                                  <button>
+                                    <i class="fa-solid fa-pencil"></i>{" "}
+                                    Edit
+                                  </button>
+                                </Link>
+                                <button
+                                  onClick={() => handleDelete(curVal.id)}
+                                >Delete</button>
+                              </td>
+                            </tr>
+
+
+
+
+
+                          })
                       }
 
 

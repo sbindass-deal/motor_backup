@@ -87,7 +87,7 @@ const OrderCart = () => {
                     <div className="table-responsive">
                       <table width={"100%"} className="cartSection">
                         <tr>
-                          <th>Sno.</th>
+                          <th>Sr No.</th>
                           <th>Order Number</th>
                           <th>Order Date</th>
                           {/* <th>No. of Items</th> */}
