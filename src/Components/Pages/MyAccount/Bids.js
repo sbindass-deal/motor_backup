@@ -6,11 +6,12 @@ import car_01 from "../../../Assets/images/car_01.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
 
 function Bids() {
+  const location = useLocation();
   const [data, setData] = useState([]);
   const userId = useSelector((state) => state);
   const [chatMessage, setChatMessage] = useState("");
@@ -135,7 +136,32 @@ function Bids() {
                 <h3>Bids</h3>
               </div>
               <hr />
-
+              <div className="row">
+                <Link
+                  to="/listing"
+                  className={` ${
+                    location.pathname === "/listing" ? "active" : ""
+                  } nav-link`}
+                >
+                  Listing
+                </Link>
+                <Link
+                  to="/bids"
+                  className={` ${
+                    location.pathname === "/bids" ? "active" : ""
+                  } nav-link`}
+                >
+                  Bids
+                </Link>
+                <Link
+                  to="/wins"
+                  className={` ${
+                    location.pathname === "/wins" ? "active" : ""
+                  } nav-link`}
+                >
+                  Won
+                </Link>
+              </div>
               <div className="row">
                 <div className="col-12">
                   {data.length > 0 ? (

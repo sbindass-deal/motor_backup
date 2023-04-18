@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { noImage } from "../../UI/globaleVar";
 import { getPlan, purchagedPlan } from "../../../redux/reducers/planReducer";
-import Dropdown from 'react-bootstrap/Dropdown';
-
+import Dropdown from "react-bootstrap/Dropdown";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 function MyListings() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -111,24 +112,6 @@ function MyListings() {
     fetchPurchagePlan();
   }, []);
 
-  if (vehicleLoding) {
-    return (
-      <div
-        className="container"
-        style={{
-          height: "80vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div className="row">
-          <Spinner />
-        </div>
-      </div>
-    );
-  }
-  // console.log(1111, logingUser.login.user.dealer);
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -146,23 +129,31 @@ function MyListings() {
               <div className="d-flex">
                 <h3>Listings</h3>
                 <div className="right">
-                <ul>
-                  <li>
-                  <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    <i class="fa-solid fa-filter"></i>
-                    </Dropdown.Toggle>
+                  <ul>
+                    <li>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          <i class="fa-solid fa-filter"></i>
+                        </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">All</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">Published</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Approved</Dropdown.Item>
-                      <Dropdown.Item href="#/action-4">Pending</Dropdown.Item>
-                      <Dropdown.Item href="#/action-5">Rejected</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  </li>
-                  {/* <li className="filtter">
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#/action-1">All</Dropdown.Item>
+                          <Dropdown.Item href="#/action-2">
+                            Published
+                          </Dropdown.Item>
+                          <Dropdown.Item href="#/action-3">
+                            Approved
+                          </Dropdown.Item>
+                          <Dropdown.Item href="#/action-4">
+                            Pending
+                          </Dropdown.Item>
+                          <Dropdown.Item href="#/action-5">
+                            Rejected
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </li>
+                    {/* <li className="filtter">
                 
                     <select
                       value={filterValue}
@@ -179,31 +170,57 @@ function MyListings() {
                       <option value="PENDING_ADMIN_APPROVAL">Rejected</option>
                     </select>
                   </li> */}
-                </ul>
+                  </ul>
 
-                <button
-                  onClick={() => {
-                    navigate(
-                      `${
-                        availablePlan?.listing_available > 0
-                          ? "/vechiles"
-                          : logingUser.login.user.dealer === "yes"
-                          ? "/dealer"
-                          : "/submit"
-                      }`
-                    );
-                    dispatch(purchagedPlan(true));
-                  }}
-                  className="gry_btn px-3"
-                >
-                  + Add new listing
-                </button>
+                  <button
+                    onClick={() => {
+                      navigate(
+                        `${
+                          availablePlan?.listing_available > 0
+                            ? "/vechiles"
+                            : logingUser.login.user.dealer === "yes"
+                            ? "/dealer"
+                            : "/submit"
+                        }`
+                      );
+                      dispatch(purchagedPlan(true));
+                    }}
+                    className="gry_btn px-3"
+                  >
+                    + Add new listing
+                  </button>
                 </div>
-               
               </div>
               <hr />
               <div className="row">
+                <Link
+                  to="/listing"
+                  className={` ${
+                    location.pathname === "/listing" ? "active" : ""
+                  } nav-link`}
+                >
+                  Listing
+                </Link>
+                <Link
+                  to="/bids"
+                  className={` ${
+                    location.pathname === "/bids" ? "active" : ""
+                  } nav-link`}
+                >
+                  Bids
+                </Link>
+                <Link
+                  to="/wins"
+                  className={` ${
+                    location.pathname === "/wins" ? "active" : ""
+                  } nav-link`}
+                >
+                  Won
+                </Link>
+              </div>
+              <div className="row">
                 <div className="col-12">
+                  {vehicleLoding && <SmallSpinner spin={true} />}
                   {data.length > 0 ? (
                     data.map((curElem) => {
                       return (

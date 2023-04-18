@@ -71,7 +71,7 @@ const PrivacyPolicyAdmin = () => {
                     </thead> */}
                   <tbody>
                     {isLoading ? (
-                      <SmallSpinner />
+                      <SmallSpinner spin={true} />
                     ) : (
                       data?.map((curVal, i) => {
                         console.log(798989, curVal, i);

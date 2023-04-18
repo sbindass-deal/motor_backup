@@ -123,7 +123,7 @@ function MyAccountLeftNav() {
                 <Link
                   to="/bids"
                   className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
+                    location.pathname === "/bids" ? "active" : ""
                   } `}
                 >
                   Bids
