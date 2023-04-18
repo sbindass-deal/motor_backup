@@ -1740,7 +1740,8 @@ const VechilesRegistraion = () => {
                                         placement="top"
                                         overlay={
                                           <Tooltip>
-                                            This is <strong>Hello</strong>.
+                                            Feature vechiles will be charge <strong>$25 extra</strong>
+                                            {/* This is <strong>Hello</strong>. */}
                                           </Tooltip>
                                         }
                                       >

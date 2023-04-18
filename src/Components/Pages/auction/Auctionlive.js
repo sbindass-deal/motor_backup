@@ -363,7 +363,7 @@ const Auctionlive = () => {
                 </div>
                 <div className="form-group d-flex justify-content-between ">
                   <button type="submit" className="btn"
-                  // onClick={handleFilteredModalClose}
+                  onClick={handleFilteredModalClose}
                   >
                     Filters
                   </button>

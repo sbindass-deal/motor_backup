@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
+import SmallSpinner from "../../UI/SmallSpinner";
 const PrivacyPolicyAdmin = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -16,6 +18,7 @@ const PrivacyPolicyAdmin = () => {
       .then((response) => {
         console.log(89800, response);
         setData(response.data.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -67,21 +70,25 @@ const PrivacyPolicyAdmin = () => {
                       </tr>
                     </thead> */}
                   <tbody>
-                    {data?.map((curVal, i) => {
-                      console.log(798989, curVal, i);
-                      return (
-                        <tr>
-                          {/* <th >{1 + i}</th> */}
+                    {isLoading ? (
+                      <SmallSpinner />
+                    ) : (
+                      data?.map((curVal, i) => {
+                        console.log(798989, curVal, i);
+                        return (
+                          <tr>
+                            {/* <th >{1 + i}</th> */}
 
-                          <td>{parse(curVal?.description, strToHtml)}</td>
-                          <td>
-                            <Link to={`/admin/editBlog/${curVal.id}`}>
-                              <button>Edit</button>
-                            </Link>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                            <td>{parse(curVal?.description, strToHtml)}</td>
+                            <td>
+                              <Link to={`/admin/editBlog/${curVal.id}`}>
+                                <button>Edit</button>
+                              </Link>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
                   </tbody>
                 </table>
               </div>
