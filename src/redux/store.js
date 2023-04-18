@@ -10,6 +10,7 @@ import vehicleReducer from "./reducers/vehicleReducer";
 import blogReducer from "./reducers/blogReducer";
 import gearReducer from "./reducers/gearReducer";
 import lotteryReducer from "./reducers/lotteryReducer";
+import garagesTabReducer from "./reducers/garagesTabReducer";
 
 const persistConfig = {
   key: "root",
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   blogReducer,
   gearReducer,
   lotteryReducer,
+  garagesTabReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
