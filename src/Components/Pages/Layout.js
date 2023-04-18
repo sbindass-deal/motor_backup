@@ -108,6 +108,10 @@ import GiveawayOfficialRules from "./GiveawayOfficialRules"
 import PrivacyPolicyAdmin from "./Dashboard/PrivacyPolicyAdmin";
 import AddPrivacy from "./Dashboard/AddPrivacy";
 import Editprivacy from "./Dashboard/Editprivacy";
+import TermAndCondition from "./Dashboard/TermAndCondition";
+import AmlPolicy from "./Dashboard/AmlPolicy";
+import EditTermAndCondition from "./Dashboard/EditTermAndCondition";
+import EditAmlPolicy from "./Dashboard/EditAmlPolicy";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -157,6 +161,8 @@ const Layout = () => {
                   />
                   <Route path="admin" element={<VehicleSubmission />} />
                   <Route path="admin-privacy-policy" element={<PrivacyPolicyAdmin />} />
+                  <Route path="admin-termcondition" element={<TermAndCondition />} />
+                  <Route path="admin-aml-policy" element={<AmlPolicy />} />
 
                   <Route
                     path="admin/vehicle-listing"
@@ -187,6 +193,8 @@ const Layout = () => {
                   />
                   <Route path="editBlog/:id" element={<EditBlog />} />
                   <Route path="admin/editBlog/:id" element={<Editprivacy/>} />
+                  <Route path="admin/edit-term/:id" element={<EditTermAndCondition/>} />
+                  <Route path="admin/edit-aml/:id" element={<EditAmlPolicy/>} />
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />

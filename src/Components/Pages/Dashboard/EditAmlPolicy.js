@@ -15,7 +15,7 @@ import {
 import { toast } from "react-toastify";
 import SmallSpinner from "../../UI/SmallSpinner";
 import FormInput from "../../UI/FormInput";
-const Editprivacy = () => {
+const EditAmlPolicy = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [blogDataById, setBlogDataById] = useState([]);
@@ -62,8 +62,8 @@ const Editprivacy = () => {
     const fetchBlog = async () => {
       try {
         const res = await axios.post(
-          `${process.env.REACT_APP_URL}getPages`, {
-            page: "privacy_policy"
+          `${process.env.REACT_APP_URL}getPages`,{
+            page: "aml_policy"
           }
         );
         console.log(8798980, res?.data?.data?.description)
@@ -96,7 +96,7 @@ const Editprivacy = () => {
     
     formData.append(
       "page",
-      "privacy_policy"
+      "aml_policy"
     );
     const config = {
       headers: {
@@ -109,7 +109,7 @@ const Editprivacy = () => {
         if (response.status === 200) {
           setLoading(false)
           notify("Save successfully !");
-          navigate("/admin-privacy-policy");
+          navigate("/admin-aml-policy");
         }
       })
       .catch((error) => {
@@ -122,7 +122,7 @@ const Editprivacy = () => {
     <div className="container py-5 px-md-5" style={{ minHeight: "100vh" }}>
       <div className="row">
         <form>
-          <Link to={'/admin-privacy-policy'}>
+          <Link to={'/admin-aml-policy'}>
             <button className="p-1"><i class="bi bi-arrow-left"></i> Back To List</button>
           </Link>
           <h3 className="text-center">Edit Content</h3>
@@ -167,4 +167,4 @@ const Editprivacy = () => {
     </div>
   );
 };
-export default Editprivacy
+export default EditAmlPolicy
