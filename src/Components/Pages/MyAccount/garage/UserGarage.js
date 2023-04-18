@@ -27,6 +27,7 @@ import {
   postTab,
   socialMediaTab,
 } from "../../../../redux/reducers/garagesTabReducer";
+import SocialMedia from "./SocialMedia";
 
 function UserGarage() {
   const [garagesData, setGaragesData] = useState({});
@@ -167,7 +168,18 @@ function UserGarage() {
                 }}
               >
                 <div className="d-flex ">
-                  <h3>Garage</h3>
+                  <h3>
+                    Garage /{" "}
+                    {tabState.vehicle_tab === true &&
+                      tabState.socialMedia_tab === false &&
+                      "Vehicle"}{" "}
+                    {tabState.socialMedia_tab === true && "Social media"}
+                    {tabState.post_tab === true && "Post"}
+                    {tabState.reply_tab === true && "Replies"}
+                    {tabState.bookmark_tab === true && "Bookmark"}
+                    {tabState.favorites_tab === true && "Favorite"}
+                    {tabState.blog_tab === true && "Blog"}
+                  </h3>
                   <Link
                     to={`/garages-user-details/${id}`}
                     className="px-3 VIEWEY"
@@ -376,17 +388,20 @@ function UserGarage() {
                       <button
                         onClick={() => dispatch(vehicleTab())}
                         className={`nav-link ${
-                          tabState.vehicle_tab === true && "active"
+                          tabState.vehicle_tab === true &&
+                          tabState.socialMedia_tab === false &&
+                          "active"
                         } `}
                       >
                         Vehicles
                       </button>
                       <button
                         onClick={() => dispatch(socialMediaTab())}
-                        className={`nav-link ${tabState.social_media === true && "active"
-                          } `}
+                        className={`nav-link ${
+                          tabState.socialMedia_tab === true && "active"
+                        } `}
                       >
-                        Social Media 
+                        Social Media
                       </button>
 
                       <button
@@ -431,8 +446,12 @@ function UserGarage() {
                       </button>
                     </div>
                     <div>
-                      {tabState.vehicle_tab === true && (
-                        <GaragesVehicle id={id} />
+                      {tabState.vehicle_tab === true &&
+                        tabState.socialMedia_tab === false && (
+                          <GaragesVehicle id={id} />
+                        )}
+                      {tabState.socialMedia_tab === true && (
+                        <SocialMedia id={id} logo={userInfo} />
                       )}
                       {tabState.post_tab === true && (
                         <Post
@@ -441,6 +460,7 @@ function UserGarage() {
                           logo={userInfo}
                         />
                       )}
+
                       {tabState.reply_tab === true && (
                         <Replies id={id} logo={userInfo} />
                       )}

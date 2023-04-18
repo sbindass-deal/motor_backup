@@ -133,7 +133,7 @@ function Bids() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div class="FlexCol">
-                <h3>Bids</h3>
+                <h3>Auctions / {location.pathname === "/bids" && "Bids"}</h3>
               </div>
               <hr />
               <div className="row LBW">
