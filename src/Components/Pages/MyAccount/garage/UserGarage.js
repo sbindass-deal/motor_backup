@@ -3,16 +3,12 @@ import MyAccountLeftNav from "../MyAccountLeftNav";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { noImage, notify, strToHtml } from "../../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Avatar, Image, Space } from "antd";
-// import { handleGarage } from "../../../../redux/reducers/planReducer";
-// import MyGaragesList from "./MyGaragesList";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import men_face from "../../../../Assets/images/men-face.jpg";
-
 import { Modal } from "react-bootstrap";
 import GaragesVehicle from "../../garages/GaragesVehicle";
 import GaragesAuction from "../../garages/GaragesAuction";
@@ -22,6 +18,14 @@ import Post from "./Post";
 import Replies from "./Replies";
 import Bookmark from "./Bookmark";
 import Favorite from "./Favorite";
+import {
+  blogTab,
+  bookMarkTab,
+  favoritesTab,
+  replyTab,
+  vehicleTab,
+  postTab,
+} from "../../../../redux/reducers/garagesTabReducer";
 
 function UserGarage() {
   const [garagesData, setGaragesData] = useState({});
@@ -31,6 +35,7 @@ function UserGarage() {
   const [postCount, setPostCount] = useState([]);
   const userId = useSelector((state) => state);
   const id = userId.login.user.user_id;
+  const tabState = userId.garagesTabReducer;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userInfo, setUserinfo] = useState({});
@@ -366,7 +371,67 @@ function UserGarage() {
                         </div>
                       </li>
                     </ul>
-                    <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
+                    <div className="row">
+                      <button
+                        onClick={() => dispatch(vehicleTab())}
+                        className="nav-link"
+                      >
+                        Garage
+                      </button>
+                      <button
+                        onClick={() => dispatch(postTab())}
+                        className="nav-link"
+                      >
+                        Posts
+                      </button>
+                      <button
+                        onClick={() => dispatch(replyTab())}
+                        className="nav-link"
+                      >
+                        Replies
+                      </button>
+                      <button
+                        onClick={() => dispatch(bookMarkTab())}
+                        className="nav-link"
+                      >
+                        Bookmark
+                      </button>
+                      <button
+                        onClick={() => dispatch(favoritesTab())}
+                        className="nav-link"
+                      >
+                        Favorites
+                      </button>
+                      <button
+                        onClick={() => dispatch(blogTab())}
+                        className="nav-link"
+                      >
+                        Blog
+                      </button>
+                    </div>
+                    <div>
+                      {tabState.vehicle_tab === true && (
+                        <GaragesVehicle id={id} />
+                      )}
+                      {tabState.post_tab === true && (
+                        <Post
+                          id={id}
+                          setPostCount={setPostCount}
+                          logo={userInfo}
+                        />
+                      )}
+                      {tabState.reply_tab === true && (
+                        <Replies id={id} logo={userInfo} />
+                      )}
+                      {tabState.bookmark_tab === true && (
+                        <Bookmark id={id} logo={userInfo} />
+                      )}
+                      {tabState.favorites_tab === true && (
+                        <Favorite id={id} logo={userInfo} />
+                      )}
+                      {tabState.blog_tab === true && <GaragesBlog id={id} />}
+                    </div>
+                    {/* <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link active"
@@ -381,20 +446,7 @@ function UserGarage() {
                           Garage
                         </button>
                       </li>
-                      {/* <li class="nav-item" role="presentation">
-                        <button
-                          class="nav-link"
-                          id="profile-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#profile-tab-pane"
-                          type="button"
-                          role="tab"
-                          aria-controls="profile-tab-pane"
-                          aria-selected="false"
-                        >
-                          Auctions
-                        </button>
-                      </li> */}
+                      
                       <li class="nav-item" role="presentation">
                         <button
                           class="nav-link"
@@ -465,22 +517,9 @@ function UserGarage() {
                           Blog
                         </button>
                       </li>
-                      {/* <li class="nav-item" role="presentation">
-                        <button
-                          class="nav-link"
-                          id="gallery-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#gallery-tab-pane"
-                          type="button"
-                          role="tab"
-                          aria-controls="gallery-tab-pane"
-                          aria-selected="false"
-                        >
-                          Gallery
-                        </button>
-                      </li> */}
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
+                     
+                    </ul> */}
+                    {/* <div class="tab-content" id="myTabContent">
                       <div
                         class="tab-pane fade show active"
                         id="home-tab-pane"
@@ -489,68 +528,6 @@ function UserGarage() {
                         tabindex="0"
                       >
                         <GaragesVehicle id={id} />
-                        {/* <div className="row pt-4 row_gridList false">
-                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
-                    <div class="card_post">
-                      <div class="card_postImg">
-                        <div class="list_wrapper">
-                          <a class="auction_image" href="/detail/125">
-                            <img
-                              loading="lazy"
-                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
-                              alt="Ferrari"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                      <div class="card_postInfo">
-                        <h4 class="car_title">
-                          <a href="/detail/125"> Ferrari Spyder 2020</a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
-                    <div class="card_post">
-                      <div class="card_postImg">
-                        <div class="list_wrapper">
-                          <a class="auction_image" href="/detail/125">
-                            <img
-                              loading="lazy"
-                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
-                              alt="Ferrari"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                      <div class="card_postInfo">
-                        <h4 class="car_title">
-                          <a href="/detail/125"> Ferrari Spyder 2020</a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-lg-4 col-md-4 pb-3 auctionLive">
-                    <div class="card_post">
-                      <div class="card_postImg">
-                        <div class="list_wrapper">
-                          <a class="auction_image" href="/detail/125">
-                            <img
-                              loading="lazy"
-                              src="https://api.GasGuzzlrs.com//./upload/vehicles//Vehicle-41309003081.webp"
-                              alt="Ferrari"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                      <div class="card_postInfo">
-                        <h4 class="car_title">
-                          <a href="/detail/125"> Ferrari Spyder 2020</a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
                       </div>
                       <div
                         class="tab-pane fade"
@@ -630,29 +607,7 @@ function UserGarage() {
                       >
                         {true && (
                           <>
-                            {/* <h6>Logo</h6>
-                            <hr />
-                            <div className="imgCross">
-                              <Image.PreviewGroup>
-                                {userInfo?.logo?.map((curElem, i) => {
-                                  return (
-                                    <span key={i}>
-                                      <Image
-                                        loading="lazy"
-                                        src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src = noImage;
-                                        }}
-                                        alt="logo"
-                                      />
-                                    </span>
-                                  );
-                                })}
-                              </Image.PreviewGroup>
-                            </div> */}
-                            {/* <h6 className="mt-3">Banner</h6>
-                            <hr /> */}
+                            
                             <div className="imgCross">
                               <Image.PreviewGroup>
                                 {(userInfo?.image_Banner ||
@@ -677,36 +632,14 @@ function UserGarage() {
                                   })}
                               </Image.PreviewGroup>
                             </div>
-                            {/* <h6 className="mt-3">Gallery</h6>
-                            <hr /> */}
-                            {/* <div className="imgCross">
-                              <Image.PreviewGroup>
-                                {userInfo?.image_Gallery?.map((curElem, i) => {
-                                  return (
-                                    <span key={i}>
-                                      <Image
-                                        loading="lazy"
-                                        src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onError = null;
-                                          currentTarget.src = noImage;
-                                        }}
-                                        alt="gallery"
-                                      />
-                                    </span>
-                                  );
-                                })}
-                              </Image.PreviewGroup>
-                            </div> */}
+                            
                           </>
                         )}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
-
-              {/* ============================ added new user garages end */}
             </div>
           </div>
         </div>

@@ -126,7 +126,7 @@ function HowShibnobiMotorWorks() {
               </div>
             </div>
           </div>
-          <div className="row pt_80">
+          {/* <div className="row pt_80">
             <div className="col-12 col-md-6 order-md-1">
               <img src={HIW3} alt="HIW3" />
             </div>
@@ -141,13 +141,7 @@ function HowShibnobiMotorWorks() {
                   calculated realtime for you to see in your personal account
                   dashboard during each giveaway.
                 </p>
-                {/* <ul className="dotList">
-                  <li>Lorem Ipsum has been the industry's standard</li>
-                  <li>dummy text ever since the 1500s</li>
-                  <li>When an unknown printer took a galley of type</li>
-                  <li>Scrambled it to make a type specimen book.</li>
-                  <li>It has survived not only five centuries.</li>
-                </ul> */}
+                
               </div>
             </div>
           </div>
@@ -166,16 +160,10 @@ function HowShibnobiMotorWorks() {
                   Twitter. Of course, the winner will FIRST be announced on the
                   Gas Guzzlrs YouTube Channel
                 </p>
-                {/* <ul className="dotList">
-                  <li>Lorem Ipsum has been the industry's standard</li>
-                  <li>dummy text ever since the 1500s</li>
-                  <li>When an unknown printer took a galley of type</li>
-                  <li>Scrambled it to make a type specimen book.</li>
-                  <li>It has survived not only five centuries.</li>
-                </ul> */}
+                
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="row pt_80">
             <div className="col-12 col-md-8 offset-md-2 text-center">
               <h2 className="orangeTextDark">The Submission Process</h2>

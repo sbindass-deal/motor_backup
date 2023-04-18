@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  bookMarkTab,
+  favoritesTab,
+  postTab,
+  replyTab,
+  socialMediaTab,
+  vehicleTab,
+} from "../../../redux/reducers/garagesTabReducer";
 
 function MyAccountLeftNav() {
+  const dispatch = useDispatch();
   const location = useLocation();
+  const userId = useSelector((state) => state);
+  const tabState = userId.garagesTabReducer;
 
   return (
     <div className="mr-5">
@@ -26,8 +38,11 @@ function MyAccountLeftNav() {
                 <Link
                   to="/user-garage"
                   className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
+                    tabState.socialMedia_tab === false &&
+                    tabState.vehicle_tab === true &&
+                    "active"
                   } `}
+                  onClick={() => dispatch(vehicleTab())}
                 >
                   Vehicle
                 </Link>
@@ -36,8 +51,11 @@ function MyAccountLeftNav() {
                 <Link
                   to="/user-garage"
                   className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
+                    tabState.socialMedia_tab === true &&
+                    tabState.vehicle_tab === true &&
+                    "active"
                   } `}
+                  onClick={() => dispatch(socialMediaTab())}
                 >
                   Social media
                 </Link>
@@ -45,9 +63,8 @@ function MyAccountLeftNav() {
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
-                  } `}
+                  className={` ${tabState.post_tab === true && "active"} `}
+                  onClick={() => dispatch(postTab())}
                 >
                   Posts
                 </Link>
@@ -55,9 +72,8 @@ function MyAccountLeftNav() {
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
-                  } `}
+                  className={` ${tabState.reply_tab === true && "active"} `}
+                  onClick={() => dispatch(replyTab())}
                 >
                   Replies
                 </Link>
@@ -66,9 +82,8 @@ function MyAccountLeftNav() {
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
-                  } `}
+                  className={` ${tabState.bookmark_tab === true && "active"} `}
+                  onClick={() => dispatch(bookMarkTab())}
                 >
                   Bookmark
                 </Link>
@@ -76,9 +91,8 @@ function MyAccountLeftNav() {
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
-                  } `}
+                  className={` ${tabState.favorites_tab === true && "active"} `}
+                  onClick={() => dispatch(favoritesTab())}
                 >
                   Favorites
                 </Link>
@@ -87,9 +101,7 @@ function MyAccountLeftNav() {
               <MenuItem>
                 <Link
                   to="/user-blog"
-                  className={` ${
-                    location.pathname === "/user-blog" ? "active" : ""
-                  } `}
+                  className={` ${tabState.blog_tab === true && "active"} `}
                 >
                   Blog
                 </Link>

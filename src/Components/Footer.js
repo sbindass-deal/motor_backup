@@ -99,8 +99,10 @@ const Footer = () => {
                 US territories and where prohibited by law. Promotion ends 11:59
                 PM (MST) on 04/20/2023. Odds of winning depend upon the number
                 of eligible entries received. See the
-                <Link to="/giveaway-official-rules"  style={{color
-                :"orange"}}>Official Rules</Link> for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
+                <Link to="/giveaway-official-rules" style={{ color: "orange" }}>
+                  &nbsp;Official Rules
+                </Link>{" "}
+                for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
                 TX 75229.
               </p>
             </div>

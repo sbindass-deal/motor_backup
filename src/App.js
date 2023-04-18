@@ -36,6 +36,7 @@ import { getTotals } from "./redux/reducers/cartSlice";
 import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
 import { storeGearData } from "./redux/reducers/gearReducer";
 import { handleGarage } from "./redux/reducers/planReducer";
+import { reSetGarageTab } from "./redux/reducers/garagesTabReducer";
 
 const bsc = {
   id: 56,
@@ -185,6 +186,7 @@ const App = () => {
   useEffect(() => {
     fetchData();
     dispatch(handleGarage(true));
+    dispatch(reSetGarageTab());
   }, []);
 
   return (
