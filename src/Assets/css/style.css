@@ -7481,3 +7481,43 @@ justify-content: space-between;
   border-bottom: 1px solid;
   margin-bottom: 10px;
 }
+
+.detailPostOption{position: relative;}
+.detailPostOption:before {
+
+  background-size: cover;
+  width: 100%;
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 14;
+}
+.bestSellerRgt {
+  float: left;
+  color: #fff;
+  background: #f5821e;
+  padding: 4px 30px 3px 20px;
+  margin-top: 5px;
+  position: absolute;
+  top: -4px;
+  left: -1px;
+}
+.bestSellerRgt:after {
+    content: '';
+    width: 0;
+    height: 0;
+    top: 0;
+    position: absolute;
+    right: 0;
+    border-right: 13px solid #333333;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+}
+
+h2.title_combo {
+  position: relative;
+  top: 17px;
+  left: -10px;
+}

@@ -251,6 +251,7 @@ function Detail() {
               </h2>
               <div className=" text-center box_background p-10" id="sticky">
                 <div className="detailPostOption">
+                <div class="bestSellerRgt">Auction</div>
                   <h2
                     className="title_combo title_Center mobileOnlyD"
                     id="sticky2"
@@ -345,7 +346,7 @@ function Detail() {
                 </div>
               </div>
               <div className="postHero pb_30 detail">
-                <div className="soldLable">
+                {/* <div className="soldLable">
                   {vehicle?.is_close == 1 ? (
                     <p>Sold</p>
                   ) : vehicle?.displayInAuction === "classified" ? (
@@ -355,7 +356,7 @@ function Detail() {
                   ) : (
                     <p>Auction</p>
                   )}
-                </div>
+                </div> */}
                 {vehicle?.image_banner && (
                   <img
                     loading="lazy"
