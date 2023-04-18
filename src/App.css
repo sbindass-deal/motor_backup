@@ -97,3 +97,7 @@ text-transform: capitalize;
   background-color: #FFA500 !important;
   color: white;
 }
+
+.active{
+  color: rgb(239, 96, 49) !important;
+}
