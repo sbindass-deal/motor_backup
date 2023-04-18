@@ -14,6 +14,7 @@ function AdUserMeeting() {
   const navigate = useNavigate()
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
+  const [fileError, setFileError] = useState(false)
 
   const handleContent = (e) => {
     setDescription(e);
@@ -39,9 +40,6 @@ function AdUserMeeting() {
     setMeetingDetail({ ...meetingDetail, [name]: value })
 
   }
-
-
-
 
   const inputRef = useRef();
 
@@ -89,6 +87,10 @@ function AdUserMeeting() {
 
     formData.append("image", file[0]);
 
+    if (!file[0]) {
+      setFileError(true)
+    } else {
+
 
       await axios.post(url, formData)
         .then(function (response) {
@@ -111,7 +113,7 @@ function AdUserMeeting() {
 
       });
 
-
+    }
   }
 
   return (
@@ -141,7 +143,7 @@ function AdUserMeeting() {
                       onChange={handleChange}
                       value={meetingDetail.title}
                       errorMessage="Name should be 3-30 characters and shouldn't include any special character or number!"
-                      error
+                      required={true}
                     />
                   </div>
                   <div class="col-md-6">
@@ -153,7 +155,7 @@ function AdUserMeeting() {
                       name="startdate"
                       onChange={handleChange}
                       value={meetingDetail.startdate}
-                      errorMessage="Required"
+                      errorMessage="Please enter start date"
                       required={true}
                     />
                   </div>
@@ -166,7 +168,7 @@ function AdUserMeeting() {
                       name="enddate"
                       onChange={handleChange}
                       value={meetingDetail.enddate}
-                      errorMessage="Required"
+                      errorMessage="Please enter end date"
                       required={true}
                     />
                   </div>
@@ -179,8 +181,8 @@ function AdUserMeeting() {
                       name="websitelink"
                       onChange={handleChange}
                       value={meetingDetail.websitelink}
-                      errorMessage="Required"
-                      required={true}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Website link"
                     />
                   </div>
                   <div class="col-md-6">
@@ -193,8 +195,8 @@ function AdUserMeeting() {
                       name="facebooklink"
                       onChange={handleChange}
                       value={meetingDetail.facebooklink}
-                      errorMessage="Required"
-                      required={true}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Facebook link"
                     />
                   </div>
                   <div class="col-md-6">
@@ -207,6 +209,8 @@ function AdUserMeeting() {
                       name="twitterlink"
                       onChange={handleChange}
                       value={meetingDetail.twitterlink}
+                      pattern="^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$"
+                      errorMessage="Please enter valid Twitter link"
                     />
                   </div>
                   <div class="col-md-6">
@@ -218,6 +222,9 @@ function AdUserMeeting() {
                       name="emailid"
                       onChange={handleChange}
                       value={meetingDetail.emailid}
+                      errorMessage="Please enter valid email address"
+                      required={true}
+                      pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$"
                     />
                   </div>
 
@@ -267,7 +274,7 @@ function AdUserMeeting() {
                     >
                       <h3>Drag and Drop Files to Upload</h3>
                       <h3>Or</h3>
-                      <FormInput
+                      <input
                         onChange={(e) => {
                           return setFile((prevState) => [...e.target.files]);
                         }}
@@ -287,6 +294,7 @@ function AdUserMeeting() {
                         Select Files
                       </button>
                     </div>
+                    {fileError && <span className="text-danger">Please Upload Photos</span>}
                   </div>
                 </div>
 

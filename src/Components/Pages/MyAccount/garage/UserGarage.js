@@ -448,7 +448,7 @@ function UserGarage() {
                           aria-controls="fav-tab-pane"
                           aria-selected="false"
                         >
-                          Favourites
+                          Favorites
                         </button>
                       </li>
                       <li class="nav-item" role="presentation">

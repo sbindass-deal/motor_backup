@@ -254,7 +254,7 @@ const GaragesUserDetails = () => {
                   aria-controls="fav-tab-pane"
                   aria-selected="false"
                 >
-                  Favorite
+                  Favorites
                 </button>
               </li>
               <li class="nav-item" role="presentation">
