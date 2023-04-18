@@ -89,6 +89,8 @@ button:focus {
 }
 
 select {
+  -webkit-appearance: none !important;
+
   -webkit-appearance: auto;
   -moz-appearance: auto;
   appearance: auto;
@@ -7473,4 +7475,9 @@ justify-content: space-between;
   align-items: center;
   justify-content: flex-start;
   width: 16%;
+}
+.LBW a.nav-link {
+  width: 33.33%;
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
 }
