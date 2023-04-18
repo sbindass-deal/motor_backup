@@ -13,6 +13,7 @@ const Auctionlive = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [dataFilter, setDataFilter] = useState([]);
   const [allData, setAllData] = useState([]);
   const [filteredModal, setFilteredModal] = useState(false);
 
@@ -23,12 +24,15 @@ const Auctionlive = () => {
   const [getSelectData, setGetSelectData] = useState({
     year: "",
     make: "",
-  });
+    model: "",
+    year: "",
+    state: "",
+    city: ""
 
+  });
   const handleChangeSelectData = (e) => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
   }
-
 
   console.log(10009, getSelectData)
 
@@ -44,10 +48,9 @@ const Auctionlive = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/auction`
-      );
+        `${process.env.REACT_APP_URL}vehicles_all/auction`);
 
-      console.log(9898, res)
+      console.log(9898001, res)
       if (res.data.status === 200) {
         setData(res.data.data);
         setAllData(res.data.data);
@@ -58,8 +61,29 @@ const Auctionlive = () => {
       setLoading(false);
     }
   };
+
+  const fetchAuctionLiveApiFilter = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getFiltersForVehicle`
+      );
+
+      console.log(98980009897, res)
+      if (res.data.status === 200) {
+        setDataFilter(res.data.data);
+
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchAuctionLiveApi();
+    fetchAuctionLiveApiFilter()
   }, []);
 
 
@@ -74,10 +98,10 @@ const Auctionlive = () => {
       if (res.data.status === 200) {
         const dataFilter = res.data.data.filter((curVal, i) => {
           return curVal.year == getSelectData.year
-          
+
         })
 
-        console.log(98981010110,'fff',dataFilter)
+        console.log(98981010110, 'fff', dataFilter)
         setData(dataFilter);
         setAllData(res.data.data);
       }
@@ -132,7 +156,7 @@ const Auctionlive = () => {
 
   const handleSubmitModel = (e) => {
     e.preventDefault()
-    fetchAuctionLiveApiSelect()
+    // fetchAuctionLiveApiSelect()
   }
 
   return (
@@ -254,6 +278,7 @@ const Auctionlive = () => {
           </div>
         </div>
       </section>
+      {console.log(9808909, dataFilter)}
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}
@@ -278,23 +303,7 @@ const Auctionlive = () => {
               <form onSubmit={handleSubmitModel}>
 
                 <div className="row row_gap_5">
-                  <div className="col-12 col-md-6">
-                    <label>Year</label>
-                    <div className="form-group">
-                      <select name='year' className="field" onChange={handleChangeSelectData}>
-                        <option selected disabled value="">
-                          Select
-                        </option>
-                        {
-                          data?.map((curVal, i) => {
 
-                            return <option value={curVal?.year}>{curVal?.year}</option>;
-                          })
-                        }
-
-                      </select>
-                    </div>
-                  </div>
                   <div className="col-12 col-md-6">
                     <label>Make</label>
                     <div className="form-group">
@@ -303,9 +312,9 @@ const Auctionlive = () => {
                           Select
                         </option>
                         {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.make}>{curVal?.make}</option>;
+                          dataFilter?.make?.map((curVal, i) => {
+                           
+                            return <option value={curVal}>{curVal}</option>;
                           })
                         }
                       </select>
@@ -314,29 +323,46 @@ const Auctionlive = () => {
                   <div className="col-12 col-md-6">
                     <label>Model</label>
                     <div className="form-group">
-                      <select name="model" className="field">
+                      <select name="model" className="field" onChange={handleChangeSelectData}>
                         <option selected disabled value="">
                           Select
                         </option>
                         {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.model}>{curVal?.model}</option>;
+                          dataFilter?.model?.map((curVal, i) => {
+                           
+                            return <option key={i} value={curVal}>{curVal}</option>;
                           })
                         }
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
-                    <label>State</label>
+                    <label>Year</label>
                     <div className="form-group">
-                      <select name="state" className="field">
+                      <select name='year' className="field" onChange={handleChangeSelectData}>
                         <option selected disabled value="">
                           Select
                         </option>
                         {
-                          data?.map((curVal, i) => {
-                            return <option value={curVal?.state}>{curVal?.state}</option>;
+                          dataFilter?.year?.map((curVal, i) => {
+
+                            return <option key={i} value={curVal}>{curVal}</option>;
+                          })
+                        }
+
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>State</label>
+                    <div className="form-group">
+                      <select name="state" className="field" onChange={handleChangeSelectData}>
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {
+                          dataFilter?.state?.map((curVal, i) => {
+                            return <option key={i} value={curVal}>{curVal}</option>;
                           })
                         }
 
@@ -346,14 +372,14 @@ const Auctionlive = () => {
                   <div className="col-12 col-md-6">
                     <label>City</label>
                     <div className="form-group">
-                      <select name="city" className="field">
+                      <select name="city" className="field" onChange={handleChangeSelectData}>
                         <option selected disabled value="">
                           Select
                         </option>
                         {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.city}>{curVal?.city}</option>;
+                          dataFilter?.city?.map((curVal, i) => {
+                           
+                            return <option key={i} value={curVal}>{curVal}</option>;
                           })
                         }
 
@@ -363,7 +389,7 @@ const Auctionlive = () => {
                 </div>
                 <div className="form-group d-flex justify-content-between ">
                   <button type="submit" className="btn"
-                  onClick={handleFilteredModalClose}
+                    onClick={handleFilteredModalClose}
                   >
                     Filters
                   </button>

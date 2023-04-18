@@ -33,7 +33,7 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu title="Garage">
+            <SubMenu title="My Account">
               <MenuItem>
                 <Link
                   to="/user-garage"
@@ -44,7 +44,7 @@ function MyAccountLeftNav() {
                   } `}
                   onClick={() => dispatch(vehicleTab())}
                 >
-                  Vehicle
+                  Vehicles
                 </Link>
               </MenuItem>
               <MenuItem>
