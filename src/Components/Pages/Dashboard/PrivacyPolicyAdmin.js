@@ -7,15 +7,18 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import parse from "html-react-parser";
 import { strToHtml } from '../../UI/globaleVar';
+import SmallSpinner from '../../UI/SmallSpinner';
 const PrivacyPolicyAdmin = () => {
 
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_URL}getPrivacyPolicy`)
       .then(response => {
-        console.log(89800,response)
+        console.log(89800, response)
         setData(response.data.data);
+        setIsLoading(false)
       })
       .catch(error => {
         console.log(error);
@@ -23,7 +26,7 @@ const PrivacyPolicyAdmin = () => {
   }, []);
 
 
- 
+
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
@@ -48,21 +51,21 @@ const PrivacyPolicyAdmin = () => {
                       + Add Privacy
                     </Link>
                   </div> : null
-}
-                
+                }
+
               </div>
 
               <hr id="hr" />
               <ul className="postTopOption" id="widthChnge">
-              
+
               </ul>
               <div
                 className="card_Gray table-responsive merchant vehicleSub"
                 id="scrollable"
               >
-                
-                  <table className="table text-center ">
-                    {/* <thead>
+
+                <table className="table text-center ">
+                  {/* <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
                         <th scope="col">Description </th>
@@ -73,16 +76,16 @@ const PrivacyPolicyAdmin = () => {
                       </tr>
                     </thead> */}
                   <tbody>
-                    {
+                    {isLoading ? <SmallSpinner /> :
                       data?.map((curVal, i) => {
-                        console.log(798989, curVal,i)
+                        console.log(798989, curVal, i)
                         return <tr>
                           {/* <th >{1 + i}</th> */}
-                          
-                          <td>{ parse(
+
+                          <td>{parse(
                             curVal?.description,
-                                      strToHtml
-                                    )}</td>
+                            strToHtml
+                          )}</td>
                           <td>
                             <Link to={`/admin/editBlog/${curVal.id}`}>
                               <button>
@@ -94,13 +97,13 @@ const PrivacyPolicyAdmin = () => {
                         </tr>
                       })
                     }
-                   
-                    </tbody>
-                  </table>
-              
+
+                  </tbody>
+                </table>
+
               </div>
 
-              
+
             </div>
           </div>
         </div>
