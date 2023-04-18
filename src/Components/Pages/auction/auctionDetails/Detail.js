@@ -298,10 +298,20 @@ function Detail() {
                               <li>
                                 <span>
                                   <label>Ends In:&nbsp;</label>
-                                  {days}days, {hours <= 9 && "0"}
-                                  {hours}h : {minutes <= 9 && "0"}
-                                  {minutes}m : {seconds <= 9 && "0"}
-                                  {seconds}s
+                                  {days > 0 ? (
+                                    <>{days > 0 && <span>{days}days</span>}</>
+                                  ) : (
+                                    <>
+                                      {hours <= 9 && "0"}
+                                      {hours > 0 && (
+                                        <span>{hours}h</span>
+                                      )} : {minutes <= 9 && "0"}
+                                      {minutes > 0 && (
+                                        <span>{minutes}m</span>
+                                      )} : {seconds <= 9 && "0"}
+                                      {seconds}s
+                                    </>
+                                  )}
                                 </span>
                               </li>
                             ) : (
@@ -489,10 +499,21 @@ function Detail() {
                                 {t > 0 ? (
                                   <span>
                                     <label>Ends In:&nbsp;</label>
-                                    {days}days, {hours <= 9 && "0"}
-                                    {hours}h : {minutes <= 9 && "0"}
-                                    {minutes}m : {seconds <= 9 && "0"}
-                                    {seconds}s
+                                    {days > 0 ? (
+                                      <>{days > 0 && <span>{days}days</span>}</>
+                                    ) : (
+                                      <>
+                                        {hours <= 9 && "0"}
+                                        {hours > 0 && (
+                                          <span>{hours}h</span>
+                                        )} : {minutes <= 9 && "0"}
+                                        {minutes > 0 && (
+                                          <span>{minutes}m</span>
+                                        )}{" "}
+                                        : {seconds <= 9 && "0"}
+                                        {seconds}s
+                                      </>
+                                    )}
                                   </span>
                                 ) : (
                                   <span className="d-flex">

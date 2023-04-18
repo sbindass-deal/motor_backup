@@ -4,15 +4,13 @@ import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
 import { Link, NavLink } from "react-router-dom";
 
 const Footer = () => {
-
-
   return (
     <div>
       <footer>
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
-              <NavLink to="/" activeClassName='active' className="mb-3">
+              <NavLink to="/" activeClassName="active" className="mb-3">
                 <img
                   loading="lazy"
                   src={shibnobiMotors}
@@ -36,27 +34,39 @@ const Footer = () => {
               <ul className="fLinks fLinks_row">
                 {/* <li><Link to="#">Auctions</Link></li> */}
                 <li>
-                  <NavLink to="/shipping" activeClassName='active'>Shipping</NavLink>
+                  <NavLink to="/shipping" activeClassName="active">
+                    Shipping
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/feautres" activeClassName='active'>Featured</NavLink>
+                  <NavLink to="/feautres" activeClassName="active">
+                    Featured
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/submit" activeClassName='active'>List Your Vehicle</NavLink>
+                  <NavLink to="/submit" activeClassName="active">
+                    List Your Vehicle
+                  </NavLink>
                 </li>
                 {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
                 {/* <li><Link to="#">Event Calendar</Link></li> */}
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
                 {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <NavLink to="/carraffle" activeClassName='active'>Giveaways</NavLink>
+                  <NavLink to="/carraffle" activeClassName="active">
+                    Giveaways
+                  </NavLink>
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>
-                  <NavLink to="/getalerts" activeClassName='active'>Get Alerts</NavLink>
+                  <NavLink to="/getalerts" activeClassName="active">
+                    Get Alerts
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/about" activeClassName='active'>About Gas Guzzlrs</NavLink>
+                  <NavLink to="/about" activeClassName="active">
+                    About Gas Guzzlrs
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -101,8 +111,13 @@ const Footer = () => {
                 US territories and where prohibited by law. Promotion ends 11:59
                 PM (MST) on 04/20/2023. Odds of winning depend upon the number
                 of eligible entries received. See the
-                <NavLink to="/giveaway-official-rules"  style={{color
-                :"orange"}}>Official Rules</NavLink> for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
+                <NavLink
+                  to="/giveaway-official-rules"
+                  style={{ color: "orange" }}
+                >
+                  &nbsp;Official Rules
+                </NavLink>{" "}
+                for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
                 TX 75229.
               </p>
             </div>
@@ -112,9 +127,13 @@ const Footer = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
-                <NavLink to="/privacy" >Privacy policy</NavLink>
-                <NavLink to="/termsandconditions" activeClassName='active'>Term of Condition</NavLink>
-                <NavLink to="/amlpolicy" activeClassName='active'>AML Policy</NavLink>
+                <NavLink to="/privacy">Privacy policy</NavLink>
+                <NavLink to="/termsandconditions" activeClassName="active">
+                  Term of Condition
+                </NavLink>
+                <NavLink to="/amlpolicy" activeClassName="active">
+                  AML Policy
+                </NavLink>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
                 <p>©2023 Gas Guzzlrs | All Rights Reserved.</p>
