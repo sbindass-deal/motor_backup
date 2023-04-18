@@ -147,7 +147,7 @@ function Wins() {
                 <h3>Wins</h3>
               </div>
               <hr />
-              <div className="row">
+              <div className="row LBW">
                 <Link
                   to="/listing"
                   className={` ${

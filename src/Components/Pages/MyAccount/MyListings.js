@@ -192,7 +192,7 @@ function MyListings() {
                 </div>
               </div>
               <hr />
-              <div className="row">
+              <div className="row LBW">
                 <Link
                   to="/listing"
                   className={` ${

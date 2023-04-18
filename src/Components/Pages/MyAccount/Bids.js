@@ -136,7 +136,7 @@ function Bids() {
                 <h3>Bids</h3>
               </div>
               <hr />
-              <div className="row">
+              <div className="row LBW">
                 <Link
                   to="/listing"
                   className={` ${
