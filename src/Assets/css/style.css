@@ -89,6 +89,8 @@ button:focus {
 }
 
 select {
+  -webkit-appearance: none !important;
+
   -webkit-appearance: auto;
   -moz-appearance: auto;
   appearance: auto;
@@ -7358,19 +7360,6 @@ justify-content: space-between;
   margin-top:0x;
 }
 
-.soldLable {
-  transform: rotate(313deg);
-  position: absolute;
-  letter-spacing: 1px;
-  z-index: 1;
-  left: 40px;
-  top: 120px;
-  border: 1px solid;
-  padding: 6px 17px;
-  border-radius: 5px;
-  color: #f8a504;
-  background: #000;
-}
 .product {
   border: 2px solid black;
   /* width: 500px;
@@ -7439,4 +7428,96 @@ justify-content: space-between;
   width: 140px;
   height: 38px;
   color: #fff;
+}
+
+
+.soldLable{
+  background-image: url(../images/bgLabel.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.soldLable {
+  transform: rotate(270deg);
+  position: absolute;
+  letter-spacing: 1px;
+  z-index: 1;
+  height: 145px;
+  width: 80px;
+  top: 53px;
+  left: 33px;
+  border: navajowhite;
+  padding: 6px 17px;
+  color: #f8a504;
+}
+.soldLable p {
+  color: #000000;
+  margin-bottom: 0;
+  margin-top: 0x;
+  transform: rotate(91deg);
+  text-align: center;
+  position: relative;
+  top: 26px;
+}
+
+.neDesT button {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #f78f15;
+  color: #fff;
+}
+.neDesT button {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #f78f15;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 16%;
+}
+.LBW a.nav-link {
+  width: 33.33%;
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
+}
+
+.detailPostOption{position: relative;}
+.detailPostOption:before {
+
+  background-size: cover;
+  width: 100%;
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 14;
+}
+.bestSellerRgt {
+  float: left;
+  color: #fff;
+  background: #f5821e;
+  padding: 4px 30px 3px 20px;
+  margin-top: 5px;
+  position: absolute;
+  top: -4px;
+  left: -1px;
+}
+.bestSellerRgt:after {
+    content: '';
+    width: 0;
+    height: 0;
+    top: 0;
+    position: absolute;
+    right: 0;
+    border-right: 13px solid #333333;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+}
+
+h2.title_combo {
+  position: relative;
+  top: 17px;
+  left: -10px;
 }

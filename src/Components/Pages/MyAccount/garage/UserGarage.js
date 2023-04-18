@@ -356,7 +356,7 @@ function UserGarage() {
                         <i class="fa-solid fa-pen-to-square"></i>
                       </Link>
                     </h2>
-                    <ul className="labelList_">
+                    <ul className="labelList_ ">
                       {/* <li>
                        
                         <div className="labelList_text">
@@ -371,40 +371,52 @@ function UserGarage() {
                         </div>
                       </li>
                     </ul>
-                    <div className="row">
+                    <div className="row neDesT">
                       <button
                         onClick={() => dispatch(vehicleTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.vehicle_tab === true && "active"
+                        } `}
                       >
                         Garage
                       </button>
                       <button
                         onClick={() => dispatch(postTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.post_tab === true && "active"
+                        } `}
                       >
                         Posts
                       </button>
                       <button
                         onClick={() => dispatch(replyTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.reply_tab === true && "active"
+                        } `}
                       >
                         Replies
                       </button>
                       <button
                         onClick={() => dispatch(bookMarkTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.bookmark_tab === true && "active"
+                        } `}
                       >
                         Bookmark
                       </button>
                       <button
                         onClick={() => dispatch(favoritesTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.favorites_tab === true && "active"
+                        } `}
                       >
                         Favorites
                       </button>
                       <button
                         onClick={() => dispatch(blogTab())}
-                        className="nav-link"
+                        className={`nav-link ${
+                          tabState.blog_tab === true && "active"
+                        } `}
                       >
                         Blog
                       </button>

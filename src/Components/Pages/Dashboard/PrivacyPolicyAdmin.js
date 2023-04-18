@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import AdminLeftNav from './AdminLeftNav';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import AdminLeftNav from "./AdminLeftNav";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import parse from "html-react-parser";
-import { strToHtml } from '../../UI/globaleVar';
-import SmallSpinner from '../../UI/SmallSpinner';
+import { strToHtml } from "../../UI/globaleVar";
+import SmallSpinner from "../../UI/SmallSpinner";
 const PrivacyPolicyAdmin = () => {
-
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_URL}getPrivacyPolicy`)
-      .then(response => {
-        console.log(89800, response)
+    axios
+      .get(`${process.env.REACT_APP_URL}getPrivacyPolicy`)
+      .then((response) => {
+        console.log(89800, response);
         setData(response.data.data);
-        setIsLoading(false)
+        setIsLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
-
-
 
   return (
     <div>
@@ -44,26 +42,22 @@ const PrivacyPolicyAdmin = () => {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Giveaways Content</h3>
-                {
-                  data?.length < 0 ? <div>
+                <h3>Giveaways Official Rules</h3>
+                {data?.length < 0 ? (
+                  <div>
                     <Link to="/admin/addprivacy" className="orange_btn">
                       + Add Privacy
                     </Link>
-                  </div> : null
-                }
-
+                  </div>
+                ) : null}
               </div>
 
               <hr id="hr" />
-              <ul className="postTopOption" id="widthChnge">
-
-              </ul>
+              <ul className="postTopOption" id="widthChnge"></ul>
               <div
                 className="card_Gray table-responsive merchant vehicleSub"
                 id="scrollable"
               >
-
                 <table className="table text-center ">
                   {/* <thead>
                       <tr>
@@ -76,40 +70,34 @@ const PrivacyPolicyAdmin = () => {
                       </tr>
                     </thead> */}
                   <tbody>
-                    {isLoading ? <SmallSpinner /> :
+                    {isLoading ? (
+                      <SmallSpinner spin={true} />
+                    ) : (
                       data?.map((curVal, i) => {
-                        console.log(798989, curVal, i)
-                        return <tr>
-                          {/* <th >{1 + i}</th> */}
+                        console.log(798989, curVal, i);
+                        return (
+                          <tr>
+                            {/* <th >{1 + i}</th> */}
 
-                          <td>{parse(
-                            curVal?.description,
-                            strToHtml
-                          )}</td>
-                          <td>
-                            <Link to={`/admin/editBlog/${curVal.id}`}>
-                              <button>
-                                Edit
-                              </button>
-                            </Link>
-                          </td>
-
-                        </tr>
+                            <td>{parse(curVal?.description, strToHtml)}</td>
+                            <td>
+                              <Link to={`/admin/editBlog/${curVal.id}`}>
+                                <button>Edit</button>
+                              </Link>
+                            </td>
+                          </tr>
+                        );
                       })
-                    }
-
+                    )}
                   </tbody>
                 </table>
-
               </div>
-
-
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default PrivacyPolicyAdmin
+export default PrivacyPolicyAdmin;

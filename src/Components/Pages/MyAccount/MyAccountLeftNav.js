@@ -4,6 +4,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  blogTab,
   bookMarkTab,
   favoritesTab,
   postTab,
@@ -100,8 +101,9 @@ function MyAccountLeftNav() {
 
               <MenuItem>
                 <Link
-                  to="/user-blog"
+                  to="/user-garage"
                   className={` ${tabState.blog_tab === true && "active"} `}
+                  onClick={() => dispatch(blogTab())}
                 >
                   Blog
                 </Link>
@@ -123,7 +125,7 @@ function MyAccountLeftNav() {
                 <Link
                   to="/bids"
                   className={` ${
-                    location.pathname === "/user-garage" ? "active" : ""
+                    location.pathname === "/bids" ? "active" : ""
                   } `}
                 >
                   Bids

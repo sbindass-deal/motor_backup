@@ -1,17 +1,17 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
 import car_01 from "../../../Assets/images/car_01.jpg";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import StripeCheckout from "react-stripe-checkout";
 import winner from "../../../Assets/images/winnerTitle.png";
 
 function Wins() {
+  const location = useLocation();
   const [data, setData] = useState([]);
   const userId = useSelector((state) => state);
   const [chatMessage, setChatMessage] = useState("");
@@ -147,7 +147,32 @@ function Wins() {
                 <h3>Wins</h3>
               </div>
               <hr />
-
+              <div className="row LBW">
+                <Link
+                  to="/listing"
+                  className={` ${
+                    location.pathname === "/listing" ? "active" : ""
+                  } nav-link`}
+                >
+                  Listing
+                </Link>
+                <Link
+                  to="/bids"
+                  className={` ${
+                    location.pathname === "/bids" ? "active" : ""
+                  } nav-link`}
+                >
+                  Bids
+                </Link>
+                <Link
+                  to="/wins"
+                  className={` ${
+                    location.pathname === "/wins" ? "active" : ""
+                  } nav-link`}
+                >
+                  Won
+                </Link>
+              </div>
               <div className="row">
                 <div className="col-12">
                   {data.length > 0 ? (
@@ -298,7 +323,7 @@ function Wins() {
                           </div>
                         </div>
                       </div>
-                       {/* Win Page Section End*/}
+                      {/* Win Page Section End*/}
                     </div>
                   )}
                 </div>

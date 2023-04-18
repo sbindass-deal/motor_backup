@@ -303,7 +303,7 @@ function Header() {
                       </li>
                       {/* day and night mode end */}
                       <li className="nav-item">
-                        <div className="dropdown">
+                        <div className="dropdown" >
                           <Link
                             className={`nav-link ${
                               location.pathname === "/submit" && "navActive"
@@ -706,7 +706,7 @@ function Header() {
                             to="#"
                           >
                             List Your Vehicles
-                          </Link>
+                        
                           <div className="dropdown-content">
                             <Link className="" to="/submit">
                               Private Party
@@ -715,6 +715,7 @@ function Header() {
                               Dealer
                             </Link>
                           </div>
+                          </Link>
                         </div>
                       </li>
 

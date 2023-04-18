@@ -251,6 +251,7 @@ function Detail() {
               </h2>
               <div className=" text-center box_background p-10" id="sticky">
                 <div className="detailPostOption">
+                <div class="bestSellerRgt">Auction</div>
                   <h2
                     className="title_combo title_Center mobileOnlyD"
                     id="sticky2"
@@ -297,10 +298,20 @@ function Detail() {
                               <li>
                                 <span>
                                   <label>Ends In:&nbsp;</label>
-                                  {days}days, {hours <= 9 && "0"}
-                                  {hours}h : {minutes <= 9 && "0"}
-                                  {minutes}m : {seconds <= 9 && "0"}
-                                  {seconds}s
+                                  {days > 0 ? (
+                                    <>{days > 0 && <span>{days}days</span>}</>
+                                  ) : (
+                                    <>
+                                      {hours <= 9 && "0"}
+                                      {hours > 0 && (
+                                        <span>{hours}h</span>
+                                      )} : {minutes <= 9 && "0"}
+                                      {minutes > 0 && (
+                                        <span>{minutes}m</span>
+                                      )} : {seconds <= 9 && "0"}
+                                      {seconds}s
+                                    </>
+                                  )}
                                 </span>
                               </li>
                             ) : (
@@ -345,7 +356,7 @@ function Detail() {
                 </div>
               </div>
               <div className="postHero pb_30 detail">
-                <div className="soldLable">
+                {/* <div className="soldLable">
                   {vehicle?.is_close == 1 ? (
                     <p>Sold</p>
                   ) : vehicle?.displayInAuction === "classified" ? (
@@ -355,7 +366,7 @@ function Detail() {
                   ) : (
                     <p>Auction</p>
                   )}
-                </div>
+                </div> */}
                 {vehicle?.image_banner && (
                   <img
                     loading="lazy"
@@ -488,10 +499,21 @@ function Detail() {
                                 {t > 0 ? (
                                   <span>
                                     <label>Ends In:&nbsp;</label>
-                                    {days}days, {hours <= 9 && "0"}
-                                    {hours}h : {minutes <= 9 && "0"}
-                                    {minutes}m : {seconds <= 9 && "0"}
-                                    {seconds}s
+                                    {days > 0 ? (
+                                      <>{days > 0 && <span>{days}days</span>}</>
+                                    ) : (
+                                      <>
+                                        {hours <= 9 && "0"}
+                                        {hours > 0 && (
+                                          <span>{hours}h</span>
+                                        )} : {minutes <= 9 && "0"}
+                                        {minutes > 0 && (
+                                          <span>{minutes}m</span>
+                                        )}{" "}
+                                        : {seconds <= 9 && "0"}
+                                        {seconds}s
+                                      </>
+                                    )}
                                   </span>
                                 ) : (
                                   <span className="d-flex">

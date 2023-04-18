@@ -1,7 +1,7 @@
 import React from "react";
 import shibnobiMotors from "../Assets/images/transparent.png";
 import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
-              <Link to="/" className="mb-3">
+              <NavLink to="/" activeClassName="active" className="mb-3">
                 <img
                   loading="lazy"
                   src={shibnobiMotors}
@@ -23,7 +23,7 @@ const Footer = () => {
                   alt="shibnobiMotors"
                   className="whiteLogo"
                 />
-              </Link>
+              </NavLink>
               {/* <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.{" "}
@@ -34,27 +34,39 @@ const Footer = () => {
               <ul className="fLinks fLinks_row">
                 {/* <li><Link to="#">Auctions</Link></li> */}
                 <li>
-                  <Link to="/shipping">Shipping</Link>
+                  <NavLink to="/shipping" activeClassName="active">
+                    Shipping
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/feautres">Featured</Link>
+                  <NavLink to="/feautres" activeClassName="active">
+                    Featured
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/submit">List Your Vehicle</Link>
+                  <NavLink to="/submit" activeClassName="active">
+                    List Your Vehicle
+                  </NavLink>
                 </li>
                 {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
                 {/* <li><Link to="#">Event Calendar</Link></li> */}
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
                 {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <Link to="/carraffle">Giveaways</Link>
+                  <NavLink to="/carraffle" activeClassName="active">
+                    Giveaways
+                  </NavLink>
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>
-                  <Link to="/getalerts">Get Alerts</Link>
+                  <NavLink to="/getalerts" activeClassName="active">
+                    Get Alerts
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/about">About Gas Guzzlrs</Link>
+                  <NavLink to="/about" activeClassName="active">
+                    About Gas Guzzlrs
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -99,9 +111,12 @@ const Footer = () => {
                 US territories and where prohibited by law. Promotion ends 11:59
                 PM (MST) on 04/20/2023. Odds of winning depend upon the number
                 of eligible entries received. See the
-                <Link to="/giveaway-official-rules" style={{ color: "orange" }}>
+                <NavLink
+                  to="/giveaway-official-rules"
+                  style={{ color: "orange" }}
+                >
                   &nbsp;Official Rules
-                </Link>{" "}
+                </NavLink>{" "}
                 for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
                 TX 75229.
               </p>
@@ -112,9 +127,13 @@ const Footer = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
-                <Link to="/privacy">Privacy policy</Link>
-                <Link to="/termsandconditions">Term of Condition</Link>
-                <Link to="/amlpolicy">AML Policy</Link>
+                <NavLink to="/privacy">Privacy policy</NavLink>
+                <NavLink to="/termsandconditions" activeClassName="active">
+                  Term of Condition
+                </NavLink>
+                <NavLink to="/amlpolicy" activeClassName="active">
+                  AML Policy
+                </NavLink>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
                 <p>©2023 Gas Guzzlrs | All Rights Reserved.</p>
