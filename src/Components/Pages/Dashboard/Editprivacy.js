@@ -64,14 +64,14 @@ const Editprivacy = () => {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}getPrivacyPolicy`
         );
-        console.log(8798980, res.data)
+        console.log(8798980, res?.data?.data[0]?.description)
         if (res.data.status === 200 && res.data) {
           
           setBlogDataById(res.data);
           setBlogContent(
             EditorState.createWithContent(
               ContentState.createFromBlockArray(
-                convertFromHTML(res.data.description)
+                convertFromHTML(res?.data?.data[0]?.description)
               )
             )
           );
