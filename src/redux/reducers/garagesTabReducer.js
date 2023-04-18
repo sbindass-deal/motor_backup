@@ -8,6 +8,7 @@ const initialState = {
   bookmark_tab: false,
   favorites_tab: false,
   blog_tab: false,
+  social_media: false
 };
 
 const garagesTabReducer = createSlice({
@@ -22,7 +23,22 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
+
+
+    social_mediaTab: (state, action) => {
+      state.vehicle_tab = true;
+      state.socialMedia_tab = false;
+      state.post_tab = false;
+      state.reply_tab = false;
+      state.bookmark_tab = false;
+      state.favorites_tab = false;
+      state.blog_tab = false;
+      state.social_media=true
+    },
+
+
     socialMediaTab: (state, action) => {
       state.vehicle_tab = true;
       state.socialMedia_tab = true;
@@ -31,6 +47,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
     postTab: (state, action) => {
       state.vehicle_tab = false;
@@ -40,6 +57,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
     replyTab: (state, action) => {
       state.vehicle_tab = false;
@@ -49,6 +67,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
     bookMarkTab: (state, action) => {
       state.vehicle_tab = false;
@@ -58,6 +77,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = true;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
     favoritesTab: (state, action) => {
       state.vehicle_tab = false;
@@ -67,6 +87,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = true;
       state.blog_tab = false;
+      state.social_media = false
     },
     blogTab: (state, action) => {
       state.vehicle_tab = false;
@@ -76,6 +97,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = true;
+      state.social_media = false
     },
     reSetGarageTab: (state, action) => {
       state.vehicle_tab = true;
@@ -85,6 +107,7 @@ const garagesTabReducer = createSlice({
       state.bookmark_tab = false;
       state.favorites_tab = false;
       state.blog_tab = false;
+      state.social_media = false
     },
   },
 });

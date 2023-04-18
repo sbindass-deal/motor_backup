@@ -34,7 +34,7 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu title="My Account">
+            <SubMenu title="Garage">
               <MenuItem>
                 <Link
                   to="/user-garage"
@@ -110,7 +110,7 @@ function MyAccountLeftNav() {
               </MenuItem>
             </SubMenu>
 
-            <SubMenu title="Auction">
+            <SubMenu title="Auctions">
               <MenuItem>
                 <Link
                   className={` ${

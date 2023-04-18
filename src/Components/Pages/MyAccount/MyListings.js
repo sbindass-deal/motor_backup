@@ -199,7 +199,7 @@ function MyListings() {
                     location.pathname === "/listing" ? "active" : ""
                   } nav-link`}
                 >
-                  Listing
+                  Listings
                 </Link>
                 <Link
                   to="/bids"

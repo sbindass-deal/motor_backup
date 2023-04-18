@@ -80,7 +80,7 @@ const VechilesRegistraion = () => {
   const [optionsCharity, setOptionsCharity] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedValueData, setSelectedValueData] = useState("");
-  const [numberPer, setNumberPer] = useState(null);
+  const [numberPer, setNumberPer] = useState(2);
   const [charityState, setCharityState] = useState("");
   const [vehicleHistory, setVehicleHistory] = useState(
     EditorState.createEmpty()
@@ -1891,7 +1891,7 @@ const VechilesRegistraion = () => {
                                     </label>
                                     <input
                                       type="number"
-                                      min="1"
+                                      min="2"
                                       max="100"
                                       value={numberPer}
                                       onChange={handleInputChange}

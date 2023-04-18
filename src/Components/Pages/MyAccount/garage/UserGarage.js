@@ -25,6 +25,7 @@ import {
   replyTab,
   vehicleTab,
   postTab,
+  socialMediaTab,
 } from "../../../../redux/reducers/garagesTabReducer";
 
 function UserGarage() {
@@ -151,7 +152,7 @@ function UserGarage() {
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0">
-                <h5>Garage</h5>
+                <h5>My Account</h5>
                 <hr />
                 <MyAccountLeftNav />
               </div>
@@ -378,8 +379,16 @@ function UserGarage() {
                           tabState.vehicle_tab === true && "active"
                         } `}
                       >
-                        Garage
+                        Vehicles
                       </button>
+                      <button
+                        onClick={() => dispatch(socialMediaTab())}
+                        className={`nav-link ${tabState.social_media === true && "active"
+                          } `}
+                      >
+                        Social Media 
+                      </button>
+
                       <button
                         onClick={() => dispatch(postTab())}
                         className={`nav-link ${

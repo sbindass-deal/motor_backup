@@ -35,7 +35,8 @@ const Garages = () => {
           </div>
           <div className="col-12 col-lg-12">
             <div className="heroText">
-              <h1>We have over {dealerCount} garages around the world</h1>
+              {/* <h1>We have over {dealerCount} garages around the world</h1> */}
+              <h1>View member garages from around the world</h1>
               <h5>
                 We help you find your dream car. Select from our exclusive
                 <br /> list of garages.
@@ -48,7 +49,7 @@ const Garages = () => {
         <div className="auction_container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Featured Garages</h2>
+              <h2>Garages</h2>
             </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">
