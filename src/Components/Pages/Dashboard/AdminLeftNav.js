@@ -144,7 +144,7 @@ function AdminLeftNav() {
             } `}
             to="/admin-privacy-policy"
           >
-            Privacy policy
+            Giveaways Official Rules
           </Link>
         </li>
       </ul>
