@@ -356,7 +356,7 @@ function UserGarage() {
                         <i class="fa-solid fa-pen-to-square"></i>
                       </Link>
                     </h2>
-                    <ul className="labelList_">
+                    <ul className="labelList_ ">
                       {/* <li>
                        
                         <div className="labelList_text">
@@ -371,10 +371,10 @@ function UserGarage() {
                         </div>
                       </li>
                     </ul>
-                    <div className="row">
+                    <div className="row neDesT">
                       <button
                         onClick={() => dispatch(vehicleTab())}
-                        className="nav-link"
+                        className="nav-link active"
                       >
                         Garage
                       </button>

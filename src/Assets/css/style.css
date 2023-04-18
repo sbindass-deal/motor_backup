@@ -7457,3 +7457,20 @@ justify-content: space-between;
   position: relative;
   top: 26px;
 }
+
+.neDesT button {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #f78f15;
+  color: #fff;
+}
+.neDesT button {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #f78f15;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 16%;
+}
