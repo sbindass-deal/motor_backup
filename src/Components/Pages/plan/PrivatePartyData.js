@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../../redux/reducers/planReducer";
 import { useEffect } from "react";
@@ -13,11 +13,16 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
   const [userinfo, setUserinfo] = useState({});
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(false);
+  const [log, setLog] = useState(false);
   const handleSubmit = (PrivatePartyData) => {
     getPlan();
     dispatch(getPlan(PrivatePartyData));
     navigate("/vechiles");
   };
+
+  const logingUser = useSelector((state) => state);
+  // console.log("logingUser", logingUser)
+
 
   const fetchUsrApi = async () => {
     try {
@@ -40,15 +45,14 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
     <>
       <div className="col-lg-3 col-md-6 col-sm-12  mb-4 mobile-mt-50 wed">
         <div
-          className={`plan_card ${
-            curElem.plan_name === "Pro"
+          className={`plan_card ${curElem.plan_name === "Pro"
               ? "plan_Plus pro"
               : curElem.plan_name === "Premiere"
-              ? "plan_Plus"
-              : curElem.plan_name === "Exclusive"
-              ? "plan_WhiteGlove fff"
-              : ""
-          }`}
+                ? "plan_Plus"
+                : curElem.plan_name === "Exclusive"
+                  ? "plan_WhiteGlove fff"
+                  : ""
+            }`}
         >
           <div className="plan_cardHead">
             <h4 style={{ overflow: "hidden" }}>{curElem.plan_name} </h4>
@@ -139,27 +143,23 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 onClick={() =>
                   handleSubmit({
                     planId: curElem.id,
-                    listingType: `${
-                      planType && planName === curElem.plan_name
+                    listingType: `${planType && planName === curElem.plan_name
                         ? "annual"
                         : "monthly"
-                    }`,
+                      }`,
                     name: curElem.plan_name,
-                    price: `${
-                      planType && planName === curElem.plan_name
+                    price: `${planType && planName === curElem.plan_name
                         ? curElem.annual_price
                         : curElem.monthly_price
-                    }`,
-                    desc: `${
-                      planType && planName === curElem.plan_name
+                      }`,
+                    desc: `${planType && planName === curElem.plan_name
                         ? curElem.annual_description
                         : curElem.monthly_description
-                    }`,
-                    playQuantity: `${
-                      planType && planName === curElem.plan_name
+                      }`,
+                    playQuantity: `${planType && planName === curElem.plan_name
                         ? curElem.annual_listing
                         : curElem.monthly_listing
-                    }`,
+                      }`,
                   })
                 }
                 className="gry_btn"
@@ -175,42 +175,45 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
             <div className="plan_cardFooter">
               <button
                 onClick={() => {
-                  if (userinfo.cn_no !== null) {
+                  if (userinfo.cn_no !== null && logingUser.login.token) {
                     handleSubmit({
                       planId: curElem.id,
-                      listingType: `${
-                        planType && planName === curElem.plan_name
+                      listingType: `${planType && planName === curElem.plan_name
                           ? "annual"
                           : "monthly"
-                      }`,
+                        }`,
                       name: curElem.plan_name,
-                      price: `${
-                        planType && planName === curElem.plan_name
+                      price: `${planType && planName === curElem.plan_name
                           ? curElem.annual_price
                           : curElem.monthly_price
-                      }`,
-                      desc: `${
-                        planType && planName === curElem.plan_name
+                        }`,
+                      desc: `${planType && planName === curElem.plan_name
                           ? curElem.annual_description
                           : curElem.monthly_description
-                      }`,
-                      playQuantity: `${
-                        planType && planName === curElem.plan_name
+                        }`,
+                      playQuantity: `${planType && planName === curElem.plan_name
                           ? curElem.annual_listing
                           : curElem.monthly_listing
-                      }`,
+                        }`,
                     });
-                  } else {
+                  }
+                  else if(!logingUser.login.token){
                     notify(
-                      "Please submit credit card details in to you account",
+                      "Please login",
+                      409
+                    );
+                  }
+                  else {
+                    notify(
+                      "Please submit credit card details in your account",
                       400
                     );
                   }
                 }}
                 className="gry_btn"
-                  >
-                   
-                   PURCHASE SUBSCRIPTION 
+              >
+
+                PURCHASE SUBSCRIPTION
                 {/* SUBMIT VEHICLE */}
               </button>
             </div>
@@ -220,27 +223,23 @@ const PrivatePartyData = ({ curElem, purchagedPlan }) => {
                 onClick={() =>
                   handleSubmit({
                     planId: curElem.id,
-                    listingType: `${
-                      planType && planName === curElem.plan_name
+                    listingType: `${planType && planName === curElem.plan_name
                         ? "annual"
                         : "monthly"
-                    }`,
+                      }`,
                     name: curElem.plan_name,
-                    price: `${
-                      planType && planName === curElem.plan_name
+                    price: `${planType && planName === curElem.plan_name
                         ? curElem.annual_price
                         : curElem.monthly_price
-                    }`,
-                    desc: `${
-                      planType && planName === curElem.plan_name
+                      }`,
+                    desc: `${planType && planName === curElem.plan_name
                         ? curElem.annual_description
                         : curElem.monthly_description
-                    }`,
-                    playQuantity: `${
-                      planType && planName === curElem.plan_name
+                      }`,
+                    playQuantity: `${planType && planName === curElem.plan_name
                         ? curElem.annual_listing
                         : curElem.monthly_listing
-                    }`,
+                      }`,
                   })
                 }
                 className="gry_btn"

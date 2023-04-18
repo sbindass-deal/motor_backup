@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getPlan } from "../../../redux/reducers/planReducer";
 import { notify, strToHtml } from "../../UI/globaleVar";
@@ -17,6 +17,8 @@ const Data = ({ curElem, purchagedPlan }) => {
     dispatch(getPlan(data));
     navigate("/vechiles");
   };
+
+  const logingUser = useSelector((state) => state);
 
   const fetchUsrApi = async () => {
     try {
@@ -157,7 +159,7 @@ const Data = ({ curElem, purchagedPlan }) => {
             <div className="plan_cardFooter">
               <button
                 onClick={() => {
-                  if (userinfo.cn_no !== null) {
+                  if (userinfo.cn_no !== null && logingUser.login.token) {
                     handleSubmit({
                       planId: curElem.id,
                       listingType: `${
@@ -182,9 +184,16 @@ const Data = ({ curElem, purchagedPlan }) => {
                           : curElem.monthly_listing
                       }`,
                     });
-                  } else {
+                  }
+                  else if(!logingUser.login.token){
                     notify(
-                      "Please submit credit card details in to you account",
+                      "Please login",
+                      409
+                    );
+                  }
+                  else {
+                    notify(
+                      "Please submit credit card details in your account",
                       400
                     );
                   }
