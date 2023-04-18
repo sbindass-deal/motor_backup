@@ -127,7 +127,9 @@ function MyListings() {
             <div className="col-12 col-md-8 col-lg-9">
               {/* <div class="FlexCol"> */}
               <div className="d-flex">
-                <h3>Listings</h3>
+                <h3>
+                  Auctions / {location.pathname === "/listing" && "Listing"}
+                </h3>
                 <div className="right">
                   <ul>
                     <li>
