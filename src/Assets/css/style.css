@@ -1481,7 +1481,7 @@ select.field option {
 }
 
 .tgl-skewed:checked+.tgl-btn {
-  background: #1fa734;
+  background: #f8a504;
 }
 
 .tgl-skewed:checked+.tgl-btn:before {
