@@ -11,7 +11,7 @@ function GiveawayOfficialRules() {
 
   useEffect(() => {
     axios.post(`${process.env.REACT_APP_URL}getPages`, {
-      page: "privacy_policy"
+      page: "give_away"
     })
     .then(response => {
         console.log(898000099, response.data.data)

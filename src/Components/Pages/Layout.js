@@ -112,6 +112,8 @@ import TermAndCondition from "./Dashboard/TermAndCondition";
 import AmlPolicy from "./Dashboard/AmlPolicy";
 import EditTermAndCondition from "./Dashboard/EditTermAndCondition";
 import EditAmlPolicy from "./Dashboard/EditAmlPolicy";
+import PrivacyPolicyFooter from "./Dashboard/PrivacyPolicyFooter";
+import EditPrivactPolicyFooter from "./Dashboard/EditPrivactPolicyFooter";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -163,6 +165,7 @@ const Layout = () => {
                   <Route path="admin-privacy-policy" element={<PrivacyPolicyAdmin />} />
                   <Route path="admin-termcondition" element={<TermAndCondition />} />
                   <Route path="admin-aml-policy" element={<AmlPolicy />} />
+                  <Route path="admin-privacy" element={<PrivacyPolicyFooter />} />
 
                   <Route
                     path="admin/vehicle-listing"
@@ -195,6 +198,7 @@ const Layout = () => {
                   <Route path="admin/editBlog/:id" element={<Editprivacy/>} />
                   <Route path="admin/edit-term/:id" element={<EditTermAndCondition/>} />
                   <Route path="admin/edit-aml/:id" element={<EditAmlPolicy/>} />
+                  <Route path="admin/edit-privacy-footer/:id" element={<EditPrivactPolicyFooter/>} />
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />

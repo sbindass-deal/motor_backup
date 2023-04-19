@@ -10,7 +10,7 @@ function CookiesSetting() {
 
   useEffect(() => {
     axios.post(`${process.env.REACT_APP_URL}getPages`, {
-      page: "terms_condtion"
+      page: "aml_policy"
     })
       .then(response => {
         console.log(898000099, response.data.data)

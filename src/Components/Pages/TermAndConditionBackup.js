@@ -1,6 +1,6 @@
 import React from "react";
 
-function TermsOfUse() {
+function TermAndConditionBackup() {
     return (
         <div>
             <section className="ptb_80 pt_sm_50">
@@ -705,4 +705,4 @@ function TermsOfUse() {
     );
 }
 
-export default TermsOfUse;
+export default TermAndConditionBackup;

@@ -149,6 +149,16 @@ function AdminLeftNav() {
         </li>
         <li>
           <Link
+            className={` ${location.pathname === "/admin-privacy" ? "active" : ""
+              } `}
+            to="/admin-privacy"
+          >
+            Privacy policy
+
+          </Link>
+        </li>
+        <li>
+          <Link
             className={` ${
               location.pathname === "/admin-termcondition" ? "active" : ""
             } `}
