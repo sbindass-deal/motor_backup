@@ -112,7 +112,7 @@ import TermAndCondition from "./Dashboard/TermAndCondition";
 import AmlPolicy from "./Dashboard/AmlPolicy";
 import EditTermAndCondition from "./Dashboard/EditTermAndCondition";
 import EditAmlPolicy from "./Dashboard/EditAmlPolicy";
-import SocialMedia from "./MyAccount/garage/SocialMedia";
+import SocialMedia from "./garages/SocialMedia";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);

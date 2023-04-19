@@ -9,6 +9,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import SmallSpinner from "../../UI/SmallSpinner";
 
 const SocialMedia = ({ id, logo }) => {
   const [file, setFile] = useState([]);
@@ -20,6 +21,7 @@ const SocialMedia = ({ id, logo }) => {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingr, setLoadingr] = useState(false);
+  const [loadingApiGetData, setLoadingApiGetData] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -40,11 +42,14 @@ const SocialMedia = ({ id, logo }) => {
     //   .catch(function (error) {
     //     console.log(error);
     //   });
+    setLoadingApiGetData(true);
     try {
       const res = await axios.get(`${process.env.REACT_APP_URL}getPostAll`);
       setPostData(res.data.data);
+      setLoadingApiGetData(false);
     } catch (err) {
       console.log(err);
+      setLoadingApiGetData(false);
     }
   };
   useEffect(() => {
@@ -153,6 +158,10 @@ const SocialMedia = ({ id, logo }) => {
   //       console.log(error);
   //     });
   // };
+
+  if (loadingApiGetData) {
+    return <SmallSpinner spin={true} />;
+  }
 
   return (
     <>
