@@ -27,19 +27,33 @@ const Charity = () => {
 
   const fetchNoreserveData = async () => {
     setLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/charity`
-      );
-      if (res.data.status === 200) {
+    // try {
+    //   const res = await axios.get(
+    //     `${process.env.REACT_APP_URL}vehicles_all/charity`
+    //   );
+    //   if (res.data.status === 200) {
+    // setData(res.data.data);
+    // setAllData(res.data.data)
+    //   }
+    //   setLoading(false);
+    // } catch (err) {
+    //   console.log(err);
+    //   setLoading(false);
+    // }
+
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/charity`, {})
+      .then(function (res) {
         setData(res.data.data);
-        setAllData(res.data.data)
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
+        setAllData(res.data.data);
+
+        setLoading(false);
+        console.log(111, res.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
   };
   useEffect(() => {
     fetchNoreserveData();
@@ -53,13 +67,12 @@ const Charity = () => {
   //   return startDate.toString();
   // };
 
-
   const filterData = (data) => {
     const dataFilter = allData.filter((curElem) => {
-      return (data == 1 ? curElem.like == data : curElem)
-    })
-    setData(dataFilter)
-  }
+      return data == 1 ? curElem.like == data : curElem;
+    });
+    setData(dataFilter);
+  };
 
   const addFabrity = (id) => {
     axios
@@ -98,48 +111,44 @@ const Charity = () => {
             </div>
           </div> */}
           <a type="button" className="scrollDownIc bounce2" href="#second">
-          <span className="outer_cover">
-            <small className="upper">
-              <i class="fa fa-angle-down"></i>
-            </small>
-            <small className="lower">
-              <i class="fa fa-angle-down"></i>
-            </small>
-          </span>
-        </a>
+            <span className="outer_cover">
+              <small className="upper">
+                <i class="fa fa-angle-down"></i>
+              </small>
+              <small className="lower">
+                <i class="fa fa-angle-down"></i>
+              </small>
+            </span>
+          </a>
         </div>
       </section>
       <section className="ptb_30" id="second"></section>
       <section className="ptb_80 pt_sm_50">
         <div className="container">
           <div className="row">
-          <div class="col-12 text-center pb_30"><h2>Charity Auctions</h2></div>
+            <div class="col-12 text-center pb_30">
+              <h2>Charity Auctions</h2>
+            </div>
             <div className="col-12">
-            
               <ul className="postTopOption">
                 <li className="post_search">
                   <input
                     type="search"
                     name="search"
                     value={searchValue}
-                    onChange={(e) =>
-                      setSearchValue(e.target.value)
-                    }
+                    onChange={(e) => setSearchValue(e.target.value)}
                     placeholder="Filter auctions for make, model, category…"
                   />
                 </li>
                 <li className="">
                   <button
                     onClick={() => {
-                      setHighlightWatch(!highlightWatch)
+                      setHighlightWatch(!highlightWatch);
                       if (highlightWatch) {
-                        filterData(0)
+                        filterData(0);
                       } else {
-                        filterData(1)
+                        filterData(1);
                       }
-
-                    
-
                     }}
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
@@ -186,24 +195,34 @@ const Charity = () => {
             }`}
           >
             {currentPosts.length > 0 &&
-              currentPosts?.filter((curElem) => {
-                if (searchValue == "") {
-                  return curElem
-                } else if (curElem?.make.toLowerCase().includes(searchValue.toLowerCase())) {
-                  return curElem
-                }
-              })
+              currentPosts
+                ?.filter((curElem) => {
+                  if (searchValue == "") {
+                    return curElem;
+                  } else if (
+                    curElem?.make
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  ) {
+                    return curElem;
+                  }
+                })
                 ?.map((curElem) => {
-                return (
-                  <Data
-                    key={curElem.id}
-                    curElem={curElem}
-                    addFabrity={addFabrity}
-                  />
-                );
-              })}
+                  return (
+                    <Data
+                      key={curElem.id}
+                      curElem={curElem}
+                      addFabrity={addFabrity}
+                    />
+                  );
+                })}
 
-              <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>

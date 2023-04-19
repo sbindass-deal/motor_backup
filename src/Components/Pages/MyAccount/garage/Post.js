@@ -152,7 +152,7 @@ const Post = ({ id, setPostCount, logo }) => {
     <>
       <section className="py-4 mobileSpec" id="">
         <div className="container">
-          <div className="row youPage">
+          {/* <div className="row youPage">
             <div className="col-md-12 ">
               <div className="PostInfo">
                 <div className="userImG">
@@ -229,22 +229,7 @@ const Post = ({ id, setPostCount, logo }) => {
                           <i class="fa-solid fa-image"></i>
                         </span>
                       </span>
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-bars-progress"></i>
-                      </span> */}
-                      {/* <span
-                        style={{ cursor: "pointer" }}
-                        className="socialCount"
-                      >
-                        <i class="fa-solid fa-face-smile"></i>
-                      </span> */}
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-business-time"></i>
-                      </span> */}
-
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-location-dot"></i>
-                      </span> */}
+                      
                     </div>
                     {loading ? (
                       <button type="button" className="btn">
@@ -259,7 +244,7 @@ const Post = ({ id, setPostCount, logo }) => {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="row ">
             <div className="col-12 text-center pb_30"></div>
             <div className="col-12 Videos ghhh">
