@@ -159,7 +159,7 @@ const Data = ({ curElem, purchagedPlan }) => {
             <div className="plan_cardFooter">
               <button
                 onClick={() => {
-                  if (userinfo.cn_no !== null && logingUser.login.token) {
+                  if (userinfo.cn_no !== null && logingUser.login.token && logingUser.login.user.dealer === "Yes") {
                     handleSubmit({
                       planId: curElem.id,
                       listingType: `${
@@ -188,6 +188,12 @@ const Data = ({ curElem, purchagedPlan }) => {
                   else if(!logingUser.login.token){
                     notify(
                       "Please login",
+                      409
+                    );
+                  }
+                  else if(logingUser.login.user.dealer !== "Yes"){
+                    notify(
+                      "Only Dealer can Purchase Subscription",
                       409
                     );
                   }

@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import { toast } from "react-toastify";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function UserCreateMeeting() {
   const [meetingData, setMeetingData] = useState([]);
@@ -172,7 +173,7 @@ function UserCreateMeeting() {
                             return <tr>
                               <td>{index + 1}</td>
                               <td>
-                                <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" style={{width:"5rem"}}/>
+                                <img src={`https://api.gasguzzlrs.com/upload/event/${curVal.image}`} alt="" style={{ width: "5rem" }} />
                               </td>
                               <td>{curVal.title}</td>
                               {/* <td>{new Date(curVal.start_date).toDateString()}</td>
@@ -186,67 +187,68 @@ function UserCreateMeeting() {
                                 curVal?.description.substr(0, 300),
                                 strToHtml
                               )}</td>
-
-                              <div className="pl-md-3 d-flex">
-                                {curVal?.status == "0" && (
-                                  <p
-                                    // onClick={() => VechilesApprove(curVal.id,0)}
-                                    className=""
-                                  >
-                                    Pending for Admin Review
-                                  </p>
-                                )
-
-                                }
-
-
-                                {curVal?.status === null && (
-                                  <p
-                                    // onClick={() => VechilesApprove(curVal.id,0)}
-                                    className=""
-                                  >
-                                    Pending for Admin Review
-                                  </p>
-                                )
-
-                                }
-
-
-                                {curVal?.status == "1" && (
-                                  <button
-                                    onClick={() => VechilesApprove(curVal.id, 2)}
-                                    className="gry_btn mr-2"
-                                  >
-                                    Publish
-                                  </button>
-                                )
-
-                                }
-                                {curVal?.status == "2" && (
-                                  <p
-                                    // onClick={() => VechilesApprove(curVal.id, 2)}
-                                    className=""
-                                  >
-                                    Published
-                                  </p>
-                                )
-
-                                }
-                                {curVal?.status == "3" && (
-                                  <p
-                                    // onClick={() => VechilesApprove(curVal.id, 2)}
-                                    className=""
-                                  >
-                                    Rejected by Admin
-                                  </p>
-                                )
-
-                                }
-
-
-
-                              </div>
                               <td>
+
+
+                                <div>
+                                  {curVal?.status == "0" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id,0)}
+                                      className=""
+                                    >
+                                      Pending for Admin Review
+                                    </p>
+                                  )
+
+                                  }
+
+
+                                  {curVal?.status === null && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id,0)}
+                                      className=""
+                                    >
+                                      Pending for Admin Review
+                                    </p>
+                                  )
+
+                                  }
+
+
+                                  {curVal?.status == "1" && (
+                                    <button
+                                      onClick={() => VechilesApprove(curVal.id, 2)}
+                                      className="gry_btn mr-2"
+                                    >
+                                      Publish
+                                    </button>
+                                  )
+
+                                  }
+                                  {curVal?.status == "2" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id, 2)}
+                                      className=""
+                                    >
+                                      Published
+                                    </p>
+                                  )
+
+                                  }
+                                  {curVal?.status == "3" && (
+                                    <p
+                                      // onClick={() => VechilesApprove(curVal.id, 2)}
+                                      className=""
+                                    >
+                                      Rejected by Admin
+                                    </p>
+                                  )
+
+                                  }
+
+                                </div>
+                              </td>
+                              {/* <td>
 
                                 <Link to={`/edit-user-meeting/${curVal.id}`}>
                                   <button>
@@ -257,6 +259,37 @@ function UserCreateMeeting() {
                                 <button
                                   onClick={() => handleDelete(curVal.id)}
                                 >Delete</button>
+                              </td> */}
+
+                              <td className="text-right py-1">
+                                <Dropdown className="neWm">
+                                  <Dropdown.Toggle variant="success" id="">
+                                    <i className="fa-solid fa-ellipsis-vertical py-0"></i>
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="#/action-1">
+                                      <Link
+                                        className="editDrop"
+                                        to={`/edit-user-meeting/${curVal.id}`}
+                                      // className="btn"
+                                      >
+                                        <i className="fa-solid fa-pencil"></i>{" "}
+                                        Edit
+                                      </Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#/action-2">
+                                      <Link
+                                        to={``}
+                                        className="editDrop"
+                                        onClick={() => handleDelete(curVal.id)}
+                                      >
+                                        <i className="fa-solid fa-trash-can"></i>{" "}
+                                        Delete
+                                      </Link>
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                               </td>
                             </tr>
 
