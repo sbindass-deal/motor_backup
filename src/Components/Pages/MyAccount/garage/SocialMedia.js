@@ -10,7 +10,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const SocialMedia = ({ id, setPostCount, logo }) => {
+const SocialMedia = ({ id, logo }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -30,16 +30,22 @@ const SocialMedia = ({ id, setPostCount, logo }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    axios
-      .post(`${process.env.REACT_APP_URL}getPost/${id}`, {})
-      .then(function (res) {
-        setPostData(res.data.data);
-        // setUserData(res.data.userProfile);
-        setPostCount(res?.data?.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios
+    //   .post(`${process.env.REACT_APP_URL}getPostAll`, {
+    //     page: "replies",
+    //   })
+    //   .then(function (res) {
+    //     setPostData(res.data.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}getPostAll`);
+      setPostData(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     getPostData();
@@ -229,22 +235,6 @@ const SocialMedia = ({ id, setPostCount, logo }) => {
                           <i class="fa-solid fa-image"></i>
                         </span>
                       </span>
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-bars-progress"></i>
-                      </span> */}
-                      {/* <span
-                        style={{ cursor: "pointer" }}
-                        className="socialCount"
-                      >
-                        <i class="fa-solid fa-face-smile"></i>
-                      </span> */}
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-business-time"></i>
-                      </span> */}
-
-                      {/* <span className="socialCount">
-                        <i class="fa-solid fa-location-dot"></i>
-                      </span> */}
                     </div>
                     {loading ? (
                       <button type="button" className="btn">
