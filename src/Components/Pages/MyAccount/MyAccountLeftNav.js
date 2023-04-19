@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,7 @@ import {
 } from "../../../redux/reducers/garagesTabReducer";
 
 function MyAccountLeftNav() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const userId = useSelector((state) => state);
@@ -34,7 +35,7 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu title="Garage">
+            <SubMenu onClick={() => navigate("/user-garage")} title="Garage">
               <MenuItem>
                 <Link
                   to="/user-garage"

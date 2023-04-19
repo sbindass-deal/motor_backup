@@ -104,7 +104,7 @@ import GaragesPost from "./garages/GaragesPost";
 import GaragesBlogNew from "./garages/GaragesBlogNew";
 import GaragesReplies from "./garages/GaragesReplies";
 import GaragesSocialMedia from "./garages/GaragesSocialMedia";
-import GiveawayOfficialRules from "./GiveawayOfficialRules"
+import GiveawayOfficialRules from "./GiveawayOfficialRules";
 import PrivacyPolicyAdmin from "./Dashboard/PrivacyPolicyAdmin";
 import AddPrivacy from "./Dashboard/AddPrivacy";
 import Editprivacy from "./Dashboard/Editprivacy";
@@ -114,6 +114,7 @@ import EditTermAndCondition from "./Dashboard/EditTermAndCondition";
 import EditAmlPolicy from "./Dashboard/EditAmlPolicy";
 import PrivacyPolicyFooter from "./Dashboard/PrivacyPolicyFooter";
 import EditPrivactPolicyFooter from "./Dashboard/EditPrivactPolicyFooter";
+import SocialMedia from "./garages/SocialMedia";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -162,8 +163,14 @@ const Layout = () => {
                     element={<VehicleSubmission />}
                   />
                   <Route path="admin" element={<VehicleSubmission />} />
-                  <Route path="admin-privacy-policy" element={<PrivacyPolicyAdmin />} />
-                  <Route path="admin-termcondition" element={<TermAndCondition />} />
+                  <Route
+                    path="admin-privacy-policy"
+                    element={<PrivacyPolicyAdmin />}
+                  />
+                  <Route
+                    path="admin-termcondition"
+                    element={<TermAndCondition />}
+                  />
                   <Route path="admin-aml-policy" element={<AmlPolicy />} />
                   <Route path="admin-privacy" element={<PrivacyPolicyFooter />} />
 
@@ -199,11 +206,20 @@ const Layout = () => {
                   <Route path="admin/edit-term/:id" element={<EditTermAndCondition/>} />
                   <Route path="admin/edit-aml/:id" element={<EditAmlPolicy/>} />
                   <Route path="admin/edit-privacy-footer/:id" element={<EditPrivactPolicyFooter/>} />
+                  <Route path="admin/editBlog/:id" element={<Editprivacy />} />
+                  <Route
+                    path="admin/edit-term/:id"
+                    element={<EditTermAndCondition />}
+                  />
+                  <Route
+                    path="admin/edit-aml/:id"
+                    element={<EditAmlPolicy />}
+                  />
                   <Route path="add/gear-product" element={<AddGearProduct />} />
                   <Route path="Orders" element={<Orders />} />
                   <Route path="blog" element={<Blog />} />
                   <Route path="admin/add-blog" element={<AddBlog />} />
-                  <Route path="admin/addprivacy" element={<AddPrivacy/>} />
+                  <Route path="admin/addprivacy" element={<AddPrivacy />} />
                   <Route path="orders-details/:id" element={<OrderDetail />} />
                   <Route path="admin-dealer" element={<DealerListFeature />} />
                   <Route path="admin-vehicle-ad" element={<VehicleAdsList />} />
@@ -254,6 +270,7 @@ const Layout = () => {
           <Route path="termsandconditions" element={<TermsOfUse />} />
           <Route path="feautres" element={<Features />} />
           <Route path="showroom" element={<Store />} />
+          <Route path="social-media" element={<SocialMedia />} />
           <Route path="garages" element={<Garages />} />
           <Route path="garages/:id" element={<GaragesListDetails />} />
           <Route
@@ -277,11 +294,14 @@ const Layout = () => {
           <Route path="auctionnoreserve" element={<AuctionNoReserve />} />
           <Route path="auctionpremium" element={<AuctionPremium />} />
 
-          <Route path="giveaway-official-rules" element={<GiveawayOfficialRules/> } />
-          <Route path="garagespost" element={<GaragesPost/> } />
-          <Route path="garagesblognew" element={<GaragesBlogNew/> } />
-          <Route path="garagesreplies" element={<GaragesReplies/> } />
-          <Route path="garagessocialmedia" element={<GaragesSocialMedia/> } />
+          <Route
+            path="giveaway-official-rules"
+            element={<GiveawayOfficialRules />}
+          />
+          <Route path="garagespost" element={<GaragesPost />} />
+          <Route path="garagesblognew" element={<GaragesBlogNew />} />
+          <Route path="garagesreplies" element={<GaragesReplies />} />
+          <Route path="garagessocialmedia" element={<GaragesSocialMedia />} />
 
           <Route path="editmyaccount" element={<EditMyAccount />} />
           <Route path="editmyaccount-garages" element={<EditGarage />} />

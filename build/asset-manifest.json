@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.305dca13.css",
-    "main.js": "/static/js/main.20db2253.js",
+    "main.css": "/static/css/main.da9ef354.css",
+    "main.js": "/static/js/main.de1bf579.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -87,7 +87,6 @@
     "static/media/home-raffel.png": "/static/media/home-raffel.e7d110526029321b27a4.png",
     "static/media/lightmode-logo.png": "/static/media/lightmode-logo.e4a24ca447d3c92953ca.png",
     "static/media/car_02.jpg": "/static/media/car_02.2817b553872266eacaac.jpg",
-    "static/media/bgLabel.png": "/static/media/bgLabel.00a3ab161adf5bfe611c.png",
     "static/media/raffle-4.jpg": "/static/media/raffle-4.5dfad7e7e873f861a496.jpg",
     "static/media/daily_mail.jpg": "/static/media/daily_mail.a32cfd5c1ddf8864e31d.jpg",
     "static/media/transparent.png": "/static/media/transparent.66dc3e14b815a7e9cf70.png",
@@ -137,8 +136,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.305dca13.css.map": "/static/css/main.305dca13.css.map",
-    "main.20db2253.js.map": "/static/js/main.20db2253.js.map",
+    "main.da9ef354.css.map": "/static/css/main.da9ef354.css.map",
+    "main.de1bf579.js.map": "/static/js/main.de1bf579.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -178,7 +177,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.305dca13.css",
-    "static/js/main.20db2253.js"
+    "static/css/main.da9ef354.css",
+    "static/js/main.de1bf579.js"
   ]
 }

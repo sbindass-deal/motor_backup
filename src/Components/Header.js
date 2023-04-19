@@ -303,7 +303,7 @@ function Header() {
                       </li>
                       {/* day and night mode end */}
                       <li className="nav-item">
-                        <div className="dropdown" >
+                        <div className="dropdown">
                           <Link
                             className={`nav-link ${
                               location.pathname === "/submit" && "navActive"
@@ -399,6 +399,15 @@ function Header() {
                           onClick={() => setShowNav(false)}
                         >
                           Garages
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          onClick={() => setShowNav(false)}
+                          to="/social-media"
+                        >
+                          Social Media
                         </Link>
                       </li>
                       <li className="nav-item">
@@ -706,15 +715,14 @@ function Header() {
                             to="#"
                           >
                             List Your Vehicles
-                        
-                          <div className="dropdown-content">
-                            <Link className="" to="/submit">
-                              Private Party
-                            </Link>
-                            <Link className="" to="/dealer">
-                              Dealer
-                            </Link>
-                          </div>
+                            <div className="dropdown-content">
+                              <Link className="" to="/submit">
+                                Private Party
+                              </Link>
+                              <Link className="" to="/dealer">
+                                Dealer
+                              </Link>
+                            </div>
                           </Link>
                         </div>
                       </li>
@@ -789,6 +797,21 @@ function Header() {
                           to="/garages"
                         >
                           Garages
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/social-media"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/social-media"
+                        >
+                          Social Media
                         </Link>
                       </li>
 
