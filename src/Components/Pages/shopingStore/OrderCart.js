@@ -8,6 +8,7 @@ import NotAvailable from "../../UI/NotAvailable";
 import SmallSpinner from "../../UI/SmallSpinner";
 import MyAccountLeftNav from "../MyAccount/MyAccountLeftNav";
 import { noImage } from "../../UI/globaleVar";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const OrderCart = () => {
   const [loading, setLoading] = useState(false);
@@ -85,7 +86,7 @@ const OrderCart = () => {
                 <div className="col-12">
                   <div className="card_Gray table-responsive merchant vehicleSub ttt col-12 col-md-12 col-lg-12">
                     <div className="table-responsive">
-                      <table width={"100%"} className="cartSection">
+                      <table width={"100%"} className="cartSection" height= {"210px"}>
                         <tr>
                           <th>Sr No.</th>
                           <th>Order Number</th>
@@ -94,7 +95,7 @@ const OrderCart = () => {
                           <th>Order Status</th>
                           <th>Total Value</th>
                           <th>Action</th>
-                          <th>View</th>
+                          {/* <th>View</th> */}
                         </tr>
                         {order
                           ?.filter((curVal) => {
@@ -136,7 +137,7 @@ const OrderCart = () => {
                                 {/* <td>2</td> */}
                                 <td>{curElem?.order_status}</td>
                                 <td>${curElem?.amount}</td>
-                                <td>
+                                {/* <td>
                                   <button
                                     onClick={() =>
                                       handleCancleOrder(curElem?.order_id)
@@ -146,14 +147,46 @@ const OrderCart = () => {
                                   >
                                     Cancel
                                   </button>
-                                </td>
-                                <td>
+                                </td> */}
+                                {/* <td>
                                   <Link
                                     to={`/orders-cart/${curElem?.order_id}`}
                                     className="btn small_btn"
                                   >
                                     View
                                   </Link>
+                                </td> */}
+                                <td className="text-right py-1">
+                                  <Dropdown className="neWm">
+                                    <Dropdown.Toggle variant="success" id="">
+                                      <i className="fa-solid fa-ellipsis-vertical py-0"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1">
+                                        <Link
+                                          className="editDrop"
+                                          to={``}
+                                          onClick={() =>
+                                            handleCancleOrder(curElem?.order_id)
+                                          }
+                                        // className="btn"
+                                        >
+                                          <i className="fa-solid fa-ban"></i>{" "}
+                                          Cancel
+                                        </Link>
+                                      </Dropdown.Item>
+                                      <Dropdown.Item href="#/action-2">
+                                        <Link
+                                         to={`/orders-cart/${curElem?.order_id}`}
+                                          className="editDrop"
+                                        >
+                                          <i className="fa-solid fa-eye"></i>{" "}
+                                          View
+                                        </Link>
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </td>
                               </tr>
                             );

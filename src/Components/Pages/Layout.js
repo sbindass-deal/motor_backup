@@ -116,6 +116,7 @@ import PrivacyPolicyFooter from "./Dashboard/PrivacyPolicyFooter";
 import EditPrivactPolicyFooter from "./Dashboard/EditPrivactPolicyFooter";
 import SocialMedia from "./garages/SocialMedia";
 import Settings from "./MyAccount/Settings";
+import Analytics from "./auction/Analytics";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -279,6 +280,9 @@ const Layout = () => {
             element={<GaragesUserDetails />}
           />
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
+          <Route path="analytics" element={<Analytics />} />
+
+          
           <Route path="/settings" element={<Settings />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
           <Route path="showroom/:id" element={<StoreDetails />} />
