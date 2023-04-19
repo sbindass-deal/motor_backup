@@ -8,6 +8,7 @@ import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
+import NotAvailable from "../../UI/NotAvailable";
 
 const Auctionfeature = () => {
   const dispatch = useDispatch();
@@ -26,57 +27,60 @@ const Auctionfeature = () => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = data.slice(firstPostIndex, lastPostIndex);
   const [filteredModal, setFilteredModal] = useState(false);
-
+  const [filterCategory, setFilterCategory] = useState({});
   const [getSelectData, setGetSelectData] = useState({
     year: "",
     make: "",
     model: "",
     year: "",
     state: "",
-    city:""
-    
+    city: "",
   });
   const handleChangeSelectData = (e) => {
-    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
-  }
+    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
+  };
 
-  
-  const fetchNoreserveData = async () => {
-    setLoading(true);
+  const filterApiData = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
+        `${process.env.REACT_APP_URL}getFiltersForVehicle`
       );
-      if (res.data.status === 200) {
-        setData(res.data.data);
-        setAllData(res.data.data)
-      }
-      setLoading(false);
+      setFilterCategory(res.data.data);
     } catch (err) {
       console.log(err);
-      setLoading(false);
     }
   };
+
   useEffect(() => {
-    fetchNoreserveData();
+    filterApiData();
   }, []);
 
-  const fetchNoreserveDataSelect = async () => {
+  const fetchApiData = async () => {
     setLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
-      );
-      if (res.data.status === 200) {
+    handleFilteredModalClose();
+    setGetSelectData({
+      year: "",
+      make: "",
+      model: "",
+      year: "",
+      state: "",
+      city: "",
+    });
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {})
+      .then(function (res) {
         setData(res.data.data);
-        setAllData(res.data.data)
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
   };
+  useEffect(() => {
+    fetchApiData();
+  }, []);
 
   const handleFilteredModalClose = () => {
     setFilteredModal(false);
@@ -88,10 +92,10 @@ const Auctionfeature = () => {
 
   const filterData = (data) => {
     const dataFilter = allData.filter((curElem) => {
-      return (data == 1 ? curElem.like == data : curElem)
-    })
-    setData(dataFilter)
-  }
+      return data == 1 ? curElem.like == data : curElem;
+    });
+    setData(dataFilter);
+  };
 
   const addFabrity = (id) => {
     axios
@@ -107,14 +111,35 @@ const Auctionfeature = () => {
       });
   };
 
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
-
+  const fetchNoreserveDataSelect = async () => {
+    setLoading(true);
+    handleFilteredModalClose();
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {
+        year: getSelectData.year,
+        model: getSelectData.model,
+        make: getSelectData.make,
+        city: getSelectData.city,
+        state: getSelectData.state,
+      })
+      .then(function (res) {
+        setData(res.data.data);
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
+  };
 
   const handleSubmitModel = (e) => {
-    e.preventDefault()
-    fetchNoreserveDataSelect()
+    e.preventDefault();
+    fetchNoreserveDataSelect();
+  };
+
+  if (loading) {
+    return <SmallSpinner spin={true} />;
   }
 
   return (
@@ -133,24 +158,19 @@ const Auctionfeature = () => {
                     type="search"
                     name="search"
                     value={searchValue}
-                    onChange={(e) =>
-                      setSearchValue(e.target.value)
-                    }
+                    onChange={(e) => setSearchValue(e.target.value)}
                     placeholder="Filter auctions for make, model, category…"
                   />
                 </li>
                 <li className="">
                   <button
                     onClick={() => {
-                      setHighlightWatch(!highlightWatch)
+                      setHighlightWatch(!highlightWatch);
                       if (highlightWatch) {
-                        filterData(0)
+                        filterData(0);
                       } else {
-                        filterData(1)
+                        filterData(1);
                       }
-
-
-
                     }}
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
@@ -162,16 +182,18 @@ const Auctionfeature = () => {
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -202,17 +224,25 @@ const Auctionfeature = () => {
           </div>
 
           <div
-            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
-              }`}
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
           >
-            {currentPosts.length > 0 &&
-              currentPosts?.filter((curElem) => {
-                if (searchValue == "") {
-                  return curElem
-                } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
-                  return curElem
-                }
-              })
+            {currentPosts.length == 0 ? (
+              <NotAvailable text="Data not found" />
+            ) : (
+              currentPosts
+                ?.filter((curElem) => {
+                  if (searchValue == "") {
+                    return curElem;
+                  } else if (
+                    curElem.make
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  ) {
+                    return curElem;
+                  }
+                })
                 ?.map((curElem) => {
                   return (
                     <Data
@@ -221,48 +251,15 @@ const Auctionfeature = () => {
                       addFabrity={addFabrity}
                     />
                   );
-                })}
+                })
+            )}
 
-            <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
-            {/* <div class="col-12">
-              <ul class="pagination justify-content-center mt-4">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#">
-                    <i class="fa-solid fa-arrow-left"></i>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    ...
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    10
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </div> */}
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>
@@ -287,100 +284,108 @@ const Auctionfeature = () => {
               </button>
             </div>
             <div className="modal-body">
-              <form onSubmit={handleSubmitModel}>
-
+              <form>
                 <div className="row row_gap_5">
-                 
                   <div className="col-12 col-md-6">
                     <label>Make</label>
                     <div className="form-group">
-                      <select name="make" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="make"
+                        className="field"
+                        onChange={handleChangeSelectData}
+                        value={getSelectData.make}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.make}>{curVal?.make}</option>;
-                          })
-                        }
+                        {filterCategory?.make?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Model</label>
                     <div className="form-group">
-                      <select name="model" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="model"
+                        className="field"
+                        value={getSelectData.model}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.model}>{curVal?.model}</option>;
-                          })
-                        }
+                        {filterCategory?.model?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Year</label>
                     <div className="form-group">
-                      <select name='year' className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="year"
+                        className="field"
+                        value={getSelectData.year}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-
-                            return <option value={curVal?.year}>{curVal?.year}</option>;
-                          })
-                        }
-
+                        {filterCategory?.year?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>State</label>
                     <div className="form-group">
-                      <select name="state" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="state"
+                        className="field"
+                        value={getSelectData.state}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            return <option value={curVal?.state}>{curVal?.state}</option>;
-                          })
-                        }
-
+                        {filterCategory?.state?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>City</label>
                     <div className="form-group">
-                      <select name="city" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="city"
+                        className="field"
+                        value={getSelectData.city}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.city}>{curVal?.city}</option>;
-                          })
-                        }
-
+                        {filterCategory?.city?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                 </div>
                 <div className="form-group d-flex justify-content-between ">
-                  <button type="submit" className="btn"
-                    onClick={handleFilteredModalClose}
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleSubmitModel}
                   >
                     Filters
                   </button>
-                  <button type="submit" className="btn">
+                  <button type="button" onClick={fetchApiData} className="btn">
                     Clear Filters
                   </button>
                 </div>
