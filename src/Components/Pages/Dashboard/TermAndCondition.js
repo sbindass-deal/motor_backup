@@ -8,17 +8,18 @@ import axios from "axios";
 import parse from "html-react-parser";
 import { strToHtml } from "../../UI/globaleVar";
 import SmallSpinner from "../../UI/SmallSpinner";
-const PrivacyPolicyAdmin = () => {
+
+const TermAndCondition = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_URL}getPages`, {
-        page: "privacy_policy"
+        page: "terms_condtion"
       })
       .then((response) => {
-        console.log(8980088889, response);
+        console.log(8980077, response);
         setData(response.data.data);
         setIsLoading(false);
       })
@@ -26,6 +27,8 @@ const PrivacyPolicyAdmin = () => {
         console.log(error);
       });
   }, []);
+
+  console.log(9090909, data?.length)
 
   return (
     <div>
@@ -44,7 +47,7 @@ const PrivacyPolicyAdmin = () => {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Giveaways Official Rules</h3>
+                <h3>Term And Condition</h3>
                 {data?.length < 0 ? (
                   <div>
                     <Link to="/admin/addprivacy" className="orange_btn">
@@ -75,19 +78,19 @@ const PrivacyPolicyAdmin = () => {
                     {isLoading ? (
                       <SmallSpinner spin={true} />
                     ) : (
-                      
-                          <tr>
-                            {/* <th >{1 + i}</th> */}
 
-                            <td>{parse(data?.description, strToHtml)}</td>
-                            <td>
-                              <Link to={`/admin/editBlog/${data.id}`}>
-                                <button>Edit</button>
-                              </Link>
-                            </td>
-                          </tr>
-                        
-                      
+                      <tr>
+                        {/* <th >{1 + i}</th> */}
+
+                        <td>{parse(data?.description, strToHtml)}</td>
+                        <td>
+                            <Link to={`/admin/edit-term/${data.id}`}>
+                            <button>Edit</button>
+                          </Link>
+                        </td>
+                      </tr>
+
+
                     )}
                   </tbody>
                 </table>
@@ -100,4 +103,4 @@ const PrivacyPolicyAdmin = () => {
   );
 };
 
-export default PrivacyPolicyAdmin;
+export default TermAndCondition;

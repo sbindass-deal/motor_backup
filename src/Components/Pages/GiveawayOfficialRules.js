@@ -3,14 +3,17 @@ import React, { useEffect, useState } from 'react'
 import parse from "html-react-parser";
 import { strToHtml } from '../UI/globaleVar';
 import SmallSpinner from '../UI/SmallSpinner';
+import Data from './event/Data';
 
 function GiveawayOfficialRules() {
   const [data, setData] = useState([]);
-  const [isLoading,setIsLoading]=useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_URL}getPrivacyPolicy`)
-      .then(response => {
+    axios.post(`${process.env.REACT_APP_URL}getPages`, {
+      page: "privacy_policy"
+    })
+    .then(response => {
         console.log(898000099, response.data.data)
         setData(response.data.data);
         setIsLoading(false)
@@ -21,19 +24,21 @@ function GiveawayOfficialRules() {
   }, []);
 
   return (
-    
-    <div>
-      { isLoading ? <SmallSpinner spin={true}/> :
-        data?.map((curVal, i) => {
-          console.log(197989,curVal)
-          return <>
-            <p>{
-              parse(curVal?.description, strToHtml)
-            }</p>
-          </>
-        }) 
-}
 
+    <div className='container'>
+      <div className="row">
+        <div className="col-12 mt-5">
+          {isLoading ? <SmallSpinner spin={true} /> :
+
+            <p>{
+              parse(data?.description, strToHtml)
+            }</p>
+
+
+          }
+
+        </div>
+      </div>
     </div>
   )
 }

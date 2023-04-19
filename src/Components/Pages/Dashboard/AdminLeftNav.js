@@ -147,6 +147,27 @@ function AdminLeftNav() {
             Giveaways Official Rules
           </Link>
         </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-termcondition" ? "active" : ""
+            } `}
+            to="/admin-termcondition"
+          >
+            Term And Condition
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-aml-policy" ? "active" : ""
+            } `}
+            to="/admin-aml-policy"
+          >
+            AML Policy
+
+          </Link>
+        </li>
       </ul>
     </div>
   );
