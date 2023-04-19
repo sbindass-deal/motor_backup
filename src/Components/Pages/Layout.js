@@ -115,6 +115,7 @@ import EditAmlPolicy from "./Dashboard/EditAmlPolicy";
 import PrivacyPolicyFooter from "./Dashboard/PrivacyPolicyFooter";
 import EditPrivactPolicyFooter from "./Dashboard/EditPrivactPolicyFooter";
 import SocialMedia from "./garages/SocialMedia";
+import Settings from "./MyAccount/Settings";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -278,6 +279,7 @@ const Layout = () => {
             element={<GaragesUserDetails />}
           />
           <Route path="dealerProfile/:id" element={<DealerProfile />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="classifiedaddlist" element={<ClassifiedAddList />} />
           <Route path="showroom/:id" element={<StoreDetails />} />
           <Route path="amlpolicy" element={<CookiesSetting />} />

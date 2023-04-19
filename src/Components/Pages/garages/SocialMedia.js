@@ -165,102 +165,31 @@ const SocialMedia = ({ id, logo }) => {
 
   return (
     <>
-      <section className="py-4 mobileSpec" id="">
+      {/* <section className="storeHeroSection Garages align-items-center">
         <div className="container">
-          <div className="row youPage">
-            <div className="col-md-12 ">
-              <div className="PostInfo">
-                <div className="userImG">
-                  <Space direction="vertical" size={16}>
-                    <Space wrap size={16}>
-                      <Avatar
-                        size={64}
-                        icon={
-                          <img
-                            className="slidImg"
-                            loading="lazy"
-                            src={
-                              logo?.logo &&
-                              `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onError = null;
-                              currentTarget.src = noImage;
-                            }}
-                            alt="post"
-                          />
-                        }
-                      />
-                    </Space>
-                  </Space>
-                </div>
-                <form onSubmit={handlePost} className="DecIbp ">
-                  <div className="field">
-                    <textarea
-                      className="field border-0"
-                      rows="4"
-                      cols="100"
-                      value={content}
-                      onChange={(e) => setContent(e.target.value)}
-                      placeholder="What’s happening?"
-                      required
-                    ></textarea>
-                    <div className="field border-0">
-                      {Array.from(file).map((items) => {
-                        return (
-                          <span>
-                            <img
-                              src={items ? URL.createObjectURL(items) : null}
-                              style={{
-                                width: "200px",
-                                height: "200px",
-                                objectFit: "cover",
-                                padding: "15px",
-                              }}
-                            />
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  <div className="youD">
-                    <div className="py-3">
-                      <span>
-                        <input
-                          onChange={(e) => {
-                            return setFile((prevState) => [...e.target.files]);
-                          }}
-                          name="file"
-                          type="file"
-                          accept="image/gif, image/jpeg, image/png, image/jpg"
-                          ref={inputRef}
-                          hidden
-                        />
-                        <span
-                          onClick={() => inputRef.current.click()}
-                          style={{ cursor: "pointer" }}
-                          className="socialCount"
-                        >
-                          <i class="fa-solid fa-image"></i>
-                        </span>
-                      </span>
-                    </div>
-                    {loading ? (
-                      <button type="button" className="btn">
-                        Posting...
-                      </button>
-                    ) : (
-                      <button type="submit" class="btn">
-                        Post
-                      </button>
-                    )}
-                  </div>
-                </form>
-              </div>
+          <div className="row">
+            <div className="topTile">
+              <h5>
+                New to Gas Guzzlrs? 
+              </h5>
             </div>
           </div>
-          <div className="row ">
-            <div className="col-12 text-center pb_30"></div>
+          <div className="col-12 col-lg-12">
+            <div className="heroText">
+             
+              <h1>View member garages from around the world</h1>
+              <h5>
+                We help you find your dream car. Select from our exclusive
+                <br /> list of garages.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </section> */}
+      <section className="py-4 mobileSpec" id="">
+        <div className="container">
+          <div className="row socialSec">
+            {/* <div className="col-12 text-center pb_30"></div> */}
             <div className="col-12 Videos ghhh">
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
