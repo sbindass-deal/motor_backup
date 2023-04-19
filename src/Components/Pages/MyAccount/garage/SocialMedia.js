@@ -10,7 +10,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
-const SocialMedia = ({ id, logo }) => {
+const SocialMedia = ({ id, setPostCount, logo }) => {
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -30,22 +30,16 @@ const SocialMedia = ({ id, logo }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    // axios
-    //   .post(`${process.env.REACT_APP_URL}getPostAll`, {
-    //     page: "replies",
-    //   })
-    //   .then(function (res) {
-    //     setPostData(res.data.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}getPostAll`);
-      setPostData(res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
+    axios
+      .post(`${process.env.REACT_APP_URL}getPost/${id}`, {})
+      .then(function (res) {
+        setPostData(res.data.data);
+        // setUserData(res.data.userProfile);
+        setPostCount(res?.data?.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   useEffect(() => {
     getPostData();
@@ -158,6 +152,114 @@ const SocialMedia = ({ id, logo }) => {
     <>
       <section className="py-4 mobileSpec" id="">
         <div className="container">
+          <div className="row youPage">
+            <div className="col-md-12 ">
+              <div className="PostInfo">
+                <div className="userImG">
+                  <Space direction="vertical" size={16}>
+                    <Space wrap size={16}>
+                      <Avatar
+                        size={64}
+                        icon={
+                          <img
+                            className="slidImg"
+                            loading="lazy"
+                            src={
+                              logo?.logo &&
+                              `${process.env.REACT_APP_URL}/${logo?.logo[0]?.logo}`
+                            }
+                            onError={({ currentTarget }) => {
+                              currentTarget.onError = null;
+                              currentTarget.src = noImage;
+                            }}
+                            alt="post"
+                          />
+                        }
+                      />
+                    </Space>
+                  </Space>
+                </div>
+                <form onSubmit={handlePost} className="DecIbp ">
+                  <div className="field">
+                    <textarea
+                      className="field border-0"
+                      rows="4"
+                      cols="100"
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
+                      placeholder="What’s happening?"
+                      required
+                    ></textarea>
+                    <div className="field border-0">
+                      {Array.from(file).map((items) => {
+                        return (
+                          <span>
+                            <img
+                              src={items ? URL.createObjectURL(items) : null}
+                              style={{
+                                width: "200px",
+                                height: "200px",
+                                objectFit: "cover",
+                                padding: "15px",
+                              }}
+                            />
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="youD">
+                    <div className="py-3">
+                      <span>
+                        <input
+                          onChange={(e) => {
+                            return setFile((prevState) => [...e.target.files]);
+                          }}
+                          name="file"
+                          type="file"
+                          accept="image/gif, image/jpeg, image/png, image/jpg"
+                          ref={inputRef}
+                          hidden
+                        />
+                        <span
+                          onClick={() => inputRef.current.click()}
+                          style={{ cursor: "pointer" }}
+                          className="socialCount"
+                        >
+                          <i class="fa-solid fa-image"></i>
+                        </span>
+                      </span>
+                      {/* <span className="socialCount">
+                        <i class="fa-solid fa-bars-progress"></i>
+                      </span> */}
+                      {/* <span
+                        style={{ cursor: "pointer" }}
+                        className="socialCount"
+                      >
+                        <i class="fa-solid fa-face-smile"></i>
+                      </span> */}
+                      {/* <span className="socialCount">
+                        <i class="fa-solid fa-business-time"></i>
+                      </span> */}
+
+                      {/* <span className="socialCount">
+                        <i class="fa-solid fa-location-dot"></i>
+                      </span> */}
+                    </div>
+                    {loading ? (
+                      <button type="button" className="btn">
+                        Posting...
+                      </button>
+                    ) : (
+                      <button type="submit" class="btn">
+                        Post
+                      </button>
+                    )}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
           <div className="row ">
             <div className="col-12 text-center pb_30"></div>
             <div className="col-12 Videos ghhh">
