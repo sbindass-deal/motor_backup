@@ -133,6 +133,12 @@ const AuctionResult = () => {
                   } else if (
                     curElem?.vehicle_data?.make
                       .toLowerCase()
+                      .includes(searchValue.toLowerCase()) ||
+                    curElem?.vehicle_data?.model
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                    || curElem?.vehicle_data?.year
+                      .toLowerCase()
                       .includes(searchValue.toLowerCase())
                   ) {
                     return curElem;

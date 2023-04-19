@@ -8,6 +8,7 @@ import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
+import NotAvailable from "../../UI/NotAvailable";
 
 const AuctionNoReserve = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const AuctionNoReserve = () => {
   const currentPosts = data.slice(firstPostIndex, lastPostIndex);
   const [filteredModal, setFilteredModal] = useState(false);
 
+  const [filterCategory, setFilterCategory] = useState({});
 
   const [getSelectData, setGetSelectData] = useState({
     year: "",
@@ -36,6 +38,49 @@ const AuctionNoReserve = () => {
   const handleChangeSelectData = (e) => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
   }
+  const filterApiData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getFiltersForVehicle`
+      );
+      setFilterCategory(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    filterApiData();
+  }, []);
+
+
+  const fetchApiData = async () => {
+    setLoading(true);
+    handleFilteredModalClose();
+    setGetSelectData({
+      year: "",
+      make: "",
+      model: "",
+      year: "",
+      state: "",
+      city: "",
+    });
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/no_reserve`, {})
+      .then(function (res) {
+        setData(res.data.data);
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchApiData();
+  }, []);
+
 
   const fetchNoreserveData = async () => {
     setLoading(true);
@@ -56,22 +101,27 @@ const AuctionNoReserve = () => {
   useEffect(() => {
     fetchNoreserveData();
   }, []);
-
+  
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/no_reserve`
-      );
-      if (res.data.status === 200) {
+    handleFilteredModalClose();
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/no_reserve`, {
+        year: getSelectData.year,
+        model: getSelectData.model,
+        make: getSelectData.make,
+        city: getSelectData.city,
+        state: getSelectData.state,
+      })
+      .then(function (res) {
         setData(res.data.data);
-        setAllData(res.data.data)
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
   };
 
   // const getEndDate = (cal) => {
@@ -210,14 +260,18 @@ const AuctionNoReserve = () => {
             className={`row pt-4 row_gridList ${viewListActive && "activeListView"
               }`}
           >
-            {currentPosts.length > 0 &&
+            {currentPosts.length == 0 ? (
+              <NotAvailable text="Data not found" />
+
+            ):
+              (
               currentPosts?.filter((curElem) => {
                 if (searchValue == "") {
                   return curElem
                 } else if (curElem.make.toLowerCase().includes(searchValue.toLowerCase())) {
                   return curElem
                 }
-              })
+              }))
                 ?.map((curElem) => {
                   return (
                     <Data
@@ -253,99 +307,108 @@ const AuctionNoReserve = () => {
               </button>
             </div>
             <div className="modal-body">
-              <form onSubmit={handleSubmitModel}>
-
+              <form>
                 <div className="row row_gap_5">
-                  <div className="col-12 col-md-6">
-                    <label>Year</label>
-                    <div className="form-group">
-                      <select name='year' className="field" onChange={handleChangeSelectData}>
-                        <option selected disabled value="">
-                          Select
-                        </option>
-                        {
-                          data?.map((curVal, i) => {
-
-                            return <option value={curVal?.year}>{curVal?.year}</option>;
-                          })
-                        }
-
-                      </select>
-                    </div>
-                  </div>
                   <div className="col-12 col-md-6">
                     <label>Make</label>
                     <div className="form-group">
-                      <select name="make" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="make"
+                        className="field"
+                        onChange={handleChangeSelectData}
+                        value={getSelectData.make}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.make}>{curVal?.make}</option>;
-                          })
-                        }
+                        {filterCategory?.make?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Model</label>
                     <div className="form-group">
-                      <select name="model" className="field">
+                      <select
+                        name="model"
+                        className="field"
+                        value={getSelectData.model}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.model}>{curVal?.model}</option>;
-                          })
-                        }
+                        {filterCategory?.model?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>Year</label>
+                    <div className="form-group">
+                      <select
+                        name="year"
+                        className="field"
+                        value={getSelectData.year}
+                        onChange={handleChangeSelectData}
+                      >
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {filterCategory?.year?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>State</label>
                     <div className="form-group">
-                      <select name="state" className="field">
+                      <select
+                        name="state"
+                        className="field"
+                        value={getSelectData.state}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            return <option value={curVal?.state}>{curVal?.state}</option>;
-                          })
-                        }
-
+                        {filterCategory?.state?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>City</label>
                     <div className="form-group">
-                      <select name="city" className="field">
+                      <select
+                        name="city"
+                        className="field"
+                        value={getSelectData.city}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          data?.map((curVal, i) => {
-                            console.log(787979, curVal)
-                            return <option value={curVal?.city}>{curVal?.city}</option>;
-                          })
-                        }
-
+                        {filterCategory?.city?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                 </div>
                 <div className="form-group d-flex justify-content-between ">
-                  <button type="submit" className="btn"
-                    onClick={handleFilteredModalClose}
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleSubmitModel}
                   >
                     Filters
                   </button>
-                  <button type="submit" className="btn">
+                  <button type="button" onClick={fetchApiData} className="btn">
                     Clear Filters
                   </button>
                 </div>

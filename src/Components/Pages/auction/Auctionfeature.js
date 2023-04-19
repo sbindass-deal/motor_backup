@@ -238,6 +238,12 @@ const Auctionfeature = () => {
                   } else if (
                     curElem.make
                       .toLowerCase()
+                      .includes(searchValue.toLowerCase()) ||
+                    curElem.model
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase()) ||
+                    curElem.year
+                      .toLowerCase()
                       .includes(searchValue.toLowerCase())
                   ) {
                     return curElem;

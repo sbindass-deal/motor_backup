@@ -8,6 +8,7 @@ import Data from "./Data";
 import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
+import NotAvailable from "../../UI/NotAvailable";
 
 const Auctionlive = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Auctionlive = () => {
   const [searchValue, setSearchValue] = useState("");
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
-
+  const [filterCategory, setFilterCategory] = useState({});
   const [getSelectData, setGetSelectData] = useState({
     year: "",
     make: "",
@@ -34,7 +35,48 @@ const Auctionlive = () => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
   }
 
-  console.log(10009, getSelectData)
+  const filterApiData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getFiltersForVehicle`
+      );
+      setFilterCategory(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    filterApiData();
+  }, []);
+
+
+  const fetchApiData = async () => {
+    setLoading(true);
+    handleFilteredModalClose();
+    setGetSelectData({
+      year: "",
+      make: "",
+      model: "",
+      year: "",
+      state: "",
+      city: "",
+    });
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {})
+      .then(function (res) {
+        setData(res.data.data);
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchApiData();
+  }, []);
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -154,10 +196,34 @@ const Auctionlive = () => {
     return <SmallSpinner spin={true} />;
   }
 
+  const fetchNoreserveDataSelect = async () => {
+    setLoading(true);
+    handleFilteredModalClose();
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {
+        year: getSelectData.year,
+        model: getSelectData.model,
+        make: getSelectData.make,
+        city: getSelectData.city,
+        state: getSelectData.state,
+      })
+      .then(function (res) {
+        setData(res.data.data);
+        setAllData(res.data.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+
   const handleSubmitModel = (e) => {
     e.preventDefault()
-    // fetchAuctionLiveApiSelect()
+    fetchNoreserveDataSelect()
   }
+
+ 
 
   return (
     <>
@@ -248,13 +314,18 @@ const Auctionlive = () => {
             className={`row pt-4 row_gridList ${viewListActive && "activeListView"
               }`}
           >
-            {currentPosts?.length > 0 &&
+            {currentPosts?.length == 0 ? (
+              <NotAvailable text="Data not found" />
+
+            ):(
               currentPosts
                 ?.filter((curElem) => {
                   if (searchValue == "") {
                     return curElem;
                   } else if (
-                    curElem?.make?.toLowerCase()?.includes(searchValue.toLowerCase())
+                    curElem?.make?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
+                    curElem?.model?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
+                    curElem?.year?.toLowerCase()?.includes(searchValue.toLowerCase())
                   ) {
                     return curElem;
                   }
@@ -267,7 +338,7 @@ const Auctionlive = () => {
                       addFabrity={addFabrity}
                     />
                   );
-                })}
+                }))}
 
             <Pagination
               totalPosts={data?.length}
@@ -278,7 +349,6 @@ const Auctionlive = () => {
           </div>
         </div>
       </section>
-      {console.log(9808909, dataFilter)}
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}
@@ -300,100 +370,108 @@ const Auctionlive = () => {
               </button>
             </div>
             <div className="modal-body">
-              <form onSubmit={handleSubmitModel}>
-
+              <form>
                 <div className="row row_gap_5">
-
                   <div className="col-12 col-md-6">
                     <label>Make</label>
                     <div className="form-group">
-                      <select name="make" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="make"
+                        className="field"
+                        onChange={handleChangeSelectData}
+                        value={getSelectData.make}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          dataFilter?.make?.map((curVal, i) => {
-                           
-                            return <option value={curVal}>{curVal}</option>;
-                          })
-                        }
+                        {filterCategory?.make?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Model</label>
                     <div className="form-group">
-                      <select name="model" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="model"
+                        className="field"
+                        value={getSelectData.model}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          dataFilter?.model?.map((curVal, i) => {
-                           
-                            return <option key={i} value={curVal}>{curVal}</option>;
-                          })
-                        }
+                        {filterCategory?.model?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>Year</label>
                     <div className="form-group">
-                      <select name='year' className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="year"
+                        className="field"
+                        value={getSelectData.year}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          dataFilter?.year?.map((curVal, i) => {
-
-                            return <option key={i} value={curVal}>{curVal}</option>;
-                          })
-                        }
-
+                        {filterCategory?.year?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>State</label>
                     <div className="form-group">
-                      <select name="state" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="state"
+                        className="field"
+                        value={getSelectData.state}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          dataFilter?.state?.map((curVal, i) => {
-                            return <option key={i} value={curVal}>{curVal}</option>;
-                          })
-                        }
-
+                        {filterCategory?.state?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
                     <label>City</label>
                     <div className="form-group">
-                      <select name="city" className="field" onChange={handleChangeSelectData}>
+                      <select
+                        name="city"
+                        className="field"
+                        value={getSelectData.city}
+                        onChange={handleChangeSelectData}
+                      >
                         <option selected disabled value="">
                           Select
                         </option>
-                        {
-                          dataFilter?.city?.map((curVal, i) => {
-                           
-                            return <option key={i} value={curVal}>{curVal}</option>;
-                          })
-                        }
-
+                        {filterCategory?.city?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
                       </select>
                     </div>
                   </div>
                 </div>
                 <div className="form-group d-flex justify-content-between ">
-                  <button type="submit" className="btn"
-                    onClick={handleFilteredModalClose}
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleSubmitModel}
                   >
                     Filters
                   </button>
-                  <button type="submit" className="btn">
+                  <button type="button" onClick={fetchApiData} className="btn">
                     Clear Filters
                   </button>
                 </div>
