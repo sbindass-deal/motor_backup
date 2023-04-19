@@ -91,7 +91,7 @@ function LoginModal({ handleShowReg, handleShowForgPass }) {
       .then((result) => {
         if (result.data.access_token && result.data.type === null) {
           dispatch(authToken(result.data));
-          // notify("Login successfully", result.data.status);
+          notify("User Login successfully", result.data.status);
           handleClose();
           setLoginLoading(false);
           window.location.reload(false);

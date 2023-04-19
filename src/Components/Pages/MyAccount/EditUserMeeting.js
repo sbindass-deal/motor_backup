@@ -174,7 +174,10 @@ function EditUserMeeting() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Edit Event</h3>
+              <div className="d-flex justify-content-between">
+                <h3>Edit Event</h3>
+                <button onClick={() => navigate("/user-meeting")} className="btn py-1">Back</button>
+              </div>
               <hr />
               <form onSubmit={handleSubmit}>
                 <div class="row">

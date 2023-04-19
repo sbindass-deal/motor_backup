@@ -44,6 +44,8 @@ function Header() {
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
+// console.log("login details", logingUser)
+
   const handleClose = () => {
     dispatch(showModalClose());
   };
@@ -64,7 +66,7 @@ function Header() {
   };
   const logout = () => {
     dispatch(reset());
-    notify("Logout successfully ! 😎🤐");
+    notify("Logout successfully !");
     navigate("/");
     window.location.reload(false);
   };
@@ -980,7 +982,7 @@ function Header() {
                       </li>
 
                       <li className="nav-item AddtCrt">
-                        {logingUser.cartSlice.quantity !== 0 ? (
+                        {logingUser.login.token && logingUser.cartSlice.quantity !== 0  ? (
                           <Link to="/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span className="count">

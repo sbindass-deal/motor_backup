@@ -34,11 +34,11 @@ const ShopDetails = () => {
   const [sizeSelect, setSizeSelect] = useState("")
   const [colorSelect, setColorSelect] = useState("")
   const [getPrice, setGetPrice] = useState("")
- 
+  const [addCart, setAddCart] = useState(false)
   // console.log(111100, getPrice)
 
 
-  
+
 
   const notify = (val) =>
     toast.success(val, {
@@ -100,29 +100,29 @@ const ShopDetails = () => {
   // useEffect(() => {
   //   getSizeCategories?.product_inventory
   //     ?.map((curVal,i=0) => {
-       
+
   //         setGetPrice(curVal?.price)
-        
+
   //       // return curVal?.size_id == e.target.value
   //     })
   // }, [getSizeCategories])
 
-  
-  
+
+
   const handleChange = (e) => {
-   
+
     setSizeSelect(e.target.value);
-   
-     getSizeCategories?.product_inventory
+
+    getSizeCategories?.product_inventory
       ?.filter((curVal) => {
         if (curVal?.size_id == e.target.value) {
           setGetPrice(curVal?.price)
         }
-      
-    })
+
+      })
 
 
-    
+
   };
 
   const handleChangeColor = (e) => {
@@ -130,7 +130,7 @@ const ShopDetails = () => {
   }
 
   console.log(8000, colorSelect)
- 
+
 
   const getProductDetail = () => {
     // Make a request for a user with a given ID
@@ -161,7 +161,7 @@ const ShopDetails = () => {
   console.log(787800009, getSizeCategories)
 
   const handleProduct = () => {
-
+    setAddCart(true)
     // if (size_id == undefined) {
     //   return toast.warn("Please Choose Size", {
     //     position: "bottom-center",
@@ -176,7 +176,7 @@ const ShopDetails = () => {
     // }
 
     dispatch(addProduct({ ...product, quantity: 1, size_id: sizeSelect, productId: id, color_id: colorSelect }));
-
+    notify("Item Added to cart !");
 
     // if (productRedux.map((d) => {
     //   if (d.size_id == size_id && d.productId == productId) {
@@ -203,7 +203,7 @@ const ShopDetails = () => {
   // console.log(sizeRepeater.filter((item,
   //   index) => sizeRepeater.indexOf(item) === index));
 
-  
+
 
   console.log(678908, sizeSelect)
 
@@ -331,8 +331,8 @@ const ShopDetails = () => {
                 <div className="size">
 
                   <select className="size" value={sizeSelect} onChange={(e) => handleChange(e)}>
-                    
-                        {
+
+                    {
                       getSizeCategories?.sizes?.map((curVal, i) => {
 
                         return <option value={curVal?.size_id}>{curVal?.size_name}</option>
@@ -345,10 +345,10 @@ const ShopDetails = () => {
                     <option value={"SM"}>SM</option> */}
                   </select>
 
-                      <select className="size" value={colorSelect} onChange={(e) => handleChangeColor(e)}>
+                  <select className="size" value={colorSelect} onChange={(e) => handleChangeColor(e)}>
                     {
                       getSizeCategories?.colors?.map((curVal, i) => {
-                      
+
                         return <option value={curVal?.color_id}>{curVal?.color_name}</option>
                       })
                     }
@@ -388,11 +388,13 @@ const ShopDetails = () => {
                   return d?.stock + " "
               })}</h5> */}
 
-
-
-              <button onClick={handleProduct} type="button" className="btn" >
-                Add to Cart
+              {addCart ? <button type="button" className="btn" >
+                Added to Cart
               </button>
+                :
+                <button onClick={handleProduct} type="button" className="btn" >
+                  Add to Cart
+                </button>}
             </div>
           </div>
         )}
