@@ -120,11 +120,9 @@ const VechilesRegistraion = () => {
   console.log(898900, optionsCharity);
 
   const handleInputChange = (event) => {
-    let inputValue = Number(event.target.value);
-    if (inputValue < 1) {
-      inputValue = 0;
-    } else if (inputValue > 100) {
-      inputValue = 100;
+    let inputValue = event.target.value;
+    if (inputValue > 100) {
+      inputValue=100
     }
     setNumberPer(inputValue);
   };
