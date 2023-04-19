@@ -30,22 +30,22 @@ const SocialMedia = ({ id, logo }) => {
   const inputRef = useRef();
 
   const getPostData = async () => {
-    axios
-      .post(`${process.env.REACT_APP_URL}getPostAll`, {
-        page: "replies",
-      })
-      .then(function (res) {
-        setPostData(res.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    // try {
-    //   const res = await axios.get(`${process.env.REACT_APP_URL}getPostAll`);
-    //   setPostData(res.data.data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    // axios
+    //   .post(`${process.env.REACT_APP_URL}getPostAll`, {
+    //     page: "replies",
+    //   })
+    //   .then(function (res) {
+    //     setPostData(res.data.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL}getPostAll`);
+      setPostData(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     getPostData();

@@ -26,6 +26,7 @@ import Post from "./Post";
 import Replies from "./Replies";
 import Bookmark from "./Bookmark";
 import Favorite from "./Favorite";
+import SocialMedia from "./SocialMedia";
 
 const GaragesUserDetails = () => {
   const [garagesData, setGaragesData] = useState({});
@@ -185,6 +186,20 @@ const GaragesUserDetails = () => {
                   aria-selected="true"
                 >
                   Garages
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="social-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#social-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="social-tab-pane"
+                  aria-selected="false"
+                >
+                  Social Media
                 </button>
               </li>
               {/* <li class="nav-item" role="presentation">
@@ -356,6 +371,15 @@ const GaragesUserDetails = () => {
                   userId={id}
                   showUserName={false}
                 />
+              </div>
+              <div
+                class="tab-pane fade"
+                id="social-tab-pane"
+                role="tabpanel"
+                aria-labelledby="social-tab"
+                tabindex="0"
+              >
+                <SocialMedia id={id} logo={userInfo} />
               </div>
               <div
                 class="tab-pane fade"
