@@ -7474,7 +7474,7 @@ justify-content: space-between;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 16%;
+  width: 14%;
 }
 .LBW a.nav-link {
   width: 33.33%;
@@ -7520,4 +7520,9 @@ h2.title_combo {
   position: relative;
   top: 17px;
   left: -10px;
+}
+
+.row.socialSec {
+  max-width: 70%;
+  margin: 0 auto;
 }

@@ -165,10 +165,31 @@ const SocialMedia = ({ id, logo }) => {
 
   return (
     <>
+      {/* <section className="storeHeroSection Garages align-items-center">
+        <div className="container">
+          <div className="row">
+            <div className="topTile">
+              <h5>
+                New to Gas Guzzlrs? 
+              </h5>
+            </div>
+          </div>
+          <div className="col-12 col-lg-12">
+            <div className="heroText">
+             
+              <h1>View member garages from around the world</h1>
+              <h5>
+                We help you find your dream car. Select from our exclusive
+                <br /> list of garages.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </section> */}
       <section className="py-4 mobileSpec" id="">
         <div className="container">
-          <div className="row ">
-            <div className="col-12 text-center pb_30"></div>
+          <div className="row socialSec">
+            {/* <div className="col-12 text-center pb_30"></div> */}
             <div className="col-12 Videos ghhh">
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
