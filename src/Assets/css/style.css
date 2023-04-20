@@ -6694,6 +6694,7 @@ svg.svg-inline--fa.fa-trash-can:hover { color: #f7931b;}
 .orBg {
   background: #F6811C;
   padding: 25px 25px 25px 110px;
+  min-height: 260px;
 }
 a.imgLog {
   position: absolute;
