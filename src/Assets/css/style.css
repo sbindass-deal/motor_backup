@@ -7596,8 +7596,8 @@ h2.title_combo {
   z-index: 5555555;
   position: inherit;
 }
-.nav-pills .nav-link.active{position: relative;}
-.nav-pills .nav-link.active:before {
+.TbAanaletics .nav-pills .nav-link.active{position: relative;}
+.TbAanaletics .nav-pills .nav-link.active:before {
   background: orange;
   content: '';
   width: 100%;
