@@ -28,6 +28,7 @@
     "mdb-react-ui-kit": "^5.0.0",
     "moment": "^2.29.4",
     "npm": "^9.6.4",
+    "rc-tabs": "^12.5.10",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.8",
     "react-bootstrap": "^2.6.0",

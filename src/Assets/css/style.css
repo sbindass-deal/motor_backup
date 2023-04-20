@@ -7526,3 +7526,77 @@ h2.title_combo {
   max-width: 70%;
   margin: 0 auto;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #000000;
+}
+.nav-pills .nav-link.active .carImg p {
+
+  color: #f8a504;
+}
+.nav-pills .nav-link {
+  border-radius: 0px;
+  background: #333333;
+  border-bottom: 1px solid #000;
+}
+.carImg p {
+  font-size: 12px;
+  padding-top: 10px;
+  color: #fff;
+  margin-bottom: 0;
+}
+.light .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #ffffff;
+}
+.light .nav-pills .nav-link {
+  background: #f7f7f7;
+}
+.light .nav-pills .nav-link {
+  border-bottom: 1px solid #dadada;
+}
+.light .nav-pills .nav-link.active, .nav-pills .show>.nav-link{border-bottom: 1px solid orange;}
+
+/* sample demo*/
+
+/* .carImg img {
+  position: absolute;
+  top: -144px;
+  left: 15%;
+  border-radius: 100%;
+  height: 130px;
+  width: 139px;
+}
+.nav-pills {
+  position: relative;
+  top: 36%;
+} */
+
+/* sample demo End*/
+
+.carImg img {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 150px;
+  height: 140px;
+  object-fit: fill;
+}
+.carImg {
+  z-index: 5555555;
+  position: inherit;
+}
+.nav-pills .nav-link.active{position: relative;}
+.nav-pills .nav-link.active:before {
+  background: orange;
+  content: '';
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.nav-pills .nav-link.active .carImg p {
+  color: #ffffff;
+}
