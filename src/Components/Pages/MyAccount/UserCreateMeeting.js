@@ -94,7 +94,7 @@ function UserCreateMeeting() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <div class="FlexCol">
+              <div className="FlexCol">
                 <h3>Events Management</h3>
 
                 {/* <ul>
@@ -130,15 +130,15 @@ function UserCreateMeeting() {
                 </li>
               </ul>
               <div
-                class="card_Gray table-responsive vehicleSub"
+                className="card_Gray table-responsive vehicleSub"
                 id="scrollable"
               >
                 {
-                  loading ? <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                      <span class="sr-only">Loading...</span>
+                  loading ? <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="sr-only">Loading...</span>
                     </div>
-                  </div> : <table class="table table-striped">
+                  </div> : <table className="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">Sr.No</th>
@@ -252,7 +252,7 @@ function UserCreateMeeting() {
 
                                 <Link to={`/edit-user-meeting/${curVal.id}`}>
                                   <button>
-                                    <i class="fa-solid fa-pencil"></i>{" "}
+                                    <i className="fa-solid fa-pencil"></i>{" "}
                                     Edit
                                   </button>
                                 </Link>

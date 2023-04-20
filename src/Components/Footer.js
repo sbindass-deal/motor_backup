@@ -1,7 +1,7 @@
 import React from "react";
 import shibnobiMotors from "../Assets/images/transparent.png";
 import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
-              <NavLink to="/" activeClassName="active" className="mb-3">
+              <NavLink to="/"  className="mb-3">
                 <img
                   loading="lazy"
                   src={shibnobiMotors}
@@ -34,17 +34,17 @@ const Footer = () => {
               <ul className="fLinks fLinks_row">
                 {/* <li><Link to="#">Auctions</Link></li> */}
                 <li>
-                  <NavLink to="/shipping" activeClassName="active">
+                  <NavLink to="/shipping" >
                     Shipping
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/feautres" activeClassName="active">
+                  <NavLink to="/feautres" >
                     Featured
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/submit" activeClassName="active">
+                  <NavLink to="/submit" >
                     List Your Vehicle
                   </NavLink>
                 </li>
@@ -53,18 +53,18 @@ const Footer = () => {
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
                 {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <NavLink to="/carraffle" activeClassName="active">
+                  <NavLink to="/carraffle" >
                     Giveaways
                   </NavLink>
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>
-                  <NavLink to="/getalerts" activeClassName="active">
+                  <NavLink to="/getalerts" >
                     Get Alerts
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/about" activeClassName="active">
+                  <NavLink to="/about" >
                     About Gas Guzzlrs
                   </NavLink>
                 </li>
@@ -128,10 +128,10 @@ const Footer = () => {
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
                 <NavLink to="/privacy">Privacy policy</NavLink>
-                <NavLink to="/termsandconditions" activeClassName="active">
+                <NavLink to="/termsandconditions" >
                   Term of Condition
                 </NavLink>
-                <NavLink to="/amlpolicy" activeClassName="active">
+                <NavLink to="/amlpolicy" >
                   AML Policy
                 </NavLink>
               </div>

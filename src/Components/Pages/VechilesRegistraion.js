@@ -2465,6 +2465,7 @@ const VechilesRegistraion = () => {
                                   onEditorStateChange={(e) =>
                                     setVehicleHistory(e)
                                   }
+                                  handlePastedText={() => false}
                                   placeholder="Please enter vehicle history"
                                 />
                               </div>
@@ -2490,6 +2491,7 @@ const VechilesRegistraion = () => {
                                     setServiceRecord(e)
                                   }
                                   placeholder="Please enter here"
+                                  handlePastedText={() => false}
                                 />
                               </div>
                             </div>
@@ -2611,6 +2613,7 @@ const VechilesRegistraion = () => {
                                     setIssuesProblems(e)
                                   }
                                   placeholder="Please enter here"
+                                  handlePastedText={() => false}
                                 />
                               </div>
                             </div>

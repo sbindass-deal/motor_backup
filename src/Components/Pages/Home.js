@@ -168,10 +168,10 @@ function Home() {
         <a type="button" className="scrollDownIc bounce2" href="#second">
           <span className="outer_cover">
             <small className="upper">
-              <i class="fa fa-angle-down"></i>
+              <i className="fa fa-angle-down"></i>
             </small>
             <small className="lower">
-              <i class="fa fa-angle-down"></i>
+              <i className="fa fa-angle-down"></i>
             </small>
           </span>
         </a>

@@ -712,7 +712,7 @@ function Header() {
                         <div className="dropdown">
                           <Link
                             className={`nav-link ${
-                              location.pathname === "/submit" && "navActive"
+                              location.pathname == "/submit" || location.pathname == "/dealer" ? "active" : null
                             }`}
                             to="#"
                           >
@@ -733,8 +733,8 @@ function Header() {
                         <div className="dropdown">
                           <Link
                             className={`nav-link ${
-                              location.pathname === "/auctionlive" &&
-                              "navActive"
+                              location.pathname === "/auctionlive" || location.pathname === "/auctionfeature" || location.pathname === "/auctionnoreserve" || location.pathname === "/charity" || location.pathname === "/auctionresult" ?
+                              "active" : null
                             }`}
                             to="#"
                           >
@@ -985,7 +985,7 @@ function Header() {
                         {logingUser.login.token &&
                         logingUser.cartSlice.quantity !== 0 ? (
                           <Link to="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i className="fa-solid fa-cart-shopping"></i>
                             <span className="count">
                               {logingUser.cartSlice.quantity}
                             </span>
