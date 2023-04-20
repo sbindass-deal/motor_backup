@@ -1,14 +1,222 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 
 function AdminLeftNav() {
   const location = useLocation();
+ 
+
   return (
     <div className="">
       <h5>Admin Dashboard </h5>
       <hr />
       <ul className="sideBar__">
-        <li>
+
+        <ProSidebar>
+          <Menu iconShape="square">
+            <MenuItem>
+              <Link
+                to="/vehicle-submission"
+                className={` ${location.pathname === "/vehicle-submission" ? "active" : ""
+                  } `}
+              >
+                Vehicle Submission
+              </Link>
+            </MenuItem>
+
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin/vehicle-listing" ? "active" : ""
+                    } `}
+                  to="/admin/vehicle-listing"
+                >
+                  Listing Plan
+                </Link>
+              </li>
+            </MenuItem>
+
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/raffleadmin" ? "active" : ""
+                    } `}
+                  to="/raffleadmin"
+                >
+                  Giveaways
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/gear-product" ? "active" : ""
+                    } `}
+                  to="/gear-product"
+                >
+                  Gear Products
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/gear-inventry" ? "active" : ""
+                    } `}
+                  to="/gear-inventry"
+                >
+                  Gear Inventory
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/Orders" ? "active" : ""} `}
+                  to="/Orders"
+                >
+                  Orders List
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/blog" ? "active" : ""} `}
+                  to="/blog"
+                >
+                  Blogs
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/blog" ? "active" : ""} `}
+                  to="/blog"
+                >
+                  Blogs
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/blog" ? "active" : ""} `}
+                  to="/blog"
+                >
+                  Blogs
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin-dealer" ? "active" : ""
+                    } `}
+                  to="/admin-dealer"
+                >
+                  Dealer List
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin-garages" ? "active" : ""
+                    } `}
+                  to="/admin-garages"
+                >
+                  Garages List
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin-meeting" ? "active" : ""
+                    } `}
+                  to="/admin-meeting"
+                >
+                  Events
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin-faq" ? "active" : ""
+                    } `}
+                  to="/admin-faq"
+                >
+                  FAQ
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={` ${location.pathname === "/admin-enquiry" ? "active" : ""
+                    } `}
+                  to="/admin-enquiry"
+                >
+                  Customer Enquiry
+                </Link>
+              </li>
+            </MenuItem>
+            <SubMenu title="Policy"  defaultOpen={true}>
+              <MenuItem >
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/admin-privacy-policy" ? "active" : ""
+                      } `}
+                    to="/admin-privacy-policy"
+                  >
+                    Giveaways Official Rules
+                  </Link>
+                </li>
+              </MenuItem>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/admin-privacy" ? "active" : ""
+                      } `}
+                    to="/admin-privacy"
+                  >
+                    Privacy policy
+
+                  </Link>
+                </li>
+              </MenuItem>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/admin-termcondition" ? "active" : ""
+                      } `}
+                    to="/admin-termcondition"
+                  >
+                    Term And Condition
+                  </Link>
+                </li>
+              </MenuItem>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/admin-aml-policy" ? "active" : ""
+                      } `}
+                    to="/admin-aml-policy"
+                  >
+                    AML Policy
+
+                  </Link>
+                </li>
+              </MenuItem>
+            </SubMenu>
+          </Menu>
+        </ProSidebar>
+
+
+        {/* <li>
           <Link
             to="/vehicle-submission"
             className={` ${
@@ -17,8 +225,8 @@ function AdminLeftNav() {
           >
             Vehicle Submission
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin/vehicle-listing" ? "active" : ""
@@ -27,8 +235,8 @@ function AdminLeftNav() {
           >
             Listing Plan
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/raffleadmin" ? "active" : ""
@@ -37,8 +245,8 @@ function AdminLeftNav() {
           >
             Giveaways
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/gear-product" ? "active" : ""
@@ -47,8 +255,8 @@ function AdminLeftNav() {
           >
             Gear Products
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/gear-inventry" ? "active" : ""
@@ -57,25 +265,25 @@ function AdminLeftNav() {
           >
             Gear Inventory
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${location.pathname === "/Orders" ? "active" : ""} `}
             to="/Orders"
           >
             Orders List
           </Link>
-        </li>
+        </li> */}
 
-        <li>
+        {/* <li>
           <Link
             className={` ${location.pathname === "/blog" ? "active" : ""} `}
             to="/blog"
           >
             Blogs
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-dealer" ? "active" : ""
@@ -84,8 +292,8 @@ function AdminLeftNav() {
           >
             Dealer List
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-garages" ? "active" : ""
@@ -94,7 +302,7 @@ function AdminLeftNav() {
           >
             Garages List
           </Link>
-        </li>
+        </li> */}
         {/* <li>
           <Link
             className={` ${
@@ -106,7 +314,7 @@ function AdminLeftNav() {
           </Link>
         </li> */}
 
-        <li>
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-meeting" ? "active" : ""
@@ -115,8 +323,8 @@ function AdminLeftNav() {
           >
             Events
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-faq" ? "active" : ""
@@ -125,8 +333,8 @@ function AdminLeftNav() {
           >
             FAQ
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-enquiry" ? "active" : ""
@@ -135,9 +343,9 @@ function AdminLeftNav() {
           >
             Customer Enquiry
           </Link>
-        </li>
+        </li> */}
 
-        <li>
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-privacy-policy" ? "active" : ""
@@ -146,8 +354,8 @@ function AdminLeftNav() {
           >
             Giveaways Official Rules
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${location.pathname === "/admin-privacy" ? "active" : ""
               } `}
@@ -156,8 +364,8 @@ function AdminLeftNav() {
             Privacy policy
 
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-termcondition" ? "active" : ""
@@ -166,8 +374,8 @@ function AdminLeftNav() {
           >
             Term And Condition
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link
             className={` ${
               location.pathname === "/admin-aml-policy" ? "active" : ""
@@ -177,7 +385,7 @@ function AdminLeftNav() {
             AML Policy
 
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
