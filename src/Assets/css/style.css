@@ -1113,9 +1113,11 @@ select.field option {
 .com_date {
   margin-left: auto;
   font-size: 12px;
-  opacity: 0.5;
+  opacity: 1;
 }
-
+.commentFooter a span {
+  font-size: 16px;
+}
 .commentBody {
   padding: 0px 0px 0px;
 }
@@ -1131,7 +1133,14 @@ select.field option {
 
 .commentFooter {}
 
-.commentFooter a {}
+.commentFooter a {
+  font-size: 23px;
+  cursor: pointer;
+}
+
+ .commentFooter a:hover {
+    color: #F6811C !important;
+}
 
 .label__List {}
 
@@ -2204,7 +2213,7 @@ li.page-item.disabled a svg {
 
 
 .card_ic {
-  background: #111;
+  background: #141414;
   border-radius: 15px;
   padding: 30px 20px;
   height: 100%;
@@ -7598,6 +7607,16 @@ h2.title_combo {
   bottom: 0;
   z-index: 0;
 }
-.nav-pills .nav-link.active .carImg p {
-  color: #ffffff;
+.nav-pills .nav-link.active .carImg p { color: #ffffff;}
+.light .bestSellerRgt:after { border-right: 13px solid #ffffff;}
+.com_date svg {
+  font-size: 20px;
+  color: #626161;
+}
+button.btn.sub {
+
+  background: #303030;
+    text-transform: capitalize;
+    font-weight: 100;
+    letter-spacing: 1px;
 }
