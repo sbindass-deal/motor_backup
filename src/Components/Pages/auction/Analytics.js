@@ -29,7 +29,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Line Chart",
+      text: "Bid Closed Analytics",
     },
   },
 };
@@ -40,7 +40,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: "Bid closed prince",
+      label: "Bid Closed Price",
       data: { January: 1000, February: 600, March: 800, April: 900, May:600,June: 600,August:500,September: 800, November: 600},
       borderColor: "#f8a504",
       backgroundColor: "#f8a504",
