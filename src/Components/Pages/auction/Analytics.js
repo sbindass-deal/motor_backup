@@ -40,13 +40,13 @@ export const data = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
+      label: "bid closed prince",
       data: { January: -1000, February: -600, March: -400, April: -200, May:-600,June: -600,August:0,September: -300, November: -300},
       borderColor: "#f8a504",
       backgroundColor: "#f8a504",
     },
     {
-      label: "Dataset 2",
+     
       data: { January: -900, February: -600, March: -600, April: -400, May:-600,June: -400,July:-100,August:-100,September: -500, November: -500, December: -700},
       borderColor: "red",
       backgroundColor: "red",
