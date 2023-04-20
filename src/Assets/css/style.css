@@ -7392,7 +7392,7 @@ justify-content: space-between;
   border-width: 20px 20px 0 20px;
   border-color: orange transparent transparent transparent;
   position: absolute;
-  right: -27px;
+  right: -25px;
   bottom: -3px;
 }
 .electric:after {
@@ -7404,7 +7404,7 @@ justify-content: space-between;
   border-width: 20px 20px 0 20px;
   border-color: orange transparent transparent transparent;
   position: absolute;
-  left: -27px;
+  left: -25px;
   bottom: -3px;
 }
 .light .pro-inner-item {
