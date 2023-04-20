@@ -7634,8 +7634,7 @@ button.btn.sub {
   margin-top: 10px;
 }
 
-.light .PostInfo .light .field{
-
-    background: #f7f7f7;
+.light .PostInfo .field{
+  background-color: #f7f7f7;
 
 }
