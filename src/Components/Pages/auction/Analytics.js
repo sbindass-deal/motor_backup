@@ -45,12 +45,12 @@ export const data = {
       borderColor: "#f8a504",
       backgroundColor: "#f8a504",
     },
-    {
-      label: "",
-      data: { January: -900, February: -600, March: -600, April: -400, May:-600,June: -400,July:-100,August:-100,September: -500, November: -500, December: -700},
-      borderColor: "red",
-      backgroundColor: "red",
-    },
+    // {
+    //   label: "",
+    //   data: { January: -900, February: -600, March: -600, April: -400, May:-600,June: -400,July:-100,August:-100,September: -500, November: -500, December: -700},
+    //   borderColor: "red",
+    //   backgroundColor: "red",
+    // },
    
   ],
 };
