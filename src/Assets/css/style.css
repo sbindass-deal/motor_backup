@@ -6777,7 +6777,7 @@ h2.verticalTitle:before {
 }
 .PostInfo {
   display: flex;
-  background: #232323;
+  background: #121212;
   padding: 25px;
   margin-bottom: 25px;
 }
@@ -7596,8 +7596,8 @@ h2.title_combo {
   z-index: 5555555;
   position: inherit;
 }
-.nav-pills .nav-link.active{position: relative;}
-.nav-pills .nav-link.active:before {
+.TbAanaletics .nav-pills .nav-link.active{position: relative;}
+.TbAanaletics .nav-pills .nav-link.active:before {
   background: orange;
   content: '';
   width: 100%;
@@ -7619,4 +7619,22 @@ button.btn.sub {
     text-transform: capitalize;
     font-weight: 100;
     letter-spacing: 1px;
+}
+.PostInfo .field {
+  background-color: #121212;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #333131;
+  border-radius: 0px;
+  padding: 0;
+}
+.youD button.btn {
+  padding: 10px 30px;
+  height: fit-content;
+  margin-top: 10px;
+}
+
+.light .PostInfo .field{
+  background-color: #f7f7f7;
+
 }

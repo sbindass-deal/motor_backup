@@ -250,6 +250,18 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={`${
+                    location.pathname === "/settings" ? "active" : ""
+                  }`}
+                  to="/settings"
+                >
+                  Settings
+                </Link>
+              </li>
+            </MenuItem>
           </Menu>
         </ProSidebar>
 
