@@ -117,7 +117,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                 {btnLoading ? (
                   <button className="gry_btn">Loading...</button>
                 ) : (
-                  <button type="submit" className="btn">
+                  <button type="submit" className="btn sub">
                     Submit
                   </button>
                 )}
@@ -167,7 +167,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                             "text-warning"
                             }`}
                         ></i>{" "}
-                        {curElem?.Like_count}
+                        <span>{curElem?.Like_count}</span>
                       </a>
                       <a
                         onClick={() => handleLikeDislike(curElem.id, 2)}
@@ -178,7 +178,7 @@ const Comment = ({ id, getVehicleComment, commentRef }) => {
                             "text-warning"
                             }`}
                         ></i>{" "}
-                        {curElem?.Dislike_count}
+                      <span>{curElem?.Dislike_count}</span>  
                       </a>
                     </div>
                   )}
