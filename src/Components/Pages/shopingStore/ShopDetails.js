@@ -14,6 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "antd";
 import { Image } from "antd";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
+
 const ShopDetails = () => {
   const id = useParams().id;
   const dispatch = useDispatch();
@@ -39,7 +43,7 @@ const ShopDetails = () => {
 
 
 
-
+const navigate = useNavigate();
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -388,7 +392,7 @@ const ShopDetails = () => {
                   return d?.stock + " "
               })}</h5> */}
 
-              {addCart ? <button type="button" className="btn" >
+              {addCart ? <button type="button" className="btn" onClick={() => navigate("/cart")}>
                 Added to Cart
               </button>
                 :
