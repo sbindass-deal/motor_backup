@@ -223,6 +223,8 @@ const Auctionlive = () => {
     fetchNoreserveDataSelect()
   }
 
+  
+
  
 
   return (

@@ -118,6 +118,7 @@ import SocialMedia from "./garages/SocialMedia";
 import Settings from "./MyAccount/Settings";
 
 import AnalyticsTab from "./auction/AnalyticsTab";
+import GaragesAdmin from "./Dashboard/GaragesAdmin";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -190,6 +191,7 @@ const Layout = () => {
                     element={<AddListing />}
                   />
                   <Route path="raffleadmin" element={<RaffleAdmin />} />
+                  <Route path="admin-garages" element={<GaragesAdmin />} />
                   <Route
                     path="raffleadmin/add-raffel"
                     element={<AddRaffle />}
