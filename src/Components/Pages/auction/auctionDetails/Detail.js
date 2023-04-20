@@ -251,7 +251,17 @@ function Detail() {
               </h2>
               <div className=" text-center box_background p-10" id="sticky">
                 <div className="detailPostOption">
-                <div class="bestSellerRgt">Auction</div>
+                  {/* <div class="bestSellerRgt">Auction</div> */}
+                  {vehicle.auctionType === "charity" && (
+                    <div class="bestSellerRgt">
+                      <span class="">Charity</span>
+                    </div>
+                  )}
+                  {vehicle.auctionType === "Premium listing" && (
+                    <div class="bestSellerRgt">
+                      <span class="">Featured</span>
+                    </div>
+                  )}
                   <h2
                     className="title_combo title_Center mobileOnlyD"
                     id="sticky2"

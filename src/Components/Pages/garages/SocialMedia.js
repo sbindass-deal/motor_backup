@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import men_face from "../../../Assets/images/men-face.jpg";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
-import { noImage, notify } from "../../UI/globaleVar";
 import { RWebShare } from "react-web-share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -11,10 +10,15 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import SmallSpinner from "../../UI/SmallSpinner";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import parse from "html-react-parser";
+import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 
 const SocialMedia = ({ id, logo }) => {
   const logingUser = useSelector((state) => state);
   // logingUser.login.token
+  const [userInfo, setUserinfo] = useState({});
+  const [postCount, setPostCount] = useState([]);
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");
@@ -28,11 +32,32 @@ const SocialMedia = ({ id, logo }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
+    if (logingUser.login.token === null) {
+      return notify("Please login first", 400);
+    }
     setShow(true);
     setCommentId(id);
   };
 
   const inputRef = useRef();
+
+  const fetchUsrApi = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_URL}getGarageReturn`
+      );
+      if (res.data.data) {
+        setUserinfo(res.data.data);
+      } else {
+        setUserinfo(userInfo);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchUsrApi();
+  }, []);
 
   const getPostData = async () => {
     // axios
@@ -88,6 +113,9 @@ const SocialMedia = ({ id, logo }) => {
   };
 
   const handleLike = async (id) => {
+    if (logingUser.login.token === null) {
+      return notify("Please login first", 400);
+    }
     axios
       .post(`${process.env.REACT_APP_URL}like_dislike_post`, {
         postId: id,
@@ -102,6 +130,9 @@ const SocialMedia = ({ id, logo }) => {
   };
 
   const handleSavePost = async (id, saved) => {
+    if (logingUser.login.token === null) {
+      return notify("Please login first", 400);
+    }
     axios
       .post(`${process.env.REACT_APP_URL}addSavePost`, {
         postId: id,
@@ -190,6 +221,164 @@ const SocialMedia = ({ id, logo }) => {
         </div>
       </section> */}
       <section className="py-4 mobileSpec" id="">
+        {logingUser.login.token !== null && (
+          <>
+            <div className="row mx-md-5">
+              <div className="col-md-12">
+                <div className="UserImZ mt-4">
+                  <Link to={`/garages-user-details/${userInfo?.userId}`}>
+                    <Space direction="vertical" size={16}>
+                      <Space wrap size={16}>
+                        <Avatar
+                          size={100}
+                          icon={
+                            <img
+                              className="slidImg"
+                              loading="lazy"
+                              src={
+                                userInfo?.logo &&
+                                `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src = noImage;
+                              }}
+                              alt="Logo"
+                            />
+                          }
+                        />
+                      </Space>
+                    </Space>
+                  </Link>
+
+                  <div className="followers">
+                    <ul className="fwrList">
+                      <li>
+                        <span>{userInfo.followers}</span> Followers
+                      </li>
+                      <li>
+                        <span>{userInfo.followings}</span>Following
+                      </li>
+                      <li>
+                        <span>{postCount?.length}</span>Post
+                      </li>
+                    </ul>
+                    <button className="btn">Follow</button>
+                  </div>
+                </div>
+                <h2 className="mt-4">
+                  {userInfo.title}
+                  {/* <Link to="/editmyaccount-garages">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </Link> */}
+                </h2>
+                <ul className="labelList_ ">
+                  <li>
+                    <div className="labelList_text">
+                      {userInfo?.description &&
+                        parse(userInfo?.description, strToHtml)}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="row youPage">
+              <div className="col-md-12 ">
+                <div className="PostInfo">
+                  <div className="userImG">
+                    <Space direction="vertical" size={16}>
+                      <Space wrap size={16}>
+                        <Avatar
+                          size={64}
+                          icon={
+                            <img
+                              className="slidImg"
+                              loading="lazy"
+                              src={
+                                userInfo?.logo &&
+                                `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onError = null;
+                                currentTarget.src = noImage;
+                              }}
+                              alt="post"
+                            />
+                          }
+                        />
+                      </Space>
+                    </Space>
+                  </div>
+                  <form onSubmit={handlePost} className="DecIbp ">
+                    <div className="field">
+                      <textarea
+                        className="field border-0"
+                        rows="4"
+                        cols="100"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        placeholder="What’s happening?"
+                        required
+                      ></textarea>
+                      <div className="field border-0">
+                        {Array.from(file).map((items) => {
+                          return (
+                            <span>
+                              <img
+                                src={items ? URL.createObjectURL(items) : null}
+                                style={{
+                                  width: "200px",
+                                  height: "200px",
+                                  objectFit: "cover",
+                                  padding: "15px",
+                                }}
+                              />
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="youD">
+                      <div className="py-3">
+                        <span>
+                          <input
+                            onChange={(e) => {
+                              return setFile((prevState) => [
+                                ...e.target.files,
+                              ]);
+                            }}
+                            name="file"
+                            type="file"
+                            accept="image/gif, image/jpeg, image/png, image/jpg"
+                            ref={inputRef}
+                            hidden
+                          />
+                          <span
+                            onClick={() => inputRef.current.click()}
+                            style={{ cursor: "pointer" }}
+                            className="socialCount"
+                          >
+                            <i class="fa-solid fa-image"></i>
+                          </span>
+                        </span>
+                      </div>
+                      {loading ? (
+                        <button type="button" className="btn">
+                          Posting...
+                        </button>
+                      ) : (
+                        <button type="submit" class="btn">
+                          Post
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="container">
           <div className="row socialSec">
             {/* <div className="col-12 text-center pb_30"></div> */}
