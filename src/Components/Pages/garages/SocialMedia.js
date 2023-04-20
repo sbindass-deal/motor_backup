@@ -221,9 +221,14 @@ const SocialMedia = ({ id, logo }) => {
         </div>
       </section> */}
       <section className="py-4 mobileSpec" id="">
-        {logingUser.login.token !== null && (
+      
+
+        <div className="container">
+          <div className="row socialSec">
+            {/* <div className="col-12 text-center pb_30"></div> */}
+            {logingUser.login.token !== null && (
           <>
-            <div className="row mx-md-5">
+            <div className="row mx-md-5 ">
               <div className="col-md-12">
                 <div className="UserImZ mt-4">
                   <Link to={`/garages-user-details/${userInfo?.userId}`}>
@@ -281,8 +286,6 @@ const SocialMedia = ({ id, logo }) => {
                   </li>
                 </ul>
               </div>
-            </div>
-            <div className="row youPage">
               <div className="col-md-12 ">
                 <div className="PostInfo">
                   <div className="userImG">
@@ -376,14 +379,13 @@ const SocialMedia = ({ id, logo }) => {
                 </div>
               </div>
             </div>
+            <div className="row youPage">
+             
+            </div>
           </>
         )}
-
-        <div className="container">
-          <div className="row socialSec">
-            {/* <div className="col-12 text-center pb_30"></div> */}
-            <div className="col-12 Videos ghhh">
-              <div className="row">
+            
+              <div className="row mx-md-5 ">
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div className="row">
                     {postData.length > 0 &&
@@ -742,7 +744,7 @@ const SocialMedia = ({ id, logo }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
         </div>
       </section>
