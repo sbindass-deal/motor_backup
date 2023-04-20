@@ -84,9 +84,15 @@ const OrderCart = () => {
               </ul>
               <div className="row">
                 <div className="col-12">
-                  <div className="card_Gray table-responsive merchant vehicleSub ttt col-12 col-md-12 col-lg-12">
+                  {/* <div className="card_Gray table-responsive merchant vehicleSub ttt col-12 col-md-12 col-lg-12">
                     <div className="table-responsive">
-                      <table width={"100%"} className="cartSection" height= {"210px"}>
+                      <table width={"100%"} className="cartSection" height= {"210px"}> */}
+                  <div
+                    className="card_Gray table-responsive vehicleSub"
+                    id="scrollable"
+                  >
+                    <div>
+                      <table className="table table-striped">
                         <tr>
                           <th>Sr No.</th>
                           <th>Order Number</th>
@@ -178,7 +184,7 @@ const OrderCart = () => {
                                       </Dropdown.Item>
                                       <Dropdown.Item href="#/action-2">
                                         <Link
-                                         to={`/orders-cart/${curElem?.order_id}`}
+                                          to={`/orders-cart/${curElem?.order_id}`}
                                           className="editDrop"
                                         >
                                           <i className="fa-solid fa-eye"></i>{" "}

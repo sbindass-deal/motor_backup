@@ -111,7 +111,7 @@ function MyAccountLeftNav() {
               </MenuItem>
             </SubMenu>
 
-            <SubMenu title="Auctions">
+            <SubMenu title="Auctions" defaultOpen={true}>
               <MenuItem>
                 <Link
                   className={` ${
