@@ -4,11 +4,9 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 
 function AdminLeftNav() {
   const location = useLocation();
-  const [show, setShow] = useState(false)
-  
-  const handleTogle = () => {
-    setShow(true)
-  }
+
+const[show, setShow]=useState(true)
+
 
   return (
     <div className="">
@@ -93,7 +91,7 @@ function AdminLeftNav() {
                 </Link>
               </li>
             </MenuItem>
-            <MenuItem>
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/blog" ? "active" : ""} `}
@@ -112,7 +110,7 @@ function AdminLeftNav() {
                   Blogs
                 </Link>
               </li>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem>
               <li>
                 <Link
@@ -135,6 +133,20 @@ function AdminLeftNav() {
                 </Link>
               </li>
             </MenuItem>
+
+            <MenuItem>
+              <li>
+          <Link
+            className={` ${
+              location.pathname === "/admin-vehicle-ad" ? "active" : ""
+            } `}
+            to="/admin-vehicle-ad"
+          >
+            Classified Vehicle List
+          </Link>
+        </li>
+            </MenuItem>
+
             <MenuItem>
               <li>
                 <Link
@@ -168,7 +180,11 @@ function AdminLeftNav() {
                 </Link>
               </li>
             </MenuItem>
-            <SubMenu title="Policy"  defaultOpen={true}>
+            <SubMenu title="Policy"
+              
+              defaultOpen={true}
+              
+            >
               <MenuItem >
                 <li>
                   <Link
@@ -176,7 +192,7 @@ function AdminLeftNav() {
                       } `}
                     to="/admin-privacy-policy"
                   >
-                    Giveaways Official Rules
+                    Giveaways Official
                   </Link>
                 </li>
               </MenuItem>
