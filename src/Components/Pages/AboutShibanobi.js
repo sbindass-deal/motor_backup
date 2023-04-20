@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import about_1 from "../../Assets/images/about-1.jpg";
-import about_2 from "../../Assets/images/about_2.jpg";
-import about_3 from "../../Assets/images/sssddeee.avif";
+import about_1 from "../../Assets/images/woman-driving-sports-car-with-a-digital-touchscree-2021-09-02-02-11-52-utc.jpg";
+import about_2 from "../../Assets/images/handsome-young-african-american-business-man-worki-2022-04-27-03-29-18-utc.jpg";
+import about_3 from "../../Assets/images/male-driver-in-a-convertible-sports-car-driving-on-2022-03-04-02-22-18-utc.jpg";
+import about_4 from "../../Assets/images/man-driving-his-car-during-phone-conversation-2022-09-02-16-59-02-utc.jpg"
 
 function AboutShibanobi() {
   return (
@@ -53,7 +54,7 @@ function AboutShibanobi() {
           </div>
           <div className="row pt_80">
             <div className="col-12 col-md-6 order-md-1">
-              <img src={about_2} loading="lazy" />
+              <img src={about_4} loading="lazy" />
             </div>
             <div className="col-12 col-md-6 order-md-0 d-flex align-items-center mission_section">
               <div>
