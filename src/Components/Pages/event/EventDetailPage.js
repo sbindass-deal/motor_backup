@@ -262,7 +262,7 @@ const EventDetailPage = () => {
                   </div> */}
                   {
                     loading ? <button className="btn" disabled type="submit">Loading...</button>
-                      : <button className="btn" type="submit">Submit</button>
+                      : <button className="btn sub" type="submit">Submit</button>
 
                   }
                 </form>
