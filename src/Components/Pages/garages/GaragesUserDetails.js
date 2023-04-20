@@ -155,10 +155,10 @@ const GaragesUserDetails = () => {
               <div className="followers">
                 <ul className="fwrList">
                   <li>
-                    <span>{userInfo.followers}</span> Followers
+                    <span>{userInfo?.followers}</span> Followers
                   </li>
                   <li>
-                    <span>{userInfo.followings}</span>Following
+                    <span>{userInfo?.followings}</span>Following
                   </li>
                   <li>
                     <span>{postCount?.length}</span>Post
