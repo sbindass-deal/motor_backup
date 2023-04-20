@@ -7526,3 +7526,26 @@ h2.title_combo {
   max-width: 70%;
   margin: 0 auto;
 }
+.rc-tabs {
+  border: none !important;
+}
+.rc-tabs-tab {
+  padding: 5px;
+  text-transform: capitalize;
+}
+.rc-tabs-tab .rc-tabs-tab-btn {
+  font-weight: normal;
+}
+.rc-tabs-tab.rc-tabs-tab-active {
+  background: ececec;
+  color: #00a6f8;
+}
+.rc-tabs-ink-bar {
+  background: #59c7fd !important;
+}
+.rc-tabs-content-holder {
+  padding: 10px;
+  background: #ececec;
+}
+.rc-tabs-content {
+}
