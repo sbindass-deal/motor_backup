@@ -10,8 +10,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import SmallSpinner from "../../UI/SmallSpinner";
+import { useSelector } from "react-redux";
 
 const SocialMedia = ({ id, logo }) => {
+  const logingUser = useSelector((state) => state);
+  // logingUser.login.token
   const [file, setFile] = useState([]);
   const [filer, setFiler] = useState([]);
   const [content, setContent] = useState("");

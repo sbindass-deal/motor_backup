@@ -44,7 +44,7 @@ function Header() {
   const [showReg, setShowReg] = useState(false);
   const [showForgPass, setShowForgPass] = useState(false);
 
-// console.log("login details", logingUser)
+  // console.log("login details", logingUser)
 
   const handleClose = () => {
     dispatch(showModalClose());
@@ -982,7 +982,8 @@ function Header() {
                       </li>
 
                       <li className="nav-item AddtCrt">
-                        {logingUser.login.token && logingUser.cartSlice.quantity !== 0  ? (
+                        {logingUser.login.token &&
+                        logingUser.cartSlice.quantity !== 0 ? (
                           <Link to="/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span className="count">
