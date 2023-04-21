@@ -1468,7 +1468,7 @@ select.field option {
   line-height: 2em;
   font-weight: bold;
   color: #fff;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  
 }
 
 .tgl-skewed+.tgl-btn:after {
@@ -7695,4 +7695,7 @@ svg.svg-inline--fa.fa-bell.d {
 }
 .tabPlan button.nav-link.active {
   color: #fff !important;
+}
+button.ml-3.watchlistStyleBtn {
+  color: orange;
 }
