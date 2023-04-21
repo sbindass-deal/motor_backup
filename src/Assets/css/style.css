@@ -7686,3 +7686,10 @@ svg.svg-inline--fa.fa-bell.d {
   border-bottom: 1px solid orange;
   background: orange;
 }
+
+.light .LBW a.nav-link {
+  color: #000;}
+  a.active.nav-link,button.nav-link.active 
+    {
+    color: orange !important;
+}
