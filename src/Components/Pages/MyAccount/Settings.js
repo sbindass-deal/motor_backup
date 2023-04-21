@@ -76,24 +76,56 @@ function Settings() {
               <ul className="rowList_ mb-4">
                 <li>
                   <div className="pr-3">
+                    <h6>Gas Guzzlrs Garages</h6>
+                    <p>By switching to 'Private', your Garage profile will be hidden on Garage page.</p>
+                  </div>
+
+
+
+
+                  <div className="ml-auto">
+                    <div className="tg-item">
+                      <input
+                        className="tgl tgl-skewed"
+                        id="cb6"
+                        type="checkbox"
+                      // checked
+                      />
+                      <label
+                        className="tgl-btn"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
+                        for="cb6"
+                      ></label>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li>
+                  <div className="pr-3">
                     <h6>Gass Guzzlrs Giveaway News and Updates</h6>
                     <p>
                       We'll email you about site updates, pro tips and all
                       things Gass Guzzlrs Giveaway. We promise not to spam you.
                     </p>
                   </div>
+
+
+
+
                   <div className="ml-auto">
                     <div className="tg-item">
                       <input
                         className="tgl tgl-skewed"
                         id="cb1"
                         type="checkbox"
-                        // checked
+                      // checked
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="OFF"
+                        data-tg-on="ON"
                         for="cb1"
                       ></label>
                     </div>
@@ -113,13 +145,13 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb2"
                         type="checkbox"
-                        // checked
+                      // checked
 
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="OFF"
+                        data-tg-on="ON"
                         for="cb2"
                       ></label>
                     </div>
@@ -142,8 +174,8 @@ function Settings() {
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="OFF"
+                        data-tg-on="ON"
                         for="cb3"
                       ></label>
                     </div>
@@ -166,8 +198,8 @@ function Settings() {
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="OFF"
+                        data-tg-on="ON"
                         for="cb4"
                       ></label>
                     </div>
@@ -187,12 +219,12 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb5"
                         type="checkbox"
-                        // checked
+                      // checked
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="OFF"
+                        data-tg-on="ON"
                         for="cb5"
                       ></label>
                     </div>
