@@ -301,9 +301,9 @@ function Wins() {
                         justifyContent: "center",
                       }}
                     >
-                      {/* <h3>You did not win any vehicle</h3> */}
+                      <h3>You did not win any vehicle</h3>
                       {/* Win Page Section */}
-                      <div class="col-md-6 ">
+                      {/* <div class="col-md-6 ">
                         <div class="card_Gray2 winnerCard">
                           <div class="winnerTitle_img zoom-in-zoom-out">
                             <img src={winner} />
@@ -322,7 +322,7 @@ function Wins() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       {/* Win Page Section End*/}
                     </div>
                   )}
