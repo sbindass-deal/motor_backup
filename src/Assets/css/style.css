@@ -1468,7 +1468,7 @@ select.field option {
   line-height: 2em;
   font-weight: bold;
   color: #fff;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  
 }
 
 .tgl-skewed+.tgl-btn:after {
@@ -7515,6 +7515,7 @@ justify-content: space-between;
   position: absolute;
   top: -4px;
   left: -1px;
+  z-index: 1;
 }
 .bestSellerRgt:after {
     content: '';
@@ -7689,7 +7690,12 @@ svg.svg-inline--fa.fa-bell.d {
 
 .light .LBW a.nav-link {
   color: #000;}
-  a.active.nav-link,button.nav-link.active 
-    {
+  a.active.nav-link {
     color: orange !important;
+}
+.tabPlan button.nav-link.active {
+  color: #fff !important;
+}
+button.ml-3.watchlistStyleBtn {
+  color: orange;
 }

@@ -99,7 +99,7 @@ const SearchResult = () => {
                   }}
                   className="btn btn_change"
                 >
-                  <i class="fa-solid fa-bell"></i> Notify me when one is listed
+                  <i class="fa-solid fa-bell mr-2"></i> Notify me when one is listed
 
                 </button>
 
@@ -133,9 +133,11 @@ Have one? Sell yours here                </Link>
                   <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
                     <div className="card_post SearchResult auction">
                       {curElem.displayInAuction === "Yes" ? (
-                        <p className="forOction">For Auction</p>
+                        <div class="bestSellerRgt"><span class="">For Auction</span></div>
+                        // <p className="forOction"></p>
                       ) : curElem.displayInAuction === "classified" ? (
-                        <p className="forOction">Ad</p>
+                        <div class="bestSellerRgt"><span class="">Ad</span></div>
+                        // <p className="forOction">Ad</p>
                       ) : null}
 
                       {curElem.displayInAuction === "classified" ? (

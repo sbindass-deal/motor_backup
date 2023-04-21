@@ -233,19 +233,7 @@ function Settings() {
                 We'll email you about listings you're watching. Customize your
                 options below.
               </p>
-              <p>
-                {loading ? (
-                  <SmallSpinner />
-                ) : (
-                  allData?.map((curVal, i) => {
-                    console.log(988, curVal.id)
-                    return <p className="watchlistStyle">
-                      <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
-                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.id)}><ClearIcon /></button></p>
-                    </p>
-                  })
-                )}
-              </p>
+             
               <ul className="rowList_ mb-4">
                 <li>
                   <div className="pr-3">
@@ -377,7 +365,19 @@ function Settings() {
                 We'll email you about models you've signed up for via the Model
                 Pages. Your subscribed pages are shown below.
               </p>
-
+              <p>
+                {loading ? (
+                  <SmallSpinner />
+                ) : (
+                  allData?.map((curVal, i) => {
+                    console.log(988, curVal.id)
+                    return <p className="watchlistStyle">
+                      <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
+                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.id)}><ClearIcon /></button></p>
+                    </p>
+                  })
+                )}
+              </p>
               <hr />
 
               <h5>Category Subscriptions</h5>
