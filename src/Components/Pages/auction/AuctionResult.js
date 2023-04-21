@@ -247,19 +247,21 @@ const AuctionResult = () => {
                 <NotAvailable text="Data not found" />
               ):(
               currentPosts
-                ?.filter((curElem) => {
+                  ?.filter((curElem) => {
+                    console.log(89898, curElem)
                   if (searchValue == "") {
                     return curElem;
                   } else if (
-                    curElem?.vehicle_data?.make
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase()) ||
-                    curElem?.vehicle_data?.model
+                    curElem?.title
                       .toLowerCase()
                       .includes(searchValue.toLowerCase())
-                    || curElem?.vehicle_data?.year
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase())
+                    // ||
+                    // curElem?.vehicle_data?.model
+                    //   .toLowerCase()
+                    //   .includes(searchValue.toLowerCase())
+                    // || curElem?.vehicle_data?.year
+                    //   .toLowerCase()
+                    //   .includes(searchValue.toLowerCase())
                   ) {
                     return curElem;
                   }

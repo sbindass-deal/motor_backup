@@ -119,6 +119,7 @@ import Settings from "./MyAccount/Settings";
 
 import AnalyticsTab from "./auction/AnalyticsTab";
 import GaragesAdmin from "./Dashboard/GaragesAdmin";
+import WatchList from "./MyAccount/WatchList";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -143,6 +144,7 @@ const Layout = () => {
               <Route path="orders-cart" element={<OrderCart />} />
               <Route path="subscription" element={<Subscription />} />
               <Route path="transaction" element={<Transaction />} />
+              <Route path="watch" element={<WatchList/>} />
               <Route path="orders-cart/:id" element={<OrderCartDetails />} />
               <Route path="place-order" element={<CheckoutDetails />} />
               <Route path="vehicle/:id" element={<VehicleRegistered />} />

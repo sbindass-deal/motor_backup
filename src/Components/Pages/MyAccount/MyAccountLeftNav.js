@@ -253,6 +253,17 @@ function MyAccountLeftNav() {
             <MenuItem>
               <li>
                 <Link
+                  className={`${location.pathname === "/watch" ? "active" : ""
+                    }`}
+                  to="/watch"
+                >
+                  Watch List
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
                   className={`${
                     location.pathname === "/settings" ? "active" : ""
                   }`}
