@@ -88,12 +88,12 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb1"
                         type="checkbox"
-                        checked
+                        // checked
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="OFF"
-                        data-tg-on="ON"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
                         for="cb1"
                       ></label>
                     </div>
@@ -113,12 +113,13 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb2"
                         type="checkbox"
-                        checked
+                        // checked
+
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="OFF"
-                        data-tg-on="ON"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
                         for="cb2"
                       ></label>
                     </div>
@@ -141,8 +142,8 @@ function Settings() {
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="OFF"
-                        data-tg-on="ON"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
                         for="cb3"
                       ></label>
                     </div>
@@ -165,8 +166,8 @@ function Settings() {
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="OFF"
-                        data-tg-on="ON"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
                         for="cb4"
                       ></label>
                     </div>
@@ -186,12 +187,12 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb5"
                         type="checkbox"
-                        checked
+                        // checked
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="OFF"
-                        data-tg-on="ON"
+                        data-tg-off="Private"
+                        data-tg-on="Public"
                         for="cb5"
                       ></label>
                     </div>
@@ -209,9 +210,10 @@ function Settings() {
               <p>
                 {loading ? <SmallSpinner /> :
                   allData?.map((curVal, i) => {
+                    console.log(988, curVal.id)
                     return <p className="watchlistStyle">
                       <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
-                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.vehicleId)}><ClearIcon /></button></p>
+                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.id)}><ClearIcon /></button></p>
                     </p>
                   })
                 }
