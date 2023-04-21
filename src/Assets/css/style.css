@@ -7655,3 +7655,13 @@ select.size {
 .light select.size {
   color: #000;
 }
+
+.watchlistStyle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.watchlistStyleBtn{
+    border: none;
+    background: none;
+}

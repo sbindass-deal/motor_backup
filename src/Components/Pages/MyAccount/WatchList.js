@@ -86,9 +86,9 @@ function WatchList() {
                                                     allData?.filter((curVal) => {
                                                         if (searchTerm == '') {
                                                             return curVal
-                                                        } else if (curVal.make.toLowerCase().includes(searchTerm.toLowerCase())
-                                                            || curVal.model.toLowerCase().includes(searchTerm.toLowerCase())
-                                                            || curVal.year.toLowerCase().includes(searchTerm.toLowerCase())
+                                                        } else if (curVal.title.toLowerCase().includes(searchTerm.toLowerCase())
+                                                            // || curVal.model.toLowerCase().includes(searchTerm.toLowerCase())
+                                                            // || curVal.year.toLowerCase().includes(searchTerm.toLowerCase())
                                                         ) {
                                                             return curVal
                                                         }

@@ -250,7 +250,7 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem>
-            <MenuItem>
+            {/* <MenuItem>
               <li>
                 <Link
                   className={`${location.pathname === "/watch" ? "active" : ""
@@ -260,7 +260,7 @@ function MyAccountLeftNav() {
                   Watch List
                 </Link>
               </li>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem>
               <li>
                 <Link
