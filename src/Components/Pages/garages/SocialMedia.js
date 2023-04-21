@@ -279,7 +279,7 @@ const SocialMedia = ({ id, logo }) => {
                 </h2>
                 <ul className="labelList_ ">
                   <li>
-                    <div className="labelList_text">
+                    <div className="labelList_text pl-0">
                       {userInfo?.description &&
                         parse(userInfo?.description, strToHtml)}
                     </div>
