@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bb179adf.css",
-    "main.js": "/static/js/main.17f7a0a1.js",
+    "main.css": "/static/css/main.0be317f9.css",
+    "main.js": "/static/js/main.9176c72a.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -46,7 +46,6 @@
     "static/media/handsome-young-man-in-sports-car-wearing-suit-2021-08-30-21-48-19-utc.jpg": "/static/media/handsome-young-man-in-sports-car-wearing-suit-2021-08-30-21-48-19-utc.8179501fe95694a9f9d1.jpg",
     "static/media/woman-driving-sports-car-with-a-digital-touchscree-2021-09-02-02-11-52-utc.jpg": "/static/media/woman-driving-sports-car-with-a-digital-touchscree-2021-09-02-02-11-52-utc.c5f70d0401a048043b40.jpg",
     "static/media/handsome-young-african-american-business-man-worki-2022-04-27-03-29-18-utc.jpg": "/static/media/handsome-young-african-american-business-man-worki-2022-04-27-03-29-18-utc.d050d61f90a4f3dc600d.jpg",
-    "static/media/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc.jpeg": "/static/media/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc.9ffd75fef602eca89847.jpeg",
     "static/media/a-convertible-sports-car-on-a-country-highway-at-s-2022-03-04-02-34-56-utc.jpg": "/static/media/a-convertible-sports-car-on-a-country-highway-at-s-2022-03-04-02-34-56-utc.99c5f4b685c5dc970884.jpg",
     "static/media/vintage-car-repair-challenge-2022-12-16-11-53-20-utc.jpg": "/static/media/vintage-car-repair-challenge-2022-12-16-11-53-20-utc.2cedc808acad0a4c38e5.jpg",
     "static/media/many-classic-red-vintage-old-american-cars-parked-2022-09-27-01-00-30-utc.jpg": "/static/media/many-classic-red-vintage-old-american-cars-parked-2022-09-27-01-00-30-utc.ed226161de6fb12c10e8.jpg",
@@ -58,6 +57,7 @@
     "static/media/Dealer-2.jpg": "/static/media/Dealer-2.833e0082195be2cb2490.jpg",
     "static/media/Dealer-3.jpg": "/static/media/Dealer-3.b2d48fd81c7a6ffc2060.jpg",
     "static/media/SUPER_SNAKE_GT500.png": "/static/media/SUPER_SNAKE_GT500.3545253deea0f30380fb.png",
+    "static/media/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc-min.png": "/static/media/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc-min.90c2ebc78badd3b6416e.png",
     "static/media/charity.png": "/static/media/charity.0acb5bcf2e136c674772.png",
     "static/media/caer.gif": "/static/media/caer.466d8f83dce7f7502cac.gif",
     "static/media/not_found.gif": "/static/media/not_found.466d8f83dce7f7502cac.gif",
@@ -139,8 +139,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.bb179adf.css.map": "/static/css/main.bb179adf.css.map",
-    "main.17f7a0a1.js.map": "/static/js/main.17f7a0a1.js.map",
+    "main.0be317f9.css.map": "/static/css/main.0be317f9.css.map",
+    "main.9176c72a.js.map": "/static/js/main.9176c72a.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -180,7 +180,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb179adf.css",
-    "static/js/main.17f7a0a1.js"
+    "static/css/main.0be317f9.css",
+    "static/js/main.9176c72a.js"
   ]
 }

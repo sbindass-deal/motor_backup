@@ -23,7 +23,14 @@ function MyAccountLeftNav() {
   const location = useLocation();
   const userId = useSelector((state) => state);
   const tabState = userId.garagesTabReducer;
-
+  if (
+    location.pathname !== "/listing" ||
+    location.pathname !== "/bids" ||
+    location.pathname !== "/wins"
+  ) {
+    dispatch(handleShowAuction(false));
+    dispatch(handleShowGarage(false));
+  }
   return (
     <div className="mr-5">
       <ul class="sideBar__  ">
