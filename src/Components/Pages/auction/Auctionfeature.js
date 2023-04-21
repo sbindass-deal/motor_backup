@@ -35,6 +35,9 @@ const Auctionfeature = () => {
     year: "",
     state: "",
     city: "",
+    auction: "",
+    status: ""
+
   });
   const handleChangeSelectData = (e) => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
@@ -65,6 +68,8 @@ const Auctionfeature = () => {
       year: "",
       state: "",
       city: "",
+      auction: "",
+      status: ""
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {})
@@ -121,6 +126,9 @@ const Auctionfeature = () => {
         make: getSelectData.make,
         city: getSelectData.city,
         state: getSelectData.state,
+        bidding_status: getSelectData.status,
+        auctionType: getSelectData.auction
+
       })
       .then(function (res) {
         setData(res.data.data);
@@ -141,6 +149,9 @@ const Auctionfeature = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
+
+
+  console.log(7979797, getSelectData)
 
   return (
     <>
@@ -182,18 +193,16 @@ const Auctionfeature = () => {
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${
-                      !viewListActive ? "active" : ""
-                    }`}
+                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
+                      }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${
-                      viewListActive ? "active" : ""
-                    }`}
+                    className={`gry_btn listView ${viewListActive ? "active" : ""
+                      }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -224,9 +233,8 @@ const Auctionfeature = () => {
           </div>
 
           <div
-            className={`row pt-4 row_gridList ${
-              viewListActive && "activeListView"
-            }`}
+            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
+              }`}
           >
             {currentPosts.length == 0 ? (
               <NotAvailable text="Data not found" />
@@ -306,6 +314,7 @@ const Auctionfeature = () => {
                           Select
                         </option>
                         {filterCategory?.make?.map((curVal, i) => {
+
                           return <option value={curVal}>{curVal}</option>;
                         })}
                       </select>
@@ -383,6 +392,46 @@ const Auctionfeature = () => {
                       </select>
                     </div>
                   </div>
+
+                  <div className="col-12 col-md-6">
+                    <label>Auction Type</label>
+                    <div className="form-group">
+                      <select
+                        name="auction"
+                        className="field"
+                        value={getSelectData.auction}
+                        onChange={handleChangeSelectData}
+                      >
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {filterCategory?.auctionType?.map((curVal, i) => {
+                          console.log(9898989, curVal)
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col-12 col-md-6">
+                    <label>Bidding Status</label>
+                    <div className="form-group">
+                      <select
+                        name="status"
+                        className="field"
+                        value={getSelectData.status}
+                        onChange={handleChangeSelectData}
+                      >
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {filterCategory?.bidding_status?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  {console.log(808080, filterCategory)}
                 </div>
                 <div className="form-group d-flex justify-content-between ">
                   <button
