@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import axios from "axios";
 import { noImage } from "../../UI/globaleVar";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import SmallSpinner from "../../UI/SmallSpinner";
 import { toast } from "react-toastify";
 function Settings() {
-  const [allData, setAllData] = useState([])
-  const [loading, setloading] = useState(true)
+  const [allData, setAllData] = useState([]);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     const getSubscription = async () => {
       try {
         const res = await axios.post(
-          `${process.env.REACT_APP_URL}getWatchListByUserId`, {}
+          `${process.env.REACT_APP_URL}getWatchListByUserId`,
+          {}
         );
-        console.log(888190, res)
-        setAllData(res.data.data)
-        setloading(false)
+        setAllData(res.data.data);
+        setloading(false);
       } catch (err) {
         console.log(err);
       }
@@ -37,26 +37,20 @@ function Settings() {
       theme: "light",
     });
 
-
   const handleDelete = (id) => {
-    alert("Delete" + " " + id)
+    alert("Delete" + " " + id);
 
-    axios.post(`${process.env.REACT_APP_URL}removeWatchList/${id}`)
+    axios
+      .post(`${process.env.REACT_APP_URL}removeWatchList/${id}`)
       .then(function (response) {
         if (response.data.status === 200 && response)
-          console.log(10010, response);
-        notify(response.data.message);
+          notify(response.data.message);
         window.location.reload(false);
-
       })
       .catch(function (error) {
         console.log(10010, error);
       });
-
-  }
-
-
-
+  };
 
   return (
     <>
@@ -76,10 +70,10 @@ function Settings() {
               <ul className="rowList_ mb-4">
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway News and Updates</h6>
+                    <h6>Gas Guzzlrs Giveaway News and Updates</h6>
                     <p>
                       We'll email you about site updates, pro tips and all
-                      things Gass Guzzlrs Giveaway. We promise not to spam you.
+                      things Gas Guzzlrs Giveaway. We promise not to spam you.
                     </p>
                   </div>
                   <div className="ml-auto">
@@ -101,9 +95,9 @@ function Settings() {
                 </li>
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway Event Updates</h6>
+                    <h6>Gas Guzzlrs Giveaway Event Updates</h6>
                     <p>
-                      We'll email you about upcoming Gass Guzzlrs Giveaway
+                      We'll email you about upcoming Gas Guzzlrs Giveaway
                       events.
                     </p>
                   </div>
@@ -126,7 +120,7 @@ function Settings() {
                 </li>
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway Daily Mail</h6>
+                    <h6>Gas Guzzlrs Giveaway Daily Mail</h6>
                     <p>
                       We'll email you at 5am PST every day with the latest
                       listings, posts and calendar events.
@@ -150,7 +144,7 @@ function Settings() {
                 </li>
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway Results Digest</h6>
+                    <h6>Gas Guzzlrs Giveaway Results Digest</h6>
                     <p>
                       We'll email you at 5am PT every day with the previous
                       day's auction results.
@@ -174,10 +168,10 @@ function Settings() {
                 </li>
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway Market Updates</h6>
+                    <h6>Gas Guzzlrs Giveaway Market Updates</h6>
                     <p>
                       We'll occasionally email you data and reports featuring
-                      interesting Gass Guzzlrs Giveaway auction results.
+                      interesting Gas Guzzlrs Giveaway auction results.
                     </p>
                   </div>
                   <div className="ml-auto">
@@ -207,14 +201,28 @@ function Settings() {
                 options below.
               </p>
               <p>
-                {loading ? <SmallSpinner /> :
+                {loading ? (
+                  <SmallSpinner />
+                ) : (
                   allData?.map((curVal, i) => {
-                    return <p className="watchlistStyle">
-                      <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
-                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.vehicleId)}><ClearIcon /></button></p>
-                    </p>
+                    return (
+                      <p className="watchlistStyle">
+                        <p>
+                          {" "}
+                          {`${curVal.make} ${curVal.model} ${curVal.year}`}
+                        </p>
+                        <p>
+                          <button
+                            className="ml-3 watchlistStyleBtn"
+                            onClick={() => handleDelete(curVal.vehicleId)}
+                          >
+                            <ClearIcon />
+                          </button>
+                        </p>
+                      </p>
+                    );
                   })
-                }
+                )}
               </p>
               <ul className="rowList_ mb-4">
                 <li>
@@ -292,9 +300,9 @@ function Settings() {
                 </li>
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway History Updates</h6>
+                    <h6>Gas Guzzlrs Giveaway History Updates</h6>
                     <p>
-                      We'll email you when the vehicle is listed again on Gass
+                      We'll email you when the vehicle is listed again on Gas
                       Guzzlrs Giveaway.
                     </p>
                   </div>
@@ -319,7 +327,7 @@ function Settings() {
                     <h6>Text message notifications</h6>
                     <p>
                       We'll occasionally email you data and reports featuring
-                      interesting Gass Guzzlrs Giveaway auction results.
+                      interesting Gas Guzzlrs Giveaway auction results.
                     </p>
                   </div>
                   <div className="ml-auto">
@@ -361,7 +369,7 @@ function Settings() {
 
               <h5>Partner Page Subscriptions</h5>
               <p>
-                We'll email you about Gass Guzzlrs Giveaway Partners you're
+                We'll email you about Gas Guzzlrs Giveaway Partners you're
                 following. Your subscribed Partner pages are shown below.
               </p>
 
