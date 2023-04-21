@@ -15,6 +15,7 @@ function AdUserMeeting() {
   const [description, setDescription] = useState(EditorState.createEmpty());
   const [file, setFile] = useState([]);
   const [fileError, setFileError] = useState(false)
+  const [discError, setDiscError] = useState(false)
 
   const handleContent = (e) => {
     setDescription(e);
@@ -87,10 +88,23 @@ function AdUserMeeting() {
 
     formData.append("image", file[0]);
 
+    let Error = false
+    if (!discError) {
+      setDiscError(true)
+      Error = true
+    }
+    else {
+      setDiscError(false)
+    }
+
     if (!file[0]) {
       setFileError(true)
+      Error = true
     } else {
-
+      setFileError(false)
+    }
+if(!Error)
+    {
 
       await axios.post(url, formData)
         .then(function (response) {
@@ -230,7 +244,7 @@ function AdUserMeeting() {
 
                   <div className="col-12 mb-3">
                     <label>Description</label>
-                    <div className="border border-2 border-dark">
+                    <div className={`border border-2 ${discError ? "border-danger"  : "border-dark"}`}>
                       <Editor
                         editorStyle={{
                           background: "white",
@@ -247,6 +261,7 @@ function AdUserMeeting() {
                         name="description"
                       />
                     </div>
+                    {discError && <div className="text-danger"> Please Enter Description</div>}
                   </div>
                   <div className="col-12 col-md-12">
                     <label>Upload Photos</label>
@@ -268,7 +283,7 @@ function AdUserMeeting() {
                       })}
                     </div>
                     <div
-                      className="dropzone"
+                      className={`dropzone  ${fileError && "dropzone border-danger"}`}
                       onDragOver={handleDragOver}
                       onDrop={handleDrop}
                     >
@@ -306,9 +321,9 @@ function AdUserMeeting() {
               </form>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
   );
 }
 

@@ -7475,6 +7475,8 @@ justify-content: space-between;
   border: none;
   border-bottom: 1px solid #f78f15;
   color: #fff;
+
+  padding: 10px;
 }
 .neDesT button {
   background: transparent;
@@ -7656,6 +7658,18 @@ select.size {
   color: #000;
 }
 
+button.btn.btn_change svg {
+  font-size: 17px !important;
+  background: #000;
+  padding: 6px;
+  border-radius: 15px;
+  top: 3px;
+  position: relative;
+}
+svg.svg-inline--fa.fa-bell.d {
+  padding: 6px;
+  font-size: 19px;
+}
 .watchlistStyle{
     display: flex;
     justify-content: space-between;
@@ -7664,4 +7678,11 @@ select.size {
 .watchlistStyleBtn{
     border: none;
     background: none;
+}
+.light .neDesT button{
+  color: #000;
+}
+.light .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  border-bottom: 1px solid orange;
+  background: orange;
 }
