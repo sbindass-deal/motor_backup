@@ -7668,3 +7668,12 @@ svg.svg-inline--fa.fa-bell.d {
   padding: 6px;
   font-size: 19px;
 }
+.watchlistStyle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.watchlistStyleBtn{
+    border: none;
+    background: none;
+}

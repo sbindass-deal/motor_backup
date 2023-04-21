@@ -21,11 +21,11 @@ const Data = ({ curElem, addFabrity }) => {
                           <div class="bestSellerRgt">
                             <span class="">Charity</span>
                           </div>
-                         
                         )}
                         {curElem.auctionType === "Premium listing" && (
-                          <div class="bestSellerRgt"><span class="">Featured</span></div>
-                         
+                          <div class="bestSellerRgt">
+                            <span class="">Featured</span>
+                          </div>
                         )}
                       </>
                     )}

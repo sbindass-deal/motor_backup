@@ -49,7 +49,43 @@ const[show, setShow]=useState(true)
                 </Link>
               </li>
             </MenuItem>
-            <MenuItem>
+
+            <SubMenu title="Gear" defaultOpen={true}>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/gear-product" ? "active" : ""
+                      } `}
+                    to="/gear-product"
+                  >
+                     Products
+                  </Link>
+                </li>
+              </MenuItem>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/gear-inventry" ? "active" : ""
+                      } `}
+                    to="/gear-inventry"
+                  >
+                     Inventory
+                  </Link>
+                </li>
+              </MenuItem>
+              <MenuItem>
+                <li>
+                  <Link
+                    className={` ${location.pathname === "/Orders" ? "active" : ""} `}
+                    to="/Orders"
+                  >
+                    Orders List
+                  </Link>
+                </li>
+              </MenuItem>
+            </SubMenu>
+
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/gear-product" ? "active" : ""
@@ -59,8 +95,8 @@ const[show, setShow]=useState(true)
                   Gear Products
                 </Link>
               </li>
-            </MenuItem>
-            <MenuItem>
+            </MenuItem> */}
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/gear-inventry" ? "active" : ""
@@ -70,8 +106,8 @@ const[show, setShow]=useState(true)
                   Gear Inventory
                 </Link>
               </li>
-            </MenuItem>
-            <MenuItem>
+            </MenuItem> */}
+            {/* <MenuItem>
               <li>
                 <Link
                   className={` ${location.pathname === "/Orders" ? "active" : ""} `}
@@ -80,7 +116,7 @@ const[show, setShow]=useState(true)
                   Orders List
                 </Link>
               </li>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem>
               <li>
                 <Link
@@ -176,7 +212,7 @@ const[show, setShow]=useState(true)
                     } `}
                   to="/admin-enquiry"
                 >
-                  Customer Enquiry
+                  customer complaint
                 </Link>
               </li>
             </MenuItem>

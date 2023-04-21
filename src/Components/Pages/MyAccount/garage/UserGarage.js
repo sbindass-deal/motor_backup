@@ -388,9 +388,7 @@ function UserGarage() {
                       <button
                         onClick={() => dispatch(vehicleTab())}
                         className={`nav-link ${
-                          tabState.vehicle_tab === true &&
-                          tabState.socialMedia_tab === false &&
-                          "active"
+                          tabState.vehicle_tab === true && "active"
                         } `}
                       >
                         Vehicles
@@ -446,10 +444,9 @@ function UserGarage() {
                       </button>
                     </div>
                     <div>
-                      {tabState.vehicle_tab === true &&
-                        tabState.socialMedia_tab === false && (
-                          <GaragesVehicle id={id} />
-                        )}
+                      {tabState.vehicle_tab === true && (
+                        <GaragesVehicle id={id} />
+                      )}
                       {tabState.socialMedia_tab === true && (
                         <SocialMedia id={id} logo={userInfo} />
                       )}

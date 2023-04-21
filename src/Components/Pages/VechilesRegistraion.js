@@ -122,7 +122,7 @@ const VechilesRegistraion = () => {
   const handleInputChange = (event) => {
     let inputValue = event.target.value;
     if (inputValue > 100) {
-      inputValue=100
+      inputValue = 100;
     }
     setNumberPer(inputValue);
   };
@@ -1735,10 +1735,26 @@ const VechilesRegistraion = () => {
                                     <label>
                                       Auction type{" "}
                                       <OverlayTrigger
-                                        placement="top"
+                                        placement="left"
                                         overlay={
                                           <Tooltip>
-                                            Feature vechiles will be charge <strong>$25 extra</strong>
+                                            <strong>
+                                              Select the type of auction that
+                                              you would like:
+                                            </strong>{" "}
+                                            <br />
+                                            <br />
+                                            General auction is our standard
+                                            auction with the features you select
+                                            from the listing page. <br />
+                                            <br />
+                                            Featured auctions will get you
+                                            additional exposure, these require a
+                                            $25 fee to be featured. <br />
+                                            <br />
+                                            Charity auctions allow you to
+                                            designate between 2-100% of your
+                                            sale to the charity of your choice.
                                             {/* This is <strong>Hello</strong>. */}
                                           </Tooltip>
                                         }
@@ -1833,7 +1849,14 @@ const VechilesRegistraion = () => {
                                       placement="top"
                                       overlay={
                                         <Tooltip>
-                                          This is <strong>Hello</strong>.
+                                          As we add Charities that we have
+                                          already been setup with they will be
+                                          displayed in this list. If you have a
+                                          Charity that is not in the list,
+                                          select other and fill in the name in
+                                          the displayed box. We will work to get
+                                          them approved and added to our list of
+                                          Charities.
                                         </Tooltip>
                                       }
                                     >
@@ -2889,14 +2912,14 @@ const VechilesRegistraion = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header
+        <Modal.Header className="mt-4"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <Modal.Title id="contained-modal-title-vcenter">
             {amlPolicy ? "AML Policy" : "Terms of Service"}
           </Modal.Title>
-          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
-            X
+          <div onClick={closeMoal} style={{ cursor: "pointer"}}>
+        <CloseIcon />
           </div>
         </Modal.Header>
         <Modal.Body>

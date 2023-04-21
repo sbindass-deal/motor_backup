@@ -1,7 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
-
+import axios from "axios";
+import { noImage } from "../../UI/globaleVar";
+import ClearIcon from '@mui/icons-material/Clear';
+import SmallSpinner from "../../UI/SmallSpinner";
+import { toast } from "react-toastify";
 function Settings() {
+  const [allData, setAllData] = useState([])
+  const [loading, setloading] = useState(true)
+
+  useEffect(() => {
+    const getSubscription = async () => {
+      try {
+        const res = await axios.post(
+          `${process.env.REACT_APP_URL}getWatchListByUserId`, {}
+        );
+        console.log(888190, res)
+        setAllData(res.data.data)
+        setloading(false)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getSubscription();
+  }, []);
+
+  const notify = (val) =>
+    toast.success(val, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
+  const handleDelete = (id) => {
+    alert("Delete" + " " + id)
+
+    axios.post(`${process.env.REACT_APP_URL}removeWatchList/${id}`)
+      .then(function (response) {
+        if (response.data.status === 200 && response)
+          console.log(10010, response);
+        notify(response.data.message);
+        window.location.reload(false);
+
+      })
+      .catch(function (error) {
+        console.log(10010, error);
+      });
+
+  }
+
+
+
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -15,7 +71,7 @@ function Settings() {
               </div>
             </div>
             <div className="col-12 col-md-8 col-lg-9">
-              <h3>Gass Guzzlrs Giveaway Updates</h3>
+              <h3>Settings</h3>
               <hr />
               <ul className="rowList_ mb-4">
                 <li>
@@ -149,6 +205,16 @@ function Settings() {
               <p>
                 We'll email you about listings you're watching. Customize your
                 options below.
+              </p>
+              <p>
+                {loading ? <SmallSpinner /> :
+                  allData?.map((curVal, i) => {
+                    return <p className="watchlistStyle">
+                      <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
+                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.vehicleId)}><ClearIcon /></button></p>
+                    </p>
+                  })
+                }
               </p>
               <ul className="rowList_ mb-4">
                 <li>

@@ -12,6 +12,10 @@ import {
   socialMediaTab,
   vehicleTab,
 } from "../../../redux/reducers/garagesTabReducer";
+import {
+  handleShowAuction,
+  handleShowGarage,
+} from "../../../redux/reducers/dayAndNightMode";
 
 function MyAccountLeftNav() {
   const navigate = useNavigate();
@@ -35,15 +39,18 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
-            <SubMenu onClick={() => navigate("/user-garage")} title="Garage">
+            <SubMenu
+              onClick={() => {
+                dispatch(handleShowGarage(true));
+                dispatch(handleShowAuction(false));
+              }}
+              defaultOpen={userId.dayAndNightMode.showGarage}
+              title="Garage"
+            >
               <MenuItem>
                 <Link
                   to="/user-garage"
-                  className={` ${
-                    tabState.socialMedia_tab === false &&
-                    tabState.vehicle_tab === true &&
-                    "active"
-                  } `}
+                  className={` ${tabState.vehicle_tab === true && "active"} `}
                   onClick={() => dispatch(vehicleTab())}
                 >
                   Vehicles
@@ -53,9 +60,7 @@ function MyAccountLeftNav() {
                 <Link
                   to="/user-garage"
                   className={` ${
-                    tabState.socialMedia_tab === true &&
-                    tabState.vehicle_tab === true &&
-                    "active"
+                    tabState.socialMedia_tab === true && "active"
                   } `}
                   onClick={() => dispatch(socialMediaTab())}
                 >
@@ -111,7 +116,14 @@ function MyAccountLeftNav() {
               </MenuItem>
             </SubMenu>
 
-            <SubMenu title="Auctions" defaultOpen={true}>
+            <SubMenu
+              title="Auctions"
+              defaultOpen={userId.dayAndNightMode.showAuction}
+              onClick={() => {
+                dispatch(handleShowAuction(true));
+                dispatch(handleShowGarage(false));
+              }}
+            >
               <MenuItem>
                 <Link
                   className={` ${
@@ -250,6 +262,18 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem>
+            {/* <MenuItem>
+              <li>
+                <Link
+                  className={`${
+                    location.pathname === "/watch" ? "active" : ""
+                  }`}
+                  to="/watch"
+                >
+                  Watch List
+                </Link>
+              </li>
+            </MenuItem> */}
             <MenuItem>
               <li>
                 <Link
