@@ -37,6 +37,10 @@ import { storeAllVehicle } from "./redux/reducers/vehicleReducer";
 import { storeGearData } from "./redux/reducers/gearReducer";
 import { handleGarage } from "./redux/reducers/planReducer";
 import { reSetGarageTab } from "./redux/reducers/garagesTabReducer";
+import {
+  handleShowAuction,
+  handleShowGarage,
+} from "./redux/reducers/dayAndNightMode";
 
 const bsc = {
   id: 56,
@@ -187,6 +191,8 @@ const App = () => {
     fetchData();
     dispatch(handleGarage(true));
     dispatch(reSetGarageTab());
+    dispatch(handleShowAuction(false));
+    dispatch(handleShowGarage(false));
   }, []);
 
   return (

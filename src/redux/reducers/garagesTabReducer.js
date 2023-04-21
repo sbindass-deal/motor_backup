@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  vehicle_tab: true,
-  socialMedia_tab: true,
+  vehicle_tab: false,
+  socialMedia_tab: false,
   post_tab: false,
   reply_tab: false,
   bookmark_tab: false,
@@ -24,7 +24,7 @@ const garagesTabReducer = createSlice({
       state.blog_tab = false;
     },
     socialMediaTab: (state, action) => {
-      state.vehicle_tab = true;
+      state.vehicle_tab = false;
       state.socialMedia_tab = true;
       state.post_tab = false;
       state.reply_tab = false;
@@ -78,8 +78,8 @@ const garagesTabReducer = createSlice({
       state.blog_tab = true;
     },
     reSetGarageTab: (state, action) => {
-      state.vehicle_tab = true;
-      state.socialMedia_tab = true;
+      state.vehicle_tab = false;
+      state.socialMedia_tab = false;
       state.post_tab = false;
       state.reply_tab = false;
       state.bookmark_tab = false;
