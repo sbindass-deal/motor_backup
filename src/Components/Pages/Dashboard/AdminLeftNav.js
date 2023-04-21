@@ -5,22 +5,21 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 function AdminLeftNav() {
   const location = useLocation();
 
-const[show, setShow]=useState(true)
-
+  const [show, setShow] = useState(true);
 
   return (
     <div className="">
       <h5>Admin Dashboard </h5>
       <hr />
       <ul className="sideBar__">
-
         <ProSidebar>
           <Menu iconShape="square">
             <MenuItem>
               <Link
                 to="/vehicle-submission"
-                className={` ${location.pathname === "/vehicle-submission" ? "active" : ""
-                  } `}
+                className={` ${
+                  location.pathname === "/vehicle-submission" ? "active" : ""
+                } `}
               >
                 Vehicle Submission
               </Link>
@@ -29,8 +28,11 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin/vehicle-listing" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin/vehicle-listing"
+                      ? "active"
+                      : ""
+                  } `}
                   to="/admin/vehicle-listing"
                 >
                   Listing Plan
@@ -41,8 +43,9 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/raffleadmin" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/raffleadmin" ? "active" : ""
+                  } `}
                   to="/raffleadmin"
                 >
                   Giveaways
@@ -54,29 +57,33 @@ const[show, setShow]=useState(true)
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/gear-product" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/gear-product" ? "active" : ""
+                    } `}
                     to="/gear-product"
                   >
-                     Products
+                    Products
                   </Link>
                 </li>
               </MenuItem>
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/gear-inventry" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/gear-inventry" ? "active" : ""
+                    } `}
                     to="/gear-inventry"
                   >
-                     Inventory
+                    Inventory
                   </Link>
                 </li>
               </MenuItem>
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/Orders" ? "active" : ""} `}
+                    className={` ${
+                      location.pathname === "/Orders" ? "active" : ""
+                    } `}
                     to="/Orders"
                   >
                     Orders List
@@ -120,7 +127,9 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/blog" ? "active" : ""} `}
+                  className={` ${
+                    location.pathname === "/blog" ? "active" : ""
+                  } `}
                   to="/blog"
                 >
                   Blogs
@@ -150,8 +159,9 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin-dealer" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin-dealer" ? "active" : ""
+                  } `}
                   to="/admin-dealer"
                 >
                   Dealer List
@@ -161,8 +171,9 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin-garages" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin-garages" ? "active" : ""
+                  } `}
                   to="/admin-garages"
                 >
                   Garages List
@@ -172,22 +183,23 @@ const[show, setShow]=useState(true)
 
             <MenuItem>
               <li>
-          <Link
-            className={` ${
-              location.pathname === "/admin-vehicle-ad" ? "active" : ""
-            } `}
-            to="/admin-vehicle-ad"
-          >
-            Classified Vehicle List
-          </Link>
-        </li>
+                <Link
+                  className={` ${
+                    location.pathname === "/admin-vehicle-ad" ? "active" : ""
+                  } `}
+                  to="/admin-vehicle-ad"
+                >
+                  Classified Vehicle List
+                </Link>
+              </li>
             </MenuItem>
 
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin-meeting" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin-meeting" ? "active" : ""
+                  } `}
                   to="/admin-meeting"
                 >
                   Events
@@ -197,8 +209,9 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin-faq" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin-faq" ? "active" : ""
+                  } `}
                   to="/admin-faq"
                 >
                   FAQ
@@ -208,24 +221,24 @@ const[show, setShow]=useState(true)
             <MenuItem>
               <li>
                 <Link
-                  className={` ${location.pathname === "/admin-enquiry" ? "active" : ""
-                    } `}
+                  className={` ${
+                    location.pathname === "/admin-enquiry" ? "active" : ""
+                  } `}
                   to="/admin-enquiry"
                 >
-                  customer complaint
+                  Customer Complaint
                 </Link>
               </li>
             </MenuItem>
-            <SubMenu title="Policy"
-              
-              defaultOpen={true}
-              
-            >
-              <MenuItem >
+            <SubMenu title="Policy" defaultOpen={true}>
+              <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/admin-privacy-policy" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/admin-privacy-policy"
+                        ? "active"
+                        : ""
+                    } `}
                     to="/admin-privacy-policy"
                   >
                     Giveaways Official
@@ -235,20 +248,23 @@ const[show, setShow]=useState(true)
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/admin-privacy" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/admin-privacy" ? "active" : ""
+                    } `}
                     to="/admin-privacy"
                   >
                     Privacy policy
-
                   </Link>
                 </li>
               </MenuItem>
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/admin-termcondition" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/admin-termcondition"
+                        ? "active"
+                        : ""
+                    } `}
                     to="/admin-termcondition"
                   >
                     Term And Condition
@@ -258,19 +274,18 @@ const[show, setShow]=useState(true)
               <MenuItem>
                 <li>
                   <Link
-                    className={` ${location.pathname === "/admin-aml-policy" ? "active" : ""
-                      } `}
+                    className={` ${
+                      location.pathname === "/admin-aml-policy" ? "active" : ""
+                    } `}
                     to="/admin-aml-policy"
                   >
                     AML Policy
-
                   </Link>
                 </li>
               </MenuItem>
             </SubMenu>
           </Menu>
         </ProSidebar>
-
 
         {/* <li>
           <Link

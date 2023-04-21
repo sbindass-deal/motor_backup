@@ -4,10 +4,9 @@ import axios from "axios";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 
 function Subscription() {
-  const [allData, setAllData] = useState([])
-  const [loading, setloading] = useState(true)
-  const [searchTerm,setSearchTerm]=useState('')
-  
+  const [allData, setAllData] = useState([]);
+  const [loading, setloading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const getSubscription = async () => {
@@ -15,9 +14,9 @@ function Subscription() {
         const res = await axios.get(
           `${process.env.REACT_APP_URL}subscriptions`
         );
-        console.log(890, res.data.transaction)
-        setAllData(res.data.transaction)
-        setloading(false)
+        console.log(890, res.data.transaction);
+        setAllData(res.data.transaction);
+        setloading(false);
       } catch (err) {
         console.log(err);
       }
@@ -32,7 +31,7 @@ function Subscription() {
           <div className="row">
             <div className="col-12 col-md-4 col-lg-3">
               <div className="card_Gray mb-5 mb-md-0 divSticky">
-                <h5>Subscription</h5>
+                <h5>My Account</h5>
                 <hr />
                 <MyAccountLeftNav />
               </div>
@@ -45,7 +44,6 @@ function Subscription() {
                 style={{ justifyContent: "space-between" }}
               >
                 Subscription
-                
               </h3>
 
               <hr id="hr" />
@@ -65,52 +63,59 @@ function Subscription() {
                 class="card_Gray table-responsive merchant vehicleSub"
                 id="scrollable"
               >
-                {
-                  loading ? <div class="d-flex justify-content-center">
+                {loading ? (
+                  <div class="d-flex justify-content-center">
                     <div class="spinner-border" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
-                  </div> :
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">Sr.No</th>
-                          <th scope="col">Plan Name</th>
-                          <th scope="col">Plan Type</th>
-                          <th scope="col">Listing Purchased</th>
-                          <th scope="col">Listing Remaining</th>
-                          <th scope="col">Expiry Date</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {
-                          allData?.filter((curVal) => {
-                            if (searchTerm == '') {
-                              return curVal
-                            } else if (curVal.plantype.toLowerCase().includes(searchTerm.toLowerCase())){
-                              return curVal
-                            }
-                          })
-                          ?.map((curVal, i) => {
-                            console.log(6788, curVal)
-                            return <tr>
-                              <td >{i + 1}</td>
-                              <td>{curVal?.plan_details.map((curVal) => curVal.plan_name)}</td>
+                  </div>
+                ) : (
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Plan Name</th>
+                        <th scope="col">Plan Type</th>
+                        <th scope="col">Listing Purchased</th>
+                        <th scope="col">Listing Remaining</th>
+                        <th scope="col">Expiry Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allData
+                        ?.filter((curVal) => {
+                          if (searchTerm == "") {
+                            return curVal;
+                          } else if (
+                            curVal.plantype
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase())
+                          ) {
+                            return curVal;
+                          }
+                        })
+                        ?.map((curVal, i) => {
+                          console.log(6788, curVal);
+                          return (
+                            <tr>
+                              <td>{i + 1}</td>
+                              <td>
+                                {curVal?.plan_details.map(
+                                  (curVal) => curVal.plan_name
+                                )}
+                              </td>
                               <td>{curVal.plantype}</td>
                               <td>{curVal.purchase_qty}</td>
                               <td>{curVal.remaining_qty}</td>
-                              <td>{new Date(curVal.expire_date).toDateString()}</td>
+                              <td>
+                                {new Date(curVal.expire_date).toDateString()}
+                              </td>
                             </tr>
-                          })
-                        }
-
-                      </tbody>
-                    </table>
-                }
-                
-                
-                
-                
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                )}
               </div>
             </div>
           </div>
