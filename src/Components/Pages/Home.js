@@ -302,7 +302,7 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-4 offset-md-1 text-center text-md-left">
-              <h1 className="text-back">Find your Special Vehicle</h1>
+              <h1 className="text">Find your Special Vehicle</h1>
               <Link to="/auctionfeature" className="orange_btn mt-2">
                 View Featured
               </Link>

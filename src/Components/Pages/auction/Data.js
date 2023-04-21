@@ -18,14 +18,14 @@ const Data = ({ curElem, addFabrity }) => {
                     {curElem.category === "auction_live" && (
                       <>
                         {curElem.auctionType === "charity" && (
-                          <div class="product">
-                            <span class="electric">Charity</span>
+                          <div class="bestSellerRgt">
+                            <span class="">Charity</span>
                           </div>
+                         
                         )}
                         {curElem.auctionType === "Premium listing" && (
-                          <div class="product">
-                            <span class="electric">Featured</span>
-                          </div>
+                          <div class="bestSellerRgt"><span class="">Featured</span></div>
+                         
                         )}
                       </>
                     )}
