@@ -7689,7 +7689,9 @@ svg.svg-inline--fa.fa-bell.d {
 
 .light .LBW a.nav-link {
   color: #000;}
-  a.active.nav-link,button.nav-link.active 
-    {
+  a.active.nav-link {
     color: orange !important;
+}
+.tabPlan button.nav-link.active {
+  color: #fff !important;
 }
