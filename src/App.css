@@ -101,3 +101,12 @@ text-transform: capitalize;
 .active{
   color: rgb(142 142 142) !important;
 }
+
+
+footer .active{
+  color: rgb(239, 96, 49) !important;
+}
+
+header .active{
+  color: rgb(239, 96, 49) !important;
+}
