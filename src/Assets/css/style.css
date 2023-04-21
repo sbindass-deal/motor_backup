@@ -290,7 +290,7 @@ img.addBanner {
 .heroSection {
   padding: 50px 0px;
   min-height: 500px;
-  background: url(../images/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc.jpeg) center no-repeat;
+  background: url(../images/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc-min.png) center no-repeat;
   background-size: cover;
   position: relative;
   height: 85vh;
@@ -7637,4 +7637,7 @@ button.btn.sub {
 .light .PostInfo .field{
   background-color: #f7f7f7;
 
+}
+.list_wrapper .bestSellerRgt {
+  top: -6px;
 }

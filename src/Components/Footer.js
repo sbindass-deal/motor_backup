@@ -102,7 +102,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="col-12 col-md-4 col-lg-4 pb-3">
-              <h6>Gass Guzzlrs Giveaway #5</h6>
+              <h6>Gas Guzzlrs Giveaway 1</h6>
               <p>
                 No purchase necessary to enter or win. A purchase or payment of
                 any kind will not increase your chances of winning. Open to
@@ -117,8 +117,7 @@ const Footer = () => {
                 >
                   &nbsp;Official Rules
                 </NavLink>{" "}
-                for details. Sponsor: Gass Guzzlrs, 2340 Merrell Road, Dallas,
-                TX 75229.
+                for details.
               </p>
             </div>
           </div>
