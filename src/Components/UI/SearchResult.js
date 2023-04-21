@@ -99,7 +99,8 @@ const SearchResult = () => {
                   }}
                   className="btn btn_change"
                 >
-                  Notify me
+                  <i class="fa-solid fa-bell"></i> Notify me when one is listed
+
                 </button>
 
                 <Link
@@ -110,8 +111,7 @@ const SearchResult = () => {
                   //     : `/showroom/${searchedData.id}`
                   // }
                 >
-                  Have one?
-                </Link>
+Have one? Sell yours here                </Link>
               </div>
             </div>
           </div>

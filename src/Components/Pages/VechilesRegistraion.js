@@ -2912,14 +2912,14 @@ const VechilesRegistraion = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header
+        <Modal.Header className="mt-4"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <Modal.Title id="contained-modal-title-vcenter">
             {amlPolicy ? "AML Policy" : "Terms of Service"}
           </Modal.Title>
-          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
-            X
+          <div onClick={closeMoal} style={{ cursor: "pointer"}}>
+        <CloseIcon />
           </div>
         </Modal.Header>
         <Modal.Body>

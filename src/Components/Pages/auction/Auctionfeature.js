@@ -175,7 +175,7 @@ const Auctionfeature = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i class="fa-solid fa-star mr-2"></i>Watch
+                    <i class="fa-solid fa-bell mr-2"></i> Watched
                   </button>
                 </li>
                 <li className="d-flex bHide">
