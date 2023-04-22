@@ -275,7 +275,7 @@ const Auctionlive = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-star mr-2"></i><span onClick={()=>handleLike()}>watched</span>  
+                    <i class="fa-solid fa-bell mr-2"></i> watched
                   </button>
                 </li>
                 <li className="d-flex gv">
