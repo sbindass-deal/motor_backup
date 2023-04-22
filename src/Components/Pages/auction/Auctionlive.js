@@ -28,7 +28,9 @@ const Auctionlive = () => {
     model: "",
     year: "",
     state: "",
-    city: ""
+    city: "",
+    auction: "",
+    status: ""
 
   });
   const handleChangeSelectData = (e) => {
@@ -61,6 +63,8 @@ const Auctionlive = () => {
       year: "",
       state: "",
       city: "",
+      auction: "",
+      status: ""
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {})
@@ -84,7 +88,7 @@ const Auctionlive = () => {
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  const currentPosts =  data?.slice(firstPostIndex, lastPostIndex);
 
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
@@ -206,6 +210,9 @@ const Auctionlive = () => {
         make: getSelectData.make,
         city: getSelectData.city,
         state: getSelectData.state,
+        bidding_status: getSelectData.status,
+        auctionType: getSelectData.auction
+
       })
       .then(function (res) {
         setData(res.data.data);
@@ -224,7 +231,10 @@ const Auctionlive = () => {
   }
 
   
-
+  const handleLike = () => {
+    alert("Hello" + searchValue)
+    addFabrity(searchValue)
+  }
  
 
   return (
@@ -265,7 +275,7 @@ const Auctionlive = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-star mr-2"></i>watched
+                    <i class="fa-solid fa-bell mr-2"></i> watched
                   </button>
                 </li>
                 <li className="d-flex gv">
@@ -461,6 +471,44 @@ const Auctionlive = () => {
                           Select
                         </option>
                         {filterCategory?.city?.map((curVal, i) => {
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <label>Auction Type</label>
+                    <div className="form-group">
+                      <select
+                        name="auction"
+                        className="field"
+                        value={getSelectData.auction}
+                        onChange={handleChangeSelectData}
+                      >
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {filterCategory?.auctionType?.map((curVal, i) => {
+                          console.log(9898989, curVal)
+                          return <option value={curVal}>{curVal}</option>;
+                        })}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col-12 col-md-6">
+                    <label>Bidding Status</label>
+                    <div className="form-group">
+                      <select
+                        name="status"
+                        className="field"
+                        value={getSelectData.status}
+                        onChange={handleChangeSelectData}
+                      >
+                        <option selected disabled value="">
+                          Select
+                        </option>
+                        {filterCategory?.bidding_status?.map((curVal, i) => {
                           return <option value={curVal}>{curVal}</option>;
                         })}
                       </select>

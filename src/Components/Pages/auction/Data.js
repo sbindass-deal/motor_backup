@@ -90,7 +90,7 @@ const Data = ({ curElem, addFabrity }) => {
                 ) : curElem?.displayInAuction === "classified" ? (
                   <span>Document fee : ${curElem?.documentFee}</span>
                 ) : (
-                  <label>Biding Open</label>
+                      <label>{curElem?.bidding_status}</label>
                 )}
               </li>
               <li>

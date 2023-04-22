@@ -392,7 +392,7 @@ function Home() {
                                 {/* {curElem.username} */}
                               </li>
                             </ul>
-                            <h4 style={{ marginLeft: "-23px" }}>
+                            <h4 >
                               {curElem.title}
                             </h4>
                           </div>
