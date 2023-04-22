@@ -11,7 +11,6 @@ const Searchbar = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
 
-
   const [searchText, setSearchText] = useState("");
   const [vehicleBrand, setVehicleBrand] = useState([]);
   const vehicleData = logingUser.vehicleReducer.vehicleData;
@@ -46,28 +45,28 @@ const Searchbar = () => {
   // ||
   //       (item.year && item.year.toLowerCase().includes(query)) ||
   //       (item.model && item.model.toLowerCase().includes(query))
-  const searchResults = (query) => 
-      vehicleBrand.filter((item) =>
-        (item.label && item.label.toLowerCase().includes(query))
-      )
+  const searchResults = (query) =>
+    vehicleBrand
+      .filter((item) => item.label && item.label.toLowerCase().includes(query))
       .map((curElem, idx) => {
-        return curElem &&  {
-        
-          value: `${curElem.label}`,
-          label: (
-            <Link
-              to="/search"
-              key={idx}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <span>{curElem.label}</span>
-            </Link>
-          ),
-        };
-      })
+        return (
+          curElem && {
+            value: `${curElem.label}`,
+            label: (
+              <Link
+                to="/search"
+                key={idx}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>{curElem.label}</span>
+              </Link>
+            ),
+          }
+        );
+      });
   const handleSearch = (value) => {
     const values = value.toLowerCase();
     setOptions(value ? searchResults(values) : []);
@@ -80,18 +79,21 @@ const Searchbar = () => {
 
   useEffect(() => {
     searchNew();
-  },[]);
+  }, []);
   const searchNew = async () => {
     let data = {
       keyword: "",
-    }
+    };
     try {
-      const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL}globalSearch`,
+        data
+      );
       setVehicleBrand(res.data.data);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <div className="searchX">
@@ -105,6 +107,9 @@ const Searchbar = () => {
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
+            dispatch(
+              showResult({ searchResult: searchText, searchKey: searchText })
+            );
             navigate("/search");
           }
         }}
