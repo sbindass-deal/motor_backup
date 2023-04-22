@@ -636,7 +636,7 @@ function Header() {
                               style={{ cursor: "pointer" }}
                               className="nav-item"
                             >
-                              <Link className="nav-link">Settings</Link>
+                              <Link className="nav-link">Get Alerts</Link>
                             </li>
 
                           {logingUser.login.token && logingUser.login.admin && (
