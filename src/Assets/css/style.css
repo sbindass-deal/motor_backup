@@ -1075,6 +1075,7 @@ footer h6:before {
   padding: 10px 15px;
   border: 1px #333 solid;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 select.field option {
@@ -6940,10 +6941,11 @@ h5.catagories {
 .productBigImg {
   height: 539px;
   width: 533px;
+  overflow: hidden;
 }
 .productBigImg img {
   width: 590px;
-  height: 536px;
+  height: 616px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7533,8 +7535,8 @@ justify-content: space-between;
 
 h2.title_combo {
   position: relative;
-  top: 17px;
-  left: -10px;
+  /* top: 17px;
+  left: 0px; */
 }
 
 .row.socialSec {
@@ -7632,6 +7634,7 @@ button.btn.sub {
   border-bottom: 1px solid #333131;
   border-radius: 0px;
   padding: 0;
+  
 }
 .youD button.btn {
   padding: 10px 30px;
@@ -7720,7 +7723,7 @@ ul.post_labelList li p.userIco {
 }
 .card_postImg .bestSellerRgt::after{display:none;}
 .card_postImg .bestSellerRgt {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPcAAAAlCAYAAACeen93AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LjljY2M0ZGU5MywgMjAyMi8wMy8xNC0xNDowNzoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIzLjMgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUZDMjUyMDNEOEExMTFFRDk3MDVGOTZERjY2NUQ0OEUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUZDMjUyMDREOEExMTFFRDk3MDVGOTZERjY2NUQ0OEUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5RkMyNTIwMUQ4QTExMUVEOTcwNUY5NkRGNjY1RDQ4RSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5RkMyNTIwMkQ4QTExMUVEOTcwNUY5NkRGNjY1RDQ4RSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pt8WDYsAAADZSURBVHja7NMxDQIBEEVBwAMtBtCBCeSgCAcIQA0FLceehysuLzPJL7bd5B2/j8tyAEres9vJH6AX9uwjbgiGvR7ihmDY4oZo2OKGaNjihmjY4oZo2OKGaNjihmjY4oZo2OKGaNjihmjY4oZo2OKGaNjihmjY4oZo2OKGaNjihn35ze5bhC1u2Je1x+fsLG7ouc5eWwQubogGLm6IBi5uiAYubogGLm6IBi5uiAYubogGLm6IBi5uiAYubogGLm6IBi5uiAYubogGLm6IBi5uiAYubogG/hdgAJFaOf5nXAkPAAAAAElFTkSuQmCC);
+  background-image: url(../images/ribin.png);
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
@@ -7730,4 +7733,7 @@ ul.post_labelList li p.userIco {
 }
 
 .card_postImg .bestSellerRgt {background-color: transparent;
+}
+.bestSellerRgt.charity {
+  background-image: url(../images/pinkRibin.png);
 }

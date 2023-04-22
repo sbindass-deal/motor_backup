@@ -119,6 +119,7 @@ import Settings from "./MyAccount/Settings";
 
 import AnalyticsTab from "./auction/AnalyticsTab";
 import GaragesAdmin from "./Dashboard/GaragesAdmin";
+import Contact from "./MyAccount/Contact";
 
 const Layout = () => {
   const logingUser = useSelector((state) => state);
@@ -152,6 +153,10 @@ const Layout = () => {
               <Route
                 path="add-user-meeting-event"
                 element={<EventAdUserMeeting />}
+              />
+               <Route
+                path="contact"
+                element={<Contact />}
               />
               <Route path="edit-user-blog/:id" element={<EditUserBlog />} />
               <Route path="user-meeting" element={<UserCreateMeeting />} />

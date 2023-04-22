@@ -633,12 +633,12 @@ function Header() {
                               <Link className="nav-link">Logout</Link>
                             </li>
                           )}
-                          <li
+                          {/* <li
                             style={{ cursor: "pointer" }}
                             className="nav-item"
                           >
                             <Link className="nav-link">Get Alerts</Link>
-                          </li>
+                          </li> */}
 
                           {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
