@@ -127,14 +127,14 @@ const Charity = () => {
     setLoading(true);
     handleFilteredModalClose();
     axios
-      .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {
+      .post(`${process.env.REACT_APP_URL}vehicles_all/charity`, {
         year: getSelectData.year,
         model: getSelectData.model,
         make: getSelectData.make,
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction
+        auctionType: data[0]?.auctionType
 
       })
       .then(function (res) {
@@ -147,7 +147,7 @@ const Charity = () => {
         setLoading(false);
       });
   };
-
+  console.log(989800,data)
   const handleSubmitModel = (e) => {
     e.preventDefault();
     fetchNoreserveDataSelect();
@@ -156,6 +156,8 @@ const Charity = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
+
+  console.log(900977,data)
 
   return (
     <div>
@@ -424,7 +426,7 @@ const Charity = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  {/* <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -442,7 +444,7 @@ const Charity = () => {
                         })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-12 col-md-6">
                     <label>Bidding Status</label>

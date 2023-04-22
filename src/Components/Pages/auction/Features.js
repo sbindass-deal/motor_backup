@@ -38,7 +38,7 @@ const Features = () => {
   useEffect(() => {
     fetchNoreserveData();
   }, []);
-
+console.log(7000,data)
   // const getEndDate = (cal) => {
   //   let data = cal.split("T");
   //   let endDate = moment().format("YYYY-MM-DD");

@@ -68,8 +68,8 @@ const AuctionResult = () => {
       year: "",
       state: "",
       city: "",
-      auction: "",
-      status: ""
+      // auction: "",
+      // status: ""
     });
     axios
       .post(`${process.env.REACT_APP_URL}getAllWinner`, {})
@@ -165,7 +165,7 @@ const AuctionResult = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
-
+  console.log(79989, data)
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -492,7 +492,7 @@ const AuctionResult = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  {/* <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -529,7 +529,7 @@ const AuctionResult = () => {
                         })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="form-group d-flex justify-content-between ">
                   <button
