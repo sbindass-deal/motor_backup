@@ -8,7 +8,7 @@ import axios from "axios";
 const SearchResult = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
-  const { searchResult: name } =
+  const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
@@ -25,27 +25,40 @@ const SearchResult = () => {
       theme: "light",
     });
 
-    const searchNew = async () => {
-      let data = {
-        keyword: '',
-      }
-      try {
-        const res = await axios.post(`${process.env.REACT_APP_URL}globalSearch`, data);
-        // setSearchedData(res.data.vehicles_result);
-        const filterData = res.data.vehicles_result?.filter((item) => item?.label == name);
+  const searchNew = async () => {
+    let data = {
+      keyword: "",
+    };
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL}globalSearch`,
+        data
+      );
+      // setSearchedData(res.data.vehicles_result);
+      const filterData = res.data.vehicles_result?.filter(
+        (item) => item?.label == name
+      );
+      
+      const filterDatas = res.data.vehicles_result?.filter(
+        (item) => item?.label?.toLowerCase()?.includes(searchKey?.toLowerCase())
+      );
+      if (filterData?.length > 0) {
         setRelatedData(filterData);
-      } catch (err) {
-        console.log(err);
+      } else {
+        setRelatedData(filterDatas);
       }
+    } catch (err) {
+      console.log(err);
     }
-    useEffect(() => {
-      searchNew();
-    }, [name, relatedData]);
+  };
+  useEffect(() => {
+    searchNew();
+  }, [name, relatedData]);
 
-    // useEffect(() => {
-           
-    // }, [name, searchedData]);
-    // console.log(relatedData);
+  // useEffect(() => {
+
+  // }, [name, searchedData]);
+  // console.log(relatedData);
   // useEffect(() => {
   //   const make = name.toLowerCase();
   //   // const searchText = ser.toLowerCase();
@@ -99,8 +112,8 @@ const SearchResult = () => {
                   }}
                   className="btn btn_change"
                 >
-                  <i class="fa-solid fa-bell mr-2"></i> Notify me when one is listed
-
+                  <i class="fa-solid fa-bell mr-2"></i> Notify me when one is
+                  listed
                 </button>
 
                 <Link
@@ -111,7 +124,8 @@ const SearchResult = () => {
                   //     : `/showroom/${searchedData.id}`
                   // }
                 >
-Have one? Sell yours here                </Link>
+                  Have one? Sell yours here{" "}
+                </Link>
               </div>
             </div>
           </div>
@@ -133,12 +147,16 @@ Have one? Sell yours here                </Link>
                   <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
                     <div className="card_post SearchResult auction">
                       {curElem.displayInAuction === "Yes" ? (
-                        <div class="bestSellerRgt"><span class="">For Auction</span></div>
-                        // <p className="forOction"></p>
-                      ) : curElem.displayInAuction === "classified" ? (
-                        <div class="bestSellerRgt"><span class="">Ad</span></div>
-                        // <p className="forOction">Ad</p>
-                      ) : null}
+                        <div class="bestSellerRgt">
+                          <span class="">For Auction</span>
+                        </div>
+                      ) : // <p className="forOction"></p>
+                      curElem.displayInAuction === "classified" ? (
+                        <div class="bestSellerRgt">
+                          <span class="">Ad</span>
+                        </div>
+                      ) : // <p className="forOction">Ad</p>
+                      null}
 
                       {curElem.displayInAuction === "classified" ? (
                         <a
@@ -147,11 +165,11 @@ Have one? Sell yours here                </Link>
                           href={curElem.externalLink}
                           className="card_postImg card_postImg_200"
                         >
-                          {
-                            curElem?.image_banner &&
+                          {curElem?.image_banner && (
                             <img
                               src={
-                                process.env.REACT_APP_URL + `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
+                                process.env.REACT_APP_URL +
+                                `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
                               }
                               onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
@@ -160,7 +178,7 @@ Have one? Sell yours here                </Link>
                               }}
                               alt={curElem.make}
                             />
-                          }
+                          )}
                         </a>
                       ) : (
                         <Link
@@ -171,19 +189,20 @@ Have one? Sell yours here                </Link>
                           }
                           className="card_postImg card_postImg_200"
                         >
-                          {curElem?.image_banner &&
+                          {curElem?.image_banner && (
                             <img
-                            src={
-                              process.env.REACT_APP_URL + `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
-                            }
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src =
-                                "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
-                            }}
-                            alt={curElem.make}
-                          />
-                          }
+                              src={
+                                process.env.REACT_APP_URL +
+                                `${curElem?.image_banner[0]?.imagePath}${curElem?.image_banner[0]?.imageName}`
+                              }
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src =
+                                  "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                              }}
+                              alt={curElem.make}
+                            />
+                          )}
                         </Link>
                       )}
                       <div className="card_postInfo pt-3">

@@ -85,6 +85,7 @@ const AuctionNoReserve = () => {
         setLoading(false);
       });
   };
+  console.log(98080, data[0]?.auctionType)
   useEffect(() => {
     fetchApiData();
   }, []);
@@ -109,6 +110,8 @@ const AuctionNoReserve = () => {
   useEffect(() => {
     fetchNoreserveData();
   }, []);
+
+  console.log(980808, data)
   
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
@@ -121,7 +124,7 @@ const AuctionNoReserve = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction
+        auctionType: data[0]?.auctionType
       })
       .then(function (res) {
         setData(res.data.data);
@@ -414,7 +417,7 @@ const AuctionNoReserve = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  {/* <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -432,7 +435,7 @@ const AuctionNoReserve = () => {
                         })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-12 col-md-6">
                     <label>Bidding Status</label>

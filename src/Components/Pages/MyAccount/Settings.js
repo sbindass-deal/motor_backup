@@ -71,11 +71,11 @@ function Settings() {
                 <li>
                   <div className="pr-3">
                     <h6>Gas Guzzlrs Garages</h6>
-                    <p>By switching to 'Private', your Garage profile will be hidden on Garage page.</p>
+                    <p>
+                      By switching to 'Private', your Garage profile will be
+                      hidden on Garage page.
+                    </p>
                   </div>
-
-
-
 
                   <div className="ml-auto">
                     <div className="tg-item">
@@ -83,7 +83,7 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb6"
                         type="checkbox"
-                      // checked
+                        // checked
                       />
                       <label
                         className="tgl-btn"
@@ -95,18 +95,14 @@ function Settings() {
                   </div>
                 </li>
 
-
                 <li>
                   <div className="pr-3">
-                    <h6>Gass Guzzlrs Giveaway News and Updates</h6>
+                    <h6>Gas Guzzlrs Giveaway News and Updates</h6>
                     <p>
                       We'll email you about site updates, pro tips and all
                       things Gas Guzzlrs Giveaway. We promise not to spam you.
                     </p>
                   </div>
-
-
-
 
                   <div className="ml-auto">
                     <div className="tg-item">
@@ -114,7 +110,7 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb1"
                         type="checkbox"
-                      // checked
+                        // checked
                       />
                       <label
                         className="tgl-btn"
@@ -139,8 +135,7 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb2"
                         type="checkbox"
-                      // checked
-
+                        // checked
                       />
                       <label
                         className="tgl-btn"
@@ -213,7 +208,7 @@ function Settings() {
                         className="tgl tgl-skewed"
                         id="cb5"
                         type="checkbox"
-                      // checked
+                        // checked
                       />
                       <label
                         className="tgl-btn"
@@ -233,7 +228,7 @@ function Settings() {
                 We'll email you about listings you're watching. Customize your
                 options below.
               </p>
-             
+
               <ul className="rowList_ mb-4">
                 <li>
                   <div className="pr-3">
@@ -370,11 +365,23 @@ function Settings() {
                   <SmallSpinner />
                 ) : (
                   allData?.map((curVal, i) => {
-                    console.log(988, curVal.id)
-                    return <p className="watchlistStyle">
-                      <p > {`${curVal.make} ${curVal.model} ${curVal.year}`}</p>
-                      <p><button className="ml-3 watchlistStyleBtn" onClick={() => handleDelete(curVal.id)}><ClearIcon /></button></p>
-                    </p>
+                    console.log(988, curVal.id);
+                    return (
+                      <p className="watchlistStyle">
+                        <p>
+                          {" "}
+                          {`${curVal.make} ${curVal.model} ${curVal.year}`}
+                        </p>
+                        <p>
+                          <button
+                            className="ml-3 watchlistStyleBtn"
+                            onClick={() => handleDelete(curVal.id)}
+                          >
+                            <ClearIcon />
+                          </button>
+                        </p>
+                      </p>
+                    );
                   })
                 )}
               </p>

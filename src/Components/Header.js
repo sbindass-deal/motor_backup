@@ -403,15 +403,18 @@ function Header() {
                           Garages
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          onClick={() => setShowNav(false)}
-                          to="/social-media"
-                        >
-                          Social Media
-                        </Link>
-                      </li>
+                      {logingUser.login.admin === null && (
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            onClick={() => setShowNav(false)}
+                            to="/social-media"
+                          >
+                            Social Media
+                          </Link>
+                        </li>
+                      )}
+
                       <li className="nav-item">
                         <Link
                           className={`nav-link ${
@@ -629,15 +632,13 @@ function Header() {
                             >
                               <Link className="nav-link">Logout</Link>
                             </li>
-                            
                           )}
-                           <li
-                              onClick={logout}
-                              style={{ cursor: "pointer" }}
-                              className="nav-item"
-                            >
-                              <Link className="nav-link">Get Alerts</Link>
-                            </li>
+                          <li
+                            style={{ cursor: "pointer" }}
+                            className="nav-item"
+                          >
+                            <Link className="nav-link">Get Alerts</Link>
+                          </li>
 
                           {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
@@ -720,7 +721,10 @@ function Header() {
                         <div className="dropdown">
                           <Link
                             className={`nav-link ${
-                              location.pathname == "/submit" || location.pathname == "/dealer" ? "active" : null
+                              location.pathname == "/submit" ||
+                              location.pathname == "/dealer"
+                                ? "active"
+                                : null
                             }`}
                             to="#"
                           >
@@ -741,8 +745,13 @@ function Header() {
                         <div className="dropdown">
                           <Link
                             className={`nav-link ${
-                              location.pathname === "/auctionlive" || location.pathname === "/auctionfeature" || location.pathname === "/auctionnoreserve" || location.pathname === "/charity" || location.pathname === "/auctionresult" ?
-                              "active" : null
+                              location.pathname === "/auctionlive" ||
+                              location.pathname === "/auctionfeature" ||
+                              location.pathname === "/auctionnoreserve" ||
+                              location.pathname === "/charity" ||
+                              location.pathname === "/auctionresult"
+                                ? "active"
+                                : null
                             }`}
                             to="#"
                           >
@@ -809,21 +818,23 @@ function Header() {
                           Garages
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link
-                          className="nav-link"
-                          style={{
-                            color: `${
-                              location.pathname === "/social-media"
-                                ? "#EF6031"
-                                : ""
-                            }`,
-                          }}
-                          to="/social-media"
-                        >
-                          Social Media
-                        </Link>
-                      </li>
+                      {logingUser.login.admin === null && (
+                        <li className="nav-item">
+                          <Link
+                            className="nav-link"
+                            style={{
+                              color: `${
+                                location.pathname === "/social-media"
+                                  ? "#EF6031"
+                                  : ""
+                              }`,
+                            }}
+                            to="/social-media"
+                          >
+                            Social Media
+                          </Link>
+                        </li>
+                      )}
 
                       {/* <li className="nav-item">
                         <div className="dropdown">
@@ -960,20 +971,44 @@ function Header() {
                             Shipping
                           </Link>
                           <div className="dropdown-content">
-                            <a
+                            <Link to={"/shipping"}>Get a Quote</Link>
+                            {/* <a
                               href="https://www.iecstransport.com/"
                               target="_blank"
                             >
                               Get a Quote
-                            </a>
-                            <a
+                            </a> */}
+                            {logingUser.login.token == null ? (
+                              <li onClick={handleShow}>
+                                <Link>My Shipment</Link>
+                              </li>
+                            ) : (
+                              <Link to={"/myshipments"}>My Shipment</Link>
+                            )}
+
+                            {/* <a
                               href="https://www.iecstransport.com/"
                               target="_blank"
                             >
                               My Shipment
-                            </a>
+                            </a> */}
                           </div>
                         </div>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/getalerts"
+                                ? "#EF6031"
+                                : ""
+                            }`,
+                          }}
+                          to="/getalerts"
+                        >
+                          Get Alerts
+                        </Link>
                       </li>
                       <li className="nav-item">
                         <Link
