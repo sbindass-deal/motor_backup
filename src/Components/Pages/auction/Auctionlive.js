@@ -88,7 +88,7 @@ const Auctionlive = () => {
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  const currentPosts =  data?.slice(firstPostIndex, lastPostIndex);
 
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
