@@ -8,7 +8,7 @@ import axios from "axios";
 const SearchResult = () => {
   const navigate = useNavigate();
   const logingUser = useSelector((state) => state);
-  const { searchResult: name } =
+  const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
   const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
