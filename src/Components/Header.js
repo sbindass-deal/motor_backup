@@ -616,7 +616,15 @@ function Header() {
                             >
                               <Link className="nav-link">Logout</Link>
                             </li>
+                            
                           )}
+                           <li
+                              onClick={logout}
+                              style={{ cursor: "pointer" }}
+                              className="nav-item"
+                            >
+                              <Link className="nav-link">Get Alerts</Link>
+                            </li>
 
                           {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
