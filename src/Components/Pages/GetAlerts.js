@@ -38,16 +38,7 @@ const GetAlerts = () => {
               most pertinent Gas Guzzlrs content, ensuring you stay up-to-date
               with the most relevant news.
             </p>
-            <div className="row mt-4">
-              <div className="col-md-8 offset-lg-2">
-                <div className="daily_mail_box">
-                  {/* <input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    placeholder="Enter email address"
-                  /> */}
-                  <button
+            <button
                     onClick={handleSubmitApi}
                     type="button"
                     className="results_subscribe btn"
@@ -55,6 +46,16 @@ const GetAlerts = () => {
                     <i className="fa-regular fa-envelope"></i>{" "}
                     <span>Subscribe</span>
                   </button>
+            <div className="row mt-4">
+              <div className="col-md-8 offset-lg-2 center-align">
+                <div className="daily_mail_box">
+                  {/* <input
+                    type="text"
+                    className="form-control"
+                    name="email"
+                    placeholder="Enter email address"
+                  /> */}
+                 
                 </div>
               </div>
             </div>

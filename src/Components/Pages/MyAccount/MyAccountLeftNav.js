@@ -269,6 +269,7 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem>
+            
             {/* <MenuItem>
               <li>
                 <Link
@@ -290,6 +291,18 @@ function MyAccountLeftNav() {
                   to="/settings"
                 >
                   Settings
+                </Link>
+              </li>
+            </MenuItem>
+            <MenuItem>
+              <li>
+                <Link
+                  className={`${
+                    location.pathname === "/contact" ? "active" : ""
+                  }`}
+                  to="/contact"
+                >
+                  Contact Us
                 </Link>
               </li>
             </MenuItem>

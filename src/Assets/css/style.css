@@ -1075,6 +1075,7 @@ footer h6:before {
   padding: 10px 15px;
   border: 1px #333 solid;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 select.field option {
@@ -6940,10 +6941,11 @@ h5.catagories {
 .productBigImg {
   height: 539px;
   width: 533px;
+  overflow: hidden;
 }
 .productBigImg img {
   width: 590px;
-  height: 536px;
+  height: 616px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7533,8 +7535,8 @@ justify-content: space-between;
 
 h2.title_combo {
   position: relative;
-  top: 17px;
-  left: -10px;
+  /* top: 17px;
+  left: 0px; */
 }
 
 .row.socialSec {
@@ -7632,6 +7634,7 @@ button.btn.sub {
   border-bottom: 1px solid #333131;
   border-radius: 0px;
   padding: 0;
+  
 }
 .youD button.btn {
   padding: 10px 30px;
