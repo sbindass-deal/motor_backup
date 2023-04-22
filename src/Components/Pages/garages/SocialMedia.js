@@ -431,7 +431,7 @@ const SocialMedia = ({ id, logo }) => {
                               </Link>
                               <div className="DecIbp">
                                 <div
-                                  className="my-3"
+                                  className="my-3 youD"
                                   style={{
                                     display: "flex",
                                     justifyContent: "space-between",

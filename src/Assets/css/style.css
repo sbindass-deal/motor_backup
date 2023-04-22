@@ -7737,3 +7737,14 @@ ul.post_labelList li p.userIco {
 .bestSellerRgt.charity {
   background-image: url(../images/pinkRibin.png);
 }
+
+
+.tBB.only li.nav-item button {
+  min-width: 126px;
+}
+.sswfr .row.socialSec {
+  max-width: 100%;
+}
+.modal-body .PostInfo {
+  padding: 20px !important;
+}
