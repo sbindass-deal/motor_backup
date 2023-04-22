@@ -439,7 +439,9 @@ const SocialMedia = ({ id, logo }) => {
                                   }}
                                 >
                                   <h5>{curElem?.username}</h5>
-                                  <button className="btn">Follow</button>
+                                  {userInfo?.userId != curElem?.userId && (
+                                    <button className="btn">Follow</button>
+                                  )}
                                 </div>
                                 <p>{curElem?.content}</p>
                                 {curElem?.image_path !== null && (
