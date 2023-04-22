@@ -115,7 +115,7 @@ const Auctionfeature = () => {
         }
       });
   };
-
+  console.log(8988989, data)
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -127,7 +127,7 @@ const Auctionfeature = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction
+        auctionType: data[0]?.auctionType
 
       })
       .then(function (res) {
@@ -151,6 +151,7 @@ const Auctionfeature = () => {
   }
 
 
+  console.log(56556, data[0]?.auctionType)
   console.log(7979797, getSelectData)
 
   return (
@@ -393,7 +394,7 @@ const Auctionfeature = () => {
                     </div>
                   </div>
 
-                  <div className="col-12 col-md-6">
+                  {/* <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -411,7 +412,7 @@ const Auctionfeature = () => {
                         })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-12 col-md-6">
                     <label>Bidding Status</label>

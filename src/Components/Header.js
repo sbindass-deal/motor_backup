@@ -172,9 +172,8 @@ function Header() {
                   )}
 
                   <div
-                    className={`${
-                      showNav ? "show" : ""
-                    } collapse navbar-collapse mobileOnly hidemenu`}
+                    className={`${showNav ? "show" : ""
+                      } collapse navbar-collapse mobileOnly hidemenu`}
                     id="navb"
                   >
                     <ul className="navbar-nav mobileOnly">
@@ -189,12 +188,11 @@ function Header() {
                             {logingUser.login.token &&
                               logingUser.login.admin === null && (
                                 <Link
-                                  className={`nav-link ${
-                                    location.pathname === "/accountinfo" &&
+                                  className={`nav-link ${location.pathname === "/accountinfo" &&
                                     "navActive"
-                                      ? "active"
-                                      : ""
-                                  }`}
+                                    ? "active"
+                                    : ""
+                                    }`}
                                   to="/accountinfo"
                                   onClick={() => setShowNav(false)}
                                 >
@@ -229,10 +227,9 @@ function Header() {
                               logingUser.login.admin && (
                                 <li className="nav-item">
                                   <Link
-                                    className={`nav-link ${
-                                      location.pathname ===
-                                        "/vehicle-submission" && "navActive"
-                                    }`}
+                                    className={`nav-link ${location.pathname ===
+                                      "/vehicle-submission" && "navActive"
+                                      }`}
                                     to="/vehicle-submission"
                                     onClick={() => setShowNav(false)}
                                   >
@@ -261,13 +258,11 @@ function Header() {
 
                       <li className="nav-item">
                         <Link
-                          className={`nav-link ${
-                            location.pathname === "/about" ? "active" : ""
-                          }`}
+                          className={`nav-link ${location.pathname === "/about" ? "active" : ""
+                            }`}
                           style={{
-                            color: `${
-                              location.pathname === "/about" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/about" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/about"
                           onClick={() => setShowNav(false)}
@@ -278,11 +273,10 @@ function Header() {
 
                       <li className="nav-item">
                         <Link
-                          className={`nav-link ${
-                            location.pathname === "/works" && "navActive"
-                              ? "active"
-                              : ""
-                          }`}
+                          className={`nav-link ${location.pathname === "/works" && "navActive"
+                            ? "active"
+                            : ""
+                            }`}
                           to="/works"
                           onClick={() => setShowNav(false)}
                         >
@@ -307,9 +301,8 @@ function Header() {
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${
-                              location.pathname === "/submit" && "navActive"
-                            }`}
+                            className={`nav-link ${location.pathname === "/submit" && "navActive"
+                              }`}
                             to="#"
                           >
                             List Your Vehicles
@@ -336,10 +329,9 @@ function Header() {
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${
-                              location.pathname === "/auctionlive" &&
+                            className={`nav-link ${location.pathname === "/auctionlive" &&
                               "navActive"
-                            }`}
+                              }`}
                             to="#"
                           >
                             Auctions
@@ -414,12 +406,11 @@ function Header() {
                       </li>
                       <li className="nav-item">
                         <Link
-                          className={`nav-link ${
-                            location.pathname === "/classifiedaddList" &&
+                          className={`nav-link ${location.pathname === "/classifiedaddList" &&
                             "navActive"
-                              ? "active"
-                              : ""
-                          }`}
+                            ? "active"
+                            : ""
+                            }`}
                           to="/classifiedaddList"
                           onClick={() => setShowNav(false)}
                         >
@@ -494,10 +485,9 @@ function Header() {
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${
-                              location.pathname === "/auctionlive" &&
+                            className={`nav-link ${location.pathname === "/auctionlive" &&
                               "navActive"
-                            }`}
+                              }`}
                             to="#"
                           >
                             Shipping
@@ -551,9 +541,8 @@ function Header() {
                       <Link
                         className="nav-link"
                         style={{
-                          color: `${
-                            location.pathname === "/about" ? "#000" : ""
-                          }`,
+                          color: `${location.pathname === "/about" ? "#000" : ""
+                            }`,
                         }}
                         to="/about"
                       >
@@ -563,9 +552,8 @@ function Header() {
 
                     <li className="nav-item">
                       <Link
-                        className={`nav-link ${
-                          location.pathname === "/works" && "navActive"
-                        }`}
+                        className={`nav-link ${location.pathname === "/works" && "navActive"
+                          }`}
                         to="/works"
                       >
                         The G2 Process
@@ -607,10 +595,9 @@ function Header() {
                           {logingUser.login.token &&
                             logingUser.login.admin === null && (
                               <Link
-                                className={`nav-link ${
-                                  location.pathname === "/accountinfo" &&
+                                className={`nav-link ${location.pathname === "/accountinfo" &&
                                   "navActive"
-                                }`}
+                                  }`}
                                 to="/accountinfo"
                               >
                                 My Account
@@ -642,10 +629,9 @@ function Header() {
                           {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
                               <Link
-                                className={`nav-link ${
-                                  location.pathname === "/vehicle-submission" &&
+                                className={`nav-link ${location.pathname === "/vehicle-submission" &&
                                   "navActive"
-                                }`}
+                                  }`}
                                 to="/vehicle-submission"
                               >
                                 Admin
@@ -719,9 +705,8 @@ function Header() {
 
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${
-                              location.pathname == "/submit" || location.pathname == "/dealer" ? "active" : null
-                            }`}
+                            className={`nav-link ${location.pathname == "/submit" || location.pathname == "/dealer" ? "active" : null
+                              }`}
                             to="#"
                           >
                             List Your Vehicles
@@ -740,10 +725,9 @@ function Header() {
                       <li className="nav-item">
                         <div className="dropdown">
                           <Link
-                            className={`nav-link ${
-                              location.pathname === "/auctionlive" || location.pathname === "/auctionfeature" || location.pathname === "/auctionnoreserve" || location.pathname === "/charity" || location.pathname === "/auctionresult" ?
+                            className={`nav-link ${location.pathname === "/auctionlive" || location.pathname === "/auctionfeature" || location.pathname === "/auctionnoreserve" || location.pathname === "/charity" || location.pathname === "/auctionresult" ?
                               "active" : null
-                            }`}
+                              }`}
                             to="#"
                           >
                             Auctions
@@ -787,9 +771,8 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/showroom" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/showroom" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/showroom"
                         >
@@ -800,9 +783,8 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/garages" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/garages" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/garages"
                         >
@@ -813,11 +795,10 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/social-media"
-                                ? "#EF6031"
-                                : ""
-                            }`,
+                            color: `${location.pathname === "/social-media"
+                              ? "#EF6031"
+                              : ""
+                              }`,
                           }}
                           to="/social-media"
                         >
@@ -856,11 +837,10 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/classifiedaddList"
-                                ? "#EF6031"
-                                : ""
-                            }`,
+                            color: `${location.pathname === "/classifiedaddList"
+                              ? "#EF6031"
+                              : ""
+                              }`,
                           }}
                           to="/classifiedaddList"
                         >
@@ -872,11 +852,10 @@ function Header() {
                         {true ? (
                           <Link
                             style={{
-                              color: `${
-                                location.pathname === "/carraffle"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
+                              color: `${location.pathname === "/carraffle"
+                                ? "#EF6031"
+                                : ""
+                                }`,
                             }}
                             className="nav-link"
                             to="/carraffle"
@@ -892,9 +871,8 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/shop" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/shop" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/shop"
                         >
@@ -933,9 +911,8 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/event" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/event" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/event"
                         >
@@ -947,12 +924,11 @@ function Header() {
                           <Link
                             className="nav-link"
                             style={{
-                              color: `${
-                                location.pathname === "/shipping" ||
+                              color: `${location.pathname === "/shipping" ||
                                 location.pathname === "/myshipments"
-                                  ? "#EF6031"
-                                  : ""
-                              }`,
+                                ? "#EF6031"
+                                : ""
+                                }`,
                             }}
                             to="#"
                             onClick={() => setShowNav(false)}
@@ -960,18 +936,40 @@ function Header() {
                             Shipping
                           </Link>
                           <div className="dropdown-content">
-                            <a
+                            <Link
+                              to={'/shipping'}
+                            >
+                              Get a Quote
+                            </Link>
+                            {/* <a
                               href="https://www.iecstransport.com/"
                               target="_blank"
                             >
                               Get a Quote
-                            </a>
-                            <a
+                            </a> */}
+                            {
+                              logingUser.login.token == null ?
+                                <li onClick={handleShow}>
+                                  <Link >
+                                    My Shipment
+                                  </Link>
+                                </li>
+                                : <Link
+                                  to={'/myshipments'}
+                                >
+                                  My Shipment
+                                </Link>
+
+                            }
+
+
+
+                            {/* <a
                               href="https://www.iecstransport.com/"
                               target="_blank"
                             >
                               My Shipment
-                            </a>
+                            </a> */}
                           </div>
                         </div>
                       </li>
@@ -979,9 +977,20 @@ function Header() {
                         <Link
                           className="nav-link"
                           style={{
-                            color: `${
-                              location.pathname === "/faq" ? "#EF6031" : ""
-                            }`,
+                            color: `${location.pathname === "/getalerts" ? "#EF6031" : ""
+                              }`,
+                          }}
+                          to="/getalerts"
+                        >
+                          Get Alerts
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${location.pathname === "/faq" ? "#EF6031" : ""
+                              }`,
                           }}
                           to="/faq"
                         >
@@ -991,7 +1000,7 @@ function Header() {
 
                       <li className="nav-item AddtCrt">
                         {logingUser.login.token &&
-                        logingUser.cartSlice.quantity !== 0 ? (
+                          logingUser.cartSlice.quantity !== 0 ? (
                           <Link to="/cart">
                             <i className="fa-solid fa-cart-shopping"></i>
                             <span className="count">

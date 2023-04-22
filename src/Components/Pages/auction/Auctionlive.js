@@ -22,6 +22,17 @@ const Auctionlive = () => {
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
   const [filterCategory, setFilterCategory] = useState({});
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = data?.slice(firstPostIndex, lastPostIndex);
+
+
+
   const [getSelectData, setGetSelectData] = useState({
     year: "",
     make: "",
@@ -78,17 +89,14 @@ const Auctionlive = () => {
         setLoading(false);
       });
   };
+
+  console.log(89898911111, data[0]?.auctionType)
+
   useEffect(() => {
     fetchApiData();
   }, []);
 
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
-
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts =  data?.slice(firstPostIndex, lastPostIndex);
 
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
@@ -147,7 +155,7 @@ const Auctionlive = () => {
 
         })
 
-        console.log(98981010110, 'fff', dataFilter)
+       
         setData(dataFilter);
         setAllData(res.data.data);
       }
@@ -230,12 +238,9 @@ const Auctionlive = () => {
     fetchNoreserveDataSelect()
   }
 
-  
-  const handleLike = () => {
-    alert("Hello" + searchValue)
-    addFabrity(searchValue)
-  }
+
  
+
 
   return (
     <>
@@ -329,10 +334,10 @@ const Auctionlive = () => {
             {currentPosts?.length == 0 ? (
               <NotAvailable text="Data not found" />
 
-            ):(
+            ) : (
               currentPosts
-                  ?.filter((curElem) => {
-                    console.log(878787, curElem)
+                ?.filter((curElem) => {
+                  console.log(878787, curElem)
                   if (searchValue == "") {
                     return curElem;
                   } else if (
@@ -476,7 +481,7 @@ const Auctionlive = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  {/* <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -494,7 +499,7 @@ const Auctionlive = () => {
                         })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-12 col-md-6">
                     <label>Bidding Status</label>
