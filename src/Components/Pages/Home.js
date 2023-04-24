@@ -12,6 +12,7 @@ import { noImage, strToHtml } from "../UI/globaleVar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import g3 from "../../Assets/images/G3.png";
 import { Avatar, Space } from "antd";
+import  homeCarImg from '../../Assets/images/homeCarImg.png'
 
 function Home() {
   const dispatch = useDispatch();
@@ -164,7 +165,7 @@ function Home() {
 
   return (
     <div>
-      <section className="heroSection d-flex align-items-center">
+      <section className="heroSection mains d-flex align-items-center">
         <a type="button" className="scrollDownIc bounce2" href="#second">
           <span className="outer_cover">
             <small className="upper">
@@ -180,14 +181,16 @@ function Home() {
             <div className="col-12 col-lg-6">
               <div className="heroText textAlignLeft">
                 <h1>
-                  We are dedicated to parking your Dream Vehicle in your Garage
+                  We are dedicated to parking<br/> your Dream Vehicle <br/>in your Garage
                 </h1>
                 <Link to="/auctionlive" className="orange_btn">
                   View Auctions
                 </Link>
               </div>
             </div>
-            <div className="col-12 col-lg-6"></div>
+            <div className="col-12 col-lg-6 imgRit">
+               {/* <img src={homeCarImg}/> */}
+            </div>
           </div>
         </div>
       </section>
