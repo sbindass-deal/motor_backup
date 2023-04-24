@@ -5120,6 +5120,7 @@ input[type=file] {
   color: white;
 
 }
+.orange_btn{border-radius: 8px;}
 
 .raffle table {
   font-size: 12px;
@@ -7093,7 +7094,7 @@ table.table.table-striped img {
   min-width: 10%;
 }
 .right .btn-success.focus, .btn-success:focus, .show>.btn-success.dropdown-toggle  {
-  color: #f8a504;
+  color: #fff;
   background-color: #f8a504;
   border-color: #f8a504;
   box-shadow: 0;
@@ -7755,4 +7756,23 @@ ul.post_labelList li p.userIco {
 .deTitle {
   margin-bottom: 0;
   top: 6px;
+}
+
+.rightGallery .ant-image .ant-image-mask:hover {
+  opacity: 1;
+  left: 5px;
+  max-width: 100%;
+  top: 6px;
+}
+.text-danger {
+  color: #dc3545!important;
+  font-weight: 300;
+}
+.avtar span svg {
+  background: orange;
+  color: #fff;
+  position: absolute;
+  padding: 10px;
+  border-radius: 100%;
+  left: 90px;
 }

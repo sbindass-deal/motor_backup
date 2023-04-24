@@ -45,16 +45,25 @@ function Home() {
   }, []);
 
   const fetchNoreserveData = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
-      );
-      if (res.data.status === 200) {
+    // try {
+    //   const res = await axios.get(
+    //     `${process.env.REACT_APP_URL}vehicles_all/premium_listing`
+    //   );
+    //   if (res.data.status === 200) {
+    //     setSliderData(res.data.data);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    axios
+      .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {})
+      .then(function (res) {
         setSliderData(res.data.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -159,8 +168,6 @@ function Home() {
       },
     ],
   };
-
-  console.log(89890, sliderData);
 
   return (
     <div>
@@ -393,9 +400,7 @@ function Home() {
                                 {/* {curElem.username} */}
                               </li>
                             </ul>
-                            <h4 >
-                              {curElem.title}
-                            </h4>
+                            <h4>{curElem.title}</h4>
                           </div>
                           <ul className="post_labelList">
                             <li>

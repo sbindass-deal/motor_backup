@@ -120,13 +120,13 @@ function Contact() {
                        
 
                       />
-                      <button
+                      {/* <button
                         className="orange_btn"
                         type="button"
                         // onClick={() => inputRef.current.click()}
                       >
                         Select Files
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
