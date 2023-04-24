@@ -1337,6 +1337,15 @@
 		top: 161px;
 		left: 20px;
 	}
+	.heroSection.mains:before {
+	
+		width: 98%;
+		height: 43%;
+		right: 0;
+		position: absolute;
+		background-size: cover;
+		top: 350px;
+	}
 }
 
 @media (max-width: 575px) {
