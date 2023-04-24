@@ -9,6 +9,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import StarIcon from "@mui/icons-material/Star";
 
 const Auctionlive = () => {
   const dispatch = useDispatch();
@@ -75,9 +76,15 @@ const Auctionlive = () => {
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {})
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -164,10 +171,15 @@ const Auctionlive = () => {
         auctionType: getSelectData?.auction,
       })
       .then(function (res) {
-        console.log(879797, res.data.data);
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -218,7 +230,7 @@ const Auctionlive = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i className="fa-solid fa-bell mr-2"></i> watched
+                    <StarIcon /> watched
                   </button>
                 </li>
                 <li className="d-flex gv">

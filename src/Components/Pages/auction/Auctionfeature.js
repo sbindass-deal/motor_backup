@@ -9,6 +9,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import StarIcon from "@mui/icons-material/Star";
 
 const Auctionfeature = () => {
   const dispatch = useDispatch();
@@ -36,8 +37,7 @@ const Auctionfeature = () => {
     state: "",
     city: "",
     auction: "",
-    status: ""
-
+    status: "",
   });
   const handleChangeSelectData = (e) => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
@@ -69,14 +69,20 @@ const Auctionfeature = () => {
       state: "",
       city: "",
       auction: "",
-      status: ""
+      status: "",
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/premium_listing`, {})
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -111,12 +117,11 @@ const Auctionfeature = () => {
       .then((res) => {
         if (res.data.status === 200) {
           dispatch(clearData());
-          fetchApiData()
+          fetchApiData();
           // window.location.reload(false);
         }
       });
   };
-  console.log(8988989, data)
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -128,13 +133,18 @@ const Auctionfeature = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: data[0]?.auctionType
-
+        auctionType: data[0]?.auctionType,
       })
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -184,23 +194,25 @@ const Auctionfeature = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i class="fa-solid fa-bell mr-2"></i> Watched
+                    <StarIcon /> Watched
                   </button>
                 </li>
                 <li className="d-flex bHide">
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -231,8 +243,9 @@ const Auctionfeature = () => {
           </div>
 
           <div
-            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
-              }`}
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
           >
             {currentPosts.length == 0 ? (
               <NotAvailable text="Data not found" />
@@ -312,7 +325,6 @@ const Auctionfeature = () => {
                           Select
                         </option>
                         {filterCategory?.make?.map((curVal, i) => {
-
                           return <option value={curVal}>{curVal}</option>;
                         })}
                       </select>

@@ -9,6 +9,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import StarIcon from "@mui/icons-material/Star";
 
 const AuctionNoReserve = () => {
   const dispatch = useDispatch();
@@ -38,12 +39,12 @@ const AuctionNoReserve = () => {
     state: "",
     city: "",
     auction: "",
-    status: ""
+    status: "",
   });
 
   const handleChangeSelectData = (e) => {
-    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
-  }
+    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
+  };
   const filterApiData = async () => {
     try {
       const res = await axios.get(
@@ -59,7 +60,6 @@ const AuctionNoReserve = () => {
     filterApiData();
   }, []);
 
-
   const fetchApiData = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -71,25 +71,30 @@ const AuctionNoReserve = () => {
       state: "",
       city: "",
       auction: "",
-      status: ""
+      status: "",
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/no_reserve`, {})
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
         setLoading(false);
       });
   };
-  console.log(98080, data[0]?.auctionType)
+  console.log(98080, data[0]?.auctionType);
   useEffect(() => {
     fetchApiData();
   }, []);
-
 
   const fetchNoreserveData = async () => {
     setLoading(true);
@@ -97,11 +102,15 @@ const AuctionNoReserve = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}vehicles_all/no_reserve`
       );
-      if (res.data.status === 200) {
+      if (res.data.data.length > 0) {
         setData(res.data.data);
-        setAllData(res.data.data)
+        setAllData(res.data.data);
+        setLoading(false);
+      } else {
+        setData([]);
+        setAllData([]);
+        setLoading(false);
       }
-      setLoading(false);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -111,8 +120,8 @@ const AuctionNoReserve = () => {
     fetchNoreserveData();
   }, []);
 
-  console.log(980808, data)
-  
+  console.log(980808, data);
+
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -124,12 +133,18 @@ const AuctionNoReserve = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: data[0]?.auctionType
+        auctionType: data[0]?.auctionType,
       })
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -170,18 +185,17 @@ const AuctionNoReserve = () => {
     setFilteredModal(true);
   };
 
-
   const filterData = (data) => {
     const dataFilter = allData.filter((curElem) => {
-      return (data == 1 ? curElem.like == data : curElem)
-    })
-    setData(dataFilter)
-  }
+      return data == 1 ? curElem.like == data : curElem;
+    });
+    setData(dataFilter);
+  };
 
   const handleSubmitModel = (e) => {
-    e.preventDefault()
-    fetchNoreserveDataSelect()
-  }
+    e.preventDefault();
+    fetchNoreserveDataSelect();
+  };
 
   return (
     <>
@@ -210,37 +224,38 @@ const AuctionNoReserve = () => {
                 <li className="">
                   <button
                     onClick={() => {
-                      setHighlightWatch(!highlightWatch)
+                      setHighlightWatch(!highlightWatch);
                       if (highlightWatch) {
-                        filterData(0)
+                        filterData(0);
                       } else {
-                        filterData(1)
+                        filterData(1);
                       }
-
-
-
                     }}
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-bell mr-2"></i> watched
+                    {/* <i class="fa-solid fa-bell mr-2"></i> */}
+                    <StarIcon />
+                    watched
                   </button>
                 </li>
                 <li className="d-flex gv">
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -270,26 +285,28 @@ const AuctionNoReserve = () => {
             </div>
           </div>
           <div
-            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
-              }`}
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
           >
             {currentPosts.length == 0 ? (
               <NotAvailable text="Data not found" />
-
-            ):
-              (
-              currentPosts?.filter((curElem) => {
-                if (searchValue == "") {
-                  return curElem
-                } else if (
-                  curElem.title.toLowerCase().includes(searchValue.toLowerCase())
-                  // ||
-                  // curElem.model.toLowerCase().includes(searchValue.toLowerCase()) ||
-                  // curElem.year.toLowerCase().includes(searchValue.toLowerCase())
-                ) {
-                  return curElem
-                }
-              }))
+            ) : (
+              currentPosts
+                ?.filter((curElem) => {
+                  if (searchValue == "") {
+                    return curElem;
+                  } else if (
+                    curElem.title
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                    // ||
+                    // curElem.model.toLowerCase().includes(searchValue.toLowerCase()) ||
+                    // curElem.year.toLowerCase().includes(searchValue.toLowerCase())
+                  ) {
+                    return curElem;
+                  }
+                })
                 ?.map((curElem) => {
                   return (
                     <Data
@@ -298,9 +315,15 @@ const AuctionNoReserve = () => {
                       addFabrity={addFabrity}
                     />
                   );
-                })}
+                })
+            )}
 
-            <Pagination totalPosts={data.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <Pagination
+              totalPosts={data.length}
+              postsPerPage={postsPerPage}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </section>

@@ -204,11 +204,11 @@ function AccountInfo() {
                   )}
                 </li>
                 {/* ==================== */}
-                <li>
+                {/* <li>
                   <div className="labelList_label">Profile Photo</div>
                   <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/>
 
-                </li>
+                </li> */}
 
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
