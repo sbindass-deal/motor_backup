@@ -139,9 +139,7 @@ const SearchResult = () => {
                   Notify me when one is listed
                 </button>
 
-                
-
-                <Link
+                  <Link
                   className="btn ml-2"
                   // to={
                   //   searchedData.displayInAuction === "Yes"
