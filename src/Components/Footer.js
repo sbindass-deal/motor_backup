@@ -50,11 +50,15 @@ const Footer = () => {
                   <NavLink to="/shipping">Shipping</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/getalerts">Get Alert</NavLink>
+                </li>
+                <li>
                   <NavLink to="/auctionfeature">Featured</NavLink>
                 </li>
                 <li>
                   <NavLink to="/submit">List Your Vehicle</NavLink>
                 </li>
+
                 {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
                 {/* <li><Link to="#">Event Calendar</Link></li> */}
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
@@ -93,6 +97,7 @@ const Footer = () => {
                     <i className="fa-brands fa-facebook"></i> Facebook
                   </a>
                 </li>
+
                 <li>
                   <a
                     target="_blank"
@@ -106,6 +111,7 @@ const Footer = () => {
                     <i className="fa-brands fa-linkedin-in"></i> LinkedIn
                   </a>
                 </li>
+
                 <li>
                   <a target="_blank" href="https://twitter.com/Gas Guzzlrs">
                     <i className="fa-brands fa-twitter"></i> Twitter
