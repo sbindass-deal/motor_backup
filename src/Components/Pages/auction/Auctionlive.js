@@ -49,7 +49,7 @@ const Auctionlive = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}getFiltersForVehicle`
       );
-      setFilterCategory(res.data.data);
+      setFilterCategory(res?.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -85,6 +85,11 @@ const Auctionlive = () => {
       });
   };
 
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> 974cc0602a32c8dcf8b73d103c51acf02f92c31b
   useEffect(() => {
     fetchApiData();
   }, []);
@@ -155,15 +160,16 @@ const Auctionlive = () => {
     handleFilteredModalClose();
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {
-        year: getSelectData.year,
-        model: getSelectData.model,
-        make: getSelectData.make,
-        city: getSelectData.city,
-        state: getSelectData.state,
-        bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction,
+        year: getSelectData?.year,
+        model: getSelectData?.model,
+        make: getSelectData?.make,
+        city: getSelectData?.city,
+        state: getSelectData?.state,
+        bidding_status: getSelectData?.status,
+        auctionType: getSelectData?.auction,
       })
       .then(function (res) {
+        console.log(879797, res.data.data);
         setData(res.data.data);
         setAllData(res.data.data);
         setLoading(false);
@@ -217,7 +223,7 @@ const Auctionlive = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-bell mr-2"></i> watched
+                    <i className="fa-solid fa-bell mr-2"></i> watched
                   </button>
                 </li>
                 <li className="d-flex gv">
@@ -392,7 +398,7 @@ const Auctionlive = () => {
                       <select
                         name="state"
                         className="field"
-                        value={getSelectData.state}
+                        value={getSelectData?.state}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">
@@ -410,7 +416,7 @@ const Auctionlive = () => {
                       <select
                         name="city"
                         className="field"
-                        value={getSelectData.city}
+                        value={getSelectData?.city}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">
@@ -448,7 +454,7 @@ const Auctionlive = () => {
                       <select
                         name="status"
                         className="field"
-                        value={getSelectData.status}
+                        value={getSelectData?.status}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">

@@ -36,6 +36,9 @@ function EditMyAccount() {
   const [file, setFile] = useState([]);
   const [file1, setFile1] = useState([]);
   const [file2, setFile2] = useState([]);
+
+  const [profileImg, setProfileImg] = useState("");
+
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -97,6 +100,7 @@ function EditMyAccount() {
       setUserData(userLoginData);
       console.log(111, userLoginData);
       setLogo(userLoginData.logo);
+      setProfileImg(userLoginData.logo)
       setGallery(userLoginData.gallery);
       setBanner(userLoginData.banner);
       setEditUser({
@@ -303,12 +307,12 @@ function EditMyAccount() {
             </div>
             <div className="col-12 col-md-8 col-lg-9">
               <div className="header_style">
-               
+
                 <h3>Edit Account Info</h3>
                 <Link to={'/accountinfo'}>
                   <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
                 </Link>
-             </div>
+              </div>
               <hr />
               <form onSubmit={handleApi}>
                 <div className="row">
@@ -729,6 +733,75 @@ function EditMyAccount() {
                         getInputField={getInputField}
                       />
                     )} */}
+
+
+
+                    <div className="col-12 col-sm-12 col-md-12">
+                      <div className="form-group">
+                        <div className="row">
+                          <div className="imgCross">
+                            {Array.from(profileImg).map((curElem) => {
+                              return (
+                                <span>
+                                  {profileImg ? <img
+                                    style={{
+                                      maxWidth: "16%",
+                                      padding: "10px",
+                                    }}
+                                    loading="lazy"
+                                    src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src =
+                                        "http://www.freeiconspng.com/uploads/no-image-icon-11.PNG";
+                                    }}
+                                    alt="Maskgroup1"
+                                  /> : <img src={
+                                    URL.createObjectURL(curElem)}
+                                  />}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div
+                          className="dropzone"
+                          onDragOver={handleDragOverBannerD}
+                          onDrop={handleDropBannerD}
+                        >
+                          <h3>Drag and Drop Files to Upload</h3>
+                          <h3>Or</h3>
+                          <input
+                            // onChange={(e) => {
+                            //   setProfileImg((prevState) => [
+                            //     ...prevState,
+                            //     ...e.target.files,
+                            //   ]);
+                            // }}
+                            onChange={(e) => {
+                              return setProfileImg(e.target.files);
+                            }}
+                            name="files"
+                            type="file"
+                            // multiple
+                            ref={inputRefBannerD}
+                            hidden
+                          />
+                          <button
+                            className="orange_btn"
+                            type="button"
+                            onClick={() => inputRefBannerD.current.click()}
+                          >
+                            Select Files
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
                     <div className="form-group">
                       {loading ? (
                         <button type="button" className="gry_btn mt-3">

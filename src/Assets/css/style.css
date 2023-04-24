@@ -290,7 +290,7 @@ img.addBanner {
 .heroSection {
   padding: 50px 0px;
   min-height: 500px;
-  background: url(../images/home_banner.png) center no-repeat;
+  background: url(../images/hadderBgImg.png) center no-repeat;
   background-size: cover;
   position: relative;
   height: 85vh;
@@ -7775,4 +7775,35 @@ ul.post_labelList li p.userIco {
   padding: 10px;
   border-radius: 100%;
   left: 90px;
+}
+
+.heroText.textAlignLeft:before {
+  content: '';
+  background: #f39e0336;
+  width: 49%;
+  height: 100%;
+  position: absolute;
+  border-radius: 260px;
+  box-shadow: 1px -5px 185px 10px #f39e0382;
+  top: 0px;
+  left: 11%;
+}
+.heroTex {
+  position: relative;
+}
+.imgRit {
+
+
+} 
+.heroSection.mains{position: relative;}
+.heroSection.mains:before {
+  content: '';
+  background-image: url(../images/homeCarImg.png);
+  background-repeat: no-repeat;
+  width: 56%;
+  height: 60%;
+  right: 0;
+  position: absolute;
+  background-size: cover;
+  top: 260px;
 }
