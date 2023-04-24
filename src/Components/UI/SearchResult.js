@@ -82,8 +82,6 @@ const SearchResult = () => {
   //   // setRelatedData(filteredData);
   // }, [name]);
 
-  
-  
   return (
     <>
       <section className="storeHeroSection dealer align-items-center">
@@ -117,9 +115,12 @@ const SearchResult = () => {
                   //   );
                   //   navigate("/");
                   // }}
-                  onClick={() =>
-                    dispatch(handleBail(!logingUser.dayAndNightMode.searchBail))
-                  }
+                  onClick={() => {
+                    dispatch(
+                      handleBail(!logingUser.dayAndNightMode.searchBail)
+                    );
+                    window.location.reload(false);
+                  }}
                   className="btn btn_change"
                 >
                   {/* <i
@@ -138,8 +139,6 @@ const SearchResult = () => {
                   )}
                   Notify me when one is listed
                 </button>
-
-                
 
                 <Link
                   className="btn ml-2"
