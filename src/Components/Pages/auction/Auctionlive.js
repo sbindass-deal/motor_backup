@@ -85,11 +85,6 @@ const Auctionlive = () => {
       });
   };
 
-<<<<<<< HEAD
-=======
- 
-
->>>>>>> 974cc0602a32c8dcf8b73d103c51acf02f92c31b
   useEffect(() => {
     fetchApiData();
   }, []);
