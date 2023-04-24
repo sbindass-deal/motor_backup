@@ -87,8 +87,8 @@ function Settings() {
                       />
                       <label
                         className="tgl-btn"
-                        data-tg-off="Private"
-                        data-tg-on="Public"
+                        data-tg-off="Public"
+                        data-tg-on="Private"
                         for="cb6"
                       ></label>
                     </div>
