@@ -49,7 +49,7 @@ const Auctionlive = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}getFiltersForVehicle`
       );
-      setFilterCategory(res.data.data);
+      setFilterCategory(res?.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -85,7 +85,7 @@ const Auctionlive = () => {
       });
   };
 
-  console.log(89898911111, data[0]?.auctionType);
+ 
 
   useEffect(() => {
     fetchApiData();
@@ -202,15 +202,16 @@ const Auctionlive = () => {
     handleFilteredModalClose();
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {
-        year: getSelectData.year,
-        model: getSelectData.model,
-        make: getSelectData.make,
-        city: getSelectData.city,
-        state: getSelectData.state,
-        bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction,
+        year: getSelectData?.year,
+        model: getSelectData?.model,
+        make: getSelectData?.make,
+        city: getSelectData?.city,
+        state: getSelectData?.state,
+        bidding_status: getSelectData?.status,
+        auctionType: getSelectData?.auction,
       })
       .then(function (res) {
+        console.log(879797, res.data.data);
         setData(res.data.data);
         setAllData(res.data.data);
         setLoading(false);
@@ -439,7 +440,7 @@ const Auctionlive = () => {
                       <select
                         name="state"
                         className="field"
-                        value={getSelectData.state}
+                        value={getSelectData?.state}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">
@@ -457,7 +458,7 @@ const Auctionlive = () => {
                       <select
                         name="city"
                         className="field"
-                        value={getSelectData.city}
+                        value={getSelectData?.city}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">
@@ -495,7 +496,7 @@ const Auctionlive = () => {
                       <select
                         name="status"
                         className="field"
-                        value={getSelectData.status}
+                        value={getSelectData?.status}
                         onChange={handleChangeSelectData}
                       >
                         <option selected disabled value="">
