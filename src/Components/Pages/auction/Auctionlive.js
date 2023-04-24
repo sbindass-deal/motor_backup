@@ -85,30 +85,9 @@ const Auctionlive = () => {
       });
   };
 
-  console.log(89898911111, data[0]?.auctionType);
-
   useEffect(() => {
     fetchApiData();
   }, []);
-
-  const fetchAuctionLiveApi = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/auction`
-      );
-
-      console.log(9898001, res);
-      if (res.data.status === 200) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
-  };
 
   const fetchAuctionLiveApiFilter = async () => {
     setLoading(true);
@@ -116,8 +95,6 @@ const Auctionlive = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_URL}getFiltersForVehicle`
       );
-
-      console.log(98980009897, res);
       if (res.data.status === 200) {
         setDataFilter(res.data.data);
       }
@@ -129,32 +106,8 @@ const Auctionlive = () => {
   };
 
   useEffect(() => {
-    fetchAuctionLiveApi();
     fetchAuctionLiveApiFilter();
   }, []);
-
-  const fetchAuctionLiveApiSelect = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/auction`
-      );
-
-      console.log(98981010110, res);
-      if (res.data.status === 200) {
-        const dataFilter = res.data.data.filter((curVal, i) => {
-          return curVal.year == getSelectData.year;
-        });
-
-        setData(dataFilter);
-        setAllData(res.data.data);
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
-  };
 
   // const getEndDate = (cal) => {
   //   let data = cal.split("T");
@@ -187,15 +140,15 @@ const Auctionlive = () => {
       })
       .then((res) => {
         if (res.data.status === 200) {
+          fetchApiData();
           dispatch(clearData());
-          window.location.reload(false);
         }
       });
   };
 
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
+  // if (loading) {
+  //   return <SmallSpinner spin={true} />;
+  // }
 
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { noImage, strToHtml, toCommas } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import TimeCalculate from "./TimeCalculate";
+import StarIcon from "@mui/icons-material/Star";
 
 const Data = ({ curElem, addFabrity }) => {
-  console.log(787878, curElem);
   return (
     <>
       <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
@@ -17,7 +17,22 @@ const Data = ({ curElem, addFabrity }) => {
                   <>
                     {curElem.category === "auction_live" && (
                       <>
-                        {curElem.auctionType === "charity" && (
+                        {curElem.reserve === "No" ? (
+                          <div class="bestSellerRgt charity">
+                            <span class="">No&nbsp;Reserve</span>
+                          </div>
+                        ) : curElem.auctionType === "charity" ? (
+                          <div class="bestSellerRgt charity">
+                            <span class="">Charity</span>
+                          </div>
+                        ) : curElem.auctionType === "Premium listing" ? (
+                          <div class="bestSellerRgt Featured">
+                            <span class="">Featured</span>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        {/* {curElem.auctionType === "charity" && (
                           <div class="bestSellerRgt charity">
                             <span class="">Charity</span>
                           </div>
@@ -26,7 +41,7 @@ const Data = ({ curElem, addFabrity }) => {
                           <div class="bestSellerRgt Featured">
                             <span class="">Featured</span>
                           </div>
-                        )}
+                        )} */}
                       </>
                     )}
 
@@ -64,11 +79,11 @@ const Data = ({ curElem, addFabrity }) => {
                 type="button"
                 className="watchedIc"
               >
-                <i
-                  className={`fa-solid fa-star  ${
-                    curElem.like >= 1 ? "faList" : ""
-                  }`}
-                ></i>
+                {curElem.like >= 1 ? (
+                  <StarIcon className="text-warning" />
+                ) : (
+                  <StarIcon />
+                )}
               </button>
             </h4>
 
@@ -90,7 +105,7 @@ const Data = ({ curElem, addFabrity }) => {
                 ) : curElem?.displayInAuction === "classified" ? (
                   <span>Document fee : ${curElem?.documentFee}</span>
                 ) : (
-                      <label>{curElem?.bidding_status}</label>
+                  <label>{curElem?.bidding_status}</label>
                 )}
               </li>
               <li>

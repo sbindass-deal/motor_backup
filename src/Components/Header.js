@@ -823,9 +823,11 @@ function Header() {
                             Social Hub
                           </Link>
                           <div className="dropdown-content">
-                            <Link className="" to="/garages">
-                              Garages
-                            </Link>
+                            <li className="nav-item">
+                              <Link className="nav-link" to="/garages">
+                                Garages
+                              </Link>
+                            </li>
 
                             {logingUser.login.admin === null && (
                               <li className="nav-item">
