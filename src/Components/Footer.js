@@ -59,8 +59,8 @@ const Footer = () => {
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
                 <li>
-                  <NavLink to="/getalerts" >
-                    Get Alerts
+                  <NavLink to="/contact" >
+                    Contact Us
                   </NavLink>
                 </li>
                 <li>
