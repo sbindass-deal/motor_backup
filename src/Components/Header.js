@@ -632,15 +632,14 @@ function Header() {
                             >
                               <Link className="nav-link">Logout</Link>
                             </li>
-
                           )}
-                          <li
+                          {/* <li
                             onClick={logout}
                             style={{ cursor: "pointer" }}
                             className="nav-item"
                           >
                             <Link className="nav-link">Get Alerts</Link>
-                          </li>
+                          </li> */}
 
                           {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
@@ -807,7 +806,69 @@ function Header() {
                           Showrooms
                         </Link>
                       </li>
+
+                      {/* ============== */}
+
                       <li className="nav-item">
+                        <div className="dropdown">
+                          <Link
+                            className={`nav-link ${
+                              location.pathname === "/garages" ||
+                              location.pathname === "/social-media"
+                                ? "active"
+                                : null
+                            }`}
+                            to="#"
+                          >
+                            Social Hub
+                          </Link>
+                          <div className="dropdown-content">
+                            <Link className="" to="/garages">
+                              Garages
+                            </Link>
+
+                            {logingUser.login.admin === null && (
+                              <li className="nav-item">
+                                <Link
+                                  className="nav-link"
+                                  style={{
+                                    color: `${
+                                      location.pathname === "/social-media"
+                                        ? "#EF6031"
+                                        : ""
+                                    }`,
+                                  }}
+                                  to="/social-media"
+                                >
+                                  Social Media
+                                </Link>
+                              </li>
+                            )}
+                          </div>
+                        </div>
+                      </li>
+
+                      {/* ================== */}
+
+                      <li className="nav-item">
+                        <Link
+                          className="nav-link"
+                          style={{
+                            color: `${
+                              location.pathname === "/garages" ? "#EF6031" : ""
+                            }`,
+                          }}
+                          to="#"
+                        >
+                          Market Place
+                        </Link>
+                      </li>
+
+                      {/* =================== */}
+
+                      {/* ============= */}
+
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -819,8 +880,8 @@ function Header() {
                         >
                           Garages
                         </Link>
-                      </li>
-                      {logingUser.login.admin === null && (
+                      </li> */}
+                      {/* {logingUser.login.admin === null && (
                         <li className="nav-item">
                           <Link
                             className="nav-link"
@@ -836,7 +897,7 @@ function Header() {
                             Social Media
                           </Link>
                         </li>
-                      )}
+                      )} */}
 
                       {/* <li className="nav-item">
                         <div className="dropdown">
@@ -997,7 +1058,7 @@ function Header() {
                           </div>
                         </div>
                       </li>
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -1011,7 +1072,7 @@ function Header() {
                         >
                           Get Alerts
                         </Link>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         <Link
                           className="nav-link"
