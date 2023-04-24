@@ -89,7 +89,7 @@ const SearchResult = () => {
             <div className="row">
               <div className="topTile">
                 <h1>
-                  {relatedData[0].make}{" "}
+                  {searchKey}{" "}
                   {/* {searchedData.make || relatedData[0].make}{" "} */}
                   {/* {searchedData.model || relatedData[0].model}{" "}
                   {searchedData.year || relatedData[0].year} */}
@@ -104,12 +104,12 @@ const SearchResult = () => {
                 </h5> */}
                 <button
                   type="button"
-                  onClick={() => {
-                    notify(
-                      "Thank you for your interest! We will notify you as soon as your model is listed."
-                    );
-                    navigate("/");
-                  }}
+                  // onClick={() => {
+                  //   notify(
+                  //     "Thank you for your interest! We will notify you as soon as your model is listed."
+                  //   );
+                  //   navigate("/");
+                  // }}
                   className="btn btn_change"
                 >
                   <i class="fa-solid fa-bell mr-2"></i> Notify me when one is
