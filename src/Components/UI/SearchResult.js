@@ -81,6 +81,9 @@ const SearchResult = () => {
   //   setSearchedData(searchedResult.length > 0 ? searchedResult[0] : {});
   //   // setRelatedData(filteredData);
   // }, [name]);
+
+  
+  
   return (
     <>
       <section className="storeHeroSection dealer align-items-center">
@@ -135,6 +138,8 @@ const SearchResult = () => {
                   )}
                   Notify me when one is listed
                 </button>
+
+
 
                 <Link
                   className="btn ml-2"
