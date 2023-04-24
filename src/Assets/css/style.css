@@ -7756,3 +7756,10 @@ ul.post_labelList li p.userIco {
   margin-bottom: 0;
   top: 6px;
 }
+
+.rightGallery .ant-image .ant-image-mask:hover {
+  opacity: 1;
+  left: 5px;
+  max-width: 100%;
+  top: 6px;
+}
