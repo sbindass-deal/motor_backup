@@ -125,6 +125,8 @@ function AccountInfo() {
                 </div>
               </div>
               <hr />
+              <div className="row">
+              <div className="col-6">
               <ul className="labelList_">
                 <li>
                   <div className="labelList_label">Username</div>
@@ -141,6 +143,7 @@ function AccountInfo() {
                     {/* <a href="#">Resend Verification Email</a> */}
                   </div>
                 </li>
+               
                 {/* <li>
                   <div className="labelList_label">Title</div>
                   <div className="labelList_text">
@@ -169,6 +172,11 @@ function AccountInfo() {
                   )}
                 </li>
                 {/* ==================== */}
+                <li>
+                  <div className="labelList_label">Profile Photo</div>
+                  <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/>
+
+                </li>
 
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
@@ -264,6 +272,15 @@ function AccountInfo() {
                   </>
                 )}
               </ul>
+
+              </div>
+              <div className="col-6">
+                        <img src=""/>
+              </div>
+              </div>
+            
+              
+
             </div>
           </div>
         </div>
