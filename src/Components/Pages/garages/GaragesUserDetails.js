@@ -173,7 +173,7 @@ const GaragesUserDetails = () => {
               {garagesData?.dealerDescription &&
                 parse(garagesData?.dealerDescription, strToHtml)}
             </p>
-            <ul class="nav nav-tabs my-4 tBB" id="myTab" role="tablist">
+            <ul class="nav nav-tabs my-4 tBB only" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link active"
@@ -373,7 +373,7 @@ const GaragesUserDetails = () => {
                 />
               </div>
               <div
-                class="tab-pane fade"
+                class="tab-pane fade sswfr"
                 id="social-tab-pane"
                 role="tabpanel"
                 aria-labelledby="social-tab"

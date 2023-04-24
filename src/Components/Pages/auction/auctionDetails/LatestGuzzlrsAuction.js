@@ -10,16 +10,24 @@ const LatestGuzzlrsAuction = () => {
 
   useEffect(() => {
     const latestAuctionDataApi = async () => {
-      try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_URL}vehicles_all/auction`
-        );
-        if (res.data.status === 200) {
+      // try {
+      //   const res = await axios.get(
+      //     `${process.env.REACT_APP_URL}vehicles_all/auction`
+      //   );
+      //   if (res.data.status === 200) {
+      //     setAuctonVehicle(res.data.data);
+      //   }
+      // } catch (err) {
+      //   console.log(err);
+      // }
+      axios
+        .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {})
+        .then(function (res) {
           setAuctonVehicle(res.data.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     };
 
     latestAuctionDataApi();
@@ -44,39 +52,37 @@ const LatestGuzzlrsAuction = () => {
                   key={i}
                   className="sidebarPost"
                 >
-                 
-                    <div className="overlay_post8">
+                  <div className="overlay_post8">
+                    <div className="">
                       <div className="">
-                        <div className="">
-                          Current Bid: $
-                          {curElem?.currentBid &&
-                            toCommas(curElem?.currentBid?.last_bid)}
-                        </div>
-                        <div className="">
-                          Ends in:{" "}
-                          {curElem.EndTime &&
-                            new Date(curElem.EndTime).toLocaleDateString()}
-                        </div>
+                        Current Bid: $
+                        {curElem?.currentBid &&
+                          toCommas(curElem?.currentBid?.last_bid)}
+                      </div>
+                      <div className="">
+                        Ends in:{" "}
+                        {curElem.EndTime &&
+                          new Date(curElem.EndTime).toLocaleDateString()}
                       </div>
                     </div>
-                    <div className="sidebarPost_Img">
-                      {curElem?.image_banner && (
-                        <img
-                          loading="lazy"
-                          src={
-                            curElem?.image_banner[0]
-                              ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
-                              : noImage
-                          }
-                          onError={({ currentTarget }) => {
-                            currentTarget.onError = null;
-                            currentTarget.src = noImage;
-                          }}
-                          alt="Maskgroup1"
-                        />
-                      )}
-                    </div>
-                 
+                  </div>
+                  <div className="sidebarPost_Img">
+                    {curElem?.image_banner && (
+                      <img
+                        loading="lazy"
+                        src={
+                          curElem?.image_banner[0]
+                            ? `${process.env.REACT_APP_URL}/${curElem?.image_banner[0]?.imagePath}/${curElem?.image_banner[0]?.imageName}`
+                            : noImage
+                        }
+                        onError={({ currentTarget }) => {
+                          currentTarget.onError = null;
+                          currentTarget.src = noImage;
+                        }}
+                        alt="Maskgroup1"
+                      />
+                    )}
+                  </div>
                 </Link>
               );
             })}
