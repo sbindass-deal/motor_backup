@@ -111,7 +111,8 @@ const Auctionfeature = () => {
       .then((res) => {
         if (res.data.status === 200) {
           dispatch(clearData());
-          window.location.reload(false);
+          fetchApiData()
+          // window.location.reload(false);
         }
       });
   };
@@ -146,13 +147,9 @@ const Auctionfeature = () => {
     fetchNoreserveDataSelect();
   };
 
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
-
-
-  console.log(56556, data[0]?.auctionType)
-  console.log(7979797, getSelectData)
+  // if (loading) {
+  //   return <SmallSpinner spin={true} />;
+  // }
 
   return (
     <>
