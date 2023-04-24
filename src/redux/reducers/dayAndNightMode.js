@@ -5,6 +5,7 @@ const initialState = {
   searchData: { searchResult: "", searchKey: "" },
   showAuction: false,
   showGarage: false,
+  searchBail: false,
 };
 
 export const dayAndNightMode = createSlice({
@@ -23,10 +24,18 @@ export const dayAndNightMode = createSlice({
     handleShowGarage: (state, action) => {
       state.showGarage = action.payload;
     },
+    handleBail: (state, action) => {
+      state.searchBail = action.payload;
+    },
   },
 });
 
-export const { changeMode, showResult, handleShowAuction, handleShowGarage } =
-  dayAndNightMode.actions;
+export const {
+  changeMode,
+  showResult,
+  handleShowAuction,
+  handleShowGarage,
+  handleBail,
+} = dayAndNightMode.actions;
 
 export default dayAndNightMode.reducer;

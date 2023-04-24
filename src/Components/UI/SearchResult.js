@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { handleBail } from "../../redux/reducers/dayAndNightMode";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 
 const SearchResult = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logingUser = useSelector((state) => state);
   const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
+
   const [searchedData, setSearchedData] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
   // console.log(name);
@@ -38,9 +42,9 @@ const SearchResult = () => {
       const filterData = res.data.vehicles_result?.filter(
         (item) => item?.label == name
       );
-      
-      const filterDatas = res.data.vehicles_result?.filter(
-        (item) => item?.label?.toLowerCase()?.includes(searchKey?.toLowerCase())
+
+      const filterDatas = res.data.vehicles_result?.filter((item) =>
+        item?.label?.toLowerCase()?.includes(searchKey?.toLowerCase())
       );
       if (filterData?.length > 0) {
         setRelatedData(filterData);
@@ -110,10 +114,26 @@ const SearchResult = () => {
                   //   );
                   //   navigate("/");
                   // }}
+                  onClick={() =>
+                    dispatch(handleBail(!logingUser.dayAndNightMode.searchBail))
+                  }
                   className="btn btn_change"
                 >
-                  <i class="fa-solid fa-bell mr-2"></i> Notify me when one is
-                  listed
+                  {/* <i
+                    class={`fa-solid fa-bell mr-2 ${
+                      logingUser.dayAndNightMode.searchBail && "text-warning"
+                    }`}
+                  ></i> */}
+                  {logingUser.dayAndNightMode.searchBail === true ? (
+                    <span className={`fa-solid fa-bell mr-2 text-warning`}>
+                      <CircleNotificationsIcon />
+                    </span>
+                  ) : (
+                    <span className={`fa-solid fa-bell mr-2`}>
+                      <CircleNotificationsIcon />
+                    </span>
+                  )}
+                  Notify me when one is listed
                 </button>
 
                 <Link
