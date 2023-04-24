@@ -23,15 +23,12 @@ const Auctionlive = () => {
   const [highlightWatch, setHighlightWatch] = useState(false);
   const [filterCategory, setFilterCategory] = useState({});
 
-
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = data?.slice(firstPostIndex, lastPostIndex);
-
-
 
   const [getSelectData, setGetSelectData] = useState({
     year: "",
@@ -41,12 +38,11 @@ const Auctionlive = () => {
     state: "",
     city: "",
     auction: "",
-    status: ""
-
+    status: "",
   });
   const handleChangeSelectData = (e) => {
-    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value })
-  }
+    setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
+  };
 
   const filterApiData = async () => {
     try {
@@ -63,7 +59,6 @@ const Auctionlive = () => {
     filterApiData();
   }, []);
 
-
   const fetchApiData = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -75,7 +70,7 @@ const Auctionlive = () => {
       state: "",
       city: "",
       auction: "",
-      status: ""
+      status: "",
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/auction`, {})
@@ -90,21 +85,20 @@ const Auctionlive = () => {
       });
   };
 
-  console.log(89898911111, data[0]?.auctionType)
+  console.log(89898911111, data[0]?.auctionType);
 
   useEffect(() => {
     fetchApiData();
   }, []);
 
-
-
   const fetchAuctionLiveApi = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}vehicles_all/auction`);
+        `${process.env.REACT_APP_URL}vehicles_all/auction`
+      );
 
-      console.log(9898001, res)
+      console.log(9898001, res);
       if (res.data.status === 200) {
         setData(res.data.data);
         setAllData(res.data.data);
@@ -123,10 +117,9 @@ const Auctionlive = () => {
         `${process.env.REACT_APP_URL}getFiltersForVehicle`
       );
 
-      console.log(98980009897, res)
+      console.log(98980009897, res);
       if (res.data.status === 200) {
         setDataFilter(res.data.data);
-
       }
       setLoading(false);
     } catch (err) {
@@ -137,9 +130,8 @@ const Auctionlive = () => {
 
   useEffect(() => {
     fetchAuctionLiveApi();
-    fetchAuctionLiveApiFilter()
+    fetchAuctionLiveApiFilter();
   }, []);
-
 
   const fetchAuctionLiveApiSelect = async () => {
     setLoading(true);
@@ -148,14 +140,12 @@ const Auctionlive = () => {
         `${process.env.REACT_APP_URL}vehicles_all/auction`
       );
 
-      console.log(98981010110, res)
+      console.log(98981010110, res);
       if (res.data.status === 200) {
         const dataFilter = res.data.data.filter((curVal, i) => {
-          return curVal.year == getSelectData.year
+          return curVal.year == getSelectData.year;
+        });
 
-        })
-
-       
         setData(dataFilter);
         setAllData(res.data.data);
       }
@@ -165,7 +155,6 @@ const Auctionlive = () => {
       setLoading(false);
     }
   };
-
 
   // const getEndDate = (cal) => {
   //   let data = cal.split("T");
@@ -219,8 +208,7 @@ const Auctionlive = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction
-
+        auctionType: getSelectData.auction,
       })
       .then(function (res) {
         setData(res.data.data);
@@ -234,13 +222,9 @@ const Auctionlive = () => {
   };
 
   const handleSubmitModel = (e) => {
-    e.preventDefault()
-    fetchNoreserveDataSelect()
-  }
-
-
- 
-
+    e.preventDefault();
+    fetchNoreserveDataSelect();
+  };
 
   return (
     <>
@@ -287,16 +271,18 @@ const Auctionlive = () => {
                   <button
                     onClick={() => setViewListActive(false)}
                     type="button"
-                    className={`gry_btn gridView ${!viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn gridView ${
+                      !viewListActive ? "active" : ""
+                    }`}
                   >
                     <img src={icGrid} loading="lazy" />
                   </button>
                   <button
                     onClick={() => setViewListActive(true)}
                     type="button"
-                    className={`gry_btn listView ${viewListActive ? "active" : ""
-                      }`}
+                    className={`gry_btn listView ${
+                      viewListActive ? "active" : ""
+                    }`}
                   >
                     <i className="fa-sharp fa-solid fa-list"></i>
                   </button>
@@ -323,25 +309,26 @@ const Auctionlive = () => {
                     Filters
                   </button>
                 </li>
-
               </ul>
             </div>
           </div>
           <div
-            className={`row pt-4 row_gridList ${viewListActive && "activeListView"
-              }`}
+            className={`row pt-4 row_gridList ${
+              viewListActive && "activeListView"
+            }`}
           >
             {currentPosts?.length == 0 ? (
               <NotAvailable text="Data not found" />
-
             ) : (
               currentPosts
                 ?.filter((curElem) => {
-                  console.log(878787, curElem)
+                  console.log(878787, curElem);
                   if (searchValue == "") {
                     return curElem;
                   } else if (
-                    curElem?.title?.toLowerCase()?.includes(searchValue.toLowerCase())
+                    curElem?.title
+                      ?.toLowerCase()
+                      ?.includes(searchValue.toLowerCase())
                     // ||
                     // curElem?.model?.toLowerCase()?.includes(searchValue.toLowerCase()) ||
                     // curElem?.year?.toLowerCase()?.includes(searchValue.toLowerCase())
@@ -357,7 +344,8 @@ const Auctionlive = () => {
                       addFabrity={addFabrity}
                     />
                   );
-                }))}
+                })
+            )}
 
             <Pagination
               totalPosts={data?.length}
@@ -481,7 +469,7 @@ const Auctionlive = () => {
                       </select>
                     </div>
                   </div>
-                  {/* <div className="col-12 col-md-6">
+                  <div className="col-12 col-md-6">
                     <label>Auction Type</label>
                     <div className="form-group">
                       <select
@@ -494,12 +482,12 @@ const Auctionlive = () => {
                           Select
                         </option>
                         {filterCategory?.auctionType?.map((curVal, i) => {
-                          console.log(9898989, curVal)
+                          console.log(9898989, curVal);
                           return <option value={curVal}>{curVal}</option>;
                         })}
                       </select>
                     </div>
-                  </div> */}
+                  </div>
 
                   <div className="col-12 col-md-6">
                     <label>Bidding Status</label>

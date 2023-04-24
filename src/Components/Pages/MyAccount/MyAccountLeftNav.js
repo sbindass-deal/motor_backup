@@ -46,6 +46,23 @@ function MyAccountLeftNav() {
                 Account Info
               </Link>
             </MenuItem>
+
+            <MenuItem>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  style={{
+                    color: `${
+                      location.pathname === "/getalerts" ? "#EF6031" : ""
+                    }`,
+                  }}
+                  to="/getalerts"
+                >
+                  Get Alerts
+                </Link>
+              </li>
+            </MenuItem>
+
             <SubMenu
               onClick={() => {
                 dispatch(handleShowGarage(true));
@@ -269,7 +286,7 @@ function MyAccountLeftNav() {
                 </Link>
               </li>
             </MenuItem>
-            
+
             {/* <MenuItem>
               <li>
                 <Link

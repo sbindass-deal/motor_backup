@@ -5,8 +5,20 @@ import premium from "../../Assets/images/premium.png";
 import auction_list from "../../Assets/images/auction_list.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { showModalClose, showModalLogin } from "../../redux/reducers/login";
 
 const GetAlerts = () => {
+  const dispatch = useDispatch();
+  const logingUser = useSelector((state) => state);
+
+const handleClose = () => {
+  dispatch(showModalClose());
+};
+const handleShow = () => {
+  dispatch(showModalLogin());
+  };
+  
   const handleSubmitApi = () => {
     // axios
     //   .post(`${process.env.REACT_APP_URL}sendMail`, {
@@ -39,13 +51,12 @@ const GetAlerts = () => {
               with the most relevant news.
             </p>
             <button
-                    onClick={handleSubmitApi}
-                    type="button"
-                    className="results_subscribe btn"
-                  >
-                    <i className="fa-regular fa-envelope"></i>{" "}
-                    <span>Subscribe</span>
-                  </button>
+              onClick={handleSubmitApi}
+              type="button"
+              className="results_subscribe btn"
+            >
+              <i className="fa-regular fa-envelope"></i> <span>Subscribe</span>
+            </button>
             <div className="row mt-4">
               <div className="col-md-8 offset-lg-2 center-align">
                 <div className="daily_mail_box">
@@ -55,7 +66,6 @@ const GetAlerts = () => {
                     name="email"
                     placeholder="Enter email address"
                   /> */}
-                 
                 </div>
               </div>
             </div>
@@ -177,9 +187,22 @@ const GetAlerts = () => {
                   you.
                 </li>
               </ul>
-              <Link to="/settings" className="btn">
+
+              {logingUser.login.token == null ? (
+                <li onClick={handleShow}>
+                  <Link className="btn">
+                    <i className="fa-solid fa-list mr-2"></i>Go to My Watchlist
+                  </Link>
+                </li>
+              ) : (
+                <Link to="/settings" className="btn">
+                  <i className="fa-solid fa-list mr-2"></i>Go to My Watchlist
+                </Link>
+              )}
+
+              {/* <Link to="/settings" className="btn">
                 <i className="fa-solid fa-list mr-2"></i>Go to My Watchlist
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

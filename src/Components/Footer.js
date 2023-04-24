@@ -2,15 +2,28 @@ import React from "react";
 import shibnobiMotors from "../Assets/images/transparent.png";
 import shibnobiMotorsW from "../Assets/images/lightmode-logo.png";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { showModalClose, showModalLogin } from "../redux/reducers/login";
 
 const Footer = () => {
+  
+  const dispatch = useDispatch();
+  const logingUser = useSelector((state) => state);
+
+  const handleClose = () => {
+    dispatch(showModalClose());
+  };
+  const handleShow = () => {
+    dispatch(showModalLogin());
+  };
+
   return (
     <div>
       <footer>
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-3 col-lg-3 pb-4">
-              <NavLink to="/"  className="mb-3">
+              <NavLink to="/" className="mb-3">
                 <img
                   loading="lazy"
                   src={shibnobiMotors}
@@ -34,39 +47,38 @@ const Footer = () => {
               <ul className="fLinks fLinks_row">
                 {/* <li><Link to="#">Auctions</Link></li> */}
                 <li>
-                  <NavLink to="/shipping" >
-                    Shipping
-                  </NavLink>
+                  <NavLink to="/shipping">Shipping</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/auctionfeature" >
-                    Featured
-                  </NavLink>
+                  <NavLink to="/auctionfeature">Featured</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/submit" >
-                    List Your Vehicle
-                  </NavLink>
+                  <NavLink to="/submit">List Your Vehicle</NavLink>
                 </li>
                 {/* <li><Link to="makeamodel">Makes and Models</Link></li> */}
                 {/* <li><Link to="#">Event Calendar</Link></li> */}
                 {/* <li><Link to="works">How Gasguzzlers Works</Link></li> */}
                 {/* <li><Link to="showroom">Show Room</Link></li> */}
                 <li>
-                  <NavLink to="/carraffle" >
-                    Giveaways
-                  </NavLink>
+                  <NavLink to="/carraffle">Giveaways</NavLink>
                 </li>
                 {/* <li><Link to="javascript:void(0)" data-toggle="modal" data-target="#loginModal">Log In</Link></li> */}
+
+                {logingUser.login.token == null ? (
+                  <li onClick={handleShow}>
+                    <NavLink>Contact Us</NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink to="/contact">Contact Us</NavLink>
+                  </li>
+                )}
+
+                {/* <li>
+                  <NavLink to="/contact">Contact Us</NavLink>
+                </li> */}
                 <li>
-                  <NavLink to="/contact" >
-                    Contact Us
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about" >
-                    About Gas Guzzlrs
-                  </NavLink>
+                  <NavLink to="/about">About Gas Guzzlrs</NavLink>
                 </li>
               </ul>
             </div>
@@ -127,12 +139,8 @@ const Footer = () => {
             <div className="row">
               <div className="col-12 col-md-6 copyrightLinks text-center text-md-right order-md-1">
                 <NavLink to="/privacy">Privacy policy</NavLink>
-                <NavLink to="/termsandconditions" >
-                  Term of Condition
-                </NavLink>
-                <NavLink to="/amlpolicy" >
-                  AML Policy
-                </NavLink>
+                <NavLink to="/termsandconditions">Term of Condition</NavLink>
+                <NavLink to="/amlpolicy">AML Policy</NavLink>
               </div>
               <div className="col-12 col-md-6 text-center text-md-left order-md-0">
                 <p>©2023 Gas Guzzlrs | All Rights Reserved.</p>
