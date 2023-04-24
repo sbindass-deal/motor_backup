@@ -177,8 +177,8 @@ function Home() {
         </a>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-8 offset-lg-2">
-              <div className="heroText">
+            <div className="col-12 col-lg-6">
+              <div className="heroText textAlignLeft">
                 <h1>
                   We are dedicated to parking your Dream Vehicle in your Garage
                 </h1>
@@ -187,6 +187,7 @@ function Home() {
                 </Link>
               </div>
             </div>
+            <div className="col-12 col-lg-6"></div>
           </div>
         </div>
       </section>

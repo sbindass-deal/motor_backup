@@ -290,7 +290,7 @@ img.addBanner {
 .heroSection {
   padding: 50px 0px;
   min-height: 500px;
-  background: url(../images/sports-car-in-parking-garage-cinematic-2021-08-28-23-06-08-utc-min.png) center no-repeat;
+  background: url(../images/home_banner.png) center no-repeat;
   background-size: cover;
   position: relative;
   height: 85vh;
@@ -5120,6 +5120,7 @@ input[type=file] {
   color: white;
 
 }
+.orange_btn{border-radius: 8px;}
 
 .raffle table {
   font-size: 12px;
@@ -7747,4 +7748,23 @@ ul.post_labelList li p.userIco {
 }
 .modal-body .PostInfo {
   padding: 20px !important;
+}
+
+.heroText.textAlignLeft {
+  text-align: left;
+}
+.deTitle {
+  margin-bottom: 0;
+  top: 6px;
+}
+
+.rightGallery .ant-image .ant-image-mask:hover {
+  opacity: 1;
+  left: 5px;
+  max-width: 100%;
+  top: 6px;
+}
+.text-danger {
+  color: #dc3545!important;
+  font-weight: 300;
 }
