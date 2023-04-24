@@ -139,7 +139,7 @@ const SearchResult = () => {
                   Notify me when one is listed
                 </button>
 
-
+                
 
                 <Link
                   className="btn ml-2"
