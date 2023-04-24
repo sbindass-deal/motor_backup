@@ -91,6 +91,173 @@ const VechilesRegistraion = () => {
   );
   const [charityEditor, setCharityEditor] = useState(EditorState.createEmpty());
   const inputRefBanner = useRef();
+
+
+  const [fileError, setFileError] = useState(false)
+  const [galleryFileError, setGalleryFileError] = useState(false)
+  const [vehiError, setVehiError] = useState(false)
+  const [saleError, setSaleError] = useState(false)
+  const [soldvechilesError, setSoldvechilesError] = useState(false)
+  const [stateError, setStateError] = useState(false)
+  const [countryError, setCountryError] = useState(false)
+
+  const [displayInAuctionError, setDisplayInAuctionError] = useState(false)
+  const [auctionTypeError, setAuctionTypeError] = useState(false)
+  const [selectedValueError, setSelectedValueVehiError] = useState(false)
+  const [vechilesraceError, setVechilesraceError] = useState(false)
+  const [ultiumdriveError, setUltiumdriveError] = useState(false)
+  const [InterstellarError, setInterstellarError] = useState(false)
+  const [interiorError, setInteriorError] = useState(false)
+  const [kmError, setKmError] = useState(false)
+  const [statusError, setStatusError] = useState(false)
+  const [accurateFieldError, setAccurateFieldError] = useState(false)
+  const [file1Error, setFile1Error] = useState(false)
+
+// console.log("selectedValue", selectedValue)
+  let bfvalid = true;
+  const bfvalidation = () => {
+    if (!basicfact.displayInAuction) {
+      setDisplayInAuctionError(true)
+      bfvalid = false
+    }
+    else {
+      setDisplayInAuctionError(false)
+    }
+    if (!basicfact.auctionType) {
+      setAuctionTypeError(true)
+      bfvalid = false
+    }
+    else {
+      setAuctionTypeError(false)
+    }
+    if (!selectedValue) {
+      setSelectedValueVehiError(true)
+      bfvalid = false
+    }
+    else {
+      setSelectedValueVehiError(false)
+    }
+    if (!basicfact.vechilesrace) {
+      setVechilesraceError(true)
+      bfvalid = false
+    }
+    else {
+      setVechilesraceError(false)
+    }
+    if (!basicfact.ultiumdrive) {
+      setUltiumdriveError(true)
+      bfvalid = false
+    }
+    else {
+      setUltiumdriveError(false)
+    }
+    if (!basicfact.Interstellar) {
+      setInterstellarError(true)
+      bfvalid = false
+    }
+    else {
+      setInterstellarError(false)
+    }
+
+    if (!basicfact.interior) {
+      setInteriorError(true)
+      bfvalid = false
+    }
+    else {
+      setInteriorError(false)
+    }
+
+    if (!basicfact.km) {
+      setKmError(true)
+      bfvalid = false
+    }
+    else {
+      setKmError(false)
+    }
+
+    if (!basicfact.status) {
+      setStatusError(true)
+      bfvalid = false
+    }
+    else {
+      setStatusError(false)
+    }
+    if (!basicfact.accurateField) {
+      setAccurateFieldError(true)
+      bfvalid = false
+    }
+    else {
+      setAccurateFieldError(false)
+    }
+
+    if (!file1[0]) {
+      setFile1Error(true)
+      bfvalid = false
+    } else {
+      setFile1Error(false)
+    }
+
+    if (!galleryFile[0]) {
+      setGalleryFileError(true)
+      valid = false
+    } else {
+      setGalleryFileError(false)
+    }
+  }
+
+
+  let valid = true;
+  const validation = () => {
+    if (!namefield.vechilelocation) {
+      setCountryError(true)
+      valid = false
+    }
+    else {
+      setCountryError(false)
+    }
+    if (!namefield.city) {
+      setStateError(true)
+      valid = false
+    }
+    else {
+      setStateError(false)
+    }
+    if (!namefield.vehiclepast) {
+      setVehiError(true)
+      valid = false
+    }
+    else {
+      setVehiError(false)
+    }
+    if (!namefield.sale) {
+      setSaleError(true)
+      valid = false
+    }
+    else {
+      setSaleError(false)
+    }
+    if (!namefield.soldvechiles) {
+      setSoldvechilesError(true)
+      valid = false
+    }
+    else {
+      setSoldvechilesError(false)
+    }
+    if (!file[0]) {
+      setFileError(true)
+      valid = false
+    } else {
+      setFileError(false)
+    }
+
+    if (!galleryFile[0]) {
+      setGalleryFileError(true)
+      valid = false
+    } else {
+      setGalleryFileError(false)
+    }
+  }
+
   useEffect(() => {
     const fetchCountryApi = async () => {
       try {
@@ -511,10 +678,15 @@ const VechilesRegistraion = () => {
   const handleNextSubmit = (e) => {
     e.preventDefault();
     setErrorMakeAndModal(false);
-    dispatch(step_one(true));
+    validation();
+    if (valid) {
+      dispatch(step_one(true));
+    }
     dispatch(step_two(false));
     dispatch(step_three(false));
   };
+
+
   const basicFactOnChange = (e) => {
     let Value = e.target.value;
     const Name = e.target.name;
@@ -526,9 +698,12 @@ const VechilesRegistraion = () => {
   };
   const basicFactSubmitHandler = (e) => {
     e.preventDefault();
+    bfvalidation();
     setErrorBasicFact(false);
     dispatch(step_one(true));
-    dispatch(step_two(true));
+    if(bfvalid){
+      dispatch(step_two(true));
+    }
     dispatch(step_three(false));
   };
   const detailsOnChange = (e) => {
@@ -629,6 +804,9 @@ const VechilesRegistraion = () => {
     // if (errorMakeAndModal || errorBasicFact || errorDetais) {
     //   return setShowError(false);
     // }
+
+
+
     axios
       .post(`${url}vehicles`, {
         // planId: logingUser.planReducer.plan.planId,
@@ -650,12 +828,10 @@ const VechilesRegistraion = () => {
         dealerDescription: dealership,
         ownerDetail: `${vechilesrace === "Yes" ? "Race Car" : "No"} `,
         detailvin: vin,
-        displayInAuction: `${
-          logingUser.planReducer.garage ? displayInAuction : "Garage"
-        }`,
-        auctionType: `${
-          logingUser.planReducer.garage ? auctionType : "Garage"
-        }`,
+        displayInAuction: `${logingUser.planReducer.garage ? displayInAuction : "Garage"
+          }`,
+        auctionType: `${logingUser.planReducer.garage ? auctionType : "Garage"
+          }`,
         externalLink: adWebsiteLink,
         km: odometer,
         kmacc: accurateField,
@@ -1027,7 +1203,7 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === false
+                            reduxValue.submitvechilesReducer.step_two === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1046,8 +1222,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === false
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === false
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1066,8 +1242,8 @@ const VechilesRegistraion = () => {
                       <a
                         className={
                           reduxValue.submitvechilesReducer.step_one === true &&
-                          reduxValue.submitvechilesReducer.step_two === true &&
-                          reduxValue.submitvechilesReducer.step_three === true
+                            reduxValue.submitvechilesReducer.step_two === true &&
+                            reduxValue.submitvechilesReducer.step_three === true
                             ? "nav-link active"
                             : "nav-link"
                         }
@@ -1186,29 +1362,34 @@ const VechilesRegistraion = () => {
                                 What country is the vehicle currently located
                                 in?
                               </label>
+                              <div className="was-validated">
 
-                              <select
-                                value={namefield.vechilelocation}
-                                onChange={(e) => {
-                                  handleNameField(e);
-                                  setCountryCode(e.target.value);
-                                }}
-                                name="vechilelocation"
-                                className="field bgChangeDark"
-                                required
-                              >
-                                <option selected disabled value="">
-                                  Select
-                                </option>
+                                <select
+                                  value={namefield.vechilelocation}
+                                  onBlur={validation}
+                                  onChange={(e) => {
+                                    handleNameField(e);
+                                    setCountryCode(e.target.value);
+                                  }}
+                                  name="vechilelocation"
+                                  className={` ${countryError ? "field border-danger" : "field"}`}
+                                // className="field bgChangeDark"
+                                // required
+                                >
+                                  <option selected disabled value="">
+                                    Select
+                                  </option>
 
-                                {counryData.map((curElem, i) => {
-                                  return (
-                                    <option value={curElem.id} key={i}>
-                                      {curElem.name}
-                                    </option>
-                                  );
-                                })}
-                              </select>
+                                  {counryData.map((curElem, i) => {
+                                    return (
+                                      <option value={curElem.id} key={i}>
+                                        {curElem.name}
+                                      </option>
+                                    );
+                                  })}
+                                </select>
+                                {countryError && <span className="text-danger">Required field</span>}
+                              </div>
                             </div>
                           </div>
                           {/* <div className="col-12 col-sm-12 col-md-6">
@@ -1234,10 +1415,11 @@ const VechilesRegistraion = () => {
                               <select
                                 value={namefield.city}
                                 onChange={handleNameField}
+                                onBlur={validation}
                                 name="city"
                                 placeholder="Enter city"
-                                className="field"
-                                // required
+                                className={` ${stateError ? "field border-danger" : "field"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1250,6 +1432,7 @@ const VechilesRegistraion = () => {
                                   );
                                 })}
                               </select>
+                              {stateError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
 
@@ -1262,9 +1445,10 @@ const VechilesRegistraion = () => {
                               <select
                                 value={namefield.sale}
                                 onChange={handleNameField}
+                                onBlur={validation}
                                 name="sale"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${saleError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1272,6 +1456,7 @@ const VechilesRegistraion = () => {
                                 <option>Yes</option>
                                 <option>No</option>
                               </select>
+                              {saleError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
@@ -1283,9 +1468,9 @@ const VechilesRegistraion = () => {
                               <select
                                 value={namefield.vehiclepast}
                                 onChange={handleNameField}
+                                onBlur={validation}
                                 name="vehiclepast"
-                                className="field bgChangeDark"
-                                required
+                                className={` ${vehiError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1293,6 +1478,7 @@ const VechilesRegistraion = () => {
                                 <option>Yes</option>
                                 <option>No</option>
                               </select>
+                              {vehiError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           {namefield.sale === "Yes" ? (
@@ -1332,7 +1518,7 @@ const VechilesRegistraion = () => {
                               </div> */}
                             </>
                           ) : // )
-                          null}
+                            null}
 
                           {namefield.vehiclepast === "Yes" ? (
                             <>
@@ -1348,7 +1534,7 @@ const VechilesRegistraion = () => {
                                     name="changedvechiles"
                                     className="field"
                                     maxLength={200}
-                                    required
+
                                   ></textarea>
                                 </div>
                               </div>
@@ -1404,9 +1590,10 @@ const VechilesRegistraion = () => {
                               <select
                                 value={namefield.soldvechiles}
                                 onChange={handleNameField}
+                                onBlur={validation}
                                 name="soldvechiles"
-                                className="field bgChangeDark"
-                                required
+                                className={soldvechilesError ? "field bgChangeDark border-danger" : "field bgChangeDark"}
+
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1414,6 +1601,7 @@ const VechilesRegistraion = () => {
                                 <option>Yes</option>
                                 <option>No</option>
                               </select>
+                              {soldvechilesError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -1512,7 +1700,7 @@ const VechilesRegistraion = () => {
 
                             <div className="form-group">
                               <div
-                                className="dropzone"
+                                className={`dropzone  ${fileError && "dropzone border-danger"}`}
                                 onDragOver={handleDragOverBanner}
                                 onDrop={handleDropBanner}
                               >
@@ -1536,6 +1724,7 @@ const VechilesRegistraion = () => {
                                   Select Files
                                 </button>
                               </div>
+                              {fileError && <span className="text-danger">Please upload banner photo.</span>}
                             </div>
                           </div>
                           <div className="col-12">
@@ -1582,7 +1771,7 @@ const VechilesRegistraion = () => {
                               </div>
 
                               <div
-                                className="dropzone"
+                                className={`dropzone  ${galleryFileError && "dropzone border-danger"}`}
                                 onDragOver={handleDragOverBannerG}
                                 onDrop={handleDropBannerG}
                               >
@@ -1609,6 +1798,7 @@ const VechilesRegistraion = () => {
                                   Select Files
                                 </button>
                               </div>
+                              {galleryFileError && <span className="text-danger">Please upload photos of your vehicle.</span>}
                             </div>
                           </div>
 
@@ -1630,7 +1820,7 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === false ? (
+                    reduxValue.submitvechilesReducer.step_two === false ? (
                     <div className="tab-pane active">
                       <h3>Basic Facts</h3>
                       <hr />
@@ -1693,14 +1883,16 @@ const VechilesRegistraion = () => {
                                   value={basicfact.displayInAuction}
                                   onChange={basicFactOnChange}
                                   name="displayInAuction"
-                                  className="field bgChangeDark"
-                                  required
+                                  // className="field bgChangeDark"
+                                  // required
+                                  onFocus={bfvalidation}
+                                  className={` ${displayInAuctionError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                                 >
                                   <option selected disabled value="">
                                     Select
                                   </option>
                                   {logingUser.planReducer.planSelectByDealer ===
-                                  "classified" ? (
+                                    "classified" ? (
                                     <option value="classified">
                                       Classified Ads
                                     </option>
@@ -1708,13 +1900,14 @@ const VechilesRegistraion = () => {
                                     <option value="Yes">Auction</option>
                                   )}
                                 </select>
+                                {displayInAuctionError && <span className="text-danger">Required field</span>}
                               </div>
                             </div>
                           )}
                           {logingUser.planReducer.garage && (
                             <>
                               {logingUser.planReducer.planSelectByDealer ===
-                              "classified" ? (
+                                "classified" ? (
                                 <div className="col-12 col-sm-12 col-md-6">
                                   <div className="form-group">
                                     <FormInput
@@ -1766,8 +1959,9 @@ const VechilesRegistraion = () => {
                                       value={basicfact.auctionType}
                                       onChange={basicFactOnChange}
                                       name="auctionType"
-                                      className="field bgChangeDark"
-                                      required
+                                      // onBlur={bfvalidation}
+                                      // className="field bgChangeDark"
+                                      className={` ${auctionTypeError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                                     >
                                       <option selected disabled value="">
                                         Select
@@ -1782,6 +1976,7 @@ const VechilesRegistraion = () => {
                                         Featured listing
                                       </option>
                                     </select>
+                                    {auctionTypeError && <span className="text-danger">Required field</span>}
                                   </div>
                                 </div>
                               )}
@@ -1809,16 +2004,19 @@ const VechilesRegistraion = () => {
                               <label>Auction Live</label>
                               <select
                                 value={selectedValue}
-                                className="field bgChangeDark"
+                                // className="field bgChangeDark"
+                                className={` ${selectedValueError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                                 onChange={handleSelectChange}
+                              // onBlur={bfvalidation}
                               >
-                                <option value="">Select an option</option>
+                                <option selected disabled value="">Select an option</option>
                                 {optionsData?.map((option) => (
                                   <option key={option.id} value={option.days}>
                                     {`${option.days} days`}
                                   </option>
                                 ))}
                               </select>
+                              {selectedValueError && <span className="text-danger">Required field</span>}
                               {/* <select
                                   // value={basicfact.auctionType}
                                   // onChange={basicFactOnChange}
@@ -1866,6 +2064,7 @@ const VechilesRegistraion = () => {
                                   <select
                                     value={selectedValueData}
                                     className="field bgChangeDark"
+                                    // className={` ${vehiError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                                     onChange={handleSelectChangeData}
                                   >
                                     <option value="">Select an option</option>
@@ -1876,6 +2075,7 @@ const VechilesRegistraion = () => {
                                     ))}
                                     <option value="0">Other</option>
                                   </select>
+                                  {/* {vehiError && <span className="text-danger">Required field</span>} */}
                                 </div>
                                 <div className="  ">
                                   {/* <div className="form-group">
@@ -1980,8 +2180,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.vechilesrace}
                                 onChange={basicFactOnChange}
                                 name="vechilesrace"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${vechilesraceError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -1990,6 +2191,7 @@ const VechilesRegistraion = () => {
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
+                              {vechilesraceError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
@@ -2002,8 +2204,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.ultiumdrive}
                                 onChange={basicFactOnChange}
                                 name="ultiumdrive"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${ultiumdriveError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -2012,6 +2215,7 @@ const VechilesRegistraion = () => {
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
+                              {ultiumdriveError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
@@ -2023,8 +2227,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.Interstellar}
                                 onChange={basicFactOnChange}
                                 name="Interstellar"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${InterstellarError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -2033,6 +2238,7 @@ const VechilesRegistraion = () => {
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
+                              {InterstellarError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
@@ -2045,8 +2251,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.interior}
                                 onChange={basicFactOnChange}
                                 name="interior"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${interiorError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -2054,6 +2261,7 @@ const VechilesRegistraion = () => {
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
+                              {interiorError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-6">
@@ -2115,8 +2323,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.km}
                                 onChange={basicFactOnChange}
                                 name="km"
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${kmError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option
                                   selected
@@ -2140,6 +2349,7 @@ const VechilesRegistraion = () => {
                                 </option>
                                 <option value="other">Other</option>
                               </select>
+                              {kmError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -2155,7 +2365,7 @@ const VechilesRegistraion = () => {
                                   name="otherTruckTitle"
                                   placeholder="vehicle title"
                                   className="field"
-                                  required
+                                // required
                                 />
                               </div>
                             ) : null}
@@ -2167,8 +2377,9 @@ const VechilesRegistraion = () => {
                                 value={basicfact.status}
                                 name="status"
                                 onChange={basicFactOnChange}
-                                className="field bgChangeDark"
-                                required
+                                // className="field bgChangeDark"
+                                className={` ${statusError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
+                              // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -2179,6 +2390,7 @@ const VechilesRegistraion = () => {
                                 <option value="branded">Branded</option>
                                 <option value="other">Other</option>
                               </select>
+                              {statusError && <span className="text-danger">Required field</span>}
                             </div>
                             {basicfact.status === "other" ? (
                               <div className="form-group">
@@ -2202,7 +2414,7 @@ const VechilesRegistraion = () => {
                               <label>
                                 What is the current odometer reading?
                               </label>
-                              <input
+                              <FormInput
                                 value={basicfact.odometer}
                                 onChange={basicFactOnChange}
                                 type="text"
@@ -2211,7 +2423,8 @@ const VechilesRegistraion = () => {
                                 name="odometer"
                                 placeholder="Ex. 41,000 miles"
                                 className="field"
-                                required
+                                errorMessage="required"
+                                required={true}
                               />
                               {/* <p className="small">
                               *Don't forget to include a photo of the current
@@ -2229,7 +2442,8 @@ const VechilesRegistraion = () => {
                                 value={basicfact.accurateField}
                                 onChange={basicFactOnChange}
                                 name="accurateField"
-                                className="field bgChangeDark"
+                                // className="field bgChangeDark"
+                                className={` ${accurateFieldError ? "field bgChangeDark border-danger" : "field bgChangeDark"}`}
                                 required
                               >
                                 <option selected disabled value="">
@@ -2238,6 +2452,7 @@ const VechilesRegistraion = () => {
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
+                              {accurateFieldError && <span className="text-danger">Required field</span>}
                             </div>
                           </div>
                           <div className="col-12 col-sm-12 col-md-12">
@@ -2274,7 +2489,7 @@ const VechilesRegistraion = () => {
                               </div>
 
                               <div
-                                className="dropzone"
+                                className={`dropzone  ${file1Error && "dropzone border-danger"}`}
                                 onDragOver={handleDragOverBannerD}
                                 onDrop={handleDropBannerD}
                               >
@@ -2303,6 +2518,7 @@ const VechilesRegistraion = () => {
                                   Select Files
                                 </button>
                               </div>
+                              {file1Error && <span className="text-danger">Please upload photos of your vehicle.</span>}
                             </div>
                           </div>
                           <div className="col-12">
@@ -2330,8 +2546,8 @@ const VechilesRegistraion = () => {
                   ) : null}
 
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === false ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === false ? (
                     <div className="tab-pane active">
                       <h3>Details</h3>
                       <hr />
@@ -2353,7 +2569,7 @@ const VechilesRegistraion = () => {
                                 onChange={detailsOnChange}
                                 name="bodywork"
                                 className="field bgChangeDark"
-                                required
+                                // required
                               >
                                 <option selected disabled value="">
                                   Select
@@ -2466,10 +2682,10 @@ const VechilesRegistraion = () => {
                                 />
                                 {detailstab.modificationOnTrck.trim().length >
                                   400 && (
-                                  <span className="text-danger">
-                                    You Can entered maximum 1500 characters!
-                                  </span>
-                                )}
+                                    <span className="text-danger">
+                                      You Can entered maximum 1500 characters!
+                                    </span>
+                                  )}
                               </div>
                             )}
                           </div>
@@ -2806,8 +3022,8 @@ const VechilesRegistraion = () => {
                     </div>
                   ) : null}
                   {reduxValue.submitvechilesReducer.step_one === true &&
-                  reduxValue.submitvechilesReducer.step_two === true &&
-                  reduxValue.submitvechilesReducer.step_three === true ? (
+                    reduxValue.submitvechilesReducer.step_two === true &&
+                    reduxValue.submitvechilesReducer.step_three === true ? (
                     <div className="tab-pane active">
                       {/* <h3>Contact Info</h3> */}
                       <h3>Submit Details</h3>
@@ -2918,8 +3134,8 @@ const VechilesRegistraion = () => {
           <Modal.Title id="contained-modal-title-vcenter">
             {amlPolicy ? "AML Policy" : "Terms of Service"}
           </Modal.Title>
-          <div onClick={closeMoal} style={{ cursor: "pointer"}}>
-        <CloseIcon />
+          <div onClick={closeMoal} style={{ cursor: "pointer" }}>
+            <CloseIcon />
           </div>
         </Modal.Header>
         <Modal.Body>
