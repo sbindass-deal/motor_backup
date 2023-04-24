@@ -11,6 +11,7 @@ import parse from "html-react-parser";
 import Pagination from "../../Pagination";
 import NotAvailable from "../../UI/NotAvailable";
 import { Modal } from "react-bootstrap";
+import StarIcon from "@mui/icons-material/Star";
 
 const AuctionResult = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const AuctionResult = () => {
     state: "",
     city: "",
     auction: "",
-    status: ""
+    status: "",
   });
   const handleChangeSelectData = (e) => {
     setGetSelectData({ ...getSelectData, [e.target.name]: e.target.value });
@@ -74,9 +75,15 @@ const AuctionResult = () => {
     axios
       .post(`${process.env.REACT_APP_URL}getAllWinner`, {})
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -86,7 +93,6 @@ const AuctionResult = () => {
   useEffect(() => {
     fetchApiData();
   }, []);
-
 
   // const fetchAuctionLiveApi = async () => {
   //   setLoading(true);
@@ -131,7 +137,6 @@ const AuctionResult = () => {
   //   return startDate.toString();
   // };
 
-
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -143,13 +148,18 @@ const AuctionResult = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: getSelectData.auction
-
+        auctionType: getSelectData.auction,
       })
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -165,7 +175,7 @@ const AuctionResult = () => {
   if (loading) {
     return <SmallSpinner spin={true} />;
   }
-  console.log(79989, data)
+  console.log(79989, data);
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -197,7 +207,9 @@ const AuctionResult = () => {
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
                     {/* <i className="fa-solid fa-heart "></i> */}
-                    <i class="fa-solid fa-bell mr-2"></i> watched
+                    {/* <i class="fa-solid fa-bell mr-2"></i> */}
+                    <StarIcon />
+                    watched
                   </button>
                 </li>
                 <li className="d-flex gv">
@@ -249,13 +261,12 @@ const AuctionResult = () => {
               viewListActive && "activeListView"
             }`}
           >
-            {currentPosts.length == 0 ?
-              (
-                <NotAvailable text="Data not found" />
-              ):(
+            {currentPosts.length == 0 ? (
+              <NotAvailable text="Data not found" />
+            ) : (
               currentPosts
-                  ?.filter((curElem) => {
-                    console.log(89898, curElem)
+                ?.filter((curElem) => {
+                  console.log(89898, curElem);
                   if (searchValue == "") {
                     return curElem;
                   } else if (
@@ -272,7 +283,7 @@ const AuctionResult = () => {
                   ) {
                     return curElem;
                   }
-                }))
+                })
                 ?.map((curElem) => {
                   return (
                     <div className="col-12 col-lg-3 col-md-3 pb-3 auctionLive">
@@ -368,7 +379,8 @@ const AuctionResult = () => {
                       </div>
                     </div>
                   );
-                })}
+                })
+            )}
 
             <Pagination
               totalPosts={data.length}

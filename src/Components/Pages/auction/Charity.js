@@ -9,6 +9,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import StarIcon from "@mui/icons-material/Star";
 
 const Charity = () => {
   const dispatch = useDispatch();
@@ -222,7 +223,9 @@ const Charity = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i class="fa-solid fa-bell d"></i> watched
+                    {/* <i class="fa-solid fa-bell d"></i> */}
+                    <StarIcon />
+                    watched
                   </button>
                 </li>
                 <li className="d-flex">
