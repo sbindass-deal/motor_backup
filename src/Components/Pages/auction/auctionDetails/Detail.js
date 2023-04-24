@@ -263,7 +263,7 @@ function Detail() {
                     </div>
                   )}
                   <h2
-                    className="title_combo title_Center mobileOnlyD"
+                    className="title_combo title_Center mobileOnlyD deTitle"
                     id="sticky2"
                   >
                     {vehicle?.make}
