@@ -7094,7 +7094,7 @@ table.table.table-striped img {
   min-width: 10%;
 }
 .right .btn-success.focus, .btn-success:focus, .show>.btn-success.dropdown-toggle  {
-  color: #f8a504;
+  color: #fff;
   background-color: #f8a504;
   border-color: #f8a504;
   box-shadow: 0;
@@ -7767,4 +7767,12 @@ ul.post_labelList li p.userIco {
 .text-danger {
   color: #dc3545!important;
   font-weight: 300;
+}
+.avtar span svg {
+  background: orange;
+  color: #fff;
+  position: absolute;
+  padding: 10px;
+  border-radius: 100%;
+  left: 90px;
 }

@@ -326,28 +326,34 @@ function UserGarage() {
                 <div className="row">
                   <div className="col-md-12 ">
                     <div className="UserImZ mt-4">
-                      <Space direction="vertical" size={16}>
-                        <Space wrap size={16}>
-                          <Avatar
-                            size={100}
-                            icon={
-                              <img
-                                className="slidImg"
-                                loading="lazy"
-                                src={
-                                  userInfo?.logo &&
-                                  `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Logo"
-                              />
-                            }
-                          />
+                      <div className="avtar">
+                        <Space direction="vertical" size={16}>
+                          <Space wrap size={16}>
+                            <Avatar
+                              size={100}
+                              icon={
+                                <img
+                                  className="slidImg"
+                                  loading="lazy"
+                                  src={
+                                    userInfo?.logo &&
+                                    `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
+                                  }
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onError = null;
+                                    currentTarget.src = noImage;
+                                  }}
+                                  alt="Logo"
+                                />
+                              }
+                            />
+                          </Space>
                         </Space>
-                      </Space>
+                        <span>
+                        <i class="fa-solid fa-pencil"></i>
+                        </span>
+                      </div>
+                
                       <div className="followers">
                         <ul className="fwrList">
                           <li>
