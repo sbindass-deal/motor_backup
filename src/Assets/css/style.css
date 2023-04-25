@@ -7825,3 +7825,15 @@ li.avtar span img {
 .newDelarSlid.carousel {
   height: 500px;
 }
+.coupon-card p {
+  background: #fff;
+  width: 23%;
+  border-radius: 100px;
+  text-align: center;
+  display: flex;
+  margin-left: 6px;
+}
+.coupon-card {
+  display: flex;
+  justify-content: center;
+}
