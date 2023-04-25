@@ -6936,7 +6936,7 @@ h5.catagories {
   margin: 2px;
 }
 .sliderSec .dTLPr img {
-  width: 532px;
+  width: 100%;
   overflow: hidden;
 }
 .productBigImg {
@@ -7836,4 +7836,12 @@ li.avtar span img {
 .coupon-card {
   display: flex;
   justify-content: center;
+}
+p.notiFi {
+  padding: 10px;
+  border: 1px solid;
+  width: 20%;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: orange;
 }
