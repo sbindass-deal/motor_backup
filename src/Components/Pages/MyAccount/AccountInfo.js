@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
+import userProfile from "../../../Assets/images/userProfile.jpeg"
+
 function AccountInfo() {
   const userId = useSelector((state) => state);
   const [userInfo, setUserinfo] = useState({});
@@ -128,6 +130,11 @@ function AccountInfo() {
               <div className="row">
               <div className="col-6">
               <ul className="labelList_">
+                <li className="avtar">
+                  <span>
+                    <img src={userProfile} /> 
+                  </span>
+                </li>
                 <li>
                   <div className="labelList_label">Username</div>
                   <div className="labelList_text">{userInfo.username}</div>
@@ -172,11 +179,7 @@ function AccountInfo() {
                   )}
                 </li>
                 {/* ==================== */}
-                <li>
-                  <div className="labelList_label">Profile Photo</div>
-                  <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/>
-
-                </li>
+              
 
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
