@@ -326,7 +326,7 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 col-xl-6 offset-md-4 offset-lg-5 offset-xl-6 text-center text-md-right">
-              <h1 className="text">Sell What's in your Garage</h1>
+              <h1 className="text">Sell What's in<br/> your Garage</h1>
               <Link to="/submit" className="orange_btn mt-2">
                 List your Vehicle
               </Link>
