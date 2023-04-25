@@ -6,10 +6,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { handleBail } from "../../redux/reducers/dayAndNightMode";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import { showModalClose, showModalLogin } from "../../redux/reducers/login";
 
 const SearchResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const logingUser = useSelector((state) => state);
   const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
@@ -31,7 +33,7 @@ const SearchResult = () => {
 
   const searchNew = async () => {
     let data = {
-      keyword: "ford",
+      keyword:searchKey,
     };
     try {
       const res = await axios.post(
@@ -59,6 +61,13 @@ const SearchResult = () => {
   useEffect(() => {
     searchNew();
   }, [name, relatedData]);
+
+  const handleClose = () => {
+    dispatch(showModalClose());
+  };
+  const handleShow = () => {
+    dispatch(showModalLogin());
+  };
 
   // useEffect(() => {
 
@@ -141,16 +150,37 @@ const SearchResult = () => {
                   Notify me when one is listed
                 </button>
 
-                <Link
-                  className="btn ml-2"
-                  // to={
-                  //   searchedData.displayInAuction === "Yes"
-                  //     ? `/detail/${searchedData.id}`
-                  //     : `/showroom/${searchedData.id}`
-                  // }
-                >
-                  Have one? Sell yours here{" "}
-                </Link>
+                {logingUser.login.token == null ? (
+                  <Link
+                    onClick={handleShow}
+                    className="btn ml-2"
+                    // to={
+                    //   searchedData.displayInAuction === "Yes"
+                    //     ? `/detail/${searchedData.id}`
+                    //     : `/showroom/${searchedData.id}`
+                    // }
+                  >
+                    Have one? Sell yours here{" "}
+                  </Link>
+                ) : logingUser?.login?.user?.dealer == "No" ? (
+                  <Link className="btn ml-2" to={"/submit"}>
+                    Have one? Sell yours here{" "}
+                  </Link>
+                ) : (
+                  <Link className="btn ml-2" to={"/dealer"}>
+                    Have one? Sell yours here{" "}
+                  </Link>
+                )}
+                {/* // <Link
+                //   className="btn ml-2"
+                //   // to={
+                //   //   searchedData.displayInAuction === "Yes"
+                //   //     ? `/detail/${searchedData.id}`
+                //   //     : `/showroom/${searchedData.id}`
+                //   // }
+                // >
+                //   Have one? Sell yours here{" "}
+                // </Link> */}
               </div>
             </div>
           </div>
@@ -168,10 +198,11 @@ const SearchResult = () => {
           <div className="row">
             {relatedData &&
               relatedData.map((curElem) => {
+                console.log(8988, curElem);
                 return (
                   <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
                     <div className="card_post SearchResult auction">
-                      {curElem.displayInAuction === "Yes" ? (
+                      {curElem.is_close == 0 ? (
                         <div class="bestSellerRgt">
                           <span class="">For Auction</span>
                         </div>
