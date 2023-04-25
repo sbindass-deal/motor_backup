@@ -10,6 +10,7 @@ import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
 import StarIcon from "@mui/icons-material/Star";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const Auctionfeature = () => {
   const dispatch = useDispatch();
@@ -168,6 +169,14 @@ const Auctionfeature = () => {
           <div className="row">
             <div class="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
+              <p className="text-center">
+                <span className="border p-1">
+                  <span>
+                    <NotificationsNoneIcon />
+                  </span>
+                  Get Daily Updates
+                </span>
+              </p>
             </div>
 
             <div className="col-12">

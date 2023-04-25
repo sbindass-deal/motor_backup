@@ -10,13 +10,11 @@ import NotAvailable from "../../UI/NotAvailable";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../redux/reducers/cartSlice";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { Carousel } from "antd";
 import { Image } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-
 
 const ShopDetails = () => {
   const id = useParams().id;
@@ -34,16 +32,14 @@ const ShopDetails = () => {
   const [sizeRepeater, setSizeRepeater] = useState([]);
   const [imageValue, setImageValsue] = useState(0);
 
-  const [getSizeCategories, setGetSizeCategories] = useState([])
-  const [sizeSelect, setSizeSelect] = useState("")
-  const [colorSelect, setColorSelect] = useState("")
-  const [getPrice, setGetPrice] = useState("")
-  const [addCart, setAddCart] = useState(false)
+  const [getSizeCategories, setGetSizeCategories] = useState([]);
+  const [sizeSelect, setSizeSelect] = useState("");
+  const [colorSelect, setColorSelect] = useState("");
+  const [getPrice, setGetPrice] = useState("");
+  const [addCart, setAddCart] = useState(false);
   // console.log(111100, getPrice)
 
-
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const notify = (val) =>
     toast.success(val, {
       position: "bottom-center",
@@ -69,36 +65,29 @@ const navigate = useNavigate();
     });
 
   useEffect(() => {
-
     setLoading(true);
     try {
-      axios.get(
-        `${process.env.REACT_APP_URL}allproduct`
-      ).then((d) => {
+      axios.get(`${process.env.REACT_APP_URL}allproduct`).then((d) => {
         d?.data?.data?.product.map((d, i) => {
           if (d?.id == id) {
-            setProductId(d?.product_inventry[0].id)
-            setProduct(d)
+            setProductId(d?.product_inventry[0].id);
+            setProduct(d);
           }
         });
-
-      })
+      });
       setLoading(false);
     } catch (err) {
       console.log(err);
       setLoading(false);
     }
 
-    axios.get(`${process.env.REACT_APP_URL}getAllSize`).
-      then((d) => {
-        setSize(d?.data?.data);
-      })
+    axios.get(`${process.env.REACT_APP_URL}getAllSize`).then((d) => {
+      setSize(d?.data?.data);
+    });
 
-    axios.get(`${process.env.REACT_APP_URL}getAllColors`).
-      then((d) => {
-        setColor_id(d?.data?.data);
-      })
-
+    axios.get(`${process.env.REACT_APP_URL}getAllColors`).then((d) => {
+      setColor_id(d?.data?.data);
+    });
   }, [id]);
 
   // useEffect(() => {
@@ -111,41 +100,33 @@ const navigate = useNavigate();
   //     })
   // }, [getSizeCategories])
 
-
-
   const handleChange = (e) => {
-
     setSizeSelect(e.target.value);
 
-    getSizeCategories?.product_inventory
-      ?.filter((curVal) => {
-        if (curVal?.size_id == e.target.value) {
-          setGetPrice(curVal?.price)
-        }
-
-      })
-
-
-
+    getSizeCategories?.product_inventory?.filter((curVal) => {
+      if (curVal?.size_id == e.target.value) {
+        setGetPrice(curVal?.price);
+      }
+    });
   };
 
   const handleChangeColor = (e) => {
-    setColorSelect(e.target.value)
-  }
+    setColorSelect(e.target.value);
+  };
 
-  console.log(8000, colorSelect)
-
+  console.log(8000, colorSelect);
 
   const getProductDetail = () => {
     // Make a request for a user with a given ID
-    axios.get(`${process.env.REACT_APP_URL}getProductDetail/${id}`)
+    axios
+      .get(`${process.env.REACT_APP_URL}getProductDetail/${id}`)
       .then(function (response) {
         // handle success
         console.log(100, response);
-        setGetSizeCategories(response.data.data)
-        setSizeSelect(response.data.data.sizes[0].size_id)
-        setGetPrice(response.data.data.product_inventory[0].price)
-        setColorSelect(response.data.data.colors[0].color_id)
+        setGetSizeCategories(response.data.data);
+        setSizeSelect(response.data.data.sizes[0].size_id);
+        setGetPrice(response.data.data.product_inventory[0].price);
+        setColorSelect(response.data.data.colors[0].color_id);
       })
       .catch(function (error) {
         // handle error
@@ -154,18 +135,17 @@ const navigate = useNavigate();
       .finally(function () {
         // always executed
       });
-  }
+  };
 
-  console.log(979890, sizeSelect)
+  console.log(979890, sizeSelect);
   useEffect(() => {
-    getProductDetail()
-  }, [])
+    getProductDetail();
+  }, []);
 
-
-  console.log(787800009, getSizeCategories)
+  console.log(787800009, getSizeCategories);
 
   const handleProduct = () => {
-    setAddCart(true)
+    setAddCart(true);
     // if (size_id == undefined) {
     //   return toast.warn("Please Choose Size", {
     //     position: "bottom-center",
@@ -179,7 +159,15 @@ const navigate = useNavigate();
     //   });
     // }
 
-    dispatch(addProduct({ ...product, quantity: 1, size_id: sizeSelect, productId: id, color_id: colorSelect }));
+    dispatch(
+      addProduct({
+        ...product,
+        quantity: 1,
+        size_id: sizeSelect,
+        productId: id,
+        color_id: colorSelect,
+      })
+    );
     notify("Item Added to cart !");
 
     // if (productRedux.map((d) => {
@@ -191,8 +179,6 @@ const navigate = useNavigate();
     //   dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
     //   notify("Added to cart.");
     // }
-
-
   };
 
   const contentStyle = {
@@ -207,9 +193,7 @@ const navigate = useNavigate();
   // console.log(sizeRepeater.filter((item,
   //   index) => sizeRepeater.indexOf(item) === index));
 
-
-
-  console.log(678908, sizeSelect)
+  console.log(678908, sizeSelect);
 
   return (
     <>
@@ -240,23 +224,23 @@ const navigate = useNavigate();
               </Carousel> */}
               <div className="dTLPr">
                 <div className="productBigImgLeft">
-                  {
-                    getSizeCategories?.image?.map((d, i) => {
-                      return (
-                        <img
-                          onClick={() => setImageValsue(i)}
-                          src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
-                          alt={"title"}
-                        />
-                      )
-                    })
-                  }
+                  {getSizeCategories?.image?.map((d, i) => {
+                    return (
+                      <img
+                        onClick={() => setImageValsue(i)}
+                        src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                        alt={"title"}
+                      />
+                    );
+                  })}
                 </div>
                 <div className="productBigImg">
-                  {getSizeCategories?.image?.length > 0 && <img
-                    src={`${process.env.REACT_APP_URL}upload/products/${getSizeCategories?.image[imageValue]?.image}`}
-                    alt={"title"}
-                  />}
+                  {getSizeCategories?.image?.length > 0 && (
+                    <img
+                      src={`${process.env.REACT_APP_URL}upload/products/${getSizeCategories?.image[imageValue]?.image}`}
+                      alt={"title"}
+                    />
+                  )}
                 </div>
               </div>
               <div
@@ -270,49 +254,43 @@ const navigate = useNavigate();
                     onVisibleChange: (vis) => setVisible(vis),
                   }}
                 >
-                  <Image
-                    src={`${index}`}
-                  />
+                  <Image src={`${index}`} />
                 </Image.PreviewGroup>
               </div>
             </div>
 
             <div className="col-md-6 rightSec productDTl">
-
               <div className="">
                 <h2>{getSizeCategories?.title}</h2>
-                <h5 className="catagories"><small>Category: </small>{getSizeCategories?.category}</h5>
-
-
-
+                <h5 className="catagories">
+                  <small>Category: </small>
+                  {getSizeCategories?.category}
+                </h5>
               </div>
-              {
-                getSizeCategories?.product_inventory?.map((d, i) => {
-
-                  if (productId == d?.id)
-                    return (
-                      <p className="price__">$ {getPrice && getPrice}</p>
-                    )
-                })
-              }
+              {getSizeCategories?.product_inventory?.map((d, i) => {
+                if (productId == d?.id)
+                  return <p className="price__">$ {getPrice && getPrice}</p>;
+              })}
 
               {/* <p className="price__">${getSizeCategories?.product_inventory[0]?.price}</p> */}
 
-              {
-                getSizeCategories?.multiplier && getSizeCategories?.coupon_code && <div className="" id="main_width">
-
-                  <div class="w">
-                    <div class="coupon-card">
-                      <h3>{product?.coupon_code}</h3>
-                      {/* <span>0X</span> */}
-                      <p>{getSizeCategories?.multiplier + "X"}</p>
-                      <div class="circle1"></div>
-                      <div class="circle2"></div>
+              {getSizeCategories?.multiplier &&
+                getSizeCategories?.coupon_code && (
+                  <div className="" id="main_width">
+                    <div class="w">
+                      <div class="coupon-card">
+                        <h3>{product?.coupon_code}</h3>
+                        {/* <span>0X</span> */}
+                        <p>{getSizeCategories?.multiplier + "X"}</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                      </div>
+                      <Link class="price__" to={"/carraffle"}>
+                        Giveways Entries
+                      </Link>
                     </div>
-                    <span class="grid_label">Entries</span>
-                  </div>
 
-                  {/* <div class="vs_grid_entries entries-default mb-3">
+                    {/* <div class="vs_grid_entries entries-default mb-3">
                           <div class="entries-count">
                             <i class="fa-solid fa-ticket" ></i>
                             <span class="grid_entries_count">{product?.coupon_code}</span>
@@ -322,8 +300,8 @@ const navigate = useNavigate();
                             {product?.multiplier + "X"}
                           </div>
                         </div> */}
-                </div>
-              }
+                  </div>
+                )}
 
               <p className="product_dec">
                 {/* <b>Product ID: {product.id}</b> */}
@@ -333,15 +311,18 @@ const navigate = useNavigate();
               <div className="sizeColor">
                 {/* <div className="sizeColor">Category : {product.category}</div> */}
                 <div className="size">
-
-                  <select className="size" value={sizeSelect} onChange={(e) => handleChange(e)}>
-
-                    {
-                      getSizeCategories?.sizes?.map((curVal, i) => {
-
-                        return <option value={curVal?.size_id}>{curVal?.size_name}</option>
-                      })
-                    }
+                  <select
+                    className="size"
+                    value={sizeSelect}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    {getSizeCategories?.sizes?.map((curVal, i) => {
+                      return (
+                        <option value={curVal?.size_id}>
+                          {curVal?.size_name}
+                        </option>
+                      );
+                    })}
                     {/* <option value={""}>SIZE</option>
                     <option value={"XL"}>XL</option>
                     <option value={"L"}>L</option>
@@ -349,13 +330,18 @@ const navigate = useNavigate();
                     <option value={"SM"}>SM</option> */}
                   </select>
 
-                  <select className="size" value={colorSelect} onChange={(e) => handleChangeColor(e)}>
-                    {
-                      getSizeCategories?.colors?.map((curVal, i) => {
-
-                        return <option value={curVal?.color_id}>{curVal?.color_name}</option>
-                      })
-                    }
+                  <select
+                    className="size"
+                    value={colorSelect}
+                    onChange={(e) => handleChangeColor(e)}
+                  >
+                    {getSizeCategories?.colors?.map((curVal, i) => {
+                      return (
+                        <option value={curVal?.color_id}>
+                          {curVal?.color_name}
+                        </option>
+                      );
+                    })}
                     {/* <option value={""}>COLOR</option>
                     <option value={"Red"}>Red</option>
                     <option value={"Blue"}>Blue</option>
@@ -392,13 +378,19 @@ const navigate = useNavigate();
                   return d?.stock + " "
               })}</h5> */}
 
-              {addCart ? <button type="button" className="btn" onClick={() => navigate("/cart")}>
-                Added to Cart
-              </button>
-                :
-                <button onClick={handleProduct} type="button" className="btn" >
+              {addCart ? (
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => navigate("/cart")}
+                >
+                  Added to Cart
+                </button>
+              ) : (
+                <button onClick={handleProduct} type="button" className="btn">
                   Add to Cart
-                </button>}
+                </button>
+              )}
             </div>
           </div>
         )}

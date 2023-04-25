@@ -10,6 +10,7 @@ import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
 import StarIcon from "@mui/icons-material/Star";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const AuctionNoReserve = () => {
   const dispatch = useDispatch();
@@ -207,6 +208,14 @@ const AuctionNoReserve = () => {
                 Auctions No Reserve{" "}
                 <span>{data.length}&nbsp; AUCTIONS NOW LIVE</span>
               </h2>
+              <p className="text-center">
+                <span className="border p-1">
+                  <span>
+                    <NotificationsNoneIcon />
+                  </span>
+                  Get Daily Updates
+                </span>
+              </p>
             </div>
             <div className="col-12">
               <ul className="postTopOption">
