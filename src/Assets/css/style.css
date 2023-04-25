@@ -7517,7 +7517,7 @@ justify-content: space-between;
   margin-top: 5px;
   position: absolute;
   top: -4px;
-  left: -1px;
+  /* left: -1px; */
   z-index: 1;
 }
 .bestSellerRgt::after {
@@ -7737,11 +7737,17 @@ ul.post_labelList li p.userIco {
 }
 .bestSellerRgt.charity {
   background-image: url(../images/pinkRibin.png);
+  height: 30px;
+    background-size: cover;
 }
 .bestSellerRgt.noReserve {
   background-image: url(../images/pinkRibinzBlack.png);
 }
-
+.SearchResult .bestSellerRgt.charity {
+  background-image: url(../images/pinkRibin.png);
+  height: 30px;
+    background-size: cover;
+}
 
 .tBB.only li.nav-item button {
   min-width: 126px;

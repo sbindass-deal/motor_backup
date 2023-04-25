@@ -169,15 +169,15 @@ const SearchResult = () => {
             {relatedData &&
               relatedData.map((curElem) => {
                 return (
-                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                  <div className="col-12 col-md-6 col-lg-3" key={curElem.id}>
                     <div className="card_post SearchResult auction">
                       {curElem.displayInAuction === "Yes" ? (
-                        <div class="bestSellerRgt">
+                        <div class="bestSellerRgt Featured">
                           <span class="">For Auction</span>
                         </div>
                       ) : // <p className="forOction"></p>
                       curElem.displayInAuction === "classified" ? (
-                        <div class="bestSellerRgt">
+                        <div class="bestSellerRgt Featured">
                           <span class="">Ad</span>
                         </div>
                       ) : // <p className="forOction">Ad</p>
