@@ -18,7 +18,7 @@ const Data = ({ curElem, addFabrity }) => {
                     {curElem.category === "auction_live" && (
                       <>
                         {curElem.reserve === "No" ? (
-                          <div class="bestSellerRgt charity">
+                          <div class="bestSellerRgt noReserve">
                             <span class="">No&nbsp;Reserve</span>
                           </div>
                         ) : curElem.auctionType === "charity" ? (

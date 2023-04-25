@@ -362,10 +362,10 @@ function EditMyAccount() {
                       required={true}
                     />
                   </div>
-                  <div className="col-lg-6 col-sm-12">
+                  {/* <div className="col-lg-6 col-sm-12">
                   <div className="labelList_label">Profile Photo</div>
-                     <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/>
-                  </div>
+                     {/* <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/> 
+                  </div> */}
                  
                   {false && (
                     <div className="col-12">

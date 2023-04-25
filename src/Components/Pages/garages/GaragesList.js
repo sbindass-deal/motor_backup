@@ -69,7 +69,7 @@ const GaragesList = ({ handleDealerCount, searchTerm }) => {
                           </Link>
                         </div>
                         <div class="card_postInfo">
-                          <h4>
+                          <h4 class="car_title">
                             <Link to={`/garages/${curElem.id}`}>
                               {curElem?.garageTitle}
                             </Link>
