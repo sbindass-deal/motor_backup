@@ -83,60 +83,53 @@ const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }
             </div>
           </div> */}
           <Carousel autoplay>
-            {
-
-              images?.map((d, i) => {
-                return (
-                  <div className="carDesk">
-                    <Link to={`/shop/${id}`} class="card_postImg card_postImg_200">
-                      <img
-                        src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
-                        // alt={product.title}
-                        style={contentStyle}
-                        className="img-fluid"
+            {images?.map((d, i) => {
+              return (
+                <div className="carDesk">
+                  <Link
+                    to={`/shop/${id}`}
+                    class="card_postImg card_postImg_200"
+                  >
+                    <img
+                      src={`${process.env.REACT_APP_URL}upload/products/${d?.image}`}
+                      // alt={product.title}
+                      style={contentStyle}
+                      className="img-fluid"
                       // onClick={() => { setVisible(true); setIndex(`${process.env.REACT_APP_URL}upload/products/${d?.image}`) }}
-                      />
-                    </Link>
-                  </div>
-                )
-              })
-            }
+                    />
+                  </Link>
+                </div>
+              );
+            })}
           </Carousel>
           <div class="card_postInfo pt-3">
             <div className="entries_count dewew">
-
-
-              <div className="entries_count2 " >
+              <div className="entries_count2 ">
                 {/* <i class="fa-solid fa-ticket"></i>
                 <p class="grid_entries_count">525</p>
                 <p class="grid_label">Entries</p>
                 <p class="multiplier-value blink-soft">15X</p> */}
-                <div class="vs_grid_entries entries-default " >
+                <div class="vs_grid_entries entries-default ">
                   <div class="entries-count">
                     <i class="fa-solid fa-ticket"></i>
                     <span class="grid_entries_count">{coupon_code}</span>
-                    <span class="grid_label">Entries</span>
+                    <span class="grid_label">Giveways Entries</span>
                   </div>
                   <div class="multiplier-value blink-soft ml-3">
                     {multiplier + "X"}
                   </div>
                 </div>
-
               </div>
-
             </div>
             <div class="vs_grid_entries entries-default">
-              <h5 className="edrfff"><Link to={`/shop/${id}`}>{title}</Link></h5>
-
-
+              <h5 className="edrfff">
+                <Link to={`/shop/${id}`}>{title}</Link>
+              </h5>
             </div>
             <div class="vs_grid_entries entries-default">
               <p class="price__">${curElem?.product_inventry[0]?.price}</p>
-
             </div>
-            <div class="vs_grid_entries entries-default">
-
-            </div>
+            <div class="vs_grid_entries entries-default"></div>
             {/* <div class="vs_grid_entries entries-default mb-3">
               <div class="entries-count">
                 <i class="fa-solid fa-ticket"></i>
@@ -181,14 +174,11 @@ const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }
                 <button
                   onClick={() => {
                     if (logingUser.login.token) {
-                      handleViewProduct(id)
-                    }
-
-                    else {
+                      handleViewProduct(id);
+                    } else {
                       notify("Please login", 4999);
                     }
                   }}
-
                   // dispatch(addProduct({...curElem, quantity: 1, size_id: curElem.product_inventry[0]?.size_id, productId: curElem.product_inventry[0]?.product_id, color_id: curElem.product_inventry[0]?.color_id }));
                   // notify("Added to cart.");
 
@@ -204,7 +194,7 @@ const Products = ({ id, price, images, title, curElem, coupon_code, multiplier }
             </ul>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

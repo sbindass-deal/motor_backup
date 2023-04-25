@@ -12,7 +12,9 @@ import Pagination from "../../Pagination";
 import NotAvailable from "../../UI/NotAvailable";
 import { Modal } from "react-bootstrap";
 import StarIcon from "@mui/icons-material/Star";
-
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import Analytics from "./Analytics";
+import AnalyticsTab from "./AnalyticsTab";
 const AuctionResult = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -186,7 +188,16 @@ const AuctionResult = () => {
                 Result Auctions{" "}
                 <span>{data?.length}&nbsp; AUCTIONS RESULT</span>
               </h2>
+              <p className="text-center">
+                <span className="border p-1">
+                  <span>
+                    <NotificationsNoneIcon />
+                  </span>
+                  Get Daily Updates
+                </span>
+              </p>
             </div>
+
             <div className="col-12">
               <ul className="postTopOption">
                 <li className="post_search">
@@ -391,6 +402,15 @@ const AuctionResult = () => {
           </div>
         </div>
       </section>
+
+      <div className="container">
+        <div className="row">
+          <div className="col">
+           <AnalyticsTab/>
+          </div>
+        </div>
+      </div>
+
       <Modal
         show={filteredModal}
         onHide={handleFilteredModalClose}
