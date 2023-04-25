@@ -31,13 +31,14 @@ const SearchResult = () => {
 
   const searchNew = async () => {
     let data = {
-      keyword: "",
+      keyword: "ford",
     };
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_URL}globalSearch`,
         data
       );
+      console.log(880, res);
       // setSearchedData(res.data.vehicles_result);
       const filterData = res.data.vehicles_result?.filter(
         (item) => item?.label == name

@@ -74,7 +74,7 @@ function AdminLeftNav() {
                     } `}
                     to="/gear-inventry"
                   >
-                    Inventory
+                    Product Settings
                   </Link>
                 </li>
               </MenuItem>
@@ -226,7 +226,7 @@ function AdminLeftNav() {
                   } `}
                   to="/admin-enquiry"
                 >
-                  Customer Complaint
+                 Contact Us
                 </Link>
               </li>
             </MenuItem>

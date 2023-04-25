@@ -11,8 +11,9 @@ import StripeCheckout from "react-stripe-checkout";
 import { useSelector } from "react-redux";
 import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
-// import { Image } from "antd";
-import { Avatar, Image, Space } from "antd";
+import { Image } from "antd";
+import userProfile from "../../../Assets/images/userProfile.jpeg"
+
 function AccountInfo() {
   const userId = useSelector((state) => state);
   const [userInfo, setUserinfo] = useState({});
@@ -27,7 +28,6 @@ function AccountInfo() {
       const res = await axios.get(`${process.env.REACT_APP_URL}user`);
       if (res.data.data) {
         setUserinfo(res.data.data);
-        console.log(userInfo)
         setIsPrivateOrPublic(res.data.data.published == 0 ? false : true);
       } else {
         setUserinfo(userInfo);
@@ -121,45 +121,20 @@ function AccountInfo() {
                       ></label>
                     </div>
                   )} */}
-                  {/* <Link to="/editmyaccount" className="gry_btn px-3">
+                  <Link to="/editmyaccount" className="gry_btn px-3">
                     Edit
-                  </Link> */}
+                  </Link>
                 </div>
               </div>
               <hr />
               <div className="row">
               <div className="col-6">
-              <div className="UserImZ mt-4">
-                      <Space direction="vertical" size={16}>
-                        <Space wrap size={16}>
-                          <Avatar
-                            size={100}
-                            icon={
-                              <img
-                                className="slidImg"
-                                loading="lazy"
-                                src={
-                                  userInfo?.logo &&
-                                  `${process.env.REACT_APP_URL}/${userInfo?.logo[0]?.logo}`
-                                }
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Logo"
-                              />
-                            }
-                          />
-                        </Space>
-                        <h2 className="mt-2 mb-3">
-                      {userInfo.name}
-                      <Link to="/editmyaccount">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                      </Link>
-                    </h2>
-                      </Space>
-                    </div>
               <ul className="labelList_">
+                <li className="avtar">
+                  <span>
+                    <img src={userProfile} /> 
+                  </span>
+                </li>
                 <li>
                   <div className="labelList_label">Username</div>
                   <div className="labelList_text">{userInfo.username}</div>
@@ -204,11 +179,7 @@ function AccountInfo() {
                   )}
                 </li>
                 {/* ==================== */}
-                {/* <li>
-                  <div className="labelList_label">Profile Photo</div>
-                  <input class="" type="file" id="formFile" style={{marginLeft:"4px"}}/>
-
-                </li> */}
+              
 
                 <li>
                   {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}

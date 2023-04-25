@@ -7730,13 +7730,16 @@ ul.post_labelList li p.userIco {
   background-repeat: no-repeat;
   top: -6px;
   height: 31px;
-  width: 40%;
+  width: auto;
 }
 
 .card_postImg .bestSellerRgt {background-color: transparent;
 }
 .bestSellerRgt.charity {
   background-image: url(../images/pinkRibin.png);
+}
+.bestSellerRgt.noReserve {
+  background-image: url(../images/pinkRibinzBlack.png);
 }
 
 
@@ -7806,4 +7809,19 @@ ul.post_labelList li p.userIco {
   position: absolute;
   background-size: cover;
   top: 260px;
+}
+li.avtar span {
+  width: 150px;
+  height: 140px;
+  background: #000;
+  border-radius: 140px;
+  overflow: hidden;
+}
+li.avtar span img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+.newDelarSlid.carousel {
+  height: 500px;
 }

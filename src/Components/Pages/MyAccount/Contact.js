@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MyAccountLeftNav from "./MyAccountLeftNav";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Contact() {
   const [formState, setFormState] = useState({
@@ -20,6 +21,18 @@ function Contact() {
       [name]: value,
     }));
   };
+
+   const notify = (val) =>
+     toast.success(val, {
+       position: "bottom-center",
+       autoClose: 5000,
+       hideProgressBar: false,
+       closeOnClick: true,
+       pauseOnHover: true,
+       draggable: true,
+       progress: undefined,
+       theme: "light",
+     });
 
  const handleImageUpload = (event) => {
    const file = event.target.files[0];
@@ -45,16 +58,20 @@ function Contact() {
          `${process.env.REACT_APP_URL}/AddEnquiry`,
          formData
        );
-       console.log(response.data);
-       setFormState({
-         firstName: "",
-         lastName: "",
-         phonenumber: "",
-         email: "",
-         subject: "",
-         message: "",
-         image: null,
-       });
+        console.log(response.data);
+       if (response.data.status == 200) {
+          notify(response.data.message);
+          setFormState({
+            firstName: "",
+            lastName: "",
+            phonenumber: "",
+            email: "",
+            subject: "",
+            message: "",
+            image: null,
+          });
+       }
+      
      } catch (error) {
        console.error(error);
      }

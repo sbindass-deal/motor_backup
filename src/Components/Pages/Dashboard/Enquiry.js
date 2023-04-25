@@ -64,6 +64,8 @@ const Enquiry = () => {
                     <tbody>
                         {
                           enqData.filter((curElem, i) => {
+
+                            console.log(787989, curElem);
                             if (searchTerm == '') {
                               return curElem
                             } else if (curElem.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -78,7 +80,7 @@ const Enquiry = () => {
                         return (
                           <tr key={curElem.id}>
                             <th scope="row">{i + 1}</th>
-                            <td>{curElem.name}</td>
+                            <td>{`${curElem.fname} ${curElem.lname}`}</td>
                             <td> {curElem.email} </td>
                             <td>{curElem.phone}</td>
 
