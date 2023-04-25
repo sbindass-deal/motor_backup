@@ -208,7 +208,7 @@ const AuctionNoReserve = () => {
                 Auctions No Reserve{" "}
                 <span>{data.length}&nbsp; AUCTIONS NOW LIVE</span>
               </h2>
-              <p className="notiFi">
+              <p className="grTe">
                 <span className="">
                   <span>
                     <NotificationsNoneIcon />

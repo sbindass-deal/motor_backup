@@ -7889,3 +7889,12 @@ p.notiFi {
 .SearchResult .bestSellerRgt:after{
  border: none;
 }
+p.grTe {
+
+  padding: 10px;
+  border-radius: 10px;
+  width: 20%;
+  margin: 0 auto;
+  background: #f7931b;
+  color: #fff !important;
+}
