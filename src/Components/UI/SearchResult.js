@@ -81,6 +81,7 @@ const SearchResult = () => {
   //   setSearchedData(searchedResult.length > 0 ? searchedResult[0] : {});
   //   // setRelatedData(filteredData);
   // }, [name]);
+
   return (
     <>
       <section className="storeHeroSection dealer align-items-center">
@@ -114,9 +115,12 @@ const SearchResult = () => {
                   //   );
                   //   navigate("/");
                   // }}
-                  onClick={() =>
-                    dispatch(handleBail(!logingUser.dayAndNightMode.searchBail))
-                  }
+                  onClick={() => {
+                    dispatch(
+                      handleBail(!logingUser.dayAndNightMode.searchBail)
+                    );
+                    window.location.reload(false);
+                  }}
                   className="btn btn_change"
                 >
                   {/* <i

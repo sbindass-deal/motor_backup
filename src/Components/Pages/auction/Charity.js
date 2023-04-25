@@ -9,6 +9,7 @@ import SmallSpinner from "../../UI/SmallSpinner";
 import Pagination from "../../Pagination";
 import { Modal } from "react-bootstrap";
 import NotAvailable from "../../UI/NotAvailable";
+import StarIcon from "@mui/icons-material/Star";
 
 const Charity = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Charity = () => {
     state: "",
     city: "",
     auction: "",
-    status: ""
+    status: "",
   });
 
   const handleChangeSelectData = (e) => {
@@ -58,10 +59,6 @@ const Charity = () => {
     filterApiData();
   }, []);
 
-  
-
-  
-
   const fetchApiData = async () => {
     setLoading(true);
     handleFilteredModalClose();
@@ -73,14 +70,20 @@ const Charity = () => {
       state: "",
       city: "",
       auction: "",
-      status: ""
+      status: "",
     });
     axios
       .post(`${process.env.REACT_APP_URL}vehicles_all/charity`, {})
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -99,8 +102,6 @@ const Charity = () => {
     setFilteredModal(true);
   };
 
- 
-
   const filterData = (data) => {
     const dataFilter = allData.filter((curElem) => {
       return data == 1 ? curElem.like == data : curElem;
@@ -117,11 +118,11 @@ const Charity = () => {
       .then((res) => {
         if (res.data.status === 200) {
           dispatch(clearData());
-          window.location.reload(false);
+          fetchApiData();
+          // window.location.reload(false);
         }
       });
   };
-
 
   const fetchNoreserveDataSelect = async () => {
     setLoading(true);
@@ -134,30 +135,32 @@ const Charity = () => {
         city: getSelectData.city,
         state: getSelectData.state,
         bidding_status: getSelectData.status,
-        auctionType: data[0]?.auctionType
-
+        auctionType: data[0]?.auctionType,
       })
       .then(function (res) {
-        setData(res.data.data);
-        setAllData(res.data.data);
-        setLoading(false);
+        if (res.data.data.length > 0) {
+          setData(res.data.data);
+          setAllData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
+          setAllData([]);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log(error);
         setLoading(false);
       });
   };
-  console.log(989800,data)
   const handleSubmitModel = (e) => {
     e.preventDefault();
     fetchNoreserveDataSelect();
   };
 
-  if (loading) {
-    return <SmallSpinner spin={true} />;
-  }
-
-  console.log(900977,data)
+  // if (loading) {
+  //   return <SmallSpinner spin={true} />;
+  // }
 
   return (
     <div>
@@ -220,7 +223,9 @@ const Charity = () => {
                     type="button"
                     className={`gry_btn ${highlightWatch && "active"}`}
                   >
-                    <i class="fa-solid fa-bell d"></i> watched
+                    {/* <i class="fa-solid fa-bell d"></i> */}
+                    <StarIcon />
+                    watched
                   </button>
                 </li>
                 <li className="d-flex">
@@ -275,8 +280,8 @@ const Charity = () => {
           >
             {currentPosts.length == 0 ? (
               <NotAvailable text="Data not found" />
-            )
-             :( currentPosts
+            ) : (
+              currentPosts
                 ?.filter((curElem) => {
                   if (searchValue == "") {
                     return curElem;
@@ -302,7 +307,8 @@ const Charity = () => {
                       addFabrity={addFabrity}
                     />
                   );
-                }))}
+                })
+            )}
 
             <Pagination
               totalPosts={data.length}

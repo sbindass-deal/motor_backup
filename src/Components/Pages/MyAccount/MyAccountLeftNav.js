@@ -48,19 +48,14 @@ function MyAccountLeftNav() {
             </MenuItem>
 
             <MenuItem>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{
-                    color: `${
-                      location.pathname === "/getalerts" ? "#EF6031" : ""
-                    }`,
-                  }}
-                  to="/getalerts"
-                >
-                  Get Alerts
-                </Link>
-              </li>
+              <Link
+                className={`${
+                  location.pathname === "/getalerts" ? "#EF6031" : ""
+                }`}
+                to="/getalerts"
+              >
+                Get Alerts
+              </Link>
             </MenuItem>
 
             <SubMenu

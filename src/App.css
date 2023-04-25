@@ -110,3 +110,7 @@ footer .active{
 header .active{
   color: rgb(239, 96, 49) !important;
 }
+
+.pointer{
+  cursor: pointer;
+}
