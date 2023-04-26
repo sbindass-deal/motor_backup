@@ -169,8 +169,8 @@ const Auctionfeature = () => {
           <div className="row">
             <div class="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
-              <p className="text-center">
-                <span className="border p-1">
+              <p className="grTe">
+                <span className="">
                   <span>
                     <NotificationsNoneIcon />
                   </span>

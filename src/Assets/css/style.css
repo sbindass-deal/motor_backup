@@ -7898,3 +7898,13 @@ p.grTe {
   background: #f7931b;
   color: #fff !important;
 }
+
+.inputData{
+  display: flex;
+}
+.inputDataInput{
+      padding: 5px;
+    border-radius: 6px;
+    outline: none;
+  
+}
