@@ -13,6 +13,8 @@ import { noImage, notify, strToHtml } from "../../UI/globaleVar";
 import parse from "html-react-parser";
 import { Image } from "antd";
 import userProfile from "../../../Assets/images/userProfile.jpeg"
+import CloseIcon from "@mui/icons-material/Close";
+import Avatar from 'react-avatar-edit';
 
 function AccountInfo() {
   const userId = useSelector((state) => state);
@@ -22,6 +24,56 @@ function AccountInfo() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [profileShow, setProfileShow] = useState(false);
+  const handleProfileClose = () => setProfileShow(false);
+  const handleProfileShow = () => setProfileShow(true);
+
+  const [file, setFile] = useState();
+  // const [myData, setMyData] = useState([]);
+
+  const [preview, setPreview] = useState(null);
+  
+  console.log("preview", preview)
+  const src = '';
+
+  function onClose() {
+    setPreview(null);
+  }
+
+  function onCrop(preview) {
+    setPreview(preview);
+  }
+
+  // let data = {
+  //   image:preview
+  // }
+  const url = process.env.REACT_APP_URL;
+ const uploadProfilePic = async (e) => {
+    await axios
+      .post(`${url}usersProfile`, {
+        image: preview,
+      })
+      .then((result) => {
+        if (result.data.status === 200 && true) {
+          notify(result.data.message);
+        } else if (result.data.status === 200) {
+          notify(result.data.message);
+        } else {
+          notify(result.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        notify("something wrong please try again !");
+      });
+  };
+
+
+  // function handleChange(e) {
+  //   console.log(e.target.files);
+  //   setFile(URL.createObjectURL(e.target.files[0]));
+  // }
 
   const fetchUsrApi = async () => {
     try {
@@ -128,161 +180,167 @@ function AccountInfo() {
               </div>
               <hr />
               <div className="row">
-              <div className="col-6">
-              <ul className="labelList_">
-                <li className="avtar">
-                  <span>
-                    <img src={userProfile} /> 
-                  </span>
-                </li>
-                <li>
-                  <div className="labelList_label">Username</div>
-                  <div className="labelList_text">{userInfo.username}</div>
-                </li>
-                <li>
-                  <div className="labelList_label">Phone</div>
-                  <div className="labelList_text">{userInfo.mobile}</div>
-                </li>
-                <li>
-                  <div className="labelList_label">Email Address</div>
-                  <div className="labelList_text">
-                    {userInfo.email} <br />
-                    {/* <a href="#">Resend Verification Email</a> */}
-                  </div>
-                </li>
-               
-                {/* <li>
+                <div className="col-6">
+                  <ul className="labelList_">
+                    <li className="avtar">
+                      <span >
+                        <img src={userProfile} />
+                        {/* <i className="fa-solid fa-camera pointer" style={{position:"absolute", top:"127px"}} ></i> */}
+
+                      </span>
+                      <span className="p-2" onClick={handleProfileShow} style={{ position: "absolute", top: "120px", background: "transparent" }} >
+                        <i className="fa-solid fa-camera pointer"  ></i>
+                      </span>
+
+                    </li>
+                    <li>
+                      <div className="labelList_label">Username</div>
+                      <div className="labelList_text">{userInfo.username}</div>
+                    </li>
+                    <li>
+                      <div className="labelList_label">Phone</div>
+                      <div className="labelList_text">{userInfo.mobile}</div>
+                    </li>
+                    <li>
+                      <div className="labelList_label">Email Address</div>
+                      <div className="labelList_text">
+                        {userInfo.email} <br />
+                        {/* <a href="#">Resend Verification Email</a> */}
+                      </div>
+                    </li>
+
+                    {/* <li>
                   <div className="labelList_label">Title</div>
                   <div className="labelList_text">
                     {userInfo.dealer_title} <br />
                   </div>
                 </li> */}
-                {/* <li>
+                    {/* <li>
                   <div className="labelList_label">About us</div>
                   <div className="labelList_text">
                     {userInfo.about_us && parse(userInfo.about_us, strToHtml)}
                   </div>
                 </li> */}
-                {/* <li>
+                    {/* <li>
                   <div className="labelList_label">Description</div>
                   <div className="labelList_text">
                     {userInfo?.dealerDescription &&
                       parse(userInfo?.dealerDescription, strToHtml)}
                   </div>
                 </li> */}
-                <li>
-                  <div className="labelList_label">Card Number</div>
-                  {userInfo.cn_no !== null && (
-                    <div className="labelList_text">
-                      ************{userInfo.cn_no} <br />
-                    </div>
-                  )}
-                </li>
-                {/* ==================== */}
-              
+                    <li>
+                      <div className="labelList_label">Card Number</div>
+                      {userInfo.cn_no !== null && (
+                        <div className="labelList_text">
+                          ************{userInfo.cn_no} <br />
+                        </div>
+                      )}
+                    </li>
+                    {/* ==================== */}
 
-                <li>
-                  {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
-                  <StripeCheckout
-                    className="Btn"
-                    stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
-                    token={onToken}
-                    email={userInfo.email}
-                    name="Save Card Details For Payment"
-                    currency="USD"
-                    ComponentClass="div"
-                    panelLabel="Save"
-                    // amount={
-                    //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
-                    // }
-                  >
-                    <button className="btn">
-                      {userInfo.cn_no
-                        ? "Update Card Details"
-                        : "Save Card Details"}
-                    </button>
-                  </StripeCheckout>
-                </li>
-                {/* ======================== */}
+                    <li>
+                      {/* <button className="btn" onClick={handleShow}>Add Credit Card</button> */}
 
-                {false && (
-                  <>
-                    <h6>Logo</h6>
-                    <hr />
-                    <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.logo?.map((curElem, i) => {
-                          return (
-                            <span key={i}>
-                              <Image
-                                loading="lazy"
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </span>
-                          );
-                        })}
-                      </Image.PreviewGroup>
-                    </div>
-                    <h6 className="mt-3">Banner</h6>
-                    <hr />
-                    <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.gallery?.map((curElem, i) => {
-                          return (
-                            <span key={i}>
-                              <Image
-                                loading="lazy"
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </span>
-                          );
-                        })}
-                      </Image.PreviewGroup>
-                    </div>
-                    <h6 className="mt-3">Gallery</h6>
-                    <hr />
+                      <StripeCheckout
+                        className="Btn"
+                        stripeKey={process.env.REACT_APP_STRIP_PUBLIC_KEY}
+                        token={onToken}
+                        email={userInfo.email}
+                        name="Save Card Details For Payment"
+                        currency="USD"
+                        ComponentClass="div"
+                        panelLabel="Save"
+                      // amount={
+                      //   (parseInt(paymentDetails?.amount * 5, 10) / 100) * 100
+                      // }
+                      >
+                        <button className="btn">
+                          {userInfo.cn_no
+                            ? "Update Card Details"
+                            : "Save Card Details"}
+                        </button>
+                      </StripeCheckout>
+                    </li>
+                    {/* ======================== */}
 
-                    <div className="imgCross">
-                      <Image.PreviewGroup>
-                        {userInfo?.banner?.map((curElem, i) => {
-                          return (
-                            <span key={i}>
-                              <Image
-                                loading="lazy"
-                                src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
-                                onError={({ currentTarget }) => {
-                                  currentTarget.onError = null;
-                                  currentTarget.src = noImage;
-                                }}
-                                alt="Maskgroup1"
-                              />
-                            </span>
-                          );
-                        })}
-                      </Image.PreviewGroup>
-                    </div>
-                  </>
-                )}
-              </ul>
+                    {false && (
+                      <>
+                        <h6>Logo</h6>
+                        <hr />
+                        <div className="imgCross">
+                          <Image.PreviewGroup>
+                            {userInfo?.logo?.map((curElem, i) => {
+                              return (
+                                <span key={i}>
+                                  <Image
+                                    loading="lazy"
+                                    src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src = noImage;
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                </span>
+                              );
+                            })}
+                          </Image.PreviewGroup>
+                        </div>
+                        <h6 className="mt-3">Banner</h6>
+                        <hr />
+                        <div className="imgCross">
+                          <Image.PreviewGroup>
+                            {userInfo?.gallery?.map((curElem, i) => {
+                              return (
+                                <span key={i}>
+                                  <Image
+                                    loading="lazy"
+                                    src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src = noImage;
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                </span>
+                              );
+                            })}
+                          </Image.PreviewGroup>
+                        </div>
+                        <h6 className="mt-3">Gallery</h6>
+                        <hr />
 
+                        <div className="imgCross">
+                          <Image.PreviewGroup>
+                            {userInfo?.banner?.map((curElem, i) => {
+                              return (
+                                <span key={i}>
+                                  <Image
+                                    loading="lazy"
+                                    src={`${process.env.REACT_APP_URL}/${curElem?.logo}`}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onError = null;
+                                      currentTarget.src = noImage;
+                                    }}
+                                    alt="Maskgroup1"
+                                  />
+                                </span>
+                              );
+                            })}
+                          </Image.PreviewGroup>
+                        </div>
+                      </>
+                    )}
+                  </ul>
+
+                </div>
+                <div className="col-6">
+                  <img src="" />
+                </div>
               </div>
-              <div className="col-6">
-                        <img src=""/>
-              </div>
-              </div>
-            
-              
+
+
 
             </div>
           </div>
@@ -361,6 +419,54 @@ function AccountInfo() {
                 </div>
               </form> */}
               <CreditCard />
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+
+
+
+
+
+
+      <Modal
+        show={profileShow}
+        onHide={handleClose}
+        className="modal fade"
+        id="loginModal"
+        centered
+      >
+        <div className="modal-dialog modal-dialog-centered mt-5">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <h4 className="modal-title">Profile pic upload</h4>
+              <button
+                onClick={handleProfileClose}
+                type="button"
+                className="close mt-5"
+                data-dismiss="modal"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div className="modal-body px-5">
+              {/* <input type="file" onChange={handleChange} />
+            </div>
+            <img src={file} /> */}
+              <Avatar
+                width={390}
+                height={295}
+                onCrop={onCrop}
+                onClose={onClose}
+                src={src}
+                accept="image/gif, image/jpeg, image/png, image/jpg"
+              />
+             {preview && <img src={preview} alt="Preview" />}
+            </div>
+            <button className="my-5 w-50 btn text-center" onClick={uploadProfilePic}>Upload file</button>
+            <div>
             </div>
           </div>
         </div>
