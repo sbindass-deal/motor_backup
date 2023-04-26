@@ -15,6 +15,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 const Auctionfeature = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [showBell, setShowBell] = useState(false);
   const [data, setData] = useState([]);
   const [allData, setAllData] = useState([]);
 
@@ -162,6 +163,25 @@ const Auctionfeature = () => {
   //   return <SmallSpinner spin={true} />;
   // }
 
+
+  const handleNotify = (a) => {
+   
+   axios
+     .post(`${process.env.REACT_APP_URL}AddToNotifyAlerts`, {
+       type: "featured",
+       subscribed: a,
+     })
+     .then(function (response) {
+       console.log(1009, response);
+       setShowBell(!showBell);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+  }
+
+  
+console.log(9898,showBell)
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -169,14 +189,25 @@ const Auctionfeature = () => {
           <div className="row">
             <div class="col-12 text-center pb_30">
               <h2>Featured Auctions</h2>
-              <p className="grTe">
-                <span className="">
-                  <span>
-                    <NotificationsNoneIcon />
+              {showBell==false ? (
+                <p className="grTe1" onClick={()=>handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
                   </span>
-                  Get Daily Updates
-                </span>
-              </p>
+                </p>
+              ) : (
+                <p className="grTe " onClick={()=>handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
+                  </span>
+                </p>
+              )}
             </div>
 
             <div className="col-12">
