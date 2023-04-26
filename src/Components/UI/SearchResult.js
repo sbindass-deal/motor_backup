@@ -33,7 +33,7 @@ const SearchResult = () => {
 
   const searchNew = async () => {
     let data = {
-      keyword:searchKey,
+      keyword: searchKey,
     };
     try {
       const res = await axios.post(
@@ -103,7 +103,7 @@ const SearchResult = () => {
           <div className="container">
             <div className="row">
               <div className="topTile">
-                <h1>
+                <h1 style={{ textTransform: "capitalize" }}>
                   {searchKey}{" "}
                   {/* {searchedData.make || relatedData[0].make}{" "} */}
                   {/* {searchedData.model || relatedData[0].model}{" "}
