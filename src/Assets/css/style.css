@@ -7886,18 +7886,15 @@ p.notiFi {
     background-size: cover;
     background-position: right;
 }
-.SearchResult .bestSellerRgt:after{
- border: none;
-}
-p.grTe {
+.SearchResult .bestSellerRgt:after{ border: none;}
 
-  padding: 10px;
+  /* padding: 10px;
   border-radius: 10px;
   width: 20%;
   margin: 0 auto;
   background: #f7931b;
   color: #fff !important;
-}
+} */
 
 .inputData{
   display: flex;
