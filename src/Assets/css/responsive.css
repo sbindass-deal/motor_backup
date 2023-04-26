@@ -1346,6 +1346,10 @@
 		background-size: cover;
 		top: 350px;
 	}
+	.accordion>.card {
+		overflow: hidden;
+		margin-left: 7%;
+	}
 }
 
 @media (max-width: 575px) {
