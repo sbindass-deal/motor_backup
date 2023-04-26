@@ -293,7 +293,7 @@ img.addBanner {
   background: url(../images/hadderBgImg.png) center no-repeat;
   background-size: cover;
   position: relative;
-  height: 85vh;
+  height: 51vh;
 }
 
 .heroText {
@@ -3610,6 +3610,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
   background-image: url('../images/american-muscle-car-driver-2022-12-16-11-47-56-utc.jpg');
   height: 51vh;
   background-position: inherit;
+  background-position: center;
 }
 
 .mission_section p 
@@ -4419,6 +4420,7 @@ ul.navbar-nav.mobileOnly form.searchForm {
 
 .light .heroText h5 {
   color: #f7931b;
+  font-weight: 100;
 }
 
 .mt-80 {
@@ -6936,7 +6938,7 @@ h5.catagories {
   margin: 2px;
 }
 .sliderSec .dTLPr img {
-  width: 532px;
+  width: 100%;
   overflow: hidden;
 }
 .productBigImg {
@@ -7517,7 +7519,7 @@ justify-content: space-between;
   margin-top: 5px;
   position: absolute;
   top: -4px;
-  left: -1px;
+  /* left: -1px; */
   z-index: 1;
 }
 .bestSellerRgt::after {
@@ -7737,11 +7739,17 @@ ul.post_labelList li p.userIco {
 }
 .bestSellerRgt.charity {
   background-image: url(../images/pinkRibin.png);
+  height: 30px;
+    background-size: cover;
 }
 .bestSellerRgt.noReserve {
   background-image: url(../images/pinkRibinzBlack.png);
 }
-
+.SearchResult .bestSellerRgt.charity {
+  background-image: url(../images/pinkRibin.png);
+  height: 30px;
+    background-size: cover;
+}
 
 .tBB.only li.nav-item button {
   min-width: 126px;
@@ -7802,13 +7810,13 @@ ul.post_labelList li p.userIco {
 .heroSection.mains:before {
   content: '';
   background-image: url(../images/homeCarImg.png);
-  background-repeat: no-repeat;
-  width: 56%;
-  height: 60%;
-  right: 0;
-  position: absolute;
-  background-size: cover;
-  top: 260px;
+ background-repeat: no-repeat;
+ width: 43%;
+ height: 68%;
+ right: 0;
+ position: absolute;
+ background-size: cover;
+ top: 151px;
 }
 li.avtar span {
   width: 150px;
@@ -7824,4 +7832,76 @@ li.avtar span img {
 }
 .newDelarSlid.carousel {
   height: 500px;
+}
+.coupon-card p {
+  background: #fff;
+  width: 23%;
+  border-radius: 100px;
+  text-align: center;
+  display: flex;
+  margin-left: 6px;
+}
+.coupon-card {
+  display: flex;
+  justify-content: center;
+}
+p.notiFi {
+  padding: 10px;
+  border: 1px solid;
+  width: 20%;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: orange;
+}
+
+
+.ab img {
+  --color: #f8a504;
+  --border: 10px;
+  --offset: 20px;
+  --gap: 5px;
+  --_c: var(--color) var(--border), #0000 0 calc(100% - var(--border)),var(--color) 0;
+  --_o: calc(3*var(--offset));
+  padding: calc(var(--gap) + var(--border)) calc(var(--gap) + var(--border) + var(--offset)) calc(var(--gap) + var(--border) + var(--offset)) calc(var(--gap) + var(--border));
+  background: linear-gradient( var(--_c)) var(--_o) var(--_o), linear-gradient(90deg,var(--_c)) var(--_o) var(--_o);
+  background-size: calc(100% - var(--_o)) calc(100% - var(--_o));
+  background-repeat: no-repeat;
+  filter: grayscale(.4);
+  transition: .5s;
+  cursor: pointer;
+}
+
+.ab img:hover {
+  background-position: 0px 0px;
+  background-size: calc(100% - var(--offset)) calc(100% - var(--offset));
+  filter: grayscale(0);
+}
+
+.SearchResult .bestSellerRgt {
+  background: none;
+}
+.SearchResult .bestSellerRgt.Featured {
+  background-image: url(../images/ribin.png);
+  height: 30px;
+    background-size: cover;
+    background-position: right;
+}
+.SearchResult .bestSellerRgt:after{ border: none;}
+
+  /* padding: 10px;
+  border-radius: 10px;
+  width: 20%;
+  margin: 0 auto;
+  background: #f7931b;
+  color: #fff !important;
+} */
+
+.inputData{
+  display: flex;
+}
+.inputDataInput{
+      padding: 5px;
+    border-radius: 6px;
+    outline: none;
+  
 }

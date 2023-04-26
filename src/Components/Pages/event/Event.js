@@ -104,6 +104,23 @@ const Event = () => {
       </section>
 
       <div className="container clenderStyle ">
+        <div className="inputData">
+          <div>
+            <input className="inputDataInput" type="month" name="" id="" />
+          </div>
+          <div className="ml-3">
+            <input
+              className="inputDataInput"
+              type="text"
+              name=""
+              id=""
+              placeholder="Enter Event Name"
+            />
+          </div>
+          <div className="ml-3">
+            <button className="inputDataInput">Search</button>
+          </div>
+        </div>
         <div className="text-right mb-1">
           {/* {logingUser.login.token && ( */}
           <button onClick={handleClick} className="orange_btn">

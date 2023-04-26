@@ -6,10 +6,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { handleBail } from "../../redux/reducers/dayAndNightMode";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import { showModalClose, showModalLogin } from "../../redux/reducers/login";
 
 const SearchResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const logingUser = useSelector((state) => state);
   const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
@@ -31,7 +33,7 @@ const SearchResult = () => {
 
   const searchNew = async () => {
     let data = {
-      keyword: "ford",
+      keyword: searchKey,
     };
     try {
       const res = await axios.post(
@@ -59,6 +61,13 @@ const SearchResult = () => {
   useEffect(() => {
     searchNew();
   }, [name, relatedData]);
+
+  const handleClose = () => {
+    dispatch(showModalClose());
+  };
+  const handleShow = () => {
+    dispatch(showModalLogin());
+  };
 
   // useEffect(() => {
 
@@ -94,7 +103,7 @@ const SearchResult = () => {
           <div className="container">
             <div className="row">
               <div className="topTile">
-                <h1>
+                <h1 style={{ textTransform: "capitalize" }}>
                   {searchKey}{" "}
                   {/* {searchedData.make || relatedData[0].make}{" "} */}
                   {/* {searchedData.model || relatedData[0].model}{" "}
@@ -141,16 +150,37 @@ const SearchResult = () => {
                   Notify me when one is listed
                 </button>
 
-                <Link
-                  className="btn ml-2"
-                  // to={
-                  //   searchedData.displayInAuction === "Yes"
-                  //     ? `/detail/${searchedData.id}`
-                  //     : `/showroom/${searchedData.id}`
-                  // }
-                >
-                  Have one? Sell yours here{" "}
-                </Link>
+                {logingUser.login.token == null ? (
+                  <Link
+                    onClick={handleShow}
+                    className="btn ml-2"
+                    // to={
+                    //   searchedData.displayInAuction === "Yes"
+                    //     ? `/detail/${searchedData.id}`
+                    //     : `/showroom/${searchedData.id}`
+                    // }
+                  >
+                    Have one? Sell yours here{" "}
+                  </Link>
+                ) : logingUser?.login?.user?.dealer == "No" ? (
+                  <Link className="btn ml-2" to={"/submit"}>
+                    Have one? Sell yours here{" "}
+                  </Link>
+                ) : (
+                  <Link className="btn ml-2" to={"/dealer"}>
+                    Have one? Sell yours here{" "}
+                  </Link>
+                )}
+                {/* // <Link
+                //   className="btn ml-2"
+                //   // to={
+                //   //   searchedData.displayInAuction === "Yes"
+                //   //     ? `/detail/${searchedData.id}`
+                //   //     : `/showroom/${searchedData.id}`
+                //   // }
+                // >
+                //   Have one? Sell yours here{" "}
+                // </Link> */}
               </div>
             </div>
           </div>
@@ -168,16 +198,17 @@ const SearchResult = () => {
           <div className="row">
             {relatedData &&
               relatedData.map((curElem) => {
+                console.log(8988, curElem);
                 return (
-                  <div className="col-12 col-md-6 col-lg-4" key={curElem.id}>
+                  <div className="col-12 col-md-6 col-lg-3" key={curElem.id}>
                     <div className="card_post SearchResult auction">
                       {curElem.displayInAuction === "Yes" ? (
-                        <div class="bestSellerRgt">
+                        <div class="bestSellerRgt Featured">
                           <span class="">For Auction</span>
                         </div>
                       ) : // <p className="forOction"></p>
                       curElem.displayInAuction === "classified" ? (
-                        <div class="bestSellerRgt">
+                        <div class="bestSellerRgt Featured">
                           <span class="">Ad</span>
                         </div>
                       ) : // <p className="forOction">Ad</p>

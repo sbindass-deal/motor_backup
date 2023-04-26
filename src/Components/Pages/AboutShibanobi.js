@@ -8,7 +8,7 @@ import about_4 from "../../Assets/images/man-driving-his-car-during-phone-conver
 function AboutShibanobi() {
   return (
     <div>
-      <section className="ptb_80">
+      <section className="ptb_80 ab">
         <div className="auction_container">
           <div className="row pt_80">
             <div className="col-12 col-md-6 order-md-1">
