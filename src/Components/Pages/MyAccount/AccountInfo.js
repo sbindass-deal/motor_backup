@@ -89,9 +89,13 @@ function AccountInfo() {
     }
   };
 
+<<<<<<< Updated upstream
   useEffect(() => {
     fetchUsrApi();
   }, []);
+=======
+ 
+>>>>>>> Stashed changes
 
   const onToken = (token, addresses) => {
     if (token !== null) {
@@ -112,6 +116,7 @@ function AccountInfo() {
         });
     }
   };
+<<<<<<< Updated upstream
 
   const handlePrivateOrPublic = (e) => {
     setIsPrivateOrPublic(e.target.checked);
@@ -132,6 +137,8 @@ function AccountInfo() {
       });
   };
 
+=======
+>>>>>>> Stashed changes
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
