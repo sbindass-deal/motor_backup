@@ -47,7 +47,7 @@ const TermAndCondition = () => {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Term And Condition</h3>
+                <h3>Terms and Conditions</h3>
                 {data?.length < 0 ? (
                   <div>
                     <Link to="/admin/addprivacy" className="orange_btn">
