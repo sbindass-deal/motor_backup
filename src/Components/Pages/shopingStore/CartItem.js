@@ -21,7 +21,9 @@ const CartItem = ({
   stocks,
   size_id,
   productId,
-  color_id2
+  color_id2,
+  multiplier,
+  addPoints
 }) => {
   const dispatch = useDispatch();
   const [size2, setSize2] = useState();
@@ -74,7 +76,7 @@ const CartItem = ({
 
   }, [])
 
-  
+
   return (
     <>
       <tr>
@@ -100,30 +102,34 @@ const CartItem = ({
           </p>
           <p className="color d-flex">
             Color: <span>
-                {
-                  color_id?.map((data, index) => {
-                  
-                    console.log(98989, data,)
-                    
-                    if (color_id2 == data.id) {
-                      return (<p className={`mx-2 `} >{data?.color}</p>)
-                    }
-                  })
-                }
+              {
+                color_id?.map((data, index) => {
+
+                  console.log(98989, data,)
+
+                  if (color_id2 == data.id) {
+                    return (<p className={`mx-2 `} >{data?.color}</p>)
+                  }
+                })
+              }
               {/* {
                 product?.product_inventry?.map((d, i) => {
-                 
+                  
                   if(d?.id == productId)
-                      return color_id?.map((data , index) => {
-                        if(d?.color_id == data.id)
-                        {
-                          return(<p className={`mx-2 `} >{data?.color}</p>)
-                        }
-                      })
+                  return color_id?.map((data , index) => {
+                    if(d?.color_id == data.id)
+                    {
+                      return(<p className={`mx-2 `} >{data?.color}</p>)
+                    }
                   })
+                })
               } */}
             </span>
           </p>
+          {addPoints && <div>
+            <p className="proName">Giveaways Entries </p>
+            <div>{<span>{multiplier  + "X"}</span>}</div>
+          </div>}
           <button
             onClick={() => {
               dispatch(removeFromCart(size_id));
@@ -137,7 +143,9 @@ const CartItem = ({
         <td className="text-center">${price?.map((d) => {
           if (d?.size_id == size_id && d?.color_id == color_id2)
             return d?.price
-        })}</td>
+        })}
+        {addPoints && <p className="mt-5">5$</p>}
+        </td>
         <td className="text-center">
           <div className="count">
             <button

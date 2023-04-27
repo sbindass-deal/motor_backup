@@ -66,6 +66,8 @@ const Cart = () => {
                           size_id={curElem?.size_id}
                           productId={curElem?.productId}
                           color_id2={curElem?.color_id}
+                          addPoints={curElem?.addPoints}
+                          multiplier={curElem?.multiplier}
                         />
                       );
                     })}
