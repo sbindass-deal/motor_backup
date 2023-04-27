@@ -33,15 +33,18 @@ const Event = () => {
   const [eventsData, setEventsData] = useState(events);
   const [getId, setGetId] = useState("");
   const logingUser = useSelector((state) => state);
+  const [loading, setLoading]=useState(false)
   
   const [getDateYear, setGetDateYear] = useState({
     datemonth: "",
-    title:"",
-  })
+    eventtitle: "",
+  });
 
   const handleChangedate = (e) => {
     setGetDateYear({ ...getDateYear, [e.target.name]: e.target.value});
   }
+
+ 
 
   const d = new Date(getDateYear?.datemonth);
   console.log(98080, d.getFullYear());
@@ -59,17 +62,23 @@ const Event = () => {
     theme: "light",
   });
   const handleEventData = () => {
-   
+   setLoading(true)
     axios
       .post(`${process.env.REACT_APP_URL}getEventsByMonthYear`, {
         year: d.getFullYear(),
         month: d.getMonth() + 1,
+        title: getDateYear.eventtitle,
       })
       .then(function (response) {
         console.log(998, response.data.data);
         if (response.data.status === 200) {
           // setEventsData(response?.data?.data);
+          setLoading(false)
           notify(response.data.message);
+          setGetDateYear({
+            datemonth: "",
+            eventtitle: "",
+          });
         }
       })
       .catch(function (error) {
@@ -174,9 +183,17 @@ const Event = () => {
             />
           </div>
           <div className="ml-3">
-            <button onClick={handleEventData} className="inputDataInput">
-              Search
-            </button>
+            {loading ? (
+              <div class="text-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button onClick={handleEventData} className="inputDataInput">
+                Search
+              </button>
+            )}
           </div>
         </div>
         <div className="text-right mb-1">

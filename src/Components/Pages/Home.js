@@ -185,7 +185,7 @@ function Home() {
         </a>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-12">
+            <div className="col-12 col-lg-6">
               <div className="heroText textAlignLeft">
                 <h1>
                   We are dedicated to parking<br/> your Dream Vehicle <br/>in your Garage

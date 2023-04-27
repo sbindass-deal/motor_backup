@@ -628,7 +628,7 @@ section.bgHolder {
 }
 
 .bgImg01 {
-  background-image: url(../images/many-classic-red-vintage-old-american-cars-parked-2022-09-27-01-00-30-utc.jpg);
+  background-image: url(../images/DODGE.jpg);
 }
 
 .bgImg02 {
@@ -6504,7 +6504,7 @@ h3.cardTitle.riTArrow {
 .rfel {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/1968-mustang-banner.png);
+  background-image: url(../images/INDIAN-SCOUT-MOTOR.jpg);
   background-position: center;
   height: 25vh;
 
@@ -7760,10 +7760,10 @@ ul.post_labelList li p.userIco {
 .modal-body .PostInfo {
   padding: 20px !important;
 }
-/* 
+
 .heroText.textAlignLeft {
   text-align: left;
-} */
+}
 .deTitle {
   margin-bottom: 0;
   top: 6px;
@@ -7975,4 +7975,7 @@ button.btn.btn-link.fdrD {
 }
 .card_post:hover .notiFicIcon {
   right: 5px;
+}
+.text-warning {
+  color: #f8a504!important;
 }
