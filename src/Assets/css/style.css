@@ -290,7 +290,7 @@ img.addBanner {
 .heroSection {
   padding: 50px 0px;
   min-height: 500px;
-  background: url(../images/hadderBgImg.png) center no-repeat;
+  background: url(../images/FERRARI-AND-MOTOR.jpg) center no-repeat;
   background-size: cover;
   position: relative;
   height: 51vh;
@@ -2201,14 +2201,14 @@ li.page-item.disabled a svg {
 .aboutSection,
 .howItWorkSection {
   padding: 50px 0px;
-  min-height: 300px;
+  min-height: 500px;
   background: url(../images/about.jpg) center no-repeat;
   background-size: cover;
   position: relative;
 }
 
 .howItWorkSection {
-  background: url(../images/ELEANOR-TRIBUTE-1968.png) center no-repeat;
+  background: url(../images/SHELBY-GT500.jpg) center no-repeat;
   background-size: cover;
 }
 
@@ -7760,10 +7760,10 @@ ul.post_labelList li p.userIco {
 .modal-body .PostInfo {
   padding: 20px !important;
 }
-
+/* 
 .heroText.textAlignLeft {
   text-align: left;
-}
+} */
 .deTitle {
   margin-bottom: 0;
   top: 6px;
@@ -7807,7 +7807,7 @@ ul.post_labelList li p.userIco {
 
 } 
 .heroSection.mains{position: relative;}
-.heroSection.mains:before {
+/* .heroSection.mains:before {
   content: '';
   background-image: url(../images/homeCarImg.png);
  background-repeat: no-repeat;
@@ -7817,7 +7817,7 @@ ul.post_labelList li p.userIco {
  position: absolute;
  background-size: cover;
  top: 151px;
-}
+} */
 li.avtar span {
   width: 150px;
   height: 140px;
@@ -7911,7 +7911,7 @@ button.btn.btn-link.fdrD {
   padding: 0;
   border: navajowhite;
   background: transparent;
-  color: #000;
+  color: #acacac;
   font-weight: 200;
   text-transform: capitalize;
   text-align: left;
@@ -7919,10 +7919,10 @@ button.btn.btn-link.fdrD {
 
 .accordion .card-header {
   padding: 0px 17px;
-  background-color: #e5e4e4;
+  background-color: #e5e4e400;
 }
 .collapse.show {
-  background-color: #e5e4e4;
+  background-color: #e5e4e400;
 }
 .collapse.show .card-body {
   text-align: left;
@@ -7931,14 +7931,14 @@ button.btn.btn-link.fdrD {
   display: block;
   padding: 8px 5px;
 }
-
+.light button.btn.btn-link.fdrD{color: #000;}
 .accordion .card-header {
   padding: 10px 20px;
   margin-bottom: 0;
-  background-color: rgb(229 228 228);
+  background-color: rgb(229 228 228 / 0%);
   border-bottom: 0px solid rgb(229 228 228);
 }
-.accordion .card{background-color: rgb(229 228 228);
+.accordion .card {   background-color: rgb(229 228 228 / 0%);
   border-bottom: 0px solid rgb(229 228 228);border: none;}
 
   .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
@@ -7958,3 +7958,7 @@ button.btn.btn-link.fdrD {
   font-size: 15px;
   padding: 0;
 }
+.gRt .labelList_text{padding-left: 0px;}
+
+
+

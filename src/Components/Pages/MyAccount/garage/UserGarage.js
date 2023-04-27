@@ -168,7 +168,7 @@ function UserGarage() {
                 }}
               >
                 <div className="d-flex ">
-                  <h3>
+                  <h3 className="gTitle">
                     Garage /{" "}
                     {tabState.vehicle_tab === true &&
                       tabState.socialMedia_tab === false &&
@@ -219,7 +219,7 @@ function UserGarage() {
                       navigate("/vechiles");
                       dispatch(handleGarage(false));
                     }}
-                    className="gry_btn px-3 mx-2"
+                    className="gry_btn px-3 mx-2 addVeh"
                   >
                     + Add Vehicle
                   </button>
@@ -323,7 +323,7 @@ function UserGarage() {
               {/* ============================ added new user garages start */}
 
               <div className="container">
-                <div className="row">
+                <div className="row gRt">
                   <div className="col-md-12 ">
                     <div className="UserImZ mt-4">
                       <div className="avtar">
@@ -350,11 +350,11 @@ function UserGarage() {
                           </Space>
                         </Space>
                         <span>
-                        <i class="fa-solid fa-pencil"></i>
+                          <i class="fa-solid fa-pencil"></i>
                         </span>
                       </div>
-                
-                      <div className="followers">
+
+                      <div className="followers ">
                         <ul className="fwrList">
                           <li>
                             <span>{userInfo.followers}</span> Followers
@@ -369,7 +369,7 @@ function UserGarage() {
                         <button className="btn">Follow</button>
                       </div>
                     </div>
-                    <h2 className="mt-4">
+                    <h2 className="gTitle mt-4">
                       {userInfo.title}
                       <Link to="/editmyaccount-garages">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -390,67 +390,68 @@ function UserGarage() {
                         </div>
                       </li>
                     </ul>
-                    <div className="row neDesT">
-                      <button
-                        onClick={() => dispatch(vehicleTab())}
-                        className={`nav-link ${
-                          tabState.vehicle_tab === true &&
-                          tabState.socialMedia_tab === false &&
-                          "active"
-                        } `}
-                      >
-                        Vehicles
-                      </button>
-                      <button
-                        onClick={() => dispatch(socialMediaTab())}
-                        className={`nav-link ${
-                          tabState.socialMedia_tab === true && "active"
-                        } `}
-                      >
-                        Social Media
-                      </button>
-
-                      <button
-                        onClick={() => dispatch(postTab())}
-                        className={`nav-link ${
-                          tabState.post_tab === true && "active"
-                        } `}
-                      >
-                        Posts
-                      </button>
-                      <button
-                        onClick={() => dispatch(replyTab())}
-                        className={`nav-link ${
-                          tabState.reply_tab === true && "active"
-                        } `}
-                      >
-                        Replies
-                      </button>
-                      <button
-                        onClick={() => dispatch(bookMarkTab())}
-                        className={`nav-link ${
-                          tabState.bookmark_tab === true && "active"
-                        } `}
-                      >
-                        Bookmark
-                      </button>
-                      <button
-                        onClick={() => dispatch(favoritesTab())}
-                        className={`nav-link ${
-                          tabState.favorites_tab === true && "active"
-                        } `}
-                      >
-                        Favorites
-                      </button>
-                      <button
-                        onClick={() => dispatch(blogTab())}
-                        className={`nav-link ${
-                          tabState.blog_tab === true && "active"
-                        } `}
-                      >
-                        Blog
-                      </button>
+                    {/* scrollmenu */}
+                    <div className="row neDesT ">
+                        <button
+                          onClick={() => dispatch(vehicleTab())}
+                          className={`nav-link ${
+                            tabState.vehicle_tab === true &&
+                            tabState.socialMedia_tab === false &&
+                            "active"
+                          } `}
+                        >
+                          Vehicles
+                        </button>
+                        <button
+                          onClick={() => dispatch(socialMediaTab())}
+                          className={`nav-link ${
+                            tabState.socialMedia_tab === true && "active"
+                          } `}
+                        >
+                          Social Media
+                        </button>
+                        <button
+                          onClick={() => dispatch(postTab())}
+                          className={`nav-link ${
+                            tabState.post_tab === true && "active"
+                          } `}
+                        >
+                          Posts
+                        </button>
+                        <button
+                          onClick={() => dispatch(replyTab())}
+                          className={`nav-link ${
+                            tabState.reply_tab === true && "active"
+                          } `}
+                        >
+                          Replies
+                        </button>
+                        <button
+                          onClick={() => dispatch(bookMarkTab())}
+                          className={`nav-link ${
+                            tabState.bookmark_tab === true && "active"
+                          } `}
+                        >
+                          Bookmark
+                        </button>
+                        <button
+                          onClick={() => dispatch(favoritesTab())}
+                          className={`nav-link ${
+                            tabState.favorites_tab === true && "active"
+                          } `}
+                        >
+                          Favorites
+                        </button>
+                        <button
+                          onClick={() => dispatch(blogTab())}
+                          className={`nav-link ${
+                            tabState.blog_tab === true && "active"
+                          } `}
+                        >
+                          Blog
+                        </button>
                     </div>
+
                     <div>
                       {tabState.vehicle_tab === true &&
                         tabState.socialMedia_tab === false && (
