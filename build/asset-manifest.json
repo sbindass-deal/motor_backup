@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fa2f145d.css",
-    "main.js": "/static/js/main.7daec6b2.js",
+    "main.css": "/static/css/main.e9168784.css",
+    "main.js": "/static/js/main.c3ee918f.js",
     "static/js/841.7a850ea3.chunk.js": "/static/js/841.7a850ea3.chunk.js",
     "static/js/888.49b4b7b0.chunk.js": "/static/js/888.49b4b7b0.chunk.js",
     "static/js/624.1f775abd.chunk.js": "/static/js/624.1f775abd.chunk.js",
@@ -98,7 +98,6 @@
     "static/media/car_04.jpg": "/static/media/car_04.91e6199126a779079ce7.jpg",
     "static/media/tracking-mockup.png": "/static/media/tracking-mockup.7369b111ae21c73f3c8b.png",
     "static/media/men-face.jpg": "/static/media/men-face.9414f89e17bcdfd1aa80.jpg",
-    "static/media/american-muscle-car-driver-2022-12-16-11-47-56-utc.jpg": "/static/media/american-muscle-car-driver-2022-12-16-11-47-56-utc.c189f97bc5ea325a5515.jpg",
     "static/media/img-3.webp": "/static/media/img-3.81f2582abcbceb5a7b10.webp",
     "static/media/men-face3.jpg": "/static/media/men-face3.f32389f8bb7e694291e4.jpg",
     "static/media/reword.png": "/static/media/reword.74b0e1edb6854e1281a6.png",
@@ -110,6 +109,7 @@
     "static/media/raffle-6.jpg": "/static/media/raffle-6.9b2b48d4d2f594e1b7a5.jpg",
     "static/media/giphy.gif": "/static/media/giphy.41fc5db54c6759f5d344.gif",
     "static/media/men-face2.webp": "/static/media/men-face2.76110be467c1f5574471.webp",
+    "static/media/CAMARO-ZL1.jpg": "/static/media/CAMARO-ZL1.0ae6360e23abd936d36a.jpg",
     "static/media/HIW4.jpg": "/static/media/HIW4.22c589cddf196adcf4d1.jpg",
     "static/media/img-2.webp": "/static/media/img-2.b3e77c884a3847e153d0.webp",
     "static/media/2019-lamborghini-urus.png": "/static/media/2019-lamborghini-urus.4d2c611bfc8598f6f9b1.png",
@@ -127,8 +127,8 @@
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/bi_ticket.svg": "/static/media/bi_ticket.d888ce40284d7815e200ee56ee8da004.svg",
     "static/media/eyeIcon.svg": "/static/media/eyeIcon.5f47443714b0df163031f8f6e63d0aa3.svg",
+    "static/media/Vector2.svg": "/static/media/Vector2.4f95c670593c9294775222b5eb855c1f.svg",
     "static/media/msg.svg": "/static/media/msg.4f95c670593c9294775222b5eb855c1f.svg",
-    "static/media/Vector2.svg": "/static/media/Vector2.98c75e44f608e735eee7677f96d200bd.svg",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/bellIcon.svg": "/static/media/bellIcon.c021669ac7c4e304eaa1b0e1ba3e02f2.svg",
     "static/media/check-circle.svg": "/static/media/check-circle.8216908bc1d44324181a.svg",
@@ -142,8 +142,8 @@
     "static/media/ArrowRight.svg": "/static/media/ArrowRight.86b915a0d377156a8b70.svg",
     "static/media/ArrowLeft_2.svg": "/static/media/ArrowLeft_2.fdc8128429785901cd2c.svg",
     "static/media/ArrowLeft.svg": "/static/media/ArrowLeft.67ec322c749f0000c547.svg",
-    "main.fa2f145d.css.map": "/static/css/main.fa2f145d.css.map",
-    "main.7daec6b2.js.map": "/static/js/main.7daec6b2.js.map",
+    "main.e9168784.css.map": "/static/css/main.e9168784.css.map",
+    "main.c3ee918f.js.map": "/static/js/main.c3ee918f.js.map",
     "841.7a850ea3.chunk.js.map": "/static/js/841.7a850ea3.chunk.js.map",
     "888.49b4b7b0.chunk.js.map": "/static/js/888.49b4b7b0.chunk.js.map",
     "624.1f775abd.chunk.js.map": "/static/js/624.1f775abd.chunk.js.map",
@@ -183,7 +183,7 @@
     "48.3ac00179.chunk.js.map": "/static/js/48.3ac00179.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa2f145d.css",
-    "static/js/main.7daec6b2.js"
+    "static/css/main.e9168784.css",
+    "static/js/main.c3ee918f.js"
   ]
 }
