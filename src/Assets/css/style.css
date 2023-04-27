@@ -6504,7 +6504,7 @@ h3.cardTitle.riTArrow {
 .rfel {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/1968-mustang-banner.png);
+  background-image: url(../images/INDIAN-SCOUT-MOTOR.jpg);
   background-position: center;
   height: 25vh;
 
@@ -7975,4 +7975,7 @@ button.btn.btn-link.fdrD {
 }
 .card_post:hover .notiFicIcon {
   right: 5px;
+}
+.text-warning {
+  color: #f8a504!important;
 }

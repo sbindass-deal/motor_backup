@@ -1072,7 +1072,7 @@ function Header() {
                           </div>
                         </div>
                       </li>
-                      <li className="nav-item">
+                      {/* <li className="nav-item">
                         <Link
                           className="nav-link"
                           style={{
@@ -1086,7 +1086,7 @@ function Header() {
                         >
                           Get Alerts
                         </Link>
-                      </li>
+                      </li> */}
                       <li className="nav-item">
                         <Link
                           className="nav-link"
