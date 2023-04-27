@@ -226,7 +226,7 @@ function AdminLeftNav() {
                   } `}
                   to="/admin-enquiry"
                 >
-                 Contact Us
+                  Contact Us
                 </Link>
               </li>
             </MenuItem>
@@ -241,7 +241,7 @@ function AdminLeftNav() {
                     } `}
                     to="/admin-privacy-policy"
                   >
-                    Giveaways Official
+                    Giveaway Official
                   </Link>
                 </li>
               </MenuItem>
@@ -267,7 +267,7 @@ function AdminLeftNav() {
                     } `}
                     to="/admin-termcondition"
                   >
-                    Term And Condition
+                    Terms and Conditions
                   </Link>
                 </li>
               </MenuItem>

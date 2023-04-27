@@ -44,7 +44,7 @@ const PrivacyPolicyAdmin = () => {
                 id="widthChnge"
                 style={{ justifyContent: "space-between" }}
               >
-                <h3>Giveaways Official Rules</h3>
+                <h3>Giveaway Official Rules</h3>
                 {data?.length < 0 ? (
                   <div>
                     <Link to="/admin/addprivacy" className="orange_btn">
