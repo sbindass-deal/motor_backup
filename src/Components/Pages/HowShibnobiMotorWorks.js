@@ -14,7 +14,8 @@ function HowShibnobiMotorWorks() {
       <section className="howItWorkSection d-flex align-items-center">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-8 offset-lg-2">
+          <div className="col-12 col-lg-6 "></div>
+            <div className="col-12 col-lg-6 ">
               <div className="heroText">
                 <h1 className="orangeTextDark">How Gas Guzzlrs Works</h1>
               </div>

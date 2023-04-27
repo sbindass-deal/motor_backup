@@ -289,7 +289,7 @@ img.addBanner {
 
 .heroSection {
   padding: 50px 0px;
-  min-height: 500px;
+  min-height: 430px;
   background: url(../images/FERRARI-AND-MOTOR.jpg) center no-repeat;
   background-size: cover;
   position: relative;
@@ -2201,7 +2201,7 @@ li.page-item.disabled a svg {
 .aboutSection,
 .howItWorkSection {
   padding: 50px 0px;
-  min-height: 500px;
+  min-height: 430px;
   background: url(../images/about.jpg) center no-repeat;
   background-size: cover;
   position: relative;
@@ -3607,7 +3607,7 @@ button.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju36
     background-position: center;
 }
 .event {
-  background-image: url('../images/american-muscle-car-driver-2022-12-16-11-47-56-utc.jpg');
+  background-image: url('../images/CAMARO-ZL1.jpg');
   height: 51vh;
   background-position: inherit;
   background-position: center;
@@ -7788,17 +7788,17 @@ ul.post_labelList li p.userIco {
   left: 90px;
 }
 
-.heroText.textAlignLeft:before {
+/* .heroText.textAlignLeft:before {
   content: '';
-  background: #f39e0336;
-  width: 49%;
-  height: 100%;
-  position: absolute;
-  border-radius: 260px;
-  box-shadow: 1px -5px 185px 10px #f39e0382;
-  top: 0px;
-  left: 11%;
-}
+    background: #f39e0333;
+    width: 49%;
+    height: 100%;
+    position: absolute;
+    border-radius: 260px;
+    box-shadow: 1px -5px 185px 10px #f39e0382;
+    top: 0px;
+    left: 11%;
+} */
 .heroTex {
   position: relative;
 }
