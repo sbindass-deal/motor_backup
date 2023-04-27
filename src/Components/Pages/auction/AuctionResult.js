@@ -23,6 +23,7 @@ const AuctionResult = () => {
   const [viewListActive, setViewListActive] = useState(false);
   const [highlightWatch, setHighlightWatch] = useState(false);
   const [allData, setAllData] = useState([]);
+  const [showBell, setShowBell] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -178,6 +179,21 @@ const AuctionResult = () => {
     return <SmallSpinner spin={true} />;
   }
   console.log(79989, data);
+ const handleNotify = (a) => {
+   axios
+     .post(`${process.env.REACT_APP_URL}AddToNotifyAlerts`, {
+       type: "result",
+       subscribed: a,
+     })
+     .then(function (response) {
+       console.log(1009, response);
+         setShowBell(!showBell);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -188,14 +204,25 @@ const AuctionResult = () => {
                 Result Auctions{" "}
                 <span>{data?.length}&nbsp; AUCTIONS RESULT</span>
               </h2>
-              <p className="grTe">
-                <span className="">
-                  <span>
-                    <NotificationsNoneIcon />
+              {showBell == false ? (
+                <p className="grTe1" onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
                   </span>
-                  Get Daily Updates
-                </span>
-              </p>
+                </p>
+              ) : (
+                <p className="grTe " onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
+                  </span>
+                </p>
+              )}
             </div>
 
             <div className="col-12">
@@ -406,7 +433,7 @@ const AuctionResult = () => {
       <div className="container">
         <div className="row">
           <div className="col">
-           <AnalyticsTab/>
+            <AnalyticsTab />
           </div>
         </div>
       </div>
