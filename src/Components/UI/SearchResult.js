@@ -144,7 +144,7 @@ const SearchResult = () => {
                           <span class="">For Auction</span>
                         </div>
                       ) : null}
-                      <div>
+                      <div className="notiFicIcon">
                         <CircleNotificationsIcon />
                       </div>
                       <Link

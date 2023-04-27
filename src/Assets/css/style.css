@@ -7960,3 +7960,11 @@ button.btn.btn-link.fdrD {
 
 
 
+.notiFicIcon {
+  position: absolute;
+  z-index: 9999;
+  right: 26px;
+  color: #f8a504;
+  background: #000;
+  border-radius: 100px;
+}
