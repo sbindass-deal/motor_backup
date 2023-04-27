@@ -295,7 +295,7 @@ function MyListings() {
                       }}
                     >
                       <div className="row">
-                        <h3>You have not listed any vehicle</h3>
+                        <h3>You have not listed any vehicles</h3>
                       </div>
                     </div>
                   )}

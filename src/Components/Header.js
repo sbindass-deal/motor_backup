@@ -184,7 +184,6 @@ function Header() {
                       <li className="nav-item afterLogin iconMb">
                         <div className="dropdown">
                           <AccountCircleIcon />
-
                           <div className="dropdown-content  myACt">
                             {logingUser.login.token &&
                               logingUser.login.admin === null && (
@@ -198,7 +197,7 @@ function Header() {
                                   to="/accountinfo"
                                   onClick={() => setShowNav(false)}
                                 >
-                                  My Account
+                                  Profile Settings
                                   <br />
                                 </Link>
                               )}
@@ -236,7 +235,7 @@ function Header() {
                                     to="/vehicle-submission"
                                     onClick={() => setShowNav(false)}
                                   >
-                                    Admin
+                                    Admin Settings
                                   </Link>
                                 </li>
                               )}
@@ -616,10 +615,65 @@ function Header() {
                                 }`}
                                 to="/accountinfo"
                               >
-                                My Account
+                                Profile Settings
                                 <br />
                               </Link>
                             )}
+                          {logingUser.login.token && logingUser.login.admin && (
+                            <li className="nav-item">
+                              <Link
+                                className={`nav-link ${
+                                  location.pathname === "/vehicle-submission" &&
+                                  "navActive"
+                                }`}
+                                to="/vehicle-submission"
+                              >
+                                Admin&nbsp;Settings
+                              </Link>
+                            </li>
+                          )}
+
+                          {logingUser.login.token && (
+                            <>
+                              <li
+                                style={{ cursor: "pointer" }}
+                                className="nav-item"
+                              >
+                                <Link
+                                  style={{
+                                    color: `${
+                                      location.pathname === "/settings"
+                                        ? "#EF6031"
+                                        : ""
+                                    }`,
+                                  }}
+                                  to={"/settings"}
+                                  className="nav-link"
+                                >
+                                  Watchlist
+                                </Link>
+                              </li>
+                              <li
+                                style={{ cursor: "pointer" }}
+                                className="nav-item"
+                              >
+                                <Link
+                                  className="nav-link"
+                                  style={{
+                                    color: `${
+                                      location.pathname === "/getalerts"
+                                        ? "#EF6031"
+                                        : ""
+                                    }`,
+                                  }}
+                                  to={"/getalerts"}
+                                >
+                                  Get Alerts
+                                </Link>
+                              </li>
+                            </>
+                          )}
+
                           {!logingUser.login.token ? (
                             <li onClick={handleShow} className="nav-item">
                               <Link className="nav-link">Login</Link>
@@ -631,39 +685,6 @@ function Header() {
                               className="nav-item"
                             >
                               <Link className="nav-link">Logout</Link>
-                            </li>
-                          )}
-                          <li
-                            // onClick={logout}
-                            style={{ cursor: "pointer" }}
-                            className="nav-item"
-                          >
-                            <Link
-                              className="nav-link"
-                              style={{
-                                color: `${
-                                  location.pathname === "/getalerts"
-                                    ? "#EF6031"
-                                    : ""
-                                }`,
-                              }}
-                              to={"/getalerts"}
-                            >
-                              Get Alerts
-                            </Link>
-                          </li>
-
-                          {logingUser.login.token && logingUser.login.admin && (
-                            <li className="nav-item">
-                              <Link
-                                className={`nav-link ${
-                                  location.pathname === "/vehicle-submission" &&
-                                  "navActive"
-                                }`}
-                                to="/vehicle-submission"
-                              >
-                                Admin
-                              </Link>
                             </li>
                           )}
                           {/* {logingUser.login.token &&
