@@ -653,7 +653,7 @@ section.bgHolder {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 420px;
+  height: 250px;
   overflow: hidden;
 }
 
@@ -7888,14 +7888,12 @@ p.notiFi {
 }
 .SearchResult .bestSellerRgt:after{ border: none;}
 
-  /* padding: 10px;
-  border-radius: 10px;
-  width: 20%;
-  margin: 0 auto;
-  background: #f7931b;
-  color: #fff !important;
-} */
+p.grTe { padding: 10px; border-radius: 10px; width: 20%; margin: 0 auto;  background: #f7931b; color: #fff !important;}
+p.grTe1 { padding: 10px; border-radius: 10px; width: 20%; margin: 0 auto;  background: #282520; color: #fff !important;}
 
+/* grTe1{
+  background-color:#282520 !important
+} */
 .inputData{
   display: flex;
 }
@@ -7904,4 +7902,57 @@ p.notiFi {
     border-radius: 6px;
     outline: none;
   
+}
+
+
+button.btn.btn-link.fdrD {
+  padding: 0;
+  border: navajowhite;
+  background: transparent;
+  color: #000;
+  font-weight: 200;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.accordion .card-header {
+  padding: 0px 17px;
+  background-color: #e5e4e4;
+}
+.collapse.show {
+  background-color: #e5e4e4;
+}
+.collapse.show .card-body {
+  text-align: left;
+}
+.collapse.show .card-body a {
+  display: block;
+  padding: 8px 5px;
+}
+
+.accordion .card-header {
+  padding: 10px 20px;
+  margin-bottom: 0;
+  background-color: rgb(229 228 228);
+  border-bottom: 0px solid rgb(229 228 228);
+}
+.accordion .card{background-color: rgb(229 228 228);
+  border-bottom: 0px solid rgb(229 228 228);border: none;}
+
+  .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 35px 8px 20px;
+    cursor: pointer;
+    padding: 0;
+}
+.accordion .collapse.show .card-body a{padding: 0;}
+.card-body.Edv {
+  padding: 0;
+  padding-left: 10px;
+}
+.Edv .pro-menu-item {
+  font-size: 15px;
+  padding: 0;
 }

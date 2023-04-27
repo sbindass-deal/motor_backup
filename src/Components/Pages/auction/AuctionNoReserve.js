@@ -29,6 +29,7 @@ const AuctionNoReserve = () => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = data.slice(firstPostIndex, lastPostIndex);
   const [filteredModal, setFilteredModal] = useState(false);
+  const [showBell, setShowBell] = useState(false);
 
   const [filterCategory, setFilterCategory] = useState({});
 
@@ -198,6 +199,21 @@ const AuctionNoReserve = () => {
     fetchNoreserveDataSelect();
   };
 
+ const handleNotify = (a) => {
+   axios
+     .post(`${process.env.REACT_APP_URL}AddToNotifyAlerts`, {
+       type: "noreserve",
+       subscribed: a,
+     })
+     .then(function (response) {
+       console.log(1009, response);
+        setShowBell(!showBell);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ };
+
   return (
     <>
       <section className="ptb_80 pt_sm_50">
@@ -208,14 +224,25 @@ const AuctionNoReserve = () => {
                 Auctions No Reserve{" "}
                 <span>{data.length}&nbsp; AUCTIONS NOW LIVE</span>
               </h2>
-              <p className="grTe">
-                <span className="">
-                  <span>
-                    <NotificationsNoneIcon />
+              {showBell == false ? (
+                <p className="grTe1" onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
                   </span>
-                  Get Daily Updates
-                </span>
-              </p>
+                </p>
+              ) : (
+                <p className="grTe " onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
+                  </span>
+                </p>
+              )}
             </div>
             <div className="col-12">
               <ul className="postTopOption">

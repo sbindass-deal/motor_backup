@@ -24,6 +24,7 @@ const Charity = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [showBell, setShowBell] = useState(false);
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
@@ -163,6 +164,21 @@ const Charity = () => {
   //   return <SmallSpinner spin={true} />;
   // }
 
+  const handleNotify = (a) => {
+    axios
+      .post(`${process.env.REACT_APP_URL}AddToNotifyAlerts`, {
+        type: "charity",
+        subscribed: a,
+      })
+      .then(function (response) {
+        console.log(1009, response);
+        setShowBell(!showBell);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       {/* className="heroSection charity d-flex align-items-center" */}
@@ -199,14 +215,25 @@ const Charity = () => {
           <div className="row">
             <div class="col-12 text-center pb_30">
               <h2>Charity Auctions</h2>
-              <p className="grTe">
-                <span className="">
-                  <span>
-                    <NotificationsNoneIcon />
+              {showBell == false ? (
+                <p className="grTe1" onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
                   </span>
-                  Get Daily Updates
-                </span>
-              </p>
+                </p>
+              ) : (
+                <p className="grTe " onClick={() => handleNotify(1)}>
+                  <span className="">
+                    <span>
+                      <NotificationsNoneIcon />
+                    </span>
+                    Get Daily Updates
+                  </span>
+                </p>
+              )}
             </div>
             <div className="col-12">
               <ul className="postTopOption">

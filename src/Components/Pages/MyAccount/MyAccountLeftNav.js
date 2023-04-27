@@ -33,7 +33,7 @@ function MyAccountLeftNav() {
   }
   return (
     <div className="mr-5">
-      <ul class="sideBar__  ">
+      <ul className="sideBar__  swef">
         <ProSidebar className="sideBar__">
           <Menu iconShape="square">
             <MenuItem>
@@ -58,7 +58,7 @@ function MyAccountLeftNav() {
               </Link>
             </MenuItem>
 
-            <SubMenu
+            {/* <SubMenu
               onClick={() => {
                 dispatch(handleShowGarage(true));
                 dispatch(handleShowAuction(false));
@@ -133,9 +133,9 @@ function MyAccountLeftNav() {
                   Blog
                 </Link>
               </MenuItem>
-            </SubMenu>
+            </SubMenu> */}
 
-            <SubMenu
+            {/* <SubMenu
               title="Auctions"
               defaultOpen={userId.dayAndNightMode.showAuction}
               onClick={() => {
@@ -173,7 +173,170 @@ function MyAccountLeftNav() {
                   Won
                 </Link>
               </MenuItem>
-            </SubMenu>
+            </SubMenu> */}
+
+
+
+            <div id="accordion" className="accordion">
+              <div className="card">
+                <div className="card-header" id="headingOne">
+                  <h5 className="mb-0">
+                    <button
+                      className="btn btn-link fdrD"
+                      data-toggle="collapse"
+                      data-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Garage
+                    </button>
+                  </h5>
+                </div>
+
+                <div
+                  id="collapseOne"
+                  className="collapse "
+                  aria-labelledby="headingOne"
+                  data-parent="#accordion"
+                >
+                  <div className="card-body Edv">
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.vehicle_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(vehicleTab())}
+                      >
+                        Vehicles
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.socialMedia_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(socialMediaTab())}
+                      >
+                        Social media
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.post_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(postTab())}
+                      >
+                        Posts
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.reply_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(replyTab())}
+                      >
+                        Replies
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.bookmark_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(bookMarkTab())}
+                      >
+                        Bookmark
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.favorites_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(favoritesTab())}
+                      >
+                        Favorites
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link
+                        to="/user-garage"
+                        className={` ${
+                          tabState.blog_tab === true && "active"
+                        } `}
+                        onClick={() => dispatch(blogTab())}
+                      >
+                        Blog
+                      </Link>
+                    </MenuItem>
+                  </div>
+                </div>
+              </div>
+              <div className="card">
+                <div className="card-header" id="headingTwo">
+                  <h5 className="mb-0">
+                    <button
+                      className="btn btn-link collapsed fdrD"
+                      data-toggle="collapse"
+                      data-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Auctions
+                    </button>
+                  </h5>
+                </div>
+                <div
+                  id="collapseTwo"
+                  className="collapse"
+                  aria-labelledby="headingTwo"
+                  data-parent="#accordion"
+                >
+                  <div className="card-body Edv">
+                    <MenuItem>
+                      <Link
+                        className={` ${
+                          location.pathname === "/listing" ? "active" : ""
+                        } `}
+                        to="/listing"
+                      >
+                        Listings
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/bids"
+                        className={` ${
+                          location.pathname === "/bids" ? "active" : ""
+                        } `}
+                      >
+                        Bids
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/wins"
+                        className={` ${
+                          location.pathname === "/wins" ? "active" : ""
+                        } `}
+                      >
+                        Won
+                      </Link>
+                    </MenuItem>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* <MenuItem>
               <Link

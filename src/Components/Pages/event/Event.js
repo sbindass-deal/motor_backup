@@ -9,6 +9,7 @@ import axios from "axios";
 import ShowMeeting from "../Dashboard/ShowMeeting";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalLogin } from "../../../redux/reducers/login";
+import { toast } from "react-toastify";
 
 const Event = () => {
   const monthNames = [
@@ -32,6 +33,49 @@ const Event = () => {
   const [eventsData, setEventsData] = useState(events);
   const [getId, setGetId] = useState("");
   const logingUser = useSelector((state) => state);
+  
+  const [getDateYear, setGetDateYear] = useState({
+    datemonth: "",
+    title:""
+  })
+
+  const handleChangedate = (e) => {
+    setGetDateYear({ ...getDateYear, [e.target.name]: e.target.value});
+  }
+
+  const d = new Date(getDateYear?.datemonth);
+  console.log(98080, d.getFullYear());
+  console.log(98080, d.getMonth() + 1);
+
+  const notify = (val) =>
+  toast.success(val, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+  const handleEventData = () => {
+   
+    axios
+      .post(`${process.env.REACT_APP_URL}getEventsByMonthYear`, {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+      })
+      .then(function (response) {
+        console.log(998, response);
+        if (response.data.status===200) {
+          console.log(response);
+          notify(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     const fetchEventApi = async () => {
@@ -82,6 +126,7 @@ const Event = () => {
     }
   };
 
+
   return (
     <>
       <section class="heroSection event d-flex align-items-center">
@@ -106,19 +151,30 @@ const Event = () => {
       <div className="container clenderStyle ">
         <div className="inputData">
           <div>
-            <input className="inputDataInput" type="month" name="" id="" />
+            <input
+              onChange={handleChangedate}
+              className="inputDataInput"
+              type="month"
+              name="datemonth"
+              id=""
+              value={getDateYear.datemonth}
+            />
           </div>
           <div className="ml-3">
             <input
               className="inputDataInput"
               type="text"
-              name=""
+              name="eventtitle"
               id=""
               placeholder="Enter Event Name"
+              onChange={handleChangedate}
+              value={getDateYear.eventtitle}
             />
           </div>
           <div className="ml-3">
-            <button className="inputDataInput">Search</button>
+            <button onClick={handleEventData} className="inputDataInput">
+              Search
+            </button>
           </div>
         </div>
         <div className="text-right mb-1">
