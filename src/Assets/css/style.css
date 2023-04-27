@@ -6504,7 +6504,7 @@ h3.cardTitle.riTArrow {
 .rfel {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/1968-mustang-banner.png);
+  background-image: url(../images/INDIAN-SCOUT-MOTOR.jpg);
   background-position: center;
   height: 25vh;
 
@@ -7760,10 +7760,10 @@ ul.post_labelList li p.userIco {
 .modal-body .PostInfo {
   padding: 20px !important;
 }
-/* 
+
 .heroText.textAlignLeft {
   text-align: left;
-} */
+}
 .deTitle {
   margin-bottom: 0;
   top: 6px;
@@ -7960,3 +7960,22 @@ button.btn.btn-link.fdrD {
 
 
 
+.notiFicIcon {
+  position: absolute;
+  z-index: 9999;
+  right: 6%;
+  color: #f8a504;
+  background: #17171799;
+  border-radius: 100px;
+  min-width: 31px;
+  text-align: center;
+  padding: 2px;
+  font-size: 19px;
+  min-height: 29px;
+}
+.card_post:hover .notiFicIcon {
+  right: 5px;
+}
+.text-warning {
+  color: #f8a504!important;
+}
