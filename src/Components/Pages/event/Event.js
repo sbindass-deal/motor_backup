@@ -38,7 +38,7 @@ const Event = () => {
     };
     fetchEventApi();
   }, []);
-
+console.log("first")
   const handleSelect = ({ start, end }) => {
     console.log(500,start);
     console.log(500,end);
