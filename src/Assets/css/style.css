@@ -7972,6 +7972,7 @@ button.btn.btn-link.fdrD {
   padding: 2px;
   font-size: 19px;
   min-height: 29px;
+  cursor: pointer;
 }
 .card_post:hover .notiFicIcon {
   right: 5px;

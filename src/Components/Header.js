@@ -620,6 +620,12 @@ function Header() {
                               </Link>
                             )}
                           {logingUser.login.token && logingUser.login.admin && (
+                            <Link className={`nav-link`}>
+                              Profile Settings
+                              <br />
+                            </Link>
+                          )}
+                          {logingUser.login.token && logingUser.login.admin && (
                             <li className="nav-item">
                               <Link
                                 className={`nav-link ${
@@ -862,23 +868,21 @@ function Header() {
                               </Link>
                             </li>
 
-                            {logingUser.login.admin === null && (
-                              <li className="nav-item">
-                                <Link
-                                  className="nav-link"
-                                  style={{
-                                    color: `${
-                                      location.pathname === "/social-media"
-                                        ? "#EF6031"
-                                        : ""
-                                    }`,
-                                  }}
-                                  to="/social-media"
-                                >
-                                  Social Media
-                                </Link>
-                              </li>
-                            )}
+                            <li className="nav-item">
+                              <Link
+                                className="nav-link"
+                                style={{
+                                  color: `${
+                                    location.pathname === "/social-media"
+                                      ? "#EF6031"
+                                      : ""
+                                  }`,
+                                }}
+                                to="/social-media"
+                              >
+                                Social Media
+                              </Link>
+                            </li>
                           </div>
                         </div>
                       </li>
