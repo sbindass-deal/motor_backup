@@ -89,13 +89,7 @@ function AccountInfo() {
     }
   };
 
-<<<<<<< Updated upstream
-  useEffect(() => {
-    fetchUsrApi();
-  }, []);
-=======
  
->>>>>>> Stashed changes
 
   const onToken = (token, addresses) => {
     if (token !== null) {
@@ -116,29 +110,6 @@ function AccountInfo() {
         });
     }
   };
-<<<<<<< Updated upstream
-
-  const handlePrivateOrPublic = (e) => {
-    setIsPrivateOrPublic(e.target.checked);
-    axios
-      .post(`${process.env.REACT_APP_URL}profile_public`, {
-        publish: `${isPrivateOrPublic == true ? 0 : 1}`,
-      })
-      .then(function (response) {
-        if (response.data.status === 200) {
-          fetchUsrApi();
-          notify(response.data.message, response.data.status);
-        } else {
-          notify(response.data.message, response.data.status);
-        }
-      })
-      .catch(function (error) {
-        notify(error.message, error.status);
-      });
-  };
-
-=======
->>>>>>> Stashed changes
   return (
     <div>
       <section className="ptb_80 pt_sm_50">
