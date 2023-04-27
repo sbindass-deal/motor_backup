@@ -1350,6 +1350,27 @@
 		overflow: hidden;
 		margin-left: 7%;
 	}
+	.gTitle {
+		font-size: 16px;
+	}
+	.gRt .labelList_ li > div{ padding-left: 0px;}
+	.followers button.btn {padding: 7px 7px;}
+	h2 svg.svg-inline--fa.fa-pen-to-square {top: -9px;}
+	div.scrollmenu {
+		overflow: auto;
+		white-space: nowrap;
+	  }
+	  
+	  div.scrollmenu button {
+		display: inline-block;
+		color: white;
+		text-align: center;
+		padding: 14px;
+		text-decoration: none;
+	  }
+	 
+	  .neDesT button{width: auto;}
+	  .addVeh {padding: 4px 5px !important; border-radius: 5px;}
 }
 
 @media (max-width: 575px) {
@@ -1554,9 +1575,23 @@
 	.rafSect p {font-size: 11px;margin-bottom: 5px;}
 	#sticky {top: 78px !important;}
 	.orange_btn {padding: 6px 10px !important;	font-size: 13px ;}
+	.gRt .labelList_ li > div{ padding-left: 0 !important;}
+	h2 svg.svg-inline--fa.fa-pen-to-square {
+		position: relative;
+		top: -12px;
+		width: 8px;
+		padding: 9px;
+		height: 8px;
+		background: #f7931b;
+		border-radius: 50%;
+	}
+	.gRt .labelList_text {
+		padding-left: 0px !important;
+	}
 }
 
 @media (min-width: 360px) {
+
 	h1 {font-size: 28px;}
 }
 
