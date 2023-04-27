@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import about_1 from "../../Assets/images/woman-driving-sports-car-with-a-digital-touchscree-2021-09-02-02-11-52-utc.jpg";
-import about_2 from "../../Assets/images/handsome-young-african-american-business-man-worki-2022-04-27-03-29-18-utc.jpg";
+import about_2 from "../../Assets/images/handsome-young-african-american-business-man-worki-2022-04-27-03-29-18-utc-min.jpg";
 import about_3 from "../../Assets/images/male-driver-in-a-convertible-sports-car-driving-on-2022-03-04-02-22-18-utc.jpg";
 import about_4 from "../../Assets/images/man-driving-his-car-during-phone-conversation-2022-09-02-16-59-02-utc.jpg"
 
