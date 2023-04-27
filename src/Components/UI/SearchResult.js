@@ -11,7 +11,7 @@ import { showModalClose, showModalLogin } from "../../redux/reducers/login";
 const SearchResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [vehicleBaill, setVehicleBaill] = useState(false);
   const logingUser = useSelector((state) => state);
   const { searchResult: name, searchKey } =
     logingUser.dayAndNightMode.searchData;
@@ -144,9 +144,26 @@ const SearchResult = () => {
                           <span class="">For Auction</span>
                         </div>
                       ) : null}
-                      <div className="notiFicIcon">
-                      <i class="fa-solid fa-bell"></i>
-                      </div>
+                      {vehicleBaill ? (
+                        <div
+                          onClick={() => setVehicleBaill(!vehicleBaill)}
+                          className="notiFicIcon"
+                        >
+                          <span className="fa-solid fa-bell">
+                            <CircleNotificationsIcon />
+                          </span>
+                        </div>
+                      ) : (
+                        <div
+                          onClick={() => setVehicleBaill(!vehicleBaill)}
+                          className="notiFicIcon"
+                        >
+                          <span className="fa-solid fa-bell">
+                            <CircleNotificationsIcon />
+                          </span>
+                        </div>
+                      )}
+
                       <Link
                         to={
                           curElem.displayInAuction === "Yes"
