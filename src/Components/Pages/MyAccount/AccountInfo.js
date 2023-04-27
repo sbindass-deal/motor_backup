@@ -51,12 +51,14 @@ function AccountInfo() {
   const url = process.env.REACT_APP_URL;
  const uploadProfilePic = async (e) => {
     await axios
-      .post(`${url}usersProfile`, {
+      .post(`${url}uploadProfileImage`, {
         image: preview,
       })
       .then((result) => {
         if (result.data.status === 200 && true) {
           notify(result.data.message);
+          handleProfileClose();
+          fetchUsrApi();
         } else if (result.data.status === 200) {
           notify(result.data.message);
         } else {
@@ -162,7 +164,7 @@ function AccountInfo() {
                   <ul className="labelList_">
                     <li className="avtar">
                       <span >
-                        <img src={userProfile} />
+                        <img src={`${url}${userInfo.profile_image}`} />
                         {/* <i className="fa-solid fa-camera pointer" style={{position:"absolute", top:"127px"}} ></i> */}
 
                       </span>
@@ -418,7 +420,7 @@ function AccountInfo() {
         <div className="modal-dialog modal-dialog-centered mt-5">
           <div className="modal-content">
             <div className="modal-header border-0">
-              <h4 className="modal-title">Profile pic upload</h4>
+              <h4 className="modal-title  mx-auto">Profile Image Upload</h4>
               <button
                 onClick={handleProfileClose}
                 type="button"
@@ -429,7 +431,7 @@ function AccountInfo() {
               </button>
             </div>
 
-            <div className="modal-body px-5">
+            <div className="modal-body px-5 mx-auto">
               {/* <input type="file" onChange={handleChange} />
             </div>
             <img src={file} /> */}
@@ -443,9 +445,9 @@ function AccountInfo() {
               />
              {preview && <img src={preview} alt="Preview" />}
             </div>
-            <button className="my-5 w-50 btn text-center" onClick={uploadProfilePic}>Upload file</button>
             <div>
             </div>
+            <button className="my-5 w-50 btn mx-auto" onClick={uploadProfilePic}>Upload file</button>
           </div>
         </div>
       </Modal>

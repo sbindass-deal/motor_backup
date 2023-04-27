@@ -15,6 +15,7 @@ import { Carousel } from "antd";
 import { Image } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const ShopDetails = () => {
   const id = useParams().id;
@@ -37,7 +38,30 @@ const ShopDetails = () => {
   const [colorSelect, setColorSelect] = useState("");
   const [getPrice, setGetPrice] = useState("");
   const [addCart, setAddCart] = useState(false);
+  const [addPoints, setAddPoints] = useState(true);
+
+  const [sizeError, setSizeError] = useState(false);
+  const [colorError, setColorError] = useState(false);
   // console.log(111100, getPrice)
+
+
+  let valid = true
+  const validation = () => {
+    if (!sizeSelect) {
+      setSizeError(true)
+      valid = false
+    } else {
+      setSizeError(false)
+    }
+
+    if (!colorSelect) {
+      setColorError(true)
+      valid = false
+    } else {
+      setColorError(false)
+    }
+  }
+
 
   const navigate = useNavigate();
   const notify = (val) =>
@@ -89,7 +113,6 @@ const ShopDetails = () => {
       setColor_id(d?.data?.data);
     });
   }, [id]);
-
   // useEffect(() => {
   //   getSizeCategories?.product_inventory
   //     ?.map((curVal,i=0) => {
@@ -124,9 +147,9 @@ const ShopDetails = () => {
         // handle success
         console.log(100, response);
         setGetSizeCategories(response.data.data);
-        setSizeSelect(response.data.data.sizes[0].size_id);
+        // setSizeSelect(response.data.data.sizes[0].size_id);
         setGetPrice(response.data.data.product_inventory[0].price);
-        setColorSelect(response.data.data.colors[0].color_id);
+        // setColorSelect(response.data.data.colors[0].color_id);
       })
       .catch(function (error) {
         // handle error
@@ -145,40 +168,45 @@ const ShopDetails = () => {
   console.log(787800009, getSizeCategories);
 
   const handleProduct = () => {
-    setAddCart(true);
-    // if (size_id == undefined) {
-    //   return toast.warn("Please Choose Size", {
-    //     position: "bottom-center",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
-    // }
+    validation();
+    if (valid) {
+      setAddCart(true);
+      // if (size_id == undefined) {
+      //   return toast.warn("Please Choose Size", {
+      //     position: "bottom-center",
+      //     autoClose: 5000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: "light",
+      //   });
+      // }
 
-    dispatch(
-      addProduct({
-        ...product,
-        quantity: 1,
-        size_id: sizeSelect,
-        productId: id,
-        color_id: colorSelect,
-      })
-    );
-    notify("Item Added to cart !");
+      dispatch(
+        addProduct({
+          ...product,
+          quantity: 1,
+          size_id: sizeSelect,
+          productId: id,
+          color_id: colorSelect,
+          addPoints: addPoints,
+          multiplier: getSizeCategories?.multiplier
+        })
+      );
+      notify("Item Added to cart !");
 
-    // if (productRedux.map((d) => {
-    //   if (d.size_id == size_id && d.productId == productId) {
-    //     notify2("Item Already Added to cart.");
-    //     return true
-    //   }
-    // }).filter((d) => d != undefined).pop() != true) {
-    //   dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
-    //   notify("Added to cart.");
-    // }
+      // if (productRedux.map((d) => {
+      //   if (d.size_id == size_id && d.productId == productId) {
+      //     notify2("Item Already Added to cart.");
+      //     return true
+      //   }
+      // }).filter((d) => d != undefined).pop() != true) {
+      //   dispatch(addProduct({ ...product, quantity: 1, size_id: size_id, productId: productId, color_id: color_id2 }));
+      //   notify("Added to cart.");
+      // }
+    };
   };
 
   const contentStyle = {
@@ -276,19 +304,32 @@ const ShopDetails = () => {
 
               {getSizeCategories?.multiplier &&
                 getSizeCategories?.coupon_code && (
-                  <div className="" id="main_width">
-                    <div class="w">
-                      <div class="coupon-card">
+                  <div className="d-flex" id="main_width">
+                    <div className="w me-5">
+                      <div className="coupon-card">
                         <h3>{product?.coupon_code}</h3>
                         {/* <span>0X</span> */}
                         <p>{getSizeCategories?.multiplier + "X"}</p>
-                        <div class="circle1"></div>
-                        <div class="circle2"></div>
+                        <div className="circle1"></div>
+                        <div className="circle2"></div>
                       </div>
-                      <Link class="price__" to={"/carraffle"}>
+                      <Link className="price__" to={"/carraffle"}>
                         Giveways Entries
                       </Link>
                     </div>
+                    {addPoints ?
+                      <div style={{ marginLeft: "20px" }}>
+                        <span onClick={(e) => setAddPoints(!addPoints)} className="bg-success text-white pointer px-3 py-2 fw-bold" style={{ borderRadius: "20px" }}>
+                          {getSizeCategories?.multiplier + "X"}
+                        </span>
+                      </div>
+                      :
+                      <div style={{ marginLeft: "20px" }}>
+                        <span onClick={(e) => setAddPoints(!addPoints)} className="bg-white text-dark pointer px-3 py-2 fw-bold" style={{ borderRadius: "20px" }}>
+                          {getSizeCategories?.multiplier + "X"}
+                        </span>
+                      </div>
+                    }
 
                     {/* <div class="vs_grid_entries entries-default mb-3">
                           <div class="entries-count">
@@ -312,10 +353,12 @@ const ShopDetails = () => {
                 {/* <div className="sizeColor">Category : {product.category}</div> */}
                 <div className="size">
                   <select
-                    className="size"
+                    // className="size"
                     value={sizeSelect}
                     onChange={(e) => handleChange(e)}
+                    className={` ${sizeError ? "size border-danger" : "size"}`}
                   >
+                    <option selected disabled value="">Select</option>
                     {getSizeCategories?.sizes?.map((curVal, i) => {
                       return (
                         <option value={curVal?.size_id}>
@@ -329,12 +372,15 @@ const ShopDetails = () => {
                     <option value={"M"}>M</option>
                     <option value={"SM"}>SM</option> */}
                   </select>
+                  {/* {sizeError && <span className="text-danger">Please Select Size</span>} */}
 
                   <select
-                    className="size"
+                    // className="size"
                     value={colorSelect}
                     onChange={(e) => handleChangeColor(e)}
+                    className={` ${colorError ? "size border-danger" : "size"}`}
                   >
+                    <option selected disabled value="">Select</option>
                     {getSizeCategories?.colors?.map((curVal, i) => {
                       return (
                         <option value={curVal?.color_id}>
@@ -348,6 +394,7 @@ const ShopDetails = () => {
                     <option value={"Green"}>Green</option>
                     <option value={"Black"}>Black</option> */}
                   </select>
+                  {/* {colorError && <span className="text-danger">Please Select Color</span>} */}
                 </div>
                 {/* <div className="size d-flex"><p className="my-auto">Size :</p>  {
                   product?.product_inventry?.map((d, i) => {
