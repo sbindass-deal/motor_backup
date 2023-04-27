@@ -36,7 +36,7 @@ const Event = () => {
   
   const [getDateYear, setGetDateYear] = useState({
     datemonth: "",
-    title:""
+    title:"",
   })
 
   const handleChangedate = (e) => {
@@ -66,9 +66,9 @@ const Event = () => {
         month: d.getMonth() + 1,
       })
       .then(function (response) {
-        console.log(998, response);
-        if (response.data.status===200) {
-          console.log(response);
+        console.log(998, response.data.data);
+        if (response.data.status === 200) {
+          // setEventsData(response?.data?.data);
           notify(response.data.message);
         }
       })
@@ -76,6 +76,8 @@ const Event = () => {
         console.log(error);
       });
   }
+
+  console.log(9789, eventsData);
 
   useEffect(() => {
     const fetchEventApi = async () => {
