@@ -143,8 +143,8 @@ const Event = () => {
       <section class="heroSection event d-flex align-items-center">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-              <div class="heroText">
+            <div class="col-12 col-lg-6 ">
+              <div class="heroText textAlignLeft">
                 <h1>
                   Events for {monthNames[new Date().getMonth()]}{" "}
                   {new Date().getFullYear()}
