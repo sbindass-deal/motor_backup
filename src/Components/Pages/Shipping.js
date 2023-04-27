@@ -92,9 +92,15 @@ function Shipping() {
                   <div className="col-12 col-sm-12 col-md-12">
                     <div className="form-group">
                       <select className="field Saller">
-                        <option value="">Seller one <span>$5000</span></option>
-                        <option value="Saller two">Seller two <span>$3500</span></option>
-                        <option value="Saller three">Seller three <span>$8000</span></option>
+                        <option value="">
+                          Seller one <span>$5000</span>
+                        </option>
+                        <option value="Saller two">
+                          Seller two <span>$3500</span>
+                        </option>
+                        <option value="Saller three">
+                          Seller three <span>$8000</span>
+                        </option>
                       </select>
                     </div>
                   </div>

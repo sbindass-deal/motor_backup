@@ -6,7 +6,7 @@ import FormInput from "../../UI/FormInput";
 import SmallSpinner from "../../UI/SmallSpinner";
 
 const AddListing = () => {
-  const [isLoading,setIsLoading]=useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [addListing, setAddListing] = useState({
     name: "",
     singleprice: "",
@@ -36,7 +36,7 @@ const AddListing = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .post(`${process.env.REACT_APP_URL}addplans`, {
         plan_name: addListing.name,
@@ -50,14 +50,14 @@ const AddListing = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          setIsLoading(false)
+          setIsLoading(false);
           notify("Added Listing successfully !");
           navigate("/admin/vehicle-listing");
         }
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       });
 
     console.log("####", addListing);
@@ -66,13 +66,14 @@ const AddListing = () => {
   return (
     <div className="container mt-3 d-flex justify-content-center">
       <div className="">
-           
         <form onSubmit={handleSubmit} className="p-md-5">
-          <Link to={'/admin/vehicle-listing'}>
-            <button className="btn bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
+          <Link to={"/admin/vehicle-listing"}>
+            <button className="btn bkBtn">
+              <i class="bi bi-arrow-left"></i> Back To List
+            </button>
           </Link>
           <h3 className="pb-4 text-center">
-            <span>Add Listing Details</span>
+            <span>Add Listing Plan Details</span>
           </h3>
           <div className="row row_gap_5">
             <div className="col-12 col-md-6">
@@ -104,11 +105,10 @@ const AddListing = () => {
                   label="Category"
                   placeholder="Category"
                   //   pattern="^[0-9]$"
-                  
 
                   //   errorMessage="use only alphabet no special character"
                   //   required={true}
-                  
+
                   errorMessage="Category is required"
                   required
                 />
@@ -223,14 +223,13 @@ const AddListing = () => {
             </div>
           </div>
           <div className="form-group">
-            {
-              isLoading ? (
-                <SmallSpinner/>
-              ) : <button type="submit" className="btn w-100">
-                SUBMIT
+            {isLoading ? (
+              <SmallSpinner />
+            ) : (
+              <button type="submit" className="btn w-100">
+                Save
               </button>
-            }
-           
+            )}
           </div>
         </form>
       </div>

@@ -6,26 +6,28 @@ import FormInput from "../../UI/FormInput";
 import { Link } from "react-router-dom";
 import SmallSpinner from "../../UI/SmallSpinner";
 function VehicleListingDetails() {
+  const navigate = useNavigate();
 
- const navigate= useNavigate()
-
-  const {id}=useParams()
+  const { id } = useParams();
 
   const [vehicleDetails, setVehicleDetails] = useState({
     name: "",
     singleprice: "",
     fivesingleprice: "",
     description: "",
-    category:"",
-    monthlyListing:"",
-    annualListing:"",
-    annualDescription:"",
+    category: "",
+    monthlyListing: "",
+    annualListing: "",
+    annualDescription: "",
   });
   const handleChange = (e) => {
-    setVehicleDetails((pre) => ({ ...pre, [e.target.name]: e.target.value.trimStart() }));
+    setVehicleDetails((pre) => ({
+      ...pre,
+      [e.target.name]: e.target.value.trimStart(),
+    }));
   };
 
-  const[isLoading, setIsLoading]=useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const notify = (val) =>
     toast.success(val, {
@@ -56,7 +58,6 @@ function VehicleListingDetails() {
             description: res.data.data.monthly_description,
             annualListing: res.data.data.annual_listing,
             annualDescription: res.data.data.annual_description,
-            
           });
         }
       } catch (err) {
@@ -68,10 +69,10 @@ function VehicleListingDetails() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .post(`${process.env.REACT_APP_URL}updateplans`, {
-        id:id,
+        id: id,
         plan_name: vehicleDetails.name,
         monthly_price: vehicleDetails.singleprice,
         annual_price: vehicleDetails.fivesingleprice,
@@ -80,21 +81,18 @@ function VehicleListingDetails() {
         monthly_listing: vehicleDetails.monthlyListing,
         annual_listing: vehicleDetails.annualListing,
         annual_description: vehicleDetails.annualDescription,
-
-
-
       })
       .then((response) => {
-        console.log(8989,response)
+        console.log(8989, response);
         if (response.status === 200) {
-          setIsLoading(false)
-          navigate('/admin/vehicle-listing')
+          setIsLoading(false);
+          navigate("/admin/vehicle-listing");
           notify("Save successfully !");
         }
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
 
@@ -104,10 +102,15 @@ function VehicleListingDetails() {
         <div className="col-md-6">
           <form onSubmit={handleSubmit} className="p-md-5">
             <div className="row row_gap_5">
-              <Link  to={'/admin/vehicle-listing'}>
-                <button className="p-1 bkBtn"><i class="bi bi-arrow-left"></i> Back To List</button>
+              <Link to={"/admin/vehicle-listing"}>
+                <button className="p-1 bkBtn">
+                  <i class="bi bi-arrow-left"></i> Back To List
+                </button>
               </Link>
-              <h3 className="pb-4 text-center ml-4"> <span>Edit Listing Details</span> </h3>
+              <h3 className="pb-4 text-center ml-4">
+                {" "}
+                <span>Edit Listing Plan Detail</span>{" "}
+              </h3>
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -127,7 +130,6 @@ function VehicleListingDetails() {
                 </div>
               </div>
 
-
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -146,7 +148,6 @@ function VehicleListingDetails() {
                 </div>
               </div>
 
-
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -159,12 +160,11 @@ function VehicleListingDetails() {
                     //   pattern="^[0-9]$"
                     label="Monthly Listing"
                     errorMessage="Monthly Listing is Required"
-                  //   required={true}
+                    //   required={true}
                     required
                   />
                 </div>
               </div>
-
 
               <div className="col-12 col-md-12">
                 <div className="form-group">
@@ -175,20 +175,14 @@ function VehicleListingDetails() {
                     className="field"
                     label="Monthly Price"
                     placeholder="Monthly Price"
-                  //   pattern="^[0-9]$"
+                    //   pattern="^[0-9]$"
 
                     errorMessage="Monthly Price is Required"
-                  //   required={true}
+                    //   required={true}
                     required
                   />
                 </div>
               </div>
-
-
-              
-
-           
-
 
               <div className="col-12 col-md-12">
                 <div className="form-group">
@@ -202,7 +196,7 @@ function VehicleListingDetails() {
                     //   pattern="^[0-9]$"
                     label="Annual Price"
                     errorMessage="Annual Price is Required"
-                      required={true}
+                    required={true}
                   />
                 </div>
               </div>
@@ -221,7 +215,6 @@ function VehicleListingDetails() {
                 </div>
               </div>
 
-
               <div className="col-12 col-md-12">
                 <div className="form-group">
                   <FormInput
@@ -233,7 +226,7 @@ function VehicleListingDetails() {
                     placeholder="Annual Listing"
                     //   pattern="^[0-9]$"
                     label="Annual Listing"
-                  //   errorMessage="use only numbers($)"
+                    //   errorMessage="use only numbers($)"
                     required={true}
                   />
                 </div>
@@ -252,19 +245,15 @@ function VehicleListingDetails() {
                   ></textarea>
                 </div>
               </div>
-
-
             </div>
             <div className="form-group">
-              {
-                isLoading ? (
-                   <SmallSpinner/> 
-                ) :
-                  <button type="submit" className="btn w-100">
-                  Submit
-                </button> 
-              }
-             
+              {isLoading ? (
+                <SmallSpinner />
+              ) : (
+                <button type="submit" className="btn w-100">
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>
