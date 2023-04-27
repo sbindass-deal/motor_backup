@@ -145,7 +145,7 @@ const SearchResult = () => {
                         </div>
                       ) : null}
                       <div className="notiFicIcon">
-                        <CircleNotificationsIcon />
+                      <i class="fa-solid fa-bell"></i>
                       </div>
                       <Link
                         to={
