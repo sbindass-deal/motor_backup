@@ -37,22 +37,20 @@ const Dealer = () => {
               <h1>We have over {dealerCount} dealers around the world</h1>
               <h5>
                 We help you find your dream car. Select from our exclusive
-                <br /> list of showrooms.
+                <br /> list of Dealer Showrooms.
               </h5>
             </div>
           </div>
           <a type="button" className="scrollDownIc bounce2" href="#second">
-          <span className="outer_cover">
-            <small className="upper">
-              <i class="fa fa-angle-down"></i>
-            </small>
-            <small className="lower">
-              <i class="fa fa-angle-down"></i>
-            </small>
-          </span>
-        </a>
-
-          
+            <span className="outer_cover">
+              <small className="upper">
+                <i class="fa fa-angle-down"></i>
+              </small>
+              <small className="lower">
+                <i class="fa fa-angle-down"></i>
+              </small>
+            </span>
+          </a>
         </div>
       </section>
       <section className="ptb_30" id="second"></section>
@@ -60,7 +58,7 @@ const Dealer = () => {
         <div className="auction_container">
           <div className="row ">
             <div className="col-12 text-center pb_30">
-              <h2>Dealer Showroom</h2>
+              <h2>Dealer Showrooms</h2>
             </div>
             <div className="col-12 col-lg-12">
               <ul className="postTopOption">
@@ -70,7 +68,7 @@ const Dealer = () => {
                     autoComplete="off"
                     name="search"
                     placeholder="Search for a Dealer"
-                    onChange={(e)=>setSearchTerm(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </li>
                 <li className="">
@@ -87,7 +85,10 @@ const Dealer = () => {
                 </li>
               </ul>
             </div>
-            <DealerList searchTerm={searchTerm} handleDealerCount={handleDealerCount} />
+            <DealerList
+              searchTerm={searchTerm}
+              handleDealerCount={handleDealerCount}
+            />
           </div>
         </div>
       </section>

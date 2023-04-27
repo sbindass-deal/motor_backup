@@ -309,7 +309,7 @@ const ShopDetails = () => {
                       <div className="coupon-card">
                         <h3>{product?.coupon_code}</h3>
                         {/* <span>0X</span> */}
-                        <p>{getSizeCategories?.multiplier + "X"}</p>
+                        {/* <p>{getSizeCategories?.multiplier + "X"}</p> */}
                         <div className="circle1"></div>
                         <div className="circle2"></div>
                       </div>
